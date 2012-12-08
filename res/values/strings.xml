@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Login activity strings -->
+
+    <string name="app_name">MDroid</string>
+    <string name="MDroidLogo">MDroid Logo</string>
+    <string name="userName">Username</string>
+    <string name="password">Password</string>
+    <string name="loginButton">login</string>
+    <string name="userOfflinebutton">I\'m offline</string>
+    <string name="RememberPassword">Remember password and login automatically</string>
+
+    <!-- Data warning popup strings -->
+
+    <string name="dataWarningHeading">Data warning!</string>
+    <string name="dataWarningData">MDroid fetches contents by going through the required Moodle webpages. 
+        So, it will have a slightly high data traffic depending upon your usage. Please refer help section (Data warning help) for more help</string>
+    <string name="dontShowAgian">Don\'t show again</string>
+    <string name="dataWarningButtonText">got it!</string>
+
+    <!-- Developer dialog strings -->
+
+    <string name="developerPicDescription">Developer\'s Image</string>
+    <string name="developerHeading">Developed by :</string>
+    <string name="developer">Praveen Kumar Pendyala,
+        \nDepartment of Electrical Engineering,
+        \nIIT Bombay</string>
+    <string name="developerText">All the development related to MDroid, which include the app development from scratch, Logos, Website updation, 
+        MDroid stats, Video demos and snapshots, are done by the developer. For any issues related to contents of the 
+        fore mentioned aspects and privacy concerns you may write directly to the his mailbox,\n
+        praveen@praveenkumar.co.in
+        \nwith subject as \"MDroid\"</string>
+    <string name="creditsExtrasHeading">Special Thanks to</string>
+    <string name="creditsExtras">Raghavendra Bommaraju, 
+        \nDepartment of CSE, 
+        \nIIT Madras for all his techinical support and encouragement.</string>
+
+    <!-- About MDroid dialog Strings -->
+
+    <string name="aboutmdroidText">MDroid is a Moodle application for Android built with an idea that access to
+        the Moodle site\'s contents with your Android device can be made far simpler! MDroid is presently in its beta stages and expected
+        to under go a lot of changes making itself robust, bug free and deliver a better feel and performance to its end user. </string>
+    <string name="MDroidTestedServersHeading">Tested servers</string>
+    <string name="MDroidTestedServers">IIT Bombay Moodle - http://moodle.iitb.ac.in
+        \nIIT Madras, CSE Moodle - http://www.cse.iitm.ac.in/moodle</string>
+    <string name="MDroidContentSourcesHeading">Content sources</string>
+    <string name="MDroidContentSources">MDroid presently fetches contents from the following sections of Moodle:\n
+        Files: from resources and forums\n
+        Forums: from forums and discussions</string>
+    <string name="MDroidCompatibilityHeading">Compatibility</string>
+    <string name="MDroidCompatibility">Android 2.1 (Eclair) - Android 4.0.4 (ICS)
+        \nexpected compatibility with Android 4.1 (Jelly bean)</string>
+    <string name="MDroidDevicesTestedHeading">Devices Tested</string>
+    <string name="MDroidDevicesTested">Galaxy S2 running on Android 2.3.3, 2.3.6, 4.0.3, 4.0.4
+        \nHTC OneX running on Android 4.0.3
+        \nXperia X10 running on Android 2.3.6
+        \nXperia mini running on Android 2.1
+        \nAlso tested on tablet devices and other phones</string>
+    <string name="MDroidBugsHeading">Bugs and Issues</string>
+    <string name="MDroidBugs">File extension issues while storing files offline</string>
+
+    <!-- Rating dialog strings -->
+    <string name="rateRequestText">A good rating is all I hope for the time I spent in development and continious support.</string>
+
+    <!-- MDroid Help dialog strings -->
+
+    <string name="mdroidhelpTopicsList">Help topics</string>
+    <string name="mdroidhelpTopics">Login
+        \nCourse listing
+        \nFile listing
+        \nForums
+        \nDiscussions
+        \nOffline course listing
+        \nOffline file listing
+        \nSaving credentials
+        \nChanging server
+        \nFile opening errors</string>
+    <string name="mdroidhelpLoginHeading">Login</string>
+    <string name="mdroidhelpLogin">Username - username or LDAP Id for login
+        \nPassword - password for login
+        \nRemember password - Remembers username and password and takes autologin the next time you open the application.
+        \nNOTE: Username is always saved on login irrespective of the above preference.</string>
+    <string name="mdroidhelpCourseHeading">Course Listing</string>
+    <string name="mdroidhelpCourse">Lists all your courses available under your account on Moodle server</string>
+    <string name="mdroidhelpFilesHeading">Files Listing</string>
+    <string name="mdroidhelpFiles">Files : Lists files of a selected course
+        \nfrom Resources - files of a selected course in the resources section
+        \nfrom Forums - files of a selected course uploaded on forums as attachements
+        \nDownload - Indicates that the file is not available offline. Click download to make it available offline
+        \nOpen - Indicates that file is available and can be opened
+        \nDownloading - The file is being downloaded. You can run a maximum of two parllel downloads
+        \nAdditional details like the file size and datetime of download are shown for the offline files</string>
+
+    <!-- courseListing Activity strings -->
+
+    <string name="coursesLoadingMessage">Developed by : Praveen Kumar Pendyala</string>
+
+    <!-- filelisting activity strings -->
+
+    <string name="filesFromResoursesHeading">Files from resourses</string>
+    <string name="filesFromForumsHeading">Files from forums</string>
+
+    <!-- filelistviewlayout.xml strings -->
+
+    <string name="linearLayoutLoadingText">fetching contents..please wait…"</string>
+
+</resources>

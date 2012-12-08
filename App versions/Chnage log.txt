@@ -1,0 +1,12 @@
+V1.2 Beta
+*Fixed many fc issues
+*multiple download support (up to 2)
+*Auto saving of credentials
+
+V1.3 Beta
+*Improved UI
+*File extensions problem fixed
+
+V1.4 Beta
+*UI improvisation in forum viewing
+*Fixed a display issue in login screen for landscape orientation
