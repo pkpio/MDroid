@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/forumsdiscussthreadlayout"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/listviewitem_color"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="45dp"
+        android:background="@color/appBlue"
+        android:orientation="horizontal"
+        android:paddingBottom="3dp"
+        android:paddingTop="2dp" >
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/forumsdefaultprofilepic" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            android:paddingBottom="0.7dp"
+            android:paddingLeft="1dp"
+            android:paddingTop="1dp" >
+
+            <TextView
+                android:id="@+id/forumDiscussThreadSubject"
+                android:layout_width="fill_parent"
+                android:layout_height="23.5dp"
+                android:gravity="center_vertical"
+                android:paddingBottom="1dp"
+                android:paddingTop="2dp"
+                android:textColor="@color/white"
+                android:textSize="15dp" />
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="16.5dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingBottom="1dp" >
+
+                <TextView
+                    android:id="@+id/forumDiscussThreadAuthor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:gravity="left"
+                    android:layout_marginRight="140dp"
+                    android:textColor="@color/greyishwhite"
+                    android:textSize="12dp" />
+
+                <TextView
+                    android:id="@+id/forumDiscussThreadReplyTime"
+                    android:layout_width="140dp"
+                    android:layout_height="fill_parent"
+					android:layout_alignParentRight="true"
+					android:gravity="right"
+                    android:paddingRight="3dp"
+                    android:textColor="@color/greyishwhite"
+                    android:textSize="12dp" />
+            </RelativeLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/forumDiscussThreadContent"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:lineSpacingExtra="5dp"
+        android:paddingLeft="20dp"
+        android:textColor="#3f3f3f"
+        android:textSize="14dp" />
+
+</LinearLayout>

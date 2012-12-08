@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+     <color name="downloadButtonColor">#12a962</color>
+     <color name="loginButtonColor">#12a962</color>
+     <color name="openButtonColor">#196692</color>
+     <color name="appBlue">#196692</color>
+     <color name="white">#ffffff</color>
+     <color name="greyishwhite">#e9e9e9</color>
+     <color name="grey">#3f3f3f</color>
+     <color name="red">#ef4340</color>
+     <color name="appBlack">#3f3f3f</color>
+     <color name="ICSblue">#33b5e5</color>
+     <color name="transpWhiteBg">#30ffffff</color>
+</resources>
