@@ -13,9 +13,10 @@
 
     <!-- Data warning popup strings -->
 
-    <string name="dataWarningHeading">Data warning!</string>
-    <string name="dataWarningData">MDroid fetches contents by going through the required Moodle webpages. 
-        So, it will have a slightly high data traffic depending upon your usage. Please refer help section (Data warning help) for more help</string>
+    <string name="dataWarningHeading">Important notice !</string>
+    <string name="dataWarningData">MDroid was developed just to work with IIT Bombay and has been made generic hoping that it could benefit, if not all, at least a few more students like me. I would appreciate if you consider, even if it didn\'t work out for you, the time and efforts I have put in before you rate this
+        \n - MDroid never puts notification banners or in-app ads
+        \n - While changing server don\'t forget http:\\\\</string>
     <string name="dontShowAgian">Don\'t show again</string>
     <string name="dataWarningButtonText">got it!</string>
 
@@ -49,10 +50,9 @@
         Files: from resources and forums\n
         Forums: from forums and discussions</string>
     <string name="MDroidCompatibilityHeading">Compatibility</string>
-    <string name="MDroidCompatibility">Android 2.1 (Eclair) - Android 4.0.4 (ICS)
-        \nexpected compatibility with Android 4.1 (Jelly bean)</string>
+    <string name="MDroidCompatibility">Android 2.1 (Eclair) - Android 4.2.2 (Jellybean))</string>
     <string name="MDroidDevicesTestedHeading">Devices Tested</string>
-    <string name="MDroidDevicesTested">Galaxy S2 running on Android 2.3.3, 2.3.6, 4.0.3, 4.0.4
+    <string name="MDroidDevicesTested">Galaxy S2 running on Android 2.3.x - Android 4.2.x
         \nHTC OneX running on Android 4.0.3
         \nXperia X10 running on Android 2.3.6
         \nXperia mini running on Android 2.1
