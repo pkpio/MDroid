@@ -102,7 +102,7 @@ public class courseListing extends Activity {
 		// Listing Course in a ListView..
 		listCourseInListView(courseNames, courseIDs);
 
-		if (loginCount % 3 == 0 && loginCount != 0 && rated == 0) {
+		if (loginCount % 2 == 0 && loginCount != 0 && rated == 0) {
 			showDialog(4);
 		}
 	}
@@ -246,6 +246,15 @@ public class courseListing extends Activity {
 					}
 
 					// statusMessage.setText("value is " + i[0]);
+				}
+			});
+			
+			Button submitRatingLaterButton = (Button) dialog
+					.findViewById(R.id.submitRatingLater);
+
+			submitRatingLaterButton.setOnClickListener(new OnClickListener() {
+				public void onClick(View v) {
+						dialog.dismiss();
 				}
 			});
 			break;

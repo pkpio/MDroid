@@ -9,17 +9,16 @@
         android:id="@+id/changeServerEditText"
         android:layout_width="240dp"
         android:layout_height="wrap_content"
-        android:hint="your server name"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
+        android:hint="your server name"
         android:singleLine="true" />
 
     <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="240dp"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginBottom="20dp" >
+        android:layout_marginBottom="20dp"
+        android:orientation="horizontal" >
 
         <Button
             android:id="@+id/resetServerValue"
@@ -31,15 +30,15 @@
             android:paddingTop="10dp"
             android:text="reset"
             android:textColor="@color/white" />
-        
+
         <Button
             android:id="@+id/changeServerValue"
             android:layout_width="80dp"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="80dp"
             android:layout_marginTop="10dp"
             android:background="@drawable/green_btn"
             android:paddingBottom="10dp"
-            android:layout_marginLeft="80dp"
             android:paddingTop="10dp"
             android:text="save"
             android:textColor="@color/white" />
