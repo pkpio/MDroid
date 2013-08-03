@@ -121,10 +121,10 @@ public class userOfflineFolderListing extends Activity {
 					.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 			View rowView = inflater.inflate(
 					R.layout.userofflinefolderlistinglistview, parent, false);
-			
-			if (position % 2 == 0) 
+
+			if (position % 2 == 0)
 				rowView.setBackgroundResource(R.drawable.listview_evenitem_color);
-			
+
 			final TextView textViewFolderName = (TextView) rowView
 					.findViewById(R.id.myCourseNameOffline);
 			textViewFolderName.setText(courseFolderName.get(position));
@@ -219,7 +219,7 @@ public class userOfflineFolderListing extends Activity {
 					RatingBar mBar = (RatingBar) dialog
 							.findViewById(R.id.ratingBar);
 					int[] i = new int[] { (int) mBar.getRating() };
-					
+
 					// Saving prefs
 					appPrefs.saveIntPrefs("rated", 1);
 
@@ -237,6 +237,15 @@ public class userOfflineFolderListing extends Activity {
 					}
 
 					// statusMessage.setText("value is " + i[0]);
+				}
+			});
+
+			Button submitRatingLaterButton = (Button) dialog
+					.findViewById(R.id.submitRatingLater);
+
+			submitRatingLaterButton.setOnClickListener(new OnClickListener() {
+				public void onClick(View v) {
+					dialog.dismiss();
 				}
 			});
 			break;

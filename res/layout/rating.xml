@@ -17,20 +17,43 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:numStars="5"
+        android:paddingTop="5dp"
         android:rating="5"
         android:stepSize="1" />
 
-    <Button
-        android:id="@+id/submitRating"
-        android:layout_width="80dp"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="25dp"
-        android:layout_marginBottom="25dp"
-        android:background="@drawable/blue_btn"
-        android:paddingBottom="10dp"
-        android:paddingTop="10dp"
-        android:text="Rate it"
-        android:textColor="@color/white" />
+        android:layout_margin="25dp"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/submitRating"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/green_btn"
+            android:gravity="center"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"
+            android:text="Rate it !"
+            android:textColor="@color/white" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right" >
+
+            <Button
+                android:id="@+id/submitRatingLater"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/red_btn"
+                android:gravity="center"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:text="May be later"
+                android:textColor="@color/white" />
+        </LinearLayout>
+    </LinearLayout>
 
 </LinearLayout>

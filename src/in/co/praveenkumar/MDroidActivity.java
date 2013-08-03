@@ -1,4 +1,5 @@
 package in.co.praveenkumar;
+
 //Importing required libraries
 
 import java.io.BufferedReader;
@@ -87,6 +88,7 @@ public class MDroidActivity extends Activity {
 		loginDialog = new ProgressDialog(MDroidActivity.this);
 		loginDialog.setMessage("logging in..please wait....!");
 		loginDialog.setIndeterminate(true);
+		loginDialog.setCancelable(false);
 
 		// Setting up onClickListeners....
 		Button loginButton = (Button) findViewById(R.id.loginButton);
@@ -424,6 +426,15 @@ public class MDroidActivity extends Activity {
 					}
 
 					// statusMessage.setText("value is " + i[0]);
+				}
+			});
+
+			Button submitRatingLaterButton = (Button) dialog
+					.findViewById(R.id.submitRatingLater);
+
+			submitRatingLaterButton.setOnClickListener(new OnClickListener() {
+				public void onClick(View v) {
+					dialog.dismiss();
 				}
 			});
 			break;

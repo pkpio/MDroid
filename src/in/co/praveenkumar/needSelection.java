@@ -152,6 +152,15 @@ public class needSelection extends Activity {
 					// statusMessage.setText("value is " + i[0]);
 				}
 			});
+			
+			Button submitRatingLaterButton = (Button) dialog
+					.findViewById(R.id.submitRatingLater);
+
+			submitRatingLaterButton.setOnClickListener(new OnClickListener() {
+				public void onClick(View v) {
+						dialog.dismiss();
+				}
+			});
 			break;
 
 		case 3:
