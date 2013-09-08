@@ -9,18 +9,24 @@ Also, it is expected as matter of ethics that your work, if heavily dervied from
 
 And in any case, Where ever the original file(s) - one(s) contained in this thread is(are) modified it is mandatory to add the below lines.
 
-<b>
-""""
-:NOTICE:
+
+=============================================================================
+=============================================================================
+=============================================================================
+=============================================================================
 
 This work is derived from MDroid, a work by Praveen Kumar Pendyala.
+
 Source code: https://github.com/praveendath92/MDroid
 
-</b>
-<b>
+
 Orginal copyrights: Praveen Kumar Pendyala
 
 All further dervied versions of this code MUST also contain these lines.
+
 You may be allowed to modify this notice with original author's consent.
-""""
-</b>
+
+=============================================================================
+=============================================================================
+=============================================================================
+=============================================================================
