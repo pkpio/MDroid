@@ -11,6 +11,8 @@ And in any case, Where ever the original file(s) - one(s) contained in this thre
 
 <b>
 """"
+:NOTICE:
+
 This work is derived from MDroid, a work by Praveen Kumar Pendyala.
 Source code: https://github.com/praveendath92/MDroid
 
@@ -19,6 +21,6 @@ Source code: https://github.com/praveendath92/MDroid
 Orginal copyrights: Praveen Kumar Pendyala
 
 All further dervied versions of this code MUST also contain these lines.
-You may be allowed to modify with original author's consent.
+You may be allowed to modify this notice with original author's consent.
 """"
 </b>
