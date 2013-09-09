@@ -1,4 +1,4 @@
-The source code is made available to facilitate easy porting for those whose moodles are not/partially supported and someone has come forward to do the porting on their own.
+This source code is made available to facilitate easy porting and as an aid to the developers from universities/schools whose Moodle is not/partially supported by the current MDroid.
 
 However, you can use this code, modify it to your own needs - Add/remove functionalities, squash few bugs, with a condition that a proper credit given to the original developer - Yeah that's me, Praveen Pendyala.
 
