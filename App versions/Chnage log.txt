@@ -10,3 +10,4 @@ V1.3 Beta
 V1.4 Beta
 *UI improvisation in forum viewing
 *Fixed a display issue in login screen for landscape orientation
+

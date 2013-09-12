@@ -36,7 +36,8 @@
                 android:paddingBottom="1dp"
                 android:paddingTop="2dp"
                 android:textColor="@color/white"
-                android:textSize="15dp" />
+                android:textIsSelectable="true"
+                android:textSize="15sp" />
 
             <RelativeLayout
                 android:layout_width="fill_parent"
@@ -49,20 +50,22 @@
                     android:id="@+id/forumDiscussThreadAuthor"
                     android:layout_width="wrap_content"
                     android:layout_height="fill_parent"
-                    android:gravity="left"
                     android:layout_marginRight="140dp"
+                    android:gravity="left"
                     android:textColor="@color/greyishwhite"
-                    android:textSize="12dp" />
+                    android:textIsSelectable="true"
+                    android:textSize="12sp" />
 
                 <TextView
                     android:id="@+id/forumDiscussThreadReplyTime"
                     android:layout_width="140dp"
                     android:layout_height="fill_parent"
-					android:layout_alignParentRight="true"
-					android:gravity="right"
+                    android:layout_alignParentRight="true"
+                    android:gravity="right"
                     android:paddingRight="3dp"
                     android:textColor="@color/greyishwhite"
-                    android:textSize="12dp" />
+                    android:textIsSelectable="true"
+                    android:textSize="12sp" />
             </RelativeLayout>
         </LinearLayout>
     </LinearLayout>
@@ -73,7 +76,9 @@
         android:layout_height="wrap_content"
         android:lineSpacingExtra="5dp"
         android:paddingLeft="20dp"
+        android:paddingTop="20dp"
         android:textColor="#3f3f3f"
-        android:textSize="14dp" />
+        android:textIsSelectable="true"
+        android:textSize="14sp" />
 
 </LinearLayout>

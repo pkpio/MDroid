@@ -1,5 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    
+    <!-- Change log -->
+    
+    <!-- V3.0 Beta -->
+    <string name="version3.0Heading">V3.0 Beta</string>
+    <string name="version3.0Log">-In-app full change log\n-Updated app logo to match with playstore icon\n-Major changes in \'about\' section</string>  
+    
+    <!-- V2.9 Beta -->
+    <string name="version2.9Heading">V2.9 Beta</string>
+    <string name="version2.9Log">-Select-able text in forums.\nA user suggestion. Thanks.</string>     
+    <!-- V2.8 Beta -->
+    <string name="version2.8Heading">V2.8 Beta</string>
+    <string name="version2.8Log">-Removed startapp (the malware that you hear about in comments)</string>     
+    <!-- V2.7 Beta -->
+    <string name="version2.7Heading">V2.5 Beta</string>
+    <string name="version2.7Log">-Updated target to latest android version. A new look !</string>  
+    <!-- V2.6.1 Beta -->
+    <string name="version2.6.1Heading">V2.6.1 Beta</string>
+    <string name="version2.6.1Log">-Changes to Notice</string>  
+    <!-- V2.6 Beta -->
+    <string name="version2.6Heading">V2.6 Beta</string>
+    <string name="version2.6Log">--Included StartApp service</string>  
+    <!-- V2.5 Beta -->
+    <string name="version2.5Heading">V2.5 Beta</string>
+    <string name="version2.5Log">-Fixed filelisting force close issue for Moodle 2.3</string>  
+    <!-- V2.4 Beta -->
+    <string name="version2.4Heading">V2.4 Beta</string>
+    <string name="version2.4Log">-Minor fixes</string>  
+    <!-- V2.3 Beta -->
+    <string name="version2.3Heading">V2.3 Beta</string>
+    <string name="version2.3Log">-Minor fixes</string>  
+    <!-- V2.2 Beta -->
+    <string name="version2.2Heading">V2.2 Beta</string>
+    <string name="version2.2Log">-Minor fixes</string>  
+    <!-- V2.1 Beta -->
+    <string name="version2.1Heading">V2.1 Beta</string>
+    <string name="version2.1Log">-Improved app logo\n-14% reduction in app size!</string>    
+    <!-- V2.0 Beta -->
+    <string name="version2.0Heading">V2.0 Beta</string>
+    <string name="version2.0Log">-Few changes to file download code</string>
+    
+    <!-- V1.9 Beta -->
+    <string name="version1.9Heading">V1.9 Beta</string>
+    <string name="version1.9Log">-UI improvement\n-Download issue on IITB moodle fixed</string>
+    <!-- V1.8 Beta -->
+    <string name="version1.8Heading">V1.8 Beta</string>
+    <string name="version1.8Log">-Minor changes to parsing strings</string>
+    <!-- V1.7 Beta -->
+    <string name="version1.7Heading">V1.7 Beta</string>
+    <string name="version1.7Log">-Fixed an FC, occurring while fetching files some particular courses</string>
+    <!-- V1.6 Beta -->
+    <string name="version1.6Heading">V1.6 Beta</string>
+    <string name="version1.6Log">-In-app rating option</string>
+    <!-- V1.5 Beta -->
+    <string name="version1.5Heading">V1.5 Beta</string>
+    <string name="version1.5Log">-Minor fixes</string>
+    <!-- V1.4 Beta -->
+    <string name="version1.4Heading">V1.4 Beta</string>
+    <string name="version1.4Log">-Added in-app help section</string>
+    <!-- V1.3 Beta -->
+    <string name="version1.3Heading">V1.3 Beta</string>
+    <string name="version1.3Log">-Minor fixes</string>
+    <!-- V1.2 Beta -->
+    <string name="version1.2Heading">V1.2 Beta</string>
+    <string name="version1.2Log">-Fixed many fc issues\n-multiple download support (up to 2)\n-Auto saving of credentials</string>
+    <!-- V1.1 Beta -->
+    <string name="version1.1Heading">V1.1 Beta</string>
+    <string name="version1.1Log">-Initial release</string>
+    <!-- V1.0 Alpha -->
+    <string name="version1.0Heading">V1.0 Alpha</string>
+    <string name="version1.0Log">-Never released on playstore</string>
+    
+    
 
     <!-- Login activity strings -->
 
@@ -39,24 +112,17 @@
 
     <!-- About MDroid dialog Strings -->
 
-    <string name="aboutmdroidText">MDroid is a Moodle application for Android built with an idea that access to
-        the Moodle site\'s contents with your Android device can be made far simpler! MDroid is presently in its beta stages and expected
-        to under go a lot of changes making itself robust, bug free and deliver a better feel and performance to its end user. </string>
+    <string name="aboutmdroidText">MDroid is a Moodle application for Android built with an aim to save you the pains of opening moodle website on your mobile browser to download files or viewing forums.</string>
     <string name="MDroidTestedServersHeading">Tested servers</string>
     <string name="MDroidTestedServers">IIT Bombay Moodle - http://moodle.iitb.ac.in
         \nIIT Madras, CSE Moodle - http://www.cse.iitm.ac.in/moodle</string>
     <string name="MDroidContentSourcesHeading">Content sources</string>
-    <string name="MDroidContentSources">MDroid presently fetches contents from the following sections of Moodle:\n
-        Files: from resources and forums\n
-        Forums: from forums and discussions</string>
+    <string name="MDroidContentSources">MDroid fetches contents by opening moodle webpage and parsing the HTML response by looking at patterns to get required data.
+    \nAs it uses parsing of strings to get data and not some web services it is not expected to work on all servers as the response strings could vary if the webpage is themed.</string>
+
     <string name="MDroidCompatibilityHeading">Compatibility</string>
-    <string name="MDroidCompatibility">Android 2.1 (Eclair) - Android 4.2.2 (Jellybean))</string>
-    <string name="MDroidDevicesTestedHeading">Devices Tested</string>
-    <string name="MDroidDevicesTested">Galaxy S2 running on Android 2.3.x - Android 4.2.x
-        \nHTC OneX running on Android 4.0.3
-        \nXperia X10 running on Android 2.3.6
-        \nXperia mini running on Android 2.1
-        \nAlso tested on tablet devices and other phones</string>
+    <string name="MDroidCompatibility">MDroid doesn\'t use any Android version specific tools and is expected to work well irrespective of device model or Android version</string>
+
     <string name="MDroidBugsHeading">Bugs and Issues</string>
     <string name="MDroidBugs">File extension issues while storing files offline</string>
 
