@@ -1,6 +1,6 @@
 © 2013, Praveen Kumar Pendyala.
 Licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported license,
-http://creativecommons.org/licenses/by-nc-sa/3.0/ Thank you.
+http://creativecommons.org/licenses/by-nc-sa/3.0/
 
 This source code is made available to facilitate easy porting and as an aid to the developers from universities/schools whose Moodle is not/partially supported by the current MDroid.
 
