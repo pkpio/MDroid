@@ -373,6 +373,10 @@ public class MDroidActivity extends Activity {
 			showDialog(4);
 
 			break;
+		case R.id.ChangeLog:
+			showDialog(5);
+
+			break;
 		}
 		return true;
 	}
@@ -394,6 +398,11 @@ public class MDroidActivity extends Activity {
 		case 2:
 			dialog.setContentView(R.layout.mdroidhelp);
 			dialog.setTitle("Help");
+			break;
+
+		case 5:
+			dialog.setContentView(R.layout.change_log);
+			dialog.setTitle("Change log");
 			break;
 
 		case 4:
