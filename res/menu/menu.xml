@@ -9,4 +9,6 @@
         android:title="Server" />
     <item android:id="@+id/Rating"
         android:title="Rating" />
+    <item android:id="@+id/ChangeLog"
+        android:title="Change log" />
 </menu>

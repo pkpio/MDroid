@@ -41,157 +41,263 @@ public final class R {
         public static final int red_btn=0x7f02000e;
     }
     public static final class id {
-        public static final int AboutMDroid=0x7f07003d;
-        public static final int ChangeServer=0x7f070040;
-        public static final int Credits=0x7f07003e;
-        public static final int HelpMenu=0x7f07003f;
-        public static final int MDroidLogoimageView=0x7f070027;
-        public static final int Rating=0x7f070041;
-        public static final int changeServerEditText=0x7f070003;
-        public static final int changeServerValue=0x7f070005;
-        public static final int courseModifiedDateOffline=0x7f07003b;
-        public static final int dataWarningDialogDismiss=0x7f07000b;
-        public static final int dataWarningDialogStatus=0x7f07000a;
-        public static final int files=0x7f07002d;
-        public static final int forumDiscussThreadAuthor=0x7f07001e;
-        public static final int forumDiscussThreadContent=0x7f070020;
-        public static final int forumDiscussThreadReplyTime=0x7f07001f;
-        public static final int forumDiscussThreadSubject=0x7f07001d;
-        public static final int forumThreadAuthor=0x7f070025;
-        public static final int forumThreadRepliesCount=0x7f070024;
-        public static final int forumThreadStartTime=0x7f070026;
-        public static final int forumThreadSubject=0x7f070023;
-        public static final int forums=0x7f07002e;
-        public static final int forumsDiscussThread=0x7f07001b;
-        public static final int forumsFileList=0x7f070012;
-        public static final int forumsdiscussthreadlayout=0x7f07001c;
-        public static final int image=0x7f070001;
-        public static final int layout_root=0x7f070000;
-        public static final int linearLayoutLoadingDiscussThread=0x7f07001a;
-        public static final int linearLayoutLoadingForums=0x7f070013;
-        public static final int linearLayoutLoadingForumsList=0x7f070021;
-        public static final int linearLayoutLoadingProgressImageForums=0x7f070015;
-        public static final int linearLayoutLoadingProgressImageResourses=0x7f070010;
-        public static final int linearLayoutLoadingProgressTextForums=0x7f070014;
-        public static final int linearLayoutLoadingProgressTextResourses=0x7f07000f;
-        public static final int linearLayoutLoadingResourses=0x7f07000e;
-        public static final int loginButton=0x7f07002b;
-        public static final int myCourseFilesOffline=0x7f070032;
-        public static final int myCourseFoldersOffline=0x7f070038;
-        public static final int myCourseNameOffline=0x7f07003a;
-        public static final int myCourses=0x7f070006;
-        public static final int myCoursesName=0x7f070007;
-        public static final int myFileButton=0x7f070019;
-        public static final int myFileDownloadStatus=0x7f070018;
-        public static final int myFileName=0x7f070017;
-        public static final int myFilesForums=0x7f070016;
-        public static final int myFilesOffline=0x7f070033;
-        public static final int myFilesResources=0x7f070011;
-        public static final int myForums=0x7f070022;
-        public static final int myOfflineFileDeleteButton=0x7f070036;
-        public static final int myOfflineFileDetails=0x7f070035;
-        public static final int myOfflineFileName=0x7f070034;
-        public static final int myOfflineFileOpenButton=0x7f070037;
-        public static final int noOfFilesOffline=0x7f07003c;
-        public static final int passwordEditText=0x7f070029;
-        public static final int passwordPrefcheckBox=0x7f07002a;
-        public static final int ratingBar=0x7f07002f;
-        public static final int resetServerValue=0x7f070004;
-        public static final int resourcesFileList=0x7f07000d;
-        public static final int submitRating=0x7f070030;
-        public static final int submitRatingLater=0x7f070031;
-        public static final int superLinearLayout=0x7f070039;
-        public static final int tabHost=0x7f07000c;
-        public static final int text=0x7f070002;
-        public static final int textData=0x7f070009;
-        public static final int textHeading=0x7f070008;
-        public static final int userOfflineButton=0x7f07002c;
-        public static final int usernameEditText=0x7f070028;
+        public static final int AboutMDroid=0x7f08003d;
+        public static final int ChangeLog=0x7f080042;
+        public static final int ChangeServer=0x7f080040;
+        public static final int Credits=0x7f08003e;
+        public static final int HelpMenu=0x7f08003f;
+        public static final int MDroidLogoimageView=0x7f080027;
+        public static final int Rating=0x7f080041;
+        public static final int changeServerEditText=0x7f080003;
+        public static final int changeServerValue=0x7f080005;
+        public static final int courseModifiedDateOffline=0x7f08003b;
+        public static final int dataWarningDialogDismiss=0x7f08000b;
+        public static final int dataWarningDialogStatus=0x7f08000a;
+        public static final int files=0x7f08002d;
+        public static final int forumDiscussThreadAuthor=0x7f08001e;
+        public static final int forumDiscussThreadContent=0x7f080020;
+        public static final int forumDiscussThreadReplyTime=0x7f08001f;
+        public static final int forumDiscussThreadSubject=0x7f08001d;
+        public static final int forumThreadAuthor=0x7f080025;
+        public static final int forumThreadRepliesCount=0x7f080024;
+        public static final int forumThreadStartTime=0x7f080026;
+        public static final int forumThreadSubject=0x7f080023;
+        public static final int forums=0x7f08002e;
+        public static final int forumsDiscussThread=0x7f08001b;
+        public static final int forumsFileList=0x7f080012;
+        public static final int forumsdiscussthreadlayout=0x7f08001c;
+        public static final int image=0x7f080001;
+        public static final int layout_root=0x7f080000;
+        public static final int linearLayoutLoadingDiscussThread=0x7f08001a;
+        public static final int linearLayoutLoadingForums=0x7f080013;
+        public static final int linearLayoutLoadingForumsList=0x7f080021;
+        public static final int linearLayoutLoadingProgressImageForums=0x7f080015;
+        public static final int linearLayoutLoadingProgressImageResourses=0x7f080010;
+        public static final int linearLayoutLoadingProgressTextForums=0x7f080014;
+        public static final int linearLayoutLoadingProgressTextResourses=0x7f08000f;
+        public static final int linearLayoutLoadingResourses=0x7f08000e;
+        public static final int loginButton=0x7f08002b;
+        public static final int myCourseFilesOffline=0x7f080032;
+        public static final int myCourseFoldersOffline=0x7f080038;
+        public static final int myCourseNameOffline=0x7f08003a;
+        public static final int myCourses=0x7f080006;
+        public static final int myCoursesName=0x7f080007;
+        public static final int myFileButton=0x7f080019;
+        public static final int myFileDownloadStatus=0x7f080018;
+        public static final int myFileName=0x7f080017;
+        public static final int myFilesForums=0x7f080016;
+        public static final int myFilesOffline=0x7f080033;
+        public static final int myFilesResources=0x7f080011;
+        public static final int myForums=0x7f080022;
+        public static final int myOfflineFileDeleteButton=0x7f080036;
+        public static final int myOfflineFileDetails=0x7f080035;
+        public static final int myOfflineFileName=0x7f080034;
+        public static final int myOfflineFileOpenButton=0x7f080037;
+        public static final int noOfFilesOffline=0x7f08003c;
+        public static final int passwordEditText=0x7f080029;
+        public static final int passwordPrefcheckBox=0x7f08002a;
+        public static final int ratingBar=0x7f08002f;
+        public static final int resetServerValue=0x7f080004;
+        public static final int resourcesFileList=0x7f08000d;
+        public static final int submitRating=0x7f080030;
+        public static final int submitRatingLater=0x7f080031;
+        public static final int superLinearLayout=0x7f080039;
+        public static final int tabHost=0x7f08000c;
+        public static final int text=0x7f080002;
+        public static final int textData=0x7f080009;
+        public static final int textHeading=0x7f080008;
+        public static final int userOfflineButton=0x7f08002c;
+        public static final int usernameEditText=0x7f080028;
     }
     public static final class layout {
         public static final int aboutmdroid=0x7f030000;
-        public static final int changeserver=0x7f030001;
-        public static final int courselisting=0x7f030002;
-        public static final int courselistviewlayout=0x7f030003;
-        public static final int credits=0x7f030004;
-        public static final int datawarningpopup=0x7f030005;
-        public static final int filelisting=0x7f030006;
-        public static final int filelistviewlayout=0x7f030007;
-        public static final int forumdiscussthread=0x7f030008;
-        public static final int forumdiscussthreadlistviewlayout=0x7f030009;
-        public static final int forums=0x7f03000a;
-        public static final int forumslistviewlayout=0x7f03000b;
-        public static final int main=0x7f03000c;
-        public static final int mdroidhelp=0x7f03000d;
-        public static final int needselection=0x7f03000e;
-        public static final int rating=0x7f03000f;
-        public static final int userofflinefilelisting=0x7f030010;
-        public static final int userofflinefilelistinglistview=0x7f030011;
-        public static final int userofflinefolderlisting=0x7f030012;
-        public static final int userofflinefolderlistinglistview=0x7f030013;
+        public static final int change_log=0x7f030001;
+        public static final int changeserver=0x7f030002;
+        public static final int courselisting=0x7f030003;
+        public static final int courselistviewlayout=0x7f030004;
+        public static final int credits=0x7f030005;
+        public static final int datawarningpopup=0x7f030006;
+        public static final int filelisting=0x7f030007;
+        public static final int filelistviewlayout=0x7f030008;
+        public static final int forumdiscussthread=0x7f030009;
+        public static final int forumdiscussthreadlistviewlayout=0x7f03000a;
+        public static final int forums=0x7f03000b;
+        public static final int forumslistviewlayout=0x7f03000c;
+        public static final int main=0x7f03000d;
+        public static final int mdroidhelp=0x7f03000e;
+        public static final int needselection=0x7f03000f;
+        public static final int rating=0x7f030010;
+        public static final int userofflinefilelisting=0x7f030011;
+        public static final int userofflinefilelistinglistview=0x7f030012;
+        public static final int userofflinefolderlisting=0x7f030013;
+        public static final int userofflinefolderlistinglistview=0x7f030014;
     }
     public static final class menu {
-        public static final int menu=0x7f060000;
+        public static final int menu=0x7f070000;
     }
     public static final class string {
-        public static final int MDroidBugs=0x7f05001b;
-        public static final int MDroidBugsHeading=0x7f05001a;
-        public static final int MDroidCompatibility=0x7f050017;
-        public static final int MDroidCompatibilityHeading=0x7f050016;
-        public static final int MDroidContentSources=0x7f050015;
-        public static final int MDroidContentSourcesHeading=0x7f050014;
-        public static final int MDroidDevicesTested=0x7f050019;
-        public static final int MDroidDevicesTestedHeading=0x7f050018;
-        public static final int MDroidLogo=0x7f050001;
-        public static final int MDroidTestedServers=0x7f050013;
-        public static final int MDroidTestedServersHeading=0x7f050012;
-        public static final int RememberPassword=0x7f050006;
+        public static final int MDroidBugs=0x7f050045;
+        public static final int MDroidBugsHeading=0x7f050044;
+        public static final int MDroidCompatibility=0x7f050043;
+        public static final int MDroidCompatibilityHeading=0x7f050042;
+        public static final int MDroidContentSources=0x7f050041;
+        public static final int MDroidContentSourcesHeading=0x7f050040;
+        public static final int MDroidLogo=0x7f05002d;
+        public static final int MDroidTestedServers=0x7f05003f;
+        public static final int MDroidTestedServersHeading=0x7f05003e;
+        public static final int RememberPassword=0x7f050032;
         /**  About MDroid dialog Strings 
          */
-        public static final int aboutmdroidText=0x7f050011;
+        public static final int aboutmdroidText=0x7f05003d;
         /**  Login activity strings 
          */
-        public static final int app_name=0x7f050000;
+        public static final int app_name=0x7f05002c;
         /**  courseListing Activity strings 
          */
-        public static final int coursesLoadingMessage=0x7f050025;
-        public static final int creditsExtras=0x7f050010;
-        public static final int creditsExtrasHeading=0x7f05000f;
-        public static final int dataWarningButtonText=0x7f05000a;
-        public static final int dataWarningData=0x7f050008;
+        public static final int coursesLoadingMessage=0x7f05004f;
+        public static final int creditsExtras=0x7f05003c;
+        public static final int creditsExtrasHeading=0x7f05003b;
+        public static final int dataWarningButtonText=0x7f050036;
+        public static final int dataWarningData=0x7f050034;
         /**  Data warning popup strings 
          */
-        public static final int dataWarningHeading=0x7f050007;
-        public static final int developer=0x7f05000d;
-        public static final int developerHeading=0x7f05000c;
+        public static final int dataWarningHeading=0x7f050033;
+        public static final int developer=0x7f050039;
+        public static final int developerHeading=0x7f050038;
         /**  Developer dialog strings 
          */
-        public static final int developerPicDescription=0x7f05000b;
-        public static final int developerText=0x7f05000e;
-        public static final int dontShowAgian=0x7f050009;
-        public static final int filesFromForumsHeading=0x7f050027;
+        public static final int developerPicDescription=0x7f050037;
+        public static final int developerText=0x7f05003a;
+        public static final int dontShowAgian=0x7f050035;
+        public static final int filesFromForumsHeading=0x7f050051;
         /**  filelisting activity strings 
          */
-        public static final int filesFromResoursesHeading=0x7f050026;
+        public static final int filesFromResoursesHeading=0x7f050050;
         /**  filelistviewlayout.xml strings 
          */
-        public static final int linearLayoutLoadingText=0x7f050028;
-        public static final int loginButton=0x7f050004;
-        public static final int mdroidhelpCourse=0x7f050022;
-        public static final int mdroidhelpCourseHeading=0x7f050021;
-        public static final int mdroidhelpFiles=0x7f050024;
-        public static final int mdroidhelpFilesHeading=0x7f050023;
-        public static final int mdroidhelpLogin=0x7f050020;
-        public static final int mdroidhelpLoginHeading=0x7f05001f;
-        public static final int mdroidhelpTopics=0x7f05001e;
+        public static final int linearLayoutLoadingText=0x7f050052;
+        public static final int loginButton=0x7f050030;
+        public static final int mdroidhelpCourse=0x7f05004c;
+        public static final int mdroidhelpCourseHeading=0x7f05004b;
+        public static final int mdroidhelpFiles=0x7f05004e;
+        public static final int mdroidhelpFilesHeading=0x7f05004d;
+        public static final int mdroidhelpLogin=0x7f05004a;
+        public static final int mdroidhelpLoginHeading=0x7f050049;
+        public static final int mdroidhelpTopics=0x7f050048;
         /**  MDroid Help dialog strings 
          */
-        public static final int mdroidhelpTopicsList=0x7f05001d;
-        public static final int password=0x7f050003;
+        public static final int mdroidhelpTopicsList=0x7f050047;
+        public static final int password=0x7f05002f;
         /**  Rating dialog strings 
          */
-        public static final int rateRequestText=0x7f05001c;
-        public static final int userName=0x7f050002;
-        public static final int userOfflinebutton=0x7f050005;
+        public static final int rateRequestText=0x7f050046;
+        public static final int userName=0x7f05002e;
+        public static final int userOfflinebutton=0x7f050031;
+        /**  V1.0 Alpha 
+         */
+        public static final int version1_0Heading=0x7f05002a;
+        public static final int version1_0Log=0x7f05002b;
+        /**  V1.1 Beta 
+         */
+        public static final int version1_1Heading=0x7f050028;
+        public static final int version1_1Log=0x7f050029;
+        /**  V1.2 Beta 
+         */
+        public static final int version1_2Heading=0x7f050026;
+        public static final int version1_2Log=0x7f050027;
+        /**  V1.3 Beta 
+         */
+        public static final int version1_3Heading=0x7f050024;
+        public static final int version1_3Log=0x7f050025;
+        /**  V1.4 Beta 
+         */
+        public static final int version1_4Heading=0x7f050022;
+        public static final int version1_4Log=0x7f050023;
+        /**  V1.5 Beta 
+         */
+        public static final int version1_5Heading=0x7f050020;
+        public static final int version1_5Log=0x7f050021;
+        /**  V1.6 Beta 
+         */
+        public static final int version1_6Heading=0x7f05001e;
+        public static final int version1_6Log=0x7f05001f;
+        /**  V1.7 Beta 
+         */
+        public static final int version1_7Heading=0x7f05001c;
+        public static final int version1_7Log=0x7f05001d;
+        /**  V1.8 Beta 
+         */
+        public static final int version1_8Heading=0x7f05001a;
+        public static final int version1_8Log=0x7f05001b;
+        /**  V1.9 Beta 
+         */
+        public static final int version1_9Heading=0x7f050018;
+        public static final int version1_9Log=0x7f050019;
+        /**  V2.0 Beta 
+         */
+        public static final int version2_0Heading=0x7f050016;
+        public static final int version2_0Log=0x7f050017;
+        /**  V2.1 Beta 
+         */
+        public static final int version2_1Heading=0x7f050014;
+        public static final int version2_1Log=0x7f050015;
+        /**  V2.2 Beta 
+         */
+        public static final int version2_2Heading=0x7f050012;
+        public static final int version2_2Log=0x7f050013;
+        /**  V2.3 Beta 
+         */
+        public static final int version2_3Heading=0x7f050010;
+        public static final int version2_3Log=0x7f050011;
+        /**  V2.4 Beta 
+         */
+        public static final int version2_4Heading=0x7f05000e;
+        public static final int version2_4Log=0x7f05000f;
+        /**  V2.5 Beta 
+         */
+        public static final int version2_5Heading=0x7f05000c;
+        public static final int version2_5Log=0x7f05000d;
+        /**  V2.6.1 Beta 
+         */
+        public static final int version2_6_1Heading=0x7f050008;
+        public static final int version2_6_1Log=0x7f050009;
+        /**  V2.6 Beta 
+         */
+        public static final int version2_6Heading=0x7f05000a;
+        public static final int version2_6Log=0x7f05000b;
+        /**  V2.7 Beta 
+         */
+        public static final int version2_7Heading=0x7f050006;
+        public static final int version2_7Log=0x7f050007;
+        /**  V2.8 Beta 
+         */
+        public static final int version2_8Heading=0x7f050004;
+        public static final int version2_8Log=0x7f050005;
+        /**  V2.9 Beta 
+         */
+        public static final int version2_9Heading=0x7f050002;
+        public static final int version2_9Log=0x7f050003;
+        /**  Change log 
+ V3.0 Beta 
+         */
+        public static final int version3_0Heading=0x7f050000;
+        public static final int version3_0Log=0x7f050001;
+    }
+    public static final class style {
+        /** 
+        Base application theme, dependent on API level. This theme is replaced
+        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+    
+
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+        
+         */
+        public static final int AppBaseTheme=0x7f060000;
+        /**  Application theme. 
+ All customizations that are NOT specific to a particular API-level can go here. 
+         */
+        public static final int AppTheme=0x7f060001;
     }
 }

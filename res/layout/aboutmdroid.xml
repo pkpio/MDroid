@@ -3,7 +3,6 @@
     android:layout_height="match_parent" >
 
     <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/layout_root"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -24,21 +23,6 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="@string/aboutmdroidText"
-            android:textColor="@color/white" />
-
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="6dp"
-            android:layout_marginTop="20dp"
-            android:text="@string/MDroidTestedServersHeading"
-            android:textColor="@color/appBlue"
-            android:textSize="18dp" />
-
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/MDroidTestedServers"
             android:textColor="@color/white" />
 
         <TextView
@@ -69,21 +53,6 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="@string/MDroidCompatibility"
-            android:textColor="@color/white" />
-
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="6dp"
-            android:layout_marginTop="20dp"
-            android:text="@string/MDroidDevicesTestedHeading"
-            android:textColor="@color/appBlue"
-            android:textSize="18dp" />
-
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/MDroidDevicesTested"
             android:textColor="@color/white" />
 
         <TextView
