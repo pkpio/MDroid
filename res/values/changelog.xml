@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Current version -->
+    <string name="current_version">Version 4.0 Beta2</string>
+
+    <!-- V4.0 Beta2 -->
+    <string name="version4.0Heading">V4.0 Beta2</string>
+    <string name="version4.0Log">-Redeveloped from scratch\n-Complete UI changeover\n-Better error handling\n-Improved progress reporting\n-Optimized all classes</string>
+
+    <!-- V3.0 Beta -->
+    <string name="version3.0Heading">V3.0 Beta</string>
+    <string name="version3.0Log">-In-app full change log\n-Updated app logo to match with playstore icon\n-Major changes in \'about\' section</string>
+
+    <!-- V2.9 Beta -->
+    <string name="version2.9Heading">V2.9 Beta</string>
+    <string name="version2.9Log">-Select-able text in forums.\nA user suggestion. Thanks.</string>
+    <!-- V2.8 Beta -->
+    <string name="version2.8Heading">V2.8 Beta</string>
+    <string name="version2.8Log">-Removed startapp (the malware that you hear about in comments)</string>
+    <!-- V2.7 Beta -->
+    <string name="version2.7Heading">V2.5 Beta</string>
+    <string name="version2.7Log">-Updated target to latest android version. A new look !</string>
+    <!-- V2.6.2 Beta -->
+    <string name="version2.6.2Heading">V2.6.2 Beta</string>
+    <string name="version2.6.2Log">-Minor fixes</string>
+    <!-- V2.6.1 Beta -->
+    <string name="version2.6.1Heading">V2.6.1 Beta</string>
+    <string name="version2.6.1Log">-Changes to Notice</string>
+    <!-- V2.6 Beta -->
+    <string name="version2.6Heading">V2.6 Beta</string>
+    <string name="version2.6Log">--Included StartApp service</string>
+    <!-- V2.5 Beta -->
+    <string name="version2.5Heading">V2.5 Beta</string>
+    <string name="version2.5Log">-Fixed filelisting force close issue for Moodle 2.3</string>
+    <!-- V2.4 Beta -->
+    <string name="version2.4Heading">V2.4 Beta</string>
+    <string name="version2.4Log">-Minor fixes</string>
+    <!-- V2.3 Beta -->
+    <string name="version2.3Heading">V2.3 Beta</string>
+    <string name="version2.3Log">-Minor fixes</string>
+    <!-- V2.2 Beta -->
+    <string name="version2.2Heading">V2.2 Beta</string>
+    <string name="version2.2Log">-Minor fixes</string>
+    <!-- V2.1 Beta -->
+    <string name="version2.1Heading">V2.1 Beta</string>
+    <string name="version2.1Log">-Improved app logo\n-14% reduction in app size!</string>
+    <!-- V2.0 Beta -->
+    <string name="version2.0Heading">V2.0 Beta</string>
+    <string name="version2.0Log">-Few changes to file download code</string>
+
+    <!-- V1.9 Beta -->
+    <string name="version1.9Heading">V1.9 Beta</string>
+    <string name="version1.9Log">-UI improvement\n-Download issue on IITB moodle fixed</string>
+    <!-- V1.8 Beta -->
+    <string name="version1.8Heading">V1.8 Beta</string>
+    <string name="version1.8Log">-Minor changes to parsing strings</string>
+    <!-- V1.7 Beta -->
+    <string name="version1.7Heading">V1.7 Beta</string>
+    <string name="version1.7Log">-Fixed an FC, occurring while fetching files some particular courses</string>
+    <!-- V1.6 Beta -->
+    <string name="version1.6Heading">V1.6 Beta</string>
+    <string name="version1.6Log">-In-app rating option</string>
+    <!-- V1.5 Beta -->
+    <string name="version1.5Heading">V1.5 Beta</string>
+    <string name="version1.5Log">-Minor fixes</string>
+    <!-- V1.4 Beta -->
+    <string name="version1.4Heading">V1.4 Beta</string>
+    <string name="version1.4Log">-Added in-app help section</string>
+    <!-- V1.3 Beta -->
+    <string name="version1.3Heading">V1.3 Beta</string>
+    <string name="version1.3Log">-Minor fixes</string>
+    <!-- V1.2 Beta -->
+    <string name="version1.2Heading">V1.2 Beta</string>
+    <string name="version1.2Log">-Fixed many fc issues\n-multiple download support (up to 2)\n-Auto saving of credentials</string>
+    <!-- V1.1 Beta -->
+    <string name="version1.1Heading">V1.1 Beta</string>
+    <string name="version1.1Log">-Initial release</string>
+    <!-- V1.0 Alpha -->
+    <string name="version1.0Heading">V1.0 Alpha</string>
+    <string name="version1.0Log">-Never released on playstore</string>
+
+</resources>
