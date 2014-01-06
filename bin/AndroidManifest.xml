@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="in.co.praveenkumar"
+    android:versionCode="23"
+    android:versionName="4.0 Beta2" >
+
+    <uses-sdk
+        android:minSdkVersion="14"
+        android:targetSdkVersion="19" />
+
+    <uses-permission android:name="android.permission.INTERNET" >
+    </uses-permission>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" >
+    </uses-permission>
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name="in.co.praveenkumar.mdroid.MainActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="in.co.praveenkumar.mdroid.CoursesActivity"
+            android:label="Courses"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="in.co.praveenkumar.mdroid.ForumActivity"
+            android:label="Forum"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="in.co.praveenkumar.mdroid.FilesActivity"
+            android:label="Files"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="in.co.praveenkumar.mdroid.ForumThreadActivity"
+            android:label="Forum thread"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="in.co.praveenkumar.mdroid.ErrorActivity"
+            android:label="Login errors"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="in.co.praveenkumar.mdroid.OfflineCoursesActivity"
+            android:label="Offline courses"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="in.co.praveenkumar.mdroid.OfflineFilesActivity"
+            android:label="Offline files"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="in.co.praveenkumar.mdroid.SettingsActivity"
+            android:label="Settings"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" >
+        </activity>
+    </application>
+
+</manifest>
