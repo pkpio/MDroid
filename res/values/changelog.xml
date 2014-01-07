@@ -2,8 +2,11 @@
 <resources>
 
     <!-- Current version -->
-    <string name="current_version">Version 4.0 Beta2</string>
+    <string name="current_version">Version 4.1 Beta2</string>
 
+    <!-- V4.1 Beta2 -->
+    <string name="version4.1Heading">V4.1 Beta2</string>
+    <string name="version4.1Log">-Support till Eclairs (Android 2.2)\n-Bug fix in file listing</string>
     <!-- V4.0 Beta2 -->
     <string name="version4.0Heading">V4.0 Beta2</string>
     <string name="version4.0Log">-Redeveloped from scratch\n-Complete UI changeover\n-Better error handling\n-Improved progress reporting\n-Optimized all classes</string>

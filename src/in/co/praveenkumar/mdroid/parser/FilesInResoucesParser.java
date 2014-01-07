@@ -13,6 +13,7 @@ public class FilesInResoucesParser {
 	public FilesInResoucesParser(String html) {
 		int prevIndex = 0;
 		int endIndex = 0;
+		int i = 0;// For naming files which give error while fetching name
 		while (true) {
 			prevIndex = html.indexOf(mURL + "/mod/resource/view.php?id=",
 					prevIndex);
@@ -27,7 +28,9 @@ public class FilesInResoucesParser {
 			prevIndex = html.indexOf("<span", prevIndex) + 5;
 			prevIndex = html.indexOf(">", prevIndex) + 1;
 			endIndex = html.indexOf("<span class=\"accesshide", prevIndex);
-			String textConvertedhtml = html.substring(prevIndex, endIndex);
+			String textConvertedhtml = "File " + i;
+			if (endIndex != -1)
+				textConvertedhtml = html.substring(prevIndex, endIndex);
 			textConvertedhtml = android.text.Html.fromHtml(textConvertedhtml)
 					.toString();
 			rFileNames.add(textConvertedhtml);

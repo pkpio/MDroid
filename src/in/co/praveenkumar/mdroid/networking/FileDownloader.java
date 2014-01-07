@@ -13,6 +13,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.MalformedURLException;
+import java.util.ArrayList;
 
 import org.apache.http.Header;
 import org.apache.http.HttpEntity;
@@ -37,6 +38,12 @@ public class FileDownloader {
 	private String cName = "";
 	private String fLocation = "";
 
+	// For batch download
+	ArrayList<String> rFileIds;
+	ArrayList<String> rFileNms;
+	ArrayList<String> fFileIds;
+	ArrayList<String> fFileNms;
+
 	// For use across all function in the main class
 	AsyncFileDownload AFD = new AsyncFileDownload();
 
@@ -52,6 +59,12 @@ public class FileDownloader {
 
 		// Tell user that file download request received.
 		UU.setFileDate("Request received..");
+	}
+
+	public FileDownloader(ArrayList<String> rFileIds,
+			ArrayList<String> rFileNms, ArrayList<String> fFileIds,
+			ArrayList<String> fFileNms, String cName, UIupdater UU) {
+
 	}
 
 	public void startDownload() {
