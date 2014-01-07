@@ -1,3 +1,18 @@
+/*
+ * Author: 	Praveen Kumar Pendyala
+ * Project: MDroid
+ * Created:	28-12-2013
+ * 
+ * © 2013, Praveen Kumar Pendyala. 
+ * Licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 
+ * 3.0 Unported license, http://creativecommons.org/licenses/by-nc-sa/3.0/ 
+ * 
+ * This is a part of the MDroid project. You may use the contents of this file
+ * or the project only if you comply with license of the project, available at the 
+ * Github repo: https://github.com/praveendath92/MDroid/blob/master/README.md
+ * 
+ */
+
 package in.co.praveenkumar.mdroid.networking;
 
 import in.co.praveenkumar.mdroid.FilesActivity.UIupdater;
@@ -39,13 +54,15 @@ public class FileDownloader {
 	private String fLocation = "";
 
 	// For batch download
-	ArrayList<String> rFileIds;
-	ArrayList<String> rFileNms;
-	ArrayList<String> fFileIds;
-	ArrayList<String> fFileNms;
+	private Boolean BatchMode = false;
+	ArrayList<String> rFileIds = new ArrayList<String>();
+	ArrayList<String> rFileNms = new ArrayList<String>();
+	ArrayList<String> fFileIds = new ArrayList<String>();
+	ArrayList<String> fFileNms = new ArrayList<String>();
 
 	// For use across all function in the main class
 	AsyncFileDownload AFD = new AsyncFileDownload();
+	AsyncBatchFileDownload ABFD = new AsyncBatchFileDownload();
 
 	// For UI updation
 	UIupdater UU;
@@ -64,15 +81,31 @@ public class FileDownloader {
 	public FileDownloader(ArrayList<String> rFileIds,
 			ArrayList<String> rFileNms, ArrayList<String> fFileIds,
 			ArrayList<String> fFileNms, String cName, UIupdater UU) {
+		this.rFileIds = rFileIds;
+		this.rFileNms = rFileNms;
+		this.fFileIds = fFileIds;
+		this.fFileNms = fFileNms;
+		this.cName = cName;
+		this.UU = UU;
+		this.BatchMode = true;
+
+		// Tell the user his request has been received
+		MainActivity.toaster.showToast("Total file count: "
+				+ (rFileIds.size() + fFileIds.size()) + "\nResources: "
+				+ rFileIds.size() + "  Forums: " + fFileIds.size());
 
 	}
 
 	public void startDownload() {
-		// Start download task
-		AFD.execute();
+		// Check if in Batch mode
+		if (BatchMode)
+			ABFD.execute();
+		else
+			// Start download for single file
+			AFD.execute();
 	}
 
-	// Async files fetch thread
+	// Async single file download thread
 	private class AsyncFileDownload extends AsyncTask<String, Integer, Long> {
 		private Boolean downloadStatus = false;
 
@@ -121,7 +154,116 @@ public class FileDownloader {
 				if (f.exists())
 					f.delete();
 			}
+		}
+	}
 
+	// Async batch file download thread
+	private class AsyncBatchFileDownload extends
+			AsyncTask<String, Integer, Long> {
+		Boolean empty = false;
+		Boolean wait = false;
+
+		@Override
+		protected void onPreExecute() {
+			super.onPreExecute();
+		}
+
+		protected Long doInBackground(String... values) {
+			// Check resources.
+			if (rFileIds.size() != 0) {
+				for (int i = 0; i < rFileIds.size(); i++) {
+					File f = new File(rFileIds.get(i));
+					// If file is not already downloaded
+					if (!f.exists()) {
+						// Wait for previous progress update to complete
+						while (wait) {
+						}
+						wait = true;
+						UU.setPosSec(i, 0);
+						fId = rFileIds.get(i);
+						fName = rFileNms.get(i);
+						publishProgress(105);
+						String fURL = getFileURL(fId);
+						publishProgress(101);
+						if (download(fURL))
+							publishProgress(103);
+						else
+							publishProgress(104);
+					}
+				}
+			}
+
+			// Check forums
+			if (fFileIds.size() != 0) {
+				for (int i = 0; i < fFileIds.size(); i++) {
+					File f = new File(fFileIds.get(i));
+					// If file is not already downloaded
+					if (!f.exists()) {
+						// Wait for previous progress update to complete
+						while (wait) {
+						}
+						wait = true;
+						UU.setPosSec(i, 1);
+						fId = fFileIds.get(i);
+						fName = fFileNms.get(i);
+						publishProgress(105);
+						String fURL = getFileURL(fId);
+						publishProgress(101);
+						if (download(fURL))
+							publishProgress(103);
+						else
+							publishProgress(104);
+					}
+				}
+			}
+
+			// Everything is empty.
+			else {
+				empty = true;
+			}
+
+			return null;
+		}
+
+		protected void onProgressUpdate(Integer... progress) {
+			// Anything >100 is considered for a different purpose
+			// <100 values are directly pushed onto progress
+			if (progress[0] > 100) {
+				if (progress[0] == 101)
+					UU.setFileDate("Starting download");
+				if (progress[0] == 102)
+					UU.setFileSize(fSize);
+				if (progress[0] == 103) {
+					UU.setFileId(fLocation);
+					UU.setFileDate("A few seconds ago");
+					wait = false;
+				}
+				if (progress[0] == 104) {
+					UU.setFileDate("Failed. Retry ?");
+					UU.setFileProg(0);
+					// Delete partial file if downloaded.
+					File f = new File(fLocation);
+					if (f.exists())
+						f.delete();
+					wait = false;
+				}
+				if (progress[0] == 105)
+					UU.setFileDate("Fetching file url");
+			} else {
+				UU.setFileDate(progress[0] + "% done");
+				UU.setFileProg(progress[0]);
+			}
+		}
+
+		public void doProgress(int value) {
+			publishProgress(value);
+		}
+
+		protected void onPostExecute(Long result) {
+			if (empty)
+				MainActivity.toaster.showToast("No files to dowload");
+			else
+				MainActivity.toaster.showToast("Batch download complete.");
 		}
 	}
 
@@ -160,12 +302,10 @@ public class FileDownloader {
 			// URL malformed
 			e.printStackTrace();
 			Log.d(DEBUG_TAG, "Malformed URL");
-			MainActivity.toaster.showToast("Malformed Moodle url.");
 		} catch (IOException e) {
 			// Error while making connection
 			e.printStackTrace();
 			Log.d(DEBUG_TAG, "IOException ! Net problem ?");
-			MainActivity.toaster.showToast("No connection.");
 		}
 
 		if (fURL.contentEquals(""))
@@ -201,7 +341,10 @@ public class FileDownloader {
 			fSize = getFileSize(fSizeInt);
 
 			// Update file size to UI
-			AFD.doProgress(102);
+			if (BatchMode)
+				ABFD.doProgress(102);
+			else
+				AFD.doProgress(102);
 
 			// Find file extension. Name from listing will be used instead of
 			// server.
@@ -221,7 +364,10 @@ public class FileDownloader {
 			while ((count = input.read(data)) != -1) {
 				total += count;
 				// publishing the progress....
-				AFD.doProgress((int) (total * 100 / fSizeInt));
+				if (BatchMode)
+					ABFD.doProgress((int) (total * 100 / fSizeInt));
+				else
+					AFD.doProgress((int) (total * 100 / fSizeInt));
 				output.write(data, 0, count);
 			}
 
@@ -236,12 +382,10 @@ public class FileDownloader {
 			// URL malformed
 			e.printStackTrace();
 			Log.d(DEBUG_TAG, "Malformed URL");
-			MainActivity.toaster.showToast("Malformed Moodle url.");
 		} catch (IOException e) {
 			// Error while making connection
 			e.printStackTrace();
 			Log.d(DEBUG_TAG, "IOException ! Net problem ?");
-			MainActivity.toaster.showToast("No connection.");
 		}
 
 		return downloadStatus;
