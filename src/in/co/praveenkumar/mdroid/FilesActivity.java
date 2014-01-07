@@ -1,3 +1,18 @@
+/*
+ * Author: 	Praveen Kumar Pendyala
+ * Project: MDroid
+ * Created:	28-12-2013
+ * 
+ * © 2013, Praveen Kumar Pendyala. 
+ * Licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 
+ * 3.0 Unported license, http://creativecommons.org/licenses/by-nc-sa/3.0/ 
+ * 
+ * This is a part of the MDroid project. You may use the contents of this file
+ * or the project only if you comply with license of the project, available at the 
+ * Github repo: https://github.com/praveendath92/MDroid/blob/master/README.md
+ * 
+ */
+
 package in.co.praveenkumar.mdroid;
 
 import in.co.praveenkumar.R;
@@ -38,7 +53,7 @@ public class FilesActivity extends BaseFragmentActivity {
 	private ArrayList<String> rFileNames = new ArrayList<String>();
 	private ArrayList<String> rFileSize = new ArrayList<String>();
 	private ArrayList<String> rFileDate = new ArrayList<String>();
-	private int[] rFileProg; // Size wlll be declared later
+	private int[] rFileProg; // Size will be declared later
 
 	private ArrayList<String> fFileIDs = new ArrayList<String>();
 	private ArrayList<String> fFileNames = new ArrayList<String>();
@@ -501,10 +516,11 @@ public class FilesActivity extends BaseFragmentActivity {
 		}
 	}
 
-	private void downloadAllFiles() {
+	@Override
+	public void downloadAllFiles() {
 		UU = new UIupdater();
-		FileDownloader FD = new FileDownloader(fFileIDs, fFileNames, rFileIDs,
-				rFileNames, cName, UU);
-		FD.startBatchDownload();
+		FileDownloader FD = new FileDownloader(rFileIDs, rFileNames, fFileIDs,
+				fFileNames, cName, UU);
+		FD.startDownload();
 	}
 }

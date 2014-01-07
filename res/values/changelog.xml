@@ -2,8 +2,11 @@
 <resources>
 
     <!-- Current version -->
-    <string name="current_version">Version 4.1 Beta2</string>
+    <string name="current_version">Version 4.2 Beta2</string>
 
+    <!-- V4.2 Beta2 -->
+    <string name="version4.2Heading">V4.2 Beta2</string>
+    <string name="version4.2Log">-Batch file dowload support in courses\n-Login screen minor changes</string>
     <!-- V4.1 Beta2 -->
     <string name="version4.1Heading">V4.1 Beta2</string>
     <string name="version4.1Log">-Support till Eclairs (Android 2.2)\n-Bug fix in file listing</string>
