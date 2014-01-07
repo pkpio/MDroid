@@ -184,6 +184,11 @@ public class FilesActivity extends BaseFragmentActivity {
 		public UIupdater() {
 		}
 
+		public void setPosSec(int pos, int sec) {
+			this.pos = pos;
+			this.sec = sec;
+		}
+
 		public void setFileSize(String msg) {
 			if (sec == 0) {
 				rFileSize.set(pos, msg);
@@ -494,5 +499,12 @@ public class FilesActivity extends BaseFragmentActivity {
 					.showToast("No application found to open file type: "
 							+ fileExt);
 		}
+	}
+
+	private void downloadAllFiles() {
+		UU = new UIupdater();
+		FileDownloader FD = new FileDownloader(fFileIDs, fFileNames, rFileIDs,
+				rFileNames, cName, UU);
+		FD.startBatchDownload();
 	}
 }
