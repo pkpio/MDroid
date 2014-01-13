@@ -110,25 +110,20 @@ public class DoLogin {
 			e.printStackTrace();
 			Log.d(DEBUG_TAG, "Malformed URL");
 			respCode = 1;
-			MainActivity.toaster.showToast("Please check Moodle address.");
 		} catch (IOException e) {
 			// Error while making connection
 			e.printStackTrace();
 			Log.d(DEBUG_TAG, "IOException ! Net problem ?");
 			respCode = 2;
-			MainActivity.toaster.showToast("No connection.");
 		} catch (IllegalStateException e) {
 			// URL has error.
 			e.printStackTrace();
 			Log.d(DEBUG_TAG, "Illegal state exception");
-			MainActivity.toaster.showToast("Please check Moodle address.");
 			respCode = 1;
 		} catch (IllegalArgumentException e) {
 			// URL has error.
 			e.printStackTrace();
 			Log.d(DEBUG_TAG, "Illegal argument exception");
-			MainActivity.toaster
-					.showToast("URL error. Any extra spaces in your address ?");
 			respCode = 1;
 		}
 

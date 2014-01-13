@@ -16,11 +16,13 @@
 package in.co.praveenkumar.mdroid;
 
 import in.co.praveenkumar.R;
-import in.co.praveenkumar.mdroid.helpers.BaseActivity;
+import in.co.praveenkumar.mdroid.helpers.BaseFTActivity;
+import in.co.praveenkumar.mdroid.helpers.Colors.Color;
 import in.co.praveenkumar.mdroid.networking.FetchForumThread;
 
 import java.util.ArrayList;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -33,13 +35,15 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-public class ForumThreadActivity extends BaseActivity {
+@SuppressLint("DefaultLocale")
+public class ForumThreadActivity extends BaseFTActivity {
 	private ArrayList<String> threadPostSubs = new ArrayList<String>();
 	private ArrayList<String> threadPostAuthors = new ArrayList<String>();
 	private ArrayList<String> threadPostDates = new ArrayList<String>();
 	private ArrayList<String> threadPostContent = new ArrayList<String>();
 	private int nThreadPosts;
 	private String threadId = "";
+	private String threadReplyId = "";
 	FetchForumThread FFT = new FetchForumThread();
 	LinearLayout loadingMsgLL;
 	ProgressBar progBar;
@@ -93,6 +97,7 @@ public class ForumThreadActivity extends BaseActivity {
 			threadPostDates = FFT.getPostDates();
 			threadPostContent = FFT.getPostContent();
 			nThreadPosts = FFT.getPostsCount();
+			threadReplyId = FFT.getReplyId();
 			listPostsInListView();
 		}
 	}
@@ -154,12 +159,38 @@ public class ForumThreadActivity extends BaseActivity {
 					.findViewById(R.id.forum_thread_post_time);
 			final TextView pContentView = (TextView) rowView
 					.findViewById(R.id.forum_thread_post_content);
+			final TextView pAuthImgView = (TextView) rowView
+					.findViewById(R.id.forum_thread_author_img);
 			pSubView.setText(threadPostSubs.get(position));
 			pAuthView.setText(threadPostAuthors.get(position));
 			pDateView.setText(threadPostDates.get(position));
 			pContentView.setText(threadPostContent.get(position));
 
+			// Set author Image text and color
+			try {
+				char FL = threadPostAuthors.get(position).toUpperCase()
+						.charAt(0);
+				String cs = Color.getColor(FL);
+				pAuthImgView.setText(FL + "");
+				pAuthImgView.setBackgroundColor(android.graphics.Color
+						.parseColor(cs));
+			} catch (StringIndexOutOfBoundsException e) {
+
+			}
+
 			return rowView;
 		}
+	}
+
+	@Override
+	public void replyInThread() {
+		if (!threadReplyId.contentEquals("")) {
+			MainActivity.toaster
+					.showToast("This feature will be available soon!");
+			// Intent i = new Intent(this, ForumThreadReplyActivity.class);
+			// i.putExtra("threadReplyId", threadReplyId);
+			// startActivityForResult(i, 13);
+		} else
+			MainActivity.toaster.showToast("Error fetching reply id");
 	}
 }

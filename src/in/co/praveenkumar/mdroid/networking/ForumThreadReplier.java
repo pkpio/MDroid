@@ -1,7 +1,7 @@
 /*
  * Author: 	Praveen Kumar Pendyala
  * Project: MDroid
- * Created:	28-12-2013
+ * Created:	14-01-2014
  * 
  * © 2013, Praveen Kumar Pendyala. 
  * Licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 
@@ -13,53 +13,46 @@
  * 
  */
 
-package in.co.praveenkumar.mdroid.networking;
 
-import in.co.praveenkumar.mdroid.MainActivity;
-import in.co.praveenkumar.mdroid.parser.ForumThreadParser;
+package in.co.praveenkumar.mdroid.networking;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
-import java.util.ArrayList;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 
 import android.util.Log;
+import in.co.praveenkumar.mdroid.MainActivity;
+import in.co.praveenkumar.mdroid.parser.ForumThreadReplyParser;
 
-public class FetchForumThread {
-	private final String DEBUG_TAG = "NETWORKING_FORUM_THREAD";
-	private ArrayList<String> threadPostSubs = new ArrayList<String>();
-	private ArrayList<String> threadPostAuthors = new ArrayList<String>();
-	private ArrayList<String> threadPostDates = new ArrayList<String>();
-	private ArrayList<String> threadPostContent = new ArrayList<String>();
-	private int nThreadPosts;
-	private String threadContent = "";
+public class ForumThreadReplier {
+	private final String DEBUG_TAG = "NETWORKING_FETCH_RESOURCE_FILES";
+	private String mURL = MainActivity.mURL;
 	private String threadReplyId = "";
 
-	public void fetchThread(String threadId) {
-		String html = fetchThreadHtml(threadId);
-		ForumThreadParser FTP = new ForumThreadParser(html);
-		threadPostSubs = FTP.getPostSubjects();
-		threadPostAuthors = FTP.getPostAuthors();
-		threadPostDates = FTP.getPostDates();
-		threadPostContent = FTP.getPostContents();
-		nThreadPosts = FTP.getPostsCount();
-		threadReplyId = FTP.getReplyId();
+	public ForumThreadReplier(String threadReplyId) {
+		this.threadReplyId = threadReplyId;
 	}
 
-	private String fetchThreadHtml(String threadId) {
+	public void postReply() {
+		String html = fetchReplyPage();
+		ForumThreadReplyParser FTRP = new ForumThreadReplyParser(html);
+	}
+
+	private String fetchReplyPage() {
 		String html = "";
 		try {
 			// Get default app client. Only that has the cookie data
 			DefaultHttpClient httpclient = MainActivity.httpclient;
 
 			// Fetch thread page
-			HttpGet httpgetCourse = new HttpGet(threadId);
+			HttpGet httpgetCourse = new HttpGet(mURL
+					+ "/mod/forum/post.php?reply=" + threadReplyId);
 			HttpResponse response = httpclient.execute(httpgetCourse);
 			InputStream is = response.getEntity().getContent();
 
@@ -73,7 +66,6 @@ public class FetchForumThread {
 				total.append(line);
 			}
 			html = total.toString();
-			threadContent = html;
 
 		} catch (MalformedURLException e) {
 			// URL malformed
@@ -89,31 +81,4 @@ public class FetchForumThread {
 		return html;
 	}
 
-	public ArrayList<String> getPostSubject() {
-		return threadPostSubs;
-	}
-
-	public ArrayList<String> getPostAuthors() {
-		return threadPostAuthors;
-	}
-
-	public ArrayList<String> getPostDates() {
-		return threadPostDates;
-	}
-
-	public ArrayList<String> getPostContent() {
-		return threadPostContent;
-	}
-
-	public int getPostsCount() {
-		return nThreadPosts;
-	}
-
-	public String getThreadContent() {
-		return threadContent;
-	}
-
-	public String getReplyId() {
-		return threadReplyId;
-	}
 }

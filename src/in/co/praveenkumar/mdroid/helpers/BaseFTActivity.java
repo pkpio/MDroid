@@ -17,27 +17,30 @@ package in.co.praveenkumar.mdroid.helpers;
 
 import in.co.praveenkumar.R;
 import in.co.praveenkumar.mdroid.SettingsActivity;
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
-import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public abstract class BaseFragmentActivity extends FragmentActivity {
+public abstract class BaseFTActivity extends Activity {
 
 	// Dummy function. Will be overridden
-	public abstract void downloadAllFiles();
+	public abstract void replyInThread();
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.file_listing_menu, menu);
+		getMenuInflater().inflate(R.menu.forum_thread_menu, menu);
 		return true;
 	}
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
+		case R.id.action_reply:
+			replyInThread();
+			break;
 		case R.id.action_settings:
 			Intent i = new Intent(this, SettingsActivity.class);
 			startActivityForResult(i, 10);
@@ -48,10 +51,8 @@ public abstract class BaseFragmentActivity extends FragmentActivity {
 			d.setTitle("Help");
 			d.show();
 			break;
-		case R.id.action_downloadall:
-			downloadAllFiles();
-			break;
 		}
 		return true;
 	}
+
 }
