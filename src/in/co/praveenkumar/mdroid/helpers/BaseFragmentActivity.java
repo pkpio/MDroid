@@ -25,7 +25,7 @@ import android.view.MenuItem;
 
 public abstract class BaseFragmentActivity extends FragmentActivity {
 
-	// Dummy function. Will be overriden
+	// Dummy function. Will be overridden
 	public abstract void downloadAllFiles();
 
 	@Override

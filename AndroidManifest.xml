@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="in.co.praveenkumar"
-    android:versionCode="25"
-    android:versionName="4.2 Beta2" >
+    android:versionCode="26"
+    android:versionName="4.3 Beta2" >
 
     <uses-sdk
         android:minSdkVersion="9"
@@ -47,6 +47,12 @@
             android:name="in.co.praveenkumar.mdroid.ForumThreadActivity"
             android:label="Forum thread"
             android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="in.co.praveenkumar.mdroid.ForumThreadReplyActivity"
+            android:label="Forum thread reply"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" >
         </activity>
         <activity
             android:name="in.co.praveenkumar.mdroid.ErrorActivity"

@@ -39,6 +39,7 @@ public class FetchForumThread {
 	private ArrayList<String> threadPostContent = new ArrayList<String>();
 	private int nThreadPosts;
 	private String threadContent = "";
+	private String threadReplyId = "";
 
 	public void fetchThread(String threadId) {
 		String html = fetchThreadHtml(threadId);
@@ -48,6 +49,7 @@ public class FetchForumThread {
 		threadPostDates = FTP.getPostDates();
 		threadPostContent = FTP.getPostContents();
 		nThreadPosts = FTP.getPostsCount();
+		threadReplyId = FTP.getReplyId();
 	}
 
 	private String fetchThreadHtml(String threadId) {
@@ -109,5 +111,9 @@ public class FetchForumThread {
 
 	public String getThreadContent() {
 		return threadContent;
+	}
+
+	public String getReplyId() {
+		return threadReplyId;
 	}
 }
