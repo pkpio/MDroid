@@ -27,8 +27,10 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Locale;
 
+import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -518,9 +520,21 @@ public class FilesActivity extends BaseFragmentActivity {
 
 	@Override
 	public void downloadAllFiles() {
-		UU = new UIupdater();
-		FileDownloader FD = new FileDownloader(rFileIDs, rFileNames, fFileIDs,
-				fFileNames, cName, UU);
-		FD.startDownload();
+		new AlertDialog.Builder(FilesActivity.this)
+				.setMessage("Download all files?")
+				.setPositiveButton("Yes",
+						new DialogInterface.OnClickListener() {
+							public void onClick(DialogInterface dialog,
+									int whichButton) {
+								// Download files here
+								UU = new UIupdater();
+								FileDownloader FD = new FileDownloader(
+										rFileIDs, rFileNames, fFileIDs,
+										fFileNames, cName, UU);
+								FD.startDownload();
+
+							}
+						}).setNegativeButton("Cancel", null).show();
+
 	}
 }

@@ -23,6 +23,7 @@ public class ForumThreadParser {
 	private ArrayList<String> threadPostDates = new ArrayList<String>();
 	private ArrayList<String> threadPostContent = new ArrayList<String>();
 	private int nThreadPosts = 0;
+	private String threadReplyId = "";
 
 	public ForumThreadParser(String html) {
 		int prevIndex = 0;
@@ -63,6 +64,15 @@ public class ForumThreadParser {
 
 			nThreadPosts++;
 		}
+
+		// Reply Id for user to reply. Id will be last post reply Id.
+		prevIndex = html.lastIndexOf("forum/post.php?reply=") + 21;
+
+		if (prevIndex != 20) {
+			endIndex = html.indexOf("\"", prevIndex);
+			threadReplyId = html.substring(prevIndex, endIndex);
+		}
+
 	}
 
 	public ArrayList<String> getPostSubjects() {
@@ -83,6 +93,10 @@ public class ForumThreadParser {
 
 	public int getPostsCount() {
 		return nThreadPosts;
+	}
+
+	public String getReplyId() {
+		return threadReplyId;
 	}
 
 }
