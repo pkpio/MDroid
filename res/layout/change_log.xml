@@ -12,6 +12,23 @@
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:text="@string/version4.4Heading"
+            android:textColor="@color/ics_blue"
+            android:textIsSelectable="true"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="@string/version4.4Log"
+            android:textColor="@color/black"
+            android:textSize="13sp"
+            android:textIsSelectable="true" />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
             android:text="@string/version4.3Heading"
             android:textColor="@color/ics_blue"
             android:textIsSelectable="true"

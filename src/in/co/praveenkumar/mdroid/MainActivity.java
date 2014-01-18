@@ -147,7 +147,11 @@ public class MainActivity extends BaseActivity {
 		}
 
 		protected void onPostExecute(Long result) {
-			loginDialog.dismiss();
+			try {
+				loginDialog.dismiss();
+			} catch (IllegalArgumentException e) {
+				
+			}
 			checkLogin(respCode);
 		}
 	}
