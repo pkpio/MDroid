@@ -2,8 +2,12 @@
 <resources>
 
     <!-- Current version -->
-    <string name="current_version">Version 4.3 Beta2</string>
+    <string name="current_version">Version 4.4 Beta2</string>
 
+    
+    <!-- V4.4 Beta2 -->
+    <string name="version4.4Heading">V4.4 Beta2</string>
+    <string name="version4.4Log">-Fix for login screen force close on device NBX-T7014 (E270BSA)</string>
     <!-- V4.3 Beta2 -->
     <string name="version4.3Heading">V4.3 Beta2</string>
     <string name="version4.3Log">-Changes in forum thread image\n-Confirmation on batch download\n-Fixed a login screen bug</string>
