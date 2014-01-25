@@ -21,6 +21,8 @@ import in.co.praveenkumar.mdroid.helpers.BaseActivity;
 import in.co.praveenkumar.mdroid.helpers.Database;
 import in.co.praveenkumar.mdroid.helpers.Toaster;
 import in.co.praveenkumar.mdroid.networking.DoLogin;
+import in.co.praveenkumar.mdroid.services.MDroidService;
+import in.co.praveenkumar.mdroid.sqlite.databases.SqliteTbCourses;
 
 import org.apache.http.impl.client.DefaultHttpClient;
 
@@ -28,6 +30,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -36,6 +39,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 public class MainActivity extends BaseActivity {
+	private final String DEBUG_TAG = "MDroid Main activity";
 	public static String mURL;
 	public static DefaultHttpClient httpclient;
 	public static Toaster toaster;
@@ -50,11 +54,20 @@ public class MainActivity extends BaseActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.loginpage);
 
+		// Testing
+		SqliteTbCourses stc = new SqliteTbCourses(this);
+		stc.favCourse(2603 + "");
+
 		// Setup a http client for all network tasks, URL
 		AppsHttpClient ahc = new AppsHttpClient();
 		httpclient = ahc.getHttpClient();
 		db = new Database(getApplicationContext());
 		mURL = db.getURL();
+
+		// Start service
+		Log.d(DEBUG_TAG, "Registering service");
+		Intent intent = new Intent(this, MDroidService.class);
+		startService(intent);
 
 		// Setup other helpers
 		LayoutInflater inflater = getLayoutInflater();
@@ -150,7 +163,7 @@ public class MainActivity extends BaseActivity {
 			try {
 				loginDialog.dismiss();
 			} catch (IllegalArgumentException e) {
-				
+
 			}
 			checkLogin(respCode);
 		}

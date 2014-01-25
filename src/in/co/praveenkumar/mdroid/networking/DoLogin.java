@@ -16,6 +16,7 @@
 package in.co.praveenkumar.mdroid.networking;
 
 import in.co.praveenkumar.mdroid.MainActivity;
+import in.co.praveenkumar.mdroid.helpers.AppsHttpClient;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -43,10 +44,29 @@ public class DoLogin {
 	private CookieStore cookieStore;
 	private String getCookie;
 	private String postCookie;
+	private String mURL;
 
 	public DoLogin() {
 		httpclient = MainActivity.httpclient;
+		if (httpclient == null) {
+			AppsHttpClient ahc = new AppsHttpClient();
+			httpclient = ahc.getHttpClient();
+			MainActivity.httpclient = httpclient;
+		}
 		cookieStore = httpclient.getCookieStore();
+		mURL = MainActivity.mURL;
+	}
+
+	public DoLogin(String mURL) {
+		this.mURL = mURL;
+		AppsHttpClient ahc = new AppsHttpClient();
+		httpclient = ahc.getHttpClient();
+		cookieStore = httpclient.getCookieStore();
+
+		// Set these values in MainActivity for further use by service.
+		MainActivity.httpclient = httpclient;
+		MainActivity.mURL = mURL;
+
 	}
 
 	public Boolean isLoggedIn() {
@@ -59,8 +79,6 @@ public class DoLogin {
 	public int doLogin(String uName, String pswd) {
 		int respCode = 0; // used only when login failed.
 		Log.d(DEBUG_TAG, "Started");
-		// Get server URL
-		String mURL = MainActivity.mURL;
 		Log.d(DEBUG_TAG, "URL:" + mURL);
 
 		HttpGet httpget = new HttpGet(mURL + "/login/index.php");
