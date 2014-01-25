@@ -54,6 +54,7 @@ public class ForumParser {
 
 			// for Post ID
 			prevIndex += 31;
+			prevIndex = html.indexOf("discuss.php?d=", prevIndex) + 14;
 			endIndex = html.indexOf("\"", prevIndex);
 			forumThreadIds.add(html.substring(prevIndex, endIndex));
 

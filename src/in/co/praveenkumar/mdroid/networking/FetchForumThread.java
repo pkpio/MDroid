@@ -33,6 +33,7 @@ import android.util.Log;
 
 public class FetchForumThread {
 	private final String DEBUG_TAG = "NETWORKING_FORUM_THREAD";
+	private String mURL = MainActivity.mURL;
 	private ArrayList<String> threadPostSubs = new ArrayList<String>();
 	private ArrayList<String> threadPostAuthors = new ArrayList<String>();
 	private ArrayList<String> threadPostDates = new ArrayList<String>();
@@ -59,7 +60,9 @@ public class FetchForumThread {
 			DefaultHttpClient httpclient = MainActivity.httpclient;
 
 			// Fetch thread page
-			HttpGet httpgetCourse = new HttpGet(threadId);
+			Log.d(DEBUG_TAG, "Fetching thread " + threadId);
+			HttpGet httpgetCourse = new HttpGet(mURL
+					+ "/mod/forum/discuss.php?d=" + threadId);
 			HttpResponse response = httpclient.execute(httpgetCourse);
 			InputStream is = response.getEntity().getContent();
 
@@ -79,12 +82,10 @@ public class FetchForumThread {
 			// URL malformed
 			e.printStackTrace();
 			Log.d(DEBUG_TAG, "Malformed URL");
-			MainActivity.toaster.showToast("Malformed Moodle url.");
 		} catch (IOException e) {
 			// Error while making connection
 			e.printStackTrace();
 			Log.d(DEBUG_TAG, "IOException ! Net problem ?");
-			MainActivity.toaster.showToast("No connection.");
 		}
 		return html;
 	}

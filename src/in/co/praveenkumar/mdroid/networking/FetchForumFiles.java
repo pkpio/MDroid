@@ -27,6 +27,11 @@ public class FetchForumFiles {
 	private int nFiles = 0;
 	private UIupdater UU;
 
+	public FetchForumFiles() {
+		// Using in service.
+		UU = null;
+	}
+
 	public FetchForumFiles(UIupdater UU) {
 		this.UU = UU;
 	}
@@ -42,9 +47,11 @@ public class FetchForumFiles {
 		for (int i = 0; i < threadIds.size(); i++) {
 			// Display progress on UI.
 			// This is a bg thread task. This msg will be pushed
-			// to UI thread by UIupdater class
-			UU.setForumProgress(i + 1, threadIds.size(), fFileIDs, fFileNames,
-					nFiles);
+			// to UI thread by UIupdater class.
+			// If this is initiated by a UI thread and not service.
+			if (UU != null)
+				UU.setForumProgress(i + 1, threadIds.size(), fFileIDs,
+						fFileNames, nFiles);
 
 			FetchForumThread FFT = new FetchForumThread();
 			FFT.fetchThread(threadIds.get(i));

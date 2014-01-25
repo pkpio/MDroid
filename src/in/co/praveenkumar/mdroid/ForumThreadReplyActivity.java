@@ -16,16 +16,15 @@
 
 package in.co.praveenkumar.mdroid;
 
+import in.co.praveenkumar.R;
+import in.co.praveenkumar.mdroid.helpers.BaseActivity;
+import in.co.praveenkumar.mdroid.networking.ForumThreadReplier;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
-import in.co.praveenkumar.R;
-import in.co.praveenkumar.mdroid.helpers.BaseActivity;
-import in.co.praveenkumar.mdroid.networking.ForumThreadReplier;
 
 public class ForumThreadReplyActivity extends BaseActivity {
 	private String threadReplyId = "";
