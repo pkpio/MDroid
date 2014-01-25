@@ -13,11 +13,12 @@ Also, it is expected as matter of ethics that your work, if heavily dervied from
 
 And in any case, Where ever the original file(s) - one(s) contained in this thread is(are) modified it is mandatory to add the below lines.
 
+<br>
+<br>
+<br>
+<br>
 
------------------------------------------------------------------------------
------------------------------------------------------------------------------
-
-/************************************************************************************************
+-------------------------------------------------------------------------------------------------
 
 © 2013, Praveen Kumar Pendyala.
 Licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported license,
@@ -32,7 +33,13 @@ All further dervied versions of this code MUST also contain these lines.
 
 You may be allowed to modify this notice and/or licenseing with original author's consent.
 
-***************************************************************************************************/
 
------------------------------------------------------------------------------
------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------
+
+
+
+
+<br>
+<br>
+<br>
+<br>
