@@ -24,6 +24,7 @@ import in.co.praveenkumar.mdroid.models.Mfile;
 import in.co.praveenkumar.mdroid.networking.FetchForumFiles;
 import in.co.praveenkumar.mdroid.networking.FetchResourceFiles;
 import in.co.praveenkumar.mdroid.networking.FileDownloader;
+import in.co.praveenkumar.mdroid.sqlite.databases.SqliteTbCourses;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -55,6 +56,7 @@ public class FilesActivity extends BaseFragmentActivity {
 	Course course = new Course();
 	ArrayList<Mfile> rFiles = new ArrayList<Mfile>();
 	ArrayList<Mfile> fFiles = new ArrayList<Mfile>();
+	SqliteTbCourses stc = new SqliteTbCourses(this);
 
 	static LinearLayout rLoadingMsgLL;
 	static ProgressBar rProgBar;
@@ -90,7 +92,7 @@ public class FilesActivity extends BaseFragmentActivity {
 		course.setId(extras.getString("cId"));
 		course.setName(extras.getString("cName"));
 
-		// Set course name
+		// Set course name and fav status
 		TextView cNameTV = (TextView) findViewById(R.id.files_course_name);
 		cNameTV.setText(course.getName());
 
@@ -330,6 +332,10 @@ public class FilesActivity extends BaseFragmentActivity {
 				// Set title
 				setTitle("Files (" + (rFiles.size() + fFiles.size()) + ")");
 
+				// Update counts in database for services
+				stc.updateFileCount(course.getId(),
+						rFiles.size() + fFiles.size());
+
 				// Build the fileInfo array for offline files.
 				// This will avoid re-checking them on every re-draw of view
 				buildFileInfo(section);
@@ -512,5 +518,24 @@ public class FilesActivity extends BaseFragmentActivity {
 							}
 						}).setNegativeButton("Cancel", null).show();
 
+	}
+
+	@Override
+	public void updateFavStatus() {
+		if (!stc.isFav(course.getId())) {
+			stc.favCourse(course.getId());
+			getFavMenuItem().setIcon(R.drawable.ic_action_important);
+		} else {
+			stc.unFavCourse(course.getId());
+			getFavMenuItem().setIcon(R.drawable.ic_action_not_important);
+		}
+	}
+
+	@Override
+	public void checkFavStatus() {
+		if (stc.isFav(course.getId()))
+			getFavMenuItem().setIcon(R.drawable.ic_action_important);
+		else
+			getFavMenuItem().setIcon(R.drawable.ic_action_not_important);
 	}
 }

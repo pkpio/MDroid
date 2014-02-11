@@ -18,6 +18,7 @@ package in.co.praveenkumar.mdroid;
 import in.co.praveenkumar.R;
 import in.co.praveenkumar.mdroid.helpers.BaseFTActivity;
 import in.co.praveenkumar.mdroid.helpers.Colors.Color;
+import in.co.praveenkumar.mdroid.models.Reply;
 import in.co.praveenkumar.mdroid.networking.FetchForumThread;
 
 import java.util.ArrayList;
@@ -37,11 +38,7 @@ import android.widget.TextView;
 
 @SuppressLint("DefaultLocale")
 public class ForumThreadActivity extends BaseFTActivity {
-	private ArrayList<String> threadPostSubs = new ArrayList<String>();
-	private ArrayList<String> threadPostAuthors = new ArrayList<String>();
-	private ArrayList<String> threadPostDates = new ArrayList<String>();
-	private ArrayList<String> threadPostContent = new ArrayList<String>();
-	private int nThreadPosts;
+	private ArrayList<Reply> replies = new ArrayList<Reply>();
 	private String threadId = "";
 	private String threadReplyId = "";
 	FetchForumThread FFT = new FetchForumThread();
@@ -92,25 +89,20 @@ public class ForumThreadActivity extends BaseFTActivity {
 
 		protected void onPostExecute(Long result) {
 			loadingMsgLL.setVisibility(LinearLayout.GONE);
-			threadPostSubs = FFT.getPostSubject();
-			threadPostAuthors = FFT.getPostAuthors();
-			threadPostDates = FFT.getPostDates();
-			threadPostContent = FFT.getPostContent();
-			nThreadPosts = FFT.getPostsCount();
+			replies = FFT.getReplies();
 			threadReplyId = FFT.getReplyId();
 			listPostsInListView();
 		}
 	}
 
 	private void listPostsInListView() {
-		if (!threadPostSubs.isEmpty()) {
+		if (!replies.isEmpty()) {
 			// Set title
-			setTitle("Forum thread (" + nThreadPosts + ")");
+			setTitle("Forum thread (" + replies.size() + ")");
 
 			ListView listView = (ListView) findViewById(R.id.forum_thread_list);
 			MySimpleArrayAdapter adapter = new MySimpleArrayAdapter(this,
-					threadPostSubs, threadPostAuthors, threadPostDates,
-					threadPostContent);
+					replies);
 
 			// Assign adapter to ListView
 			listView.setAdapter(adapter);
@@ -124,23 +116,13 @@ public class ForumThreadActivity extends BaseFTActivity {
 
 	private class MySimpleArrayAdapter extends ArrayAdapter<String> {
 		private final Context context;
-		private ArrayList<String> threadPostSubs;
-		private ArrayList<String> threadPostAuthors;
-		private ArrayList<String> threadPostDates;
-		private ArrayList<String> threadPostContent;
+		private ArrayList<Reply> replies;
 
-		public MySimpleArrayAdapter(Context context,
-				ArrayList<String> threadPostSubs,
-				ArrayList<String> threadPostAuthors,
-				ArrayList<String> threadPostDates,
-				ArrayList<String> threadPostContent) {
+		public MySimpleArrayAdapter(Context context, ArrayList<Reply> replies) {
 			super(context, R.layout.forum_thread_listview_layout,
-					threadPostSubs);
+					new String[replies.size()]);
 			this.context = context;
-			this.threadPostSubs = threadPostSubs;
-			this.threadPostAuthors = threadPostAuthors;
-			this.threadPostDates = threadPostDates;
-			this.threadPostContent = threadPostContent;
+			this.replies = replies;
 		}
 
 		@Override
@@ -161,14 +143,14 @@ public class ForumThreadActivity extends BaseFTActivity {
 					.findViewById(R.id.forum_thread_post_content);
 			final TextView pAuthImgView = (TextView) rowView
 					.findViewById(R.id.forum_thread_author_img);
-			pSubView.setText(threadPostSubs.get(position));
-			pAuthView.setText(threadPostAuthors.get(position));
-			pDateView.setText(threadPostDates.get(position));
-			pContentView.setText(threadPostContent.get(position));
+			pSubView.setText(replies.get(position).getSubject());
+			pAuthView.setText(replies.get(position).getAuthor());
+			pDateView.setText(replies.get(position).getDate());
+			pContentView.setText(replies.get(position).getContent());
 
 			// Set author Image text and color
 			try {
-				char FL = threadPostAuthors.get(position).toUpperCase()
+				char FL = replies.get(position).getAuthor().toUpperCase()
 						.charAt(0);
 				String cs = Color.getColor(FL);
 				pAuthImgView.setText(FL + "");
