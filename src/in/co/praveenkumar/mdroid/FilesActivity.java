@@ -358,7 +358,8 @@ public class FilesActivity extends BaseFragmentActivity {
 
 		public MySimpleArrayAdapter(Context context, ArrayList<Mfile> files,
 				int section) {
-			super(context, R.layout.files_listview_layout);
+			super(context, R.layout.files_listview_layout, new String[files
+					.size()]);
 			this.context = context;
 			this.files = files;
 			this.section = section;
