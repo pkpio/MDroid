@@ -15,27 +15,21 @@
 
 package in.co.praveenkumar.mdroid.models;
 
-public class Forum {
-	int id;
+public class Reply {
 	String subject;
-	int postCount;
+	String author;
+	String date;
+	String content;
 
-	// constructors
-	public Forum() {
+	public Reply() {
+
 	}
 
-	public Forum(int id, String subject, int postCount) {
-		this.id = id;
+	public Reply(String subject, String author, String date, String content) {
 		this.subject = subject;
-		this.postCount = postCount;
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
+		this.author = author;
+		this.date = date;
+		this.content = content;
 	}
 
 	public String getSubject() {
@@ -46,12 +40,28 @@ public class Forum {
 		this.subject = subject;
 	}
 
-	public int getPostCount() {
-		return postCount;
+	public String getAuthor() {
+		return author;
 	}
 
-	public void setPostCount(int postCount) {
-		this.postCount = postCount;
+	public void setAuthor(String author) {
+		this.author = author;
+	}
+
+	public String getDate() {
+		return date;
+	}
+
+	public void setDate(String date) {
+		this.date = date;
+	}
+
+	public String getContent() {
+		return content;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
 	}
 
 }
