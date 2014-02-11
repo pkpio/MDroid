@@ -117,7 +117,8 @@ public class ForumActivity extends BaseActivity {
 
 		public MySimpleArrayAdapter(Context context,
 				ArrayList<ForumThread> threads) {
-			super(context, R.layout.forum_listview_layout);
+			super(context, R.layout.forum_listview_layout, new String[threads
+					.size()]);
 			this.context = context;
 			this.threads = threads;
 		}

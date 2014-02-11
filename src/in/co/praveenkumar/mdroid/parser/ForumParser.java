@@ -89,6 +89,8 @@ public class ForumParser {
 			prevIndex = html.indexOf(",", prevIndex) + 2;
 			endIndex = html.indexOf("</a>", prevIndex);
 			thread.setDate(html.substring(prevIndex, endIndex));
+			
+			threads.add(thread);
 		}
 	}
 
