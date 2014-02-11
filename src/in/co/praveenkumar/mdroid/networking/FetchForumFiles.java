@@ -16,15 +16,15 @@
 package in.co.praveenkumar.mdroid.networking;
 
 import in.co.praveenkumar.mdroid.FilesActivity.UIupdater;
+import in.co.praveenkumar.mdroid.models.Mfile;
+import in.co.praveenkumar.mdroid.models.ForumThread;
 import in.co.praveenkumar.mdroid.parser.FilesInForumsParser;
 
 import java.util.ArrayList;
 
 public class FetchForumFiles {
-	private ArrayList<String> threadIds = new ArrayList<String>();
-	private ArrayList<String> fFileIDs = new ArrayList<String>();
-	private ArrayList<String> fFileNames = new ArrayList<String>();
-	private int nFiles = 0;
+	private ArrayList<ForumThread> threads = new ArrayList<ForumThread>();
+	private ArrayList<Mfile> files = new ArrayList<Mfile>();
 	private UIupdater UU;
 
 	public FetchForumFiles() {
@@ -41,41 +41,30 @@ public class FetchForumFiles {
 		// We will each thread and looking for files in them.
 		FetchForum FF = new FetchForum();
 		FF.fetchForum(cId);
-		threadIds = FF.getThreadIds();
+		threads = FF.getThreads();
 
 		// Get html content of each Thread. FetchForumThread class can do this.
-		for (int i = 0; i < threadIds.size(); i++) {
+		for (int i = 0; i < threads.size(); i++) {
 			// Display progress on UI.
 			// This is a bg thread task. This msg will be pushed
 			// to UI thread by UIupdater class.
 			// If this is initiated by a UI thread and not service.
 			if (UU != null)
-				UU.setForumProgress(i + 1, threadIds.size(), fFileIDs,
-						fFileNames, nFiles);
+				UU.setForumProgress(i + 1, threads.size(), files);
 
 			FetchForumThread FFT = new FetchForumThread();
-			FFT.fetchThread(threadIds.get(i));
+			FFT.fetchThread(threads.get(i).getId());
 			String tHtml = FFT.getThreadContent();
 
 			// Now get files and ids from each thread
 			FilesInForumsParser FFP = new FilesInForumsParser(tHtml);
-			fFileIDs.addAll(FFP.getFileIds());
-			fFileNames.addAll(FFP.getFileNames());
-			nFiles += FFP.getFileCount();
+			files.addAll(FFP.getFiles());
 		}
 
 	}
 
-	public ArrayList<String> getFileIds() {
-		return fFileIDs;
-	}
-
-	public ArrayList<String> getFileNames() {
-		return fFileNames;
-	}
-
-	public int getFilesCount() {
-		return nFiles;
+	public ArrayList<Mfile> getFiles() {
+		return files;
 	}
 
 }

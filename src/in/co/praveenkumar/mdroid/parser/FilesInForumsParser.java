@@ -15,18 +15,19 @@
 
 package in.co.praveenkumar.mdroid.parser;
 
+import in.co.praveenkumar.mdroid.models.Mfile;
+
 import java.util.ArrayList;
 
 public class FilesInForumsParser {
-	private ArrayList<String> fFileIDs = new ArrayList<String>();
-	private ArrayList<String> fFileNames = new ArrayList<String>();
-	private int nFiles = 0;
+	ArrayList<Mfile> files;
 
 	public FilesInForumsParser(String html) {
 		int prevIndex = 0;
 		int endIndex = 0;
 
 		while (true) {
+			Mfile file = new Mfile();
 			prevIndex = html.indexOf("<div class=\"attachments\"><a href=\"",
 					prevIndex);
 			if (prevIndex == -1)
@@ -37,7 +38,7 @@ public class FilesInForumsParser {
 			endIndex = html.indexOf("\"", prevIndex);
 			if (endIndex == -1)
 				break;
-			fFileIDs.add(html.substring(prevIndex, endIndex));
+			file.setURL(html.substring(prevIndex, endIndex));
 
 			// For file Names
 			endIndex = html.indexOf("</a><br /></div><div class=\"posting",
@@ -46,21 +47,11 @@ public class FilesInForumsParser {
 			String textConvertedhtml = html.substring(prevIndex, endIndex);
 			textConvertedhtml = android.text.Html.fromHtml(textConvertedhtml)
 					.toString();
-			fFileNames.add(textConvertedhtml);
-
-			nFiles++;
+			file.setName(textConvertedhtml);
 		}
 	}
 
-	public ArrayList<String> getFileIds() {
-		return fFileIDs;
-	}
-
-	public ArrayList<String> getFileNames() {
-		return fFileNames;
-	}
-
-	public int getFileCount() {
-		return nFiles;
+	public ArrayList<Mfile> getFiles() {
+		return files;
 	}
 }

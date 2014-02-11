@@ -18,6 +18,7 @@ package in.co.praveenkumar.mdroid;
 import in.co.praveenkumar.R;
 import in.co.praveenkumar.mdroid.helpers.BaseActivity;
 import in.co.praveenkumar.mdroid.helpers.FolderDetails;
+import in.co.praveenkumar.mdroid.models.Course;
 import in.co.praveenkumar.mdroid.parser.CoursesParser;
 
 import java.util.ArrayList;
@@ -38,9 +39,7 @@ import android.widget.TextView;
 
 @SuppressLint("DefaultLocale")
 public class CoursesActivity extends BaseActivity {
-	private ArrayList<String> cNms;
-	private ArrayList<String> cIds;
-	private int cCount;
+	private ArrayList<Course> courses;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -54,9 +53,7 @@ public class CoursesActivity extends BaseActivity {
 		}
 		String html = extras.getString("html");
 		CoursesParser cParser = new CoursesParser(html);
-		cNms = cParser.getCourseNames();
-		cIds = cParser.getCourseIds();
-		cCount = cParser.getCourseCount();
+		courses = cParser.getCourses();
 		String uName = cParser.getUserName();
 
 		// Say hello to user
@@ -66,8 +63,8 @@ public class CoursesActivity extends BaseActivity {
 		// Create folder for each course. Also replace course names with values
 		// obtained back This is required because a few not allowed characters
 		// are present in default names from Moodle
-		FolderDetails FD = new FolderDetails(cNms);
-		cNms = FD.createCourseFolders();
+		FolderDetails FD = new FolderDetails(courses);
+		courses = FD.createCourseFolders();
 
 		listCoursesInListView();
 
@@ -75,11 +72,10 @@ public class CoursesActivity extends BaseActivity {
 
 	private void listCoursesInListView() {
 		// Set title
-		setTitle("Courses (" + cCount + ")");
+		setTitle("Courses (" + courses.size() + ")");
 
 		ListView listView = (ListView) findViewById(R.id.courses_list);
-		MySimpleArrayAdapter adapter = new MySimpleArrayAdapter(this, cNms,
-				cIds);
+		MySimpleArrayAdapter adapter = new MySimpleArrayAdapter(this, courses);
 
 		// Assign adapter to ListView
 		listView.setAdapter(adapter);
@@ -87,15 +83,13 @@ public class CoursesActivity extends BaseActivity {
 
 	private class MySimpleArrayAdapter extends ArrayAdapter<String> {
 		private final Context context;
-		private final ArrayList<String> courseName;
-		private final ArrayList<String> courseID;
+		private final ArrayList<Course> courses;
 
-		public MySimpleArrayAdapter(Context context,
-				ArrayList<String> courseName, ArrayList<String> courseID) {
-			super(context, R.layout.course_listview_layout, courseName);
+		public MySimpleArrayAdapter(Context context, ArrayList<Course> courses) {
+			super(context, R.layout.course_listview_layout, new String[courses
+					.size()]);
 			this.context = context;
-			this.courseName = courseName;
-			this.courseID = courseID;
+			this.courses = courses;
 		}
 
 		@Override
@@ -110,7 +104,7 @@ public class CoursesActivity extends BaseActivity {
 			// Set course name
 			final TextView cNmeView = (TextView) rowView
 					.findViewById(R.id.course_name);
-			cNmeView.setText(courseName.get(position));
+			cNmeView.setText(courses.get(position).getName());
 
 			// Set onClickListeners on buttons
 			final Button forumsBtn = (Button) rowView
@@ -120,12 +114,14 @@ public class CoursesActivity extends BaseActivity {
 
 			forumsBtn.setOnClickListener(new OnClickListener() {
 				public void onClick(View v) {
-					openActivity(0, courseID.get(pos), courseName.get(pos));
+					openActivity(0, courses.get(pos).getId(), courses.get(pos)
+							.getName());
 				}
 			});
 			filesBtn.setOnClickListener(new OnClickListener() {
 				public void onClick(View v) {
-					openActivity(1, courseID.get(pos), courseName.get(pos));
+					openActivity(1, courses.get(pos).getId(), courses.get(pos)
+							.getName());
 				}
 			});
 

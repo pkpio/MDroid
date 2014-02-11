@@ -16,6 +16,7 @@
 package in.co.praveenkumar.mdroid.networking;
 
 import in.co.praveenkumar.mdroid.MainActivity;
+import in.co.praveenkumar.mdroid.models.Mfile;
 import in.co.praveenkumar.mdroid.parser.FilesInResoucesParser;
 
 import java.io.BufferedReader;
@@ -34,16 +35,12 @@ import android.util.Log;
 public class FetchResourceFiles {
 	private final String DEBUG_TAG = "NETWORKING_FETCH_RESOURCE_FILES";
 	private String mURL = MainActivity.mURL;
-	private ArrayList<String> rFileIDs = new ArrayList<String>();
-	private ArrayList<String> rFileNames = new ArrayList<String>();
-	private int nFiles;
+	private ArrayList<Mfile> files = new ArrayList<Mfile>();
 
 	public void fetchFiles(String cId) {
 		String html = fetchFilesHtml(cId);
 		FilesInResoucesParser FRP = new FilesInResoucesParser(html);
-		rFileIDs = FRP.getFileIds();
-		rFileNames = FRP.getFileNames();
-		nFiles = FRP.getFilesCount();
+		files = FRP.getFiles();
 	}
 
 	private String fetchFilesHtml(String cId) {
@@ -84,16 +81,8 @@ public class FetchResourceFiles {
 
 	}
 
-	public ArrayList<String> getFileIds() {
-		return rFileIDs;
-	}
-
-	public ArrayList<String> getFileNames() {
-		return rFileNames;
-	}
-
-	public int getFilesCount() {
-		return nFiles;
+	public ArrayList<Mfile> getFiles() {
+		return files;
 	}
 
 }

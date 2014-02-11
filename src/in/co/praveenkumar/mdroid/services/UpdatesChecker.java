@@ -15,6 +15,7 @@
 
 package in.co.praveenkumar.mdroid.services;
 
+import in.co.praveenkumar.mdroid.models.ForumThread;
 import in.co.praveenkumar.mdroid.networking.FetchForum;
 import in.co.praveenkumar.mdroid.networking.FetchForumFiles;
 import in.co.praveenkumar.mdroid.networking.FetchResourceFiles;
@@ -49,7 +50,7 @@ public class UpdatesChecker {
 		frf.fetchFiles(cId);
 		FetchForumFiles fff = new FetchForumFiles();
 		fff.fetchFiles(cId);
-		int mCourseFilesCount = frf.getFilesCount() + fff.getFilesCount();
+		int mCourseFilesCount = frf.getFiles().size() + fff.getFiles().size();
 		int dbCourseFilesCount = stc.getFileCount(cId);
 		fileUpdateCount = mCourseFilesCount - dbCourseFilesCount;
 		Log.d(DEBUG_TAG, "Files update done. Found " + fileUpdateCount);
@@ -57,17 +58,17 @@ public class UpdatesChecker {
 		// Checking new forum threads
 		FetchForum ff = new FetchForum();
 		ff.fetchForum(cId);
-		int mForumThreadCount = ff.getThreadsCount();
+		int mForumThreadCount = ff.getThreads().size();
 		int dbForumThreadCount = stc.getForumCount(cId);
 		forumThreadUpdateCount = mForumThreadCount - dbForumThreadCount;
 		Log.d(DEBUG_TAG, "Forums update done. Found " + forumThreadUpdateCount);
 
 		// Checking for updates in each thread
-		ArrayList<String> mThreadIds = ff.getThreadIds();
-		ArrayList<String> mThreadReplyCounts = ff.getThreadReplyCounts();
-		for (int i = 0; i < mThreadIds.size(); i++) {
-			int mReplyCount = Integer.parseInt(mThreadReplyCounts.get(i));
-			int dbReplyCount = stf.getResponseCount(cId, mThreadIds.get(i));
+		ArrayList<ForumThread> mThreads = ff.getThreads();
+		for (int i = 0; i < mThreads.size(); i++) {
+			int mReplyCount = Integer.parseInt(mThreads.get(i).getReplyCount());
+			int dbReplyCount = stf.getResponseCount(cId, mThreads.get(i)
+					.getId());
 			forumRepliesUpdateCount += mReplyCount - dbReplyCount;
 		}
 		Log.d(DEBUG_TAG, "Forum reply update done. Found "

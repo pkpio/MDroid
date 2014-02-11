@@ -66,8 +66,8 @@ public class MainActivity extends BaseActivity {
 
 		// Start service
 		Log.d(DEBUG_TAG, "Registering service");
-		Intent intent = new Intent(this, MDroidService.class);
-		startService(intent);
+		// Intent intent = new Intent(this, MDroidService.class);
+		// startService(intent);
 
 		// Setup other helpers
 		LayoutInflater inflater = getLayoutInflater();
