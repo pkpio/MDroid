@@ -16,6 +16,7 @@
 package in.co.praveenkumar.mdroid.helpers;
 
 import in.co.praveenkumar.mdroid.MainActivity;
+import in.co.praveenkumar.mdroid.models.Course;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -33,7 +34,7 @@ public class FolderDetails {
 	private ArrayList<String> fileNames = new ArrayList<String>();
 	private ArrayList<String> fileTimes = new ArrayList<String>();
 	private ArrayList<String> fileSizes = new ArrayList<String>();
-	private ArrayList<String> courseNames = new ArrayList<String>();
+	private ArrayList<Course> courses = new ArrayList<Course>();
 	private int sDirCount = 0;
 	private int fileCount = 0;
 	private Boolean exist = false;
@@ -51,18 +52,18 @@ public class FolderDetails {
 	}
 
 	// For creating folders for course in CourseActivity
-	public FolderDetails(ArrayList<String> courseNames) {
-		this.courseNames = courseNames;
+	public FolderDetails(ArrayList<Course> courses) {
+		this.courses = courses;
 	}
 
-	public ArrayList<String> createCourseFolders() {
-		for (int i = 0; i < courseNames.size(); i++) {
+	public ArrayList<Course> createCourseFolders() {
+		for (int i = 0; i < courses.size(); i++) {
 			String tempCourseName = "";
-			tempCourseName = courseNames.get(i).replaceAll(":", "-");
+			tempCourseName = courses.get(i).getName().replaceAll(":", "-");
 			tempCourseName = android.text.Html.fromHtml(tempCourseName)
 					.toString();
 
-			courseNames.set(i, tempCourseName);
+			courses.get(i).setName(tempCourseName);
 			File file = new File(Environment.getExternalStorageDirectory(),
 					"/MDroid/" + tempCourseName + "/");
 			if (!file.exists()) {
@@ -73,7 +74,7 @@ public class FolderDetails {
 				}
 			}
 		}
-		return courseNames;
+		return courses;
 	}
 
 	private void findFileDetails(File f) {

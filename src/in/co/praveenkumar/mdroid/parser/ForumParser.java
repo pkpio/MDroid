@@ -15,15 +15,12 @@
 
 package in.co.praveenkumar.mdroid.parser;
 
+import in.co.praveenkumar.mdroid.models.ForumThread;
+
 import java.util.ArrayList;
 
 public class ForumParser {
-	private ArrayList<String> forumThreadIds = new ArrayList<String>();
-	private ArrayList<String> forumThreadSubs = new ArrayList<String>();
-	private ArrayList<String> forumThreadReplyCounts = new ArrayList<String>();
-	private ArrayList<String> forumThreadAuthors = new ArrayList<String>();
-	private ArrayList<String> forumThreadDates = new ArrayList<String>();
-	private int nForumThreads = 0;
+	ArrayList<ForumThread> threads = new ArrayList<ForumThread>();
 
 	public String getForumId(String html) {
 		String fId = "";
@@ -47,6 +44,7 @@ public class ForumParser {
 		int endIndex = 0;
 
 		while (true) {
+			ForumThread thread = new ForumThread();
 			prevIndex = html.indexOf("class=\"topic starter\"><a href=\"",
 					prevIndex);
 			if (prevIndex == -1)
@@ -56,7 +54,7 @@ public class ForumParser {
 			prevIndex += 31;
 			prevIndex = html.indexOf("discuss.php?d=", prevIndex) + 14;
 			endIndex = html.indexOf("\"", prevIndex);
-			forumThreadIds.add(html.substring(prevIndex, endIndex));
+			thread.setId(html.substring(prevIndex, endIndex));
 
 			// for post subject
 			prevIndex = endIndex + 2;
@@ -64,7 +62,7 @@ public class ForumParser {
 			String textConvertedhtml = html.substring(prevIndex, endIndex);
 			textConvertedhtml = android.text.Html.fromHtml(textConvertedhtml)
 					.toString();
-			forumThreadSubs.add(textConvertedhtml);
+			thread.setSubject(textConvertedhtml);
 
 			// for post Author
 			prevIndex = endIndex;
@@ -72,7 +70,7 @@ public class ForumParser {
 					prevIndex) + 28;
 			prevIndex = html.indexOf("\">", prevIndex) + 2;
 			endIndex = html.indexOf("</a>", prevIndex);
-			forumThreadAuthors.add(html.substring(prevIndex, endIndex));
+			thread.setAuthor(html.substring(prevIndex, endIndex));
 
 			// for post replies count
 			prevIndex = endIndex;
@@ -80,7 +78,7 @@ public class ForumParser {
 					prevIndex) + 29;
 			prevIndex = html.indexOf("\">", prevIndex) + 2;
 			endIndex = html.indexOf("</a>", prevIndex);
-			forumThreadReplyCounts.add(html.substring(prevIndex, endIndex));
+			thread.setReplyCount(html.substring(prevIndex, endIndex));
 
 			// for post last reply time
 			prevIndex = endIndex;
@@ -90,34 +88,11 @@ public class ForumParser {
 			prevIndex = html.indexOf("\">", prevIndex) + 2;
 			prevIndex = html.indexOf(",", prevIndex) + 2;
 			endIndex = html.indexOf("</a>", prevIndex);
-			forumThreadDates.add(html.substring(prevIndex, endIndex));
-
-			// Increase count
-			nForumThreads++;
+			thread.setDate(html.substring(prevIndex, endIndex));
 		}
 	}
 
-	public ArrayList<String> getThreadSubjects() {
-		return forumThreadSubs;
-	}
-
-	public ArrayList<String> getThreadAuthors() {
-		return forumThreadAuthors;
-	}
-
-	public ArrayList<String> getThreadIds() {
-		return forumThreadIds;
-	}
-
-	public ArrayList<String> getThreadReplyCounts() {
-		return forumThreadReplyCounts;
-	}
-
-	public ArrayList<String> getThreadTimes() {
-		return forumThreadDates;
-	}
-
-	public int getThreadsCount() {
-		return nForumThreads;
+	public ArrayList<ForumThread> getThreads() {
+		return threads;
 	}
 }

@@ -15,43 +15,33 @@
 
 package in.co.praveenkumar.mdroid.models;
 
-public class Forum {
-	int id;
-	String subject;
-	int postCount;
+public class Course {
+	String id;
+	String name;
 
-	// constructors
-	public Forum() {
+	public Course() {
+
 	}
 
-	public Forum(int id, String subject, int postCount) {
+	public Course(String id, String name) {
 		this.id = id;
-		this.subject = subject;
-		this.postCount = postCount;
+		this.name = name;
 	}
 
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
-	public String getSubject() {
-		return subject;
+	public String getName() {
+		return name;
 	}
 
-	public void setSubject(String subject) {
-		this.subject = subject;
-	}
-
-	public int getPostCount() {
-		return postCount;
-	}
-
-	public void setPostCount(int postCount) {
-		this.postCount = postCount;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 }

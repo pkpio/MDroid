@@ -17,6 +17,8 @@ package in.co.praveenkumar.mdroid.networking;
 
 import in.co.praveenkumar.mdroid.FilesActivity.UIupdater;
 import in.co.praveenkumar.mdroid.MainActivity;
+import in.co.praveenkumar.mdroid.models.Course;
+import in.co.praveenkumar.mdroid.models.Mfile;
 import in.co.praveenkumar.mdroid.parser.FileDownloadParser;
 
 import java.io.BufferedInputStream;
@@ -43,56 +45,44 @@ import android.util.Log;
 // Only for this class the Async thread is implemented in the Networking file
 // This is to avoid too many call backs to the FileActivity class to update progress
 public class FileDownloader {
-	private String DEBUG_TAG = "NETWORKING_FILE_DOWNLOADER";
-	private String mURL = MainActivity.mURL;
+	String DEBUG_TAG = "NETWORKING_FILE_DOWNLOADER";
+	String mURL = MainActivity.mURL;
 
-	// File details
-	private String fId = "";
-	private String fName = "";
-	private String fSize = "";
-	private String cName = "";
-	private String fLocation = "";
+	Mfile file;
+	Course course;
+	UIupdater UU; // For UI updation
 
 	// For batch download
-	private Boolean BatchMode = false;
-	ArrayList<String> rFileIds = new ArrayList<String>();
-	ArrayList<String> rFileNms = new ArrayList<String>();
-	ArrayList<String> fFileIds = new ArrayList<String>();
-	ArrayList<String> fFileNms = new ArrayList<String>();
+	Boolean BatchMode = false;
+	ArrayList<Mfile> rFiles = new ArrayList<Mfile>();
+	ArrayList<Mfile> fFiles = new ArrayList<Mfile>();
 
 	// For use across all function in the main class
 	AsyncFileDownload AFD = new AsyncFileDownload();
 	AsyncBatchFileDownload ABFD = new AsyncBatchFileDownload();
 
-	// For UI updation
-	UIupdater UU;
-
-	public FileDownloader(String fId, int sec, int pos, String fName,
-			String cName, UIupdater UU) {
-		this.fId = fId;
-		this.fName = fName;
-		this.cName = cName;
+	public FileDownloader(Mfile file, Course course, int sec, int pos,
+			UIupdater UU) {
+		this.file = file;
+		this.course = course;
 		this.UU = UU;
 
 		// Tell user that file download request received.
 		UU.setFileDate("Request received..");
 	}
 
-	public FileDownloader(ArrayList<String> rFileIds,
-			ArrayList<String> rFileNms, ArrayList<String> fFileIds,
-			ArrayList<String> fFileNms, String cName, UIupdater UU) {
-		this.rFileIds = rFileIds;
-		this.rFileNms = rFileNms;
-		this.fFileIds = fFileIds;
-		this.fFileNms = fFileNms;
-		this.cName = cName;
+	public FileDownloader(ArrayList<Mfile> rFiles, ArrayList<Mfile> fFiles,
+			Course course, UIupdater UU) {
+		this.rFiles = rFiles;
+		this.fFiles = fFiles;
+		this.course = course;
 		this.UU = UU;
 		this.BatchMode = true;
 
 		// Tell the user his request has been received
 		MainActivity.toaster.showToast("Total file count: "
-				+ (rFileIds.size() + fFileIds.size()) + "\nResources: "
-				+ rFileIds.size() + "  Forums: " + fFileIds.size());
+				+ (rFiles.size() + fFiles.size()) + "\nResources: "
+				+ rFiles.size() + "  Forums: " + fFiles.size());
 
 	}
 
@@ -116,7 +106,7 @@ public class FileDownloader {
 		}
 
 		protected Long doInBackground(String... values) {
-			String fURL = getFileURL(fId);
+			String fURL = getFileURL(file.getURL());
 			publishProgress(101);
 			downloadStatus = download(fURL);
 			return null;
@@ -133,7 +123,7 @@ public class FileDownloader {
 				if (progress[0] == 101)
 					UU.setFileDate("Starting download");
 				if (progress[0] == 102)
-					UU.setFileSize(fSize);
+					UU.setFileSize(file.getSize());
 			} else {
 				UU.setFileDate(progress[0] + "% done");
 				UU.setFileProg(progress[0]);
@@ -144,13 +134,13 @@ public class FileDownloader {
 			// Download success. Change fId to local location.
 			// Update date changed to a few secs ago.
 			if (downloadStatus) {
-				UU.setFileId(fLocation);
+				UU.setFileId(file.getURL());
 				UU.setFileDate("A few seconds ago");
 			} else {
 				UU.setFileDate("Failed. Retry ?");
 				UU.setFileProg(0);
 				// Delete partial file if downloaded.
-				File f = new File(fLocation);
+				File f = new File(file.getURL());
 				if (f.exists())
 					f.delete();
 			}
@@ -170,9 +160,9 @@ public class FileDownloader {
 
 		protected Long doInBackground(String... values) {
 			// Check resources.
-			if (rFileIds.size() != 0) {
-				for (int i = 0; i < rFileIds.size(); i++) {
-					File f = new File(rFileIds.get(i));
+			if (rFiles.size() != 0) {
+				for (int i = 0; i < rFiles.size(); i++) {
+					File f = new File(rFiles.get(i).getURL());
 					// If file is not already downloaded
 					if (!f.exists()) {
 						// Wait for previous progress update to complete
@@ -180,10 +170,9 @@ public class FileDownloader {
 						}
 						wait = true;
 						UU.setPosSec(i, 0);
-						fId = rFileIds.get(i);
-						fName = rFileNms.get(i);
+						file = rFiles.get(i);
 						publishProgress(105);
-						String fURL = getFileURL(fId);
+						String fURL = getFileURL(file.getURL());
 						publishProgress(101);
 						if (download(fURL))
 							publishProgress(103);
@@ -194,9 +183,9 @@ public class FileDownloader {
 			}
 
 			// Check forums
-			if (fFileIds.size() != 0) {
-				for (int i = 0; i < fFileIds.size(); i++) {
-					File f = new File(fFileIds.get(i));
+			if (fFiles.size() != 0) {
+				for (int i = 0; i < fFiles.size(); i++) {
+					File f = new File(fFiles.get(i).getURL());
 					// If file is not already downloaded
 					if (!f.exists()) {
 						// Wait for previous progress update to complete
@@ -204,10 +193,9 @@ public class FileDownloader {
 						}
 						wait = true;
 						UU.setPosSec(i, 1);
-						fId = fFileIds.get(i);
-						fName = fFileNms.get(i);
+						file = fFiles.get(i);
 						publishProgress(105);
-						String fURL = getFileURL(fId);
+						String fURL = getFileURL(file.getURL());
 						publishProgress(101);
 						if (download(fURL))
 							publishProgress(103);
@@ -232,9 +220,9 @@ public class FileDownloader {
 				if (progress[0] == 101)
 					UU.setFileDate("Starting download");
 				if (progress[0] == 102)
-					UU.setFileSize(fSize);
+					UU.setFileSize(file.getSize());
 				if (progress[0] == 103) {
-					UU.setFileId(fLocation);
+					UU.setFileId(file.getURL());
 					UU.setFileDate("A few seconds ago");
 					wait = false;
 				}
@@ -242,7 +230,7 @@ public class FileDownloader {
 					UU.setFileDate("Failed. Retry ?");
 					UU.setFileProg(0);
 					// Delete partial file if downloaded.
-					File f = new File(fLocation);
+					File f = new File(file.getURL());
 					if (f.exists())
 						f.delete();
 					wait = false;
@@ -338,7 +326,7 @@ public class FileDownloader {
 				fileNameInServer = headers[7].getValue();
 			}
 			int fSizeInt = (int) entity.getContentLength();
-			fSize = getFileSize(fSizeInt);
+			file.setSize(getFileSize(fSizeInt));
 
 			// Update file size to UI
 			if (BatchMode)
@@ -353,10 +341,10 @@ public class FileDownloader {
 
 			// Download file
 			InputStream input = new BufferedInputStream(entity.getContent());
-			fLocation = Environment.getExternalStorageDirectory() + "/MDroid/"
-					+ cName + "/" + fName + "." + fExt;
-			File file = new File(fLocation);
-			OutputStream output = new FileOutputStream(file);
+			file.setURL(Environment.getExternalStorageDirectory() + "/MDroid/"
+					+ course.getName() + "/" + file.getName() + "." + fExt);
+			File f = new File(file.getURL());
+			OutputStream output = new FileOutputStream(f);
 
 			byte data[] = new byte[1024];
 			long total = 0;
