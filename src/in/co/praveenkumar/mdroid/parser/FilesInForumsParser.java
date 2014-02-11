@@ -20,7 +20,7 @@ import in.co.praveenkumar.mdroid.models.Mfile;
 import java.util.ArrayList;
 
 public class FilesInForumsParser {
-	ArrayList<Mfile> files;
+	ArrayList<Mfile> files = new ArrayList<Mfile>();
 
 	public FilesInForumsParser(String html) {
 		int prevIndex = 0;
@@ -48,6 +48,8 @@ public class FilesInForumsParser {
 			textConvertedhtml = android.text.Html.fromHtml(textConvertedhtml)
 					.toString();
 			file.setName(textConvertedhtml);
+
+			files.add(file);
 		}
 	}
 
