@@ -54,10 +54,6 @@ public class MainActivity extends BaseActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.loginpage);
 
-		// Testing
-		SqliteTbCourses stc = new SqliteTbCourses(this);
-		stc.favCourse(2603 + "");
-
 		// Setup a http client for all network tasks, URL
 		AppsHttpClient ahc = new AppsHttpClient();
 		httpclient = ahc.getHttpClient();

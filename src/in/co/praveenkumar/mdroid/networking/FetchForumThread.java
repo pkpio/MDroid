@@ -16,6 +16,7 @@
 package in.co.praveenkumar.mdroid.networking;
 
 import in.co.praveenkumar.mdroid.MainActivity;
+import in.co.praveenkumar.mdroid.models.Reply;
 import in.co.praveenkumar.mdroid.parser.ForumThreadParser;
 
 import java.io.BufferedReader;
@@ -34,22 +35,14 @@ import android.util.Log;
 public class FetchForumThread {
 	private final String DEBUG_TAG = "NETWORKING_FORUM_THREAD";
 	private String mURL = MainActivity.mURL;
-	private ArrayList<String> threadPostSubs = new ArrayList<String>();
-	private ArrayList<String> threadPostAuthors = new ArrayList<String>();
-	private ArrayList<String> threadPostDates = new ArrayList<String>();
-	private ArrayList<String> threadPostContent = new ArrayList<String>();
-	private int nThreadPosts;
+	private ArrayList<Reply> replies = new ArrayList<Reply>();
 	private String threadContent = "";
 	private String threadReplyId = "";
 
 	public void fetchThread(String threadId) {
 		String html = fetchThreadHtml(threadId);
 		ForumThreadParser FTP = new ForumThreadParser(html);
-		threadPostSubs = FTP.getPostSubjects();
-		threadPostAuthors = FTP.getPostAuthors();
-		threadPostDates = FTP.getPostDates();
-		threadPostContent = FTP.getPostContents();
-		nThreadPosts = FTP.getPostsCount();
+		replies = FTP.getReplies();
 		threadReplyId = FTP.getReplyId();
 	}
 
@@ -90,24 +83,8 @@ public class FetchForumThread {
 		return html;
 	}
 
-	public ArrayList<String> getPostSubject() {
-		return threadPostSubs;
-	}
-
-	public ArrayList<String> getPostAuthors() {
-		return threadPostAuthors;
-	}
-
-	public ArrayList<String> getPostDates() {
-		return threadPostDates;
-	}
-
-	public ArrayList<String> getPostContent() {
-		return threadPostContent;
-	}
-
-	public int getPostsCount() {
-		return nThreadPosts;
+	public ArrayList<Reply> getReplies() {
+		return replies;
 	}
 
 	public String getThreadContent() {

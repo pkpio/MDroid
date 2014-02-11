@@ -21,17 +21,26 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 
 public abstract class BaseFragmentActivity extends FragmentActivity {
+	MenuItem favMenu;
 
-	// Dummy function. Will be overridden
+	// Dummy functions. Will be overridden
 	public abstract void downloadAllFiles();
+
+	public abstract void updateFavStatus();
+
+	public abstract void checkFavStatus();
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.file_listing_menu, menu);
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.file_listing_menu, menu);
+		favMenu = menu.findItem(R.id.action_favourite);
+		checkFavStatus();
 		return true;
 	}
 
@@ -51,7 +60,14 @@ public abstract class BaseFragmentActivity extends FragmentActivity {
 		case R.id.action_downloadall:
 			downloadAllFiles();
 			break;
+		case R.id.action_favourite:
+			updateFavStatus();
+			break;
 		}
 		return true;
+	}
+
+	public MenuItem getFavMenuItem() {
+		return favMenu;
 	}
 }

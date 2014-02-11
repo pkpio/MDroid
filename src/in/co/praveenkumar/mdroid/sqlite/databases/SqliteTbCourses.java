@@ -68,6 +68,7 @@ public class SqliteTbCourses {
 		values.put(KEY_COURSE_IS_FAV, 1);
 		db.update(TABLE_COURSES, values, KEY_COURSE_ID + " = ?",
 				new String[] { String.valueOf(cId) });
+		Log.d(DEBUG_TAG, "favourited course : " + cId);
 	}
 
 	// Make a course as fav
@@ -81,6 +82,7 @@ public class SqliteTbCourses {
 		values.put(KEY_COURSE_IS_FAV, 0);
 		db.update(TABLE_COURSES, values, KEY_COURSE_ID + " = ?",
 				new String[] { String.valueOf(cId) });
+		Log.d(DEBUG_TAG, "unfavourited course : " + cId);
 	}
 
 	// Check if a course is fav or not
