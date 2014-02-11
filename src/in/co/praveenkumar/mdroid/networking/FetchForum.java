@@ -16,6 +16,7 @@
 package in.co.praveenkumar.mdroid.networking;
 
 import in.co.praveenkumar.mdroid.MainActivity;
+import in.co.praveenkumar.mdroid.models.ForumThread;
 import in.co.praveenkumar.mdroid.parser.ForumParser;
 
 import java.io.BufferedReader;
@@ -34,12 +35,7 @@ import android.util.Log;
 public class FetchForum {
 	private final String DEBUG_TAG = "NETWORKING_FORUM";
 	private String mURL = MainActivity.mURL;
-	private ArrayList<String> forumThreadIds = new ArrayList<String>();
-	private ArrayList<String> forumThreadSubs = new ArrayList<String>();
-	private ArrayList<String> forumThreadReplyCounts = new ArrayList<String>();
-	private ArrayList<String> forumThreadAuthors = new ArrayList<String>();
-	private ArrayList<String> forumThreadDates = new ArrayList<String>();
-	private int nForumThreads = 0;
+	private ArrayList<ForumThread> threads = new ArrayList<ForumThread>();
 	private ForumParser forumparser = new ForumParser();
 
 	public void fetchForum(String cId) {
@@ -109,12 +105,7 @@ public class FetchForum {
 
 			// Fill ArrayLists by parsing values
 			forumparser.ParseForumForData(html);
-			forumThreadIds = forumparser.getThreadIds();
-			forumThreadSubs = forumparser.getThreadSubjects();
-			forumThreadAuthors = forumparser.getThreadAuthors();
-			forumThreadDates = forumparser.getThreadTimes();
-			forumThreadReplyCounts = forumparser.getThreadReplyCounts();
-			nForumThreads = forumparser.getThreadsCount();
+			threads = forumparser.getThreads();
 
 		} catch (MalformedURLException e) {
 			// URL malformed
@@ -129,27 +120,7 @@ public class FetchForum {
 		}
 	}
 
-	public ArrayList<String> getThreadSubjects() {
-		return forumThreadSubs;
-	}
-
-	public ArrayList<String> getThreadAuthors() {
-		return forumThreadAuthors;
-	}
-
-	public ArrayList<String> getThreadIds() {
-		return forumThreadIds;
-	}
-
-	public ArrayList<String> getThreadReplyCounts() {
-		return forumThreadReplyCounts;
-	}
-
-	public ArrayList<String> getThreadTimes() {
-		return forumThreadDates;
-	}
-
-	public int getThreadsCount() {
-		return nForumThreads;
+	public ArrayList<ForumThread> getThreads() {
+		return threads;
 	}
 }

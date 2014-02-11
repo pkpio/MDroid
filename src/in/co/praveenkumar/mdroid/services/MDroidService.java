@@ -15,13 +15,15 @@
 
 package in.co.praveenkumar.mdroid.services;
 
-import java.util.ArrayList;
-
 import in.co.praveenkumar.mdroid.MainActivity;
 import in.co.praveenkumar.mdroid.helpers.Database;
+import in.co.praveenkumar.mdroid.models.Course;
 import in.co.praveenkumar.mdroid.networking.DoLogin;
 import in.co.praveenkumar.mdroid.parser.CoursesParser;
 import in.co.praveenkumar.mdroid.sqlite.databases.SqliteTbCourses;
+
+import java.util.ArrayList;
+
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
@@ -101,14 +103,14 @@ public class MDroidService extends Service {
 	private void fetchFavCourseDetails() {
 		// Get moodle courses.
 		CoursesParser cp = new CoursesParser(l.getContent());
-		ArrayList<String> mCourseIds = cp.getCourseIds();
+		ArrayList<Course> mCourses = cp.getCourses();
 
 		// For each course in moodle check if it is in favs
 		SqliteTbCourses stc = new SqliteTbCourses(getApplicationContext());
-		for (int i = 0; i < mCourseIds.size(); i++) {
-			if (stc.isFav(mCourseIds.get(i))) {
-				uc = new UpdatesChecker(getApplicationContext(),
-						mCourseIds.get(i));
+		for (int i = 0; i < mCourses.size(); i++) {
+			if (stc.isFav(mCourses.get(i).getId())) {
+				uc = new UpdatesChecker(getApplicationContext(), mCourses
+						.get(i).getId());
 				uc.checkForUpdates();
 				if (uc.getTotalUpdatesCount() > 0) {
 					totalUpdateCount += uc.getTotalUpdatesCount();

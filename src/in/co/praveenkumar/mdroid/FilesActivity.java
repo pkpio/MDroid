@@ -19,6 +19,8 @@ import in.co.praveenkumar.R;
 import in.co.praveenkumar.mdroid.helpers.BaseFragmentActivity;
 import in.co.praveenkumar.mdroid.helpers.FileOpen;
 import in.co.praveenkumar.mdroid.helpers.FolderDetails;
+import in.co.praveenkumar.mdroid.models.Course;
+import in.co.praveenkumar.mdroid.models.Mfile;
 import in.co.praveenkumar.mdroid.networking.FetchForumFiles;
 import in.co.praveenkumar.mdroid.networking.FetchResourceFiles;
 import in.co.praveenkumar.mdroid.networking.FileDownloader;
@@ -50,34 +52,25 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 public class FilesActivity extends BaseFragmentActivity {
-	private String cId = "";
-	private ArrayList<String> rFileIDs = new ArrayList<String>();
-	private ArrayList<String> rFileNames = new ArrayList<String>();
-	private ArrayList<String> rFileSize = new ArrayList<String>();
-	private ArrayList<String> rFileDate = new ArrayList<String>();
-	private int[] rFileProg; // Size will be declared later
+	Course course = new Course();
+	ArrayList<Mfile> rFiles = new ArrayList<Mfile>();
+	ArrayList<Mfile> fFiles = new ArrayList<Mfile>();
 
-	private ArrayList<String> fFileIDs = new ArrayList<String>();
-	private ArrayList<String> fFileNames = new ArrayList<String>();
-	private ArrayList<String> fFileSize = new ArrayList<String>();
-	private ArrayList<String> fFileDate = new ArrayList<String>();
-	private int[] fFileProg; // Size will be declared later
+	static LinearLayout rLoadingMsgLL;
+	static ProgressBar rProgBar;
+	static TextView rProgMsgTV;
+	static LinearLayout fLoadingMsgLL;
+	static ProgressBar fProgBar;
+	static TextView fProgMsgTV;
 
-	private int rFileCount = 0;
-	private int fFileCount = 0;
-	private static LinearLayout rLoadingMsgLL;
-	private static ProgressBar rProgBar;
-	private static TextView rProgMsgTV;
-	private static LinearLayout fLoadingMsgLL;
-	private static ProgressBar fProgBar;
-	private static TextView fProgMsgTV;
-	private FetchResourceFiles FRF = new FetchResourceFiles();
-	private FetchForumFiles FFF; // This requires params to instantiate
-	private UIupdater UU;
+	FetchResourceFiles FRF = new FetchResourceFiles();
+	FetchForumFiles FFF; // This requires params to instantiate
 	AsyncFilesFetch AFF = new AsyncFilesFetch();
-	private MySimpleArrayAdapter rListAdapter;
-	private MySimpleArrayAdapter fListAdapter;
-	private String cName = "";
+
+	UIupdater UU;
+
+	MySimpleArrayAdapter rListAdapter;
+	MySimpleArrayAdapter fListAdapter;
 
 	// For swipe view classes
 	public static View[] sectionRootView = new View[2];
@@ -94,12 +87,12 @@ public class FilesActivity extends BaseFragmentActivity {
 		if (extras == null) {
 			return;
 		}
-		cId = extras.getString("cId");
-		cName = extras.getString("cName");
+		course.setId(extras.getString("cId"));
+		course.setName(extras.getString("cName"));
 
 		// Set course name
 		TextView cNameTV = (TextView) findViewById(R.id.files_course_name);
-		cNameTV.setText(cName);
+		cNameTV.setText(course.getName());
 
 		// Create the adapter that will return a fragment for each of the three
 		// primary sections of the app.
@@ -206,61 +199,58 @@ public class FilesActivity extends BaseFragmentActivity {
 			this.sec = sec;
 		}
 
-		public void setFileSize(String msg) {
+		public void setFileSize(String size) {
 			if (sec == 0) {
-				rFileSize.set(pos, msg);
+				rFiles.get(pos).setSize(size);
 				rListAdapter.notifyDataSetChanged();
 			}
 
 			if (sec == 1) {
-				fFileSize.set(pos, msg);
+				fFiles.get(pos).setSize(size);
 				fListAdapter.notifyDataSetChanged();
 			}
 		}
 
-		public void setFileDate(String msg) {
+		public void setFileDate(String date) {
 			if (sec == 0) {
-				rFileDate.set(pos, msg);
+				rFiles.get(pos).setDate(date);
 				rListAdapter.notifyDataSetChanged();
 			}
 
 			if (sec == 1) {
-				fFileDate.set(pos, msg);
+				fFiles.get(pos).setDate(date);
 				fListAdapter.notifyDataSetChanged();
 			}
 		}
 
 		public void setFileProg(int prog) {
 			if (sec == 0) {
-				rFileProg[pos] = prog;
+				rFiles.get(pos).setProgress(prog);
 				rListAdapter.notifyDataSetChanged();
 			}
 
 			if (sec == 1) {
-				fFileProg[pos] = prog;
+				fFiles.get(pos).setProgress(prog);
 				fListAdapter.notifyDataSetChanged();
 			}
 		}
 
 		public void setFileId(String fId) {
 			if (sec == 0) {
-				rFileIDs.set(pos, fId);
+				rFiles.get(pos).setURL(fId);
 				rListAdapter.notifyDataSetChanged();
 			}
 
 			if (sec == 1) {
-				fFileIDs.set(pos, fId);
+				fFiles.get(pos).setURL(fId);
 				fListAdapter.notifyDataSetChanged();
 			}
 		}
 
 		public void setForumProgress(int curFThread, int totalFThreads,
-				ArrayList<String> fFileIDs, ArrayList<String> fFileNames,
-				int nFiles) {
+				ArrayList<Mfile> files) {
 			AFF.doProgress(curFThread, totalFThreads);
-			FilesActivity.this.fFileIDs = fFileIDs;
-			FilesActivity.this.fFileNames = fFileNames;
-			FilesActivity.this.fFileCount = nFiles;
+			fFiles = files;
 		}
 	}
 
@@ -277,10 +267,10 @@ public class FilesActivity extends BaseFragmentActivity {
 		}
 
 		protected Long doInBackground(String... values) {
-			FRF.fetchFiles(cId);
+			FRF.fetchFiles(course.getId());
 			publishProgress(0);
 			FFF = new FetchForumFiles(UU);
-			FFF.fetchFiles(cId);
+			FFF.fetchFiles(course.getId());
 			return null;
 		}
 
@@ -291,37 +281,30 @@ public class FilesActivity extends BaseFragmentActivity {
 		protected void onProgressUpdate(Integer... progress) {
 			if (progress[0] == 0) {
 				rLoadingMsgLL.setVisibility(LinearLayout.GONE);
-				rFileIDs = FRF.getFileIds();
-				rFileNames = FRF.getFileNames();
-				rFileCount = FRF.getFilesCount();
+				rFiles = FRF.getFiles();
 				listFilesInListView(0);
 			}
 			// Non zero values for forum loading
 			else {
 				fProgMsgTV.setText("Fetching files from thread: " + progress[0]
 						+ "/" + progress[1]);
-				if (!fFileIDs.isEmpty())
+				if (!fFiles.isEmpty())
 					listFilesInListView(1);
 			}
 		}
 
 		protected void onPostExecute(Long result) {
 			fLoadingMsgLL.setVisibility(LinearLayout.GONE);
-			fFileIDs = FFF.getFileIds();
-			fFileNames = FFF.getFileNames();
-			fFileCount = FFF.getFilesCount();
+			fFiles = FFF.getFiles();
 			listFilesInListView(1);
 		}
 	}
 
 	private void listFilesInListView(int section) {
 		if (section == 0) {
-			if (!rFileIDs.isEmpty()) {
+			if (!rFiles.isEmpty()) {
 				// Set title
-				setTitle("Files (" + rFileCount + ")");
-
-				// Set size of progress array
-				rFileProg = new int[rFileIDs.size()];
+				setTitle("Files (" + rFiles.size() + ")");
 
 				// Build the fileInfo array for offline files.
 				// This will avoid re-checking them on every re-draw of view
@@ -330,8 +313,7 @@ public class FilesActivity extends BaseFragmentActivity {
 				// List them now
 				ListView listView = (ListView) sectionRootView[0]
 						.findViewById(R.id.files_list);
-				rListAdapter = new MySimpleArrayAdapter(this, rFileNames,
-						section);
+				rListAdapter = new MySimpleArrayAdapter(this, rFiles, section);
 
 				// Assign adapter to ListView
 				listView.setAdapter(rListAdapter);
@@ -344,12 +326,9 @@ public class FilesActivity extends BaseFragmentActivity {
 		}
 
 		if (section == 1) {
-			if (!fFileIDs.isEmpty()) {
+			if (!fFiles.isEmpty()) {
 				// Set title
-				setTitle("Files (" + (rFileCount + fFileCount) + ")");
-
-				// Set size of progress array
-				fFileProg = new int[fFileIDs.size()];
+				setTitle("Files (" + (rFiles.size() + fFiles.size()) + ")");
 
 				// Build the fileInfo array for offline files.
 				// This will avoid re-checking them on every re-draw of view
@@ -357,8 +336,7 @@ public class FilesActivity extends BaseFragmentActivity {
 
 				ListView listView = (ListView) sectionRootView[1]
 						.findViewById(R.id.files_list);
-				fListAdapter = new MySimpleArrayAdapter(this, fFileNames,
-						section);
+				fListAdapter = new MySimpleArrayAdapter(this, fFiles, section);
 
 				// Assign adapter to ListView
 				listView.setAdapter(fListAdapter);
@@ -375,14 +353,14 @@ public class FilesActivity extends BaseFragmentActivity {
 
 	private class MySimpleArrayAdapter extends ArrayAdapter<String> {
 		private final Context context;
-		private ArrayList<String> fileNames;
+		private ArrayList<Mfile> files;
 		private int section;
 
-		public MySimpleArrayAdapter(Context context,
-				ArrayList<String> fileNames, int section) {
-			super(context, R.layout.files_listview_layout, fileNames);
+		public MySimpleArrayAdapter(Context context, ArrayList<Mfile> files,
+				int section) {
+			super(context, R.layout.files_listview_layout);
 			this.context = context;
-			this.fileNames = fileNames;
+			this.files = files;
 			this.section = section;
 		}
 
@@ -407,51 +385,49 @@ public class FilesActivity extends BaseFragmentActivity {
 					.findViewById(R.id.files_progress);
 
 			// Set values
-			fNameView.setText(fileNames.get(pos));
+			fNameView.setText(files.get(pos).getName());
 			if (section == 0) {
-				fSizeView.setText(rFileSize.get(pos));
-				fDateView.setText(rFileDate.get(pos));
-				fProgBar.setProgress(rFileProg[pos]);
+				fSizeView.setText(rFiles.get(pos).getSize());
+				fDateView.setText(rFiles.get(pos).getDate());
+				fProgBar.setProgress(rFiles.get(pos).getProgress());
 			}
 
 			if (section == 1) {
-				fSizeView.setText(fFileSize.get(pos));
-				fDateView.setText(fFileDate.get(pos));
-				fProgBar.setProgress(fFileProg[pos]);
+				fSizeView.setText(fFiles.get(pos).getSize());
+				fDateView.setText(fFiles.get(pos).getDate());
+				fProgBar.setProgress(fFiles.get(pos).getProgress());
 			}
 
 			fLayoutLL.setOnClickListener(new OnClickListener() {
 				public void onClick(View v) {
 					// Open or download ?
 					if (section == 0) {
-						File f = new File(rFileIDs.get(pos));
+						File f = new File(rFiles.get(pos).getURL());
 						if (f.exists()) {
 							// Open
-							openFile(rFileIDs.get(pos));
+							openFile(rFiles.get(pos).getURL());
 						} else {
 							// Download
 							// Define a UIupdater to update UI.
 							UIupdater UU = new UIupdater(pos, section);
-							FileDownloader FD = new FileDownloader(rFileIDs
-									.get(pos), section, pos,
-									fileNames.get(pos), cName, UU);
+							FileDownloader FD = new FileDownloader(rFiles
+									.get(pos), course, section, pos, UU);
 							FD.startDownload();
 
 						}
 					}
 
 					if (section == 1) {
-						File f = new File(fFileIDs.get(pos));
+						File f = new File(fFiles.get(pos).getURL());
 						if (f.exists()) {
 							// Open
-							openFile(fFileIDs.get(pos));
+							openFile(fFiles.get(pos).getURL());
 						} else {
 							// Download
 							// Define a UIupdater to update UI.
 							UIupdater UU = new UIupdater(pos, section);
-							FileDownloader FD = new FileDownloader(fFileIDs
-									.get(pos), section, pos,
-									fileNames.get(pos), cName, UU);
+							FileDownloader FD = new FileDownloader(fFiles
+									.get(pos), course, section, pos, UU);
 							FD.startDownload();
 						}
 					}
@@ -464,41 +440,41 @@ public class FilesActivity extends BaseFragmentActivity {
 
 	private void buildFileInfo(int section) {
 		if (section == 0) {
-			for (int i = 0; i < rFileIDs.size(); i++) {
+			for (int i = 0; i < rFiles.size(); i++) {
 				File f = new File(android.os.Environment
 						.getExternalStorageDirectory().getPath()
 						+ "/MDroid/"
-						+ cName + "/" + rFileNames.get(i));
+						+ course.getName() + "/" + rFiles.get(i).getName());
 				FolderDetails fd = new FolderDetails(f);
 				if (fd.existWOExtCheck()) {
-					rFileIDs.set(i, fd.getFileId());
-					rFileSize.add(fd.getFileSize());
-					rFileDate.add(fd.getFileRelDate());
-					rFileProg[i] = 100;
+					rFiles.get(i).setURL(fd.getFileId());
+					rFiles.get(i).setSize(fd.getFileSize());
+					rFiles.get(i).setDate(fd.getFileRelDate());
+					rFiles.get(i).setProgress(100);
 				} else {
-					rFileSize.add("");
-					rFileDate.add("Click to download");
-					rFileProg[i] = 0;
+					rFiles.get(i).setSize("");
+					rFiles.get(i).setDate("Click to download");
+					rFiles.get(i).setProgress(0);
 				}
 			}
 		}
 
 		if (section == 1) {
-			for (int i = 0; i < fFileIDs.size(); i++) {
+			for (int i = 0; i < fFiles.size(); i++) {
 				File f = new File(android.os.Environment
 						.getExternalStorageDirectory().getPath()
 						+ "/MDroid/"
-						+ cName + "/" + fFileNames.get(i));
+						+ course.getName() + "/" + fFiles.get(i).getName());
 				FolderDetails fd = new FolderDetails(f);
 				if (fd.existWOExtCheck()) {
-					fFileIDs.set(i, fd.getFileId());
-					fFileSize.add(i, fd.getFileSize());
-					fFileDate.add(i, fd.getFileRelDate());
-					fFileProg[i] = 100;
+					fFiles.get(i).setURL(fd.getFileId());
+					fFiles.get(i).setSize(fd.getFileSize());
+					fFiles.get(i).setDate(fd.getFileRelDate());
+					fFiles.get(i).setProgress(100);
 				} else {
-					fFileSize.add(i, "");
-					fFileDate.add(i, "Click to download");
-					fFileProg[i] = 0;
+					fFiles.get(i).setSize("");
+					fFiles.get(i).setDate("Click to download");
+					fFiles.get(i).setProgress(0);
 				}
 			}
 		}
@@ -528,9 +504,8 @@ public class FilesActivity extends BaseFragmentActivity {
 									int whichButton) {
 								// Download files here
 								UU = new UIupdater();
-								FileDownloader FD = new FileDownloader(
-										rFileIDs, rFileNames, fFileIDs,
-										fFileNames, cName, UU);
+								FileDownloader FD = new FileDownloader(rFiles,
+										fFiles, course, UU);
 								FD.startDownload();
 
 							}

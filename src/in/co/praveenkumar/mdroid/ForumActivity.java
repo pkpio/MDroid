@@ -17,6 +17,8 @@ package in.co.praveenkumar.mdroid;
 
 import in.co.praveenkumar.R;
 import in.co.praveenkumar.mdroid.helpers.BaseActivity;
+import in.co.praveenkumar.mdroid.models.Course;
+import in.co.praveenkumar.mdroid.models.ForumThread;
 import in.co.praveenkumar.mdroid.networking.FetchForum;
 
 import java.util.ArrayList;
@@ -36,14 +38,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 public class ForumActivity extends BaseActivity {
-	private ArrayList<String> forumThreadIds = new ArrayList<String>();
-	private ArrayList<String> forumThreadSubs = new ArrayList<String>();
-	private ArrayList<String> forumThreadReplyCounts = new ArrayList<String>();
-	private ArrayList<String> forumThreadAuthors = new ArrayList<String>();
-	private ArrayList<String> forumThreadDates = new ArrayList<String>();
-	private int nForumThreads;
-	private String cId = "";
-	private String cName = "";
+	ArrayList<ForumThread> threads = new ArrayList<ForumThread>();
+	Course course = new Course();
 	FetchForum FF = new FetchForum();
 	LinearLayout loadingMsgLL;
 	ProgressBar progBar;
@@ -59,12 +55,12 @@ public class ForumActivity extends BaseActivity {
 		if (extras == null) {
 			return;
 		}
-		cId = extras.getString("cId");
-		cName = extras.getString("cName");
+		course.setId(extras.getString("cId"));
+		course.setName(extras.getString("cName"));
 
 		// Set course name
 		TextView cNameTV = (TextView) findViewById(R.id.forum_course_name);
-		cNameTV.setText(cName);
+		cNameTV.setText(course.getName());
 
 		// For progress message hide, unhide and messages
 		loadingMsgLL = (LinearLayout) findViewById(R.id.forum_loading_message);
@@ -85,31 +81,25 @@ public class ForumActivity extends BaseActivity {
 		}
 
 		protected Long doInBackground(String... values) {
-			FF.fetchForum(cId);
+			FF.fetchForum(course.getId());
 			return null;
 		}
 
 		protected void onPostExecute(Long result) {
 			loadingMsgLL.setVisibility(LinearLayout.GONE);
-			forumThreadIds = FF.getThreadIds();
-			forumThreadSubs = FF.getThreadSubjects();
-			forumThreadAuthors = FF.getThreadAuthors();
-			forumThreadDates = FF.getThreadTimes();
-			forumThreadReplyCounts = FF.getThreadReplyCounts();
-			nForumThreads = FF.getThreadsCount();
+			threads = FF.getThreads();
 			listForumsInListView();
 		}
 	}
 
 	private void listForumsInListView() {
-		if (!forumThreadIds.isEmpty()) {
+		if (!threads.isEmpty()) {
 			// Set title
-			setTitle("Forum (" + nForumThreads + ")");
+			setTitle("Forum (" + threads.size() + ")");
 
 			ListView listView = (ListView) findViewById(R.id.forum_list);
 			MySimpleArrayAdapter adapter = new MySimpleArrayAdapter(this,
-					forumThreadIds, forumThreadSubs, forumThreadReplyCounts,
-					forumThreadAuthors, forumThreadDates);
+					threads);
 
 			// Assign adapter to ListView
 			listView.setAdapter(adapter);
@@ -123,25 +113,13 @@ public class ForumActivity extends BaseActivity {
 
 	private class MySimpleArrayAdapter extends ArrayAdapter<String> {
 		private final Context context;
-		private ArrayList<String> forumThreadIds;
-		private ArrayList<String> forumThreadSubs;
-		private ArrayList<String> forumThreadReplyCounts;
-		private ArrayList<String> forumThreadAuthors;
-		private ArrayList<String> forumThreadDates;
+		private ArrayList<ForumThread> threads;
 
 		public MySimpleArrayAdapter(Context context,
-				ArrayList<String> forumThreadIds,
-				ArrayList<String> forumThreadSubs,
-				ArrayList<String> forumThreadReplyCounts,
-				ArrayList<String> forumThreadAuthors,
-				ArrayList<String> forumThreadDates) {
-			super(context, R.layout.forum_listview_layout, forumThreadSubs);
+				ArrayList<ForumThread> threads) {
+			super(context, R.layout.forum_listview_layout);
 			this.context = context;
-			this.forumThreadIds = forumThreadIds;
-			this.forumThreadSubs = forumThreadSubs;
-			this.forumThreadReplyCounts = forumThreadReplyCounts;
-			this.forumThreadAuthors = forumThreadAuthors;
-			this.forumThreadDates = forumThreadDates;
+			this.threads = threads;
 		}
 
 		@Override
@@ -162,11 +140,11 @@ public class ForumActivity extends BaseActivity {
 					.findViewById(R.id.forum_author);
 			final TextView fDateView = (TextView) rowView
 					.findViewById(R.id.forum_date_posted);
-			fSubView.setText(forumThreadSubs.get(position));
-			fRepCountView.setText("(" + forumThreadReplyCounts.get(position)
+			fSubView.setText(threads.get(position).getSubject());
+			fRepCountView.setText("(" + threads.get(position).getReplyCount()
 					+ ")");
-			fAuthView.setText(forumThreadAuthors.get(position));
-			fDateView.setText(forumThreadDates.get(position));
+			fAuthView.setText(threads.get(position).getAuthor());
+			fDateView.setText(threads.get(position).getDate());
 
 			// Set onClickListeners on buttons
 			final LinearLayout forumLL = (LinearLayout) rowView
@@ -176,8 +154,8 @@ public class ForumActivity extends BaseActivity {
 			forumLL.setOnClickListener(new OnClickListener() {
 				public void onClick(View v) {
 					// Open thread
-					openThread(forumThreadIds.get(pos),
-							forumThreadSubs.get(pos));
+					openThread(threads.get(pos).getId(), threads.get(pos)
+							.getSubject());
 				}
 			});
 
@@ -189,7 +167,7 @@ public class ForumActivity extends BaseActivity {
 		Intent i = new Intent(this, ForumThreadActivity.class);
 		i.putExtra("threadId", threadId + "&mode=1");
 		i.putExtra("threadSub", threadSub);
-		i.putExtra("cName", cName);
+		i.putExtra("cName", course.getName());
 		startActivityForResult(i, 4);
 	}
 }
