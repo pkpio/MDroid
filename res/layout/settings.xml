@@ -104,6 +104,69 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="10dp"
+                    android:text="@string/settings_notifications_heading"
+                    android:textColor="@color/ics_blue"
+                    android:textIsSelectable="false"
+                    android:textSize="16sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/ics_blue" >
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:text="@string/settings_notifications_description"
+                    android:textColor="@color/trasp_grey"
+                    android:textIsSelectable="false"
+                    android:textSize="13sp" />
+
+                <RadioGroup
+                    android:id="@+id/settings_notifications_state"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginTop="8dp"
+                    android:orientation="horizontal"
+                    android:weightSum="1" >
+
+                    <RadioButton
+                        android:id="@+id/notifications_yes"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30dp"
+                        android:layout_weight="0.5"
+                        android:gravity="center_vertical"
+                        android:onClick="onAutoLoginStateChange"
+                        android:text="@string/settings_notifications_true" />
+
+                    <RadioButton
+                        android:id="@+id/notifications_no"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="30dp"
+                        android:layout_weight="0.5"
+                        android:onClick="onAutoLoginStateChange"
+                        android:text="@string/settings_notifications_false" />
+                </RadioGroup>
+            </LinearLayout>
+
+            <!-- Card 3 -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/card"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
                     android:text="@string/settings_credentials_heading"
                     android:textColor="@color/ics_blue"
                     android:textIsSelectable="false"
@@ -114,6 +177,15 @@
                     android:layout_height="1dp"
                     android:background="@color/ics_blue" >
                 </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:text="@string/settings_credentials_description"
+                    android:textColor="@color/trasp_grey"
+                    android:textIsSelectable="false"
+                    android:textSize="13sp" />
 
                 <RadioGroup
                     android:layout_width="match_parent"
@@ -150,7 +222,7 @@
                 </RadioGroup>
             </LinearLayout>
 
-            <!-- Card 3 -->
+            <!-- Card 4 -->
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -173,6 +245,15 @@
                     android:layout_height="1dp"
                     android:background="@color/ics_blue" >
                 </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:text="@string/settings_auto_login_description"
+                    android:textColor="@color/trasp_grey"
+                    android:textIsSelectable="false"
+                    android:textSize="13sp" />
 
                 <RadioGroup
                     android:id="@+id/settings_auto_login_state"

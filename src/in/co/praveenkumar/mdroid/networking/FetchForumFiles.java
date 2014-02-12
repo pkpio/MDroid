@@ -67,4 +67,9 @@ public class FetchForumFiles {
 		return files;
 	}
 
+	// Will be used for forum data caching from file listing activity
+	public ArrayList<ForumThread> getThreads() {
+		return threads;
+	}
+
 }

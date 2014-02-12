@@ -20,11 +20,13 @@ import in.co.praveenkumar.mdroid.helpers.BaseFragmentActivity;
 import in.co.praveenkumar.mdroid.helpers.FileOpen;
 import in.co.praveenkumar.mdroid.helpers.FolderDetails;
 import in.co.praveenkumar.mdroid.models.Course;
+import in.co.praveenkumar.mdroid.models.ForumThread;
 import in.co.praveenkumar.mdroid.models.Mfile;
 import in.co.praveenkumar.mdroid.networking.FetchForumFiles;
 import in.co.praveenkumar.mdroid.networking.FetchResourceFiles;
 import in.co.praveenkumar.mdroid.networking.FileDownloader;
 import in.co.praveenkumar.mdroid.sqlite.databases.SqliteTbCourses;
+import in.co.praveenkumar.mdroid.sqlite.databases.SqliteTbForums;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -56,7 +58,10 @@ public class FilesActivity extends BaseFragmentActivity {
 	Course course = new Course();
 	ArrayList<Mfile> rFiles = new ArrayList<Mfile>();
 	ArrayList<Mfile> fFiles = new ArrayList<Mfile>();
+
+	// Databases
 	SqliteTbCourses stc = new SqliteTbCourses(this);
+	SqliteTbForums stf = new SqliteTbForums(this);
 
 	static LinearLayout rLoadingMsgLL;
 	static ProgressBar rProgBar;
@@ -299,6 +304,14 @@ public class FilesActivity extends BaseFragmentActivity {
 			fLoadingMsgLL.setVisibility(LinearLayout.GONE);
 			fFiles = FFF.getFiles();
 			listFilesInListView(1);
+
+			// Also get the threads info for database indexing
+			ArrayList<ForumThread> threads = FFF.getThreads();
+
+			// Update counts in database for services
+			stc.updateFileCount(course.getId(), rFiles.size() + fFiles.size());
+			stc.updateForumCount(course.getId(), threads.size());
+			stf.addThreads(course.getId(), threads);
 		}
 	}
 
@@ -331,10 +344,6 @@ public class FilesActivity extends BaseFragmentActivity {
 			if (!fFiles.isEmpty()) {
 				// Set title
 				setTitle("Files (" + (rFiles.size() + fFiles.size()) + ")");
-
-				// Update counts in database for services
-				stc.updateFileCount(course.getId(),
-						rFiles.size() + fFiles.size());
 
 				// Build the fileInfo array for offline files.
 				// This will avoid re-checking them on every re-draw of view
@@ -525,9 +534,11 @@ public class FilesActivity extends BaseFragmentActivity {
 		if (!stc.isFav(course.getId())) {
 			stc.favCourse(course.getId());
 			getFavMenuItem().setIcon(R.drawable.ic_action_important);
+			getFavMenuItem().setTitle(R.string.menu_favourite_undo);
 		} else {
 			stc.unFavCourse(course.getId());
 			getFavMenuItem().setIcon(R.drawable.ic_action_not_important);
+			getFavMenuItem().setTitle(R.string.menu_favourite);
 		}
 	}
 

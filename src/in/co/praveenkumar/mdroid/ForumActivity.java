@@ -21,6 +21,7 @@ import in.co.praveenkumar.mdroid.models.Course;
 import in.co.praveenkumar.mdroid.models.ForumThread;
 import in.co.praveenkumar.mdroid.networking.FetchForum;
 import in.co.praveenkumar.mdroid.sqlite.databases.SqliteTbCourses;
+import in.co.praveenkumar.mdroid.sqlite.databases.SqliteTbForums;
 
 import java.util.ArrayList;
 
@@ -43,6 +44,7 @@ public class ForumActivity extends BaseActivity {
 	Course course = new Course();
 	FetchForum FF = new FetchForum();
 	SqliteTbCourses stc = new SqliteTbCourses(this);
+	SqliteTbForums stf = new SqliteTbForums(this);
 	LinearLayout loadingMsgLL;
 	ProgressBar progBar;
 	TextView progMsgTV;
@@ -91,6 +93,10 @@ public class ForumActivity extends BaseActivity {
 			loadingMsgLL.setVisibility(LinearLayout.GONE);
 			threads = FF.getThreads();
 			listForumsInListView();
+
+			// Update counts in database for services
+			stc.updateForumCount(course.getId(), threads.size());
+			stf.addThreads(course.getId(), threads);
 		}
 	}
 
@@ -98,9 +104,6 @@ public class ForumActivity extends BaseActivity {
 		if (!threads.isEmpty()) {
 			// Set title
 			setTitle("Forum (" + threads.size() + ")");
-
-			// Update counts in database for services
-			stc.updateForumCount(course.getId(), threads.size());
 
 			ListView listView = (ListView) findViewById(R.id.forum_list);
 			MySimpleArrayAdapter adapter = new MySimpleArrayAdapter(this,
