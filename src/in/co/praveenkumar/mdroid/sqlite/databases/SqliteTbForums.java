@@ -15,6 +15,10 @@
 
 package in.co.praveenkumar.mdroid.sqlite.databases;
 
+import in.co.praveenkumar.mdroid.models.ForumThread;
+
+import java.util.ArrayList;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -52,6 +56,15 @@ public class SqliteTbForums {
 			values.put(KEY_FORUM_POST_ID, threadId);
 			db.insert(TABLE_FORUMS, null, values);
 			Log.d(DEBUG_TAG, "Inserted !");
+		}
+	}
+
+	// Add threads
+	public void addThreads(String cId, ArrayList<ForumThread> threads) {
+		for (int i = 0; i < threads.size(); i++) {
+			// Updating count will also add the thread if necessary
+			updateResponseCount(cId, threads.get(i).getId(),
+					Integer.parseInt(threads.get(i).getReplyCount()));
 		}
 	}
 
