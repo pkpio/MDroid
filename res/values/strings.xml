@@ -8,6 +8,7 @@
     <string name="menu_help">Help</string>
     <string name="menu_downloadall">Download all</string>
     <string name="menu_favourite">Add to watch list</string>
+    <string name="menu_favourite_undo">Remove from watch list</string>
     <string name="menu_reply">Reply</string>
 
     <!-- Login page -->
@@ -93,13 +94,19 @@
         \n2. Do NOT add an extra / at the end.
         \n3. http://moodle.iitb.ac.in/ is wrong. See 2.
         \n4. Default URL is the one used in example.</string>
+    <string name="settings_notifications_heading">Notifications</string>
+    <string name="settings_notifications_description">Do you want to be notified about when new content arrives in any of your favourite courses ?</string>
+    <string name="settings_notifications_true">Yes please</string>
+    <string name="settings_notifications_false">No way!</string>
     <string name="settings_credentials_heading">Auto save ?</string>
+    <string name="settings_credentials_description">Would you like to save your credentials and save the effort of re-entering on later use ?</string>
     <string name="settings_credentials_state_uname">Username</string>
     <string name="settings_credentials_state_both">Both</string>
     <string name="settings_credentials_state_none">None</string>
     <string name="settings_auto_login_heading">Auto login ?</string>
-    <string name="settings_auto_login_true">Yes</string>
-    <string name="settings_auto_login_false">No</string>
+    <string name="settings_auto_login_description">How about an automatic login when you open the app ?</string>
+    <string name="settings_auto_login_true">Count me in</string>
+    <string name="settings_auto_login_false">Not necessary</string>
     <string name="settings_about">About</string>
     <string name="settings_change_log">Change log</string>
 
