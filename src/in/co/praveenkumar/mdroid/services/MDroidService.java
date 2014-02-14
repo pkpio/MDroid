@@ -41,11 +41,13 @@ public class MDroidService extends Service {
 	private int fileUpdateCount = 0;
 	private int forumUpdateCount = 0;
 	private int replyUpdateCount = 0;
+	
+	protected int startId;
 
 	@Override
 	public int onStartCommand(Intent intent, int flags, int startId) {
-		// TODO do something useful
 		Log.d(DEBUG_TAG, "Started service!");
+		this.startId = startId;
 
 		// Login and check for content
 		checkForContent();
@@ -96,6 +98,7 @@ public class MDroidService extends Service {
 				showNotification(6, 3, 1, 2);
 
 			Log.d(DEBUG_TAG, "Notified. Exiting.");
+			stopSelf(startId);
 		}
 	}
 

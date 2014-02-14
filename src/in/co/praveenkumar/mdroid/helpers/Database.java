@@ -19,8 +19,10 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.util.Log;
 
 public class Database {
+	private final String DEBUG_TAG = "MDROID PREFS DATABASE";
 	private static final String APP_SHARED_PREFS = "MDROID_PREFERENCES";
 	private SharedPreferences appSharedPrefs;
 	private Editor prefsEditor;
@@ -78,6 +80,27 @@ public class Database {
 	public void setAutoLoginState(Boolean state) {
 		// 0 - false; 1 - true;
 		prefsEditor.putBoolean("autologin", state);
+		prefsEditor.commit();
+	}
+
+	public Boolean getNotificationsState() {
+		// 0 - false; 1 - true;
+		return appSharedPrefs.getBoolean("notifications", true);
+	}
+
+	public void setNotificationsState(Boolean state) {
+		// 0 - false; 1 - true;
+		prefsEditor.putBoolean("notifications", state);
+		prefsEditor.commit();
+	}
+
+	public int getServiceFrequency() {
+		return appSharedPrefs.getInt("servicefrequency", 2);
+	}
+
+	public void setServiceFrequency(int value) {
+		Log.d(DEBUG_TAG, "setting frequency : " + value);
+		prefsEditor.putInt("servicefrequency", value);
 		prefsEditor.commit();
 	}
 }

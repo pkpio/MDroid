@@ -8,6 +8,9 @@
 package in.co.praveenkumar;
 
 public final class R {
+    public static final class array {
+        public static final int frequency_array=0x7f070000;
+    }
     public static final class attr {
     }
     public static final class color {
@@ -69,78 +72,79 @@ public final class R {
         public static final int warning=0x7f020016;
     }
     public static final class id {
-        public static final int action_downloadall=0x7f090043;
-        public static final int action_favourite=0x7f090044;
-        public static final int action_help=0x7f090046;
-        public static final int action_reply=0x7f090047;
-        public static final int action_settings=0x7f090045;
-        public static final int auto_login_no=0x7f09003e;
-        public static final int auto_login_yes=0x7f09003d;
-        public static final int course_folder=0x7f09002d;
-        public static final int course_name=0x7f090001;
-        public static final int courses_list=0x7f090005;
-        public static final int credentials_both=0x7f09003a;
-        public static final int credentials_none=0x7f09003b;
-        public static final int credentials_uname=0x7f090039;
-        public static final int date_modified=0x7f09002e;
-        public static final int delete_btn=0x7f090033;
-        public static final int error_code=0x7f090000;
-        public static final int file_name=0x7f090031;
-        public static final int file_size=0x7f090032;
-        public static final int files_btn=0x7f090003;
-        public static final int files_count=0x7f09002f;
-        public static final int files_course_name=0x7f090006;
-        public static final int files_file_date=0x7f090011;
-        public static final int files_file_layout=0x7f09000d;
-        public static final int files_file_name=0x7f09000e;
-        public static final int files_file_size=0x7f090010;
-        public static final int files_list=0x7f09000c;
-        public static final int files_loading_message=0x7f090009;
-        public static final int files_progress=0x7f09000f;
-        public static final int files_progress_bar=0x7f09000b;
-        public static final int files_progress_msg=0x7f09000a;
-        public static final int forum_author=0x7f09001a;
-        public static final int forum_course_name=0x7f090012;
-        public static final int forum_date_posted=0x7f09001b;
-        public static final int forum_list=0x7f090016;
-        public static final int forum_loading_message=0x7f090013;
-        public static final int forum_progress_bar=0x7f090015;
-        public static final int forum_progress_msg=0x7f090014;
-        public static final int forum_reply_count=0x7f090019;
-        public static final int forum_thread=0x7f090017;
-        public static final int forum_thread_author_img=0x7f090023;
-        public static final int forum_thread_course_name=0x7f09001e;
-        public static final int forum_thread_list=0x7f090022;
-        public static final int forum_thread_loading_message=0x7f09001f;
-        public static final int forum_thread_post_author=0x7f090025;
-        public static final int forum_thread_post_content=0x7f090027;
-        public static final int forum_thread_post_subject=0x7f090024;
-        public static final int forum_thread_post_time=0x7f090026;
-        public static final int forum_thread_progress_bar=0x7f090021;
-        public static final int forum_thread_progress_msg=0x7f090020;
-        public static final int forum_thread_reply_reply_button=0x7f09001d;
-        public static final int forum_thread_reply_reply_text=0x7f09001c;
-        public static final int forum_thread_subject=0x7f090018;
-        public static final int forums_btn=0x7f090002;
-        public static final int login=0x7f09002b;
-        public static final int notifications_no=0x7f090038;
-        public static final int notifications_yes=0x7f090037;
-        public static final int offline=0x7f09002a;
-        public static final int offline_courses_list=0x7f09002c;
-        public static final int offline_files_list=0x7f090030;
-        public static final int open_btn=0x7f090034;
-        public static final int pager=0x7f090007;
-        public static final int pager_title_strip=0x7f090008;
-        public static final int pswd=0x7f090029;
-        public static final int settings_about=0x7f09003f;
-        public static final int settings_auto_login_state=0x7f09003c;
-        public static final int settings_change_log=0x7f090040;
-        public static final int settings_notifications_state=0x7f090036;
-        public static final int settings_url=0x7f090035;
-        public static final int text=0x7f090042;
-        public static final int toast_layout_root=0x7f090041;
-        public static final int user_name=0x7f090004;
-        public static final int username=0x7f090028;
+        public static final int action_downloadall=0x7f0a0044;
+        public static final int action_favourite=0x7f0a0045;
+        public static final int action_help=0x7f0a0047;
+        public static final int action_reply=0x7f0a0048;
+        public static final int action_settings=0x7f0a0046;
+        public static final int auto_login_no=0x7f0a003f;
+        public static final int auto_login_yes=0x7f0a003e;
+        public static final int course_folder=0x7f0a002d;
+        public static final int course_name=0x7f0a0001;
+        public static final int courses_list=0x7f0a0005;
+        public static final int credentials_both=0x7f0a003b;
+        public static final int credentials_none=0x7f0a003c;
+        public static final int credentials_uname=0x7f0a003a;
+        public static final int date_modified=0x7f0a002e;
+        public static final int delete_btn=0x7f0a0033;
+        public static final int error_code=0x7f0a0000;
+        public static final int file_name=0x7f0a0031;
+        public static final int file_size=0x7f0a0032;
+        public static final int files_btn=0x7f0a0003;
+        public static final int files_count=0x7f0a002f;
+        public static final int files_course_name=0x7f0a0006;
+        public static final int files_file_date=0x7f0a0011;
+        public static final int files_file_layout=0x7f0a000d;
+        public static final int files_file_name=0x7f0a000e;
+        public static final int files_file_size=0x7f0a0010;
+        public static final int files_list=0x7f0a000c;
+        public static final int files_loading_message=0x7f0a0009;
+        public static final int files_progress=0x7f0a000f;
+        public static final int files_progress_bar=0x7f0a000b;
+        public static final int files_progress_msg=0x7f0a000a;
+        public static final int forum_author=0x7f0a001a;
+        public static final int forum_course_name=0x7f0a0012;
+        public static final int forum_date_posted=0x7f0a001b;
+        public static final int forum_list=0x7f0a0016;
+        public static final int forum_loading_message=0x7f0a0013;
+        public static final int forum_progress_bar=0x7f0a0015;
+        public static final int forum_progress_msg=0x7f0a0014;
+        public static final int forum_reply_count=0x7f0a0019;
+        public static final int forum_thread=0x7f0a0017;
+        public static final int forum_thread_author_img=0x7f0a0023;
+        public static final int forum_thread_course_name=0x7f0a001e;
+        public static final int forum_thread_list=0x7f0a0022;
+        public static final int forum_thread_loading_message=0x7f0a001f;
+        public static final int forum_thread_post_author=0x7f0a0025;
+        public static final int forum_thread_post_content=0x7f0a0027;
+        public static final int forum_thread_post_subject=0x7f0a0024;
+        public static final int forum_thread_post_time=0x7f0a0026;
+        public static final int forum_thread_progress_bar=0x7f0a0021;
+        public static final int forum_thread_progress_msg=0x7f0a0020;
+        public static final int forum_thread_reply_reply_button=0x7f0a001d;
+        public static final int forum_thread_reply_reply_text=0x7f0a001c;
+        public static final int forum_thread_subject=0x7f0a0018;
+        public static final int forums_btn=0x7f0a0002;
+        public static final int login=0x7f0a002b;
+        public static final int menu_frequency_choices=0x7f0a0039;
+        public static final int notifications_no=0x7f0a0038;
+        public static final int notifications_yes=0x7f0a0037;
+        public static final int offline=0x7f0a002a;
+        public static final int offline_courses_list=0x7f0a002c;
+        public static final int offline_files_list=0x7f0a0030;
+        public static final int open_btn=0x7f0a0034;
+        public static final int pager=0x7f0a0007;
+        public static final int pager_title_strip=0x7f0a0008;
+        public static final int pswd=0x7f0a0029;
+        public static final int settings_about=0x7f0a0040;
+        public static final int settings_auto_login_state=0x7f0a003d;
+        public static final int settings_change_log=0x7f0a0041;
+        public static final int settings_notifications_state=0x7f0a0036;
+        public static final int settings_url=0x7f0a0035;
+        public static final int text=0x7f0a0043;
+        public static final int toast_layout_root=0x7f0a0042;
+        public static final int user_name=0x7f0a0004;
+        public static final int username=0x7f0a0028;
     }
     public static final class layout {
         public static final int about=0x7f030000;
@@ -166,9 +170,9 @@ public final class R {
         public static final int toast_layout=0x7f030014;
     }
     public static final class menu {
-        public static final int file_listing_menu=0x7f080000;
-        public static final int forum_thread_menu=0x7f080001;
-        public static final int menu=0x7f080002;
+        public static final int file_listing_menu=0x7f090000;
+        public static final int forum_thread_menu=0x7f090001;
+        public static final int menu=0x7f090002;
     }
     public static final class string {
         public static final int about_acknowledge_description=0x7f040070;
@@ -193,19 +197,19 @@ public final class R {
         /**  Courses 
          */
         public static final int default_hello_user=0x7f040047;
-        public static final int error_code=0x7f040092;
-        public static final int error_code0_desc=0x7f040094;
-        public static final int error_code0_heading=0x7f040093;
-        public static final int error_code1_desc=0x7f040096;
-        public static final int error_code1_heading=0x7f040095;
-        public static final int error_code2_desc=0x7f040098;
-        public static final int error_code2_heading=0x7f040097;
-        public static final int error_embarrass=0x7f04008f;
-        public static final int error_msg=0x7f040091;
-        public static final int error_smiley=0x7f040090;
+        public static final int error_code=0x7f040094;
+        public static final int error_code0_desc=0x7f040096;
+        public static final int error_code0_heading=0x7f040095;
+        public static final int error_code1_desc=0x7f040098;
+        public static final int error_code1_heading=0x7f040097;
+        public static final int error_code2_desc=0x7f04009a;
+        public static final int error_code2_heading=0x7f040099;
+        public static final int error_embarrass=0x7f040091;
+        public static final int error_msg=0x7f040093;
+        public static final int error_smiley=0x7f040092;
         /**  Error page 
          */
-        public static final int error_well=0x7f04008e;
+        public static final int error_well=0x7f040090;
         public static final int files_course_name=0x7f04005b;
         public static final int files_date=0x7f04005e;
         public static final int files_file_name=0x7f04005c;
@@ -235,14 +239,14 @@ public final class R {
          */
         public static final int forum_thread_subject=0x7f04004b;
         public static final int forum_user_name=0x7f04004d;
-        public static final int help_files_description=0x7f04008a;
-        public static final int help_files_heading=0x7f040089;
-        public static final int help_offline_access_description=0x7f04008c;
-        public static final int help_offline_access_heading=0x7f04008b;
-        public static final int help_url_description=0x7f040088;
+        public static final int help_files_description=0x7f04008c;
+        public static final int help_files_heading=0x7f04008b;
+        public static final int help_offline_access_description=0x7f04008e;
+        public static final int help_offline_access_heading=0x7f04008d;
+        public static final int help_url_description=0x7f04008a;
         /**  Help 
          */
-        public static final int help_url_heading=0x7f040087;
+        public static final int help_url_heading=0x7f040089;
         public static final int loginpage_login_btn=0x7f040046;
         /**  Login page 
          */
@@ -271,21 +275,23 @@ public final class R {
         /**  Offline files 
          */
         public static final int offline_files_open_btn=0x7f040063;
-        public static final int settings_about=0x7f040085;
-        public static final int settings_auto_login_description=0x7f040082;
-        public static final int settings_auto_login_false=0x7f040084;
-        public static final int settings_auto_login_heading=0x7f040081;
-        public static final int settings_auto_login_true=0x7f040083;
-        public static final int settings_change_log=0x7f040086;
-        public static final int settings_credentials_description=0x7f04007d;
-        public static final int settings_credentials_heading=0x7f04007c;
-        public static final int settings_credentials_state_both=0x7f04007f;
-        public static final int settings_credentials_state_none=0x7f040080;
-        public static final int settings_credentials_state_uname=0x7f04007e;
+        public static final int settings_about=0x7f040087;
+        public static final int settings_auto_login_description=0x7f040084;
+        public static final int settings_auto_login_false=0x7f040086;
+        public static final int settings_auto_login_heading=0x7f040083;
+        public static final int settings_auto_login_true=0x7f040085;
+        public static final int settings_change_log=0x7f040088;
+        public static final int settings_credentials_description=0x7f04007f;
+        public static final int settings_credentials_heading=0x7f04007e;
+        public static final int settings_credentials_state_both=0x7f040081;
+        public static final int settings_credentials_state_none=0x7f040082;
+        public static final int settings_credentials_state_uname=0x7f040080;
         public static final int settings_note=0x7f040077;
         public static final int settings_note_heading=0x7f040076;
         public static final int settings_notifications_description=0x7f040079;
         public static final int settings_notifications_false=0x7f04007b;
+        public static final int settings_notifications_freq_description=0x7f04007d;
+        public static final int settings_notifications_freq_heading=0x7f04007c;
         public static final int settings_notifications_heading=0x7f040078;
         public static final int settings_notifications_true=0x7f04007a;
         public static final int settings_url_example=0x7f040075;
@@ -411,7 +417,7 @@ public final class R {
         public static final int version5_0Log=0x7f040002;
         /**  Warning toast 
          */
-        public static final int warning_img_desc=0x7f04008d;
+        public static final int warning_img_desc=0x7f04008f;
     }
     public static final class style {
         /** 
@@ -435,10 +441,10 @@ public final class R {
     
  API 14 theme customizations can go here. 
          */
-        public static final int AppBaseTheme=0x7f070000;
+        public static final int AppBaseTheme=0x7f080000;
         /**  Application theme. 
  All customizations that are NOT specific to a particular API-level can go here. 
          */
-        public static final int AppTheme=0x7f070001;
+        public static final int AppTheme=0x7f080001;
     }
 }

@@ -21,8 +21,6 @@ import in.co.praveenkumar.mdroid.helpers.BaseActivity;
 import in.co.praveenkumar.mdroid.helpers.Database;
 import in.co.praveenkumar.mdroid.helpers.Toaster;
 import in.co.praveenkumar.mdroid.networking.DoLogin;
-import in.co.praveenkumar.mdroid.services.MDroidService;
-import in.co.praveenkumar.mdroid.sqlite.databases.SqliteTbCourses;
 
 import org.apache.http.impl.client.DefaultHttpClient;
 
@@ -59,11 +57,6 @@ public class MainActivity extends BaseActivity {
 		httpclient = ahc.getHttpClient();
 		db = new Database(getApplicationContext());
 		mURL = db.getURL();
-
-		// Start service
-		Log.d(DEBUG_TAG, "Registering service");
-		// Intent intent = new Intent(this, MDroidService.class);
-		// startService(intent);
 
 		// Setup other helpers
 		LayoutInflater inflater = getLayoutInflater();
@@ -189,6 +182,7 @@ public class MainActivity extends BaseActivity {
 			case 1:
 				// malformed url
 				toaster.showToast("Malformed Moodle address.");
+				Log.d(DEBUG_TAG, "Malformed address");
 				break;
 			case 2:
 				// Connection issue
