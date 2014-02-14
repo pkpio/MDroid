@@ -140,7 +140,7 @@
                         android:layout_marginLeft="30dp"
                         android:layout_weight="0.5"
                         android:gravity="center_vertical"
-                        android:onClick="onAutoLoginStateChange"
+                        android:onClick="onNotificationStateChange"
                         android:text="@string/settings_notifications_true" />
 
                     <RadioButton
@@ -149,12 +149,52 @@
                         android:layout_height="wrap_content"
                         android:layout_marginRight="30dp"
                         android:layout_weight="0.5"
-                        android:onClick="onAutoLoginStateChange"
+                        android:onClick="onNotificationStateChange"
                         android:text="@string/settings_notifications_false" />
                 </RadioGroup>
             </LinearLayout>
 
             <!-- Card 3 -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/card"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:text="@string/settings_notifications_freq_heading"
+                    android:textColor="@color/ics_blue"
+                    android:textIsSelectable="false"
+                    android:textSize="16sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/ics_blue" >
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:text="@string/settings_notifications_freq_description"
+                    android:textColor="@color/trasp_grey"
+                    android:textIsSelectable="false"
+                    android:textSize="13sp" />
+
+                <Spinner
+                    android:id="@+id/menu_frequency_choices"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center" />
+            </LinearLayout>
+
+            <!-- Card 4 -->
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -222,7 +262,7 @@
                 </RadioGroup>
             </LinearLayout>
 
-            <!-- Card 4 -->
+            <!-- Card 5 -->
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -285,7 +325,7 @@
                 </RadioGroup>
             </LinearLayout>
 
-            <!-- Card 4 -->
+            <!-- Card 6 -->
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -316,7 +356,7 @@
                 </LinearLayout>
             </LinearLayout>
 
-            <!-- Card 5 -->
+            <!-- Card 7 -->
 
             <LinearLayout
                 android:id="@+id/settings_change_log"

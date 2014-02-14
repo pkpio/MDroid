@@ -15,6 +15,8 @@
 
 package in.co.praveenkumar.mdroid.services;
 
+import in.co.praveenkumar.mdroid.helpers.Database;
+
 import java.util.Calendar;
 
 import android.app.AlarmManager;
@@ -26,14 +28,18 @@ import android.util.Log;
 
 public class ScheduleReceiver extends BroadcastReceiver {
 	private final String DEBUG_TAG = "MDroid Service";
-	
+
 	// restart service every 2 hours
-	private static final long REPEAT_TIME = 1000 * 60 * 60 * 2;
+	private long REPEAT_TIME = 1000 * 60 * 60;
 
 	@Override
 	public void onReceive(Context context, Intent intent) {
-		Log.d(DEBUG_TAG, "Received !");
-		
+		Log.d(DEBUG_TAG, "Service request received !");
+
+		// Get repeating frequency from database
+		Database db = new Database(context);
+		REPEAT_TIME = REPEAT_TIME * db.getServiceFrequency();
+
 		AlarmManager service = (AlarmManager) context
 				.getSystemService(Context.ALARM_SERVICE);
 
@@ -45,9 +51,12 @@ public class ScheduleReceiver extends BroadcastReceiver {
 		// start 30 seconds after boot completed
 		cal.add(Calendar.SECOND, 30);
 
-		// fetch every 2 hours. Power optimized call.
-		service.setInexactRepeating(AlarmManager.RTC_WAKEUP,
-				cal.getTimeInMillis(), REPEAT_TIME, pending);
+		// Set first firing time to current time + frequency time
+		long startTime = cal.getTimeInMillis() + REPEAT_TIME;
+
+		// fetch every user setting time. Power optimized call.
+		service.setInexactRepeating(AlarmManager.RTC_WAKEUP, startTime,
+				REPEAT_TIME, pending);
 
 	}
 
