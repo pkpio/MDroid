@@ -49,6 +49,7 @@ public class SqliteTbCourses {
 		Log.d(DEBUG_TAG, selectQuery);
 		Cursor c = db.rawQuery(selectQuery, null);
 		if (!c.moveToFirst()) {
+			c.close();
 			ContentValues values = new ContentValues();
 			values.put(KEY_COURSE_ID, cId);
 			values.put(KEY_COURSE_IS_FAV, 0);
@@ -94,9 +95,10 @@ public class SqliteTbCourses {
 
 		SQLiteDatabase db = Sqldb.getReadableDatabase();
 		Cursor c = db.rawQuery(selectQuery, null);
-		if (!c.moveToFirst())
+		if (!c.moveToFirst()) {
+			c.close();
 			return false;
-		else
+		} else
 			return true;
 	}
 
@@ -117,6 +119,7 @@ public class SqliteTbCourses {
 				courses.add(c.getString(c.getColumnIndex(KEY_COURSE_ID)));
 			} while (c.moveToNext());
 		}
+		c.close();
 
 		return courses;
 	}
@@ -157,7 +160,9 @@ public class SqliteTbCourses {
 		SQLiteDatabase db = Sqldb.getReadableDatabase();
 		Cursor c = db.rawQuery(selectQuery, null);
 		c.moveToFirst();
-		return c.getInt(c.getColumnIndex(KEY_COURSE_NUM_FILES));
+		int count = c.getInt(c.getColumnIndex(KEY_COURSE_NUM_FILES));
+		c.close();
+		return count;
 	}
 
 	// Get forums count
@@ -170,7 +175,9 @@ public class SqliteTbCourses {
 		SQLiteDatabase db = Sqldb.getReadableDatabase();
 		Cursor c = db.rawQuery(selectQuery, null);
 		c.moveToFirst();
-		return c.getInt(c.getColumnIndex(KEY_COURSE_NUM_FORUMS));
+		int count = c.getInt(c.getColumnIndex(KEY_COURSE_NUM_FORUMS));
+		c.close();
+		return count;
 	}
 
 }
