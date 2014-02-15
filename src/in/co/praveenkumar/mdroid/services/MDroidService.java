@@ -41,7 +41,9 @@ public class MDroidService extends Service {
 	private int fileUpdateCount = 0;
 	private int forumUpdateCount = 0;
 	private int replyUpdateCount = 0;
-	
+
+	Database db;
+
 	protected int startId;
 
 	@Override
@@ -63,7 +65,7 @@ public class MDroidService extends Service {
 
 	private void checkForContent() {
 		// Login first
-		Database db = new Database(this);
+		db = new Database(this);
 		String uName = db.getLDAP();
 		String pswd = db.getPswd();
 		l = new DoLogin(db.getURL());
@@ -137,13 +139,16 @@ public class MDroidService extends Service {
 	}
 
 	public void showNotification(int total, int fCount, int tCount, int rCount) {
+		int count = db.getNotifedCount();
 		NotificationCompat.Builder notification = new NotificationCompat.Builder(
-				this).setContentTitle(total + " updates found!")
+				this)
+				.setContentTitle(count + " | " + total + " updates found!")
 				.setContentText(fCount + " files")
 				.setSmallIcon(in.co.praveenkumar.R.drawable.ic_launcher)
 				.setSubText(tCount + " forum topics")
 				.setContentInfo(rCount + " forum responses");
 		NotificationManager notificationManager = getNotificationManager();
 		notificationManager.notify(1, notification.build());
+		db.setNotifedCount(count + 1);
 	}
 }

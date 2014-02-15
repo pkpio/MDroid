@@ -103,4 +103,14 @@ public class Database {
 		prefsEditor.putInt("servicefrequency", value);
 		prefsEditor.commit();
 	}
+
+	public int getNotifedCount() {
+		return appSharedPrefs.getInt("Notifedcount", 0);
+	}
+
+	public void setNotifedCount(int value) {
+		Log.d(DEBUG_TAG, "setting frequency : " + value);
+		prefsEditor.putInt("Notifedcount", value);
+		prefsEditor.commit();
+	}
 }
