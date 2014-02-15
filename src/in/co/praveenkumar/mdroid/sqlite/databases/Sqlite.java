@@ -34,6 +34,7 @@ public class Sqlite extends SQLiteOpenHelper {
 	// Table Names
 	public static final String TABLE_COURSES = "courses";
 	public static final String TABLE_FORUMS = "forums";
+	public static final String TABLE_NOTIFICATIONS = "notifications";
 
 	// Common column names
 	public static final String KEY_ID = "id";
@@ -48,7 +49,16 @@ public class Sqlite extends SQLiteOpenHelper {
 	public static final String KEY_FORUM_POST_ID = "forum_post_id";
 	public static final String KEY_FORUM_NUM_RESP = "forum_num_responses";
 
+	// TABLE_NOTIFICATIONS - column names
+	public static final String KEY_NOTIFICATION_TYPE = "notification_type";
+	public static final String KEY_NOTIFICATION_COURSE_NAME = "notification_course_name";
+	public static final String KEY_NOTIFICATION_POST_SUBJECT = "notification_thread_subject";
+	public static final String KEY_NOTIFICATION_COUNT = "notification_count";
+	public static final int KEY_NOTIFICATION_TYPE_FILE = 0;
+	public static final int KEY_NOTIFICATION_TYPE_FORUM = 1;
+
 	// Table Create Statements
+
 	// courses table create statement
 	private static final String CREATE_TABLE_COURSES = "CREATE TABLE "
 			+ TABLE_COURSES + "(" + KEY_ID + " INTEGER PRIMARY KEY,"
@@ -62,6 +72,14 @@ public class Sqlite extends SQLiteOpenHelper {
 			+ KEY_COURSE_ID + " TEXT," + KEY_FORUM_POST_ID + " TEXT,"
 			+ KEY_FORUM_NUM_RESP + " INTEGER" + ")";
 
+	// course forum info table create statement
+	private static final String CREATE_TABLE_NOTIFICATIONS = "CREATE TABLE "
+			+ TABLE_NOTIFICATIONS + "(" + KEY_ID + " INTEGER PRIMARY KEY,"
+			+ KEY_NOTIFICATION_TYPE + " INTEGER, " + KEY_COURSE_ID + " TEXT, "
+			+ KEY_NOTIFICATION_COURSE_NAME + " TEXT, " + KEY_FORUM_POST_ID
+			+ " TEXT, " + KEY_NOTIFICATION_POST_SUBJECT + " TEXT, "
+			+ KEY_NOTIFICATION_COUNT + " INTEGER" + ")";
+
 	public Sqlite(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
 	}
@@ -72,6 +90,7 @@ public class Sqlite extends SQLiteOpenHelper {
 		// creating required tables
 		db.execSQL(CREATE_TABLE_COURSES);
 		db.execSQL(CREATE_TABLE_FORUMS);
+		db.execSQL(CREATE_TABLE_NOTIFICATIONS);
 	}
 
 	@Override
@@ -81,6 +100,7 @@ public class Sqlite extends SQLiteOpenHelper {
 		// on upgrade drop older tables
 		db.execSQL("DROP TABLE IF EXISTS " + TABLE_COURSES);
 		db.execSQL("DROP TABLE IF EXISTS " + TABLE_FORUMS);
+		db.execSQL("DROP TABLE IF EXISTS " + TABLE_NOTIFICATIONS);
 
 		// create new tables
 		onCreate(db);
