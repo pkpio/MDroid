@@ -152,62 +152,12 @@ public class SettingsActivity extends Activity {
 		switch (view.getId()) {
 		case R.id.notifications_yes:
 			if (checked) {
-				// Update state to db
-				db.setNotificationsState(true);
-
-				// Enable services scheduling
-				Database db = new Database(this);
-				final int REPEAT_TIME = 1000 * 60 * db.getServiceFrequency();
-				
-				AlarmManager service = (AlarmManager) this
-						.getSystemService(Context.ALARM_SERVICE);
-				
-				Intent i = new Intent(this, StartServiceReceiver.class);
-				PendingIntent pending = PendingIntent.getBroadcast(this, 0, i,
-						PendingIntent.FLAG_UPDATE_CURRENT);
-				
-				Calendar cal = Calendar.getInstance();
-				cal.add(Calendar.SECOND, 30);
-				
-				long startTime = cal.getTimeInMillis() + REPEAT_TIME;
-				service.setInexactRepeating(AlarmManager.RTC_WAKEUP, startTime,
-						REPEAT_TIME, pending);
-				
-
-				// Enable on BOOT re-triggering
-				ComponentName receiver = new ComponentName(
-						this,
-						in.co.praveenkumar.mdroid.services.ScheduleReceiver.class);
-				PackageManager pm = this.getPackageManager();
-
-				pm.setComponentEnabledSetting(receiver,
-						PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
-						PackageManager.DONT_KILL_APP);
+				updateNotificationsState(true);
 			}
 			break;
 		case R.id.notifications_no:
 			if (checked) {
-				// Update state to db
-				db.setNotificationsState(false);
-
-				// Disable scheduled services
-				AlarmManager service = (AlarmManager) this
-						.getSystemService(Context.ALARM_SERVICE);
-				Intent i = new Intent(this, StartServiceReceiver.class);
-				PendingIntent pending = PendingIntent.getBroadcast(this, 0, i,
-						PendingIntent.FLAG_UPDATE_CURRENT);
-				service.cancel(pending);
-				
-
-				// Disable on BOOT re-triggering
-				ComponentName receiver = new ComponentName(
-						this,
-						in.co.praveenkumar.mdroid.services.ScheduleReceiver.class);
-				PackageManager pm = this.getPackageManager();
-
-				pm.setComponentEnabledSetting(receiver,
-						PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
-						PackageManager.DONT_KILL_APP);
+				updateNotificationsState(false);
 			}
 			break;
 		}
@@ -300,8 +250,12 @@ public class SettingsActivity extends Activity {
 		public void onItemSelected(AdapterView<?> arg0, View arg1, int index,
 				long arg3) {
 			Log.d(DEBUG_TAG, index + "");
+			// Update frequency to db
 			db.setServiceFrequency(FrequencyIndexConvertor.getValue(index));
 
+			// Enable notifications.
+			updateNotificationsState(true);
+			setNotificationsState();
 		}
 
 		@Override
@@ -310,4 +264,64 @@ public class SettingsActivity extends Activity {
 
 		}
 	};
+
+	private void updateNotificationsState(Boolean state) {
+		// NOTE: changing frequency would also enable the notifications
+
+		// Enable notifications and set time
+		if (state) {
+			// Update state to db
+			db.setNotificationsState(true);
+
+			// Enable services scheduling
+			Database db = new Database(this);
+			final int REPEAT_TIME = 1000 * 60 * 60 * db.getServiceFrequency();
+
+			AlarmManager service = (AlarmManager) this
+					.getSystemService(Context.ALARM_SERVICE);
+
+			Intent i = new Intent(this, StartServiceReceiver.class);
+			PendingIntent pending = PendingIntent.getBroadcast(this, 0, i,
+					PendingIntent.FLAG_UPDATE_CURRENT);
+
+			Calendar cal = Calendar.getInstance();
+			cal.add(Calendar.SECOND, 30);
+
+			long startTime = cal.getTimeInMillis() + REPEAT_TIME;
+			service.setInexactRepeating(AlarmManager.RTC_WAKEUP, startTime,
+					REPEAT_TIME, pending);
+
+			// Enable on BOOT re-triggering
+			ComponentName receiver = new ComponentName(this,
+					in.co.praveenkumar.mdroid.services.ScheduleReceiver.class);
+			PackageManager pm = this.getPackageManager();
+
+			pm.setComponentEnabledSetting(receiver,
+					PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
+					PackageManager.DONT_KILL_APP);
+		}
+		// Disable notifications
+		else {
+			// Update state to db
+			db.setNotificationsState(false);
+
+			// Disable scheduled services
+			AlarmManager service = (AlarmManager) this
+					.getSystemService(Context.ALARM_SERVICE);
+			Intent i = new Intent(this, StartServiceReceiver.class);
+			PendingIntent pending = PendingIntent.getBroadcast(this, 0, i,
+					PendingIntent.FLAG_UPDATE_CURRENT);
+			service.cancel(pending);
+
+			// Disable on BOOT re-triggering
+			ComponentName receiver = new ComponentName(this,
+					in.co.praveenkumar.mdroid.services.ScheduleReceiver.class);
+			PackageManager pm = this.getPackageManager();
+
+			pm.setComponentEnabledSetting(receiver,
+					PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
+					PackageManager.DONT_KILL_APP);
+		}
+
+	}
 }

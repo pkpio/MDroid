@@ -95,7 +95,7 @@
         \n3. http://moodle.iitb.ac.in/ is wrong. See 2.
         \n4. Default URL is the one used in example.</string>
     <string name="settings_notifications_heading">Notifications</string>
-    <string name="settings_notifications_description">Do you want to be notified about when new content arrives in any of your favourite courses ?</string>
+    <string name="settings_notifications_description">Do you want to be notified when new content arrives in any of your favourite courses ?</string>
     <string name="settings_notifications_true">Yes please</string>
     <string name="settings_notifications_false">No way!</string>
     <string name="settings_notifications_freq_heading">Notification frequency</string>
