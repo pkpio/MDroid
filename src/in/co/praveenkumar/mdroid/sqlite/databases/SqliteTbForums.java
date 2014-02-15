@@ -51,6 +51,7 @@ public class SqliteTbForums {
 		Log.d(DEBUG_TAG, selectQuery);
 		Cursor c = db.rawQuery(selectQuery, null);
 		if (!c.moveToFirst()) {
+			c.close();
 			ContentValues values = new ContentValues();
 			values.put(KEY_COURSE_ID, cId);
 			values.put(KEY_FORUM_POST_ID, threadId);
