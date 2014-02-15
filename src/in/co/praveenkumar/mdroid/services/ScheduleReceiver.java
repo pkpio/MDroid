@@ -29,7 +29,7 @@ import android.util.Log;
 public class ScheduleReceiver extends BroadcastReceiver {
 	private final String DEBUG_TAG = "MDroid Service";
 
-	// restart service every 2 hours
+	// restart service every x hours
 	private long REPEAT_TIME = 1000 * 60 * 60;
 
 	@Override
