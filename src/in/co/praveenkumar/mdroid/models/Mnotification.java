@@ -13,7 +13,6 @@
  * 
  */
 
-
 package in.co.praveenkumar.mdroid.models;
 
 public class Mnotification {
@@ -24,6 +23,12 @@ public class Mnotification {
 	String postId;
 	String postSubject;
 	int count;
+
+	public Mnotification() {
+		// Set default post subject as file content.
+		// Save efforts of setting this for files
+		this.postSubject = "New files available";
+	}
 
 	public String getId() {
 		return id;

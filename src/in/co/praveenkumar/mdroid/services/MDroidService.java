@@ -16,6 +16,7 @@
 package in.co.praveenkumar.mdroid.services;
 
 import in.co.praveenkumar.mdroid.MainActivity;
+import in.co.praveenkumar.mdroid.NotificationsActivity;
 import in.co.praveenkumar.mdroid.helpers.Database;
 import in.co.praveenkumar.mdroid.models.Course;
 import in.co.praveenkumar.mdroid.networking.DoLogin;
@@ -139,6 +140,9 @@ public class MDroidService extends Service {
 	}
 
 	public void showNotification(int total, int fCount, int tCount, int rCount) {
+		Intent intent = new Intent(this, NotificationsActivity.class);
+		PendingIntent pIntent = PendingIntent.getActivity(this, 0, intent, 0);
+
 		int count = db.getNotifedCount();
 		NotificationCompat.Builder notification = new NotificationCompat.Builder(
 				this)
@@ -146,7 +150,8 @@ public class MDroidService extends Service {
 				.setContentText(fCount + " files")
 				.setSmallIcon(in.co.praveenkumar.R.drawable.ic_launcher)
 				.setSubText(tCount + " forum topics")
-				.setContentInfo(rCount + " forum responses");
+				.setContentInfo(rCount + " forum responses")
+				.setContentIntent(pIntent);
 		NotificationManager notificationManager = getNotificationManager();
 		notificationManager.notify(1, notification.build());
 		db.setNotifedCount(count + 1);

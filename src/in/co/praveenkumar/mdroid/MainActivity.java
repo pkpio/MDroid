@@ -21,6 +21,7 @@ import in.co.praveenkumar.mdroid.helpers.BaseActivity;
 import in.co.praveenkumar.mdroid.helpers.Database;
 import in.co.praveenkumar.mdroid.helpers.Toaster;
 import in.co.praveenkumar.mdroid.networking.DoLogin;
+import in.co.praveenkumar.mdroid.services.MDroidService;
 
 import org.apache.http.impl.client.DefaultHttpClient;
 
@@ -64,6 +65,9 @@ public class MainActivity extends BaseActivity {
 				(ViewGroup) findViewById(R.id.toast_layout_root));
 		toaster = new Toaster(getApplicationContext(), layout);
 		l = new DoLogin();
+
+		// testing purpose
+		startService(new Intent(this, MDroidService.class));
 
 		// Setup widgets and their values
 		uNameET = (EditText) findViewById(R.id.username);
