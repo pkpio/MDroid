@@ -13,79 +13,64 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/card"
-        android:orientation="vertical" >
+        android:orientation="vertical"
+        android:paddingBottom="1dp"
+        android:paddingLeft="0.5dp"
+        android:paddingRight="0.5dp" >
 
         <LinearLayout
-            android:layout_width="fill_parent"
+            android:id="@+id/notification_card"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="1" >
-
-            <TextView
-                android:id="@+id/notification_course_name"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.95"
-                android:lines="1"
-                android:padding="5dp"
-                android:text="@string/courses_course_name"
-                android:textColor="@color/black"
-                android:textIsSelectable="false"
-                android:textSize="16sp" />
-
-            <TextView
-                android:id="@+id/notification_count"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:background="@drawable/circular_count"
-                android:text="@string/notification_count"
-                android:textColor="@color/white"
-                android:textSize="13sp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/grey" >
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:layout_marginBottom="1.1dp"
-            android:layout_marginLeft="0.1dp"
-            android:layout_marginRight="0.1dp"
-            android:orientation="horizontal"
-            android:weightSum="1" >
-
-            <Button
-                android:id="@+id/forums_btn"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.499"
-                android:background="@drawable/card_blue_button"
-                android:gravity="center"
-                android:text="@string/courses_forums_btn"
-                android:textColor="@color/ics_blue"
-                android:textSize="12sp" />
+            android:background="@drawable/clickable_card"
+            android:orientation="vertical" >
 
             <LinearLayout
-                android:layout_width="1dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.002"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="1" >
+
+                <TextView
+                    android:id="@+id/notification_course_name"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.99"
+                    android:lines="1"
+                    android:padding="5dp"
+                    android:text="@string/courses_course_name"
+                    android:textColor="@color/black"
+                    android:textIsSelectable="false"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/notification_count"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/circular_count_forum"
+                    android:gravity="center"
+                    android:text="@string/notification_count"
+                    android:textColor="@color/white"
+                    android:textSize="13sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
                 android:background="@color/grey" >
             </LinearLayout>
 
-            <Button
-                android:id="@+id/files_btn"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.499"
-                android:background="@drawable/card_green_button"
-                android:gravity="center"
-                android:text="@string/courses_files_btn"
-                android:textColor="@color/green"
-                android:textSize="12sp" />
+            <TextView
+                android:id="@+id/notification_post_subject"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lines="1"
+                android:padding="5dp"
+                android:text="@string/notification_post_subject"
+                android:textColor="@color/trasp_grey"
+                android:textIsSelectable="false"
+                android:textSize="14sp" />
         </LinearLayout>
     </LinearLayout>
 

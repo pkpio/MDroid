@@ -15,5 +15,8 @@
     <color name="trasp_toast">#DD656565</color>
     <color name="fb_blue">#0084FF</color>
     <color name="frag_blue">#33B5E5</color>
+    
+    <color name="file_notif_color">#43b1d6</color>
+    <color name="forum_notif_color">#ffa500</color>
 
 </resources>
