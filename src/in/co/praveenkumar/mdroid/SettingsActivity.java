@@ -282,7 +282,7 @@ public class SettingsActivity extends Activity {
 
 			Intent i = new Intent(this, StartServiceReceiver.class);
 			PendingIntent pending = PendingIntent.getBroadcast(this, 0, i,
-					PendingIntent.FLAG_UPDATE_CURRENT);
+					PendingIntent.FLAG_CANCEL_CURRENT);
 
 			Calendar cal = Calendar.getInstance();
 			cal.add(Calendar.SECOND, 30);
@@ -310,7 +310,7 @@ public class SettingsActivity extends Activity {
 					.getSystemService(Context.ALARM_SERVICE);
 			Intent i = new Intent(this, StartServiceReceiver.class);
 			PendingIntent pending = PendingIntent.getBroadcast(this, 0, i,
-					PendingIntent.FLAG_UPDATE_CURRENT);
+					PendingIntent.FLAG_CANCEL_CURRENT);
 			service.cancel(pending);
 
 			// Disable on BOOT re-triggering
