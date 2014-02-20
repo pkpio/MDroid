@@ -58,16 +58,13 @@ public class MainActivity extends BaseActivity {
 		httpclient = ahc.getHttpClient();
 		db = new Database(getApplicationContext());
 		mURL = db.getURL();
+		l = new DoLogin();
 
 		// Setup other helpers
 		LayoutInflater inflater = getLayoutInflater();
 		View layout = inflater.inflate(R.layout.toast_layout,
 				(ViewGroup) findViewById(R.id.toast_layout_root));
-		toaster = new Toaster(getApplicationContext(), layout);
-		l = new DoLogin();
-
-		// testing purpose
-		startService(new Intent(this, MDroidService.class));
+		toaster = new Toaster(getApplicationContext(), layout);		
 
 		// Setup widgets and their values
 		uNameET = (EditText) findViewById(R.id.username);
