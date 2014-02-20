@@ -74,6 +74,12 @@
             android:label="Settings"
             android:windowSoftInputMode="stateHidden" >
         </activity>
+        <activity
+            android:name="in.co.praveenkumar.mdroid.NotificationsActivity"
+            android:configChanges="orientation|screenSize"
+            android:label="Notifications"
+            android:windowSoftInputMode="stateHidden" >
+        </activity>
 
         <service
             android:name="in.co.praveenkumar.mdroid.services.MDroidService"

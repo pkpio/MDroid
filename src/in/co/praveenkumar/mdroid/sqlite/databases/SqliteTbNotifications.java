@@ -1,5 +1,9 @@
 package in.co.praveenkumar.mdroid.sqlite.databases;
 
+import in.co.praveenkumar.mdroid.models.Mnotification;
+
+import java.util.ArrayList;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -70,6 +74,47 @@ public class SqliteTbNotifications {
 
 		Log.d(DEBUG_TAG, selectQuery);
 		db.rawQuery(selectQuery, null);
+	}
+
+	public ArrayList<Mnotification> getAllNotifications() {
+		ArrayList<Mnotification> notifications = new ArrayList<Mnotification>();
+
+		// Query to get all fields in notifications table
+		String selectQuery = "SELECT  * FROM " + TABLE_NOTIFICATIONS;
+
+		Log.d(DEBUG_TAG, selectQuery);
+
+		SQLiteDatabase db = Sqldb.getReadableDatabase();
+		Cursor c = db.rawQuery(selectQuery, null);
+
+		// looping through all rows and adding to list
+		if (c.moveToFirst()) {
+			do {
+				Mnotification notification = new Mnotification();
+
+				// Fill notification with all details from database for an entry
+				notification.setId(c.getString(c.getColumnIndex(KEY_ID)));
+				notification.setType(c.getInt(c
+						.getColumnIndex(KEY_NOTIFICATION_TYPE)));
+				notification.setCourseId(c.getString(c
+						.getColumnIndex(KEY_COURSE_ID)));
+				notification.setCourseName(c.getString(c
+						.getColumnIndex(KEY_NOTIFICATION_COURSE_NAME)));
+				notification.setPostId(c.getString(c
+						.getColumnIndex(KEY_FORUM_POST_ID)));
+				notification.setPostSubject(c.getString(c
+						.getColumnIndex(KEY_NOTIFICATION_POST_SUBJECT)));
+				notification.setCount(c.getInt(c
+						.getColumnIndex(KEY_NOTIFICATION_COUNT)));
+
+				// Add to the list of notifications
+				notifications.add(notification);
+			} while (c.moveToNext());
+		}
+		c.close();
+
+		return notifications;
+
 	}
 
 }

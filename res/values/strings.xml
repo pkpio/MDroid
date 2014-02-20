@@ -65,6 +65,9 @@
     <string name="offline_files_file_size">140 KB</string>
     <string name="offline_files_date_modified">Modified 2 months ago</string>
     <string name="offline_files_course_name">Course name</string>
+    
+    <!-- Notifications -->
+    <string name="notification_count">1</string>
 
     <!-- About -->
     <string name="about_mdroid">About MDroid</string>
