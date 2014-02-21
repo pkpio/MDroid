@@ -33,7 +33,7 @@ public class SqliteTbNotifications {
 		Sqldb = new Sqlite(context);
 	}
 
-	public void addFileNotification(String cId, String cName, String count) {
+	public void addFileNotification(String cId, String cName, int count) {
 		SQLiteDatabase db = Sqldb.getReadableDatabase();
 
 		// Add values to query
