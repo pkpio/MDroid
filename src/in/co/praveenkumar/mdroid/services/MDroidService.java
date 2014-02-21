@@ -98,7 +98,7 @@ public class MDroidService extends Service {
 				showNotification(totalUpdateCount, fileUpdateCount,
 						forumUpdateCount, replyUpdateCount);
 			else
-				showNotification(6, 3, 1, 2);
+				showNotification(0, 0, 0, 0);
 
 			Log.d(DEBUG_TAG, "Notified. Exiting.");
 			stopSelf(startId);
@@ -116,7 +116,7 @@ public class MDroidService extends Service {
 		for (int i = 0; i < mCourses.size(); i++) {
 			if (stc.isFav(mCourses.get(i).getId())) {
 				uc = new UpdatesChecker(getApplicationContext(), mCourses
-						.get(i).getId());
+						.get(i));
 				uc.checkForUpdates();
 				if (uc.getTotalUpdatesCount() > 0) {
 					totalUpdateCount += uc.getTotalUpdatesCount();

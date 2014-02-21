@@ -26,7 +26,7 @@ public class Sqlite extends SQLiteOpenHelper {
 	private static final String DEBUG_TAG = "MDroid SQLite Helper";
 
 	// Database Version
-	private static final int DATABASE_VERSION = 3;
+	private static final int DATABASE_VERSION = 4;
 
 	// Database Name
 	private static final String DATABASE_NAME = "MDroid";
