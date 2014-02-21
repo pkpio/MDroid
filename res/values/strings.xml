@@ -65,10 +65,11 @@
     <string name="offline_files_file_size">140 KB</string>
     <string name="offline_files_date_modified">Modified 2 months ago</string>
     <string name="offline_files_course_name">Course name</string>
-    
+
     <!-- Notifications -->
     <string name="notification_count">122</string>
     <string name="notification_post_subject">New files added!</string>
+    <string name="notification_clear_btn">clear</string>
 
     <!-- About -->
     <string name="about_mdroid">About MDroid</string>
@@ -115,6 +116,7 @@
     <string name="settings_auto_login_false">No</string>
     <string name="settings_about">About</string>
     <string name="settings_change_log">Change log</string>
+
     <string-array name="frequency_array">
         <item>1 hour</item>
         <item>2 hours</item>

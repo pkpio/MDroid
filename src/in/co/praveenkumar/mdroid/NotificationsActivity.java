@@ -3,19 +3,25 @@ package in.co.praveenkumar.mdroid;
 import in.co.praveenkumar.R;
 import in.co.praveenkumar.mdroid.helpers.BaseActivity;
 import in.co.praveenkumar.mdroid.models.Mnotification;
+import in.co.praveenkumar.mdroid.sqlite.databases.SqliteTbNotifications;
 
 import java.util.ArrayList;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
 public class NotificationsActivity extends BaseActivity {
+	final String DEBUG_TAG = "MDroid Notification Activity";
 	ArrayList<Mnotification> notifications = new ArrayList<Mnotification>();
 
 	@Override
@@ -24,19 +30,23 @@ public class NotificationsActivity extends BaseActivity {
 		setContentView(R.layout.notifications);
 
 		// Test notifications
-		Mnotification notification1 = new Mnotification();
-		notification1.setCount(12);
-		notification1.setCourseName("Advanced computing for electrical ");
-		notification1.setType(0);
+		// Mnotification notification1 = new Mnotification();
+		// notification1.setCount(12);
+		// notification1.setCourseName("Advanced computing for electrical ");
+		// notification1.setType(0);
+		//
+		// Mnotification notification2 = new Mnotification();
+		// notification2.setCount(8);
+		// notification2.setCourseName("Advanced computing for electrical ");
+		// notification2.setType(1);
+		// notification2.setPostSubject("Sample post subject for testing");
+		//
+		// notifications.add(notification1);
+		// notifications.add(notification2);
 
-		Mnotification notification2 = new Mnotification();
-		notification2.setCount(8);
-		notification2.setCourseName("Advanced computing for electrical ");
-		notification2.setType(1);
-		notification2.setPostSubject("Sample post subject for testing");
-
-		notifications.add(notification1);
-		notifications.add(notification2);
+		SqliteTbNotifications stn = new SqliteTbNotifications(
+				getApplicationContext());
+		notifications = stn.getAllNotifications();
 
 		// List them
 		listNotificationsInListView();
@@ -86,20 +96,41 @@ public class NotificationsActivity extends BaseActivity {
 			// Set course name, notification count and details
 			cNmeView.setText(notifications.get(position).getCourseName());
 			countView.setText(notifications.get(position).getCount() + "");
-			detailsView.setText(notifications.get(position).getPostSubject());
 
 			// Check type and set count color
 			// 0 - file; 1 - forum
 
 			// File case
-			if (notifications.get(position).getType() == 0)
+			if (notifications.get(position).getType() == 0) {
 				countView.setBackgroundResource(R.drawable.circular_count_file);
+				detailsView.setText("New files added");
+			}
 
 			// Forum case
-			else
+			else {
+				detailsView.setText("New replies: "
+						+ notifications.get(position).getPostSubject());
 				countView
 						.setBackgroundResource(R.drawable.circular_count_forum);
+			}
 
+			// Set onClickListeners
+			final LinearLayout notifiView = (LinearLayout) rowView
+					.findViewById(R.id.notification_card);
+			final Button clearBtn = (Button) rowView
+					.findViewById(R.id.notification_clear_btn);
+
+			notifiView.setOnClickListener(new OnClickListener() {
+				public void onClick(View v) {
+					Log.d(DEBUG_TAG, "Clicked notification: " + pos);
+				}
+			});
+
+			clearBtn.setOnClickListener(new OnClickListener() {
+				public void onClick(View v) {
+					Log.d(DEBUG_TAG, "Clicked clear: " + pos);
+				}
+			});
 			return rowView;
 		}
 	}
