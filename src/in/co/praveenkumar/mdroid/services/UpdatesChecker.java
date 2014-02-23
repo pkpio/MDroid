@@ -77,6 +77,10 @@ public class UpdatesChecker {
 
 		forumThreadUpdateCount = mForumThreadCount - dbForumThreadCount;
 
+		// Update threads count to avoid future duplicates
+		stc.updateForumCount(course.getId(), dbForumThreadCount
+				+ forumThreadUpdateCount);
+
 		Log.d(DEBUG_TAG, "Forums update done. Found " + forumThreadUpdateCount);
 
 		// Checking for updates in each thread
@@ -88,11 +92,16 @@ public class UpdatesChecker {
 
 			int threadUpdateCount = mReplyCount - dbReplyCount;
 
-			// Update forum thread update count for the course to database
-			if (threadUpdateCount > 0)
+			// Update 'forum thread update count' for the course to database
+			// Both for notification and course - to avoid duplicates in future
+			if (threadUpdateCount > 0) {
 				stn.addForumNotification(course.getId(), course.getName(),
 						mThreads.get(i).getId(), mThreads.get(i).getSubject(),
 						threadUpdateCount);
+				stf.updateResponseCount(course.getId(),
+						mThreads.get(i).getId(), dbReplyCount
+								+ threadUpdateCount);
+			}
 
 			// Increase forums update count
 			forumRepliesUpdateCount += threadUpdateCount;

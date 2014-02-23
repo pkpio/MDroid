@@ -58,7 +58,7 @@ public class NotificationsActivity extends BaseActivity {
 
 		// Get all unread notifications first
 		// notifications = stn.getAllUnreadNotifications();
-		unReadCount = 0;//notifications.size();
+		unReadCount = 1;//notifications.size();
 
 		// Get the rest of the read notifications
 		// notifications.addAll(stn.getAllReadNotifications());
