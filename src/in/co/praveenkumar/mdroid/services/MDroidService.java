@@ -15,7 +15,6 @@
 
 package in.co.praveenkumar.mdroid.services;
 
-import in.co.praveenkumar.mdroid.MainActivity;
 import in.co.praveenkumar.mdroid.NotificationsActivity;
 import in.co.praveenkumar.mdroid.helpers.Database;
 import in.co.praveenkumar.mdroid.models.Course;
@@ -30,6 +29,7 @@ import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.os.Bundle;
 import android.os.IBinder;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
@@ -51,6 +51,15 @@ public class MDroidService extends Service {
 	public int onStartCommand(Intent intent, int flags, int startId) {
 		Log.d(DEBUG_TAG, "Started service!");
 		this.startId = startId;
+
+		// Check if the service started from NotificationActivity
+		Bundle extras = intent.getExtras();
+		if (extras != null) {
+			if (extras.getBoolean("isComingFromNotifications", false))
+				showNotification("Checking for content", "Please wait..",
+						"You will be notified once complete", "");
+
+		}
 
 		// Login and check for content
 		checkForContent();
@@ -95,10 +104,10 @@ public class MDroidService extends Service {
 			Log.d(DEBUG_TAG, "Service completed. Notifying.");
 
 			if (totalUpdateCount > 0)
-				showNotification(totalUpdateCount, fileUpdateCount,
+				setNotificationWithCounts(totalUpdateCount, fileUpdateCount,
 						forumUpdateCount, replyUpdateCount);
 			else
-				showNotification(0, 0, 0, 0);
+				setNotificationWithCounts(0, 0, 0, 0);
 
 			Log.d(DEBUG_TAG, "Notified. Exiting.");
 			stopSelf(startId);
@@ -115,8 +124,8 @@ public class MDroidService extends Service {
 		SqliteTbCourses stc = new SqliteTbCourses(getApplicationContext());
 		for (int i = 0; i < mCourses.size(); i++) {
 			if (stc.isFav(mCourses.get(i).getId())) {
-				uc = new UpdatesChecker(getApplicationContext(), mCourses
-						.get(i));
+				uc = new UpdatesChecker(getApplicationContext(),
+						mCourses.get(i));
 				uc.checkForUpdates();
 				if (uc.getTotalUpdatesCount() > 0) {
 					totalUpdateCount += uc.getTotalUpdatesCount();
@@ -130,30 +139,38 @@ public class MDroidService extends Service {
 	}
 
 	// Building notifications
-	public PendingIntent getPendingIntent() {
-		return PendingIntent.getActivity(this, 0, new Intent(this,
-				MainActivity.class), 0);
-	}
-
-	public NotificationManager getNotificationManager() {
+	private NotificationManager getNotificationManager() {
 		return (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
 	}
 
-	public void showNotification(int total, int fCount, int tCount, int rCount) {
+	private void setNotificationWithCounts(int total, int fCount, int tCount,
+			int rCount) {
+		// For debugging
+		int count = db.getNotifedCount();
+		db.setNotifedCount(count + 1);
+
+		// Build strings for actual notification
+		String contentTitle = count + " | " + total + " updates found!";
+		String contentText = fCount + " files";
+		String subText = tCount + " forum topics";
+		String contentInfo = rCount + " forum replies";
+
+		showNotification(contentTitle, contentText, subText, contentInfo);
+
+	}
+
+	private void showNotification(String contentTitle, String contentText,
+			String subText, String contentInfo) {
 		Intent intent = new Intent(this, NotificationsActivity.class);
 		PendingIntent pIntent = PendingIntent.getActivity(this, 0, intent, 0);
 
-		int count = db.getNotifedCount();
 		NotificationCompat.Builder notification = new NotificationCompat.Builder(
-				this)
-				.setContentTitle(count + " | " + total + " updates found!")
-				.setContentText(fCount + " files")
+				this).setContentTitle(contentTitle).setContentText(contentText)
 				.setSmallIcon(in.co.praveenkumar.R.drawable.ic_launcher)
-				.setSubText(tCount + " forum topics")
-				.setContentInfo(rCount + " forum replies")
-				.setContentIntent(pIntent);
+				.setSubText(subText).setContentInfo(contentInfo)
+				.setContentIntent(pIntent).setAutoCancel(true);
 		NotificationManager notificationManager = getNotificationManager();
 		notificationManager.notify(1, notification.build());
-		db.setNotifedCount(count + 1);
 	}
+
 }
