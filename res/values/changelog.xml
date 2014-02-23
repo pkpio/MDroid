@@ -7,7 +7,7 @@
     <!-- TODO -->
     <string name="todo">Things to be done
         
-        
+        -Service timing change issue
         -Forum padding for icon
         -Fav from course listing itself
         -Better identification of new threads: db structural change</string>
@@ -21,7 +21,7 @@
         -New section for all your notifications\n
         -Changes in login classes\n
         -Added notifications related options in settings\n
-        -Last checked option in notifications\n
+        -Last checked information in notifications\n
         -Check now option for notifications</string>
 
     <!-- V4.4 Beta2 -->
