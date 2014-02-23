@@ -101,14 +101,14 @@
 
                 <TextView
                     android:id="@+id/notification_count"
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
                     android:layout_gravity="center"
-                    android:background="@drawable/circular_count_forum"
+                    android:background="@drawable/circular_count_file"
                     android:gravity="center"
                     android:text="@string/notification_count"
                     android:textColor="@color/white"
-                    android:textSize="13sp" />
+                    android:textSize="12sp" />
             </LinearLayout>
 
             <LinearLayout
