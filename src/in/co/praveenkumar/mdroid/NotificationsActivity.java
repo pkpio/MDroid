@@ -18,12 +18,17 @@ package in.co.praveenkumar.mdroid;
 import in.co.praveenkumar.R;
 import in.co.praveenkumar.mdroid.helpers.BaseActivity;
 import in.co.praveenkumar.mdroid.helpers.Database;
+import in.co.praveenkumar.mdroid.helpers.RelativeLastModified;
 import in.co.praveenkumar.mdroid.models.Mnotification;
 import in.co.praveenkumar.mdroid.networking.DoLogin;
 import in.co.praveenkumar.mdroid.services.MDroidService;
 import in.co.praveenkumar.mdroid.sqlite.databases.SqliteTbNotifications;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
 
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -52,6 +57,8 @@ public class NotificationsActivity extends BaseActivity {
 	DoLogin l = new DoLogin();
 	SqliteTbNotifications stn;
 
+	Database db;
+
 	MySimpleArrayAdapter adapter;
 
 	@Override
@@ -59,7 +66,8 @@ public class NotificationsActivity extends BaseActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.notifications);
 
-		stn = new SqliteTbNotifications(getApplicationContext());
+		db = new Database(this);
+		stn = new SqliteTbNotifications(this);
 
 		// Get all unread notifications first
 		notifications = stn.getAllUnreadNotifications();
@@ -107,6 +115,23 @@ public class NotificationsActivity extends BaseActivity {
 
 			// Display a minion message if necessary
 			if (position == 0) {
+
+				// Set last checked value
+				String lastCheckedStrng = db.getLastChecked();
+				try {
+					Date lastChecked = new SimpleDateFormat(
+							"MM/dd/yyyy hh:mm:ss", Locale.ENGLISH)
+							.parse(lastCheckedStrng);
+					RelativeLastModified rlm = new RelativeLastModified();
+					lastCheckedStrng = rlm.getRelativeTime(lastChecked);
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				final TextView lastCheckTV = (TextView) rowView
+						.findViewById(R.id.notification_last_checked);
+				lastCheckTV.setText("Checked: " + lastCheckedStrng);
+
 				final LinearLayout notifiCheckLayout = (LinearLayout) rowView
 						.findViewById(R.id.notification_check_layout);
 				final LinearLayout notifiContent = (LinearLayout) rowView
@@ -241,7 +266,6 @@ public class NotificationsActivity extends BaseActivity {
 			loginDialog.setIndeterminate(true);
 			loginDialog.setCancelable(false);
 
-			Database db = new Database(getApplicationContext());
 			new tryAsyncLogin().execute(db.getLDAP(), db.getPswd());
 		}
 		// Logged in. Safe to openActivity

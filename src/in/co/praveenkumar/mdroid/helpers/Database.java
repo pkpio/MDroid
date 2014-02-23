@@ -113,4 +113,14 @@ public class Database {
 		prefsEditor.putInt("Notifedcount", value);
 		prefsEditor.commit();
 	}
+
+	public String getLastChecked() {
+		return appSharedPrefs.getString("lastServiced", "NaN");
+	}
+
+	public void setLastChecked(String date) {
+		Log.d(DEBUG_TAG, "last serviced : " + date);
+		prefsEditor.putString("lastServiced", date);
+		prefsEditor.commit();
+	}
 }
