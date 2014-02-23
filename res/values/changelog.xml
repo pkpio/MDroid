@@ -6,8 +6,8 @@
 
     <!-- TODO -->
     <string name="todo">Things to be done
-        -Last serviced option in notifications
-        -Check now option
+        
+        
         -Forum padding for icon
         -Leftside highlight for unread notifications
         -Fav from course listing itself
@@ -21,7 +21,9 @@
         -Changed files section download all icon\n
         -New section for all your notifications\n
         -Changes in login classes\n
-        -Added notifications related options in settings</string>
+        -Added notifications related options in settings\n
+        -Last checked option in notifications\n
+        -Check now option for notifications</string>
 
     <!-- V4.4 Beta2 -->
     <string name="version4.4Heading">V4.4 Beta2</string>

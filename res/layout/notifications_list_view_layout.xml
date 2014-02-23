@@ -95,17 +95,17 @@
         android:id="@+id/notification_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/card"
+        android:background="@drawable/unread_card"
         android:orientation="vertical"
-        android:paddingBottom="1dp"
-        android:paddingLeft="0.5dp"
-        android:paddingRight="0.5dp" >
+        android:paddingBottom="2dp"
+        android:paddingLeft="5dp"
+        android:paddingRight="1dp" >
 
         <LinearLayout
             android:id="@+id/notification_card"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/clickable_grey_card"
+            android:background="@drawable/clickable_card"
             android:orientation="vertical" >
 
             <LinearLayout
