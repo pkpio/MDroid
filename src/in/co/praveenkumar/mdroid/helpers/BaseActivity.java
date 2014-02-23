@@ -16,6 +16,7 @@
 package in.co.praveenkumar.mdroid.helpers;
 
 import in.co.praveenkumar.R;
+import in.co.praveenkumar.mdroid.NotificationsActivity;
 import in.co.praveenkumar.mdroid.SettingsActivity;
 import android.app.Activity;
 import android.app.Dialog;
@@ -44,6 +45,10 @@ public class BaseActivity extends Activity {
 			d.setContentView(R.layout.help);
 			d.setTitle("Help");
 			d.show();
+			break;
+		case R.id.action_notifications:
+			Intent j = new Intent(this, NotificationsActivity.class);
+			startActivityForResult(j, 20);
 			break;
 		}
 		return true;
