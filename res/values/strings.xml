@@ -68,7 +68,7 @@
     <string name="offline_files_course_name">Course name</string>
 
     <!-- Notifications -->
-    <string name="notification_count">122</string>
+    <string name="notification_count">1</string>
     <string name="notification_post_subject">New files added!</string>
     <string name="notification_clear_btn">clear</string>
     <string name="notification_image_descp">Dancing Minion</string>
