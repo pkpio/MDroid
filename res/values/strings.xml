@@ -74,8 +74,10 @@
     <string name="notification_image_descp">Dancing Minion</string>
     <string name="notification_all_read_text_1">Awesome !</string>
     <string name="notification_all_read_text_2">All notifications caught up</string>
-	<string name="notifications_prev_read">Previous read</string>
-    
+    <string name="notifications_prev_read">Previous read</string>
+    <string name="notification_last_checked_default">A few seconds ago</string>
+    <string name="notification_check_now_btn">check now</string>
+
     <!-- About -->
     <string name="about_mdroid">About MDroid</string>
     <string name="about_mdroid_description">MDroid has been built with an idea of making it easier to access the contents of Moodle website on native Android UI.

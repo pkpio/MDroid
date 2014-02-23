@@ -105,10 +105,17 @@ public class NotificationsActivity extends BaseActivity {
 
 			// Display a minion message if necessary
 			if (position == 0) {
+				final LinearLayout notifiCheckLayout = (LinearLayout) rowView
+						.findViewById(R.id.notification_check_layout);
 				final LinearLayout notifiContent = (LinearLayout) rowView
 						.findViewById(R.id.notification_content);
 				final LinearLayout noUnreadLayout = (LinearLayout) rowView
 						.findViewById(R.id.notifications_no_unread_message_layout);
+
+				// Display check now layout
+				notifiCheckLayout.setVisibility(LinearLayout.VISIBLE);
+
+				// Display these only if there are some unread notifications
 				if (unReadCount == 0) {
 					notifiContent.setVisibility(LinearLayout.GONE);
 					noUnreadLayout.setVisibility(LinearLayout.VISIBLE);

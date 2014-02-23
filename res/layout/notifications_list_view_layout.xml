@@ -10,6 +10,33 @@
     android:paddingTop="4dp" >
 
     <LinearLayout
+        android:id="@+id/notification_check_layout"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="1"
+        android:layout_marginBottom="8dp" >
+
+        <TextView
+            android:id="@+id/notification_last_checked"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.99"
+            android:textSize="14sp"
+            android:textColor="@color/trasp_grey"
+            android:text="@string/notification_last_checked_default" />
+
+        <Button
+            android:id="@+id/notification_check_now_btn"
+            android:layout_width="100dp"
+            android:layout_height="30dp"
+            android:background="@drawable/grey_clickable_btn"
+            android:text="@string/notification_check_now_btn"
+            android:textSize="13sp" />
+    </LinearLayout>
+
+    <LinearLayout
         android:id="@+id/notifications_no_unread_message_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
