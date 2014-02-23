@@ -57,7 +57,7 @@ public class MDroidService extends Service {
 		if (extras != null) {
 			if (extras.getBoolean("isComingFromNotifications", false))
 				showNotification("Checking for content", "Please wait..",
-						"You will be notified once complete", "");
+						"You will be notified once complete", "", false);
 
 		}
 
@@ -155,12 +155,12 @@ public class MDroidService extends Service {
 		String subText = tCount + " forum topics";
 		String contentInfo = rCount + " forum replies";
 
-		showNotification(contentTitle, contentText, subText, contentInfo);
+		showNotification(contentTitle, contentText, subText, contentInfo, true);
 
 	}
 
 	private void showNotification(String contentTitle, String contentText,
-			String subText, String contentInfo) {
+			String subText, String contentInfo, Boolean autoCancel) {
 		Intent intent = new Intent(this, NotificationsActivity.class);
 		PendingIntent pIntent = PendingIntent.getActivity(this, 0, intent, 0);
 
@@ -168,7 +168,7 @@ public class MDroidService extends Service {
 				this).setContentTitle(contentTitle).setContentText(contentText)
 				.setSmallIcon(in.co.praveenkumar.R.drawable.ic_launcher)
 				.setSubText(subText).setContentInfo(contentInfo)
-				.setContentIntent(pIntent).setAutoCancel(true);
+				.setContentIntent(pIntent).setAutoCancel(autoCancel);
 		NotificationManager notificationManager = getNotificationManager();
 		notificationManager.notify(1, notification.build());
 	}
