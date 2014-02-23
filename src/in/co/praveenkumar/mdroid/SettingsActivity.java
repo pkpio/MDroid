@@ -245,19 +245,25 @@ public class SettingsActivity extends Activity {
 	}
 
 	private OnItemSelectedListener SpinnerListener = new OnItemSelectedListener() {
+		// To avoid re-setting frequency on settings page load.
+		// This is needed because next trigger will be further delayed
+		// because time will be counted from now again !
 		Boolean isSettingForFirstTime = true;
 
 		@Override
 		public void onItemSelected(AdapterView<?> arg0, View arg1, int index,
 				long arg3) {
-			Log.d(DEBUG_TAG, index + "");
-			// Update frequency to db
-			db.setServiceFrequency(FrequencyIndexConvertor.getValue(index));
+			if (!isSettingForFirstTime) {
+				Log.d(DEBUG_TAG, index + "");
+				// Update frequency to db
+				db.setServiceFrequency(FrequencyIndexConvertor.getValue(index));
 
-			// Enable notifications.
-			updateNotificationsState(false);
-			updateNotificationsState(true);
-			setNotificationsState();
+				// Enable notifications.
+				updateNotificationsState(false);
+				updateNotificationsState(true);
+				setNotificationsState();
+			} else
+				isSettingForFirstTime = false;
 		}
 
 		@Override
