@@ -3,15 +3,26 @@
 
     <!-- Current version -->
     <string name="current_version">Version 5.0 Beta3</string>
-    
+
+    <!-- TODO -->
+    <string name="todo">Things to be done
+        -Last serviced option in notifications
+        -Check now option
+        -Forum padding for icon
+        -Leftside highlight for unread notifications
+        -Fav from course listing itself
+        -Better identification of new threads: db structural change</string>
+
     <!-- V5.0 Beta3 -->
     <string name="version5.0Heading">V5.0 Beta3</string>
-    <string name="version5.0Log"> 
-        -Added services for periodic checking\n
+    <string name="version5.0Log">-Added services for periodic checking\n
         -Notifications about new content\n
         -Code cleanup: built models for handling MDroid specific data types\n
-        -Changed files section download all icon</string>
-    
+        -Changed files section download all icon\n
+        -New section for all your notifications\n
+        -Changes in login classes\n
+        -Added notifications related options in settings</string>
+
     <!-- V4.4 Beta2 -->
     <string name="version4.4Heading">V4.4 Beta2</string>
     <string name="version4.4Log">-Fix for login screen force close on device NBX-T7014 (E270BSA)</string>
