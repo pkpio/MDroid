@@ -161,7 +161,7 @@ public class MDroidService extends Service {
 		db.setNotifedCount(count + 1);
 
 		// Build strings for actual notification
-		String contentTitle = count + " | " + total + " updates found!";
+		String contentTitle = total + " updates found!";
 		String contentText = fCount + " files";
 		String subText = tCount + " forum topics";
 		String contentInfo = rCount + " forum replies";
