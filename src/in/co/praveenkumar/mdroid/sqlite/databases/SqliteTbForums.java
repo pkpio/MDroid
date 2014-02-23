@@ -42,21 +42,14 @@ public class SqliteTbForums {
 
 	// Add forum to list
 	public void addThread(String cId, String threadId) {
-		SQLiteDatabase db = Sqldb.getReadableDatabase();
+		if (!isThreadInDb(cId, threadId)) {
+			SQLiteDatabase db = Sqldb.getReadableDatabase();
 
-		// Check the course is not already in the list. If not, add.
-		String selectQuery = "SELECT  * FROM " + TABLE_FORUMS + " WHERE "
-				+ KEY_COURSE_ID + " = " + cId + " AND " + KEY_FORUM_POST_ID
-				+ " = " + threadId;
-		Log.d(DEBUG_TAG, selectQuery);
-		Cursor c = db.rawQuery(selectQuery, null);
-		if (!c.moveToFirst()) {
-			c.close();
 			ContentValues values = new ContentValues();
 			values.put(KEY_COURSE_ID, cId);
 			values.put(KEY_FORUM_POST_ID, threadId);
 			db.insert(TABLE_FORUMS, null, values);
-			Log.d(DEBUG_TAG, "Inserted !");
+			Log.d(DEBUG_TAG, "Thread inserted !");
 		}
 	}
 
@@ -67,6 +60,25 @@ public class SqliteTbForums {
 			updateResponseCount(cId, threads.get(i).getId(),
 					Integer.parseInt(threads.get(i).getReplyCount()));
 		}
+	}
+
+	// Thread exists in database ?
+	// For generating notification for new threads
+	public Boolean isThreadInDb(String cId, String threadId) {
+		SQLiteDatabase db = Sqldb.getReadableDatabase();
+
+		// Check if the thread is already in the list. If not, add.
+		String selectQuery = "SELECT  * FROM " + TABLE_FORUMS + " WHERE "
+				+ KEY_COURSE_ID + " = " + cId + " AND " + KEY_FORUM_POST_ID
+				+ " = " + threadId;
+		Log.d(DEBUG_TAG, selectQuery);
+
+		Cursor c = db.rawQuery(selectQuery, null);
+		if (!c.moveToFirst()) {
+			c.close();
+			return false;
+		} else
+			return true;
 	}
 
 	// Update reply count
