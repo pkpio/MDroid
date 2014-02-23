@@ -30,29 +30,38 @@ public class NotificationsActivity extends BaseActivity {
 		setContentView(R.layout.notifications);
 
 		// Test notifications
-		// Mnotification notification1 = new Mnotification();
-		// notification1.setCount(12);
-		// notification1.setCourseName("Advanced computing for electrical ");
-		// notification1.setType(0);
-		//
-		// Mnotification notification2 = new Mnotification();
-		// notification2.setCount(8);
-		// notification2.setCourseName("Advanced computing for electrical ");
-		// notification2.setType(1);
-		// notification2.setPostSubject("Sample post subject for testing");
-		//
-		// notifications.add(notification1);
-		// notifications.add(notification2);
+		Mnotification notification1 = new Mnotification();
+		notification1.setCount(12);
+		notification1.setCourseName("Advanced computing for electrical ");
+		notification1.setType(0);
+		notification1.setRead(0);
+
+		Mnotification notification2 = new Mnotification();
+		notification2.setCount(8);
+		notification2.setCourseName("Advanced computing for electrical ");
+		notification2.setType(1);
+		notification2.setPostSubject("Sample post subject for testing");
+		notification2.setRead(1);
+
+		notifications.add(notification1);
+		notifications.add(notification2);
+		notifications.add(notification2);
+		notifications.add(notification2);
+		notifications.add(notification2);
+		notifications.add(notification2);
+		notifications.add(notification2);
+		notifications.add(notification2);
+		notifications.add(notification2);
 
 		SqliteTbNotifications stn = new SqliteTbNotifications(
 				getApplicationContext());
 
 		// Get all unread notifications first
-		notifications = stn.getAllUnreadNotifications();
-		unReadCount = notifications.size();
+		// notifications = stn.getAllUnreadNotifications();
+		unReadCount = 0;//notifications.size();
 
 		// Get the rest of the read notifications
-		notifications.addAll(stn.getAllReadNotifications());
+		// notifications.addAll(stn.getAllReadNotifications());
 
 		// List them
 		listNotificationsInListView();
@@ -77,7 +86,7 @@ public class NotificationsActivity extends BaseActivity {
 		public MySimpleArrayAdapter(Context context,
 				ArrayList<Mnotification> notifications) {
 			super(context, R.layout.course_listview_layout,
-					new String[notifications.size()]);
+					new String[notifications.size() + 1]);
 			this.context = context;
 			this.notifications = notifications;
 		}
@@ -88,54 +97,75 @@ public class NotificationsActivity extends BaseActivity {
 					.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 			View rowView = inflater.inflate(
 					R.layout.notifications_list_view_layout, parent, false);
-			// Because position can't be used for it is not final
-			final int pos = position;
 
-			// Get views for course name, details and count
-			final TextView cNmeView = (TextView) rowView
-					.findViewById(R.id.notification_course_name);
-			final TextView detailsView = (TextView) rowView
-					.findViewById(R.id.notification_post_subject);
-			final TextView countView = (TextView) rowView
-					.findViewById(R.id.notification_count);
+			// Because position 0 will be used for minion message
+			final int pos = position - 1;
 
-			// Set course name, notification count and details
-			cNmeView.setText(notifications.get(position).getCourseName());
-			countView.setText(notifications.get(position).getCount() + "");
-
-			// Check type and set count color
-			// 0 - file; 1 - forum
-
-			// File case
-			if (notifications.get(position).getType() == 0) {
-				countView.setBackgroundResource(R.drawable.circular_count_file);
-				detailsView.setText("New files added");
-			}
-
-			// Forum case
-			else {
-				detailsView.setText("New replies: "
-						+ notifications.get(position).getPostSubject());
-				countView
-						.setBackgroundResource(R.drawable.circular_count_forum);
-			}
-
-			final LinearLayout notifiView = (LinearLayout) rowView
-					.findViewById(R.id.notification_card);
-
-			// Card background change based on read or not
-			if (notifications.get(position).getRead() == 0)
-				notifiView.setBackgroundResource(R.drawable.clickable_card);
-			else
-				notifiView
-						.setBackgroundResource(R.drawable.clickable_grey_card);
-
-			// Set onClickListeners
-			notifiView.setOnClickListener(new OnClickListener() {
-				public void onClick(View v) {
-					Log.d(DEBUG_TAG, "Clicked notification: " + pos);
+			// Display a minion message if necessary
+			if (position == 0) {
+				final LinearLayout notifiContent = (LinearLayout) rowView
+						.findViewById(R.id.notification_content);
+				final LinearLayout noUnreadLayout = (LinearLayout) rowView
+						.findViewById(R.id.notifications_no_unread_message_layout);
+				if (unReadCount == 0) {
+					notifiContent.setVisibility(LinearLayout.GONE);
+					noUnreadLayout.setVisibility(LinearLayout.VISIBLE);
+				} else {
+					notifiContent.setVisibility(LinearLayout.GONE);
+					noUnreadLayout.setVisibility(LinearLayout.GONE);
 				}
-			});
+			}
+
+			// Normal notifications from here.
+			else {
+
+				// Get views for course name, details and count
+				final TextView cNmeView = (TextView) rowView
+						.findViewById(R.id.notification_course_name);
+				final TextView detailsView = (TextView) rowView
+						.findViewById(R.id.notification_post_subject);
+				final TextView countView = (TextView) rowView
+						.findViewById(R.id.notification_count);
+
+				// Set course name, notification count and details
+				cNmeView.setText(notifications.get(pos).getCourseName());
+				countView.setText(notifications.get(pos).getCount() + "");
+
+				// Check type and set count color
+				// 0 - file; 1 - forum
+
+				// File case
+				if (notifications.get(pos).getType() == 0) {
+					countView
+							.setBackgroundResource(R.drawable.circular_count_file);
+					detailsView.setText("New files added");
+				}
+
+				// Forum case
+				else {
+					detailsView.setText("New replies: "
+							+ notifications.get(pos).getPostSubject());
+					countView
+							.setBackgroundResource(R.drawable.circular_count_forum);
+				}
+
+				final LinearLayout notifiView = (LinearLayout) rowView
+						.findViewById(R.id.notification_card);
+
+				// Card background change based on read or not
+				if (notifications.get(pos).getRead() == 0)
+					notifiView.setBackgroundResource(R.drawable.clickable_card);
+				else
+					notifiView
+							.setBackgroundResource(R.drawable.clickable_grey_card);
+
+				// Set onClickListeners
+				notifiView.setOnClickListener(new OnClickListener() {
+					public void onClick(View v) {
+						Log.d(DEBUG_TAG, "Clicked notification: " + pos);
+					}
+				});
+			}
 
 			return rowView;
 		}
