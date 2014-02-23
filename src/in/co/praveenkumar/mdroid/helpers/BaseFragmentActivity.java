@@ -16,6 +16,7 @@
 package in.co.praveenkumar.mdroid.helpers;
 
 import in.co.praveenkumar.R;
+import in.co.praveenkumar.mdroid.NotificationsActivity;
 import in.co.praveenkumar.mdroid.SettingsActivity;
 import android.app.Dialog;
 import android.content.Intent;
@@ -62,6 +63,10 @@ public abstract class BaseFragmentActivity extends FragmentActivity {
 			break;
 		case R.id.action_favourite:
 			updateFavStatus();
+			break;
+		case R.id.action_notifications:
+			Intent j = new Intent(this, NotificationsActivity.class);
+			startActivityForResult(j, 20);
 			break;
 		}
 		return true;
