@@ -30,38 +30,38 @@ public class NotificationsActivity extends BaseActivity {
 		setContentView(R.layout.notifications);
 
 		// Test notifications
-		Mnotification notification1 = new Mnotification();
-		notification1.setCount(12);
-		notification1.setCourseName("Advanced computing for electrical ");
-		notification1.setType(0);
-		notification1.setRead(0);
-
-		Mnotification notification2 = new Mnotification();
-		notification2.setCount(8);
-		notification2.setCourseName("Advanced computing for electrical ");
-		notification2.setType(1);
-		notification2.setPostSubject("Sample post subject for testing");
-		notification2.setRead(1);
-
-		notifications.add(notification1);
-		notifications.add(notification2);
-		notifications.add(notification2);
-		notifications.add(notification2);
-		notifications.add(notification2);
-		notifications.add(notification2);
-		notifications.add(notification2);
-		notifications.add(notification2);
-		notifications.add(notification2);
+//		Mnotification notification1 = new Mnotification();
+//		notification1.setCount(12);
+//		notification1.setCourseName("Advanced computing for electrical ");
+//		notification1.setType(0);
+//		notification1.setRead(0);
+//
+//		Mnotification notification2 = new Mnotification();
+//		notification2.setCount(8);
+//		notification2.setCourseName("Advanced computing for electrical ");
+//		notification2.setType(1);
+//		notification2.setPostSubject("Sample post subject for testing");
+//		notification2.setRead(1);
+//
+//		notifications.add(notification1);
+//		notifications.add(notification2);
+//		notifications.add(notification2);
+//		notifications.add(notification2);
+//		notifications.add(notification2);
+//		notifications.add(notification2);
+//		notifications.add(notification2);
+//		notifications.add(notification2);
+//		notifications.add(notification2);
 
 		SqliteTbNotifications stn = new SqliteTbNotifications(
 				getApplicationContext());
 
 		// Get all unread notifications first
-		// notifications = stn.getAllUnreadNotifications();
-		unReadCount = 1;//notifications.size();
+		notifications = stn.getAllUnreadNotifications();
+		unReadCount = notifications.size();
 
 		// Get the rest of the read notifications
-		// notifications.addAll(stn.getAllReadNotifications());
+		notifications.addAll(stn.getAllReadNotifications());
 
 		// List them
 		listNotificationsInListView();
