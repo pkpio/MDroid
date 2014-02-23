@@ -38,13 +38,16 @@ import org.apache.http.message.BasicNameValuePair;
 import android.util.Log;
 
 public class DoLogin {
-	private final String DEBUG_TAG = "NETWORKING_LOGIN";
-	private static DefaultHttpClient httpclient;
-	private String htmlData = "";
-	private CookieStore cookieStore;
-	private String getCookie;
-	private String postCookie;
-	private String mURL;
+	final String DEBUG_TAG = "NETWORKING_LOGIN";
+	
+	static DefaultHttpClient httpclient;
+	static Boolean isLogged = false;
+	static String htmlData = "";
+
+	CookieStore cookieStore;
+	String getCookie;
+	String postCookie;
+	String mURL;
 
 	public DoLogin() {
 		httpclient = MainActivity.httpclient;
@@ -70,10 +73,12 @@ public class DoLogin {
 	}
 
 	public Boolean isLoggedIn() {
-		Boolean status = false;
 		if (htmlData.contains("You are logged in"))
-			status = true;
-		return status;
+			isLogged = true;
+		else
+			isLogged = false;
+		
+		return isLogged;
 	}
 
 	public int doLogin(String uName, String pswd) {

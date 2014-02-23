@@ -17,12 +17,17 @@ package in.co.praveenkumar.mdroid;
 
 import in.co.praveenkumar.R;
 import in.co.praveenkumar.mdroid.helpers.BaseActivity;
+import in.co.praveenkumar.mdroid.helpers.Database;
 import in.co.praveenkumar.mdroid.models.Mnotification;
+import in.co.praveenkumar.mdroid.networking.DoLogin;
 import in.co.praveenkumar.mdroid.sqlite.databases.SqliteTbNotifications;
 
 import java.util.ArrayList;
 
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -36,40 +41,23 @@ import android.widget.TextView;
 
 public class NotificationsActivity extends BaseActivity {
 	final String DEBUG_TAG = "MDroid Notification Activity";
+
 	ArrayList<Mnotification> notifications = new ArrayList<Mnotification>();
 	int unReadCount = 0;
+	int openNotifPos = 0;
+
+	ProgressDialog loginDialog;
+	DoLogin l = new DoLogin();
+	SqliteTbNotifications stn;
+
+	MySimpleArrayAdapter adapter;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.notifications);
 
-		// Test notifications
-		// Mnotification notification1 = new Mnotification();
-		// notification1.setCount(12);
-		// notification1.setCourseName("Advanced computing for electrical ");
-		// notification1.setType(0);
-		// notification1.setRead(0);
-		//
-		// Mnotification notification2 = new Mnotification();
-		// notification2.setCount(8);
-		// notification2.setCourseName("Advanced computing for electrical ");
-		// notification2.setType(1);
-		// notification2.setPostSubject("Sample post subject for testing");
-		// notification2.setRead(1);
-		//
-		// notifications.add(notification1);
-		// notifications.add(notification2);
-		// notifications.add(notification2);
-		// notifications.add(notification2);
-		// notifications.add(notification2);
-		// notifications.add(notification2);
-		// notifications.add(notification2);
-		// notifications.add(notification2);
-		// notifications.add(notification2);
-
-		SqliteTbNotifications stn = new SqliteTbNotifications(
-				getApplicationContext());
+		stn = new SqliteTbNotifications(getApplicationContext());
 
 		// Get all unread notifications first
 		notifications = stn.getAllUnreadNotifications();
@@ -87,8 +75,7 @@ public class NotificationsActivity extends BaseActivity {
 		setTitle("Notifications (" + unReadCount + ")");
 
 		ListView listView = (ListView) findViewById(R.id.notifications_list);
-		MySimpleArrayAdapter adapter = new MySimpleArrayAdapter(this,
-				notifications);
+		adapter = new MySimpleArrayAdapter(this, notifications);
 
 		// Assign adapter to ListView
 		listView.setAdapter(adapter);
@@ -186,12 +173,84 @@ public class NotificationsActivity extends BaseActivity {
 				// Set onClickListeners
 				notifiView.setOnClickListener(new OnClickListener() {
 					public void onClick(View v) {
-						Log.d(DEBUG_TAG, "Clicked notification: " + pos);
+						openNotifPos = pos;
+						goToContentPage();
 					}
 				});
 			}
 
 			return rowView;
+		}
+	}
+
+	private void goToContentPage() {
+		// Check if logged in else log in
+		if (!l.isLoggedIn()) {
+			loginDialog = new ProgressDialog(this);
+			loginDialog.setMessage("Doing one time log in..");
+			loginDialog.setIndeterminate(true);
+			loginDialog.setCancelable(false);
+
+			Database db = new Database(getApplicationContext());
+			new tryAsyncLogin().execute(db.getLDAP(), db.getPswd());
+		}
+		// Logged in. Safe to openActivity
+		else {
+			openActivity();
+		}
+	}
+
+	private class tryAsyncLogin extends AsyncTask<String, Integer, Long> {
+
+		@Override
+		protected void onPreExecute() {
+			super.onPreExecute();
+			loginDialog.show();
+		}
+
+		protected Long doInBackground(String... credentials) {
+			l.doLogin(credentials[0], credentials[1]);
+			return null;
+		}
+
+		protected void onPostExecute(Long result) {
+			try {
+				loginDialog.dismiss();
+			} catch (IllegalArgumentException e) {
+
+			}
+
+			if (l.isLoggedIn()) {
+				openActivity();
+			} else {
+				Log.d(DEBUG_TAG, "Error logging in");
+			}
+		}
+	}
+
+	private void openActivity() {
+		Mnotification notification = notifications.get(openNotifPos);
+
+		// Mark it as read - update UI
+		stn.markNotificationAsRead(notification.getId());
+		notifications.get(openNotifPos).setRead(1);
+		adapter.notifyDataSetChanged();
+
+		// File notification
+		if (notification.getType() == 0) {
+			Intent i = new Intent(this, FilesActivity.class);
+			i.putExtra("cId", notification.getCourseId());
+			i.putExtra("cName", notification.getCourseName());
+			startActivityForResult(i, 3);
+		}
+
+		// Forum notification
+		else {
+			Intent i = new Intent(this, ForumThreadActivity.class);
+			i.putExtra("threadId", notification.getPostId() + "&mode=1");
+			i.putExtra("threadSub", notification.getPostSubject());
+			i.putExtra("cName", notification.getCourseName());
+			startActivityForResult(i, 4);
 		}
 	}
 }
