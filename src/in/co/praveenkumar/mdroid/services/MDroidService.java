@@ -22,8 +22,11 @@ import in.co.praveenkumar.mdroid.networking.DoLogin;
 import in.co.praveenkumar.mdroid.parser.CoursesParser;
 import in.co.praveenkumar.mdroid.sqlite.databases.SqliteTbCourses;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
+import android.annotation.SuppressLint;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
@@ -34,6 +37,7 @@ import android.os.IBinder;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
+@SuppressLint("SimpleDateFormat")
 public class MDroidService extends Service {
 	private final String DEBUG_TAG = "MDroid Services";
 	private DoLogin l;
@@ -102,6 +106,13 @@ public class MDroidService extends Service {
 
 		protected void onPostExecute(Long result) {
 			Log.d(DEBUG_TAG, "Service completed. Notifying.");
+			
+			// Save current time as last checked for content
+			Date cDate = new Date(System.currentTimeMillis());
+			SimpleDateFormat format = new SimpleDateFormat(
+					"MM/dd/yyyy hh:mm:ss");
+			String curTimeStrng = format.format(cDate);
+			db.setLastChecked(curTimeStrng);
 
 			if (totalUpdateCount > 0)
 				setNotificationWithCounts(totalUpdateCount, fileUpdateCount,
