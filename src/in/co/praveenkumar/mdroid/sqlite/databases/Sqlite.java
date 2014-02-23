@@ -26,7 +26,7 @@ public class Sqlite extends SQLiteOpenHelper {
 	private static final String DEBUG_TAG = "MDroid SQLite Helper";
 
 	// Database Version
-	private static final int DATABASE_VERSION = 4;
+	private static final int DATABASE_VERSION = 5;
 
 	// Database Name
 	private static final String DATABASE_NAME = "MDroid";
@@ -56,6 +56,7 @@ public class Sqlite extends SQLiteOpenHelper {
 	public static final String KEY_NOTIFICATION_COUNT = "notification_count";
 	public static final int KEY_NOTIFICATION_TYPE_FILE = 0;
 	public static final int KEY_NOTIFICATION_TYPE_FORUM = 1;
+	public static final String KEY_NOTIFICATION_READ = "notification_read";
 
 	// Table Create Statements
 
@@ -78,7 +79,8 @@ public class Sqlite extends SQLiteOpenHelper {
 			+ KEY_NOTIFICATION_TYPE + " INTEGER, " + KEY_COURSE_ID + " TEXT, "
 			+ KEY_NOTIFICATION_COURSE_NAME + " TEXT, " + KEY_FORUM_POST_ID
 			+ " TEXT, " + KEY_NOTIFICATION_POST_SUBJECT + " TEXT, "
-			+ KEY_NOTIFICATION_COUNT + " INTEGER" + ")";
+			+ KEY_NOTIFICATION_COUNT + " INTEGER, " + KEY_NOTIFICATION_READ
+			+ " INTEGER" + ")";
 
 	public Sqlite(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);

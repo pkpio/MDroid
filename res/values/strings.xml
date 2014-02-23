@@ -70,6 +70,9 @@
     <string name="notification_count">122</string>
     <string name="notification_post_subject">New files added!</string>
     <string name="notification_clear_btn">clear</string>
+    <string name="notification_image_descp">Dancing Minion</string>
+    <string name="notification_all_read_text_1">Awesome !</string>
+    <string name="notification_all_read_text_2">All notifications caught up</string>
 
     <!-- About -->
     <string name="about_mdroid">About MDroid</string>
