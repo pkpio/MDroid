@@ -150,7 +150,7 @@ public class MDroidService extends Service {
 				.setContentText(fCount + " files")
 				.setSmallIcon(in.co.praveenkumar.R.drawable.ic_launcher)
 				.setSubText(tCount + " forum topics")
-				.setContentInfo(rCount + " forum responses")
+				.setContentInfo(rCount + " forum replies")
 				.setContentIntent(pIntent);
 		NotificationManager notificationManager = getNotificationManager();
 		notificationManager.notify(1, notification.build());

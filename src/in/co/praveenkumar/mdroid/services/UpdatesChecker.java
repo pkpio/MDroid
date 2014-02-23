@@ -61,10 +61,12 @@ public class UpdatesChecker {
 
 		fileUpdateCount = mCourseFilesCount - dbCourseFilesCount;
 
-		// Update file update count for the course to database
-		if (fileUpdateCount > 0)
+		// Update 'file update count' for the course to database
+		if (fileUpdateCount > 0) {
 			stn.addFileNotification(course.getId(), course.getName(),
 					fileUpdateCount);
+			stc.updateFileCount(course.getId(), mCourseFilesCount);
+		}
 
 		Log.d(DEBUG_TAG, "Files update done. Found " + fileUpdateCount);
 
@@ -92,15 +94,17 @@ public class UpdatesChecker {
 
 			int threadUpdateCount = mReplyCount - dbReplyCount;
 
-			// Update 'forum thread update count' for the course to database
-			// Both for notification and course - to avoid duplicates in future
-			if (threadUpdateCount > 0) {
+			// Update replies count to database - notification and forum tables
+			// This is to avoid future duplicates
+			// If it is a new thread use updateResponseCount as '0'
+			// This will also add the thread to database.
+			if (threadUpdateCount > 0
+					|| !stf.isThreadInDb(course.getId(), mThreads.get(i).getId())) {
 				stn.addForumNotification(course.getId(), course.getName(),
 						mThreads.get(i).getId(), mThreads.get(i).getSubject(),
 						threadUpdateCount);
 				stf.updateResponseCount(course.getId(),
-						mThreads.get(i).getId(), dbReplyCount
-								+ threadUpdateCount);
+						mThreads.get(i).getId(), mReplyCount);
 			}
 
 			// Increase forums update count
