@@ -231,14 +231,14 @@ public class NotificationsActivity extends BaseActivity {
 	private void openActivity() {
 		Mnotification notification = notifications.get(openNotifPos);
 
+		// Update current unread count only if it is not read already
+		if (unReadCount != 0 && notification.getRead() == 0)
+			unReadCount--;
+
 		// Mark it as read - update UI
 		stn.markNotificationAsRead(notification.getId());
 		notifications.get(openNotifPos).setRead(1);
 		adapter.notifyDataSetChanged();
-
-		// Update current unread count
-		if (unReadCount != 0)
-			unReadCount--;
 
 		// Set title
 		setTitle("Notifications (" + unReadCount + ")");
