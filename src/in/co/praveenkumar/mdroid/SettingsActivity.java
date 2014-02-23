@@ -245,6 +245,7 @@ public class SettingsActivity extends Activity {
 	}
 
 	private OnItemSelectedListener SpinnerListener = new OnItemSelectedListener() {
+		Boolean isSettingForFirstTime = true;
 
 		@Override
 		public void onItemSelected(AdapterView<?> arg0, View arg1, int index,
@@ -254,6 +255,7 @@ public class SettingsActivity extends Activity {
 			db.setServiceFrequency(FrequencyIndexConvertor.getValue(index));
 
 			// Enable notifications.
+			updateNotificationsState(false);
 			updateNotificationsState(true);
 			setNotificationsState();
 		}
@@ -267,6 +269,7 @@ public class SettingsActivity extends Activity {
 
 	private void updateNotificationsState(Boolean state) {
 		// NOTE: changing frequency would also enable the notifications
+		Log.d(DEBUG_TAG, "notifications update requested !");
 
 		// Enable notifications and set time
 		if (state) {

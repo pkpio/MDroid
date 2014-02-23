@@ -109,7 +109,7 @@ public class Database {
 	}
 
 	public void setNotifedCount(int value) {
-		Log.d(DEBUG_TAG, "setting frequency : " + value);
+		Log.d(DEBUG_TAG, "setting notified count: " + value);
 		prefsEditor.putInt("Notifedcount", value);
 		prefsEditor.commit();
 	}
