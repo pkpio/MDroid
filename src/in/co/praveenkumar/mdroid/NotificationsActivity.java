@@ -30,28 +30,28 @@ public class NotificationsActivity extends BaseActivity {
 		setContentView(R.layout.notifications);
 
 		// Test notifications
-//		Mnotification notification1 = new Mnotification();
-//		notification1.setCount(12);
-//		notification1.setCourseName("Advanced computing for electrical ");
-//		notification1.setType(0);
-//		notification1.setRead(0);
-//
-//		Mnotification notification2 = new Mnotification();
-//		notification2.setCount(8);
-//		notification2.setCourseName("Advanced computing for electrical ");
-//		notification2.setType(1);
-//		notification2.setPostSubject("Sample post subject for testing");
-//		notification2.setRead(1);
-//
-//		notifications.add(notification1);
-//		notifications.add(notification2);
-//		notifications.add(notification2);
-//		notifications.add(notification2);
-//		notifications.add(notification2);
-//		notifications.add(notification2);
-//		notifications.add(notification2);
-//		notifications.add(notification2);
-//		notifications.add(notification2);
+		// Mnotification notification1 = new Mnotification();
+		// notification1.setCount(12);
+		// notification1.setCourseName("Advanced computing for electrical ");
+		// notification1.setType(0);
+		// notification1.setRead(0);
+		//
+		// Mnotification notification2 = new Mnotification();
+		// notification2.setCount(8);
+		// notification2.setCourseName("Advanced computing for electrical ");
+		// notification2.setType(1);
+		// notification2.setPostSubject("Sample post subject for testing");
+		// notification2.setRead(1);
+		//
+		// notifications.add(notification1);
+		// notifications.add(notification2);
+		// notifications.add(notification2);
+		// notifications.add(notification2);
+		// notifications.add(notification2);
+		// notifications.add(notification2);
+		// notifications.add(notification2);
+		// notifications.add(notification2);
+		// notifications.add(notification2);
 
 		SqliteTbNotifications stn = new SqliteTbNotifications(
 				getApplicationContext());
@@ -143,10 +143,19 @@ public class NotificationsActivity extends BaseActivity {
 
 				// Forum case
 				else {
-					detailsView.setText("New replies: "
-							+ notifications.get(pos).getPostSubject());
-					countView
-							.setBackgroundResource(R.drawable.circular_count_forum);
+					// If count = 0. It means it is a new thread.
+					if (notifications.get(pos).getCount() == 0) {
+						detailsView.setText("New topic: "
+								+ notifications.get(pos).getPostSubject());
+						countView
+								.setBackgroundResource(R.drawable.circular_count_topic);
+						countView.setText("new");
+					} else {
+						detailsView.setText("New replies: "
+								+ notifications.get(pos).getPostSubject());
+						countView
+								.setBackgroundResource(R.drawable.circular_count_forum);
+					}
 				}
 
 				final LinearLayout notifiView = (LinearLayout) rowView
