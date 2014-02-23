@@ -15,7 +15,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -23,6 +22,7 @@ import android.widget.TextView;
 public class NotificationsActivity extends BaseActivity {
 	final String DEBUG_TAG = "MDroid Notification Activity";
 	ArrayList<Mnotification> notifications = new ArrayList<Mnotification>();
+	int unReadCount = 0;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +46,13 @@ public class NotificationsActivity extends BaseActivity {
 
 		SqliteTbNotifications stn = new SqliteTbNotifications(
 				getApplicationContext());
-		notifications = stn.getAllNotifications();
+
+		// Get all unread notifications first
+		notifications = stn.getAllUnreadNotifications();
+		unReadCount = notifications.size();
+
+		// Get the rest of the read notifications
+		notifications.addAll(stn.getAllReadNotifications());
 
 		// List them
 		listNotificationsInListView();
@@ -54,7 +60,7 @@ public class NotificationsActivity extends BaseActivity {
 
 	private void listNotificationsInListView() {
 		// Set title
-		setTitle("Notifications (" + notifications.size() + ")");
+		setTitle("Notifications (" + unReadCount + ")");
 
 		ListView listView = (ListView) findViewById(R.id.notifications_list);
 		MySimpleArrayAdapter adapter = new MySimpleArrayAdapter(this,
@@ -114,23 +120,23 @@ public class NotificationsActivity extends BaseActivity {
 						.setBackgroundResource(R.drawable.circular_count_forum);
 			}
 
-			// Set onClickListeners
 			final LinearLayout notifiView = (LinearLayout) rowView
 					.findViewById(R.id.notification_card);
-			final Button clearBtn = (Button) rowView
-					.findViewById(R.id.notification_clear_btn);
 
+			// Card background change based on read or not
+			if (notifications.get(position).getRead() == 0)
+				notifiView.setBackgroundResource(R.drawable.clickable_card);
+			else
+				notifiView
+						.setBackgroundResource(R.drawable.clickable_grey_card);
+
+			// Set onClickListeners
 			notifiView.setOnClickListener(new OnClickListener() {
 				public void onClick(View v) {
 					Log.d(DEBUG_TAG, "Clicked notification: " + pos);
 				}
 			});
 
-			clearBtn.setOnClickListener(new OnClickListener() {
-				public void onClick(View v) {
-					Log.d(DEBUG_TAG, "Clicked clear: " + pos);
-				}
-			});
 			return rowView;
 		}
 	}

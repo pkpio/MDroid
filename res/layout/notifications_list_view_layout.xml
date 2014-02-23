@@ -22,7 +22,7 @@
             android:id="@+id/notification_card"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/clickable_card"
+            android:background="@drawable/clickable_grey_card"
             android:orientation="vertical" >
 
             <LinearLayout
@@ -61,35 +61,16 @@
                 android:background="@color/transparent" >
             </LinearLayout>
 
-            <LinearLayout
+            <TextView
+                android:id="@+id/notification_post_subject"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="1" >
-
-                <TextView
-                    android:id="@+id/notification_post_subject"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.98"
-                    android:lines="1"
-                    android:padding="5dp"
-                    android:text="@string/notification_post_subject"
-                    android:textColor="@color/trasp_grey"
-                    android:textIsSelectable="false"
-                    android:textSize="14sp" />
-
-                <Button
-                    android:id="@+id/notification_clear_btn"
-                    android:layout_width="60dp"
-                    android:layout_height="24dp"
-                    android:layout_gravity="center"
-                    android:textSize="12sp"
-                    android:text="@string/notification_clear_btn"
-                    android:textColor="@color/trasp_grey"
-                    android:background="@drawable/notification_clear_button" />
-
-            </LinearLayout>
+                android:lines="1"
+                android:padding="5dp"
+                android:text="@string/notification_post_subject"
+                android:textColor="@color/trasp_grey"
+                android:textIsSelectable="false"
+                android:textSize="14sp" />
         </LinearLayout>
     </LinearLayout>
 

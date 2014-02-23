@@ -23,12 +23,7 @@ public class Mnotification {
 	String postId;
 	String postSubject;
 	int count;
-
-	public Mnotification() {
-		// Set default post subject as file content.
-		// Save efforts of setting this for files
-		this.postSubject = "New files available";
-	}
+	int read; // 0 - unread; 1 - read
 
 	public String getId() {
 		return id;
@@ -84,6 +79,14 @@ public class Mnotification {
 
 	public void setCount(int count) {
 		this.count = count;
+	}
+
+	public int getRead() {
+		return read;
+	}
+
+	public void setRead(int read) {
+		this.read = read;
 	}
 
 }
