@@ -131,8 +131,10 @@ public class NotificationsActivity extends BaseActivity {
 						.findViewById(R.id.notification_check_now_btn);
 				checkNowBtn.setOnClickListener(new OnClickListener() {
 					public void onClick(View v) {
-						startService(new Intent(NotificationsActivity.this,
-								MDroidService.class));
+						Intent i = new Intent(NotificationsActivity.this,
+								MDroidService.class);
+						i.putExtra("isComingFromNotifications", true);
+						startService(i);
 					}
 				});
 			}
