@@ -99,7 +99,8 @@ public class UpdatesChecker {
 			// If it is a new thread use updateResponseCount as '0'
 			// This will also add the thread to database.
 			if (threadUpdateCount > 0
-					|| !stf.isThreadInDb(course.getId(), mThreads.get(i).getId())) {
+					|| !stf.isThreadInDb(course.getId(), mThreads.get(i)
+							.getId())) {
 				stn.addForumNotification(course.getId(), course.getName(),
 						mThreads.get(i).getId(), mThreads.get(i).getSubject(),
 						threadUpdateCount);
@@ -112,6 +113,7 @@ public class UpdatesChecker {
 		}
 		Log.d(DEBUG_TAG, "Forum reply update done. Found "
 				+ forumRepliesUpdateCount);
+
 	}
 
 	public int getTotalUpdatesCount() {
