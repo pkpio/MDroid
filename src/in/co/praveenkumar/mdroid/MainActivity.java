@@ -21,7 +21,6 @@ import in.co.praveenkumar.mdroid.helpers.BaseActivity;
 import in.co.praveenkumar.mdroid.helpers.Database;
 import in.co.praveenkumar.mdroid.helpers.Toaster;
 import in.co.praveenkumar.mdroid.networking.DoLogin;
-import in.co.praveenkumar.mdroid.services.MDroidService;
 
 import org.apache.http.impl.client.DefaultHttpClient;
 
@@ -39,9 +38,11 @@ import android.widget.EditText;
 
 public class MainActivity extends BaseActivity {
 	private final String DEBUG_TAG = "MDroid Main activity";
+	
 	public static String mURL;
 	public static DefaultHttpClient httpclient;
 	public static Toaster toaster;
+	
 	private EditText uNameET;
 	private EditText pswdET;
 	private Database db;
