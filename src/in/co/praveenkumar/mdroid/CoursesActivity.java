@@ -20,7 +20,6 @@ import in.co.praveenkumar.mdroid.helpers.BaseActivity;
 import in.co.praveenkumar.mdroid.helpers.FolderDetails;
 import in.co.praveenkumar.mdroid.models.Course;
 import in.co.praveenkumar.mdroid.parser.CoursesParser;
-import in.co.praveenkumar.mdroid.services.MDroidService;
 
 import java.util.ArrayList;
 import java.util.Locale;
@@ -46,9 +45,6 @@ public class CoursesActivity extends BaseActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.courses);
-
-		// testing purpose
-		startService(new Intent(this, MDroidService.class));
 
 		// Get html data and extract courses
 		Bundle extras = getIntent().getExtras();
