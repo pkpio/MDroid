@@ -190,8 +190,19 @@ public class NotificationsActivity extends BaseActivity {
 				// Bug: Padding values are reset on setting bg from resource
 				// A work around is used below
 				if (notifications.get(pos).getRead() == 0) {
+					int bottom = notifiContent.getPaddingBottom();
+					int top = notifiContent.getPaddingTop();
+					int right = notifiContent.getPaddingRight();
+					int left = notifiContent.getPaddingLeft();
 					notifiContent.setBackgroundResource(R.drawable.unread_card);
+					notifiContent.setPadding(left, top, right, bottom);
+
+					bottom = notifiView.getPaddingBottom();
+					top = notifiView.getPaddingTop();
+					right = notifiView.getPaddingRight();
+					left = notifiView.getPaddingLeft();
 					notifiView.setBackgroundResource(R.drawable.clickable_card);
+					notifiView.setPadding(left, top, right, bottom);
 				} else {
 					int bottom = notifiContent.getPaddingBottom();
 					int top = notifiContent.getPaddingTop();
