@@ -18,7 +18,6 @@ package in.co.praveenkumar.mdroid;
 import in.co.praveenkumar.R;
 import in.co.praveenkumar.mdroid.helpers.BaseActivity;
 import in.co.praveenkumar.mdroid.helpers.FolderDetails;
-import in.co.praveenkumar.mdroid.services.MDroidService;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -44,9 +43,6 @@ public class OfflineCoursesActivity extends BaseActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.offline_courses);
-
-		// testing purpose
-		startService(new Intent(this, MDroidService.class));
 
 		File root = new File(android.os.Environment
 				.getExternalStorageDirectory().getPath() + "/MDroid/");

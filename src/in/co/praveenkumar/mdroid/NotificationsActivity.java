@@ -20,6 +20,7 @@ import in.co.praveenkumar.mdroid.helpers.BaseActivity;
 import in.co.praveenkumar.mdroid.helpers.Database;
 import in.co.praveenkumar.mdroid.models.Mnotification;
 import in.co.praveenkumar.mdroid.networking.DoLogin;
+import in.co.praveenkumar.mdroid.services.MDroidService;
 import in.co.praveenkumar.mdroid.sqlite.databases.SqliteTbNotifications;
 
 import java.util.ArrayList;
@@ -32,9 +33,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -123,6 +125,16 @@ public class NotificationsActivity extends BaseActivity {
 					notifiContent.setVisibility(LinearLayout.GONE);
 					noUnreadLayout.setVisibility(LinearLayout.GONE);
 				}
+
+				// Add onClicklistener for check now button
+				final Button checkNowBtn = (Button) rowView
+						.findViewById(R.id.notification_check_now_btn);
+				checkNowBtn.setOnClickListener(new OnClickListener() {
+					public void onClick(View v) {
+						startService(new Intent(NotificationsActivity.this,
+								MDroidService.class));
+					}
+				});
 			}
 
 			// Normal notifications from here.
