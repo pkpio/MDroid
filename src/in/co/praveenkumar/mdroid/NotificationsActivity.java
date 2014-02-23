@@ -236,6 +236,13 @@ public class NotificationsActivity extends BaseActivity {
 		notifications.get(openNotifPos).setRead(1);
 		adapter.notifyDataSetChanged();
 
+		// Update current unread count
+		if (unReadCount != 0)
+			unReadCount--;
+
+		// Set title
+		setTitle("Notifications (" + unReadCount + ")");
+
 		// File notification
 		if (notification.getType() == 0) {
 			Intent i = new Intent(this, FilesActivity.class);
