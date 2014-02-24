@@ -35,15 +35,16 @@ import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
 public class MDroidService extends Service {
-	private final String DEBUG_TAG = "MDroid Services";
-	private DoLogin l;
-	private UpdatesChecker uc;
-	private int totalUpdateCount = 0;
-	private int fileUpdateCount = 0;
-	private int forumUpdateCount = 0;
-	private int replyUpdateCount = 0;
+	final String DEBUG_TAG = "MDroid Services";
+	DoLogin l;
+	UpdatesChecker uc;
+	int totalUpdateCount = 0;
+	int fileUpdateCount = 0;
+	int forumUpdateCount = 0;
+	int replyUpdateCount = 0;
 
 	Database db;
+	Boolean forceChecked = false;
 
 	protected int startId;
 
@@ -54,12 +55,12 @@ public class MDroidService extends Service {
 
 		// Check if the service started from NotificationActivity
 		Bundle extras = intent.getExtras();
-		if (extras != null) {
-			if (extras.getBoolean("isComingFromNotifications", false))
+		if (extras != null)
+			if (extras.getBoolean("isComingFromNotifications", false)) {
+				forceChecked = true;
 				showNotification("Checking for content", "Please wait..",
 						"You will be notified once complete", "", false);
-
-		}
+			}
 
 		// Login and check for content
 		checkForContent();
@@ -109,8 +110,13 @@ public class MDroidService extends Service {
 			if (totalUpdateCount > 0)
 				setNotificationWithCounts(totalUpdateCount, fileUpdateCount,
 						forumUpdateCount, replyUpdateCount);
-			else
-				setNotificationWithCounts(0, 0, 0, 0);
+			else if (forceChecked)
+				showNotification("No updated found",
+						"Did you star your courses ?",
+						"Open files section to star a course", "", true);
+			else {
+				// Do Nothing. Exit without any notification.
+			}
 
 			Log.d(DEBUG_TAG, "Notified. Exiting.");
 			stopSelf(startId);
