@@ -48,7 +48,9 @@ public class BaseActivity extends Activity {
 			break;
 		case R.id.action_notifications:
 			Intent j = new Intent(this, NotificationsActivity.class);
-			startActivityForResult(j, 20);
+			// To avoid launching notifications from notification activity
+			j.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+			this.startActivityForResult(j, 20);
 			break;
 		}
 		return true;
