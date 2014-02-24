@@ -2,7 +2,7 @@
 <resources>
 
     <!-- Current version -->
-    <string name="current_version">Version 5.1 Beta3</string>
+    <string name="current_version">Version 5.2 Beta3</string>
 
     <!-- TODO -->
     <string name="todo">Things to be done
@@ -10,6 +10,10 @@
         -Forum padding for icon
         -Fav from course listing itself
         -Better identification of new threads: db structural change</string>
+
+    <!-- V5.2 Beta3 -->
+    <string name="version5.2Heading">V5.2 Beta3</string>
+    <string name="version5.2Log">-Fixed an issue raised in the previous update related to notification card layout\n-Issues with notification activity not opening on clicking notification</string>
 
     <!-- V5.1 Beta3 -->
     <string name="version5.1Heading">V5.1 Beta3</string>
