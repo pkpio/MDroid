@@ -114,13 +114,13 @@ public class Database {
 		prefsEditor.commit();
 	}
 
-	public String getLastChecked() {
-		return appSharedPrefs.getString("lastServiced", "NaN");
+	public long getLastChecked() {
+		return appSharedPrefs.getLong("lastchecked", -1);
 	}
 
-	public void setLastChecked(String date) {
-		Log.d(DEBUG_TAG, "last serviced : " + date);
-		prefsEditor.putString("lastServiced", date);
+	public void setLastChecked(long timeInMs) {
+		Log.d(DEBUG_TAG, "last serviced : " + timeInMs);
+		prefsEditor.putLong("lastchecked", timeInMs);
 		prefsEditor.commit();
 	}
 }

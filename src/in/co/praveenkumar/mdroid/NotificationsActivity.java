@@ -24,11 +24,7 @@ import in.co.praveenkumar.mdroid.networking.DoLogin;
 import in.co.praveenkumar.mdroid.services.MDroidService;
 import in.co.praveenkumar.mdroid.sqlite.databases.SqliteTbNotifications;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.Locale;
 
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -117,20 +113,11 @@ public class NotificationsActivity extends BaseActivity {
 			if (position == 0) {
 
 				// Set last checked value
-				String lastCheckedStrng = db.getLastChecked();
-				try {
-					Date lastChecked = new SimpleDateFormat(
-							"MM/dd/yyyy hh:mm:ss", Locale.ENGLISH)
-							.parse(lastCheckedStrng);
-					RelativeLastModified rlm = new RelativeLastModified();
-					lastCheckedStrng = rlm.getRelativeTime(lastChecked);
-				} catch (ParseException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+				RelativeLastModified rlm = new RelativeLastModified();
 				final TextView lastCheckTV = (TextView) rowView
 						.findViewById(R.id.notification_last_checked);
-				lastCheckTV.setText("Checked: " + lastCheckedStrng);
+				lastCheckTV.setText("Checked: "
+						+ rlm.getRelativeTimeFromMilliSec(db.getLastChecked()));
 
 				final LinearLayout notifiCheckLayout = (LinearLayout) rowView
 						.findViewById(R.id.notification_check_layout);

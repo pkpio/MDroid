@@ -15,58 +15,48 @@
 
 package in.co.praveenkumar.mdroid.helpers;
 
-import android.annotation.SuppressLint;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class RelativeLastModified {
+	private static final int SECOND_MILLIS = 1000;
+	private static final int MINUTE_MILLIS = 60 * SECOND_MILLIS;
+	private static final int HOUR_MILLIS = 60 * MINUTE_MILLIS;
+	private static final int DAY_MILLIS = 24 * HOUR_MILLIS;
+
 	public RelativeLastModified() {
 
 	}
 
-	@SuppressLint("SimpleDateFormat")
-	@SuppressWarnings("deprecation")
 	public String getRelativeTime(Date rDate) {
-		// Replace with SimpleDateFormat if worried about deprecation
-		// Default shall be used when there is an error. System date wrong
-		SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy hh:mm:ss");
-		String defaultRelTime = format.format(rDate);
+		long time = rDate.getTime();
 
-		int rYear = rDate.getYear();
-		int rMonth = rDate.getMonth();
-		int rDay = rDate.getDay();
-		int rHrs = rDate.getHours();
-		int rMins = rDate.getMinutes();
-		int rSecs = rDate.getSeconds();
+		return getRelativeTimeFromMilliSec(time);
 
-		// Current date
-		Date cDate = new Date(System.currentTimeMillis());
-		int cYear = cDate.getYear();
-		int cMonth = cDate.getMonth();
-		int cDay = cDate.getDay();
-		int cHrs = cDate.getHours();
-		int cMins = cDate.getMinutes();
-		int cSecs = cDate.getSeconds();
+	}
 
-		if (cYear - rYear > 0)
-			return (cYear - rYear) + " years ago";
+	public String getRelativeTimeFromMilliSec(long time) {
+		long now = System.currentTimeMillis();
 
-		if (cMonth - rMonth > 0)
-			return (cMonth - rMonth) + " months ago";
+		if (time > now || time <= 0) {
+			return "NaN";
+		}
 
-		if (cDay - rDay > 0)
-			return (cDay - rDay) + " days ago";
-
-		if (cHrs - rHrs > 0)
-			return (cHrs - rHrs) + " hours ago";
-
-		if (cMins - rMins > 0)
-			return (cMins - rMins) + " minutes ago";
-
-		if (cSecs - rSecs > 0)
-			return (cSecs - rSecs) + " seconds ago";
-
-		return defaultRelTime;
+		final long diff = now - time;
+		if (diff < MINUTE_MILLIS) {
+			return "Just now";
+		} else if (diff < 2 * MINUTE_MILLIS) {
+			return "A minute ago";
+		} else if (diff < 50 * MINUTE_MILLIS) {
+			return diff / MINUTE_MILLIS + " minutes ago";
+		} else if (diff < 90 * MINUTE_MILLIS) {
+			return "An hour ago";
+		} else if (diff < 24 * HOUR_MILLIS) {
+			return diff / HOUR_MILLIS + " hours ago";
+		} else if (diff < 48 * HOUR_MILLIS) {
+			return "Yesterday";
+		} else {
+			return diff / DAY_MILLIS + " days ago";
+		}
 	}
 
 }
