@@ -456,7 +456,7 @@ public final class R {
          */
         public static final int version5_0Heading=0x7f040004;
         public static final int version5_0Log=0x7f040005;
-        /**  V5.0 Beta3 
+        /**  V5.1 Beta3 
          */
         public static final int version5_1Heading=0x7f040002;
         public static final int version5_1Log=0x7f040003;
