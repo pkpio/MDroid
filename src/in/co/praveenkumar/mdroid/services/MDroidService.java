@@ -170,8 +170,10 @@ public class MDroidService extends Service {
 
 	private void showNotification(String contentTitle, String contentText,
 			String subText, String contentInfo, Boolean autoCancel) {
+		int requestID = (int) System.currentTimeMillis();
 		Intent intent = new Intent(this, NotificationsActivity.class);
-		PendingIntent pIntent = PendingIntent.getActivity(this, 0, intent, 0);
+		PendingIntent pIntent = PendingIntent.getActivity(this, requestID,
+				intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
 		NotificationCompat.Builder notification = new NotificationCompat.Builder(
 				this).setContentTitle(contentTitle).setContentText(contentText)
