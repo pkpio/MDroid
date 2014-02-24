@@ -13,8 +13,8 @@
 
     <!-- V5.1 Beta3 -->
     <string name="version5.1Heading">V5.1 Beta3</string>
-    <string name="version5.1Log">-Size reduction: optimized images</string>    
-    
+    <string name="version5.1Log">-Compressed images: smaller app size</string>
+
     <!-- V5.0 Beta3 -->
     <string name="version5.0Heading">V5.0 Beta3</string>
     <string name="version5.0Log">-Support for landscape orientation\n-Added services for periodic checking\n-Notifications about new content\n-Code cleanup: built models for handling MDroid specific data types\n-Changed files section download all icon\n-New section for all your notifications\n-Changes in login classes\n-Added notifications related options in settings\n-Last checked information in notifications\n-Check now option for notifications\n-Changed developer image :P</string>
