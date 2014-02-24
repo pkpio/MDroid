@@ -106,36 +106,36 @@ public class NotificationsActivity extends BaseActivity {
 			View rowView = inflater.inflate(
 					R.layout.notifications_list_view_layout, parent, false);
 
+			final LinearLayout notifiCheckLayout = (LinearLayout) rowView
+					.findViewById(R.id.notification_check_layout);
+			final LinearLayout minionLayout = (LinearLayout) rowView
+					.findViewById(R.id.notifications_no_unread_message_layout);
+			final LinearLayout notifiContent = (LinearLayout) rowView
+					.findViewById(R.id.notification_content);
+
 			// Because position 0 will be used for minion message
 			final int pos = position - 1;
 
 			// Display a minion message if necessary
 			if (position == 0) {
-
 				// Set last checked value
-				RelativeLastModified rlm = new RelativeLastModified();
 				final TextView lastCheckTV = (TextView) rowView
 						.findViewById(R.id.notification_last_checked);
+				RelativeLastModified rlm = new RelativeLastModified();
 				lastCheckTV.setText("Checked: "
 						+ rlm.getRelativeTimeFromMilliSec(db.getLastChecked()));
 
-				final LinearLayout notifiCheckLayout = (LinearLayout) rowView
-						.findViewById(R.id.notification_check_layout);
-				final LinearLayout notifiContent = (LinearLayout) rowView
-						.findViewById(R.id.notification_content);
-				final LinearLayout noUnreadLayout = (LinearLayout) rowView
-						.findViewById(R.id.notifications_no_unread_message_layout);
-
+				// Set visibilities
 				// Display check now layout
 				notifiCheckLayout.setVisibility(LinearLayout.VISIBLE);
 
 				// Display these only if there are some unread notifications
 				if (unReadCount == 0) {
 					notifiContent.setVisibility(LinearLayout.GONE);
-					noUnreadLayout.setVisibility(LinearLayout.VISIBLE);
+					minionLayout.setVisibility(LinearLayout.VISIBLE);
 				} else {
 					notifiContent.setVisibility(LinearLayout.GONE);
-					noUnreadLayout.setVisibility(LinearLayout.GONE);
+					minionLayout.setVisibility(LinearLayout.GONE);
 				}
 
 				// Add onClicklistener for check now button
@@ -153,6 +153,10 @@ public class NotificationsActivity extends BaseActivity {
 
 			// Normal notifications from here.
 			else {
+				// Set visibilities
+				notifiCheckLayout.setVisibility(LinearLayout.GONE);
+				minionLayout.setVisibility(LinearLayout.GONE);
+				notifiContent.setVisibility(LinearLayout.VISIBLE);
 
 				// Get views for course name, details and count
 				final TextView cNmeView = (TextView) rowView
@@ -193,8 +197,6 @@ public class NotificationsActivity extends BaseActivity {
 					}
 				}
 
-				final LinearLayout notifiContent = (LinearLayout) rowView
-						.findViewById(R.id.notification_content);
 				final LinearLayout notifiView = (LinearLayout) rowView
 						.findViewById(R.id.notification_card);
 
