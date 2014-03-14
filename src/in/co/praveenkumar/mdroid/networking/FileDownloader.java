@@ -47,6 +47,7 @@ import android.util.Log;
 public class FileDownloader {
 	String DEBUG_TAG = "NETWORKING_FILE_DOWNLOADER";
 	String mURL = MainActivity.mURL;
+	public static String DOWNLOAD_COMPLETE_DATE_INFO = "A few seconds ago";
 
 	Mfile file;
 	Course course;
@@ -135,7 +136,7 @@ public class FileDownloader {
 			// Update date changed to a few secs ago.
 			if (downloadStatus) {
 				UU.setFileId(file.getURL());
-				UU.setFileDate("A few seconds ago");
+				UU.setFileDate(DOWNLOAD_COMPLETE_DATE_INFO);
 			} else {
 				UU.setFileDate("Failed. Retry ?");
 				UU.setFileProg(0);
@@ -223,7 +224,7 @@ public class FileDownloader {
 					UU.setFileSize(file.getSize());
 				if (progress[0] == 103) {
 					UU.setFileId(file.getURL());
-					UU.setFileDate("A few seconds ago");
+					UU.setFileDate(DOWNLOAD_COMPLETE_DATE_INFO);
 					wait = false;
 				}
 				if (progress[0] == 104) {
