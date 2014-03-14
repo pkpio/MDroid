@@ -2,14 +2,17 @@
 <resources>
 
     <!-- Current version -->
-    <string name="current_version">Version 5.2 Beta3</string>
+    <string name="current_version">Version 5.3 Beta3</string>
 
     <!-- TODO -->
     <string name="todo">Things to be done
         
-        -Forum padding for icon
         -Fav from course listing itself
         -Better identification of new threads: db structural change</string>
+
+    <!-- V5.3 Beta3 -->
+    <string name="version5.3Heading">V5.3 Beta3</string>
+    <string name="version5.3Log">-Large progress bar in file download\n-Tweaked user image in forum threads</string>
 
     <!-- V5.2 Beta3 -->
     <string name="version5.2Heading">V5.2 Beta3</string>
