@@ -4,6 +4,7 @@
     <color name="ics_blue">#43b1d6</color>
     <color name="trasp_ics_blue">#5543b1d6</color>
     <color name="white">#ffffff</color>
+    <color name="trans_white">#AAffffff</color>
     <color name="black">#000000</color>
     <color name="yellow">#55FFF200</color>
     <color name="transparent">#00FFFFFF</color>

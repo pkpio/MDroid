@@ -49,6 +49,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
@@ -399,19 +400,43 @@ public class FilesActivity extends BaseFragmentActivity {
 					.findViewById(R.id.files_file_layout);
 			final ProgressBar fProgBar = (ProgressBar) rowView
 					.findViewById(R.id.files_progress);
+			final ImageView fOfflineImg = (ImageView) rowView
+					.findViewById(R.id.file_avail_offline_ind_icon);
 
 			// Set values
+			// Set progress to '0' when file is offline already or
+			// When file download is just complete
+			// offline => 101,
+			// just done => date = FileDownloader.DOWNLOAD_COMPLETE_DATE_INFO
 			fNameView.setText(files.get(pos).getName());
 			if (section == 0) {
 				fSizeView.setText(rFiles.get(pos).getSize());
 				fDateView.setText(rFiles.get(pos).getDate());
-				fProgBar.setProgress(rFiles.get(pos).getProgress());
+				if (rFiles.get(pos).getProgress() == 101
+						|| rFiles
+								.get(pos)
+								.getDate()
+								.contentEquals(
+										FileDownloader.DOWNLOAD_COMPLETE_DATE_INFO)) {
+					fProgBar.setProgress(0);
+					fOfflineImg.setVisibility(ImageView.VISIBLE);
+				} else
+					fProgBar.setProgress(rFiles.get(pos).getProgress());
 			}
 
 			if (section == 1) {
 				fSizeView.setText(fFiles.get(pos).getSize());
 				fDateView.setText(fFiles.get(pos).getDate());
-				fProgBar.setProgress(fFiles.get(pos).getProgress());
+				if (fFiles.get(pos).getProgress() == 101
+						|| fFiles
+								.get(pos)
+								.getDate()
+								.contentEquals(
+										FileDownloader.DOWNLOAD_COMPLETE_DATE_INFO)) {
+					fProgBar.setProgress(0);
+					fOfflineImg.setVisibility(ImageView.VISIBLE);
+				} else
+					fProgBar.setProgress(rFiles.get(pos).getProgress());
 			}
 
 			fLayoutLL.setOnClickListener(new OnClickListener() {
@@ -466,7 +491,7 @@ public class FilesActivity extends BaseFragmentActivity {
 					rFiles.get(i).setURL(fd.getFileId());
 					rFiles.get(i).setSize(fd.getFileSize());
 					rFiles.get(i).setDate(fd.getFileRelDate());
-					rFiles.get(i).setProgress(100);
+					rFiles.get(i).setProgress(101); // 101=>file offline
 				} else {
 					rFiles.get(i).setSize("");
 					rFiles.get(i).setDate("Click to download");
