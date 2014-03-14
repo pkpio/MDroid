@@ -9,7 +9,7 @@
     android:paddingRight="8dp"
     android:paddingTop="4dp" >
 
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/card"
@@ -18,11 +18,21 @@
         android:paddingLeft="0.5dp"
         android:paddingRight="0.5dp" >
 
+        <ProgressBar
+            android:id="@+id/files_progress"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:indeterminateOnly="false"
+            android:max="100"
+            android:progress="50"
+            android:progressDrawable="@drawable/progress_bar_states" />
+
         <LinearLayout
             android:id="@+id/files_file_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/clickable_card"
+            android:background="@drawable/clickable_trans_card"
             android:orientation="vertical" >
 
             <TextView
@@ -35,16 +45,6 @@
                 android:textColor="@color/black"
                 android:textIsSelectable="false"
                 android:textSize="16sp" />
-
-            <ProgressBar
-                android:id="@+id/files_progress"
-                style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="fill_parent"
-                android:layout_height="2dp"
-                android:indeterminateOnly="false"
-                android:progress="0"
-                android:max="100"
-                android:progressDrawable="@drawable/progress_bar_states" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -78,6 +78,15 @@
                     android:textSize="12sp" />
             </LinearLayout>
         </LinearLayout>
-    </LinearLayout>
+
+        <ImageView
+            android:id="@+id/file_avail_offline_ind_icon"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="right"
+            android:contentDescription="@string/files_file_name"
+            android:src="@drawable/tick"
+            android:visibility="gone" />
+    </FrameLayout>
 
 </LinearLayout>
