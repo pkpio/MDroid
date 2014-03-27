@@ -14,20 +14,10 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.ProtocolException;
 import java.net.URL;
 import java.net.URLEncoder;
-
-import net.beaconhillcott.moodlerest.MoodleCallRestWebService;
-import net.beaconhillcott.moodlerest.MoodleCourse;
-import net.beaconhillcott.moodlerest.MoodleRestCourse;
-import net.beaconhillcott.moodlerest.MoodleRestException;
-
-import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
 
 /**
  * REST MOODLE Client It's very basic. You'll have to write the JavaObject2POST

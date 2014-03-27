@@ -1,12 +1,7 @@
 package in.co.praveenkumar.mdroid.apis;
 
-import in.co.praveenkumar.mdroid.moodlerest.MoodleToken;
-
-import java.io.IOException;
-import java.net.ProtocolException;
-
-import net.beaconhillcott.moodlerest.MoodleCallRestWebService;
-
+import in.co.praveenkumar.mdroid.helpers.Database;
+import in.co.praveenkumar.mdroid.moodlerest.MoodleRestCourses;
 import android.app.Activity;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -20,6 +15,9 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.activity_main);
 
 		// Testing
+		Database db = new Database(this);
+		db.setToken("9bd96dc343e76a041729aa3e602de8c4");
+		db.setmUrl("http://moodle.praveenkumar.co.in/");
 		new tryAsyncLogin().execute("");
 
 	}
@@ -35,16 +33,9 @@ public class MainActivity extends Activity {
 	private class tryAsyncLogin extends AsyncTask<String, Integer, Long> {
 
 		protected Long doInBackground(String... credentials) {
-			RestJsonMoodleClient rjmc = new RestJsonMoodleClient();
-			try {
-				rjmc.doRestCall();
-			} catch (ProtocolException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			MoodleRestCourses mrc = new MoodleRestCourses(
+					getApplicationContext());
+			mrc.getCourses();
 			// MoodleToken mToken = new MoodleToken("praveendath92",
 			// "praveen92",
 			// "http://moodle.praveenkumar.co.in");
