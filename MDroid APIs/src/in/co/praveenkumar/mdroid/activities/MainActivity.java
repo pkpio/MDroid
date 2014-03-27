@@ -1,18 +1,22 @@
 package in.co.praveenkumar.mdroid.activities;
 
-import java.util.ArrayList;
-
 import in.co.praveenkumar.mdroid.apis.R;
 import in.co.praveenkumar.mdroid.helpers.Database;
 import in.co.praveenkumar.mdroid.moodlerest.MoodleRestCourseContents;
 import in.co.praveenkumar.mdroid.moodlerest.MoodleRestCourses;
 import in.co.praveenkumar.mdroid.moodlerest.MoodleRestDiscussions;
+import in.co.praveenkumar.mdroid.moodlerest.MoodleToken;
+
+import java.util.ArrayList;
+
 import android.app.Activity;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 
 public class MainActivity extends Activity {
+	final String DEBUG_TAG = "MainActivity";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +42,12 @@ public class MainActivity extends Activity {
 	private class tryAsyncLogin extends AsyncTask<String, Integer, Long> {
 
 		protected Long doInBackground(String... credentials) {
+			MoodleToken mt = new MoodleToken("praveendath92", "praveen92",
+					"http://moodle.praveenkumar.co.in");
+			Log.d(DEBUG_TAG, mt.getToken());
+			for (int i = 0; i < mt.getErrors().size(); i++)
+				Log.d(DEBUG_TAG, mt.getErrors().get(i));
+
 			MoodleRestCourses mrc = new MoodleRestCourses(
 					getApplicationContext());
 			mrc.getCourses();
@@ -51,7 +61,7 @@ public class MainActivity extends Activity {
 			ArrayList<String> forumIds = new ArrayList<String>();
 			forumIds.add("1");
 			mrd.getDiscussions(forumIds);
-			
+
 			return null;
 
 		}
