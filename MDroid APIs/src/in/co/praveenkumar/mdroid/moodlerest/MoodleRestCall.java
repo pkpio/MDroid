@@ -13,13 +13,14 @@ import android.util.Log;
 public class MoodleRestCall {
 	private final String DEBUG_TAG = "MoodleRestCall";
 
-	public String fetchContent(String mUrl, String params) {
+	public String fetchContent(String restUrl, String params) {
 		String response = null;
 
-		Log.d(DEBUG_TAG, mUrl + params);
+		Log.d(DEBUG_TAG, restUrl + params);
 		HttpURLConnection con;
 		try {
-			con = (HttpURLConnection) new URL(mUrl + params).openConnection();
+			con = (HttpURLConnection) new URL(restUrl + params)
+					.openConnection();
 			con.setRequestMethod("POST");
 			con.setRequestProperty("Accept", "application/xml");
 			con.setRequestProperty("Content-Language", "en-US");
