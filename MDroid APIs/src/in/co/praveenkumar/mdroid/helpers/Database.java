@@ -29,4 +29,14 @@ public class Database {
 		prefsEditor.commit();
 	}
 
+	public String getToken() {
+		return appSharedPrefs.getString("token", "");
+	}
+
+	public void setToken(String token) {
+		Log.d(DEBUG_TAG, "token updated");
+		prefsEditor.putString("token", token);
+		prefsEditor.commit();
+	}
+
 }
