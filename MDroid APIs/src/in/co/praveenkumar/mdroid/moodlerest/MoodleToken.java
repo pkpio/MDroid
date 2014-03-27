@@ -1,5 +1,7 @@
 package in.co.praveenkumar.mdroid.moodlerest;
 
+import in.co.praveenkumar.mdriod.parsers.TokenParser;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -9,6 +11,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 
 import android.util.Log;
 
@@ -18,6 +21,7 @@ public class MoodleToken {
 	private String pswd;
 	private String url;
 	private String token;
+	private ArrayList<String> errors = new ArrayList<String>();
 
 	public MoodleToken(String uname, String pswd, String baseUrl) {
 		this.uname = uname;
@@ -71,8 +75,7 @@ public class MoodleToken {
 		return token;
 	}
 
-	private String getTokenForService(String urlParams, String serviceName) {
-		String error = "";
+	private void getTokenForService(String urlParams, String serviceName) {
 
 		HttpURLConnection con;
 		try {
@@ -98,9 +101,17 @@ public class MoodleToken {
 				buffer.append('\r');
 			}
 			reader.close();
-			if (!buffer.toString().contains("Web service is not available"))
-				token = buffer.toString();
+
 			System.out.println(buffer.toString());
+
+			// Parse for token
+			TokenParser tp = new TokenParser(buffer.toString());
+			if (tp.getToken() != null)
+				token = tp.getToken();
+			// Write to errors list an error for this service
+			else
+				errors.add(serviceName + " : " + tp.getError());
+
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -109,7 +120,9 @@ public class MoodleToken {
 			e.printStackTrace();
 		}
 
-		return error;
+	}
 
+	public ArrayList<String> getErrors() {
+		return errors;
 	}
 }
