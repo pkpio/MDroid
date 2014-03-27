@@ -118,7 +118,7 @@ public class RestJsonMoodleClient {
 		String serverurl = domainName + "/webservice/rest/server.php"
 				+ "?wstoken=" + token + "&wsfunction=" + functionName
 				+ restformat;
-		fetchContent(serverurl, urlParameters);
+		//fetchContent(serverurl, urlParameters);
 
 		// Get course contents
 		functionName = "core_course_get_contents";
@@ -130,7 +130,7 @@ public class RestJsonMoodleClient {
 		// Send request
 		serverurl = domainName + "/webservice/rest/server.php" + "?wstoken="
 				+ token + "&wsfunction=" + functionName + restformat;
-		fetchContent(serverurl, urlParameters);
+		//fetchContent(serverurl, urlParameters);
 
 		// Get discussions
 		functionName = "mod_forum_get_forum_discussions";
@@ -142,37 +142,8 @@ public class RestJsonMoodleClient {
 		// Send request
 		serverurl = domainName + "/webservice/rest/server.php" + "?wstoken="
 				+ token + "&wsfunction=" + functionName + restformat;
-		fetchContent(serverurl, urlParameters);
+		//fetchContent(serverurl, urlParameters);
 
-	}
-
-	public void fetchContent(String serverurl, String urlParameters)
-			throws ProtocolException, IOException {
-		System.out.println(serverurl + urlParameters);
-		HttpURLConnection con = (HttpURLConnection) new URL(serverurl
-				+ urlParameters).openConnection();
-		con.setRequestMethod("POST");
-		con.setRequestProperty("Accept", "application/xml");
-		con.setRequestProperty("Content-Language", "en-US");
-		con.setDoOutput(true);
-
-		OutputStreamWriter writer = new OutputStreamWriter(
-				con.getOutputStream());
-		writer.write("");
-		writer.flush();
-		writer.close();
-
-		// Get Response
-		StringBuilder buffer = new StringBuilder();
-		BufferedReader reader = new BufferedReader(new InputStreamReader(
-				con.getInputStream()));
-		String line;
-		while ((line = reader.readLine()) != null) {
-			buffer.append(line);
-			buffer.append('\r');
-		}
-		reader.close();
-		System.out.println(buffer.toString());
 	}
 
 	private void testUserReg(String domainName, String token)
