@@ -20,7 +20,7 @@ public class Database {
 	}
 
 	public String getmUrl() {
-		return appSharedPrefs.getString("ldap", "");
+		return appSharedPrefs.getString("mUrl", "");
 	}
 
 	public void setmUrl(String mUrl) {
