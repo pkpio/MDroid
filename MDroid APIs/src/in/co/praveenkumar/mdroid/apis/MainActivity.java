@@ -1,6 +1,7 @@
 package in.co.praveenkumar.mdroid.apis;
 
 import in.co.praveenkumar.mdroid.helpers.Database;
+import in.co.praveenkumar.mdroid.moodlerest.MoodleRestCourseContents;
 import in.co.praveenkumar.mdroid.moodlerest.MoodleRestCourses;
 import android.app.Activity;
 import android.os.AsyncTask;
@@ -36,10 +37,10 @@ public class MainActivity extends Activity {
 			MoodleRestCourses mrc = new MoodleRestCourses(
 					getApplicationContext());
 			mrc.getCourses();
-			// MoodleToken mToken = new MoodleToken("praveendath92",
-			// "praveen92",
-			// "http://moodle.praveenkumar.co.in");
-			// System.out.println(mToken.getToken());
+
+			MoodleRestCourseContents mrcc = new MoodleRestCourseContents(
+					getApplicationContext());
+			mrcc.getCourseContent("2");
 			return null;
 
 		}
