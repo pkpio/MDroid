@@ -1,8 +1,11 @@
 package in.co.praveenkumar.mdroid.apis;
 
+import java.util.ArrayList;
+
 import in.co.praveenkumar.mdroid.helpers.Database;
 import in.co.praveenkumar.mdroid.moodlerest.MoodleRestCourseContents;
 import in.co.praveenkumar.mdroid.moodlerest.MoodleRestCourses;
+import in.co.praveenkumar.mdroid.moodlerest.MoodleRestDiscussions;
 import android.app.Activity;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -41,6 +44,13 @@ public class MainActivity extends Activity {
 			MoodleRestCourseContents mrcc = new MoodleRestCourseContents(
 					getApplicationContext());
 			mrcc.getCourseContent("2");
+
+			MoodleRestDiscussions mrd = new MoodleRestDiscussions(
+					getApplicationContext());
+			ArrayList<String> forumIds = new ArrayList<String>();
+			forumIds.add("1");
+			mrd.getDiscussions(forumIds);
+			
 			return null;
 
 		}
