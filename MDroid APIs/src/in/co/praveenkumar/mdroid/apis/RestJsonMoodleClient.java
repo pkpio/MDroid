@@ -45,51 +45,17 @@ public class RestJsonMoodleClient {
 
 	private void getCourses(String domainName, String token)
 			throws ProtocolException, IOException {
-		// / REST RETURNED VALUES FORMAT
-		String restformat = "json"; // Also possible in Moodle 2.2 and later:
-		// 'json'
-		// Setting it to 'json' will fail all calls
-		// on earlier Moodle version
-		if (restformat.equals("json")) {
-			restformat = "&moodlewsrestformat=" + restformat;
-		} else {
-			restformat = "";
-		}
-
-		// / PARAMETERS - NEED TO BE CHANGED IF YOU CALL A DIFFERENT FUNCTION
-		String functionName = "moodle_course_get_courses";
-		String urlParameters = "" + URLEncoder.encode("", "UTF-8");
-
-		// / REST CALL
-
-		// Send request
-		String serverurl = domainName + "/webservice/rest/server.php"
-				+ "?wstoken=" + token + "&wsfunction=" + functionName
-				+ restformat;
-		//fetchContent(serverurl, urlParameters);
-
-		// Get course contents
-		functionName = "core_course_get_contents";
-		urlParameters = "" + URLEncoder.encode("", "UTF-8") + "&courseid="
-				+ URLEncoder.encode("2", "UTF-8");
-
-		// / REST CALL
-
-		// Send request
-		serverurl = domainName + "/webservice/rest/server.php" + "?wstoken="
-				+ token + "&wsfunction=" + functionName + restformat;
-		//fetchContent(serverurl, urlParameters);
-
+		
 		// Get discussions
-		functionName = "mod_forum_get_forum_discussions";
-		urlParameters = "" + URLEncoder.encode("", "UTF-8") + "&forumids[0]="
-				+ URLEncoder.encode("1", "UTF-8");
-
-		// / REST CALL
-
-		// Send request
-		serverurl = domainName + "/webservice/rest/server.php" + "?wstoken="
-				+ token + "&wsfunction=" + functionName + restformat;
+		// functionName = "mod_forum_get_forum_discussions";
+		// urlParameters = "" + URLEncoder.encode("", "UTF-8") + "&forumids[0]="
+		// + URLEncoder.encode("1", "UTF-8");
+		//
+		// // / REST CALL
+		//
+		// // Send request
+		// serverurl = domainName + "/webservice/rest/server.php" + "?wstoken="
+		// + token + "&wsfunction=" + functionName + restformat;
 		//fetchContent(serverurl, urlParameters);
 
 	}
