@@ -48,49 +48,7 @@ public class RestJsonMoodleClient {
 		// / NEED TO BE CHANGED
 		String token = "9bd96dc343e76a041729aa3e602de8c4";
 		String domainName = "http://moodle.praveenkumar.co.in/";
-		//
-		// // Getting token
-		String serverurl = domainName
-				+ "login/token.php?username=praveendath92&password=praveen92&service=moodle_mobile_app";
-		System.out.println(serverurl);
-		HttpGet httpget = new HttpGet(serverurl);
-		AppsHttpClient ahc = new AppsHttpClient();
-		HttpClient client = ahc.getHttpClient();
-
-		// execute request
-		HttpResponse response = client.execute(httpget);
-
-		// Get Response
-		InputStream is = response.getEntity().getContent();
-		// Read content from stream
-		String line = "";
-		StringBuilder total = new StringBuilder();
-		BufferedReader rd = new BufferedReader(new InputStreamReader(is));
-
-		// Read response until the end
-		while ((line = rd.readLine()) != null) {
-			total.append(line);
-		}
-		System.out.println(total.toString());
-
-		// Testing Javarest lib
-		MoodleCallRestWebService mCallRestWebService = new MoodleCallRestWebService();
-		mCallRestWebService.init(domainName + "login/token.php",
-				"praveendath92", "praveen92");
-
-		// // Get courses
-		// MoodleCourse[] mCourses;
-		// if (mCallRestWebService.getAuth() != null) {
-		// MoodleRestCourse mRestCourse = new MoodleRestCourse();
-		// try {
-		// mCourses = mRestCourse.getAllCourses();
-		// } catch (MoodleRestException e) {
-		// // TODO Auto-generated catch block
-		// e.printStackTrace();
-		// }
-		// }
-
-		// Use token obtained above and do this.
+	
 		getCourses(domainName, token);
 		// testUserReg(domainName, token);
 	}
