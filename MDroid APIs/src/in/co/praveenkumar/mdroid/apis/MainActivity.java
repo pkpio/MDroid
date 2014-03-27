@@ -49,6 +49,7 @@ public class MainActivity extends Activity {
 					getApplicationContext());
 			ArrayList<String> forumIds = new ArrayList<String>();
 			forumIds.add("1");
+			forumIds.add("2");
 			mrd.getDiscussions(forumIds);
 			
 			return null;
