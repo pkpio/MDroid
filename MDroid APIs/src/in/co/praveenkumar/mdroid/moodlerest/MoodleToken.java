@@ -53,6 +53,24 @@ public class MoodleToken {
 		return token;
 	}
 
+	public String getCustomServiceToken(String serviceName) {
+		String urlParams = "";
+
+		// set required parameters for token url
+		try {
+			urlParams = "username=" + URLEncoder.encode(uname, "UTF-8")
+					+ "&password=" + URLEncoder.encode(pswd, "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			Log.d(DEBUG_TAG, "credential encoding failed!");
+			e.printStackTrace();
+		}
+
+		// Request for custom service token.
+		getTokenForService(urlParams, serviceName);
+
+		return token;
+	}
+
 	private String getTokenForService(String urlParams, String serviceName) {
 		String error = "";
 
