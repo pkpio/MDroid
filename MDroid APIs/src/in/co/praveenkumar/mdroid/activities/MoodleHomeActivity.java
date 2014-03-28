@@ -38,6 +38,7 @@ public class MoodleHomeActivity extends Activity {
 				R.layout.drawer_list_item, mPlanetTitles));
 		// Set the list's click listener
 		mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
+		mDrawerList.setSelector(R.drawable.nav_drawer_list_view_item_bg);
 
 		mDrawerToggle = new ActionBarDrawerToggle(this, /* host Activity */
 		mDrawerLayout, /* DrawerLayout object */
