@@ -17,17 +17,18 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="in.co.praveenkumar.mdroid.activities.MoodleHomeActivity"
+            android:name="in.co.praveenkumar.mdroid.activities.MainActivity"
+            android:configChanges="orientation|screenSize"
             android:label="@string/app_name"
-            android:parentActivityName="in.co.praveenkumar.mdroid.activities.MainActivity"
-            android:configChanges="orientation|screenSize" >
+            android:parentActivityName="in.co.praveenkumar.mdroid.activities.MainActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
-            android:name="in.co.praveenkumar.mdroid.activities.MainActivity"
+            android:name="in.co.praveenkumar.mdroid.activities.MoodleHomeActivity"
             android:label="@string/app_name" >
         </activity>
     </application>

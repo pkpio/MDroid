@@ -30,6 +30,38 @@ containing a value of this type.
          */
         public static final int isDrawingListUnderStickyHeader=0x7f010001;
     }
+    public static final class color {
+        public static final int black=0x7f050001;
+        /**  Blue colors 
+         */
+        public static final int blue_1=0x7f050003;
+        public static final int blue_2=0x7f050004;
+        public static final int blue_3=0x7f050005;
+        public static final int blue_4=0x7f050006;
+        public static final int blue_5=0x7f050007;
+        public static final int blue_6=0x7f050008;
+        public static final int blue_7=0x7f050009;
+        public static final int blue_8=0x7f05000a;
+        public static final int blue_9=0x7f05000b;
+        /**  Grey colors 
+         */
+        public static final int grey_1=0x7f05000c;
+        public static final int grey_10=0x7f050015;
+        public static final int grey_11=0x7f050016;
+        public static final int grey_12=0x7f050017;
+        public static final int grey_13=0x7f050018;
+        public static final int grey_14=0x7f050019;
+        public static final int grey_2=0x7f05000d;
+        public static final int grey_3=0x7f05000e;
+        public static final int grey_4=0x7f05000f;
+        public static final int grey_5=0x7f050010;
+        public static final int grey_6=0x7f050011;
+        public static final int grey_7=0x7f050012;
+        public static final int grey_8=0x7f050013;
+        public static final int grey_9=0x7f050014;
+        public static final int transparent=0x7f050002;
+        public static final int white=0x7f050000;
+    }
     public static final class dimen {
         /**  Default screen margins, per the Android Design guidelines. 
 
@@ -37,24 +69,26 @@ containing a value of this type.
          screen margins) for sw720dp devices (e.g. 10" tablets) in landscape here.
     
          */
-        public static final int activity_horizontal_margin=0x7f050000;
-        public static final int activity_vertical_margin=0x7f050001;
+        public static final int activity_horizontal_margin=0x7f060000;
+        public static final int activity_vertical_margin=0x7f060001;
     }
     public static final class drawable {
-        public static final int drawer_shadow=0x7f020000;
-        public static final int ic_drawer=0x7f020001;
-        public static final int ic_launcher=0x7f020002;
-        public static final int nav_drawer_list_view_item_bg=0x7f020003;
+        public static final int developer=0x7f020000;
+        public static final int drawer_shadow=0x7f020001;
+        public static final int ic_drawer=0x7f020002;
+        public static final int ic_launcher=0x7f020003;
+        public static final int nav_drawer_list_view_item_bg=0x7f020004;
     }
     public static final class id {
-        public static final int action_settings=0x7f090007;
-        public static final int content_frame=0x7f090001;
-        public static final int drawer_layout=0x7f090000;
-        public static final int left_drawer=0x7f090003;
-        public static final int left_nav_listview=0x7f090004;
-        public static final int list=0x7f090002;
-        public static final int right_drawer=0x7f090005;
-        public static final int text1=0x7f090006;
+        public static final int action_settings=0x7f0a0008;
+        public static final int content_frame=0x7f0a0001;
+        public static final int drawer_layout=0x7f0a0000;
+        public static final int left_drawer=0x7f0a0003;
+        public static final int left_nav_listview=0x7f0a0005;
+        public static final int list=0x7f0a0002;
+        public static final int right_drawer=0x7f0a0006;
+        public static final int text1=0x7f0a0007;
+        public static final int user_image=0x7f0a0004;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
@@ -63,14 +97,14 @@ containing a value of this type.
         public static final int sticky_section_header=0x7f030003;
     }
     public static final class menu {
-        public static final int main=0x7f080000;
+        public static final int main=0x7f090000;
     }
     public static final class string {
-        public static final int action_settings=0x7f060001;
-        public static final int app_name=0x7f060000;
-        public static final int drawer_close=0x7f060004;
-        public static final int drawer_open=0x7f060003;
-        public static final int hello_world=0x7f060002;
+        public static final int action_settings=0x7f070001;
+        public static final int app_name=0x7f070000;
+        public static final int drawer_close=0x7f070004;
+        public static final int drawer_open=0x7f070003;
+        public static final int hello_world=0x7f070002;
     }
     public static final class style {
         /** 
@@ -94,11 +128,11 @@ containing a value of this type.
     
  API 14 theme customizations can go here. 
          */
-        public static final int AppBaseTheme=0x7f070000;
+        public static final int AppBaseTheme=0x7f080000;
         /**  Application theme. 
  All customizations that are NOT specific to a particular API-level can go here. 
          */
-        public static final int AppTheme=0x7f070001;
+        public static final int AppTheme=0x7f080001;
     }
     public static final class styleable {
         /** Attributes that can be used with a StickyListHeadersListView.
