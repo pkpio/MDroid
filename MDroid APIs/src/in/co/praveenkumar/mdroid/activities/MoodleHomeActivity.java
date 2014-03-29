@@ -17,6 +17,9 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
 
 public class MoodleHomeActivity extends HomeDrawerActivity {
 	private final String DEBUG_TAG = "MoodleHomeActivity";
@@ -40,7 +43,7 @@ public class MoodleHomeActivity extends HomeDrawerActivity {
 		StickyListHeadersListView listview;
 		listview = (StickyListHeadersListView) findViewById(R.id.list);
 		listview.setAreHeadersSticky(true);
-		
+
 		// Sort course objects
 		Collections.sort(mCourses, new CustomComparator());
 
@@ -82,6 +85,25 @@ public class MoodleHomeActivity extends HomeDrawerActivity {
 		public courseListViewAdapter(Context context, ArrayList<String> dataSet) {
 			super(context, dataSet);
 			// TODO Auto-generated constructor stub
+		}
+
+		@Override
+		public View getView(int position, View convertView, ViewGroup parent) {
+			ViewHolder holder;
+
+			if (convertView == null) {
+				holder = new ViewHolder();
+				convertView = mInflater.inflate(R.layout.course_list_item,
+						parent, false);
+				holder.text = (TextView) convertView.findViewById(R.id.text1);
+				convertView.setTag(holder);
+			} else {
+				holder = (ViewHolder) convertView.getTag();
+			}
+
+			holder.text.setText(mDataSet.get(position));
+
+			return convertView;
 		}
 
 	}
