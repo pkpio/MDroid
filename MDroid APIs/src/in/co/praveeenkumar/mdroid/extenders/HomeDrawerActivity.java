@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -20,6 +21,7 @@ public class HomeDrawerActivity extends Activity {
 	private ListView mDrawerList;
 	private CharSequence mTitle;
 	private ActionBarDrawerToggle mDrawerToggle;
+	private LinearLayout mDrawerView;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -28,7 +30,8 @@ public class HomeDrawerActivity extends Activity {
 
 		mPlanetTitles = new String[] { "one", "two", "three" };
 		mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-		mDrawerList = (ListView) findViewById(R.id.left_drawer);
+		mDrawerList = (ListView) findViewById(R.id.left_nav_listview);
+		mDrawerView = (LinearLayout) findViewById(R.id.left_drawer);
 
 		// Set the adapter for the list view
 		mDrawerList.setAdapter(new ArrayAdapter<String>(this,
@@ -104,7 +107,7 @@ public class HomeDrawerActivity extends Activity {
 		// Highlight the selected item, update the title, and close the drawer
 		mDrawerList.setItemChecked(position, true);
 		setTitle(mPlanetTitles[position]);
-		mDrawerLayout.closeDrawer(mDrawerList);
+		mDrawerLayout.closeDrawer(mDrawerView);
 	}
 
 	@Override

@@ -1,6 +1,6 @@
 package in.co.praveenkumar.mdroid.activities;
 
-import in.co.praveeenkumar.mdroid.extenders.DrawerActivity;
+import in.co.praveeenkumar.mdroid.extenders.HomeDrawerActivity;
 import in.co.praveenkumar.mdroid.apis.R;
 
 import java.util.ArrayList;
@@ -16,7 +16,7 @@ import android.widget.BaseAdapter;
 import android.widget.SectionIndexer;
 import android.widget.TextView;
 
-public class MoodleHomeActivity extends DrawerActivity {
+public class MoodleHomeActivity extends HomeDrawerActivity {
 	private StickyListViewAdapter myListAdapter;
 
 	@Override
