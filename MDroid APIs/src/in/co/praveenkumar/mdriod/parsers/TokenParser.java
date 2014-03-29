@@ -8,24 +8,24 @@ public class TokenParser {
 	private String error;
 
 	// json tags
-	private static final String TAG_TOKEN = "token";
 	private static final String TAG_ERROR = "error";
+	private static final String TAG_TOKEN = "token";
 
 	public TokenParser(String json) {
 		try {
 			JSONObject jObj = new JSONObject(json);
 
-			// Check if token exists
-			if (jObj.has(TAG_TOKEN))
-				token = jObj.getString(TAG_TOKEN);
-
-			// Check if error field exists
-			else if (jObj.has(TAG_ERROR))
+			// Check if there is an error
+			if (jObj.has(TAG_ERROR))
 				error = jObj.getString(TAG_ERROR);
 
-			// An unknown error
+			// look for token field
+			else if (jObj.has(TAG_TOKEN))
+				token = jObj.getString(TAG_TOKEN);
+
 			else
 				error = "Unknown error";
+			
 
 		} catch (JSONException e) {
 			error = "json decode error";
