@@ -24,7 +24,8 @@ public class StickyListViewAdapter extends BaseAdapter implements
 	public StickyListViewAdapter(Context context) {
 		mContext = context;
 		mInflater = LayoutInflater.from(context);
-		mCountries = context.getResources().getStringArray(R.array.countries);
+		// mCountries =
+		// context.getResources().getStringArray(R.array.testArray);
 		mSectionIndices = getSectionIndices();
 		mSectionLetters = getSectionLetters();
 	}
@@ -75,9 +76,9 @@ public class StickyListViewAdapter extends BaseAdapter implements
 
 		if (convertView == null) {
 			holder = new ViewHolder();
-			convertView = mInflater.inflate(R.layout.test_list_item_layout,
-					parent, false);
-			holder.text = (TextView) convertView.findViewById(R.id.text);
+			// convertView = mInflater.inflate(R.layout.test_list_item_layout,
+			// parent, false);
+			// holder.text = (TextView) convertView.findViewById(R.id.text);
 			convertView.setTag(holder);
 		} else {
 			holder = (ViewHolder) convertView.getTag();
@@ -94,8 +95,8 @@ public class StickyListViewAdapter extends BaseAdapter implements
 
 		if (convertView == null) {
 			holder = new HeaderViewHolder();
-			convertView = mInflater.inflate(R.layout.header, parent, false);
-			holder.text = (TextView) convertView.findViewById(R.id.text1);
+			// convertView = mInflater.inflate(R.layout.header, parent, false);
+			// holder.text = (TextView) convertView.findViewById(R.id.text1);
 			convertView.setTag(holder);
 		} else {
 			holder = (HeaderViewHolder) convertView.getTag();
@@ -152,7 +153,8 @@ public class StickyListViewAdapter extends BaseAdapter implements
 	}
 
 	public void restore() {
-		mCountries = mContext.getResources().getStringArray(R.array.countries);
+		// mCountries =
+		// mContext.getResources().getStringArray(R.array.countries);
 		mSectionIndices = getSectionIndices();
 		mSectionLetters = getSectionLetters();
 		notifyDataSetChanged();
