@@ -50,7 +50,7 @@ public class MainActivity extends Activity {
 
 			MoodleRestCourses mrc = new MoodleRestCourses(
 					getApplicationContext());
-			mrc.getCourses();
+			System.out.println(mrc.getCourses());
 
 			MoodleRestCourseContents mrcc = new MoodleRestCourseContents(
 					getApplicationContext());
