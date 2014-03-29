@@ -1,198 +1,97 @@
 package in.co.praveenkumar.mdroid.activities;
 
 import in.co.praveeenkumar.mdroid.extenders.HomeDrawerActivity;
+import in.co.praveeenkumar.mdroid.extenders.StickyListViewAdapter;
 import in.co.praveenkumar.mdroid.apis.R;
+import in.co.praveenkumar.mdroid.helpers.Database;
+import in.co.praveenkumar.mdroid.models.MoodleCourse;
+import in.co.praveenkumar.mdroid.moodlerest.MoodleRestCourses;
+import in.co.praveenkumar.mdroid.moodlerest.MoodleToken;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
-import se.emilsjolander.stickylistheaders.StickyListHeadersAdapter;
 import se.emilsjolander.stickylistheaders.StickyListHeadersListView;
 import android.content.Context;
+import android.os.AsyncTask;
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.SectionIndexer;
-import android.widget.TextView;
+import android.util.Log;
 
 public class MoodleHomeActivity extends HomeDrawerActivity {
-	private StickyListViewAdapter myListAdapter;
+	private final String DEBUG_TAG = "MoodleHomeActivity";
+	private ArrayList<MoodleCourse> mCourses;
+	private courseListViewAdapter myListAdapter;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		setContentView(R.layout.activity_moodle_home);
 		super.onCreate(savedInstanceState);
 
-		// StickyHeader List view
-		myListAdapter = new StickyListViewAdapter(this);
-
-		StickyListHeadersListView listview;
-		listview = (StickyListHeadersListView) findViewById(R.id.list);
-		listview.setAreHeadersSticky(true);
-		listview.setAdapter(myListAdapter);
+		// Testing
+		Database db = new Database(this);
+		db.setToken("9bd96dc343e76a041729aa3e602de8c4");
+		db.setmUrl("http://moodle.praveenkumar.co.in/");
+		new asyncCourseFetch().execute("");
 
 	}
 
-	public class StickyListViewAdapter extends BaseAdapter implements
-			StickyListHeadersAdapter, SectionIndexer {
+	private void listCoursesInListView() {
+		StickyListHeadersListView listview;
+		listview = (StickyListHeadersListView) findViewById(R.id.list);
+		listview.setAreHeadersSticky(true);
+		
+		// Sort course objects
+		Collections.sort(mCourses, new CustomComparator());
 
-		private final Context mContext;
-		private String[] mCountries;
-		private int[] mSectionIndices;
-		private Character[] mSectionLetters;
-		private LayoutInflater mInflater;
+		// Build a string array of course names
+		ArrayList<String> mCourseNames = new ArrayList<String>();
+		for (int i = 0; i < mCourses.size(); i++)
+			mCourseNames.add(mCourses.get(i).getFullname());
 
-		public StickyListViewAdapter(Context context) {
-			mContext = context;
-			mInflater = LayoutInflater.from(context);
-			mCountries = context.getResources().getStringArray(
-					R.array.countries);
-			mSectionIndices = getSectionIndices();
-			mSectionLetters = getSectionLetters();
+		// StickyHeader List view
+		myListAdapter = new courseListViewAdapter(this, mCourseNames);
+		listview.setAdapter(myListAdapter);
+	}
+
+	private class asyncCourseFetch extends AsyncTask<String, Integer, Long> {
+
+		protected Long doInBackground(String... credentials) {
+			MoodleToken mt = new MoodleToken("praveendath92", "praveen92",
+					"http://moodle.praveenkumar.co.in");
+			Log.d(DEBUG_TAG, mt.getToken());
+			for (int i = 0; i < mt.getErrors().size(); i++)
+				Log.d(DEBUG_TAG, mt.getErrors().get(i));
+
+			MoodleRestCourses mrc = new MoodleRestCourses(
+					getApplicationContext());
+			mCourses = mrc.getCourses();
+
+			return null;
+
 		}
 
-		private int[] getSectionIndices() {
-			ArrayList<Integer> sectionIndices = new ArrayList<Integer>();
-			char lastFirstChar = mCountries[0].charAt(0);
-			sectionIndices.add(0);
-			for (int i = 1; i < mCountries.length; i++) {
-				if (mCountries[i].charAt(0) != lastFirstChar) {
-					lastFirstChar = mCountries[i].charAt(0);
-					sectionIndices.add(i);
-				}
-			}
-			int[] sections = new int[sectionIndices.size()];
-			for (int i = 0; i < sectionIndices.size(); i++) {
-				sections[i] = sectionIndices.get(i);
-			}
-			return sections;
+		protected void onPostExecute(Long result) {
+			if (mCourses != null)
+				listCoursesInListView();
+		}
+	}
+
+	private class courseListViewAdapter extends StickyListViewAdapter {
+
+		public courseListViewAdapter(Context context, ArrayList<String> dataSet) {
+			super(context, dataSet);
+			// TODO Auto-generated constructor stub
 		}
 
-		private Character[] getSectionLetters() {
-			Character[] letters = new Character[mSectionIndices.length];
-			for (int i = 0; i < mSectionIndices.length; i++) {
-				letters[i] = mCountries[mSectionIndices[i]].charAt(0);
-			}
-			return letters;
-		}
+	}
+
+	public class CustomComparator implements Comparator<MoodleCourse> {
 
 		@Override
-		public int getCount() {
-			return mCountries.length;
+		public int compare(MoodleCourse arg0, MoodleCourse arg1) {
+			return arg0.getFullname().compareTo(arg1.getFullname());
 		}
-
-		@Override
-		public Object getItem(int position) {
-			return mCountries[position];
-		}
-
-		@Override
-		public long getItemId(int position) {
-			return position;
-		}
-
-		@Override
-		public View getView(int position, View convertView, ViewGroup parent) {
-			ViewHolder holder;
-
-			if (convertView == null) {
-				holder = new ViewHolder();
-				convertView = mInflater.inflate(R.layout.drawer_list_item,
-						parent, false);
-				holder.text = (TextView) convertView.findViewById(R.id.text1);
-				convertView.setTag(holder);
-			} else {
-				holder = (ViewHolder) convertView.getTag();
-			}
-
-			holder.text.setText(mCountries[position]);
-
-			return convertView;
-		}
-
-		@Override
-		public View getHeaderView(int position, View convertView,
-				ViewGroup parent) {
-			HeaderViewHolder holder;
-
-			if (convertView == null) {
-				holder = new HeaderViewHolder();
-				convertView = mInflater.inflate(R.layout.sticky_section_header,
-						parent, false);
-				holder.text = (TextView) convertView.findViewById(R.id.text1);
-				convertView.setTag(holder);
-			} else {
-				holder = (HeaderViewHolder) convertView.getTag();
-			}
-
-			// set header text as first char in name
-			CharSequence headerChar = mCountries[position].subSequence(0, 1);
-			holder.text.setText(headerChar);
-
-			return convertView;
-		}
-
-		/**
-		 * Remember that these have to be static, postion=1 should always return
-		 * the same Id that is.
-		 */
-		@Override
-		public long getHeaderId(int position) {
-			// return the first character of the country as ID because this is
-			// what
-			// headers are based upon
-			return mCountries[position].subSequence(0, 1).charAt(0);
-		}
-
-		@Override
-		public int getPositionForSection(int section) {
-			if (section >= mSectionIndices.length) {
-				section = mSectionIndices.length - 1;
-			} else if (section < 0) {
-				section = 0;
-			}
-			return mSectionIndices[section];
-		}
-
-		@Override
-		public int getSectionForPosition(int position) {
-			for (int i = 0; i < mSectionIndices.length; i++) {
-				if (position < mSectionIndices[i]) {
-					return i - 1;
-				}
-			}
-			return mSectionIndices.length - 1;
-		}
-
-		@Override
-		public Object[] getSections() {
-			return mSectionLetters;
-		}
-
-		public void clear() {
-			mCountries = new String[0];
-			mSectionIndices = new int[0];
-			mSectionLetters = new Character[0];
-			notifyDataSetChanged();
-		}
-
-		public void restore() {
-			mCountries = mContext.getResources().getStringArray(
-					R.array.countries);
-			mSectionIndices = getSectionIndices();
-			mSectionLetters = getSectionLetters();
-			notifyDataSetChanged();
-		}
-
-		class HeaderViewHolder {
-			TextView text;
-		}
-
-		class ViewHolder {
-			TextView text;
-		}
-
 	}
 
 }

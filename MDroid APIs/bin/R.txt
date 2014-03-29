@@ -47,6 +47,7 @@ int layout activity_main 0x7f030000
 int layout activity_moodle_home 0x7f030001
 int layout drawer_list_item 0x7f030002
 int layout sticky_section_header 0x7f030003
+int layout test 0x7f030004
 int menu main 0x7f090000
 int string action_settings 0x7f070001
 int string app_name 0x7f070000
