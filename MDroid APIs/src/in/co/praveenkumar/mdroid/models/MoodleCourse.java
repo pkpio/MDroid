@@ -7,6 +7,7 @@ public class MoodleCourse {
 	private long startdate;
 	private long datecreated;
 	private long datemodified;
+	private String summary;
 
 	public String getId() {
 		return id;
@@ -55,5 +56,14 @@ public class MoodleCourse {
 	public void setDatemodified(long datemodified) {
 		this.datemodified = datemodified;
 	}
+
+	public String getSummary() {
+		return summary;
+	}
+
+	public void setSummary(String summary) {
+		this.summary = summary;
+	}
+	
 
 }
