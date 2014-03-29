@@ -17,10 +17,10 @@ import android.widget.TextView;
 public class StickyListViewAdapter extends BaseAdapter implements
 		StickyListHeadersAdapter, SectionIndexer {
 
-	private ArrayList<String> mDataSet;
+	protected ArrayList<String> mDataSet;
 	private int[] mSectionIndices;
 	private Character[] mSectionLetters;
-	private LayoutInflater mInflater;
+	protected LayoutInflater mInflater;
 	
 	public StickyListViewAdapter(Context context, ArrayList<String> dataSet) {
 		if (dataSet != null) {
@@ -151,8 +151,8 @@ public class StickyListViewAdapter extends BaseAdapter implements
 		TextView text;
 	}
 
-	class ViewHolder {
-		TextView text;
+	public class ViewHolder {
+		public TextView text;
 	}
 
 }
