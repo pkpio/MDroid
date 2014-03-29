@@ -7,13 +7,14 @@ int drawable drawer_shadow 0x7f020000
 int drawable ic_drawer 0x7f020001
 int drawable ic_launcher 0x7f020002
 int drawable nav_drawer_list_view_item_bg 0x7f020003
-int id action_settings 0x7f090006
+int id action_settings 0x7f090007
 int id content_frame 0x7f090001
 int id drawer_layout 0x7f090000
 int id left_drawer 0x7f090003
+int id left_nav_listview 0x7f090004
 int id list 0x7f090002
-int id right_drawer 0x7f090004
-int id text1 0x7f090005
+int id right_drawer 0x7f090005
+int id text1 0x7f090006
 int layout activity_main 0x7f030000
 int layout activity_moodle_home 0x7f030001
 int layout drawer_list_item 0x7f030002

@@ -28,7 +28,7 @@ public class DrawerActivity extends Activity {
 
 		mPlanetTitles = new String[] { "one", "two", "three" };
 		mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-		mDrawerList = (ListView) findViewById(R.id.left_drawer);
+		mDrawerList = (ListView) findViewById(R.id.left_nav_listview);
 
 		// Set the adapter for the list view
 		mDrawerList.setAdapter(new ArrayAdapter<String>(this,
