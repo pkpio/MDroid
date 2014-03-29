@@ -1,9 +1,11 @@
 package in.co.praveeenkumar.mdroid.extenders;
 
+import in.co.praveenkumar.mdroid.apis.R;
+
 import java.util.ArrayList;
 
-import se.emilsjolander.stickylistheaders.R;
 import se.emilsjolander.stickylistheaders.StickyListHeadersAdapter;
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,28 +17,27 @@ import android.widget.TextView;
 public class StickyListViewAdapter extends BaseAdapter implements
 		StickyListHeadersAdapter, SectionIndexer {
 
-	private final Context mContext;
-	private String[] mCountries;
+	private ArrayList<String> mDataSet;
 	private int[] mSectionIndices;
 	private Character[] mSectionLetters;
 	private LayoutInflater mInflater;
-
-	public StickyListViewAdapter(Context context) {
-		mContext = context;
-		mInflater = LayoutInflater.from(context);
-		// mCountries =
-		// context.getResources().getStringArray(R.array.testArray);
-		mSectionIndices = getSectionIndices();
-		mSectionLetters = getSectionLetters();
+	
+	public StickyListViewAdapter(Context context, ArrayList<String> dataSet) {
+		if (dataSet != null) {
+			mDataSet = dataSet;
+			mInflater = LayoutInflater.from(context);
+			mSectionIndices = getSectionIndices();
+			mSectionLetters = getSectionLetters();
+		}
 	}
 
 	private int[] getSectionIndices() {
 		ArrayList<Integer> sectionIndices = new ArrayList<Integer>();
-		char lastFirstChar = mCountries[0].charAt(0);
+		char lastFirstChar = mDataSet.get(0).charAt(0);
 		sectionIndices.add(0);
-		for (int i = 1; i < mCountries.length; i++) {
-			if (mCountries[i].charAt(0) != lastFirstChar) {
-				lastFirstChar = mCountries[i].charAt(0);
+		for (int i = 1; i < mDataSet.size(); i++) {
+			if (mDataSet.get(i).charAt(0) != lastFirstChar) {
+				lastFirstChar = mDataSet.get(i).charAt(0);
 				sectionIndices.add(i);
 			}
 		}
@@ -50,19 +51,19 @@ public class StickyListViewAdapter extends BaseAdapter implements
 	private Character[] getSectionLetters() {
 		Character[] letters = new Character[mSectionIndices.length];
 		for (int i = 0; i < mSectionIndices.length; i++) {
-			letters[i] = mCountries[mSectionIndices[i]].charAt(0);
+			letters[i] = mDataSet.get(mSectionIndices[i]).charAt(0);
 		}
 		return letters;
 	}
 
 	@Override
 	public int getCount() {
-		return mCountries.length;
+		return mDataSet.size();
 	}
 
 	@Override
 	public Object getItem(int position) {
-		return mCountries[position];
+		return mDataSet.get(position);
 	}
 
 	@Override
@@ -76,15 +77,15 @@ public class StickyListViewAdapter extends BaseAdapter implements
 
 		if (convertView == null) {
 			holder = new ViewHolder();
-			// convertView = mInflater.inflate(R.layout.test_list_item_layout,
-			// parent, false);
-			// holder.text = (TextView) convertView.findViewById(R.id.text);
+			convertView = mInflater.inflate(R.layout.drawer_list_item, parent,
+					false);
+			holder.text = (TextView) convertView.findViewById(R.id.text1);
 			convertView.setTag(holder);
 		} else {
 			holder = (ViewHolder) convertView.getTag();
 		}
 
-		holder.text.setText(mCountries[position]);
+		holder.text.setText(mDataSet.get(position));
 
 		return convertView;
 	}
@@ -95,15 +96,16 @@ public class StickyListViewAdapter extends BaseAdapter implements
 
 		if (convertView == null) {
 			holder = new HeaderViewHolder();
-			// convertView = mInflater.inflate(R.layout.header, parent, false);
-			// holder.text = (TextView) convertView.findViewById(R.id.text1);
+			convertView = mInflater.inflate(R.layout.sticky_section_header,
+					parent, false);
+			holder.text = (TextView) convertView.findViewById(R.id.text1);
 			convertView.setTag(holder);
 		} else {
 			holder = (HeaderViewHolder) convertView.getTag();
 		}
 
 		// set header text as first char in name
-		CharSequence headerChar = mCountries[position].subSequence(0, 1);
+		CharSequence headerChar = mDataSet.get(position).subSequence(0, 1);
 		holder.text.setText(headerChar);
 
 		return convertView;
@@ -117,7 +119,7 @@ public class StickyListViewAdapter extends BaseAdapter implements
 	public long getHeaderId(int position) {
 		// return the first character of the country as ID because this is what
 		// headers are based upon
-		return mCountries[position].subSequence(0, 1).charAt(0);
+		return mDataSet.get(position).subSequence(0, 1).charAt(0);
 	}
 
 	@Override
@@ -143,21 +145,6 @@ public class StickyListViewAdapter extends BaseAdapter implements
 	@Override
 	public Object[] getSections() {
 		return mSectionLetters;
-	}
-
-	public void clear() {
-		mCountries = new String[0];
-		mSectionIndices = new int[0];
-		mSectionLetters = new Character[0];
-		notifyDataSetChanged();
-	}
-
-	public void restore() {
-		// mCountries =
-		// mContext.getResources().getStringArray(R.array.countries);
-		mSectionIndices = getSectionIndices();
-		mSectionLetters = getSectionLetters();
-		notifyDataSetChanged();
 	}
 
 	class HeaderViewHolder {

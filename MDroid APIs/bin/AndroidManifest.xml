@@ -17,10 +17,10 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="in.co.praveenkumar.mdroid.activities.MainActivity"
+            android:name="in.co.praveenkumar.mdroid.activities.MoodleHomeActivity"
             android:configChanges="orientation|screenSize"
             android:label="@string/app_name"
-            android:parentActivityName="in.co.praveenkumar.mdroid.activities.MainActivity" >
+            android:parentActivityName="in.co.praveenkumar.mdroid.activities.TestActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -28,7 +28,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="in.co.praveenkumar.mdroid.activities.MoodleHomeActivity"
+            android:name="in.co.praveenkumar.mdroid.activities.MainActivity"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="in.co.praveenkumar.mdroid.activities.TestActivity"
             android:label="@string/app_name" >
         </activity>
     </application>
