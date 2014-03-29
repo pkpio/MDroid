@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:layout_marginTop="10dp"
+    android:layout_marginBottom="10dp"
+    android:layout_marginLeft="5dp"
+    android:layout_marginRight="5dp"
+    android:background="@drawable/card"
+    android:orientation="vertical" >
+
+    <TextView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/text1"
+        android:layout_width="match_parent"
+        android:text="Test course"
+        android:layout_height="match_parent"
+        android:background="@drawable/nav_drawer_list_view_item_bg"
+        android:orientation="vertical"
+        android:padding="8dp"
+        android:textSize="16sp" />
+
+</LinearLayout>
