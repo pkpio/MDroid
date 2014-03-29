@@ -2,6 +2,7 @@ package in.co.praveenkumar.mdroid.activities;
 
 import in.co.praveenkumar.mdroid.apis.R;
 import in.co.praveenkumar.mdroid.helpers.Database;
+import in.co.praveenkumar.mdroid.models.MoodleCourse;
 import in.co.praveenkumar.mdroid.moodlerest.MoodleRestCourseContents;
 import in.co.praveenkumar.mdroid.moodlerest.MoodleRestCourses;
 import in.co.praveenkumar.mdroid.moodlerest.MoodleRestDiscussions;
@@ -50,7 +51,9 @@ public class MainActivity extends Activity {
 
 			MoodleRestCourses mrc = new MoodleRestCourses(
 					getApplicationContext());
-			System.out.println(mrc.getCourses());
+			ArrayList<MoodleCourse> mCourses = mrc.getCourses();
+			if (mCourses != null)
+				Log.d(DEBUG_TAG, mCourses.get(1).getFullname());
 
 			MoodleRestCourseContents mrcc = new MoodleRestCourseContents(
 					getApplicationContext());
