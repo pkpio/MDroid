@@ -1,4 +1,4 @@
-package in.co.praveenkumar.mdroid.helpers;
+package in.co.praveeenkumar.mdroid.extenders;
 
 import in.co.praveenkumar.mdroid.apis.R;
 import android.app.Activity;
