@@ -51,6 +51,7 @@ containing a value of this type.
         public static final int grey_12=0x7f050017;
         public static final int grey_13=0x7f050018;
         public static final int grey_14=0x7f050019;
+        public static final int grey_14_5=0x7f05001a;
         public static final int grey_2=0x7f05000d;
         public static final int grey_3=0x7f05000e;
         public static final int grey_4=0x7f05000f;
@@ -71,6 +72,10 @@ containing a value of this type.
          */
         public static final int activity_horizontal_margin=0x7f060000;
         public static final int activity_vertical_margin=0x7f060001;
+        public static final int course_item_margin_bottom=0x7f060005;
+        public static final int course_item_margin_left=0x7f060002;
+        public static final int course_item_margin_right=0x7f060003;
+        public static final int course_item_margin_top=0x7f060004;
     }
     public static final class drawable {
         public static final int card=0x7f020000;
@@ -78,17 +83,20 @@ containing a value of this type.
         public static final int drawer_shadow=0x7f020002;
         public static final int ic_drawer=0x7f020003;
         public static final int ic_launcher=0x7f020004;
-        public static final int nav_drawer_list_view_item_bg=0x7f020005;
     }
     public static final class id {
-        public static final int action_settings=0x7f0a0008;
+        public static final int action_settings=0x7f0a000c;
         public static final int content_frame=0x7f0a0001;
+        public static final int course_created=0x7f0a0009;
+        public static final int course_longname=0x7f0a0008;
+        public static final int course_modified=0x7f0a000a;
+        public static final int course_shortname=0x7f0a0007;
         public static final int drawer_layout=0x7f0a0000;
         public static final int left_drawer=0x7f0a0003;
         public static final int left_nav_listview=0x7f0a0005;
         public static final int list=0x7f0a0002;
         public static final int right_drawer=0x7f0a0006;
-        public static final int text1=0x7f0a0007;
+        public static final int text1=0x7f0a000b;
         public static final int user_image=0x7f0a0004;
     }
     public static final class layout {

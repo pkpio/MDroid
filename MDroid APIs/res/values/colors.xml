@@ -3,7 +3,7 @@
 
     <color name="white">#ffffff</color>
     <color name="black">#000000</color>
-    <color name="transparent">#AA000000</color>
+    <color name="transparent">#FF000000</color>
     
     <!-- Blue colors -->
     <color name="blue_1">#eaf7fc</color>
@@ -31,5 +31,6 @@
     <color name="grey_12">#CCCCCC</color>
     <color name="grey_13">#DDDDDD</color>
     <color name="grey_14">#EEEEEE</color>
+    <color name="grey_14.5">#E5E5E5</color>
 
 </resources>
