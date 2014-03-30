@@ -14,13 +14,11 @@
             android:id="@+id/list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:clipToPadding="false"
-            android:drawSelectorOnTop="true"
+            android:background="@color/grey_14.5"
             android:dividerHeight="0dp"
+            android:drawSelectorOnTop="true"
             android:fastScrollEnabled="true"
             android:overScrollMode="never"
-            android:background="@color/white"
-            android:padding="8dp"
             android:scrollbarStyle="outsideOverlay" />
     </FrameLayout>
 

@@ -50,7 +50,7 @@ public class MoodleHomeActivity extends HomeDrawerActivity {
 		// Build a string array of course names
 		ArrayList<String> mCourseNames = new ArrayList<String>();
 		for (int i = 0; i < mCourses.size(); i++)
-			mCourseNames.add(mCourses.get(i).getFullname());
+			mCourseNames.add(mCourses.get(i).getShortname());
 
 		// StickyHeader List view
 		myListAdapter = new courseListViewAdapter(this, mCourseNames);
@@ -89,21 +89,20 @@ public class MoodleHomeActivity extends HomeDrawerActivity {
 
 		@Override
 		public View getView(int position, View convertView, ViewGroup parent) {
-			ViewHolder holder;
+			View rowView = mInflater.inflate(R.layout.course_list_item, parent,
+					false);
 
-			if (convertView == null) {
-				holder = new ViewHolder();
-				convertView = mInflater.inflate(R.layout.course_list_item,
-						parent, false);
-				holder.text = (TextView) convertView.findViewById(R.id.text1);
-				convertView.setTag(holder);
-			} else {
-				holder = (ViewHolder) convertView.getTag();
-			}
+			// Get course views
+			final TextView cShortName = (TextView) rowView
+					.findViewById(R.id.course_shortname);
+			final TextView cLongName = (TextView) rowView
+					.findViewById(R.id.course_longname);
 
-			holder.text.setText(mDataSet.get(position));
+			// Set values
+			cShortName.setText(mCourses.get(position).getShortname());
+			cLongName.setText(mCourses.get(position).getFullname());
 
-			return convertView;
+			return rowView;
 		}
 
 	}
@@ -112,7 +111,7 @@ public class MoodleHomeActivity extends HomeDrawerActivity {
 
 		@Override
 		public int compare(MoodleCourse arg0, MoodleCourse arg1) {
-			return arg0.getFullname().compareTo(arg1.getFullname());
+			return arg0.getShortname().compareTo(arg1.getShortname());
 		}
 	}
 
