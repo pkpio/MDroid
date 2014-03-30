@@ -1,7 +1,0 @@
-<selector xmlns:android="http://schemas.android.com/apk/res/android">
-
-    <item android:drawable="@color/grey_11" android:state_pressed="true"/>
-    <item android:drawable="@color/blue_2" android:state_selected="true"/>
-    <item android:drawable="@color/blue_2" android:state_activated="true"/>
-
-</selector>
