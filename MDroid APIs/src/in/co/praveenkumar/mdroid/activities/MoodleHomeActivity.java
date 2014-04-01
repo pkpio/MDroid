@@ -14,10 +14,12 @@ import java.util.Comparator;
 
 import se.emilsjolander.stickylistheaders.StickyListHeadersListView;
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
@@ -102,9 +104,22 @@ public class MoodleHomeActivity extends HomeDrawerActivity {
 			cShortName.setText(mCourses.get(position).getShortname());
 			cLongName.setText(mCourses.get(position).getFullname());
 
+			// set a listener on view
+			rowView.setOnClickListener(new OnClickListener() {
+
+				@Override
+				public void onClick(View v) {
+					openContentIntent();
+				}
+			});
+
 			return rowView;
 		}
+	}
 
+	public void openContentIntent() {
+		Intent i = new Intent(this, CourseContentActivity.class);
+		startActivityForResult(i, 3);
 	}
 
 	public class CustomComparator implements Comparator<MoodleCourse> {
