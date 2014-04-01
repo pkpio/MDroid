@@ -3,6 +3,7 @@ package in.co.praveenkumar.mdriod.parsers;
 import in.co.praveenkumar.mdroid.models.MoodleCourseContent;
 import in.co.praveenkumar.mdroid.models.MoodleCourseModule;
 import in.co.praveenkumar.mdroid.models.MoodleCourseSection;
+import in.co.praveenkumar.mdroid.models.MoodleFile;
 
 import java.util.ArrayList;
 
@@ -12,7 +13,6 @@ import org.json.JSONObject;
 
 public class CourseContentParser {
 	private MoodleCourseContent courseContent;
-	private ArrayList<MoodleCourseSection> sections;
 	private String error;
 
 	// json tags
@@ -25,12 +25,15 @@ public class CourseContentParser {
 	private static final String TAG_URL = "url";
 	private static final String TAG_MOD_NAME = "modname";
 	private static final String TAG_CONTENTS = "contents";
-	private static final String TAG_TYPE = "type";
 	private static final String TAG_FILE_NAME = "filename";
 	private static final String TAG_FILE_SIZE = "filesize";
 	private static final String TAG_FILE_URL = "fileurl";
 	private static final String TAG_FILE_CREATED = "timecreated";
 	private static final String TAG_FILE_MODIFIED = "timemodified";
+	private static final String TAG_FILE_AUTHOR = "author";
+
+	// Expected values in JSON
+	private static final String VALUE_RESOURCE = "resource";
 
 	public CourseContentParser(String json) {
 
@@ -104,8 +107,64 @@ public class CourseContentParser {
 	// Recursively parse Module for Modules ArrayList
 	private ArrayList<MoodleCourseModule> parseModules(JSONArray jModulesArray) {
 		ArrayList<MoodleCourseModule> modules = new ArrayList<MoodleCourseModule>();
+		JSONObject jModuleObj;
 
+		for (int i = 0; i < jModulesArray.length(); i++) {
+			try {
+				jModuleObj = jModulesArray.getJSONObject(i);
+				MoodleCourseModule module = new MoodleCourseModule();
+
+				module.setId(jModuleObj.getString(TAG_ID));
+				module.setUrl(jModuleObj.getString(TAG_URL));
+				module.setName(jModuleObj.getString(TAG_NAME));
+
+				// Is this is a resource? If so, get files. Nothing otherwise.
+				if (jModuleObj.getString(TAG_MOD_NAME).contentEquals(
+						VALUE_RESOURCE))
+					module.setFiles(parseFiles(jModuleObj
+							.getJSONArray(TAG_CONTENTS)));
+
+				modules.add(module);
+			} catch (JSONException e) {
+				error += "\n error parsing sections in course";
+				e.printStackTrace();
+			}
+		}
 		return modules;
+	}
+
+	private ArrayList<MoodleFile> parseFiles(JSONArray jFilesArray) {
+		ArrayList<MoodleFile> files = new ArrayList<MoodleFile>();
+		JSONObject jFileObj;
+
+		for (int i = 0; i < jFilesArray.length(); i++) {
+			try {
+				jFileObj = jFilesArray.getJSONObject(i);
+				MoodleFile file = new MoodleFile();
+
+				file.setFilename(jFileObj.getString(TAG_FILE_NAME));
+				file.setFilesize(jFileObj.getLong(TAG_FILE_SIZE));
+				file.setFileurl(jFileObj.getString(TAG_FILE_URL));
+				file.setTimecreated(jFileObj.getLong(TAG_FILE_CREATED));
+				file.setTimemodified(jFileObj.getLong(TAG_FILE_MODIFIED));
+				file.setAuthor(jFileObj.getString(TAG_FILE_AUTHOR));
+
+				files.add(file);
+			} catch (JSONException e) {
+				error += "\n error parsing files in a module";
+				e.printStackTrace();
+			}
+		}
+
+		return files;
+	}
+
+	public MoodleCourseContent getCourseContents() {
+		return courseContent;
+	}
+
+	public String getError() {
+		return error;
 	}
 
 }
