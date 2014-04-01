@@ -79,33 +79,44 @@ containing a value of this type.
     }
     public static final class drawable {
         public static final int card=0x7f020000;
-        public static final int developer=0x7f020001;
-        public static final int drawer_shadow=0x7f020002;
-        public static final int ic_drawer=0x7f020003;
-        public static final int ic_launcher=0x7f020004;
+        public static final int dashed_line=0x7f020001;
+        public static final int developer=0x7f020002;
+        public static final int drawer_shadow=0x7f020003;
+        public static final int ic_drawer=0x7f020004;
+        public static final int ic_launcher=0x7f020005;
     }
     public static final class id {
-        public static final int action_settings=0x7f0a000c;
-        public static final int content_frame=0x7f0a0001;
-        public static final int course_created=0x7f0a0009;
-        public static final int course_longname=0x7f0a0008;
-        public static final int course_modified=0x7f0a000a;
-        public static final int course_shortname=0x7f0a0007;
-        public static final int drawer_layout=0x7f0a0000;
-        public static final int left_drawer=0x7f0a0003;
-        public static final int left_nav_listview=0x7f0a0005;
-        public static final int list=0x7f0a0002;
-        public static final int right_drawer=0x7f0a0006;
-        public static final int text1=0x7f0a000b;
-        public static final int user_image=0x7f0a0004;
+        public static final int action_settings=0x7f0a0014;
+        public static final int content_frame=0x7f0a0002;
+        public static final int course_content_list=0x7f0a0000;
+        public static final int course_created=0x7f0a0010;
+        public static final int course_file_layout=0x7f0a0009;
+        public static final int course_filename=0x7f0a000a;
+        public static final int course_filesize=0x7f0a000b;
+        public static final int course_longname=0x7f0a000f;
+        public static final int course_modified=0x7f0a0011;
+        public static final int course_module_description=0x7f0a000d;
+        public static final int course_module_name=0x7f0a0008;
+        public static final int course_shortname=0x7f0a000e;
+        public static final int course_timemodified=0x7f0a000c;
+        public static final int drawer_layout=0x7f0a0001;
+        public static final int left_drawer=0x7f0a0004;
+        public static final int left_nav_listview=0x7f0a0006;
+        public static final int list=0x7f0a0013;
+        public static final int moodle_home_list=0x7f0a0003;
+        public static final int right_drawer=0x7f0a0007;
+        public static final int text1=0x7f0a0012;
+        public static final int user_image=0x7f0a0005;
     }
     public static final class layout {
-        public static final int activity_main=0x7f030000;
-        public static final int activity_moodle_home=0x7f030001;
-        public static final int course_list_item=0x7f030002;
-        public static final int drawer_list_item=0x7f030003;
-        public static final int sticky_section_header=0x7f030004;
-        public static final int test=0x7f030005;
+        public static final int activity_course_content=0x7f030000;
+        public static final int activity_main=0x7f030001;
+        public static final int activity_moodle_home=0x7f030002;
+        public static final int course_content_list_item=0x7f030003;
+        public static final int course_list_item=0x7f030004;
+        public static final int drawer_list_item=0x7f030005;
+        public static final int sticky_section_header=0x7f030006;
+        public static final int test=0x7f030007;
     }
     public static final class menu {
         public static final int main=0x7f090000;
