@@ -3,7 +3,9 @@ package in.co.praveenkumar.mdroid.moodlerest;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
+import in.co.praveenkumar.mdriod.parsers.CourseContentParser;
 import in.co.praveenkumar.mdroid.helpers.Database;
+import in.co.praveenkumar.mdroid.models.MoodleCourseContent;
 import android.content.Context;
 import android.util.Log;
 
@@ -12,6 +14,7 @@ public class MoodleRestCourseContents {
 	private String mUrl;
 	private String token;
 	private Database db;
+	private String error;
 
 	public MoodleRestCourseContents(Context context) {
 		db = new Database(context);
@@ -19,7 +22,8 @@ public class MoodleRestCourseContents {
 		token = db.getToken();
 	}
 
-	public void getCourseContent(String courseId) {
+	public MoodleCourseContent getCourseContent(String courseId) {
+		MoodleCourseContent mCourseContent = new MoodleCourseContent();
 		String format = MoodleRestOptions.RESPONSE_FORMAT;
 		String function = MoodleRestOptions.FUNCTION_GET_COURSE_CONTENTS;
 
@@ -34,10 +38,20 @@ public class MoodleRestCourseContents {
 
 			// Fetch content now.
 			MoodleRestCall mrc = new MoodleRestCall();
-			System.out.println(mrc.fetchContent(restUrl, params));
+			CourseContentParser ccp = new CourseContentParser(mrc.fetchContent(
+					restUrl, params));
+			mCourseContent = ccp.getCourseContents();
+			error = ccp.getError();
+
 		} catch (UnsupportedEncodingException e) {
 			Log.d(DEBUG_TAG, "URL encoding failed");
 			e.printStackTrace();
 		}
+
+		return mCourseContent;
+	}
+
+	public String getError() {
+		return error;
 	}
 }
