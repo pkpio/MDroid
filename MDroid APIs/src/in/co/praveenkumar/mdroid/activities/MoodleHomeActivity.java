@@ -41,7 +41,7 @@ public class MoodleHomeActivity extends HomeDrawerActivity {
 
 	private void listCoursesInListView() {
 		StickyListHeadersListView listview;
-		listview = (StickyListHeadersListView) findViewById(R.id.list);
+		listview = (StickyListHeadersListView) findViewById(R.id.moodle_home_list);
 		listview.setAreHeadersSticky(true);
 
 		// Sort course objects
