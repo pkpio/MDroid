@@ -20,21 +20,23 @@ public class CourseContentActivity extends DrawerActivity {
 	private final String DEBUG_TAG = "CourseContentActivity";
 	private MoodleCourseContent mCourseContent;
 	private ArrayList<MoodleCourseModule> mModules = new ArrayList<MoodleCourseModule>();
+	private ArrayList<String> sectionHeaders = new ArrayList<String>();
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		setContentView(R.layout.activity_course_content);
 		super.onCreate(savedInstanceState);
+		new AsyncContentFetch().execute("");
 	}
 
-	private void listCoursesInListView() {
+	private void listContentInListView() {
 		StickyListHeadersListView listview;
 		listview = (StickyListHeadersListView) findViewById(R.id.course_content_list);
 		listview.setAreHeadersSticky(true);
 
 	}
 
-	private class asyncCourseFetch extends AsyncTask<String, Integer, Long> {
+	private class AsyncContentFetch extends AsyncTask<String, Integer, Long> {
 
 		protected Long doInBackground(String... credentials) {
 			MoodleRestCourseContents mrcc = new MoodleRestCourseContents(
@@ -45,13 +47,13 @@ public class CourseContentActivity extends DrawerActivity {
 		}
 
 		protected void onPostExecute(Long result) {
-
+			listContentInListView();
 		}
 	}
 
-	private class courseListViewAdapter extends StickyListViewAdapter {
+	private class contentListViewAdapter extends StickyListViewAdapter {
 
-		public courseListViewAdapter(Context context, ArrayList<String> dataSet) {
+		public contentListViewAdapter(Context context, ArrayList<String> dataSet) {
 			super(context, dataSet);
 			// TODO Auto-generated constructor stub
 		}

@@ -37,7 +37,7 @@ public class MoodleHomeActivity extends HomeDrawerActivity {
 		Database db = new Database(this);
 		db.setToken("9bd96dc343e76a041729aa3e602de8c4");
 		db.setmUrl("http://moodle.praveenkumar.co.in/");
-		new asyncCourseFetch().execute("");
+		new AsyncCourseFetch().execute("");
 
 	}
 
@@ -59,7 +59,7 @@ public class MoodleHomeActivity extends HomeDrawerActivity {
 		listview.setAdapter(myListAdapter);
 	}
 
-	private class asyncCourseFetch extends AsyncTask<String, Integer, Long> {
+	private class AsyncCourseFetch extends AsyncTask<String, Integer, Long> {
 
 		protected Long doInBackground(String... credentials) {
 			MoodleToken mt = new MoodleToken("praveendath92", "praveen92",
