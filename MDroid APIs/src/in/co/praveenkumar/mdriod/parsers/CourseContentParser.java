@@ -90,11 +90,14 @@ public class CourseContentParser {
 				MoodleCourseSection section = new MoodleCourseSection();
 
 				section.setId(jSectionObj.getString(TAG_ID));
+				section.setName(jSectionObj.getString(TAG_NAME));
 				section.setSummary(jSectionObj.getString(TAG_SUMMARY));
 				section.setSummaryformat(jSectionObj
 						.getString(TAG_SUMMARY_FORMAT));
-				section.setModules(parseModules(jSectionObj
-						.getJSONArray(TAG_MODULES)));
+				section.setModules(parseModules(
+						jSectionObj.getJSONArray(TAG_MODULES),
+						jSectionObj.getString(TAG_ID),
+						jSectionObj.getString(TAG_NAME)));
 
 				courseContent.addSection(section);
 			} catch (JSONException e) {
@@ -105,7 +108,8 @@ public class CourseContentParser {
 	}
 
 	// Recursively parse Module for Modules ArrayList
-	private ArrayList<MoodleCourseModule> parseModules(JSONArray jModulesArray) {
+	private ArrayList<MoodleCourseModule> parseModules(JSONArray jModulesArray,
+			String sectionid, String sectionname) {
 		ArrayList<MoodleCourseModule> modules = new ArrayList<MoodleCourseModule>();
 		JSONObject jModuleObj;
 
@@ -117,6 +121,8 @@ public class CourseContentParser {
 				module.setId(jModuleObj.getString(TAG_ID));
 				module.setUrl(jModuleObj.getString(TAG_URL));
 				module.setName(jModuleObj.getString(TAG_NAME));
+				module.setSectionid(sectionid);
+				module.setSectionname(sectionname);
 
 				// Is this is a resource? If so, get files. Nothing otherwise.
 				if (jModuleObj.getString(TAG_MOD_NAME).contentEquals(
