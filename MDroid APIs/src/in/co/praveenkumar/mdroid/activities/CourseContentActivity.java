@@ -3,6 +3,9 @@ package in.co.praveenkumar.mdroid.activities;
 import in.co.praveeenkumar.mdroid.extenders.DrawerActivity;
 import in.co.praveeenkumar.mdroid.extenders.StickyListViewAdapter;
 import in.co.praveenkumar.mdroid.apis.R;
+import in.co.praveenkumar.mdroid.models.MoodleCourseContent;
+import in.co.praveenkumar.mdroid.models.MoodleCourseModule;
+import in.co.praveenkumar.mdroid.moodlerest.MoodleRestCourseContents;
 
 import java.util.ArrayList;
 
@@ -14,6 +17,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 public class CourseContentActivity extends DrawerActivity {
+	private final String DEBUG_TAG = "CourseContentActivity";
+	private MoodleCourseContent mCourseContent;
+	private ArrayList<MoodleCourseModule> mModules = new ArrayList<MoodleCourseModule>();
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -31,7 +37,9 @@ public class CourseContentActivity extends DrawerActivity {
 	private class asyncCourseFetch extends AsyncTask<String, Integer, Long> {
 
 		protected Long doInBackground(String... credentials) {
-
+			MoodleRestCourseContents mrcc = new MoodleRestCourseContents(
+					getApplicationContext());
+			mCourseContent = mrcc.getCourseContent("2");
 			return null;
 
 		}
