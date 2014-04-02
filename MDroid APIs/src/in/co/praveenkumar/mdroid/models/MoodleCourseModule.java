@@ -8,6 +8,8 @@ public class MoodleCourseModule {
 	String url;
 	String modname;
 	ArrayList<MoodleFile> files;
+	String sectionid;
+	String sectionname;
 
 	public String getId() {
 		return id;
@@ -47,6 +49,22 @@ public class MoodleCourseModule {
 
 	public void setFiles(ArrayList<MoodleFile> files) {
 		this.files = files;
+	}
+
+	public String getSectionid() {
+		return sectionid;
+	}
+
+	public void setSectionid(String sectionid) {
+		this.sectionid = sectionid;
+	}
+
+	public String getSectionname() {
+		return sectionname;
+	}
+
+	public void setSectionname(String sectionname) {
+		this.sectionname = sectionname;
 	}
 
 }
