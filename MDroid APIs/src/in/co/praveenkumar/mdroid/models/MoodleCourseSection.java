@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class MoodleCourseSection {
 	String id;
+	String name;
 	String summary;
 	String summaryformat;
 	ArrayList<MoodleCourseModule> modules;
@@ -38,6 +39,14 @@ public class MoodleCourseSection {
 
 	public void setModules(ArrayList<MoodleCourseModule> modules) {
 		this.modules = modules;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 }
