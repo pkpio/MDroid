@@ -24,6 +24,7 @@ public class CourseContentParser {
 	private static final String TAG_MODULES = "modules";
 	private static final String TAG_URL = "url";
 	private static final String TAG_MOD_NAME = "modname";
+	private static final String TAG_DESCRIPTION = "description";
 	private static final String TAG_CONTENTS = "contents";
 	private static final String TAG_FILE_NAME = "filename";
 	private static final String TAG_FILE_SIZE = "filesize";
@@ -123,6 +124,10 @@ public class CourseContentParser {
 				module.setName(jModuleObj.getString(TAG_NAME));
 				module.setSectionid(sectionid);
 				module.setSectionname(sectionname);
+
+				// Module may or may not have a description
+				if (jModuleObj.has(TAG_DESCRIPTION))
+					module.setDescription(jModuleObj.getString(TAG_DESCRIPTION));
 
 				// Is this is a resource? If so, get files. Nothing otherwise.
 				if (jModuleObj.getString(TAG_MOD_NAME).contentEquals(
