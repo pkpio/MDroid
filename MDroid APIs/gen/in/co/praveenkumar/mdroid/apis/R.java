@@ -91,6 +91,7 @@ containing a value of this type.
         public static final int course_content_list=0x7f0a0002;
         public static final int course_created=0x7f0a0010;
         public static final int course_file_layout=0x7f0a0009;
+        public static final int course_file_timemodified=0x7f0a000c;
         public static final int course_filename=0x7f0a000a;
         public static final int course_filesize=0x7f0a000b;
         public static final int course_longname=0x7f0a000f;
@@ -98,7 +99,6 @@ containing a value of this type.
         public static final int course_module_description=0x7f0a000d;
         public static final int course_module_name=0x7f0a0008;
         public static final int course_shortname=0x7f0a000e;
-        public static final int course_timemodified=0x7f0a000c;
         public static final int drawer_layout=0x7f0a0000;
         public static final int left_drawer=0x7f0a0003;
         public static final int left_nav_listview=0x7f0a0005;
