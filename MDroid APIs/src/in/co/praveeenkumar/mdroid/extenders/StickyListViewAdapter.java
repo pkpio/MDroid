@@ -18,8 +18,8 @@ public class StickyListViewAdapter extends BaseAdapter implements
 		StickyListHeadersAdapter, SectionIndexer {
 
 	protected ArrayList<String> mDataSet;
-	private int[] mSectionIndices;
-	private Character[] mSectionLetters;
+	protected int[] mSectionIndices;
+	protected Character[] mSectionLetters;
 	protected LayoutInflater mInflater;
 	
 	public StickyListViewAdapter(Context context, ArrayList<String> dataSet) {
