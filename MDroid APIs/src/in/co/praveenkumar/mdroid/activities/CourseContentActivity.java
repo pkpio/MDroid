@@ -17,6 +17,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class CourseContentActivity extends DrawerActivity {
@@ -81,6 +82,24 @@ public class CourseContentActivity extends DrawerActivity {
 		public View getView(int position, View convertView, ViewGroup parent) {
 			View rowView = mInflater.inflate(R.layout.course_content_list_item,
 					parent, false);
+
+			// Get all views
+			TextView modNameView = (TextView) rowView
+					.findViewById(R.id.course_module_name);
+			TextView modDescView = (TextView) rowView
+					.findViewById(R.id.course_module_description);
+			LinearLayout fileLayout = (LinearLayout) rowView
+					.findViewById(R.id.course_file_layout);
+			TextView fileNameView = (TextView) rowView
+					.findViewById(R.id.course_filename);
+			TextView fileTimeView = (TextView) rowView
+					.findViewById(R.id.course_file_timemodified);
+			TextView fileSizeView = (TextView) rowView
+					.findViewById(R.id.course_filesize);
+
+			// Set values
+			modNameView.setText(mModules.get(position).getName());
+			modDescView.setText(mModules.get(position).getDescription());
 
 			return rowView;
 		}
