@@ -3,7 +3,7 @@ package in.co.praveenkumar.mdroid.models;
 import java.util.ArrayList;
 
 public class MoodleCourseContent {
-	ArrayList<MoodleCourseSection> sections;
+	ArrayList<MoodleCourseSection> sections = new ArrayList<MoodleCourseSection>();
 
 	public ArrayList<MoodleCourseSection> getSections() {
 		return sections;
