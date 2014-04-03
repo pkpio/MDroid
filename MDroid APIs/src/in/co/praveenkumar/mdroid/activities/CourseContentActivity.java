@@ -101,6 +101,20 @@ public class CourseContentActivity extends DrawerActivity {
 			modNameView.setText(mModules.get(position).getName());
 			modDescView.setText(mModules.get(position).getDescription());
 
+			// Set file details if it has any
+			if (mModules.get(position).getHasFiles()) {
+				fileNameView.setText(mModules.get(position).getFiles().get(0)
+						.getFilename());
+				fileSizeView.setText(mModules.get(position).getFiles().get(0)
+						.getFilesize()
+						+ "");
+				fileTimeView.setText(mModules.get(position).getFiles().get(0)
+						.getFilesize()
+						+ "");
+			} else {
+				fileLayout.setVisibility(LinearLayout.GONE);
+			}
+
 			return rowView;
 		}
 
