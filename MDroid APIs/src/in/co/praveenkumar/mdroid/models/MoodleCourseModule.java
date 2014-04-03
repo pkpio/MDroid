@@ -11,6 +11,7 @@ public class MoodleCourseModule {
 	String sectionid;
 	String sectionname;
 	String description;
+	Boolean hasFiles;
 
 	public String getId() {
 		return id;
@@ -74,6 +75,14 @@ public class MoodleCourseModule {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public Boolean getHasFiles() {
+		return hasFiles;
+	}
+
+	public void setHasFiles(Boolean hasFiles) {
+		this.hasFiles = hasFiles;
 	}
 
 }
