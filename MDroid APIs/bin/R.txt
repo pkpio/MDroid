@@ -35,11 +35,12 @@ int dimen course_item_margin_left 0x7f060002
 int dimen course_item_margin_right 0x7f060003
 int dimen course_item_margin_top 0x7f060004
 int drawable card 0x7f020000
-int drawable dashed_line 0x7f020001
-int drawable developer 0x7f020002
-int drawable drawer_shadow 0x7f020003
-int drawable ic_drawer 0x7f020004
-int drawable ic_launcher 0x7f020005
+int drawable content_file_bg 0x7f020001
+int drawable dashed_line 0x7f020002
+int drawable developer 0x7f020003
+int drawable drawer_shadow 0x7f020004
+int drawable ic_drawer 0x7f020005
+int drawable ic_launcher 0x7f020006
 int id action_settings 0x7f0a0014
 int id content_frame 0x7f0a0001
 int id course_content_list 0x7f0a0002

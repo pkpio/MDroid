@@ -30,8 +30,10 @@
             android:id="@+id/course_file_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/content_file_bg"
             android:orientation="vertical"
-            android:paddingBottom="5dp"
+            android:paddingBottom="0dp"
+            android:layout_marginBottom="5dp"
             android:paddingLeft="5dp"
             android:paddingRight="5dp" >
 
@@ -103,8 +105,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="5dp"
-            android:textColor="@color/grey_5"
             android:text="File description goes on here. It goes on and on and on. It goes on and on and on. It goes on and on and on. It goes on and on and on. It goes on and on and on. It goes on and on and on. It goes on and on and on. It goes on and on and on. It goes on and on and on. It goes on and on and on. It goes on and on and on. It goes on and on and on. It goes on and on and on."
+            android:textColor="@color/grey_5"
             android:textSize="13sp" />
     </LinearLayout>
 
