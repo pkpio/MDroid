@@ -131,9 +131,11 @@ public class CourseContentParser {
 
 				// Is this is a resource? If so, get files. Nothing otherwise.
 				if (jModuleObj.getString(TAG_MOD_NAME).contentEquals(
-						VALUE_RESOURCE))
+						VALUE_RESOURCE)) {
+					module.setHasFiles(true);
 					module.setFiles(parseFiles(jModuleObj
 							.getJSONArray(TAG_CONTENTS)));
+				}
 
 				modules.add(module);
 			} catch (JSONException e) {
