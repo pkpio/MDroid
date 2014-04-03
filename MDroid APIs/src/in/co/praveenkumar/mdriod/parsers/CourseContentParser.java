@@ -12,7 +12,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class CourseContentParser {
-	private MoodleCourseContent courseContent;
+	private MoodleCourseContent courseContent = new MoodleCourseContent();
 	private String error;
 
 	// json tags
