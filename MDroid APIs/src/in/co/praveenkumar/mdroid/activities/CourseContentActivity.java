@@ -17,6 +17,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 public class CourseContentActivity extends DrawerActivity {
 	private final String DEBUG_TAG = "CourseContentActivity";
@@ -74,7 +75,6 @@ public class CourseContentActivity extends DrawerActivity {
 
 		public contentListViewAdapter(Context context, ArrayList<String> dataSet) {
 			super(context, dataSet);
-			// TODO Auto-generated constructor stub
 		}
 
 		@Override
@@ -84,6 +84,24 @@ public class CourseContentActivity extends DrawerActivity {
 
 			return rowView;
 		}
+
+		@Override
+		public View getHeaderView(int position, View convertView,
+				ViewGroup parent) {
+			View rowView = mInflater.inflate(R.layout.sticky_section_header,
+					parent, false);
+			TextView secNameView = (TextView) rowView.findViewById(R.id.text1);
+			secNameView.setText(mModules.get(position).getSectionname());
+
+			return rowView;
+		}
+
+		@Override
+		public long getHeaderId(int position) {
+			// This needs to be unique or else the sections will be merged
+			return Long.parseLong(mModules.get(position).getSectionid(), 10);
+		}
+
 	}
 
 }
