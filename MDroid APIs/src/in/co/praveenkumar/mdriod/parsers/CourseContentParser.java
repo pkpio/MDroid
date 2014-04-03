@@ -135,6 +135,8 @@ public class CourseContentParser {
 					module.setHasFiles(true);
 					module.setFiles(parseFiles(jModuleObj
 							.getJSONArray(TAG_CONTENTS)));
+				} else {
+					module.setHasFiles(false);
 				}
 
 				modules.add(module);
