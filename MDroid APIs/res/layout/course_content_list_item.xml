@@ -77,7 +77,7 @@
                 <!-- File modified -->
 
                 <TextView
-                    android:id="@+id/course_timemodified"
+                    android:id="@+id/course_file_timemodified"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.5"
