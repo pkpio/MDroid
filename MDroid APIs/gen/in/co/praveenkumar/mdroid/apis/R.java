@@ -60,6 +60,17 @@ containing a value of this type.
         public static final int grey_7=0x7f050012;
         public static final int grey_8=0x7f050013;
         public static final int grey_9=0x7f050014;
+        /**  Red colors 
+         */
+        public static final int red_1=0x7f05001b;
+        public static final int red_15=0x7f050022;
+        public static final int red_16=0x7f050023;
+        public static final int red_2=0x7f05001c;
+        public static final int red_3=0x7f05001d;
+        public static final int red_4=0x7f05001e;
+        public static final int red_5=0x7f05001f;
+        public static final int red_6=0x7f050020;
+        public static final int red_7=0x7f050021;
         public static final int transparent=0x7f050002;
         public static final int white=0x7f050000;
     }
@@ -85,9 +96,11 @@ containing a value of this type.
         public static final int drawer_shadow=0x7f020004;
         public static final int ic_drawer=0x7f020005;
         public static final int ic_launcher=0x7f020006;
+        public static final int trapizodal_button_blue_bg=0x7f020007;
+        public static final int trapizodal_button_red_bg=0x7f020008;
     }
     public static final class id {
-        public static final int action_settings=0x7f0a0014;
+        public static final int action_settings=0x7f0a0013;
         public static final int content_frame=0x7f0a0001;
         public static final int course_content_list=0x7f0a0002;
         public static final int course_created=0x7f0a0010;
@@ -103,7 +116,6 @@ containing a value of this type.
         public static final int drawer_layout=0x7f0a0000;
         public static final int left_drawer=0x7f0a0003;
         public static final int left_nav_listview=0x7f0a0005;
-        public static final int list=0x7f0a0013;
         public static final int moodle_home_list=0x7f0a0007;
         public static final int right_drawer=0x7f0a0006;
         public static final int text1=0x7f0a0012;
