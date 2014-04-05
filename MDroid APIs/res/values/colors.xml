@@ -3,7 +3,7 @@
 
     <color name="white">#ffffff</color>
     <color name="black">#000000</color>
-    <color name="transparent">#FF000000</color>
+    <color name="transparent">#00000000</color>
     
     <!-- Blue colors -->
     <color name="blue_1">#eaf7fc</color>
