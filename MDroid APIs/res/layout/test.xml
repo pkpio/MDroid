@@ -4,11 +4,11 @@
     android:gravity="center" >
 
     <FrameLayout
-        android:layout_width="300dp"
+        android:layout_width="302dp"
         android:layout_height="wrap_content" >
 
         <Button
-            android:layout_width="160dp"
+            android:layout_width="150dp"
             android:layout_height="35dp"
             android:layout_gravity="left"
             android:layout_marginTop="25dp"
@@ -16,7 +16,7 @@
             android:rotation="180" />
 
         <Button
-            android:layout_width="160dp"
+            android:layout_width="150dp"
             android:layout_height="35dp"
             android:layout_gravity="right"
             android:layout_marginTop="25dp"
