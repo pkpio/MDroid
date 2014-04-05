@@ -26,6 +26,15 @@ int color grey_6 0x7f050011
 int color grey_7 0x7f050012
 int color grey_8 0x7f050013
 int color grey_9 0x7f050014
+int color red_1 0x7f05001b
+int color red_15 0x7f050022
+int color red_16 0x7f050023
+int color red_2 0x7f05001c
+int color red_3 0x7f05001d
+int color red_4 0x7f05001e
+int color red_5 0x7f05001f
+int color red_6 0x7f050020
+int color red_7 0x7f050021
 int color transparent 0x7f050002
 int color white 0x7f050000
 int dimen activity_horizontal_margin 0x7f060000
@@ -41,7 +50,9 @@ int drawable developer 0x7f020003
 int drawable drawer_shadow 0x7f020004
 int drawable ic_drawer 0x7f020005
 int drawable ic_launcher 0x7f020006
-int id action_settings 0x7f0a0014
+int drawable trapizodal_button_blue_bg 0x7f020007
+int drawable trapizodal_button_red_bg 0x7f020008
+int id action_settings 0x7f0a0013
 int id content_frame 0x7f0a0001
 int id course_content_list 0x7f0a0002
 int id course_created 0x7f0a0010
@@ -57,7 +68,6 @@ int id course_shortname 0x7f0a000e
 int id drawer_layout 0x7f0a0000
 int id left_drawer 0x7f0a0003
 int id left_nav_listview 0x7f0a0005
-int id list 0x7f0a0013
 int id moodle_home_list 0x7f0a0007
 int id right_drawer 0x7f0a0006
 int id text1 0x7f0a0012
