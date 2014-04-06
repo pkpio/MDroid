@@ -98,6 +98,8 @@ containing a value of this type.
         public static final int ic_launcher=0x7f020006;
         public static final int trapizodal_button_blue_bg=0x7f020007;
         public static final int trapizodal_button_red_bg=0x7f020008;
+        public static final int two_rounder_corners_blue=0x7f020009;
+        public static final int two_rounder_corners_green=0x7f02000a;
     }
     public static final class id {
         public static final int action_settings=0x7f0a0013;
