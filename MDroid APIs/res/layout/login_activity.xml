@@ -28,10 +28,10 @@
                 android:layout_weight="1"
                 android:background="@drawable/normal_login_btn_bg"
                 android:gravity="center"
+                android:onClick="setToNormal"
                 android:text="Normal"
                 android:textColor="@color/white"
-                android:textSize="16sp"
-                android:onClick="setToNormal" />
+                android:textSize="16sp" />
 
             <Button
                 android:id="@+id/switch_paranoid"
@@ -40,10 +40,10 @@
                 android:layout_weight="1"
                 android:background="@drawable/paranoid_login_btn_bg"
                 android:gravity="center"
+                android:onClick="setToParanoid"
                 android:text="Paranoid"
                 android:textColor="@color/white"
-                android:textSize="16sp"
-                android:onClick="setToParanoid" />
+                android:textSize="16sp" />
         </LinearLayout>
 
         <!-- Normal login -->
@@ -54,12 +54,11 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="1dp"
             android:layout_marginRight="1dp"
-            android:layout_marginTop="45dp"
+            android:layout_marginTop="50dp"
             android:background="@color/white"
             android:gravity="center_horizontal"
             android:orientation="vertical"
-            android:paddingTop="15dp"
-            android:visibility="gone" >
+            android:paddingTop="15dp" >
 
             <EditText
                 android:id="@+id/norm_url"
@@ -124,10 +123,11 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="1dp"
             android:layout_marginRight="1dp"
-            android:layout_marginTop="45dp"
+            android:layout_marginTop="50dp"
             android:gravity="center_horizontal"
             android:orientation="vertical"
-            android:paddingTop="15dp" >
+            android:paddingTop="15dp"
+            android:visibility="gone" >
 
             <EditText
                 android:id="@+id/para_url"
