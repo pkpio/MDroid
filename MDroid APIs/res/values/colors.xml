@@ -34,14 +34,20 @@
     <color name="grey_14.5">#E5E5E5</color>
     
     <!-- Red colors -->
-    <color name="red_1">#110000</color>
-    <color name="red_2">#220000</color>
-    <color name="red_3">#330000</color>
-    <color name="red_4">#440000</color>
-    <color name="red_5">#550000</color>
-    <color name="red_6">#660000</color>
-    <color name="red_7">#770000</color>
-    <color name="red_15">#EE0000</color>
-    <color name="red_16">#FF0000</color>
+    <color name="red_0">#ff0000</color>
+    <color name="red_1">#ff1111</color>
+    <color name="red_2">#ff2222</color>
+    <color name="red_3">#ff3333</color>
+    <color name="red_4">#ff4444</color>
+    <color name="red_5">#ff5555</color>
+    <color name="red_6">#ff6666</color>
+    <color name="red_7">#ff7777</color>
+    <color name="red_8">#ff8888</color>
+    <color name="red_9">#ff9999</color>
+    <color name="red_10">#ffaaaa</color>
+    <color name="red_11">#ffbbbb</color>
+    <color name="red_12">#ffcccc</color>
+    <color name="red_13">#ffdddd</color>
+    <color name="red_14">#ffeeee</color>
 
 </resources>

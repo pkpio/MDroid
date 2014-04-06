@@ -62,15 +62,21 @@ containing a value of this type.
         public static final int grey_9=0x7f050014;
         /**  Red colors 
          */
-        public static final int red_1=0x7f05001b;
-        public static final int red_15=0x7f050022;
-        public static final int red_16=0x7f050023;
-        public static final int red_2=0x7f05001c;
-        public static final int red_3=0x7f05001d;
-        public static final int red_4=0x7f05001e;
-        public static final int red_5=0x7f05001f;
-        public static final int red_6=0x7f050020;
-        public static final int red_7=0x7f050021;
+        public static final int red_0=0x7f05001b;
+        public static final int red_1=0x7f05001c;
+        public static final int red_10=0x7f050025;
+        public static final int red_11=0x7f050026;
+        public static final int red_12=0x7f050027;
+        public static final int red_13=0x7f050028;
+        public static final int red_14=0x7f050029;
+        public static final int red_2=0x7f05001d;
+        public static final int red_3=0x7f05001e;
+        public static final int red_4=0x7f05001f;
+        public static final int red_5=0x7f050020;
+        public static final int red_6=0x7f050021;
+        public static final int red_7=0x7f050022;
+        public static final int red_8=0x7f050023;
+        public static final int red_9=0x7f050024;
         public static final int transparent=0x7f050002;
         public static final int white=0x7f050000;
     }
@@ -96,10 +102,10 @@ containing a value of this type.
         public static final int drawer_shadow=0x7f020004;
         public static final int ic_drawer=0x7f020005;
         public static final int ic_launcher=0x7f020006;
-        public static final int trapizodal_button_blue_bg=0x7f020007;
-        public static final int trapizodal_button_red_bg=0x7f020008;
-        public static final int two_rounder_corners_blue=0x7f020009;
-        public static final int two_rounder_corners_green=0x7f02000a;
+        public static final int normal_login_btn_bg=0x7f020007;
+        public static final int paranoid_login_btn_bg=0x7f020008;
+        public static final int trapizodal_button_blue_bg=0x7f020009;
+        public static final int trapizodal_button_red_bg=0x7f02000a;
     }
     public static final class id {
         public static final int action_settings=0x7f0a0013;
