@@ -4,7 +4,7 @@
     <color name="white">#ffffff</color>
     <color name="black">#000000</color>
     <color name="transparent">#00000000</color>
-    
+
     <!-- Blue colors -->
     <color name="blue_1">#eaf7fc</color>
     <color name="blue_2">#c1e8f7</color>
@@ -15,7 +15,7 @@
     <color name="blue_7">#2890b7</color>
     <color name="blue_8">#1e6c89</color>
     <color name="blue_9">#14485b</color>
-    
+
     <!-- Grey colors -->
     <color name="grey_1">#111111</color>
     <color name="grey_2">#222222</color>
@@ -32,7 +32,7 @@
     <color name="grey_13">#DDDDDD</color>
     <color name="grey_14">#EEEEEE</color>
     <color name="grey_14.5">#E5E5E5</color>
-    
+
     <!-- Red colors -->
     <color name="red_0">#ff0000</color>
     <color name="red_1">#ff1111</color>
@@ -49,5 +49,9 @@
     <color name="red_12">#ffcccc</color>
     <color name="red_13">#ffdddd</color>
     <color name="red_14">#ffeeee</color>
+
+    <!-- Orange colors -->
+    <color name="orange_1">#ED7A31</color>
+    <color name="orange_2">#F89D3C</color>
 
 </resources>
