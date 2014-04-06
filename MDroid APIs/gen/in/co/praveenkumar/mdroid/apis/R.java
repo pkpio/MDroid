@@ -9,9 +9,49 @@ package in.co.praveenkumar.mdroid.apis;
 
 public final class R {
     public static final class array {
-        public static final int countries=0x7f040000;
+        public static final int countries=0x7f060000;
     }
     public static final class attr {
+        /** <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int classType=0x7f010006;
+        /** <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int customFormat=0x7f010004;
+        /** <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int customRegexp=0x7f010003;
+        /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int emptyAllowed=0x7f010005;
+        /** <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int emptyErrorString=0x7f010002;
         /**  StickyListHeaders attributes 
          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
 <p>This may also be a reference to a resource (in the form
@@ -20,7 +60,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
-        public static final int hasStickyHeaders=0x7f010000;
+        public static final int hasStickyHeaders=0x7f010007;
         /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
 <p>This may also be a reference to a resource (in the form
 "<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
@@ -28,61 +68,93 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
-        public static final int isDrawingListUnderStickyHeader=0x7f010001;
+        public static final int isDrawingListUnderStickyHeader=0x7f010008;
+        /** <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int testErrorString=0x7f010001;
+        /** <p>Must be one of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>regexp</code></td><td>0</td><td></td></tr>
+<tr><td><code>numeric</code></td><td>1</td><td></td></tr>
+<tr><td><code>alpha</code></td><td>2</td><td></td></tr>
+<tr><td><code>alphaNumeric</code></td><td>3</td><td></td></tr>
+<tr><td><code>email</code></td><td>4</td><td></td></tr>
+<tr><td><code>creditCard</code></td><td>5</td><td></td></tr>
+<tr><td><code>phone</code></td><td>6</td><td></td></tr>
+<tr><td><code>domainName</code></td><td>7</td><td></td></tr>
+<tr><td><code>ipAddress</code></td><td>8</td><td></td></tr>
+<tr><td><code>webUrl</code></td><td>9</td><td></td></tr>
+<tr><td><code>nocheck</code></td><td>10</td><td></td></tr>
+<tr><td><code>custom</code></td><td>11</td><td></td></tr>
+<tr><td><code>personName</code></td><td>12</td><td></td></tr>
+<tr><td><code>personFullName</code></td><td>13</td><td></td></tr>
+<tr><td><code>date</code></td><td>14</td><td></td></tr>
+</table>
+         */
+        public static final int testType=0x7f010000;
     }
     public static final class color {
-        public static final int black=0x7f050001;
+        public static final int black=0x7f070001;
         /**  Blue colors 
          */
-        public static final int blue_1=0x7f050003;
-        public static final int blue_2=0x7f050004;
-        public static final int blue_3=0x7f050005;
-        public static final int blue_4=0x7f050006;
-        public static final int blue_5=0x7f050007;
-        public static final int blue_6=0x7f050008;
-        public static final int blue_7=0x7f050009;
-        public static final int blue_8=0x7f05000a;
-        public static final int blue_9=0x7f05000b;
+        public static final int blue_1=0x7f070003;
+        public static final int blue_2=0x7f070004;
+        public static final int blue_3=0x7f070005;
+        public static final int blue_4=0x7f070006;
+        public static final int blue_5=0x7f070007;
+        public static final int blue_6=0x7f070008;
+        public static final int blue_7=0x7f070009;
+        public static final int blue_8=0x7f07000a;
+        public static final int blue_9=0x7f07000b;
         /**  Grey colors 
          */
-        public static final int grey_1=0x7f05000c;
-        public static final int grey_10=0x7f050015;
-        public static final int grey_11=0x7f050016;
-        public static final int grey_12=0x7f050017;
-        public static final int grey_13=0x7f050018;
-        public static final int grey_14=0x7f050019;
-        public static final int grey_14_5=0x7f05001a;
-        public static final int grey_2=0x7f05000d;
-        public static final int grey_3=0x7f05000e;
-        public static final int grey_4=0x7f05000f;
-        public static final int grey_5=0x7f050010;
-        public static final int grey_6=0x7f050011;
-        public static final int grey_7=0x7f050012;
-        public static final int grey_8=0x7f050013;
-        public static final int grey_9=0x7f050014;
+        public static final int grey_1=0x7f07000c;
+        public static final int grey_10=0x7f070015;
+        public static final int grey_11=0x7f070016;
+        public static final int grey_12=0x7f070017;
+        public static final int grey_13=0x7f070018;
+        public static final int grey_14=0x7f070019;
+        public static final int grey_14_5=0x7f07001a;
+        public static final int grey_2=0x7f07000d;
+        public static final int grey_3=0x7f07000e;
+        public static final int grey_4=0x7f07000f;
+        public static final int grey_5=0x7f070010;
+        public static final int grey_6=0x7f070011;
+        public static final int grey_7=0x7f070012;
+        public static final int grey_8=0x7f070013;
+        public static final int grey_9=0x7f070014;
         /**  Orange colors 
          */
-        public static final int orange_1=0x7f05002a;
-        public static final int orange_2=0x7f05002b;
+        public static final int orange_1=0x7f07002a;
+        public static final int orange_2=0x7f07002b;
         /**  Red colors 
          */
-        public static final int red_0=0x7f05001b;
-        public static final int red_1=0x7f05001c;
-        public static final int red_10=0x7f050025;
-        public static final int red_11=0x7f050026;
-        public static final int red_12=0x7f050027;
-        public static final int red_13=0x7f050028;
-        public static final int red_14=0x7f050029;
-        public static final int red_2=0x7f05001d;
-        public static final int red_3=0x7f05001e;
-        public static final int red_4=0x7f05001f;
-        public static final int red_5=0x7f050020;
-        public static final int red_6=0x7f050021;
-        public static final int red_7=0x7f050022;
-        public static final int red_8=0x7f050023;
-        public static final int red_9=0x7f050024;
-        public static final int transparent=0x7f050002;
-        public static final int white=0x7f050000;
+        public static final int red_0=0x7f07001b;
+        public static final int red_1=0x7f07001c;
+        public static final int red_10=0x7f070025;
+        public static final int red_11=0x7f070026;
+        public static final int red_12=0x7f070027;
+        public static final int red_13=0x7f070028;
+        public static final int red_14=0x7f070029;
+        public static final int red_2=0x7f07001d;
+        public static final int red_3=0x7f07001e;
+        public static final int red_4=0x7f07001f;
+        public static final int red_5=0x7f070020;
+        public static final int red_6=0x7f070021;
+        public static final int red_7=0x7f070022;
+        public static final int red_8=0x7f070023;
+        public static final int red_9=0x7f070024;
+        public static final int transparent=0x7f070002;
+        public static final int white=0x7f070000;
     }
     public static final class dimen {
         /**  Default screen margins, per the Android Design guidelines. 
@@ -91,12 +163,12 @@ containing a value of this type.
          screen margins) for sw720dp devices (e.g. 10" tablets) in landscape here.
     
          */
-        public static final int activity_horizontal_margin=0x7f060000;
-        public static final int activity_vertical_margin=0x7f060001;
-        public static final int course_item_margin_bottom=0x7f060005;
-        public static final int course_item_margin_left=0x7f060002;
-        public static final int course_item_margin_right=0x7f060003;
-        public static final int course_item_margin_top=0x7f060004;
+        public static final int activity_horizontal_margin=0x7f080000;
+        public static final int activity_vertical_margin=0x7f080001;
+        public static final int course_item_margin_bottom=0x7f080005;
+        public static final int course_item_margin_left=0x7f080002;
+        public static final int course_item_margin_right=0x7f080003;
+        public static final int course_item_margin_top=0x7f080004;
     }
     public static final class drawable {
         public static final int ab_background_textured_mod_theme=0x7f020000;
@@ -146,37 +218,52 @@ containing a value of this type.
         public static final int trapizodal_button_red_bg=0x7f02002c;
     }
     public static final class id {
-        public static final int action_settings=0x7f0a001e;
-        public static final int content_frame=0x7f0a0001;
-        public static final int course_content_list=0x7f0a0002;
-        public static final int course_created=0x7f0a0010;
-        public static final int course_file_layout=0x7f0a0009;
-        public static final int course_file_timemodified=0x7f0a000c;
-        public static final int course_filename=0x7f0a000a;
-        public static final int course_filesize=0x7f0a000b;
-        public static final int course_longname=0x7f0a000f;
-        public static final int course_modified=0x7f0a0011;
-        public static final int course_module_description=0x7f0a000d;
-        public static final int course_module_name=0x7f0a0008;
-        public static final int course_shortname=0x7f0a000e;
-        public static final int drawer_layout=0x7f0a0000;
-        public static final int left_drawer=0x7f0a0003;
-        public static final int left_nav_listview=0x7f0a0005;
-        public static final int moodle_home_list=0x7f0a0007;
-        public static final int norm_url=0x7f0a0016;
-        public static final int normal_layout=0x7f0a0015;
-        public static final int normal_login_btn=0x7f0a0019;
-        public static final int para_url=0x7f0a001b;
-        public static final int paranoid_layout=0x7f0a001a;
-        public static final int paranoid_login_btn=0x7f0a001d;
-        public static final int password=0x7f0a0018;
-        public static final int right_drawer=0x7f0a0006;
-        public static final int switch_normal=0x7f0a0013;
-        public static final int switch_paranoid=0x7f0a0014;
-        public static final int text1=0x7f0a0012;
-        public static final int token=0x7f0a001c;
-        public static final int user_image=0x7f0a0004;
-        public static final int username=0x7f0a0017;
+        public static final int action_settings=0x7f04002d;
+        public static final int alpha=0x7f040002;
+        public static final int alphaNumeric=0x7f040003;
+        public static final int content_frame=0x7f040010;
+        public static final int course_content_list=0x7f040011;
+        public static final int course_created=0x7f04001f;
+        public static final int course_file_layout=0x7f040018;
+        public static final int course_file_timemodified=0x7f04001b;
+        public static final int course_filename=0x7f040019;
+        public static final int course_filesize=0x7f04001a;
+        public static final int course_longname=0x7f04001e;
+        public static final int course_modified=0x7f040020;
+        public static final int course_module_description=0x7f04001c;
+        public static final int course_module_name=0x7f040017;
+        public static final int course_shortname=0x7f04001d;
+        public static final int creditCard=0x7f040005;
+        public static final int custom=0x7f04000b;
+        public static final int date=0x7f04000e;
+        public static final int domainName=0x7f040007;
+        public static final int drawer_layout=0x7f04000f;
+        public static final int email=0x7f040004;
+        public static final int ipAddress=0x7f040008;
+        public static final int left_drawer=0x7f040012;
+        public static final int left_nav_listview=0x7f040014;
+        public static final int moodle_home_list=0x7f040016;
+        public static final int nocheck=0x7f04000a;
+        public static final int norm_url=0x7f040025;
+        public static final int normal_layout=0x7f040024;
+        public static final int normal_login_btn=0x7f040028;
+        public static final int numeric=0x7f040001;
+        public static final int para_url=0x7f04002a;
+        public static final int paranoid_layout=0x7f040029;
+        public static final int paranoid_login_btn=0x7f04002c;
+        public static final int password=0x7f040027;
+        public static final int personFullName=0x7f04000d;
+        public static final int personName=0x7f04000c;
+        public static final int phone=0x7f040006;
+        public static final int regexp=0x7f040000;
+        public static final int right_drawer=0x7f040015;
+        public static final int switch_normal=0x7f040022;
+        public static final int switch_paranoid=0x7f040023;
+        public static final int text1=0x7f040021;
+        public static final int token=0x7f04002b;
+        public static final int user_image=0x7f040013;
+        public static final int username=0x7f040026;
+        public static final int webUrl=0x7f040009;
     }
     public static final class layout {
         public static final int activity_course_content=0x7f030000;
@@ -190,20 +277,33 @@ containing a value of this type.
         public static final int test=0x7f030008;
     }
     public static final class menu {
-        public static final int main=0x7f090000;
+        public static final int main=0x7f0a0000;
     }
     public static final class string {
-        public static final int action_settings=0x7f070001;
-        public static final int app_name=0x7f070000;
-        public static final int drawer_close=0x7f070004;
-        public static final int drawer_open=0x7f070003;
-        public static final int hello_world=0x7f070002;
+        public static final int action_settings=0x7f05000e;
+        public static final int app_name=0x7f05000d;
+        public static final int drawer_close=0x7f050011;
+        public static final int drawer_open=0x7f050010;
+        public static final int error_creditcard_number_not_valid=0x7f050005;
+        public static final int error_date_not_valid=0x7f05000c;
+        public static final int error_domain_not_valid=0x7f050007;
+        public static final int error_email_address_not_valid=0x7f050004;
+        public static final int error_field_must_not_be_empty=0x7f050003;
+        public static final int error_ip_not_valid=0x7f050008;
+        public static final int error_notvalid_personfullname=0x7f05000b;
+        public static final int error_notvalid_personname=0x7f05000a;
+        public static final int error_only_numeric_digits_allowed=0x7f050000;
+        public static final int error_only_standard_letters_are_allowed=0x7f050002;
+        public static final int error_phone_not_valid=0x7f050006;
+        public static final int error_this_field_cannot_contain_special_character=0x7f050001;
+        public static final int error_url_not_valid=0x7f050009;
+        public static final int hello_world=0x7f05000f;
     }
     public static final class style {
-        public static final int ActionBar_Solid_Mod_theme=0x7f080003;
-        public static final int ActionBar_Transparent_Mod_theme=0x7f080004;
-        public static final int ActionBarTabStyle_Mod_theme=0x7f080007;
-        public static final int ActionButton_CloseMode_Mod_theme=0x7f08000a;
+        public static final int ActionBar_Solid_Mod_theme=0x7f090003;
+        public static final int ActionBar_Transparent_Mod_theme=0x7f090004;
+        public static final int ActionBarTabStyle_Mod_theme=0x7f090007;
+        public static final int ActionButton_CloseMode_Mod_theme=0x7f09000a;
         /** 
         Base application theme, dependent on API level. This theme is replaced
         by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
@@ -233,21 +333,161 @@ containing a value of this type.
     
  API 14 theme customizations can go here. 
          */
-        public static final int AppBaseTheme=0x7f080000;
+        public static final int AppBaseTheme=0x7f090000;
         /**  Application theme. 
  All customizations that are NOT specific to a particular API-level can go here. 
          */
-        public static final int AppTheme=0x7f080001;
-        public static final int DropDownListView_Mod_theme=0x7f080006;
-        public static final int DropDownNav_Mod_theme=0x7f080008;
-        public static final int PopupMenu_Mod_theme=0x7f080005;
-        public static final int ProgressBar_Mod_theme=0x7f080009;
-        public static final int Theme_Mod_theme=0x7f080002;
+        public static final int AppTheme=0x7f090001;
+        public static final int DropDownListView_Mod_theme=0x7f090006;
+        public static final int DropDownNav_Mod_theme=0x7f090008;
+        public static final int PopupMenu_Mod_theme=0x7f090005;
+        public static final int ProgressBar_Mod_theme=0x7f090009;
+        public static final int Theme_Mod_theme=0x7f090002;
         /**  this style is only referenced in a Light.DarkActionBar based theme 
          */
-        public static final int Theme_Mod_theme_Widget=0x7f08000b;
+        public static final int Theme_Mod_theme_Widget=0x7f09000b;
     }
     public static final class styleable {
+        /** Attributes that can be used with a FormEditText.
+           <p>Includes the following attributes:</p>
+           <table>
+           <colgroup align="left" />
+           <colgroup align="left" />
+           <tr><th>Attribute</th><th>Description</th></tr>
+           <tr><td><code>{@link #FormEditText_classType in.co.praveenkumar.mdroid.apis:classType}</code></td><td></td></tr>
+           <tr><td><code>{@link #FormEditText_customFormat in.co.praveenkumar.mdroid.apis:customFormat}</code></td><td></td></tr>
+           <tr><td><code>{@link #FormEditText_customRegexp in.co.praveenkumar.mdroid.apis:customRegexp}</code></td><td></td></tr>
+           <tr><td><code>{@link #FormEditText_emptyAllowed in.co.praveenkumar.mdroid.apis:emptyAllowed}</code></td><td></td></tr>
+           <tr><td><code>{@link #FormEditText_emptyErrorString in.co.praveenkumar.mdroid.apis:emptyErrorString}</code></td><td></td></tr>
+           <tr><td><code>{@link #FormEditText_testErrorString in.co.praveenkumar.mdroid.apis:testErrorString}</code></td><td></td></tr>
+           <tr><td><code>{@link #FormEditText_testType in.co.praveenkumar.mdroid.apis:testType}</code></td><td></td></tr>
+           </table>
+           @see #FormEditText_classType
+           @see #FormEditText_customFormat
+           @see #FormEditText_customRegexp
+           @see #FormEditText_emptyAllowed
+           @see #FormEditText_emptyErrorString
+           @see #FormEditText_testErrorString
+           @see #FormEditText_testType
+         */
+        public static final int[] FormEditText = {
+            0x7f010000, 0x7f010001, 0x7f010002, 0x7f010003,
+            0x7f010004, 0x7f010005, 0x7f010006
+        };
+        /**
+          <p>This symbol is the offset where the {@link in.co.praveenkumar.mdroid.apis.R.attr#classType}
+          attribute's value can be found in the {@link #FormEditText} array.
+
+
+          <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name in.co.praveenkumar.mdroid.apis:classType
+        */
+        public static final int FormEditText_classType = 6;
+        /**
+          <p>This symbol is the offset where the {@link in.co.praveenkumar.mdroid.apis.R.attr#customFormat}
+          attribute's value can be found in the {@link #FormEditText} array.
+
+
+          <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name in.co.praveenkumar.mdroid.apis:customFormat
+        */
+        public static final int FormEditText_customFormat = 4;
+        /**
+          <p>This symbol is the offset where the {@link in.co.praveenkumar.mdroid.apis.R.attr#customRegexp}
+          attribute's value can be found in the {@link #FormEditText} array.
+
+
+          <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name in.co.praveenkumar.mdroid.apis:customRegexp
+        */
+        public static final int FormEditText_customRegexp = 3;
+        /**
+          <p>This symbol is the offset where the {@link in.co.praveenkumar.mdroid.apis.R.attr#emptyAllowed}
+          attribute's value can be found in the {@link #FormEditText} array.
+
+
+          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name in.co.praveenkumar.mdroid.apis:emptyAllowed
+        */
+        public static final int FormEditText_emptyAllowed = 5;
+        /**
+          <p>This symbol is the offset where the {@link in.co.praveenkumar.mdroid.apis.R.attr#emptyErrorString}
+          attribute's value can be found in the {@link #FormEditText} array.
+
+
+          <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name in.co.praveenkumar.mdroid.apis:emptyErrorString
+        */
+        public static final int FormEditText_emptyErrorString = 2;
+        /**
+          <p>This symbol is the offset where the {@link in.co.praveenkumar.mdroid.apis.R.attr#testErrorString}
+          attribute's value can be found in the {@link #FormEditText} array.
+
+
+          <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name in.co.praveenkumar.mdroid.apis:testErrorString
+        */
+        public static final int FormEditText_testErrorString = 1;
+        /**
+          <p>This symbol is the offset where the {@link in.co.praveenkumar.mdroid.apis.R.attr#testType}
+          attribute's value can be found in the {@link #FormEditText} array.
+
+
+          <p>Must be one of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>regexp</code></td><td>0</td><td></td></tr>
+<tr><td><code>numeric</code></td><td>1</td><td></td></tr>
+<tr><td><code>alpha</code></td><td>2</td><td></td></tr>
+<tr><td><code>alphaNumeric</code></td><td>3</td><td></td></tr>
+<tr><td><code>email</code></td><td>4</td><td></td></tr>
+<tr><td><code>creditCard</code></td><td>5</td><td></td></tr>
+<tr><td><code>phone</code></td><td>6</td><td></td></tr>
+<tr><td><code>domainName</code></td><td>7</td><td></td></tr>
+<tr><td><code>ipAddress</code></td><td>8</td><td></td></tr>
+<tr><td><code>webUrl</code></td><td>9</td><td></td></tr>
+<tr><td><code>nocheck</code></td><td>10</td><td></td></tr>
+<tr><td><code>custom</code></td><td>11</td><td></td></tr>
+<tr><td><code>personName</code></td><td>12</td><td></td></tr>
+<tr><td><code>personFullName</code></td><td>13</td><td></td></tr>
+<tr><td><code>date</code></td><td>14</td><td></td></tr>
+</table>
+          @attr name in.co.praveenkumar.mdroid.apis:testType
+        */
+        public static final int FormEditText_testType = 0;
         /** Attributes that can be used with a StickyListHeadersListView.
            <p>Includes the following attributes:</p>
            <table>
@@ -306,7 +546,7 @@ containing a value of this type.
             0x010100eb, 0x010100fb, 0x010100fc, 0x010100fe,
             0x01010101, 0x01010129, 0x0101012a, 0x0101012b,
             0x01010226, 0x010102c1, 0x01010335, 0x010103a5,
-            0x7f010000, 0x7f010001
+            0x7f010007, 0x7f010008
         };
         /**
           <p>This symbol is the offset where the {@link android.R.attr#cacheColorHint}
