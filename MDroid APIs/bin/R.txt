@@ -52,6 +52,8 @@ int drawable ic_drawer 0x7f020005
 int drawable ic_launcher 0x7f020006
 int drawable trapizodal_button_blue_bg 0x7f020007
 int drawable trapizodal_button_red_bg 0x7f020008
+int drawable two_rounder_corners_blue 0x7f020009
+int drawable two_rounder_corners_green 0x7f02000a
 int id action_settings 0x7f0a0013
 int id content_frame 0x7f0a0001
 int id course_content_list 0x7f0a0002

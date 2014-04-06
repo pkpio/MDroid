@@ -12,15 +12,15 @@
             android:layout_height="35dp"
             android:layout_gravity="left"
             android:layout_marginTop="25dp"
-            android:background="@drawable/trapizodal_button_blue_bg"
-            android:rotation="180" />
+            android:background="@drawable/two_rounder_corners_blue" />
 
         <Button
             android:layout_width="150dp"
             android:layout_height="35dp"
             android:layout_gravity="right"
             android:layout_marginTop="25dp"
-            android:background="@drawable/trapizodal_button_red_bg" />
+            android:background="@drawable/two_rounder_corners_blue"
+            android:rotation="180" />
     </FrameLayout>
 
 </LinearLayout>
