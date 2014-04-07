@@ -1,12 +1,15 @@
 package in.co.praveenkumar.mdroid.activities;
 
 import in.co.praveenkumar.mdroid.apis.R;
+import in.co.praveenkumar.mdroid.moodlerest.MoodleToken;
 import android.app.Activity;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.andreabaccega.widget.FormEditText;
 
@@ -14,12 +17,19 @@ public class LoginActivity extends Activity {
 	final String DEBUG_TAG = "LoginActivity";
 	Button switchNormal;
 	Button switchParanoid;
+
 	LinearLayout normalLayout;
 	LinearLayout paranoidLayout;
+	LinearLayout switchLayout;
+	LinearLayout progressLayout;
+
 	FormEditText mNormUrl;
 	FormEditText mParaUrl;
 	FormEditText unameView;
 	FormEditText pswdView;
+
+	TextView progressTitle;
+	TextView progressText;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -31,12 +41,19 @@ public class LoginActivity extends Activity {
 	private void setUpWidgets() {
 		switchNormal = (Button) findViewById(R.id.switch_normal);
 		switchParanoid = (Button) findViewById(R.id.switch_paranoid);
+
 		normalLayout = (LinearLayout) findViewById(R.id.normal_layout);
 		paranoidLayout = (LinearLayout) findViewById(R.id.paranoid_layout);
+		switchLayout = (LinearLayout) findViewById(R.id.switch_layout);
+		progressLayout = (LinearLayout) findViewById(R.id.progress_layout);
+
 		mNormUrl = (FormEditText) findViewById(R.id.norm_url);
 		mParaUrl = (FormEditText) findViewById(R.id.para_url);
 		unameView = (FormEditText) findViewById(R.id.username);
 		pswdView = (FormEditText) findViewById(R.id.password);
+
+		progressTitle = (TextView) findViewById(R.id.progress_title);
+		progressText = (TextView) findViewById(R.id.progress_text);
 
 		View v = null;
 		setToNormal(v);
@@ -51,10 +68,43 @@ public class LoginActivity extends Activity {
 		}
 
 		if (allValid) {
-			// YAY
-		} else {
-			// EditText are going to appear with an exclamation mark and an
-			// explicative message.
+			String username = unameView.getText().toString();
+			String password = pswdView.getText().toString();
+			String mUrl = mNormUrl.getText().toString();
+			new AsyncLogin().execute(username, password, mUrl);
+		}
+	}
+
+	private class AsyncLogin extends AsyncTask<String, String, String> {
+		@Override
+		protected void onPreExecute() {
+			normalLayout.setVisibility(LinearLayout.GONE);
+			paranoidLayout.setVisibility(LinearLayout.GONE);
+			switchLayout.setVisibility(LinearLayout.GONE);
+			progressLayout.setVisibility(LinearLayout.VISIBLE);
+
+			progressTitle.setText("Logging in...");
+			progressText.setText("Looking for webservices");
+		}
+
+		@Override
+		protected String doInBackground(String... mParams) {
+			MoodleToken mt = new MoodleToken(mParams[0], mParams[1], mParams[2]);
+			String token = mt.getToken();
+			if (token != null)
+				publishProgress("Token received. Checking permissions.");
+			else
+				publishProgress(mt.getErrorsString(), "Login failed");
+
+			return null;
+		}
+
+		@Override
+		protected void onProgressUpdate(String... progress) {
+			if (progress.length >= 1)
+				progressText.setText(progress[0]);
+			if (progress.length >= 2)
+				progressTitle.setText(progress[1]);
 		}
 	}
 
