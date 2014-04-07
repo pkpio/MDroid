@@ -125,4 +125,13 @@ public class MoodleToken {
 	public ArrayList<String> getErrors() {
 		return errors;
 	}
+
+	public String getErrorsString() {
+		String error = "";
+		for (int i = 0; i < errors.size(); i++) {
+			error += errors.get(i) + "\n";
+		}
+
+		return error;
+	}
 }
