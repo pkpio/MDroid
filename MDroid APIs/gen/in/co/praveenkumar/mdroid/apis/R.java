@@ -218,7 +218,7 @@ containing a value of this type.
         public static final int trapizodal_button_red_bg=0x7f02002c;
     }
     public static final class id {
-        public static final int action_settings=0x7f04002d;
+        public static final int action_settings=0x7f040031;
         public static final int alpha=0x7f040002;
         public static final int alphaNumeric=0x7f040003;
         public static final int content_frame=0x7f040010;
@@ -244,25 +244,29 @@ containing a value of this type.
         public static final int left_nav_listview=0x7f040014;
         public static final int moodle_home_list=0x7f040016;
         public static final int nocheck=0x7f04000a;
-        public static final int norm_url=0x7f040025;
-        public static final int normal_layout=0x7f040024;
-        public static final int normal_login_btn=0x7f040028;
+        public static final int norm_url=0x7f040026;
+        public static final int normal_layout=0x7f040025;
+        public static final int normal_login_btn=0x7f040029;
         public static final int numeric=0x7f040001;
-        public static final int para_url=0x7f04002a;
-        public static final int paranoid_layout=0x7f040029;
-        public static final int paranoid_login_btn=0x7f04002c;
-        public static final int password=0x7f040027;
+        public static final int para_url=0x7f04002b;
+        public static final int paranoid_layout=0x7f04002a;
+        public static final int paranoid_login_btn=0x7f04002d;
+        public static final int password=0x7f040028;
         public static final int personFullName=0x7f04000d;
         public static final int personName=0x7f04000c;
         public static final int phone=0x7f040006;
+        public static final int progress_layout=0x7f04002e;
+        public static final int progress_text=0x7f040030;
+        public static final int progress_title=0x7f04002f;
         public static final int regexp=0x7f040000;
         public static final int right_drawer=0x7f040015;
-        public static final int switch_normal=0x7f040022;
-        public static final int switch_paranoid=0x7f040023;
+        public static final int switch_layout=0x7f040022;
+        public static final int switch_normal=0x7f040023;
+        public static final int switch_paranoid=0x7f040024;
         public static final int text1=0x7f040021;
-        public static final int token=0x7f04002b;
+        public static final int token=0x7f04002c;
         public static final int user_image=0x7f040013;
-        public static final int username=0x7f040026;
+        public static final int username=0x7f040027;
         public static final int webUrl=0x7f040009;
     }
     public static final class layout {

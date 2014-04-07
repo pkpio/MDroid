@@ -16,6 +16,7 @@
         <!-- Login mode switching tabs -->
 
         <LinearLayout
+            android:id="@+id/switch_layout"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:paddingLeft="1dp"
@@ -114,8 +115,8 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/login_btn_bg"
                 android:gravity="center"
-                android:text="Login"
                 android:onClick="doNormLogin"
+                android:text="Login"
                 android:textColor="@color/white"
                 android:textSize="16sp" />
         </LinearLayout>
@@ -174,6 +175,38 @@
                 android:text="Login"
                 android:textColor="@color/white"
                 android:textSize="16sp" />
+        </LinearLayout>
+
+        <!-- Progress and error layout -->
+
+        <LinearLayout
+            android:id="@+id/progress_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="20dp"
+            android:orientation="vertical"
+            android:visibility="gone" >
+
+            <TextView
+                android:id="@+id/progress_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Logging in..."
+                android:textColor="@color/blue_6"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/progress_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:padding="8dp"
+                android:text="Looking for a webservice"
+                android:textColor="@color/grey_5"
+                android:textSize="14sp" />
         </LinearLayout>
     </FrameLayout>
 
