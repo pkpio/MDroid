@@ -133,7 +133,7 @@ public class MoodleToken {
 	public String getErrorsString() {
 		String error = "";
 		for (int i = 0; i < errors.size(); i++) {
-			error += errors.get(i) + "\n";
+			error += errors.get(i) + "\n\n";
 		}
 
 		return error;
