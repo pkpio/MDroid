@@ -1,3 +1,10 @@
+/**************************************************************
+ * Author: 	Praveen Kumar Pendyala
+ * Project: MDroid
+ * Created: 27th May, 2014.
+ * License: http://creativecommons.org/licenses/by-nc-sa/3.0/
+ **************************************************************/
+
 package in.co.praveenkumar.mdroid.moodlerest;
 
 public class MoodleRestOptions {
@@ -13,6 +20,7 @@ public class MoodleRestOptions {
 	public static final String FUNCTION_GET_COURSE_CONTENTS = "core_course_get_contents";
 	public static final String FUNCTION_GET_FORUMS = "mod_forum_get_forums_by_courses";
 	public static final String FUNCTION_GET_DISCUSSIONS = "mod_forum_get_forum_discussions";
+	public static final String FUNCTION_GET_SITE_INFO = "core_webservice_get_site_info";
 
 	// Response strings
 	public static final String RESPONSE_AUTH_FAILED = "username was not found";

@@ -1,3 +1,10 @@
+/**************************************************************
+ * Author: 	Praveen Kumar Pendyala
+ * Project: MDroid
+ * Created: 27th May, 2014.
+ * License: http://creativecommons.org/licenses/by-nc-sa/3.0/
+ **************************************************************/
+
 package in.co.praveenkumar.mdroid.models;
 
 public class MoodleCourse {
