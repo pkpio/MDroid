@@ -9,6 +9,9 @@ package in.co.praveenkumar.mdroid.activities;
 
 import in.co.praveenkumar.mdroid.apis.R;
 import in.co.praveenkumar.mdroid.helpers.Database;
+import in.co.praveenkumar.mdroid.helpers.MDroidDownloader;
+import in.co.praveenkumar.mdroid.models.MoodleSiteInfo;
+import in.co.praveenkumar.mdroid.moodlerest.MoodleRestSiteInfo;
 import in.co.praveenkumar.mdroid.moodlerest.MoodleToken;
 import android.app.Activity;
 import android.content.Intent;
@@ -111,9 +114,24 @@ public class LoginActivity extends Activity {
 			MoodleToken mt = new MoodleToken(mParams[0], mParams[1], mParams[2]);
 			String token = mt.getToken();
 			if (token != null) {
-				publishProgress("Token received.", "Login success!");
+				publishProgress("Token received.", "Logged in");
 				db.setToken(token);
 				isLogged = true;
+
+				// Get site info
+				publishProgress("Token received.\n Fetching site info");
+				MoodleSiteInfo siteInfo = new MoodleSiteInfo();
+				MoodleRestSiteInfo mrsi = new MoodleRestSiteInfo(
+						getApplicationContext());
+				siteInfo = mrsi.getSiteInfo();
+
+				// Parse info
+				publishProgress("Token received.\n Site info received.\n Parsing info");
+				MDroidDownloader md = new MDroidDownloader(
+						getApplicationContext());
+				md.download(siteInfo.getUserpictureurl(), "user.jpg", false,
+						MDroidDownloader.APP_DOWNLOADER);
+
 			} else
 				publishProgress(mt.getErrorsString(), "Login failed");
 

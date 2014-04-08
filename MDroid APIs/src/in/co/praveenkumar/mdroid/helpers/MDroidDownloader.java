@@ -13,8 +13,8 @@ import android.net.Uri;
 import android.os.Environment;
 
 public class MDroidDownloader {
-	public final Boolean SYSTEM_DOWNLOADER = true;
-	public final Boolean APP_DOWNLOADER = false;
+	public static final Boolean SYSTEM_DOWNLOADER = true;
+	public static final Boolean APP_DOWNLOADER = false;
 	Context context;
 
 	public MDroidDownloader(Context context) {
