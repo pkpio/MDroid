@@ -1,8 +1,10 @@
 package in.co.praveenkumar.mdroid.activities;
 
 import in.co.praveenkumar.mdroid.apis.R;
+import in.co.praveenkumar.mdroid.helpers.Database;
 import in.co.praveenkumar.mdroid.moodlerest.MoodleToken;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -76,6 +78,8 @@ public class LoginActivity extends Activity {
 	}
 
 	private class AsyncLogin extends AsyncTask<String, String, String> {
+		Boolean isLogged = false;
+
 		@Override
 		protected void onPreExecute() {
 			normalLayout.setVisibility(LinearLayout.GONE);
@@ -89,11 +93,18 @@ public class LoginActivity extends Activity {
 
 		@Override
 		protected String doInBackground(String... mParams) {
+			// Save mUrl in database
+			Database db = new Database(getApplicationContext());
+			db.setmUrl(mParams[2]);
+
+			// Get a token
 			MoodleToken mt = new MoodleToken(mParams[0], mParams[1], mParams[2]);
 			String token = mt.getToken();
-			if (token != null)
-				publishProgress("Token received. Checking permissions.");
-			else
+			if (token != null) {
+				publishProgress("Token received.", "Login success!");
+				db.setToken(token);
+				isLogged = true;
+			} else
 				publishProgress(mt.getErrorsString(), "Login failed");
 
 			return null;
@@ -106,6 +117,17 @@ public class LoginActivity extends Activity {
 			if (progress.length >= 2)
 				progressTitle.setText(progress[1]);
 		}
+
+		@Override
+		protected void onPostExecute(String result) {
+			if (isLogged)
+				openMoodleHome();
+		}
+	}
+
+	private void openMoodleHome() {
+		Intent i = new Intent(this, MoodleHomeActivity.class);
+		startActivityForResult(i, 1);
 	}
 
 	public void setToNormal(View v) {
