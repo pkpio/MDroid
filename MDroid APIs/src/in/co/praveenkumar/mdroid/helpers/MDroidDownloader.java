@@ -22,8 +22,9 @@ public class MDroidDownloader {
 
 	}
 
-	public void download(String fileUrl, String fileName, Boolean visibility,
+	public long download(String fileUrl, String fileName, Boolean visibility,
 			Boolean choice) {
+		long reqId;
 		if (choice == SYSTEM_DOWNLOADER) {
 			DownloadManager manager = (DownloadManager) context
 					.getSystemService(Context.DOWNLOAD_SERVICE);
@@ -33,11 +34,13 @@ public class MDroidDownloader {
 			else
 				request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
 
-			long reqId = manager.enqueue(request);
+			reqId = manager.enqueue(request);
 			// save this id somewhere
 		} else {
 			mdroidDownload(fileUrl, fileName);
+			reqId = 0;
 		}
+		return reqId;
 	}
 
 	public void mdroidDownload(String fUrl, String fName) {
