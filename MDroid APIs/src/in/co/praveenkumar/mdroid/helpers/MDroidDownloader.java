@@ -15,22 +15,26 @@ import android.os.Environment;
 public class MDroidDownloader {
 	public final Boolean SYSTEM_DOWNLOADER = true;
 	public final Boolean APP_DOWNLOADER = false;
-	DownloadManager manager;
+	Context context;
 
 	public MDroidDownloader(Context context) {
-		manager = (DownloadManager) context
-				.getSystemService(Context.DOWNLOAD_SERVICE);
+		this.context = context;
+
 	}
 
 	public void download(String fileUrl, String fileName, Boolean visibility,
 			Boolean choice) {
 		if (choice == SYSTEM_DOWNLOADER) {
+			DownloadManager manager = (DownloadManager) context
+					.getSystemService(Context.DOWNLOAD_SERVICE);
 			Request request = new Request(Uri.parse(fileUrl));
 			if (!visibility)
 				request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_HIDDEN);
 			else
 				request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
-			// Request and save it's value
+
+			long reqId = manager.enqueue(request);
+			// save this id somewhere
 		} else {
 			mdroidDownload(fileUrl, fileName);
 		}
