@@ -28,15 +28,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="in.co.praveenkumar.mdroid.activities.MainActivity"
+            android:name="in.co.praveenkumar.mdroid.activities.MoodleHomeActivity"
             android:label="@string/app_name" >
         </activity>
         <activity
             android:name="in.co.praveenkumar.mdroid.activities.CourseContentActivity"
-            android:label="@string/app_name" >
-        </activity>
-        <activity
-            android:name="in.co.praveenkumar.mdroid.activities.TestActivity"
             android:label="@string/app_name" >
         </activity>
     </application>
