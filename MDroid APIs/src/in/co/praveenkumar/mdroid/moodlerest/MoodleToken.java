@@ -3,12 +3,10 @@ package in.co.praveenkumar.mdroid.moodlerest;
 import in.co.praveenkumar.mdriod.parsers.TokenParser;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
@@ -47,9 +45,7 @@ public class MoodleToken {
 
 		// Before going for below services check authentication didn't fail
 		// as it would fail in all cases if it failed above.
-		if (token == null
-				&& errors.get(0).contains(
-						MoodleRestOptions.RESPONSE_AUTH_FAILED)) {
+		if (token == null && !errors.get(0).contains("Authentication failed")) {
 			// If above returns no token, try Moody service
 			if (token == null)
 				getTokenForService(urlParams, MoodleRestOptions.SERVICE_MOODY);
@@ -124,12 +120,8 @@ public class MoodleToken {
 
 			}
 
-		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		} catch (Exception e) {
+			errors.add(serviceName + " : " + e.getMessage());
 		}
 
 	}
