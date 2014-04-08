@@ -19,6 +19,7 @@ public class LoginActivity extends Activity {
 	final String DEBUG_TAG = "LoginActivity";
 	Button switchNormal;
 	Button switchParanoid;
+	Button buttonRetry;
 
 	LinearLayout normalLayout;
 	LinearLayout paranoidLayout;
@@ -43,6 +44,7 @@ public class LoginActivity extends Activity {
 	private void setUpWidgets() {
 		switchNormal = (Button) findViewById(R.id.switch_normal);
 		switchParanoid = (Button) findViewById(R.id.switch_paranoid);
+		buttonRetry = (Button) findViewById(R.id.retry_button);
 
 		normalLayout = (LinearLayout) findViewById(R.id.normal_layout);
 		paranoidLayout = (LinearLayout) findViewById(R.id.paranoid_layout);
@@ -86,6 +88,7 @@ public class LoginActivity extends Activity {
 			paranoidLayout.setVisibility(LinearLayout.GONE);
 			switchLayout.setVisibility(LinearLayout.GONE);
 			progressLayout.setVisibility(LinearLayout.VISIBLE);
+			buttonRetry.setVisibility(Button.GONE);
 
 			progressTitle.setText("Logging in...");
 			progressText.setText("Looking for webservices");
@@ -122,6 +125,8 @@ public class LoginActivity extends Activity {
 		protected void onPostExecute(String result) {
 			if (isLogged)
 				openMoodleHome();
+			else
+				buttonRetry.setVisibility(Button.VISIBLE);
 		}
 	}
 
