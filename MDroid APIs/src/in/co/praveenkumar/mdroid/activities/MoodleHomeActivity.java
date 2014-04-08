@@ -10,11 +10,11 @@ package in.co.praveenkumar.mdroid.activities;
 import in.co.praveeenkumar.mdroid.extenders.HomeDrawerActivity;
 import in.co.praveeenkumar.mdroid.extenders.StickyListViewAdapter;
 import in.co.praveenkumar.mdroid.apis.R;
-import in.co.praveenkumar.mdroid.helpers.Database;
+import in.co.praveenkumar.mdroid.helpers.ImageDecoder;
 import in.co.praveenkumar.mdroid.models.MoodleCourse;
 import in.co.praveenkumar.mdroid.moodlerest.MoodleRestCourses;
-import in.co.praveenkumar.mdroid.moodlerest.MoodleToken;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -22,12 +22,15 @@ import java.util.Comparator;
 import se.emilsjolander.stickylistheaders.StickyListHeadersListView;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class MoodleHomeActivity extends HomeDrawerActivity {
@@ -40,12 +43,8 @@ public class MoodleHomeActivity extends HomeDrawerActivity {
 		setContentView(R.layout.activity_moodle_home);
 		super.onCreate(savedInstanceState);
 
-		// Testing
-		Database db = new Database(this);
-		db.setToken("9bd96dc343e76a041729aa3e602de8c4");
-		db.setmUrl("http://moodle.praveenkumar.co.in/");
+		setUpNavMenu();
 		new AsyncCourseFetch().execute("");
-
 	}
 
 	private void listCoursesInListView() {
@@ -69,18 +68,10 @@ public class MoodleHomeActivity extends HomeDrawerActivity {
 	private class AsyncCourseFetch extends AsyncTask<String, Integer, Long> {
 
 		protected Long doInBackground(String... credentials) {
-			MoodleToken mt = new MoodleToken("praveendath92", "praveen92",
-					"http://moodle.praveenkumar.co.in");
-			Log.d(DEBUG_TAG, mt.getToken());
-			for (int i = 0; i < mt.getErrors().size(); i++)
-				Log.d(DEBUG_TAG, mt.getErrors().get(i));
-
 			MoodleRestCourses mrc = new MoodleRestCourses(
 					getApplicationContext());
 			mCourses = mrc.getCourses();
-
 			return null;
-
 		}
 
 		protected void onPostExecute(Long result) {
@@ -135,6 +126,17 @@ public class MoodleHomeActivity extends HomeDrawerActivity {
 		public int compare(MoodleCourse arg0, MoodleCourse arg1) {
 			return arg0.getShortname().compareTo(arg1.getShortname());
 		}
+	}
+
+	private void setUpNavMenu() {
+		Log.d(DEBUG_TAG, "Navigation menu setup");
+		ImageView userImageView = (ImageView) findViewById(R.id.user_image);
+		Bitmap userImage = ImageDecoder.decodeImage(new File(Environment
+				.getExternalStorageDirectory() + "/MDroid/user.jpg"));
+		if (userImage != null)
+			userImageView.setImageBitmap(userImage);
+		else
+			Log.d(DEBUG_TAG, "Received null for userImage");
 	}
 
 }
