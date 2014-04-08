@@ -45,14 +45,20 @@ public class MoodleToken {
 		// Check if MDroid service in enabled.
 		getTokenForService(urlParams, MoodleRestOptions.SERVICE_MDROID);
 
-		// If above returns no token, try Moody service
-		if (token == null)
-			getTokenForService(urlParams, MoodleRestOptions.SERVICE_MOODY);
+		// Before going for below services check authentication didn't fail
+		// as it would fail in all cases if it failed above.
+		if (token == null
+				&& errors.get(0).contains(
+						MoodleRestOptions.RESPONSE_AUTH_FAILED)) {
+			// If above returns no token, try Moody service
+			if (token == null)
+				getTokenForService(urlParams, MoodleRestOptions.SERVICE_MOODY);
 
-		// If above returns no token, try Moodle mobile service
-		if (token == null)
-			getTokenForService(urlParams,
-					MoodleRestOptions.SERVICE_MOODLE_MOBILE);
+			// If above returns no token, try Moodle mobile service
+			if (token == null)
+				getTokenForService(urlParams,
+						MoodleRestOptions.SERVICE_MOODLE_MOBILE);
+		}
 
 		return token;
 	}
@@ -109,8 +115,14 @@ public class MoodleToken {
 			if (tp.getToken() != null)
 				token = tp.getToken();
 			// Write to errors list an error for this service
-			else
-				errors.add(serviceName + " : " + tp.getError());
+			else {
+				String error = tp.getError();
+				if (error.contains(MoodleRestOptions.RESPONSE_AUTH_FAILED))
+					errors.add("Authentication failed. Username and password didn't match.");
+				else
+					errors.add(serviceName + " : " + tp.getError());
+
+			}
 
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
