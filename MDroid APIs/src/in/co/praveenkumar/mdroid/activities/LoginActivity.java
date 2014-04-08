@@ -136,8 +136,10 @@ public class LoginActivity extends Activity {
 		switchNormal.setActivated(true);
 		switchParanoid.setActivated(false);
 
+		switchLayout.setVisibility(LinearLayout.VISIBLE);
 		normalLayout.setVisibility(LinearLayout.VISIBLE);
 		paranoidLayout.setVisibility(LinearLayout.GONE);
+		progressLayout.setVisibility(LinearLayout.GONE);
 	}
 
 	public void setToParanoid(View v) {
@@ -146,8 +148,10 @@ public class LoginActivity extends Activity {
 		switchNormal.setActivated(false);
 		switchParanoid.setActivated(true);
 
+		switchLayout.setVisibility(LinearLayout.VISIBLE);
 		normalLayout.setVisibility(LinearLayout.GONE);
 		paranoidLayout.setVisibility(LinearLayout.VISIBLE);
+		progressLayout.setVisibility(LinearLayout.GONE);
 
 	}
 
