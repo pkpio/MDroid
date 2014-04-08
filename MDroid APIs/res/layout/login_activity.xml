@@ -215,7 +215,8 @@
                 android:background="@drawable/retry_btn_bg"
                 android:onClick="setToNormal"
                 android:text="Retry"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                android:visibility="gone" />
         </LinearLayout>
     </FrameLayout>
 
