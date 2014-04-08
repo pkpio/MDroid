@@ -183,7 +183,6 @@
             android:id="@+id/progress_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
             android:layout_marginTop="20dp"
             android:orientation="vertical"
             android:visibility="gone" >
@@ -207,6 +206,16 @@
                 android:text="Looking for a webservice"
                 android:textColor="@color/grey_5"
                 android:textSize="14sp" />
+
+            <Button
+                android:id="@+id/retry_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/retry_btn_bg"
+                android:onClick="setToNormal"
+                android:text="Retry"
+                android:textColor="@color/white" />
         </LinearLayout>
     </FrameLayout>
 
