@@ -13,10 +13,14 @@ import in.co.praveenkumar.mdroid.helpers.MDroidDownloader;
 import in.co.praveenkumar.mdroid.models.MoodleSiteInfo;
 import in.co.praveenkumar.mdroid.moodlerest.MoodleRestSiteInfo;
 import in.co.praveenkumar.mdroid.moodlerest.MoodleToken;
+
+import java.io.File;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -49,6 +53,7 @@ public class LoginActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.login_activity);
 		setUpWidgets();
+		InitialSetup();
 	}
 
 	private void setUpWidgets() {
@@ -185,4 +190,9 @@ public class LoginActivity extends Activity {
 
 	}
 
+	public void InitialSetup() {
+		File f = new File(Environment.getExternalStorageDirectory() + "/MDroid");
+		if (!f.exists())
+			f.mkdir();
+	}
 }
