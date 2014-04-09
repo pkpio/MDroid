@@ -21,6 +21,7 @@ public class MoodleRestOptions {
 	public static final String FUNCTION_GET_FORUMS = "mod_forum_get_forums_by_courses";
 	public static final String FUNCTION_GET_DISCUSSIONS = "mod_forum_get_forum_discussions";
 	public static final String FUNCTION_GET_SITE_INFO = "core_webservice_get_site_info";
+	public static final String FUNCTION_GET_CONTACTS = "core_message_get_contacts";
 
 	// Response strings
 	public static final String RESPONSE_AUTH_FAILED = "username was not found";
