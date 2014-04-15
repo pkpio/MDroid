@@ -9,39 +9,39 @@ package in.co.praveeenkumar.mdroid.extenders;
 
 import in.co.praveenkumar.mdroid.apis.R;
 import android.app.Activity;
-import android.app.TaskStackBuilder;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.support.v4.widget.DrawerLayout;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
+import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class DrawerActivity extends Activity {
-	private String[] mPlanetTitles;
+	private String[] mMenuItems;
 	private DrawerLayout mDrawerLayout;
 	private ListView mDrawerList;
 	private CharSequence mTitle;
-
-	// private ActionBarDrawerToggle mDrawerToggle;
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		mTitle = "test";
 
-		mPlanetTitles = new String[] { "one", "two", "three" };
+		mMenuItems = new String[] { "My Courses", "All Courses", "Favourites" };
 		mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 		mDrawerList = (ListView) findViewById(R.id.left_nav_listview);
 
 		// Set the adapter for the list view
-		mDrawerList.setAdapter(new ArrayAdapter<String>(this,
-				R.layout.drawer_list_item, mPlanetTitles));
-		// Set the list's click listener
-		mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
+		mDrawerList.setAdapter(new CustomLeftNavAdapter(
+				getApplicationContext(), mMenuItems));
 
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 	}
@@ -54,7 +54,7 @@ public class DrawerActivity extends Activity {
 
 		// Highlight the selected item, update the title, and close the drawer
 		mDrawerList.setItemChecked(position, true);
-		setTitle(mPlanetTitles[position]);
+		setTitle(mMenuItems[position]);
 		mDrawerLayout.closeDrawer(mDrawerList);
 	}
 
@@ -64,20 +64,7 @@ public class DrawerActivity extends Activity {
 		// Respond to the action bar's Up/Home button
 		case android.R.id.home:
 			Intent upIntent = NavUtils.getParentActivityIntent(this);
-			if (NavUtils.shouldUpRecreateTask(this, upIntent)) {
-				// This activity is NOT part of this app's task, so create a new
-				// task
-				// when navigating up, with a synthesized back stack.
-				TaskStackBuilder.create(this)
-				// Add all of this activity's parents to the back stack
-						.addNextIntentWithParentStack(upIntent)
-						// Navigate up to the closest parent
-						.startActivities();
-			} else {
-				// This activity is part of this app's task, so simply
-				// navigate up to the logical parent activity.
-				NavUtils.navigateUpTo(this, upIntent);
-			}
+			NavUtils.navigateUpTo(this, upIntent);
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
@@ -89,13 +76,48 @@ public class DrawerActivity extends Activity {
 		getActionBar().setTitle(mTitle);
 	}
 
-	private class DrawerItemClickListener implements
-			ListView.OnItemClickListener {
-		@Override
-		public void onItemClick(AdapterView<?> parent, View view, int position,
-				long id) {
-			selectItem(position);
+	// private class DrawerItemClickListener implements
+	// ListView.OnItemClickListener {
+	// @Override
+	// public void onItemClick(AdapterView<?> parent, View view, int position,
+	// long id) {
+	// selectItem(position);
+	// }
+	// }
+
+	private class CustomLeftNavAdapter extends ArrayAdapter<String> {
+		private final Context context;
+
+		public CustomLeftNavAdapter(Context context, String[] mMenuItems) {
+			super(context, R.layout.left_drawer_list_item, mMenuItems);
+			this.context = context;
+
 		}
+
+		@Override
+		public View getView(final int position, View convertView,
+				ViewGroup parent) {
+			LayoutInflater inflater = (LayoutInflater) context
+					.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+			View rowView = inflater.inflate(R.layout.left_drawer_list_item,
+					parent, false);
+			final TextView mItemView = (TextView) findViewById(R.id.left_menu_item);
+			if (rowView.isSelected())
+				mItemView.setTypeface(null, Typeface.BOLD);
+
+			rowView.setOnClickListener(new OnClickListener() {
+
+				@Override
+				public void onClick(View v) {
+					mItemView.setTypeface(null, Typeface.BOLD);
+					selectItem(position);
+
+				}
+			});
+
+			return rowView;
+		}
+
 	}
 
 }
