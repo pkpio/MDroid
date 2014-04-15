@@ -28,6 +28,7 @@ public class CourseParser {
 	private static final String TAG_START_DATE = "startdate";
 	private static final String TAG_TIME_CREATED = "timecreated";
 	private static final String TAG_TIME_MODIFIED = "timemodified";
+	private static final String TAG_ENROLLED_USER_COUNT = "enrolledusercount";
 
 	public CourseParser(String json) {
 
@@ -85,10 +86,18 @@ public class CourseParser {
 				course.setId(jCourseObj.getString(TAG_ID));
 				course.setShortname(jCourseObj.getString(TAG_SHORTNAME));
 				course.setFullname(jCourseObj.getString(TAG_FULLNAME));
-				course.setDatecreated(jCourseObj.getLong(TAG_TIME_CREATED));
-				course.setDatemodified(jCourseObj.getLong(TAG_TIME_MODIFIED));
-				course.setStartdate(jCourseObj.getLong(TAG_START_DATE));
-				course.setSummary(jCourseObj.getString(TAG_SUMMARY));
+				if (jCourseObj.has(TAG_TIME_CREATED))
+					course.setDatecreated(jCourseObj.getLong(TAG_TIME_CREATED));
+				if (jCourseObj.has(TAG_TIME_MODIFIED))
+					course.setDatemodified(jCourseObj
+							.getLong(TAG_TIME_MODIFIED));
+				if (jCourseObj.has(TAG_START_DATE))
+					course.setStartdate(jCourseObj.getLong(TAG_START_DATE));
+				if (jCourseObj.has(TAG_SUMMARY))
+					course.setSummary(jCourseObj.getString(TAG_SUMMARY));
+				if (jCourseObj.has(TAG_ENROLLED_USER_COUNT))
+					course.setEnrolledusercount(jCourseObj
+							.getInt(TAG_ENROLLED_USER_COUNT));
 
 				mCourses.add(course);
 			} catch (JSONException e) {
