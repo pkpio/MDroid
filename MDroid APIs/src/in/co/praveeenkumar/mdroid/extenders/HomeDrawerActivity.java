@@ -9,21 +9,25 @@ package in.co.praveeenkumar.mdroid.extenders;
 
 import in.co.praveenkumar.mdroid.apis.R;
 import android.app.Activity;
+import android.content.Context;
 import android.content.res.Configuration;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
-import android.view.Menu;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
+import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class HomeDrawerActivity extends Activity {
-	private String[] mPlanetTitles;
+	private String[] mMenuItems;
 	private DrawerLayout mDrawerLayout;
 	private ListView mDrawerList;
 	private CharSequence mTitle;
@@ -35,16 +39,14 @@ public class HomeDrawerActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		mTitle = "test";
 
-		mPlanetTitles = new String[] { "one", "two", "three" };
+		mMenuItems = new String[] { "My Courses", "All Courses", "Favourites" };
 		mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 		mDrawerList = (ListView) findViewById(R.id.left_nav_listview);
 		mDrawerView = (LinearLayout) findViewById(R.id.left_drawer);
 
 		// Set the adapter for the list view
-		mDrawerList.setAdapter(new ArrayAdapter<String>(this,
-				R.layout.drawer_list_item, mPlanetTitles));
-		// Set the list's click listener
-		mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
+		mDrawerList.setAdapter(new CustomLeftNavAdapter(
+				getApplicationContext(), mMenuItems));
 
 		mDrawerToggle = new ActionBarDrawerToggle(this, /* host Activity */
 		mDrawerLayout, /* DrawerLayout object */
@@ -73,13 +75,6 @@ public class HomeDrawerActivity extends Activity {
 	}
 
 	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
-		return true;
-	}
-
-	@Override
 	protected void onPostCreate(Bundle savedInstanceState) {
 		super.onPostCreate(savedInstanceState);
 		// Sync the toggle state after onRestoreInstanceState has occurred.
@@ -99,7 +94,6 @@ public class HomeDrawerActivity extends Activity {
 		if (mDrawerToggle.onOptionsItemSelected(item)) {
 			return true;
 		}
-		// Handle your other action bar items...
 
 		return super.onOptionsItemSelected(item);
 	}
@@ -112,7 +106,7 @@ public class HomeDrawerActivity extends Activity {
 
 		// Highlight the selected item, update the title, and close the drawer
 		mDrawerList.setItemChecked(position, true);
-		setTitle(mPlanetTitles[position]);
+		setTitle(mMenuItems[position]);
 		mDrawerLayout.closeDrawer(mDrawerView);
 	}
 
@@ -122,13 +116,46 @@ public class HomeDrawerActivity extends Activity {
 		getActionBar().setTitle(mTitle);
 	}
 
-	private class DrawerItemClickListener implements
-			ListView.OnItemClickListener {
-		@Override
-		public void onItemClick(AdapterView<?> parent, View view, int position,
-				long id) {
-			selectItem(position);
+	private class CustomLeftNavAdapter extends ArrayAdapter<String> {
+		private final Context context;
+
+		public CustomLeftNavAdapter(Context context, String[] mMenuItems) {
+			super(context, R.layout.left_drawer_list_item, mMenuItems);
+			this.context = context;
+
 		}
+
+		@Override
+		public View getView(final int position, View convertView,
+				ViewGroup parent) {
+			LayoutInflater inflater = (LayoutInflater) context
+					.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+			final View rowView = inflater.inflate(
+					R.layout.left_drawer_list_item, parent, false);
+			final TextView mItemView = (TextView) rowView
+					.findViewById(R.id.left_menu_item);
+			mItemView.setText(mMenuItems[position]);
+			if (mDrawerList.isItemChecked(position))
+				mItemView.setTypeface(Typeface.create("sans-serif-bold",
+						Typeface.BOLD));
+			else
+				mItemView.setTypeface(Typeface.create("sans-serif-light",
+						Typeface.NORMAL));
+
+			rowView.setOnClickListener(new OnClickListener() {
+
+				@Override
+				public void onClick(View v) {
+					mItemView.setTypeface(Typeface.create("sans-serif-bold",
+							Typeface.BOLD));
+					selectItem(position);
+
+				}
+			});
+
+			return rowView;
+		}
+
 	}
 
 }
