@@ -70,7 +70,7 @@ public class MoodleHomeActivity extends HomeDrawerActivity {
 		protected Long doInBackground(String... credentials) {
 			MoodleRestCourses mrc = new MoodleRestCourses(
 					getApplicationContext());
-			mCourses = mrc.getCourses();
+			mCourses = mrc.getEnrolledCourses("17");
 			return null;
 		}
 
