@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/left_menu_item"
+    android:layout_width="match_parent"
+    android:layout_height="60dp"
+    android:fontFamily="sans-serif-light"
+    android:gravity="center_vertical"
+    android:orientation="vertical"
+    android:background="@drawable/listitem_default_bg"
+    android:padding="15dp"
+    android:text="My Courses"
+    android:textColor="@color/black"
+    android:textSize="20sp" />
