@@ -15,6 +15,18 @@ public class MoodleCourse {
 	private long datecreated;
 	private long datemodified;
 	private String summary;
+	private int enrolledusercount;
+
+	public MoodleCourse() {
+		this.id = "-1";
+		this.shortname = "";
+		this.fullname = "";
+		this.startdate = 0;
+		this.datecreated = 0;
+		this.datemodified = 0;
+		this.summary = "";
+		this.enrolledusercount = -1;
+	}
 
 	public String getId() {
 		return id;
@@ -71,6 +83,13 @@ public class MoodleCourse {
 	public void setSummary(String summary) {
 		this.summary = summary;
 	}
-	
+
+	public int getEnrolledusercount() {
+		return enrolledusercount;
+	}
+
+	public void setEnrolledusercount(int enrolledusercount) {
+		this.enrolledusercount = enrolledusercount;
+	}
 
 }
