@@ -28,6 +28,7 @@ public class CourseParser {
 	private static final String TAG_START_DATE = "startdate";
 	private static final String TAG_TIME_CREATED = "timecreated";
 	private static final String TAG_TIME_MODIFIED = "timemodified";
+	private static final String TAG_ENROLLED_USER_COUNT = "enrolledusercount";
 
 	public CourseParser(String json) {
 
@@ -94,7 +95,9 @@ public class CourseParser {
 					course.setStartdate(jCourseObj.getLong(TAG_START_DATE));
 				if (jCourseObj.has(TAG_SUMMARY))
 					course.setSummary(jCourseObj.getString(TAG_SUMMARY));
-				
+				if (jCourseObj.has(TAG_ENROLLED_USER_COUNT))
+					course.setEnrolledusercount(jCourseObj
+							.getInt(TAG_ENROLLED_USER_COUNT));
 
 				mCourses.add(course);
 			} catch (JSONException e) {
