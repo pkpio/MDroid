@@ -31,10 +31,10 @@ public class MoodleRestCourses {
 		token = db.getToken();
 	}
 
-	public ArrayList<MoodleCourse> getCourses() {
+	public ArrayList<MoodleCourse> getAllCourses() {
 		ArrayList<MoodleCourse> mCourses = new ArrayList<MoodleCourse>();
 		String format = MoodleRestOptions.RESPONSE_FORMAT;
-		String function = MoodleRestOptions.FUNCTION_GET_COURSES;
+		String function = MoodleRestOptions.FUNCTION_GET_ALL_COURSES;
 
 		try {
 			// Adding all parameters.
@@ -59,8 +59,38 @@ public class MoodleRestCourses {
 
 		return mCourses;
 	}
-	
-	public String getError(){
+
+	public ArrayList<MoodleCourse> getEnrolledCourses(String userId) {
+		ArrayList<MoodleCourse> mCourses = new ArrayList<MoodleCourse>();
+		String format = MoodleRestOptions.RESPONSE_FORMAT;
+		String function = MoodleRestOptions.FUNCTION_GET_ENROLLED_COURSES;
+
+		try {
+			// Adding all parameters.
+			String params = "&" + URLEncoder.encode("userid", "UTF-8") + "="
+					+ userId;
+
+			// Build a REST call url to make a call.
+			String restUrl = mUrl + "/webservice/rest/server.php" + "?wstoken="
+					+ token + "&wsfunction=" + function
+					+ "&moodlewsrestformat=" + format;
+
+			// Fetch content now.
+			MoodleRestCall mrc = new MoodleRestCall();
+			CourseParser cp = new CourseParser(
+					mrc.fetchContent(restUrl, params));
+			mCourses = cp.getCourses();
+			error = cp.getError();
+
+		} catch (UnsupportedEncodingException e) {
+			Log.d(DEBUG_TAG, "URL encoding failed");
+			e.printStackTrace();
+		}
+
+		return mCourses;
+	}
+
+	public String getError() {
 		return error;
 	}
 
