@@ -51,7 +51,7 @@ public class LoginActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.login_activity);
+		setContentView(R.layout.activity_login);
 		setUpWidgets();
 		InitialSetup();
 	}
@@ -136,6 +136,9 @@ public class LoginActivity extends Activity {
 						getApplicationContext());
 				md.download(siteInfo.getUserpictureurl(), "user.jpg", false,
 						MDroidDownloader.APP_DOWNLOADER);
+				db.setUserFullname(siteInfo.getFirstname() + " "
+						+ siteInfo.getLastname());
+				db.setUserid(siteInfo.getUserid());
 
 			} else
 				publishProgress(mt.getErrorsString(), "Login failed");

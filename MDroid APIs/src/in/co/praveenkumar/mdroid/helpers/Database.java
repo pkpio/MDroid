@@ -46,4 +46,24 @@ public class Database {
 		prefsEditor.commit();
 	}
 
+	public String getUserFullname() {
+		return appSharedPrefs.getString("fullname", "NaN");
+	}
+
+	public void setUserFullname(String fullname) {
+		Log.d(DEBUG_TAG, "fullname updated");
+		prefsEditor.putString("fullname", fullname);
+		prefsEditor.commit();
+	}
+
+	public String getUserid() {
+		return appSharedPrefs.getString("userid", "1");
+	}
+
+	public void setUserid(String userid) {
+		Log.d(DEBUG_TAG, "userid updated");
+		prefsEditor.putString("userid", userid);
+		prefsEditor.commit();
+	}
+
 }
