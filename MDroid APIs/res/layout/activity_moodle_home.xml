@@ -46,6 +46,7 @@
                 android:src="@drawable/developer" />
 
             <TextView
+                android:id="@+id/user_fullname"
                 android:layout_width="fill_parent"
                 android:layout_height="75dp"
                 android:gravity="left|center_vertical"

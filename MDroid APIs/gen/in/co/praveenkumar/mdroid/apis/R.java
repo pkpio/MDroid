@@ -220,21 +220,21 @@ containing a value of this type.
         public static final int trapizodal_button_red_bg=0x7f02002e;
     }
     public static final class id {
-        public static final int action_settings=0x7f040033;
+        public static final int action_settings=0x7f040034;
         public static final int alpha=0x7f040002;
         public static final int alphaNumeric=0x7f040003;
         public static final int content_frame=0x7f040010;
         public static final int course_content_list=0x7f040011;
-        public static final int course_created=0x7f040029;
-        public static final int course_file_layout=0x7f04002c;
-        public static final int course_file_timemodified=0x7f04002f;
-        public static final int course_filename=0x7f04002d;
-        public static final int course_filesize=0x7f04002e;
-        public static final int course_longname=0x7f040028;
-        public static final int course_modified=0x7f04002a;
-        public static final int course_module_description=0x7f040030;
-        public static final int course_module_name=0x7f04002b;
-        public static final int course_shortname=0x7f040027;
+        public static final int course_created=0x7f04002a;
+        public static final int course_file_layout=0x7f04002d;
+        public static final int course_file_timemodified=0x7f040030;
+        public static final int course_filename=0x7f04002e;
+        public static final int course_filesize=0x7f04002f;
+        public static final int course_longname=0x7f040029;
+        public static final int course_modified=0x7f04002b;
+        public static final int course_module_description=0x7f040031;
+        public static final int course_module_name=0x7f04002c;
+        public static final int course_shortname=0x7f040028;
         public static final int creditCard=0x7f040005;
         public static final int custom=0x7f04000b;
         public static final int date=0x7f04000e;
@@ -243,7 +243,7 @@ containing a value of this type.
         public static final int email=0x7f040004;
         public static final int ipAddress=0x7f040008;
         public static final int left_drawer=0x7f040012;
-        public static final int left_menu_item=0x7f040031;
+        public static final int left_menu_item=0x7f040032;
         public static final int left_nav_listview=0x7f040014;
         public static final int moodle_home_list=0x7f040026;
         public static final int nocheck=0x7f04000a;
@@ -267,8 +267,9 @@ containing a value of this type.
         public static final int switch_layout=0x7f040016;
         public static final int switch_normal=0x7f040017;
         public static final int switch_paranoid=0x7f040018;
-        public static final int text1=0x7f040032;
+        public static final int text1=0x7f040033;
         public static final int token=0x7f040020;
+        public static final int user_fullname=0x7f040027;
         public static final int user_image=0x7f040013;
         public static final int username=0x7f04001b;
         public static final int webUrl=0x7f040009;
