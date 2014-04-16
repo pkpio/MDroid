@@ -84,7 +84,7 @@ public class StickyListViewAdapter extends BaseAdapter implements
 
 		if (convertView == null) {
 			holder = new ViewHolder();
-			convertView = mInflater.inflate(R.layout.left_drawer_list_item, parent,
+			convertView = mInflater.inflate(R.layout.list_item_left_drawer, parent,
 					false);
 			holder.text = (TextView) convertView.findViewById(R.id.text1);
 			convertView.setTag(holder);

@@ -89,7 +89,7 @@ public class MoodleHomeActivity extends HomeDrawerActivity {
 
 		@Override
 		public View getView(int position, View convertView, ViewGroup parent) {
-			View rowView = mInflater.inflate(R.layout.course_list_item, parent,
+			View rowView = mInflater.inflate(R.layout.list_item_course, parent,
 					false);
 
 			// Get course views
