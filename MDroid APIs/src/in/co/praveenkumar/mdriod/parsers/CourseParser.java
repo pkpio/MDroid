@@ -20,7 +20,7 @@ public class CourseParser {
 	private String error;
 
 	// json tags
-	private static final String TAG_ERROR = "error";
+	private static final String TAG_ERROR = "message";
 	private static final String TAG_ID = "id";
 	private static final String TAG_SHORTNAME = "shortname";
 	private static final String TAG_FULLNAME = "fullname";
