@@ -120,7 +120,7 @@ public class HomeDrawerActivity extends Activity {
 		private final Context context;
 
 		public CustomLeftNavAdapter(Context context, String[] mMenuItems) {
-			super(context, R.layout.left_drawer_list_item, mMenuItems);
+			super(context, R.layout.list_item_left_drawer, mMenuItems);
 			this.context = context;
 
 		}
@@ -131,7 +131,7 @@ public class HomeDrawerActivity extends Activity {
 			LayoutInflater inflater = (LayoutInflater) context
 					.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 			final View rowView = inflater.inflate(
-					R.layout.left_drawer_list_item, parent, false);
+					R.layout.list_item_left_drawer, parent, false);
 			final TextView mItemView = (TextView) rowView
 					.findViewById(R.id.left_menu_item);
 			mItemView.setText(mMenuItems[position]);
