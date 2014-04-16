@@ -46,7 +46,7 @@ public class SiteInfoParser {
 	private void parseSiteInfo(JSONObject infoObj) {
 		try {
 			siteInfo.setSitename(infoObj.getString(TAG_SITENAME));
-			siteInfo.setUserid(TAG_USERID);
+			siteInfo.setUserid(infoObj.getString(TAG_USERID));
 			siteInfo.setUsername(infoObj.getString(TAG_USERNAME));
 			siteInfo.setFirstname(infoObj.getString(TAG_FIRSTNAME));
 			siteInfo.setLastname(infoObj.getString(TAG_LASTNAME));
