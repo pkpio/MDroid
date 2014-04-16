@@ -80,8 +80,11 @@ public class MoodleHomeActivity extends HomeDrawerActivity {
 		}
 
 		protected void onPostExecute(Long result) {
-			if (mCourses != null)
+			if (mCourses != null && mCourses.size() > 0)
 				listCoursesInListView();
+			else {
+				// Do error reporting code here
+			}
 		}
 	}
 
