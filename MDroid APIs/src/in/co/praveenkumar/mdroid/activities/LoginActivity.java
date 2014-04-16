@@ -136,6 +136,9 @@ public class LoginActivity extends Activity {
 						getApplicationContext());
 				md.download(siteInfo.getUserpictureurl(), "user.jpg", false,
 						MDroidDownloader.APP_DOWNLOADER);
+				db.setUserFullname(siteInfo.getFirstname() + " "
+						+ siteInfo.getLastname());
+				db.setUserid(siteInfo.getUserid());
 
 			} else
 				publishProgress(mt.getErrorsString(), "Login failed");

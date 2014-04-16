@@ -10,6 +10,7 @@ package in.co.praveenkumar.mdroid.activities;
 import in.co.praveeenkumar.mdroid.extenders.HomeDrawerActivity;
 import in.co.praveeenkumar.mdroid.extenders.StickyListViewAdapter;
 import in.co.praveenkumar.mdroid.apis.R;
+import in.co.praveenkumar.mdroid.helpers.Database;
 import in.co.praveenkumar.mdroid.helpers.ImageDecoder;
 import in.co.praveenkumar.mdroid.models.MoodleCourse;
 import in.co.praveenkumar.mdroid.moodlerest.MoodleRestCourses;
@@ -37,12 +38,16 @@ public class MoodleHomeActivity extends HomeDrawerActivity {
 	private final String DEBUG_TAG = "MoodleHomeActivity";
 	private ArrayList<MoodleCourse> mCourses;
 	private courseListViewAdapter myListAdapter;
+	private String[] menuItems = new String[] { "My Courses", "All Courses",
+			"Favourites" };
+	private Database db;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		setContentView(R.layout.activity_moodle_home);
 		super.onCreate(savedInstanceState);
 
+		db = new Database(this);
 		setUpNavMenu();
 		new AsyncCourseFetch().execute("");
 	}
@@ -70,7 +75,7 @@ public class MoodleHomeActivity extends HomeDrawerActivity {
 		protected Long doInBackground(String... credentials) {
 			MoodleRestCourses mrc = new MoodleRestCourses(
 					getApplicationContext());
-			mCourses = mrc.getEnrolledCourses("17");
+			mCourses = mrc.getEnrolledCourses(db.getUserid());
 			return null;
 		}
 
@@ -130,13 +135,19 @@ public class MoodleHomeActivity extends HomeDrawerActivity {
 
 	private void setUpNavMenu() {
 		Log.d(DEBUG_TAG, "Navigation menu setup");
+
 		ImageView userImageView = (ImageView) findViewById(R.id.user_image);
+		TextView userNameView = (TextView) findViewById(R.id.user_fullname);
+
 		Bitmap userImage = ImageDecoder.decodeImage(new File(Environment
 				.getExternalStorageDirectory() + "/MDroid/user.jpg"));
 		if (userImage != null)
 			userImageView.setImageBitmap(userImage);
 		else
 			Log.d(DEBUG_TAG, "Received null for userImage");
+		userNameView.setText(db.getUserFullname());
+
+		setUpMenu(menuItems, 0);
 	}
 
 }
