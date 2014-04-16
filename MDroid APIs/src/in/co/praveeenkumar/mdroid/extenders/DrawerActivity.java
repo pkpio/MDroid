@@ -89,7 +89,7 @@ public class DrawerActivity extends Activity {
 		private final Context context;
 
 		public CustomLeftNavAdapter(Context context, String[] mMenuItems) {
-			super(context, R.layout.left_drawer_list_item, mMenuItems);
+			super(context, R.layout.list_item_left_drawer, mMenuItems);
 			this.context = context;
 
 		}
@@ -99,7 +99,7 @@ public class DrawerActivity extends Activity {
 				ViewGroup parent) {
 			LayoutInflater inflater = (LayoutInflater) context
 					.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-			View rowView = inflater.inflate(R.layout.left_drawer_list_item,
+			View rowView = inflater.inflate(R.layout.list_item_left_drawer,
 					parent, false);
 			final TextView mItemView = (TextView) findViewById(R.id.left_menu_item);
 			if (rowView.isSelected())
