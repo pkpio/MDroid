@@ -33,6 +33,7 @@ public class HomeDrawerActivity extends Activity {
 	private CharSequence mTitle;
 	private ActionBarDrawerToggle mDrawerToggle;
 	private LinearLayout mDrawerView;
+	private CustomLeftNavAdapter navListAdapter;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -45,8 +46,9 @@ public class HomeDrawerActivity extends Activity {
 		mDrawerView = (LinearLayout) findViewById(R.id.left_drawer);
 
 		// Set the adapter for the list view
-		mDrawerList.setAdapter(new CustomLeftNavAdapter(
-				getApplicationContext(), mMenuItems));
+		navListAdapter = new CustomLeftNavAdapter(getApplicationContext(),
+				mMenuItems);
+		mDrawerList.setAdapter(navListAdapter);
 
 		mDrawerToggle = new ActionBarDrawerToggle(this, /* host Activity */
 		mDrawerLayout, /* DrawerLayout object */
@@ -72,6 +74,16 @@ public class HomeDrawerActivity extends Activity {
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 		getActionBar().setHomeButtonEnabled(true);
 
+	}
+
+	public void setUpMenu(String[] menuItems, int curPos) {
+		mMenuItems = menuItems;
+		navListAdapter.notifyDataSetChanged();
+
+		if (curPos < menuItems.length) {
+			mDrawerList.setItemChecked(curPos, true);
+			navListAdapter.notifyDataSetChanged();
+		}
 	}
 
 	@Override
