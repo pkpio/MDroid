@@ -87,7 +87,7 @@ public class CourseContentActivity extends DrawerActivity {
 
 		@Override
 		public View getView(int position, View convertView, ViewGroup parent) {
-			View rowView = mInflater.inflate(R.layout.course_content_list_item,
+			View rowView = mInflater.inflate(R.layout.list_item_course_content,
 					parent, false);
 
 			// Get all views

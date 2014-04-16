@@ -12,6 +12,7 @@ public class SiteInfoParser {
 	// json tags
 	private static final String TAG_ERROR = "error";
 	private static final String TAG_SITENAME = "sitename";
+	private static final String TAG_USERID = "userid";
 	private static final String TAG_USERNAME = "username";
 	private static final String TAG_FIRSTNAME = "firstname";
 	private static final String TAG_LASTNAME = "lastname";
@@ -45,14 +46,15 @@ public class SiteInfoParser {
 	private void parseSiteInfo(JSONObject infoObj) {
 		try {
 			siteInfo.setSitename(infoObj.getString(TAG_SITENAME));
+			siteInfo.setUserid(infoObj.getString(TAG_USERID));
 			siteInfo.setUsername(infoObj.getString(TAG_USERNAME));
 			siteInfo.setFirstname(infoObj.getString(TAG_FIRSTNAME));
 			siteInfo.setLastname(infoObj.getString(TAG_LASTNAME));
 			siteInfo.setUserpictureurl(infoObj.getString(TAG_USERPIC_URL));
-			siteInfo.setDownloadfiles(1 == infoObj.getInt(TAG_DOWNLOAD_FILES));
-			siteInfo.setUploadfiles(1 == infoObj.getInt(TAG_UPLOAD_FILES));
 			siteInfo.setVersion(infoObj.getString(TAG_VERSION));
 			siteInfo.setRelease(infoObj.getString(TAG_RELEASE));
+			siteInfo.setDownloadfiles(1 == infoObj.getInt(TAG_DOWNLOAD_FILES));
+			siteInfo.setUploadfiles(1 == infoObj.getInt(TAG_UPLOAD_FILES));
 		} catch (JSONException e) {
 			error = "Error while decoding siteinfo object";
 			e.printStackTrace();

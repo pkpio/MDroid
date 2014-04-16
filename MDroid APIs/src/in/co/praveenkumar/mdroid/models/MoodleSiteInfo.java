@@ -9,6 +9,7 @@ package in.co.praveenkumar.mdroid.models;
 
 public class MoodleSiteInfo {
 	private String sitename;
+	private String userid;
 	private String username;
 	private String firstname;
 	private String lastname;
@@ -17,6 +18,14 @@ public class MoodleSiteInfo {
 	private Boolean uploadfiles;
 	private String release;
 	private String version;
+
+	public String getUserid() {
+		return userid;
+	}
+
+	public void setUserid(String userid) {
+		this.userid = userid;
+	}
 
 	public String getSitename() {
 		return sitename;
