@@ -1,6 +1,6 @@
 Author
 ----------------------
-Praveen Kumar Pendyala <praveen@praveenkumar.co.in> <praveendath92@gmail.com>
+Praveen Kumar Pendyala [praveen@praveenkumar.co.in] <br>
 http://praveenkumar.co.in
 
 
