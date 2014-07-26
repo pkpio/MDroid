@@ -1,0 +1,83 @@
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <!-- The main content view -->
+
+    <FrameLayout
+        android:id="@+id/content_frame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <se.emilsjolander.stickylistheaders.StickyListHeadersListView
+            android:id="@+id/moodle_home_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/grey_14.5"
+            android:dividerHeight="0dp"
+            android:drawSelectorOnTop="true"
+            android:fastScrollEnabled="true"
+            android:overScrollMode="never"
+            android:scrollbarStyle="outsideOverlay" />
+    </FrameLayout>
+
+    <!-- Left navigation drawer -->
+
+    <LinearLayout
+        android:id="@+id/left_drawer"
+        android:layout_width="240dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="left"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            android:background="@color/grey_7"
+            android:clickable="true"
+            android:orientation="horizontal" >
+
+            <ImageView
+                android:id="@+id/user_image"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:padding="8dp"
+                android:src="@drawable/developer" />
+
+            <TextView
+                android:id="@+id/user_fullname"
+                android:layout_width="fill_parent"
+                android:layout_height="75dp"
+                android:gravity="left|center_vertical"
+                android:lines="2"
+                android:padding="5dp"
+                android:text="Praveen Kumar Pendyala"
+                android:textColor="@color/grey_13"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <ListView
+            android:id="@+id/left_nav_listview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:choiceMode="singleChoice"
+            android:divider="@android:color/transparent"
+            android:dividerHeight="0dp" />
+    </LinearLayout>
+
+    <!-- Right navigation drawer -->
+
+    <se.emilsjolander.stickylistheaders.StickyListHeadersListView
+        android:id="@+id/right_drawer"
+        android:layout_width="240dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="right"
+        android:background="#fff"
+        android:choiceMode="singleChoice"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="0dp" />
+
+</android.support.v4.widget.DrawerLayout>

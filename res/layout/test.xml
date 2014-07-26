@@ -1,0 +1,26 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center" >
+
+    <FrameLayout
+        android:layout_width="302dp"
+        android:layout_height="wrap_content" >
+
+        <Button
+            android:layout_width="150dp"
+            android:layout_height="35dp"
+            android:layout_gravity="left"
+            android:layout_marginTop="25dp"
+            android:background="@drawable/normal_login_btn_bg" />
+
+        <Button
+            android:layout_width="150dp"
+            android:layout_height="35dp"
+            android:layout_gravity="right"
+            android:layout_marginTop="25dp"
+            android:background="@drawable/paranoid_login_btn_bg"
+            android:rotation="180" />
+    </FrameLayout>
+
+</LinearLayout>

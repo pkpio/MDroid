@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:whatever="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/login_bg"
+    android:orientation="vertical"
+    android:padding="16dp" >
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/card" >
+
+        <!-- Login mode switching tabs -->
+
+        <LinearLayout
+            android:id="@+id/switch_layout"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:paddingLeft="1dp"
+            android:paddingRight="1dp"
+            android:weightSum="2" >
+
+            <Button
+                android:id="@+id/switch_normal"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/normal_login_btn_bg"
+                android:gravity="center"
+                android:onClick="setToNormal"
+                android:text="Normal"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/switch_paranoid"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/paranoid_login_btn_bg"
+                android:gravity="center"
+                android:onClick="setToParanoid"
+                android:text="Paranoid"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <!-- Normal login -->
+
+        <LinearLayout
+            android:id="@+id/normal_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="1dp"
+            android:layout_marginRight="1dp"
+            android:layout_marginTop="50dp"
+            android:background="@color/white"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:paddingTop="15dp" >
+
+            <com.andreabaccega.widget.FormEditText
+                android:id="@+id/norm_url"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="20dp"
+                android:hint="moodle url"
+                android:inputType="textEmailAddress"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                whatever:testType="webUrl" />
+
+            <com.andreabaccega.widget.FormEditText
+                android:id="@+id/username"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="20dp"
+                android:hint="username"
+                android:inputType="textUri"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                whatever:testType="nocheck" />
+
+            <com.andreabaccega.widget.FormEditText
+                android:id="@+id/password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="20dp"
+                android:hint="password"
+                android:inputType="textPassword"
+                android:lines="1"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                whatever:testType="nocheck" />
+
+            <Button
+                android:id="@+id/normal_login_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/login_btn_bg"
+                android:gravity="center"
+                android:onClick="doNormLogin"
+                android:text="Login"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <!-- Paranoid Login -->
+
+        <LinearLayout
+            android:id="@+id/paranoid_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="1dp"
+            android:layout_marginRight="1dp"
+            android:layout_marginTop="50dp"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:paddingTop="15dp"
+            android:visibility="gone" >
+
+            <com.andreabaccega.widget.FormEditText
+                android:id="@+id/para_url"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="20dp"
+                android:hint="moodle url"
+                android:inputType="textEmailAddress"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                whatever:testType="webUrl" />
+
+            <com.andreabaccega.widget.FormEditText
+                android:id="@+id/token"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="20dp"
+                android:hint="token"
+                android:inputType="textUri"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                whatever:testType="nocheck" />
+
+            <Button
+                android:id="@+id/paranoid_login_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/login_btn_bg"
+                android:gravity="center"
+                android:text="Login"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <!-- Progress and error layout -->
+
+        <LinearLayout
+            android:id="@+id/progress_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="vertical"
+            android:visibility="gone" >
+
+            <TextView
+                android:id="@+id/progress_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Logging in..."
+                android:textColor="@color/blue_6"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/progress_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:padding="8dp"
+                android:text="Looking for a webservice"
+                android:textColor="@color/grey_5"
+                android:textSize="14sp" />
+
+            <Button
+                android:id="@+id/retry_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/retry_btn_bg"
+                android:onClick="setToNormal"
+                android:text="Retry"
+                android:textColor="@color/white"
+                android:visibility="gone" />
+        </LinearLayout>
+    </FrameLayout>
+
+</ScrollView>
