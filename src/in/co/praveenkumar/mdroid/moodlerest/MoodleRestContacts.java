@@ -7,9 +7,9 @@
 
 package in.co.praveenkumar.mdroid.moodlerest;
 
-import in.co.praveenkumar.mdriod.parsers.ContactsParser;
 import in.co.praveenkumar.mdroid.helpers.Database;
 import in.co.praveenkumar.mdroid.models.MoodleContact;
+import in.co.praveenkumar.mdroid.parsers.ContactsParser;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;

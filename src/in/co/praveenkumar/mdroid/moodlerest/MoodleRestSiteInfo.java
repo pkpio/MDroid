@@ -7,9 +7,9 @@
 
 package in.co.praveenkumar.mdroid.moodlerest;
 
-import in.co.praveenkumar.mdriod.parsers.SiteInfoParser;
 import in.co.praveenkumar.mdroid.helpers.Database;
 import in.co.praveenkumar.mdroid.models.MoodleSiteInfo;
+import in.co.praveenkumar.mdroid.parsers.SiteInfoParser;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;

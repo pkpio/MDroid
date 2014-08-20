@@ -5,7 +5,7 @@
  * License: http://creativecommons.org/licenses/by-nc-sa/3.0/
  **************************************************************/
 
-package in.co.praveenkumar.mdriod.parsers;
+package in.co.praveenkumar.mdroid.parsers;
 
 import in.co.praveenkumar.mdroid.models.MoodleCourse;
 
