@@ -5,7 +5,7 @@
  * License: http://creativecommons.org/licenses/by-nc-sa/3.0/
  **************************************************************/
 
-package in.co.praveeenkumar.mdroid.extenders;
+package in.co.praveenkumar.mdroid.extenders;
 
 import android.R;
 import android.app.Activity;

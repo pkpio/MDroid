@@ -7,9 +7,9 @@
 
 package in.co.praveenkumar.mdroid.activities;
 
-import in.co.praveeenkumar.mdroid.extenders.DrawerActivity;
-import in.co.praveeenkumar.mdroid.extenders.StickyListViewAdapter;
 import in.co.praveenkumar.mdroid.apis.R;
+import in.co.praveenkumar.mdroid.extenders.DrawerActivity;
+import in.co.praveenkumar.mdroid.extenders.StickyListViewAdapter;
 import in.co.praveenkumar.mdroid.models.MoodleCourseContent;
 import in.co.praveenkumar.mdroid.models.MoodleCourseModule;
 import in.co.praveenkumar.mdroid.models.MoodleCourseSection;

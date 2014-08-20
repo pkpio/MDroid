@@ -10,9 +10,9 @@ package in.co.praveenkumar.mdroid.moodlerest;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
-import in.co.praveenkumar.mdriod.parsers.CourseContentParser;
 import in.co.praveenkumar.mdroid.helpers.Database;
 import in.co.praveenkumar.mdroid.models.MoodleCourseContent;
+import in.co.praveenkumar.mdroid.parsers.CourseContentParser;
 import android.content.Context;
 import android.util.Log;
 

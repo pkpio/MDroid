@@ -7,7 +7,7 @@
 
 package in.co.praveenkumar.mdroid.moodlerest;
 
-import in.co.praveenkumar.mdriod.parsers.TokenParser;
+import in.co.praveenkumar.mdroid.parsers.TokenParser;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;

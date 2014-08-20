@@ -1,4 +1,4 @@
-package in.co.praveenkumar.mdriod.parsers;
+package in.co.praveenkumar.mdroid.parsers;
 
 import org.json.JSONException;
 import org.json.JSONObject;
