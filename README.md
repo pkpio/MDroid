@@ -4,6 +4,12 @@ Praveen Kumar Pendyala <<praveen@praveenkumar.co.in>><br>
 http://praveenkumar.co.in
 
 
+Note
+----------------------
+The master branch is being used for development of a new version of MDroid from
+scratch. So, if you are here for the app source code, check other branches.
+
+
 License
 ----------------------
 Licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 3.0 
