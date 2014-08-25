@@ -2,7 +2,102 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
-    
+    android:background="#ff9393"
+    android:orientation="vertical"
+    android:paddingTop="50dp" >
+
+    <!-- Username -->
+
+    <FrameLayout
+        android:layout_width="450dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center_horizontal"
+        android:background="#ffffff"
+        android:gravity="center_vertical"
+        android:paddingTop="15dp" >
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:hint="username or email"
+            android:paddingEnd="10dp"
+            android:paddingLeft="50dp"
+            android:paddingRight="10dp"
+            android:paddingStart="50dp"
+            android:textColorHint="#cccccc" />
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:paddingEnd="5dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="5dp"
+            android:paddingStart="10dp"
+            android:src="@drawable/person" />
+    </FrameLayout>
+
+    <!-- Password -->
+
+    <FrameLayout
+        android:layout_width="450dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center_horizontal"
+        android:background="#ffffff"
+        android:gravity="center_vertical"
+        android:paddingTop="15dp" >
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:hint="password"
+            android:paddingEnd="10dp"
+            android:paddingLeft="50dp"
+            android:paddingRight="10dp"
+            android:paddingStart="50dp"
+            android:textColorHint="#cccccc" />
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:paddingEnd="5dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="5dp"
+            android:paddingStart="10dp"
+            android:src="@drawable/lock" />
+    </FrameLayout>
+
+    <!-- URL -->
+
+    <FrameLayout
+        android:layout_width="450dp"
+        android:layout_height="55dp"
+        android:layout_gravity="center_horizontal"
+        android:background="#ffffff"
+        android:gravity="center_vertical"
+        android:paddingBottom="15dp"
+        android:paddingTop="15dp" >
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:hint="moodle url"
+            android:paddingEnd="10dp"
+            android:paddingLeft="50dp"
+            android:paddingRight="10dp"
+            android:paddingStart="50dp"
+            android:textColorHint="#cccccc" />
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:paddingEnd="5dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="5dp"
+            android:paddingStart="10dp"
+            android:src="@drawable/public_net" />
+    </FrameLayout>
 
 </LinearLayout>
