@@ -37,6 +37,7 @@ public class LoginActivity extends FragmentActivity implements
 		for (String tab_name : tabs) {
 			actionBar.addTab(actionBar.newTab().setText(tab_name)
 					.setIcon(R.drawable.person_outline)
+					.setCustomView(R.layout.custom_tab)
 					.setTabListener(this));
 		}
 
