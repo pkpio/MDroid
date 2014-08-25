@@ -8,7 +8,6 @@ import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
-import android.widget.TabHost;
 
 public class LoginActivity extends FragmentActivity implements
 		ActionBar.TabListener {
@@ -30,14 +29,12 @@ public class LoginActivity extends FragmentActivity implements
 		mAdapter = new TabsPagerAdapter(getSupportFragmentManager());
 
 		viewPager.setAdapter(mAdapter);
-		//actionBar.setHomeButtonEnabled(false);
+		// actionBar.setHomeButtonEnabled(false);
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
 		// Adding Tabs
 		for (String tab_name : tabs) {
 			actionBar.addTab(actionBar.newTab().setText(tab_name)
-					.setIcon(R.drawable.person_outline)
-					.setCustomView(R.layout.custom_tab)
 					.setTabListener(this));
 		}
 
