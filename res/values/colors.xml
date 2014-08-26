@@ -2,7 +2,10 @@
 <resources>
 
     <color name="moodle_color">#ff8800</color>
+    <color name="moodle_click_color">#ffb560</color>
     <color name="grey1">#E5E5E5</color>
     <color name="tab_text_color">#050505</color>
+    <color name="white">#ffffff</color>
+    <color name="edittext_hint_color">#cccccc</color>
 
 </resources>
