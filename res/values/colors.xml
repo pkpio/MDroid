@@ -2,5 +2,6 @@
 <resources>
 
     <color name="moodle_color">#ff8800</color>
+    <color name="grey1">#E5E5E5</color>
 
 </resources>
