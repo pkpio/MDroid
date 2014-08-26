@@ -4,4 +4,17 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
 
+    <!-- Login activity -->
+    <dimen name="activity_login_framelayout_height">40dp</dimen>
+    <dimen name="activity_login_framelayout_paddingtop">15dp</dimen>
+    <dimen name="activity_login_edittext_paddingleft">50dp</dimen>
+    <dimen name="activity_login_edittext_paddingstart">50dp</dimen>
+    <dimen name="activity_login_edittext_paddingright">10dp</dimen>
+    <dimen name="activity_login_edittext_paddingend">10dp</dimen>
+    <dimen name="activity_login_imageview_width">50dp</dimen>
+    <dimen name="activity_login_imageview_paddingleft">10dp</dimen>
+    <dimen name="activity_login_imageview_paddingstart">10dp</dimen>
+    <dimen name="activity_login_imageview_paddingright">5dp</dimen>
+    <dimen name="activity_login_imageview_paddingend">5dp</dimen>
+
 </resources>

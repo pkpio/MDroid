@@ -2,7 +2,16 @@
 <resources>
 
     <string name="app_name">MDroid</string>
-    <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+
+    <!-- Login activity -->
+    <string name="activity_login_email_hint">username or email</string>
+    <string name="activity_login_email_icon_desc">Login icon</string>
+    <string name="activity_login_password_hint">password</string>
+    <string name="activity_login_password_icon_desc">Login icon</string>
+    <string name="activity_login_url_hint">moodle url</string>
+    <string name="activity_login_url_icon_desc">Url icon</string>
+    <string name="activity_login_login_button">login</string>
+    <string name="activity_login_token_hint">your account token</string>
 
 </resources>
