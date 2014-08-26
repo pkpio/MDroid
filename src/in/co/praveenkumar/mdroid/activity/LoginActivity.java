@@ -2,6 +2,12 @@ package in.co.praveenkumar.mdroid.activity;
 
 import in.co.praveenkumar.mdroid.adapter.TabsPagerAdapter;
 import in.co.praveenkumar.mdroid.apis.R;
+import in.co.praveenkumar.mdroid.helper.ActionBarTabs;
+
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+
 import android.app.ActionBar;
 import android.app.ActionBar.Tab;
 import android.app.FragmentTransaction;
@@ -29,8 +35,8 @@ public class LoginActivity extends FragmentActivity implements
 		mAdapter = new TabsPagerAdapter(getSupportFragmentManager());
 
 		viewPager.setAdapter(mAdapter);
-		// actionBar.setHomeButtonEnabled(false);
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+		ActionBarTabs.setHasEmbeddedTabs(actionBar, false);
 
 		// Adding Tabs
 		for (String tab_name : tabs) {
@@ -66,8 +72,7 @@ public class LoginActivity extends FragmentActivity implements
 
 	@Override
 	public void onTabSelected(Tab tab, FragmentTransaction ft) {
-		// on tab selected
-		// show respected fragment view
+		// on tab selected. Show respected fragment view
 		viewPager.setCurrentItem(tab.getPosition());
 	}
 
