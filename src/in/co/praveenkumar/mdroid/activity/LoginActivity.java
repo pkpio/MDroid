@@ -3,11 +3,6 @@ package in.co.praveenkumar.mdroid.activity;
 import in.co.praveenkumar.mdroid.adapter.TabsPagerAdapter;
 import in.co.praveenkumar.mdroid.apis.R;
 import in.co.praveenkumar.mdroid.helper.ActionBarTabs;
-
-import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-
 import android.app.ActionBar;
 import android.app.ActionBar.Tab;
 import android.app.FragmentTransaction;
@@ -21,7 +16,6 @@ public class LoginActivity extends FragmentActivity implements
 	private ViewPager viewPager;
 	private TabsPagerAdapter mAdapter;
 	private ActionBar actionBar;
-	// Tab titles
 	private String[] tabs = { "Normal", "Paranoid" };
 
 	@Override
@@ -51,8 +45,6 @@ public class LoginActivity extends FragmentActivity implements
 
 			@Override
 			public void onPageSelected(int position) {
-				// on changing the page
-				// make respected tab selected
 				actionBar.setSelectedNavigationItem(position);
 			}
 
