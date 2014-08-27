@@ -11,5 +11,6 @@ public class SessionSetting {
 	public static String token;
 	public static String mUrl;
 	public static Boolean DebugMode = false;
+	public static long currentSiteId;
 
 }

@@ -153,7 +153,8 @@ public class Login extends AsyncTask<String, Integer, Boolean> {
 		}
 		siteInfo.setToken(token);
 		siteInfo.save();
-		
+		SessionSetting.currentSiteId = siteInfo.getId();
+
 		updateProgress("\nWelcome " + siteInfo.getFullname() + "!\n");
 
 		return true;
