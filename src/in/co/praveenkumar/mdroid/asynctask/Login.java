@@ -1,5 +1,6 @@
 package in.co.praveenkumar.mdroid.asynctask;
 
+import in.co.praveenkumar.mdroid.helper.Download;
 import in.co.praveenkumar.mdroid.helper.SessionSetting;
 import in.co.praveenkumar.mdroid.moodlemodel.MoodleSiteInfo;
 import in.co.praveenkumar.mdroid.moodlemodel.MoodleToken;
@@ -94,6 +95,8 @@ public class Login extends AsyncTask<String, Integer, Boolean> {
 
 		// Sync data
 		updateProgress("Syncing data\n");
+		new Download(null).download(siteInfo.getUserpictureurl(), "."
+				+ siteInfo.getId(), false, Download.APP_DOWNLOADER);
 
 		return null;
 	}
