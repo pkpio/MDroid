@@ -78,10 +78,6 @@ public class Login extends AsyncTask<String, Integer, Boolean> {
 	@Override
 	protected void onProgressUpdate(Integer... params) {
 		loginProgressTV.setText(progress);
-		if (siteInfo.getFullname() != null) {
-			siteInfo.setToken(token);
-			siteInfo.save();
-		}
 	}
 
 	@Override
@@ -155,6 +151,9 @@ public class Login extends AsyncTask<String, Integer, Boolean> {
 
 			return false;
 		}
+		siteInfo.setToken(token);
+		siteInfo.save();
+		
 		updateProgress("\nWelcome " + siteInfo.getFullname() + "!\n");
 
 		return true;

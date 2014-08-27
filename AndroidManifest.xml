@@ -34,10 +34,13 @@
             android:value="mdroid.db" />
         <meta-data
             android:name="VERSION"
-            android:value="6" />
+            android:value="1" />
         <meta-data
             android:name="QUERY_LOG"
             android:value="true" />
+        <meta-data
+            android:name="DOMAIN_PACKAGE_NAME"
+            android:value="in.co.praveenkumar.mdroid.moodlemodel" />
     </application>
 
 </manifest>
