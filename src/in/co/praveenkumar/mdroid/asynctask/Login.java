@@ -16,6 +16,7 @@ public class Login extends AsyncTask<String, Integer, Boolean> {
 	String mUrl;
 	String progress = "";
 	String token;
+	MoodleSiteInfo siteInfo = new MoodleSiteInfo();
 
 	// Widgets
 	Button loginButton;
@@ -68,15 +69,19 @@ public class Login extends AsyncTask<String, Integer, Boolean> {
 	}
 
 	@Override
-	protected void onProgressUpdate(Integer... params) {
-		loginProgressTV.setText(progress);
-	}
-
-	@Override
 	protected void onPreExecute() {
 		loginButton.setText("Logging in..");
 		loginButton.setEnabled(false);
 		loginProgressSV.setVisibility(ScrollView.VISIBLE);
+	}
+
+	@Override
+	protected void onProgressUpdate(Integer... params) {
+		loginProgressTV.setText(progress);
+		if (siteInfo.getFullname() != null) {
+			siteInfo.setToken(token);
+			siteInfo.save();
+		}
 	}
 
 	@Override
@@ -137,20 +142,20 @@ public class Login extends AsyncTask<String, Integer, Boolean> {
 	private Boolean getSiteInfo() {
 		updateProgress("Fetching site info");
 		MoodleRestSiteInfo mrsi = new MoodleRestSiteInfo(mUrl, token);
-		MoodleSiteInfo msi = mrsi.getSiteInfo();
-		if (msi.getFullname() == null) {
+		siteInfo = mrsi.getSiteInfo();
+		if (siteInfo.getFullname() == null) {
 			updateProgress("Siteinfo fetch failed!");
-			updateProgress("\nError code: \n" + msi.getErrorcode());
+			updateProgress("\nError code: \n" + siteInfo.getErrorcode());
 
 			if (SessionSetting.DebugMode) {
-				updateProgress("Exception: " + msi.getException());
-				updateProgress("Message: " + msi.getMessage());
-				updateProgress("Debug info: " + msi.getDebuginfo());
+				updateProgress("Exception: " + siteInfo.getException());
+				updateProgress("Message: " + siteInfo.getMessage());
+				updateProgress("Debug info: " + siteInfo.getDebuginfo());
 			}
 
 			return false;
 		}
-		updateProgress("\nWelcome " + msi.getFullname() + "!\n");
+		updateProgress("\nWelcome " + siteInfo.getFullname() + "!\n");
 
 		return true;
 	}

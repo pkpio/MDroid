@@ -33,7 +33,24 @@ public class MoodleSiteInfo extends SugarRecord<MoodleSiteInfo> {
 	@Ignore
 	String debuginfo;
 
+	/*
+	 * SiteInfo is basically an account Token is needed for an account to get
+	 * new info from Moodle site
+	 */
+	String token;
+
 	public MoodleSiteInfo() {
+	}
+
+	public MoodleSiteInfo(String token) {
+		this.token = token;
+	}
+
+	/**
+	 * Set token associated with this account
+	 */
+	public void setToken(String token) {
+		this.token = token;
 	}
 
 	public String getSitename() {
@@ -126,6 +143,13 @@ public class MoodleSiteInfo extends SugarRecord<MoodleSiteInfo> {
 	 */
 	public String getMobilecssurl() {
 		return mobilecssurl;
+	}
+
+	/**
+	 * Get token associated with this account
+	 */
+	public String getToken() {
+		return token;
 	}
 
 	/**
