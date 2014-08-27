@@ -139,42 +139,50 @@
         </LinearLayout>
     </ScrollView>
 
-    <LinearLayout
+    <ScrollView
         android:id="@+id/login_progress_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/semi_transparent"
+        android:clickable="true"
         android:gravity="center_horizontal"
-        android:orientation="vertical"
         android:visibility="gone" >
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
-            android:orientation="horizontal"
-            android:paddingBottom="15dp"
-            android:paddingTop="30dp" >
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal"
+                android:paddingBottom="15dp"
+                android:paddingTop="30dp" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/activity_login_status_title"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <ProgressBar
+                    android:id="@+id/progressBar1"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp" />
+            </LinearLayout>
 
             <TextView
+                android:id="@+id/login_progress_message"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/activity_login_status_title"
-                android:textColor="@color/white"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <ProgressBar
-                android:id="@+id/progressBar1"
-                android:layout_width="25dp"
-                android:layout_height="25dp" />
+                android:gravity="center_horizontal"
+                android:textColor="@color/white" />
         </LinearLayout>
-
-        <TextView
-            android:id="@+id/login_progress_message"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/white" />
-    </LinearLayout>
+    </ScrollView>
 
 </FrameLayout>
