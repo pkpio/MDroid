@@ -12,15 +12,16 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 public class NormalLogin extends Fragment {
+	Boolean DEBUGGING_MODE = false;
 	EditText usernameET;
 	EditText passwordET;
 	EditText murlET;
 	Button loginButton;
-	LinearLayout loginProgressLL;
+	ScrollView loginProgressLL;
 	TextView loginProgressTV;
 
 	@Override
@@ -48,7 +49,7 @@ public class NormalLogin extends Fragment {
 				.findViewById(R.id.login_normal_password);
 		murlET = (EditText) rootView.findViewById(R.id.login_normal_url);
 		loginButton = (Button) rootView.findViewById(R.id.login_normal_login);
-		loginProgressLL = (LinearLayout) rootView
+		loginProgressLL = (ScrollView) rootView
 				.findViewById(R.id.login_progress_layout);
 		loginProgressTV = (TextView) rootView
 				.findViewById(R.id.login_progress_message);
@@ -66,7 +67,7 @@ public class NormalLogin extends Fragment {
 		String uname;
 		String pwd;
 		String mUrl;
-		String curStatus;
+		String progress = "";
 
 		public asyncNormalLogin(String uname, String pwd, String mUrl) {
 			this.uname = uname;
@@ -78,13 +79,11 @@ public class NormalLogin extends Fragment {
 		protected void onPreExecute() {
 			loginButton.setText("Logging in..");
 			loginButton.setEnabled(false);
-			loginProgressLL.setVisibility(LinearLayout.VISIBLE);
+			loginProgressLL.setVisibility(ScrollView.VISIBLE);
 		}
 
 		@Override
 		protected void onProgressUpdate(Integer... params) {
-			String progress = loginProgressTV.getText().toString();
-			progress += curStatus + "\n";
 			loginProgressTV.setText(progress);
 		}
 
@@ -100,25 +99,32 @@ public class NormalLogin extends Fragment {
 				// Print the errors from moodle
 				if (mt.getError() != null) {
 					updateProgress("\nError: " + mt.getError());
-					updateProgress("\nStacktrace: " + mt.getStacktrace());
-					updateProgress("\nMoodle url: " + mt.getReproductionlink());
+					updateProgress("Moodle url: " + mt.getReproductionlink());
+					/*
+					 * -TODO- Set this debugging mode flag as app setting
+					 */
+					if (DEBUGGING_MODE) {
+						updateProgress("Stacktrace: " + mt.getStacktrace());
+						updateProgress("Debug info: " + mt.getDebuginfo());
+					}
 				}
 
 				// Print non-moodle errors
 				else {
 					updateProgress("\nError:\n" + mrt.getErrorsString());
-				}
-				
+				}				
+
 				return null;
 			}
 			
-			
+			// Fetch site info
+			updateProgress("Token obtained\n Fetching site info\n");
 
 			return null;
 		}
 
 		private void updateProgress(String status) {
-			curStatus = status;
+			progress += status + "\n";
 			publishProgress(0);
 		}
 
