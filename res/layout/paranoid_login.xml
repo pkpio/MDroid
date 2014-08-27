@@ -1,100 +1,154 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/grey1"
     android:orientation="vertical" >
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:maxWidth="600dp"
-        android:minWidth="600dp"
-        android:orientation="vertical"
-        android:paddingTop="40dp" >
+    <!-- Login fields -->
 
-        <!-- Token -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/grey1" >
 
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/activity_login_framelayout_height"
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:background="#ffffff"
-            android:gravity="center_vertical"
-            android:paddingTop="@dimen/activity_login_framelayout_paddingtop" >
+            android:maxWidth="600dp"
+            android:minWidth="600dp"
+            android:orientation="vertical"
+            android:paddingTop="40dp" >
 
-            <EditText
-                android:id="@+id/login_paranoid_token"
+            <!-- Token -->
+
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@null"
-                android:hint="@string/activity_login_token_hint"
-                android:inputType="textUri"
-                android:paddingEnd="@dimen/activity_login_edittext_paddingend"
-                android:paddingLeft="@dimen/activity_login_edittext_paddingleft"
-                android:paddingRight="@dimen/activity_login_edittext_paddingright"
-                android:paddingStart="@dimen/activity_login_edittext_paddingstart"
-                android:textColorHint="@color/edittext_hint_color" />
+                android:layout_height="@dimen/activity_login_framelayout_height"
+                android:layout_gravity="center_horizontal"
+                android:background="#ffffff"
+                android:gravity="center_vertical"
+                android:paddingTop="@dimen/activity_login_framelayout_paddingtop" >
 
-            <ImageView
-                android:layout_width="50dp"
-                android:layout_height="match_parent"
-                android:contentDescription="@string/activity_login_password_icon_desc"
-                android:paddingEnd="@dimen/activity_login_imageview_paddingend"
-                android:paddingLeft="@dimen/activity_login_imageview_paddingleft"
-                android:paddingRight="@dimen/activity_login_imageview_paddingright"
-                android:paddingStart="@dimen/activity_login_imageview_paddingstart"
-                android:src="@drawable/lock_open" />
-        </FrameLayout>
+                <EditText
+                    android:id="@+id/login_paranoid_token"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@null"
+                    android:hint="@string/activity_login_token_hint"
+                    android:inputType="textUri"
+                    android:paddingEnd="@dimen/activity_login_edittext_paddingend"
+                    android:paddingLeft="@dimen/activity_login_edittext_paddingleft"
+                    android:paddingRight="@dimen/activity_login_edittext_paddingright"
+                    android:paddingStart="@dimen/activity_login_edittext_paddingstart"
+                    android:textColorHint="@color/edittext_hint_color" />
 
-        <!-- URL -->
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent"
+                    android:contentDescription="@string/activity_login_token_hint"
+                    android:paddingEnd="@dimen/activity_login_imageview_paddingend"
+                    android:paddingLeft="@dimen/activity_login_imageview_paddingleft"
+                    android:paddingRight="@dimen/activity_login_imageview_paddingright"
+                    android:paddingStart="@dimen/activity_login_imageview_paddingstart"
+                    android:src="@drawable/lock_open" />
+            </FrameLayout>
 
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="55dp"
-            android:layout_gravity="center_horizontal"
-            android:background="#ffffff"
-            android:gravity="center_vertical"
-            android:paddingBottom="15dp"
-            android:paddingTop="@dimen/activity_login_framelayout_paddingtop" >
+            <!-- URL -->
 
-            <EditText
-                android:id="@+id/login_paranoid_url"
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@null"
-                android:hint="@string/activity_login_url_hint"
-                android:inputType="textUri"
-                android:paddingEnd="@dimen/activity_login_edittext_paddingend"
-                android:paddingLeft="@dimen/activity_login_edittext_paddingleft"
-                android:paddingRight="@dimen/activity_login_edittext_paddingright"
-                android:paddingStart="@dimen/activity_login_edittext_paddingstart"
-                android:textColorHint="@color/edittext_hint_color" />
+                android:layout_height="55dp"
+                android:layout_gravity="center_horizontal"
+                android:background="#ffffff"
+                android:gravity="center_vertical"
+                android:paddingBottom="15dp"
+                android:paddingTop="@dimen/activity_login_framelayout_paddingtop" >
 
-            <ImageView
-                android:layout_width="@dimen/activity_login_imageview_width"
-                android:layout_height="match_parent"
-                android:contentDescription="@string/activity_login_url_icon_desc"
-                android:paddingEnd="@dimen/activity_login_imageview_paddingend"
-                android:paddingLeft="@dimen/activity_login_imageview_paddingleft"
-                android:paddingRight="@dimen/activity_login_imageview_paddingright"
-                android:paddingStart="@dimen/activity_login_imageview_paddingstart"
-                android:src="@drawable/public_net" />
-        </FrameLayout>
+                <EditText
+                    android:id="@+id/login_paranoid_url"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@null"
+                    android:hint="@string/activity_login_url_hint"
+                    android:inputType="textUri"
+                    android:paddingEnd="@dimen/activity_login_edittext_paddingend"
+                    android:paddingLeft="@dimen/activity_login_edittext_paddingleft"
+                    android:paddingRight="@dimen/activity_login_edittext_paddingright"
+                    android:paddingStart="@dimen/activity_login_edittext_paddingstart"
+                    android:textColorHint="@color/edittext_hint_color" />
 
-        <Button
-            android:id="@+id/login_paranoid_login"
+                <ImageView
+                    android:layout_width="@dimen/activity_login_imageview_width"
+                    android:layout_height="match_parent"
+                    android:contentDescription="@string/activity_login_url_icon_desc"
+                    android:paddingEnd="@dimen/activity_login_imageview_paddingend"
+                    android:paddingLeft="@dimen/activity_login_imageview_paddingleft"
+                    android:paddingRight="@dimen/activity_login_imageview_paddingright"
+                    android:paddingStart="@dimen/activity_login_imageview_paddingstart"
+                    android:src="@drawable/public_net" />
+            </FrameLayout>
+
+            <Button
+                android:id="@+id/login_paranoid_login"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/login_button_bg"
+                android:padding="5dp"
+                android:text="@string/activity_login_login_button"
+                android:textColor="@color/white" />
+        </LinearLayout>
+    </ScrollView>
+
+    <ScrollView
+        android:id="@+id/login_progress_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/semi_transparent"
+        android:clickable="true"
+        android:gravity="center_horizontal"
+        android:visibility="gone" >
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginTop="30dp"
-            android:background="@drawable/login_button_bg"
-            android:padding="5dp"
-            android:text="@string/activity_login_login_button"
-            android:textColor="@color/white" />
-    </LinearLayout>
+            android:gravity="center_horizontal"
+            android:orientation="vertical" >
 
-</ScrollView>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal"
+                android:paddingBottom="15dp"
+                android:paddingTop="30dp" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/activity_login_status_title"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <ProgressBar
+                    android:id="@+id/progressBar1"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/login_progress_message"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:textColor="@color/white" />
+        </LinearLayout>
+    </ScrollView>
+
+</FrameLayout>
