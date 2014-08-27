@@ -36,10 +36,6 @@ public class MoodleSiteInfo extends SugarRecord<MoodleSiteInfo> {
 	public MoodleSiteInfo() {
 	}
 
-	public MoodleSiteInfo(String test) {
-		this.firstname = test;
-	}
-
 	public String getSitename() {
 		return sitename;
 	}
