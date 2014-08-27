@@ -9,7 +9,6 @@ import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
-import java.util.ArrayList;
 
 import android.util.Log;
 
@@ -22,7 +21,6 @@ public class MoodleRestToken {
 	private String pswd;
 	private String url;
 	private MoodleToken token = new MoodleToken();
-	private ArrayList<String> errors = new ArrayList<String>();
 
 	public MoodleRestToken(String uname, String pswd, String baseUrl) {
 		this.uname = uname;
@@ -35,12 +33,8 @@ public class MoodleRestToken {
 	 * Tries 3 different web service and returns a token for the given username
 	 * and password combination <br/>
 	 * <br/>
-	 * If there was an error, it can be checked in the error fields of the token
-	 * object. <br/>
-	 * <br/>
-	 * If the object returned has a null for token and error parameters, then
-	 * there might be a network related issue. Get this error by calling
-	 * getErrors() or getErrorsString() method
+	 * If there were errors, they can be checked in the error field of the token
+	 * object
 	 * 
 	 * @return MoodleToken
 	 * 
@@ -72,24 +66,6 @@ public class MoodleRestToken {
 		return token;
 	}
 
-	public MoodleToken getCustomServiceToken(String serviceName) {
-		String urlParams = "";
-
-		// set required parameters for token url
-		try {
-			urlParams = "username=" + URLEncoder.encode(uname, "UTF-8")
-					+ "&password=" + URLEncoder.encode(pswd, "UTF-8");
-		} catch (UnsupportedEncodingException e) {
-			Log.d(DEBUG_TAG, "credential encoding failed!");
-			e.printStackTrace();
-		}
-
-		// Request for custom service token.
-		getTokenForService(urlParams, serviceName);
-
-		return token;
-	}
-
 	private void getTokenForService(String urlParams, String serviceName) {
 
 		HttpURLConnection con;
@@ -114,31 +90,32 @@ public class MoodleRestToken {
 			reader.close();
 
 		} catch (Exception e) {
-			errors.add(serviceName + " : " + e.getMessage());
+			token.appenedError("\n" + serviceName + " : " + e.getMessage());
 		}
 
 	}
 
 	/**
-	 * Get a list of errors encountered while retrieving token
+	 * Get token for a custom service name
 	 * 
+	 * @param serviceName
 	 * @return
 	 */
-	public ArrayList<String> getErrors() {
-		return errors;
-	}
+	public MoodleToken getCustomServiceToken(String serviceName) {
+		String urlParams = "";
 
-	/**
-	 * Get all the errors encountered while retrieving token as a string
-	 * 
-	 * @return
-	 */
-	public String getErrorsString() {
-		String error = "";
-		for (int i = 0; i < errors.size(); i++) {
-			error += errors.get(i) + "\n\n";
+		// set required parameters for token url
+		try {
+			urlParams = "username=" + URLEncoder.encode(uname, "UTF-8")
+					+ "&password=" + URLEncoder.encode(pswd, "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			Log.d(DEBUG_TAG, "credential encoding failed!");
+			e.printStackTrace();
 		}
 
-		return error;
+		// Request for custom service token.
+		getTokenForService(urlParams, serviceName);
+
+		return token;
 	}
 }

@@ -3,7 +3,7 @@ package in.co.praveenkumar.mdroid.moodlemodel;
 public class MoodleToken {
 	String token;
 
-	String error;
+	String error = "";
 	String stacktrace;
 	String debuginfo;
 	String reproductionlink;
@@ -78,6 +78,6 @@ public class MoodleToken {
 	 * Particularly useful for network failure errors
 	 */
 	public void appenedError(String error) {
-		this.error += error;
+		this.error += error + "\n";
 	}
 }

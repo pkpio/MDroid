@@ -106,23 +106,15 @@ public class NormalLogin extends Fragment {
 
 			if (mt.getToken() == null) {
 				updateProgress("Token fetching failed!");
+				updateProgress("\nError: \n" + mt.getError());
 
-				// Print the errors from moodle
-				if (mt.getError() != null) {
-					updateProgress("\nError: " + mt.getError());
+				/*
+				 * -TODO- Set this debugging mode flag as app setting
+				 */
+				if (DEBUGGING_MODE) {
 					updateProgress("Moodle url: " + mt.getReproductionlink());
-					/*
-					 * -TODO- Set this debugging mode flag as app setting
-					 */
-					if (DEBUGGING_MODE) {
-						updateProgress("Stacktrace: " + mt.getStacktrace());
-						updateProgress("Debug info: " + mt.getDebuginfo());
-					}
-				}
-
-				// Print non-moodle errors
-				else {
-					updateProgress("\nError:\n" + mrt.getErrorsString());
+					updateProgress("Stacktrace: " + mt.getStacktrace());
+					updateProgress("Debug info: " + mt.getDebuginfo());
 				}
 
 				return null;
