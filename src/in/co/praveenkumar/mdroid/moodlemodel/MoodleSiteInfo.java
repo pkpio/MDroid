@@ -3,6 +3,7 @@ package in.co.praveenkumar.mdroid.moodlemodel;
 import java.util.ArrayList;
 
 import com.orm.SugarRecord;
+import com.orm.dsl.Ignore;
 
 public class MoodleSiteInfo extends SugarRecord<MoodleSiteInfo> {
 	String sitename;
@@ -14,7 +15,10 @@ public class MoodleSiteInfo extends SugarRecord<MoodleSiteInfo> {
 	int userid;
 	String siteurl;
 	String userpictureurl;
+
+	@Ignore
 	ArrayList<MoodleFunction> functions;
+
 	int downloadfiles;
 	int uploadfiles;
 	String release;

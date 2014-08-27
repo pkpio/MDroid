@@ -113,8 +113,6 @@ public class MoodleRestToken {
 			token = gson.fromJson(reader, MoodleToken.class);
 			reader.close();
 
-			System.out.println(token.getToken());
-
 		} catch (Exception e) {
 			errors.add(serviceName + " : " + e.getMessage());
 		}
