@@ -2,7 +2,6 @@ package in.co.praveenkumar.mdroid.fragment;
 
 import in.co.praveenkumar.mdroid.apis.R;
 import in.co.praveenkumar.mdroid.asynctask.Login;
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -15,14 +14,12 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 public class NormalLogin extends Fragment {
-	Boolean DEBUGGING_MODE = false;
 	EditText usernameET;
 	EditText passwordET;
 	EditText murlET;
 	Button loginButton;
 	ScrollView loginProgressSV;
 	TextView loginProgressTV;
-	Context ctx;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -31,7 +28,6 @@ public class NormalLogin extends Fragment {
 		View rootView = inflater.inflate(R.layout.normal_login, container,
 				false);
 		setUpWidgets(rootView);
-		ctx = getActivity();
 
 		loginButton.setOnClickListener(new OnClickListener() {
 			@Override
