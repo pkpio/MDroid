@@ -15,15 +15,23 @@ public class MoodleSiteInfo extends SugarRecord<MoodleSiteInfo> {
 	int userid;
 	String siteurl;
 	String userpictureurl;
-
 	@Ignore
 	ArrayList<MoodleFunction> functions;
-
 	int downloadfiles;
 	int uploadfiles;
 	String release;
 	String version;
 	String mobilecssurl;
+
+	// Errors. Not to be stored in sql db.
+	@Ignore
+	String exception;
+	@Ignore
+	String errorcode;
+	@Ignore
+	String message;
+	@Ignore
+	String debuginfo;
 
 	public MoodleSiteInfo() {
 	}
@@ -122,6 +130,42 @@ public class MoodleSiteInfo extends SugarRecord<MoodleSiteInfo> {
 	 */
 	public String getMobilecssurl() {
 		return mobilecssurl;
+	}
+
+	/**
+	 * Exception occurred while retrieving
+	 * 
+	 * @return
+	 */
+	public String getException() {
+		return exception;
+	}
+
+	/**
+	 * Errorcode of error occurred while retrieving
+	 * 
+	 * @return
+	 */
+	public String getErrorcode() {
+		return errorcode;
+	}
+
+	/**
+	 * Message of error occurred while retrieving
+	 * 
+	 * @return
+	 */
+	public String getMessage() {
+		return message;
+	}
+
+	/**
+	 * Debug info on the error occurred
+	 * 
+	 * @return
+	 */
+	public String getDebuginfo() {
+		return debuginfo;
 	}
 
 }
