@@ -63,4 +63,21 @@ public class MoodleToken {
 		return reproductionlink;
 	}
 
+	/**
+	 * Set error message <br/>
+	 * <br/>
+	 * Particularly useful for network failure errors
+	 */
+	public void setError(String error) {
+		this.error = error;
+	}
+
+	/**
+	 * Appends to the existing error messages<br/>
+	 * <br/>
+	 * Particularly useful for network failure errors
+	 */
+	public void appenedError(String error) {
+		this.error += error;
+	}
 }
