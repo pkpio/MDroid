@@ -18,11 +18,42 @@ public class Download {
 	public static final Boolean APP_DOWNLOADER = false;
 	Context context;
 
+	/**
+	 * Download files.<br/>
+	 * This supports two methods,
+	 * <ol>
+	 * <li>System Downloader</li>
+	 * <li>App downloader</li>
+	 * </ol>
+	 * <br/>
+	 * The downloader may be chosen while starting the download using the
+	 * download method.
+	 * 
+	 * @author praveen
+	 * 
+	 */
 	public Download(Context context) {
 		this.context = context;
 
 	}
 
+	/**
+	 * Download file
+	 * 
+	 * @param fileUrl
+	 *            Source url of the file
+	 * @param fileName
+	 *            File name. Path is fixed to /sdcard/MDroid
+	 * @param visibility
+	 *            Set to true if a notification has to be displayed while
+	 *            downloading. Works only when you choose SYSTEM_DOWNLOADER
+	 * @param choice
+	 *            The downloader of choice. Two options available.
+	 *            Download.SYSTEM_DOWNLOADER and Download.APP_DOWNLOADER
+	 * 
+	 * 
+	 * @return Bytes of the file downloaded
+	 */
 	public long download(String fileUrl, String fileName, Boolean visibility,
 			Boolean choice) {
 		long reqId;
@@ -44,7 +75,7 @@ public class Download {
 		return reqId;
 	}
 
-	public void mdroidDownload(String fUrl, String fName) {
+	void mdroidDownload(String fUrl, String fName) {
 		InputStream input = null;
 		OutputStream output = null;
 		HttpURLConnection connection = null;
@@ -55,14 +86,14 @@ public class Download {
 
 			// Make directories if required
 			File f = new File(Environment.getExternalStorageDirectory()
-					+ "/MDroid/.user/");
+					+ "/MDroid/");
 			f.mkdirs();
 
 			// download the file
 			input = connection.getInputStream();
 			output = new FileOutputStream(
-					Environment.getExternalStorageDirectory()
-							+ "/MDroid/.user/" + fName);
+					Environment.getExternalStorageDirectory() + "/MDroid/"
+							+ fName);
 
 			byte data[] = new byte[4096];
 			int count;
@@ -73,7 +104,7 @@ public class Download {
 			output.close();
 			input.close();
 		} catch (Exception e) {
-			// File download failed.
+			e.printStackTrace();
 		}
 	}
 }
