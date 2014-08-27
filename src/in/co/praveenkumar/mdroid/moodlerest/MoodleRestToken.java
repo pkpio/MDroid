@@ -2,9 +2,9 @@ package in.co.praveenkumar.mdroid.moodlerest;
 
 import in.co.praveenkumar.mdroid.moodlemodel.MoodleToken;
 
-import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.io.Reader;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -21,7 +21,7 @@ public class MoodleRestToken {
 	private String uname;
 	private String pswd;
 	private String url;
-	private MoodleToken token;
+	private MoodleToken token = new MoodleToken();
 	private ArrayList<String> errors = new ArrayList<String>();
 
 	public MoodleRestToken(String uname, String pswd, String baseUrl) {
@@ -34,12 +34,15 @@ public class MoodleRestToken {
 	/**
 	 * Tries 3 different web service and returns a token for the given username
 	 * and password combination <br/>
+	 * <br/>
 	 * If there was an error, it can be checked in the error fields of the token
 	 * object. <br/>
-	 * If the object returned is null, then there might be a network related
-	 * issue. Get this error by
+	 * <br/>
+	 * If the object returned has a null for token and error parameters, then
+	 * there might be a network related issue. Get this error by calling
+	 * getErrors() or getErrorsString() method
 	 * 
-	 * @return moodle token object
+	 * @return MoodleToken
 	 * 
 	 */
 	public MoodleToken getToken() {
@@ -104,14 +107,7 @@ public class MoodleRestToken {
 			writer.close();
 
 			// Get Response
-			StringBuilder buffer = new StringBuilder();
-			BufferedReader reader = new BufferedReader(new InputStreamReader(
-					con.getInputStream()));
-			String line;
-			while ((line = reader.readLine()) != null) {
-				buffer.append(line);
-				buffer.append('\r');
-			}
+			Reader reader = new InputStreamReader(con.getInputStream());
 
 			Gson gson = new GsonBuilder().create();
 			token = gson.fromJson(reader, MoodleToken.class);
