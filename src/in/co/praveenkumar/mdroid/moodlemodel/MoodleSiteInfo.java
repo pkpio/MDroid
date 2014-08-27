@@ -2,22 +2,31 @@ package in.co.praveenkumar.mdroid.moodlemodel;
 
 import java.util.ArrayList;
 
-public class MoodleSiteInfo {
-	private String sitename;
-	private String username;
-	private String firstname;
-	private String lastname;
-	private String fullname;
-	private String lang;
-	private int userid;
-	private String siteurl;
-	private String userpictureurl;
+import com.orm.SugarRecord;
+
+public class MoodleSiteInfo extends SugarRecord<MoodleSiteInfo> {
+	String sitename;
+	String username;
+	String firstname;
+	String lastname;
+	String fullname;
+	String lang;
+	int userid;
+	String siteurl;
+	String userpictureurl;
 	ArrayList<MoodleFunction> functions;
-	private int downloadfiles;
-	private int uploadfiles;
-	private String release;
-	private String version;
-	private String mobilecssurl;
+	int downloadfiles;
+	int uploadfiles;
+	String release;
+	String version;
+	String mobilecssurl;
+
+	public MoodleSiteInfo() {
+	}
+
+	public MoodleSiteInfo(String test) {
+		this.firstname = test;
+	}
 
 	public String getSitename() {
 		return sitename;

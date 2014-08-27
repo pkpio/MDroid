@@ -1,8 +1,10 @@
 package in.co.praveenkumar.mdroid.fragment;
 
 import in.co.praveenkumar.mdroid.apis.R;
+import in.co.praveenkumar.mdroid.moodlemodel.MoodleSiteInfo;
 import in.co.praveenkumar.mdroid.moodlemodel.MoodleToken;
 import in.co.praveenkumar.mdroid.moodlerest.MoodleRestToken;
+import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -23,6 +25,7 @@ public class NormalLogin extends Fragment {
 	Button loginButton;
 	ScrollView loginProgressLL;
 	TextView loginProgressTV;
+	Context ctx;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -31,6 +34,7 @@ public class NormalLogin extends Fragment {
 		View rootView = inflater.inflate(R.layout.normal_login, container,
 				false);
 		setUpWidgets(rootView);
+		ctx = getActivity();
 
 		loginButton.setOnClickListener(new OnClickListener() {
 			@Override
@@ -59,6 +63,13 @@ public class NormalLogin extends Fragment {
 		String username = usernameET.getText().toString();
 		String password = passwordET.getText().toString();
 		String mUrl = murlET.getText().toString();
+
+		MoodleSiteInfo msf = new MoodleSiteInfo("Praveen");
+		msf.save();
+
+		long i = 2;
+		MoodleSiteInfo site = MoodleSiteInfo.findById(MoodleSiteInfo.class, i);
+		System.out.println("Site info: " + site.getFirstname());
 
 		new asyncNormalLogin(username, password, mUrl).execute("");
 	}
@@ -112,11 +123,11 @@ public class NormalLogin extends Fragment {
 				// Print non-moodle errors
 				else {
 					updateProgress("\nError:\n" + mrt.getErrorsString());
-				}				
+				}
 
 				return null;
 			}
-			
+
 			// Fetch site info
 			updateProgress("Token obtained\n Fetching site info\n");
 
