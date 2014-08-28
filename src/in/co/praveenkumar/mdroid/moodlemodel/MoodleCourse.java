@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.google.gson.annotations.SerializedName;
 import com.orm.SugarRecord;
+import com.orm.dsl.Ignore;
 
 public class MoodleCourse extends SugarRecord<MoodleCourse> {
 	/**
@@ -38,6 +39,33 @@ public class MoodleCourse extends SugarRecord<MoodleCourse> {
 	String lang;
 	String forcetheme;
 	ArrayList<MoodleCourseFormatOption> courseformatoptions;
+
+	// Errors. Not to be stored in sql db.
+	@Ignore
+	String exception;
+	@Ignore
+	String errorcode;
+	@Ignore
+	String message;
+	@Ignore
+	String debuginfo;
+
+	// Relational fields
+	long siteid;
+
+	public MoodleCourse() {
+
+	}
+
+	/**
+	 * siteid is unique for a moodle address + user combination
+	 * 
+	 * @param siteid
+	 *            siteid of the Moodle account to which this course belongs to.
+	 */
+	public MoodleCourse(long siteid) {
+		this.siteid = siteid;
+	}
 
 	public int getCourseid() {
 		return courseid;
@@ -252,6 +280,42 @@ public class MoodleCourse extends SugarRecord<MoodleCourse> {
 	 */
 	public ArrayList<MoodleCourseFormatOption> getCourseformatoptions() {
 		return courseformatoptions;
+	}
+
+	/**
+	 * Exception occurred while retrieving
+	 * 
+	 * @return
+	 */
+	public String getException() {
+		return exception;
+	}
+
+	/**
+	 * Errorcode of error occurred while retrieving
+	 * 
+	 * @return
+	 */
+	public String getErrorcode() {
+		return errorcode;
+	}
+
+	/**
+	 * Message of error occurred while retrieving
+	 * 
+	 * @return
+	 */
+	public String getMessage() {
+		return message;
+	}
+
+	/**
+	 * Debug info on the error occurred
+	 * 
+	 * @return
+	 */
+	public String getDebuginfo() {
+		return debuginfo;
 	}
 
 }
