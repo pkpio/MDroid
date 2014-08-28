@@ -2,52 +2,109 @@ package in.co.praveenkumar.mdroid.moodlemodel;
 
 import java.util.ArrayList;
 
+import com.google.gson.annotations.SerializedName;
 import com.orm.SugarRecord;
 import com.orm.dsl.Ignore;
 
 public class MoodleCourse extends SugarRecord<MoodleCourse> {
-	/**
-	 * Note: id is a reserved field in SugarRecord so, we use courseid and use
-	 * Serialize in Gson for proper object conversion
-	 */
-	// temp fix
-	// @SerializedName("id")
+
+	// since id is a reserved field in SugarRecord
+	@SerializedName("id")
 	int courseid;
+
+	@SerializedName("shortname")
 	String shortname;
+
+	@SerializedName("categoryid")
 	int categoryid;
+
+	@SerializedName("categorysortorder")
 	int categorysortorder;
+
+	@SerializedName("fullname")
 	String fullname;
+
+	@SerializedName("idnumber")
 	String idnumber;
+
+	@SerializedName("summary")
 	String summary;
+
+	@SerializedName("summaryformat")
 	int summaryformat;
+
+	@SerializedName("format")
 	String format;
+
+	@SerializedName("showgrades")
 	int showgrades;
+
+	@SerializedName("newsitems")
 	int newsitems;
+
+	@SerializedName("startdate")
 	int startdate;
+
+	@SerializedName("numsections")
 	int numsections;
+
+	@SerializedName("maxbytes")
 	int maxbytes;
+
+	@SerializedName("showreports")
 	int showreports;
+
+	@SerializedName("visible")
 	int visible;
+
+	@SerializedName("hiddensections")
 	int hiddensections;
+
+	@SerializedName("groupmode")
 	int groupmode;
+
+	@SerializedName("groupmodeforce")
 	int groupmodeforce;
+
+	@SerializedName("defaultgroupingid")
 	int defaultgroupingid;
+
+	@SerializedName("timecreated")
 	int timecreated;
+
+	@SerializedName("timemodified")
 	int timemodified;
+
+	@SerializedName("enablecompletion")
 	int enablecompletion;
+
+	@SerializedName("completionnotify")
 	int completionnotify;
+
+	@SerializedName("lang")
 	String lang;
+
+	@SerializedName("forcetheme")
 	String forcetheme;
+
+	@SerializedName("courseformatoptions")
 	ArrayList<MoodleCourseFormatOption> courseformatoptions;
 
 	// Errors. Not to be stored in sql db.
 	@Ignore
+	@SerializedName("exception")
 	String exception;
+
 	@Ignore
+	@SerializedName("errorcode")
 	String errorcode;
+
 	@Ignore
+	@SerializedName("message")
 	String message;
+
 	@Ignore
+	@SerializedName("debuginfo")
 	String debuginfo;
 
 	// Relational fields
@@ -68,10 +125,6 @@ public class MoodleCourse extends SugarRecord<MoodleCourse> {
 		this.siteid = siteid;
 	}
 
-	public void setCourseid(int courseid){
-		this.courseid = courseid;
-	}
-	
 	public int getCourseid() {
 		return courseid;
 	}
