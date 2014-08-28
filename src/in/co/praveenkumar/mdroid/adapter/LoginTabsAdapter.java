@@ -6,9 +6,9 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-public class TabsPagerAdapter extends FragmentPagerAdapter {
+public class LoginTabsAdapter extends FragmentPagerAdapter {
 
-	public TabsPagerAdapter(FragmentManager fm) {
+	public LoginTabsAdapter(FragmentManager fm) {
 		super(fm);
 	}
 

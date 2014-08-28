@@ -1,6 +1,6 @@
 package in.co.praveenkumar.mdroid.activity;
 
-import in.co.praveenkumar.mdroid.adapter.TabsPagerAdapter;
+import in.co.praveenkumar.mdroid.adapter.LoginTabsAdapter;
 import in.co.praveenkumar.mdroid.apis.R;
 import in.co.praveenkumar.mdroid.helper.ActionBarTabs;
 import android.app.ActionBar;
@@ -14,7 +14,7 @@ public class LoginActivity extends FragmentActivity implements
 		ActionBar.TabListener {
 
 	private ViewPager viewPager;
-	private TabsPagerAdapter mAdapter;
+	private LoginTabsAdapter mAdapter;
 	private ActionBar actionBar;
 	private String[] tabs = { "Normal", "Paranoid" };
 
@@ -26,7 +26,7 @@ public class LoginActivity extends FragmentActivity implements
 		// Initialization
 		viewPager = (ViewPager) findViewById(R.id.pager);
 		actionBar = getActionBar();
-		mAdapter = new TabsPagerAdapter(getSupportFragmentManager());
+		mAdapter = new LoginTabsAdapter(getSupportFragmentManager());
 
 		viewPager.setAdapter(mAdapter);
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
