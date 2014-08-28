@@ -84,12 +84,13 @@ public class CourseSync {
 		if (mCourses.size() == 1 && mCourses.get(0).getCourseid() == 0)
 			return false;
 
-		// Add siteid to all courses and update
+		// Add siteid and isUserCourse to all courses and update
 		MoodleCourse course = new MoodleCourse();
 		List<MoodleCourse> dbCourses;
 		for (int i = 0; i < mCourses.size(); i++) {
 			course = mCourses.get(i);
 			course.setSiteid(siteid);
+			course.setIsUserCourse(true);
 
 			// Update or save in database
 			dbCourses = MoodleCourse.find(MoodleCourse.class,
