@@ -2,7 +2,6 @@ package in.co.praveenkumar.mdroid.moodlemodel;
 
 import java.util.ArrayList;
 
-import com.google.gson.annotations.SerializedName;
 import com.orm.SugarRecord;
 import com.orm.dsl.Ignore;
 
@@ -11,7 +10,8 @@ public class MoodleCourse extends SugarRecord<MoodleCourse> {
 	 * Note: id is a reserved field in SugarRecord so, we use courseid and use
 	 * Serialize in Gson for proper object conversion
 	 */
-	@SerializedName("id")
+	// temp fix
+	// @SerializedName("id")
 	int courseid;
 	String shortname;
 	int categoryid;
@@ -68,6 +68,10 @@ public class MoodleCourse extends SugarRecord<MoodleCourse> {
 		this.siteid = siteid;
 	}
 
+	public void setCourseid(int courseid){
+		this.courseid = courseid;
+	}
+	
 	public int getCourseid() {
 		return courseid;
 	}

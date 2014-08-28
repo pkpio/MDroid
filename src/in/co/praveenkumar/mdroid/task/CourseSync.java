@@ -48,6 +48,10 @@ public class CourseSync {
 			course = mCourses.get(i);
 			course.setSiteid(siteid);
 
+			// Temp fix
+			course.setCourseid(course.getId().intValue());
+			course.setId(null);
+
 			// Update or save in database
 			dbCourses = MoodleCourse.find(MoodleCourse.class,
 					"courseid = ? and siteid = ?", course.getCourseid() + "",
