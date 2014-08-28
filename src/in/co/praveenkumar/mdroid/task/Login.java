@@ -96,9 +96,10 @@ public class Login extends AsyncTask<String, Integer, Boolean> {
 		updateProgress("Syncing data\n");
 		new Download(null).download(siteInfo.getUserpictureurl(), "."
 				+ siteInfo.getId(), false, Download.APP_DOWNLOADER);
-		// if (!syncCourseInfo())
-		// return null;
+		if (!getCourseInfo())
+			return null;
 
+		updateProgress("\nSync complete!");
 		return null;
 	}
 
@@ -162,6 +163,30 @@ public class Login extends AsyncTask<String, Integer, Boolean> {
 		updateProgress("\nWelcome " + siteInfo.getFullname() + "!\n");
 
 		return true;
+	}
+
+	/**
+	 * Sync all Moodle courses and user's courses
+	 * 
+	 * @return User course sync status
+	 */
+	private Boolean getCourseInfo() {
+		CourseSync cs = new CourseSync(mUrl, token, siteInfo.getId());
+
+		updateProgress("Syncing all Moodle courses");
+		Boolean allCourseSyncStatus = cs.syncAllCourses();
+		if (!allCourseSyncStatus)
+			updateProgress(cs.getError());
+
+		updateProgress("Syncing user's courses");
+		Boolean usrCourseSyncStatus = cs.syncUserCourses();
+		if (!usrCourseSyncStatus) {
+			updateProgress(cs.getError());
+			updateProgress("\nSync failed!");
+		}
+
+		// Success on user's course sync is what matters
+		return usrCourseSyncStatus;
 	}
 
 }
