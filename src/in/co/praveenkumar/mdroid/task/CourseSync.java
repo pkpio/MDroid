@@ -95,10 +95,9 @@ public class CourseSync {
 			dbCourses = MoodleCourse.find(MoodleCourse.class,
 					"courseid = ? and siteid = ?", course.getCourseid() + "",
 					course.getSiteid() + "");
-			if (dbCourses.size() > 0) {
-				course.setId(dbCourses.get(0).getId());
-				course.save();
-			}
+			if (dbCourses.size() > 0)
+				course.setId(dbCourses.get(0).getId()); // updates on save()
+			course.save();
 		}
 
 		return true;
