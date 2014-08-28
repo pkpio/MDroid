@@ -11,6 +11,7 @@ public class CourseSync {
 	String mUrl;
 	String token;
 	long siteid;
+	String error;
 
 	public CourseSync(String mUrl, String token, long siteid) {
 		this.mUrl = mUrl;
@@ -29,12 +30,16 @@ public class CourseSync {
 
 		/** Error checking **/
 		// Some network or encoding issue.
-		if (mCourses.size() == 0)
+		if (mCourses.size() == 0) {
+			error = "Network issue!";
 			return false;
+		}
 
 		// Moodle exception
-		if (mCourses.size() == 1 && mCourses.get(0).getCourseid() == 0)
+		if (mCourses.size() == 1 && mCourses.get(0).getCourseid() == 0) {
+			error = "Moodle Exception: User don't have permissions!";
 			return false;
+		}
 
 		// Add siteid to all courses and update
 		MoodleCourse course = new MoodleCourse();
@@ -97,5 +102,14 @@ public class CourseSync {
 		}
 
 		return true;
+	}
+
+	/**
+	 * Error message from the last failed sync operation.
+	 * 
+	 * @return
+	 */
+	public String getError() {
+		return error;
 	}
 }
