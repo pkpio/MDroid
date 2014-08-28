@@ -26,9 +26,10 @@ public class MoodleRestCourse {
 	/**
 	 * Get all the courses in the Moodle site.<br/>
 	 * User may not have permission to do this. In such cases, only one course
-	 * entry is added to the list with only error fields filled.
+	 * entry is added to the list with only error fields filled. If no entries
+	 * are found, then it could mean a network or encoding issue.
 	 * 
-	 * @return
+	 * @return ArrayList<MoodleCourse>
 	 */
 	public ArrayList<MoodleCourse> getAllCourses() {
 		ArrayList<MoodleCourse> mCourses = new ArrayList<MoodleCourse>();
@@ -61,6 +62,17 @@ public class MoodleRestCourse {
 		return mCourses;
 	}
 
+	/**
+	 * Get all the courses that a user is enrolled in<br/>
+	 * In case of errors, only one course entry is added to the list with only
+	 * error fields filled. If no entries are found, then it could mean a
+	 * network or encoding issue.
+	 * 
+	 * 
+	 * @param userId
+	 *            userId of the user whose courses are needed
+	 * @return ArrayList<MoodleCourse>
+	 */
 	public ArrayList<MoodleCourse> getEnrolledCourses(String userId) {
 		ArrayList<MoodleCourse> mCourses = new ArrayList<MoodleCourse>();
 		String format = MoodleRestOption.RESPONSE_FORMAT;
