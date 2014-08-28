@@ -52,6 +52,7 @@ public class MoodleCourse extends SugarRecord<MoodleCourse> {
 
 	// Relational fields
 	long siteid;
+	Boolean isUserCourse;
 
 	public MoodleCourse() {
 
@@ -316,6 +317,42 @@ public class MoodleCourse extends SugarRecord<MoodleCourse> {
 	 */
 	public String getDebuginfo() {
 		return debuginfo;
+	}
+
+	/**
+	 * Get if this course is enrolled by current user
+	 * 
+	 * @return
+	 */
+	public Boolean getIsUserCourse() {
+		return isUserCourse;
+	}
+
+	/**
+	 * Set if this course is enrolled by current user
+	 * 
+	 * @return
+	 */
+	public void setIsUserCourse(Boolean isUserCourse) {
+		this.isUserCourse = isUserCourse;
+	}
+
+	/**
+	 * Get the siteid of this course
+	 * 
+	 * @return
+	 */
+	public long getSiteid() {
+		return siteid;
+	}
+
+	/**
+	 * set the course id of this course
+	 * 
+	 * @param siteid
+	 */
+	public void setSiteid(long siteid) {
+		this.siteid = siteid;
 	}
 
 }
