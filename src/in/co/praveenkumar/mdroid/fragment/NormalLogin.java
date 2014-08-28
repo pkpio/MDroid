@@ -1,7 +1,7 @@
 package in.co.praveenkumar.mdroid.fragment;
 
 import in.co.praveenkumar.mdroid.apis.R;
-import in.co.praveenkumar.mdroid.asynctask.Login;
+import in.co.praveenkumar.mdroid.task.Login;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
