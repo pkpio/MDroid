@@ -1,5 +1,6 @@
 package in.co.praveenkumar.mdroid.moodlerest;
 
+import in.co.praveenkumar.mdroid.helper.GsonExclude;
 import in.co.praveenkumar.mdroid.moodlemodel.MoodleCourse;
 
 import java.io.Reader;
@@ -48,7 +49,10 @@ public class MoodleRestCourse {
 			// Fetch content now.
 			MoodleRestCall mrc = new MoodleRestCall();
 			Reader reader = mrc.fetchContent(restUrl, params);
-			Gson gson = new GsonBuilder().create();
+			GsonExclude ex = new GsonExclude();
+			Gson gson = new GsonBuilder()
+					.addDeserializationExclusionStrategy(ex)
+					.addSerializationExclusionStrategy(ex).create();
 			mCourses = gson.fromJson(reader,
 					new TypeToken<List<MoodleCourse>>() {
 					}.getType());
@@ -91,7 +95,10 @@ public class MoodleRestCourse {
 			// Fetch content now.
 			MoodleRestCall mrc = new MoodleRestCall();
 			Reader reader = mrc.fetchContent(restUrl, params);
-			Gson gson = new GsonBuilder().create();
+			GsonExclude ex = new GsonExclude();
+			Gson gson = new GsonBuilder()
+					.addDeserializationExclusionStrategy(ex)
+					.addSerializationExclusionStrategy(ex).create();
 			mCourses = gson.fromJson(reader,
 					new TypeToken<List<MoodleCourse>>() {
 					}.getType());
