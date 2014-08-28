@@ -19,8 +19,8 @@ public class MoodleRestCourse {
 	private String token;
 
 	public MoodleRestCourse(String mUrl, String token) {
-		this.mUrl = token;
-		this.token = mUrl;
+		this.mUrl = mUrl;
+		this.token = token;
 	}
 
 	/**
