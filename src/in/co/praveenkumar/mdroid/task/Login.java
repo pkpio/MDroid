@@ -93,7 +93,7 @@ public class Login extends AsyncTask<String, Integer, Boolean> {
 			return null;
 
 		// Sync data
-		updateProgress("Syncing data\n");
+		updateProgress("Syncing data");
 		new Download(null).download(siteInfo.getUserpictureurl(), "."
 				+ siteInfo.getId(), false, Download.APP_DOWNLOADER);
 		if (!getCourseInfo())
