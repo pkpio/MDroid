@@ -188,4 +188,22 @@ public class MoodleSiteInfo extends SugarRecord<MoodleSiteInfo> {
 		return debuginfo;
 	}
 
+	/**
+	 * Set error message <br/>
+	 * <br/>
+	 * Particularly useful for network failure errors
+	 */
+	public void setMessage(String message) {
+		this.message = message;
+	}
+
+	/**
+	 * Appends to the existing error messages<br/>
+	 * <br/>
+	 * Particularly useful for network failure errors
+	 */
+	public void appenedMessage(String message) {
+		this.message += message + "\n";
+	}
+
 }
