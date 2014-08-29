@@ -21,7 +21,7 @@ public class LoginActivity extends FragmentActivity implements
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.login_activity);
+		setContentView(R.layout.activity_login);
 
 		// Initialization
 		viewPager = (ViewPager) findViewById(R.id.pager);
