@@ -9,8 +9,7 @@
         android:id="@+id/left_nav_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:adjustViewBounds="true"
-        android:maxHeight="200dp" >
+        android:adjustViewBounds="true" >
     </ListView>
 
 </LinearLayout>

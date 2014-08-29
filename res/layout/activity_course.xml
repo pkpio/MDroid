@@ -6,11 +6,15 @@
 
     <!-- Main content -->
 
-    <fragment
+    <ListView
         android:id="@+id/content_course"
-        android:name="in.co.praveenkumar.mdroid.fragment.Course"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:adjustViewBounds="true"
+        android:background="@color/card_listview_bg"
+        android:divider="@null"
+        android:dividerHeight="0dp" >
+    </ListView>
 
     <!-- Left navigation -->
 
