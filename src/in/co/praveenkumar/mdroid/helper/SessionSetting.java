@@ -42,8 +42,8 @@ public class SessionSetting {
 
 		// If no site found. Get the 1st site in database.
 		if (siteInfo == null) {
-			List<MoodleSiteInfo> sites = MoodleSiteInfo.find(
-					MoodleSiteInfo.class, "", "");
+			List<MoodleSiteInfo> sites = MoodleSiteInfo
+					.listAll(MoodleSiteInfo.class);
 			// Check if at least one site is present in database
 			if (sites.size() != 0)
 				siteInfo = sites.get(0);
