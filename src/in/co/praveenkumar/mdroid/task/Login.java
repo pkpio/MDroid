@@ -1,10 +1,13 @@
 package in.co.praveenkumar.mdroid.task;
 
+import in.co.praveenkumar.mdroid.activity.CourseActivity;
 import in.co.praveenkumar.mdroid.helper.SessionSetting;
 import in.co.praveenkumar.mdroid.moodlemodel.MoodleSiteInfo;
 import in.co.praveenkumar.mdroid.moodlemodel.MoodleToken;
 import in.co.praveenkumar.mdroid.moodlerest.MoodleRestSiteInfo;
 import in.co.praveenkumar.mdroid.moodlerest.MoodleRestToken;
+import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.widget.Button;
 import android.widget.ScrollView;
@@ -18,6 +21,7 @@ public class Login extends AsyncTask<String, Integer, Boolean> {
 	String token;
 	MoodleSiteInfo siteInfo = new MoodleSiteInfo();
 	SessionSetting session;
+	Context context;
 
 	// Widgets
 	Button loginButton;
@@ -36,16 +40,20 @@ public class Login extends AsyncTask<String, Integer, Boolean> {
 	 *            Login progress linearlayout
 	 * @param loginProgressTV
 	 *            Login progress message showing TextView widget
+	 * @param context
+	 *            So that we can start course activity if all goes well
 	 */
 	public Login(String username, String password, String mUrl,
 			Button loginButton, ScrollView loginProgressSV,
-			TextView loginProgressTV) {
+			TextView loginProgressTV, Context context) {
 		this.username = username;
 		this.password = password;
 		this.mUrl = mUrl;
 		this.loginButton = loginButton;
 		this.loginProgressSV = loginProgressSV;
 		this.loginProgressTV = loginProgressTV;
+		this.context = context;
+		session = new SessionSetting(context);
 	}
 
 	/**
@@ -59,14 +67,19 @@ public class Login extends AsyncTask<String, Integer, Boolean> {
 	 *            Login progress linearlayout
 	 * @param loginProgressTV
 	 *            Login progress message showing TextView widget
+	 * @param context
+	 *            So that we can start course activity if all goes well
 	 */
 	public Login(String token, String mUrl, Button loginButton,
-			ScrollView loginProgressSV, TextView loginProgressTV) {
+			ScrollView loginProgressSV, TextView loginProgressTV,
+			Context context) {
 		this.token = token;
 		this.mUrl = mUrl;
 		this.loginButton = loginButton;
 		this.loginProgressSV = loginProgressSV;
 		this.loginProgressTV = loginProgressTV;
+		this.context = context.getApplicationContext();
+		session = new SessionSetting(context);
 	}
 
 	@Override
@@ -87,21 +100,21 @@ public class Login extends AsyncTask<String, Integer, Boolean> {
 		// Get token if required
 		if (token == null)
 			if (!getToken())
-				return null;
+				return false;
 
 		// Get Site info
 		if (!getSiteInfo())
-			return null;
+			return false;
 
 		// Sync data
 		updateProgress("Syncing data");
 		new Download(null).download(siteInfo.getUserpictureurl(), "."
 				+ siteInfo.getId(), false, Download.APP_DOWNLOADER);
 		if (!getCourseInfo())
-			return null;
+			return false;
 
 		updateProgress("\nSync complete!");
-		return null;
+		return true;
 	}
 
 	private void updateProgress(String status) {
@@ -188,6 +201,11 @@ public class Login extends AsyncTask<String, Integer, Boolean> {
 
 		// Success on user's course sync is what matters
 		return usrCourseSyncStatus;
+	}
+
+	@Override
+	protected void onPostExecute(Boolean status) {
+		context.startActivity(new Intent(context, CourseActivity.class));
 	}
 
 }

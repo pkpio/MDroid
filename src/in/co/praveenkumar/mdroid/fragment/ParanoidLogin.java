@@ -24,8 +24,8 @@ public class ParanoidLogin extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 
-		View rootView = inflater.inflate(R.layout.frag_paranoid_login, container,
-				false);
+		View rootView = inflater.inflate(R.layout.frag_paranoid_login,
+				container, false);
 		setUpWidgets(rootView);
 
 		loginButton.setOnClickListener(new OnClickListener() {
@@ -52,7 +52,7 @@ public class ParanoidLogin extends Fragment {
 		String token = tokenET.getText().toString();
 		String mUrl = murlET.getText().toString();
 
-		new Login(token, mUrl, loginButton, loginProgressSV, loginProgressTV)
-				.execute("");
+		new Login(token, mUrl, loginButton, loginProgressSV, loginProgressTV,
+				getActivity()).execute("");
 	}
 }
