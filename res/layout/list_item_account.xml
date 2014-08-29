@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:padding="5dp" >
+
+    <ImageView
+        android:id="@+id/nav_user_image"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:contentDescription="@string/user_picture"
+        android:src="@drawable/person_outline" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginStart="5dp"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/nav_user_fullname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Praveen Kumar Pendyala"
+            android:textSize="16sp"
+            android:lines="1"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/nav_sitename"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="My Moodle"
+            android:lines="1"
+            android:textSize="14sp"
+            android:textStyle="normal" />
+    </LinearLayout>
+
+</LinearLayout>
