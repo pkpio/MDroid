@@ -3,18 +3,22 @@ package in.co.praveenkumar.mdroid.fragment;
 import in.co.praveenkumar.mdroid.apis.R;
 import in.co.praveenkumar.mdroid.helper.ImageDecoder;
 import in.co.praveenkumar.mdroid.helper.SessionSetting;
+import in.co.praveenkumar.mdroid.interfaces.DrawerStateInterface;
 import in.co.praveenkumar.mdroid.moodlemodel.MoodleSiteInfo;
 
 import java.io.File;
 import java.util.List;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
@@ -22,6 +26,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 public class LeftNavigation extends Fragment {
+	DrawerStateInterface drawerState;
+	final String DEBUG_TAG = "Left Navigation Fragment";
 	ListView navListView;
 	List<MoodleSiteInfo> sites;
 	MoodleSiteInfo currentSite;
@@ -45,6 +51,16 @@ public class LeftNavigation extends Fragment {
 		navListView.setAdapter(adapter);
 
 		return rootView;
+	}
+
+	@Override
+	public void onAttach(Activity activity) {
+		super.onAttach(activity);
+		try {
+			drawerState = (DrawerStateInterface) activity;
+		} catch (ClassCastException castException) {
+			Log.d(DEBUG_TAG, "The activity does not implement the listener");
+		}
 	}
 
 	public class LeftNavListAdapter extends ArrayAdapter<String> {
@@ -128,6 +144,15 @@ public class LeftNavigation extends Fragment {
 						- sites.size()]);
 				break;
 			}
+
+			convertView.setOnClickListener(new OnClickListener() {
+
+				@Override
+				public void onClick(View v) {
+					Log.d("asdasa", "Clicked!");
+					drawerState.setDrawerState(false);
+				}
+			});
 
 			return convertView;
 		}

@@ -1,15 +1,18 @@
 package in.co.praveenkumar.mdroid.adapter;
 
 import in.co.praveenkumar.mdroid.apis.R;
+import in.co.praveenkumar.mdroid.interfaces.DrawerStateInterface;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.widget.DrawerLayout;
+import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 
-public class NavigationDrawer extends FragmentActivity {
+public class NavigationDrawer extends FragmentActivity implements
+		DrawerStateInterface {
 	private DrawerLayout mDrawerLayout;
 	private ActionBarDrawerToggle mDrawerToggle;
 
@@ -65,6 +68,20 @@ public class NavigationDrawer extends FragmentActivity {
 		}
 
 		return super.onOptionsItemSelected(item);
+	}
+
+	/**
+	 * Sets the drawer state.
+	 * 
+	 * @param state
+	 *            True: Open drawer if closed. False: Close drawer if open.
+	 */
+	@Override
+	public void setDrawerState(Boolean state) {
+		if (state)
+			mDrawerLayout.openDrawer(Gravity.LEFT);
+		else
+			mDrawerLayout.closeDrawer(Gravity.LEFT);
 	}
 
 }
