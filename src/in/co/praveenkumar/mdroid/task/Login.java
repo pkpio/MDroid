@@ -17,6 +17,7 @@ public class Login extends AsyncTask<String, Integer, Boolean> {
 	String progress = "";
 	String token;
 	MoodleSiteInfo siteInfo = new MoodleSiteInfo();
+	SessionSetting session;
 
 	// Widgets
 	Button loginButton;
@@ -122,7 +123,7 @@ public class Login extends AsyncTask<String, Integer, Boolean> {
 			updateProgress("Token fetch failed!");
 			updateProgress("\nError: \n" + mt.getError());
 
-			if (SessionSetting.DebugMode) {
+			if (session.getDebugMode()) {
 				updateProgress("Moodle url: " + mt.getReproductionlink());
 				updateProgress("Stacktrace: " + mt.getStacktrace());
 				updateProgress("Debug info: " + mt.getDebuginfo());
@@ -148,7 +149,7 @@ public class Login extends AsyncTask<String, Integer, Boolean> {
 			updateProgress("Siteinfo fetch failed!");
 			updateProgress("\nError code: \n" + siteInfo.getErrorcode());
 
-			if (SessionSetting.DebugMode) {
+			if (session.getDebugMode()) {
 				updateProgress("Exception: " + siteInfo.getException());
 				updateProgress("Message: " + siteInfo.getMessage());
 				updateProgress("Debug info: " + siteInfo.getDebuginfo());
@@ -158,7 +159,7 @@ public class Login extends AsyncTask<String, Integer, Boolean> {
 		}
 		siteInfo.setToken(token);
 		siteInfo.save();
-		SessionSetting.currentSiteId = siteInfo.getId();
+		session.setCurrentSiteId(siteInfo.getId());
 
 		updateProgress("\nWelcome " + siteInfo.getFullname() + "!\n");
 
