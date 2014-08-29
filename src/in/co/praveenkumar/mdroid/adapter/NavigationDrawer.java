@@ -79,9 +79,9 @@ public class NavigationDrawer extends FragmentActivity implements
 	@Override
 	public void setDrawerState(Boolean state) {
 		if (state)
-			mDrawerLayout.openDrawer(Gravity.LEFT);
+			mDrawerLayout.openDrawer(Gravity.START);
 		else
-			mDrawerLayout.closeDrawer(Gravity.LEFT);
+			mDrawerLayout.closeDrawer(Gravity.START);
 	}
 
 }
