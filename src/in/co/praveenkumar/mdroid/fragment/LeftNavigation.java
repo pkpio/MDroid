@@ -48,33 +48,60 @@ public class LeftNavigation extends Fragment {
 	}
 
 	public class LeftNavListAdapter extends ArrayAdapter<String> {
+		private static final int TYPE_ACCOUNT = 0;
+		private static final int TYPE_MENUITEM = 1;
+		private static final int TYPE_COUNT = 2;
 
 		private final Context context;
 
 		public LeftNavListAdapter(Context context) {
-			super(context, R.layout.list_item_account, new String[sites.size()]);
+			super(context, R.layout.list_item_account, new String[sites.size()
+					+ menuItems.length]);
 			this.context = context;
+		}
+
+		@Override
+		public int getViewTypeCount() {
+			return TYPE_COUNT;
+		}
+
+		@Override
+		public int getItemViewType(int position) {
+			return (position >= sites.size()) ? TYPE_MENUITEM : TYPE_ACCOUNT;
 		}
 
 		@Override
 		public View getView(int position, View convertView, ViewGroup parent) {
 			ViewHolder viewHolder;
+			int type = getItemViewType(position);
 
 			if (convertView == null) {
-				// Inflate layout
+				viewHolder = new ViewHolder();
 				LayoutInflater inflater = (LayoutInflater) context
 						.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-				convertView = inflater.inflate(R.layout.list_item_account,
-						parent, false);
 
-				// Setup ViewHolder
-				viewHolder = new ViewHolder();
-				viewHolder.userfullname = (TextView) convertView
-						.findViewById(R.id.nav_user_fullname);
-				viewHolder.sitename = (TextView) convertView
-						.findViewById(R.id.nav_sitename);
-				viewHolder.userimage = (ImageView) convertView
-						.findViewById(R.id.nav_user_image);
+				// Choose layout
+				switch (type) {
+				case TYPE_ACCOUNT:
+					convertView = inflater.inflate(R.layout.list_item_account,
+							parent, false);
+
+					viewHolder.userfullname = (TextView) convertView
+							.findViewById(R.id.nav_user_fullname);
+					viewHolder.sitename = (TextView) convertView
+							.findViewById(R.id.nav_sitename);
+					viewHolder.userimage = (ImageView) convertView
+							.findViewById(R.id.nav_user_image);
+					break;
+
+				case TYPE_MENUITEM:
+					convertView = inflater.inflate(R.layout.list_item_menu,
+							parent, false);
+
+					viewHolder.menuItemName = (TextView) convertView
+							.findViewById(R.id.nav_menuitem);
+					break;
+				}
 
 				// Save the holder with the view
 				convertView.setTag(viewHolder);
@@ -84,14 +111,23 @@ public class LeftNavigation extends Fragment {
 			}
 
 			// Assign values
-			viewHolder.userfullname.setText(sites.get(position).getFullname());
-			viewHolder.sitename.setText(sites.get(position).getSitename());
-			Bitmap userImage = ImageDecoder.decodeImage(new File(Environment
-					.getExternalStorageDirectory()
-					+ "/MDroid/."
-					+ sites.get(position).getId()));
-			if (userImage != null)
-				viewHolder.userimage.setImageBitmap(userImage);
+			switch (type) {
+			case TYPE_ACCOUNT:
+				viewHolder.userfullname.setText(sites.get(position)
+						.getFullname());
+				viewHolder.sitename.setText(sites.get(position).getSitename());
+				Bitmap userImage = ImageDecoder.decodeImage(new File(
+						Environment.getExternalStorageDirectory() + "/MDroid/."
+								+ sites.get(position).getId()));
+				if (userImage != null)
+					viewHolder.userimage.setImageBitmap(userImage);
+				break;
+
+			case TYPE_MENUITEM:
+				viewHolder.menuItemName.setText(menuItems[position
+						- sites.size()]);
+				break;
+			}
 
 			return convertView;
 		}
@@ -101,6 +137,7 @@ public class LeftNavigation extends Fragment {
 		TextView userfullname;
 		TextView sitename;
 		ImageView userimage;
+		TextView menuItemName;
 	}
 
 }
