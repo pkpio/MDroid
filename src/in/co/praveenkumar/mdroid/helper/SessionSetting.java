@@ -53,6 +53,7 @@ public class SessionSetting {
 		if (siteInfo != null) {
 			mUrl = siteInfo.getSiteurl();
 			token = siteInfo.getToken();
+			currentSiteId = siteInfo.getId();
 		}
 	}
 

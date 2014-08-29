@@ -18,8 +18,9 @@ import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -30,7 +31,6 @@ public class LeftNavigation extends Fragment {
 	final String DEBUG_TAG = "Left Navigation Fragment";
 	ListView navListView;
 	List<MoodleSiteInfo> sites;
-	MoodleSiteInfo currentSite;
 	String[] menuItems = new String[] { "Courses", "Calender", "Forums",
 			"Notes" };
 
@@ -44,11 +44,20 @@ public class LeftNavigation extends Fragment {
 
 		// Get sites info
 		SessionSetting session = new SessionSetting(getActivity());
-		currentSite = session.getSiteInfo();
+		Log.d(DEBUG_TAG, session.getCurrentSiteId() + "");
 		sites = MoodleSiteInfo.listAll(MoodleSiteInfo.class);
 
 		final LeftNavListAdapter adapter = new LeftNavListAdapter(getActivity());
 		navListView.setAdapter(adapter);
+
+		navListView.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+				drawerState.setDrawerState(false);
+			}
+		});
 
 		return rootView;
 	}
@@ -144,16 +153,6 @@ public class LeftNavigation extends Fragment {
 						- sites.size()]);
 				break;
 			}
-
-			convertView.setOnClickListener(new OnClickListener() {
-
-				@Override
-				public void onClick(View v) {
-					Log.d("asdasa", "Clicked!");
-					drawerState.setDrawerState(false);
-				}
-			});
-
 			return convertView;
 		}
 	}
