@@ -87,6 +87,7 @@ public class MoodleCourse extends SugarRecord<MoodleCourse> {
 	@SerializedName("forcetheme")
 	String forcetheme;
 
+	@Ignore
 	@SerializedName("courseformatoptions")
 	ArrayList<MoodleCourseFormatOption> courseformatoptions;
 
