@@ -18,5 +18,8 @@
     <string name="activity_login_login_button">login</string>
     <string name="activity_login_token_hint">your account token</string>
     <string name="activity_login_status_title">Logging in..</string>
+    
+    <!-- Course activity -->
+    <string name="user_picture">User profile image</string>
 
 </resources>
