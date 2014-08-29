@@ -48,6 +48,7 @@ public class LeftNavigation extends Fragment {
 	}
 
 	public class LeftNavListAdapter extends ArrayAdapter<String> {
+
 		private final Context context;
 
 		public LeftNavListAdapter(Context context) {
@@ -57,30 +58,49 @@ public class LeftNavigation extends Fragment {
 
 		@Override
 		public View getView(int position, View convertView, ViewGroup parent) {
-			View rowView = convertView;
-			LayoutInflater inflater = (LayoutInflater) context
-					.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-			rowView = inflater.inflate(R.layout.list_item_account, parent,
-					false);
+			ViewHolder viewHolder;
 
-			final TextView userfullnameView = (TextView) rowView
-					.findViewById(R.id.nav_user_fullname);
-			final TextView sitenameView = (TextView) rowView
-					.findViewById(R.id.nav_sitename);
-			final ImageView userimageView = (ImageView) rowView
-					.findViewById(R.id.nav_user_image);
+			if (convertView == null) {
+				// Inflate layout
+				LayoutInflater inflater = (LayoutInflater) context
+						.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+				convertView = inflater.inflate(R.layout.list_item_account,
+						parent, false);
 
-			userfullnameView.setText(sites.get(position).getFullname());
-			sitenameView.setText(sites.get(position).getSitename());
+				// Setup ViewHolder
+				viewHolder = new ViewHolder();
+				viewHolder.userfullname = (TextView) convertView
+						.findViewById(R.id.nav_user_fullname);
+				viewHolder.sitename = (TextView) convertView
+						.findViewById(R.id.nav_sitename);
+				viewHolder.userimage = (ImageView) convertView
+						.findViewById(R.id.nav_user_image);
+
+				// Save the holder with the view
+				convertView.setTag(viewHolder);
+			} else {
+				// Just use the viewHolder and avoid findviewbyid()
+				viewHolder = (ViewHolder) convertView.getTag();
+			}
+
+			// Assign values
+			viewHolder.userfullname.setText(sites.get(position).getFullname());
+			viewHolder.sitename.setText(sites.get(position).getSitename());
 			Bitmap userImage = ImageDecoder.decodeImage(new File(Environment
 					.getExternalStorageDirectory()
 					+ "/MDroid/."
 					+ sites.get(position).getId()));
 			if (userImage != null)
-				userimageView.setImageBitmap(userImage);
+				viewHolder.userimage.setImageBitmap(userImage);
 
-			return rowView;
+			return convertView;
 		}
+	}
+
+	static class ViewHolder {
+		TextView userfullname;
+		TextView sitename;
+		ImageView userimage;
 	}
 
 }
