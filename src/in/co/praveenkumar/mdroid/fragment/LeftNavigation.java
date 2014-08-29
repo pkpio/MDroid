@@ -55,11 +55,11 @@ public class LeftNavigation extends Fragment {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
-				drawerState.setDrawerState(false);
 				if (position < sites.size()) {
 					session.setCurrentSiteId(sites.get(position).getId());
 					getActivity().recreate();
 				}
+				drawerState.setDrawerState(false);
 			}
 		});
 
