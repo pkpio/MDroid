@@ -205,7 +205,8 @@ public class Login extends AsyncTask<String, Integer, Boolean> {
 
 	@Override
 	protected void onPostExecute(Boolean status) {
-		context.startActivity(new Intent(context, CourseActivity.class));
+		if (status)
+			context.startActivity(new Intent(context, CourseActivity.class));
 	}
 
 }
