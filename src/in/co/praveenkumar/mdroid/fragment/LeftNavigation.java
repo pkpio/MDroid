@@ -13,7 +13,7 @@ public class LeftNavigation extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 
-		View rootView = inflater.inflate(R.layout.left_navigation, container,
+		View rootView = inflater.inflate(R.layout.frag_left_navigation, container,
 				false);
 		return rootView;
 	}
