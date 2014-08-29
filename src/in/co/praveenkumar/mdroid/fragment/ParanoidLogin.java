@@ -24,7 +24,7 @@ public class ParanoidLogin extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 
-		View rootView = inflater.inflate(R.layout.paranoid_login, container,
+		View rootView = inflater.inflate(R.layout.frag_paranoid_login, container,
 				false);
 		setUpWidgets(rootView);
 

@@ -13,7 +13,7 @@ public class Course extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 
-		View rootView = inflater.inflate(R.layout.course, container, false);
+		View rootView = inflater.inflate(R.layout.frag_courses, container, false);
 		return rootView;
 	}
 
