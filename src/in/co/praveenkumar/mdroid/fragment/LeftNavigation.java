@@ -43,7 +43,7 @@ public class LeftNavigation extends Fragment {
 		navListView = (ListView) rootView.findViewById(R.id.left_nav_list);
 
 		// Get sites info
-		SessionSetting session = new SessionSetting(getActivity());
+		final SessionSetting session = new SessionSetting(getActivity());
 		Log.d(DEBUG_TAG, session.getCurrentSiteId() + "");
 		sites = MoodleSiteInfo.listAll(MoodleSiteInfo.class);
 
@@ -56,6 +56,10 @@ public class LeftNavigation extends Fragment {
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
 				drawerState.setDrawerState(false);
+				if (position < sites.size()) {
+					session.setCurrentSiteId(sites.get(position).getId());
+					getActivity().recreate();
+				}
 			}
 		});
 
