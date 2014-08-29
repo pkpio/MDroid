@@ -7,14 +7,14 @@
 
     <ImageView
         android:id="@+id/nav_user_image"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:contentDescription="@string/user_picture"
         android:src="@drawable/person_outline" />
 
     <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="40dp"
+        android:layout_height="50dp"
         android:layout_marginLeft="5dp"
         android:layout_marginStart="5dp"
         android:orientation="vertical" >
@@ -23,7 +23,8 @@
             android:id="@+id/nav_user_fullname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="16sp"
+            android:layout_gravity="top"
+            android:textSize="18sp"
             android:lines="1"
             android:textStyle="bold" />
 
@@ -32,8 +33,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:lines="1"
-            android:textSize="14sp"
-            android:textStyle="normal" />
+            android:textSize="15sp"
+            android:textStyle="normal"
+            android:layout_gravity="bottom" />
     </LinearLayout>
 
 </LinearLayout>
