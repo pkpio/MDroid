@@ -1,7 +1,11 @@
 package in.co.praveenkumar.mdroid.activity;
 
+import java.util.List;
+
 import in.co.praveenkumar.mdroid.adapter.NavigationDrawer;
 import in.co.praveenkumar.mdroid.apis.R;
+import in.co.praveenkumar.mdroid.helper.SessionSetting;
+import in.co.praveenkumar.mdroid.moodlemodel.MoodleCourse;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -13,12 +17,19 @@ import android.widget.TextView;
 
 public class CourseActivity extends NavigationDrawer {
 	CourseListAdapter courseListAdapter;
+	SessionSetting session;
+	List<MoodleCourse> mCourses;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_course);
 		setUpDrawer();
+
+		// Get all courses of this site
+		session = new SessionSetting(this);
+		mCourses = MoodleCourse.find(MoodleCourse.class, "siteid = ?",
+				session.getCurrentSiteId() + "");
 
 		ListView courseList = (ListView) findViewById(R.id.content_course);
 		courseListAdapter = new CourseListAdapter(this);
@@ -29,7 +40,8 @@ public class CourseActivity extends NavigationDrawer {
 		private final Context context;
 
 		public CourseListAdapter(Context context) {
-			super(context, R.layout.list_item_account, new String[10]);
+			super(context, R.layout.list_item_account, new String[mCourses
+					.size()]);
 			this.context = context;
 		}
 
@@ -58,9 +70,8 @@ public class CourseActivity extends NavigationDrawer {
 			}
 
 			// Assign values
-			viewHolder.shortname.setText("CS 101");
-			viewHolder.fullname
-					.setText("Introduction to computer science and programming");
+			viewHolder.shortname.setText(mCourses.get(position).getShortname());
+			viewHolder.fullname.setText(mCourses.get(position).getFullname());
 
 			return convertView;
 		}

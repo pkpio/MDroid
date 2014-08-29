@@ -58,7 +58,7 @@ public class NormalLogin extends Fragment {
 		String mUrl = murlET.getText().toString();
 
 		new Login(username, password, mUrl, loginButton, loginProgressSV,
-				loginProgressTV).execute("");
+				loginProgressTV, getActivity()).execute("");
 	}
 
 }
