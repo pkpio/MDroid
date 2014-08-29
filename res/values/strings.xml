@@ -3,6 +3,10 @@
 
     <string name="app_name">MDroid</string>
     <string name="action_settings">Settings</string>
+    
+    <!-- Left navigation -->
+    <string name="drawer_open">open</string>
+    <string name="drawer_close">close</string>
 
     <!-- Login activity -->
     <string name="activity_login_email_hint">username or email</string>
