@@ -21,5 +21,6 @@
     
     <!-- Course activity -->
     <string name="user_picture">User profile image</string>
+    <string name="list_course_summary">Summary</string>
 
 </resources>
