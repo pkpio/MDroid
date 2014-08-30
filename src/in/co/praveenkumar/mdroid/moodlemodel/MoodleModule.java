@@ -48,6 +48,12 @@ public class MoodleModule extends SugarRecord<MoodleModule> {
 	@SerializedName("contents")
 	ArrayList<MoodleModuleContent> contents;
 
+	// Relational parameters
+	Long parentid;
+	int sectionid;
+	int courseid;
+	int siteid;
+
 	/**
 	 * module or activity id
 	 * 
@@ -155,5 +161,46 @@ public class MoodleModule extends SugarRecord<MoodleModule> {
 	public ArrayList<MoodleModuleContent> getContents() {
 		return contents;
 	}
-	
+
+	/**
+	 * Get the database id of the parent section. Not to be confused with actual
+	 * sectionid given to a section from Moodle site. This id is given by Sugar
+	 * db while saving the parent section
+	 * 
+	 * @return
+	 */
+	public Long getParentid() {
+		return parentid;
+	}
+
+	/**
+	 * sectionid of the section to which this Module belongs to. This id is
+	 * given to a section by Moodle site.
+	 * 
+	 * @return
+	 */
+	public int getSectionid() {
+		return sectionid;
+	}
+
+	/**
+	 * courseid of the course to which this section belongs to. This id is given
+	 * to a course by Moodle site
+	 * 
+	 * @return
+	 */
+	public int getCourseid() {
+		return courseid;
+	}
+
+	/**
+	 * Get the siteid of the Moodle site to which this section belong to. siteid
+	 * is given to an user account by sugar db on successful login
+	 * 
+	 * @return
+	 */
+	public int getSiteid() {
+		return siteid;
+	}
+
 }
