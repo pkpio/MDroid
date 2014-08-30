@@ -52,7 +52,7 @@ public class MoodleModule extends SugarRecord<MoodleModule> {
 	Long parentid;
 	int sectionid;
 	int courseid;
-	int siteid;
+	Long siteid;
 
 	/**
 	 * module or activity id
@@ -199,8 +199,44 @@ public class MoodleModule extends SugarRecord<MoodleModule> {
 	 * 
 	 * @return
 	 */
-	public int getSiteid() {
+	public Long getSiteid() {
 		return siteid;
+	}
+
+	/**
+	 * Set the module parent section db id
+	 * 
+	 * @param parentid
+	 */
+	public void setParentid(Long parentid) {
+		this.parentid = parentid;
+	}
+
+	/**
+	 * Set the module course Moodle id
+	 * 
+	 * @param courseid
+	 */
+	public void setCourseid(int courseid) {
+		this.courseid = courseid;
+	}
+
+	/**
+	 * Set the module parent section Moodle id
+	 * 
+	 * @param section.id
+	 */
+	public void setSectionid(int sectionid) {
+		this.sectionid = sectionid;
+	}
+
+	/**
+	 * Set the siteid to which this module belong to.
+	 * 
+	 * @param siteid
+	 */
+	public void setSiteid(Long siteid) {
+		this.siteid = siteid;
 	}
 
 }
