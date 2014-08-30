@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <!-- Main content -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:background="@color/yellow"
+            android:gravity="center"
+            android:text="@string/syncing" />
+
+        <in.co.praveenkumar.mdroid.view.StickyListView
+            android:id="@+id/list_course_content"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:divider="@null"
+            android:dividerHeight="0dp" >
+        </in.co.praveenkumar.mdroid.view.StickyListView>
+    </LinearLayout>
+
+    <!-- Left navigation -->
+
+    <fragment
+        android:id="@+id/left_nav_layout"
+        android:name="in.co.praveenkumar.mdroid.fragment.LeftNavigation"
+        android:layout_width="240dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="start" />
+
+</android.support.v4.widget.DrawerLayout>

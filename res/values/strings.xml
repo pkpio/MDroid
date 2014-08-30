@@ -27,4 +27,6 @@
 
     <!-- Sample values -->
     <string name="list_item_sample_menu">Course</string>
+    <string name="syncing">Syncing..</string>
+
 </resources>
