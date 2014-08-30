@@ -25,4 +25,6 @@
     <string name="list_course_sample_shortname">CS 101 2013 1</string>
     <string name="list_course_sample_fullname">Introduction to computer science</string>
 
+    <!-- Sample values -->
+    <string name="list_item_sample_menu">Course</string>
 </resources>
