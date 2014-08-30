@@ -46,7 +46,7 @@ public class MoodleModuleContent extends SugarRecord<MoodleModuleContent> {
 	int moduleid;
 	int sectionid;
 	int courseid;
-	int siteid;
+	Long siteid;
 
 	/**
 	 * Get the database id of the parent module. Not to be confused with actual
@@ -95,8 +95,53 @@ public class MoodleModuleContent extends SugarRecord<MoodleModuleContent> {
 	 * 
 	 * @return
 	 */
-	public int getSiteid() {
+	public Long getSiteid() {
 		return siteid;
+	}
+
+	/**
+	 * Set the content parent module db id
+	 * 
+	 * @param parentid
+	 */
+	public void setParentid(Long parentid) {
+		this.parentid = parentid;
+	}
+
+	/**
+	 * Set the content course Moodle id
+	 * 
+	 * @param courseid
+	 */
+	public void setCourseid(int courseid) {
+		this.courseid = courseid;
+	}
+
+	/**
+	 * Set the content parent module section Moodle id
+	 * 
+	 * @param sectionid
+	 */
+	public void setSectionid(int sectionid) {
+		this.sectionid = sectionid;
+	}
+
+	/**
+	 * Set the content parent module Moodle id
+	 * 
+	 * @param moduleid
+	 */
+	public void setModuleid(int moduleid) {
+		this.moduleid = moduleid;
+	}
+
+	/**
+	 * Set the siteid to which this modulecontent belong to.
+	 * 
+	 * @param siteid
+	 */
+	public void setSiteid(Long siteid) {
+		this.siteid = siteid;
 	}
 
 }
