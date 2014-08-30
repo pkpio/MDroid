@@ -1,17 +1,21 @@
 package in.co.praveenkumar.mdroid.activity;
 
-import java.util.List;
-
 import in.co.praveenkumar.mdroid.adapter.NavigationDrawer;
 import in.co.praveenkumar.mdroid.apis.R;
 import in.co.praveenkumar.mdroid.helper.SessionSetting;
 import in.co.praveenkumar.mdroid.moodlemodel.MoodleCourse;
+
+import java.util.List;
+
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -47,7 +51,7 @@ public class CourseActivity extends NavigationDrawer {
 
 		@Override
 		public View getView(int position, View convertView, ViewGroup parent) {
-			ViewHolder viewHolder;
+			final ViewHolder viewHolder;
 
 			if (convertView == null) {
 				viewHolder = new ViewHolder();
@@ -61,6 +65,12 @@ public class CourseActivity extends NavigationDrawer {
 						.findViewById(R.id.list_course_shortname);
 				viewHolder.fullname = (TextView) convertView
 						.findViewById(R.id.list_course_fullname);
+				viewHolder.viewSummary = (ImageView) convertView
+						.findViewById(R.id.list_course_more_button);
+				viewHolder.summaryText = (TextView) convertView
+						.findViewById(R.id.list_course_summary_text);
+				viewHolder.summary = (LinearLayout) convertView
+						.findViewById(R.id.list_course_summary);
 
 				// Save the holder with the view
 				convertView.setTag(viewHolder);
@@ -72,6 +82,20 @@ public class CourseActivity extends NavigationDrawer {
 			// Assign values
 			viewHolder.shortname.setText(mCourses.get(position).getShortname());
 			viewHolder.fullname.setText(mCourses.get(position).getFullname());
+			viewHolder.viewSummary.setOnClickListener(new OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					if (viewHolder.summary.getVisibility() == LinearLayout.GONE) {
+						viewHolder.summary.setVisibility(LinearLayout.VISIBLE);
+						viewHolder.viewSummary
+								.setBackgroundResource(R.drawable.expand_less_grey);
+					} else {
+						viewHolder.summary.setVisibility(LinearLayout.GONE);
+						viewHolder.viewSummary
+								.setBackgroundResource(R.drawable.expand_more_grey);
+					}
+				}
+			});
 
 			return convertView;
 		}
@@ -80,6 +104,9 @@ public class CourseActivity extends NavigationDrawer {
 	static class ViewHolder {
 		TextView shortname;
 		TextView fullname;
+		TextView summaryText;
+		LinearLayout summary;
+		ImageView viewSummary;
 	}
 
 }
