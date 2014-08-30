@@ -34,7 +34,7 @@ public class MoodleSection extends SugarRecord<MoodleSection> {
 	// Relational parameters
 	Long parentid;
 	int courseid;
-	int siteid;
+	Long siteid;
 
 	/**
 	 * Section ID
@@ -117,8 +117,35 @@ public class MoodleSection extends SugarRecord<MoodleSection> {
 	 * 
 	 * @return
 	 */
-	public int getSiteid() {
+	public Long getSiteid() {
 		return siteid;
+	}
+
+	/**
+	 * Set the course db id
+	 * 
+	 * @param parentid
+	 */
+	public void setParentid(Long parentid) {
+		this.parentid = parentid;
+	}
+
+	/**
+	 * Set the course Moodle id
+	 * 
+	 * @param courseid
+	 */
+	public void setCourseid(int courseid) {
+		this.courseid = courseid;
+	}
+
+	/**
+	 * Set the siteid to which this course content belong to.
+	 * 
+	 * @param siteid
+	 */
+	public void setSiteid(Long siteid) {
+		this.siteid = siteid;
 	}
 
 }
