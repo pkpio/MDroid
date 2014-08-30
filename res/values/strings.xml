@@ -3,7 +3,7 @@
 
     <string name="app_name">MDroid</string>
     <string name="action_settings">Settings</string>
-    
+
     <!-- Left navigation -->
     <string name="drawer_open">open</string>
     <string name="drawer_close">close</string>
@@ -18,9 +18,11 @@
     <string name="activity_login_login_button">login</string>
     <string name="activity_login_token_hint">your account token</string>
     <string name="activity_login_status_title">Logging in..</string>
-    
+
     <!-- Course activity -->
     <string name="user_picture">User profile image</string>
     <string name="list_course_summary">Summary</string>
+    <string name="list_course_sample_shortname">CS 101 2013 1</string>
+    <string name="list_course_sample_fullname">Introduction to computer science</string>
 
 </resources>
