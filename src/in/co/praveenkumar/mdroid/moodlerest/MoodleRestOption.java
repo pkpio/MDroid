@@ -9,7 +9,7 @@ public class MoodleRestOption {
 	public static final String RESPONSE_FORMAT = "json";
 
 	// Function names for getting contents
-	public static final String FUNCTION_GET_ALL_COURSES = "moodle_course_get_courses";
+	public static final String FUNCTION_GET_ALL_COURSES = "core_course_get_courses";
 	public static final String FUNCTION_GET_ENROLLED_COURSES = "core_enrol_get_users_courses";
 	public static final String FUNCTION_GET_COURSE_CONTENTS = "core_course_get_contents";
 	public static final String FUNCTION_GET_FORUMS = "mod_forum_get_forums_by_courses";
