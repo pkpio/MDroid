@@ -22,7 +22,9 @@ public class CourseContentSync {
 	}
 
 	/**
-	 * Sync all sections in a course in the current site.
+	 * Sync all sections in a course in the current site. <br/>
+	 * Note: This call has network activity and so, any calls made must be from
+	 * a background thread
 	 * 
 	 * @param courseid
 	 *            Moodle courseid of the course
@@ -165,4 +167,38 @@ public class CourseContentSync {
 
 	}
 
+	/**
+	 * Get a list of all sections is a Course. <br/>
+	 * Note: Depending on the contents of a course, this could take some time as
+	 * it runs many sql queries. It is recommended that this method is called
+	 * from a background thread
+	 * 
+	 * @param courseid
+	 *            Moodle courseid of the course
+	 * @return List of sections
+	 */
+	public List<MoodleSection> getCourseContents(int courseid) {
+		List<MoodleSection> sections = MoodleSection.find(MoodleSection.class,
+				"courseid = ? and siteid = ?", courseid + "", siteid + "");
+
+		// Add modules to sections
+		List<MoodleModule> dbModules;
+		List<MoodleModuleContent> dbContents;
+		for (int i = 0; i < sections.size(); i++) {
+			dbModules = MoodleModule.find(MoodleModule.class, "parentid = ?",
+					sections.get(i).getId() + "");
+
+			// Set module contents to modules
+			for (int j = 0; j < dbModules.size(); j++) {
+				dbContents = MoodleModuleContent.find(
+						MoodleModuleContent.class, "parentid = ?", dbModules
+								.get(j).getId() + "");
+				dbModules.get(j).setContents(dbContents);
+			}
+
+			sections.get(i).setModules(dbModules);
+		}
+
+		return sections;
+	}
 }
