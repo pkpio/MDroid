@@ -96,7 +96,7 @@ public class CourseContentSync {
 			int sectionid) {
 
 		// No modules in section
-		if (modules.size() == 0)
+		if (modules == null)
 			return;
 
 		// Add relational fields to all modules and update
@@ -142,7 +142,7 @@ public class CourseContentSync {
 			Long moduledbid, int moduleid, int sectionid) {
 
 		// No modules in section
-		if (contents.size() == 0)
+		if (contents == null)
 			return;
 
 		// Add relational fields to all modules and update
