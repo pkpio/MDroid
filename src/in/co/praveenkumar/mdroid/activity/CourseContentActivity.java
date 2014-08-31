@@ -3,13 +3,12 @@ package in.co.praveenkumar.mdroid.activity;
 import in.co.praveenkumar.mdroid.adapter.NavigationDrawer;
 import in.co.praveenkumar.mdroid.apis.R;
 import in.co.praveenkumar.mdroid.helper.SessionSetting;
-import in.co.praveenkumar.mdroid.moodlemodel.MoodleCourse;
+import in.co.praveenkumar.mdroid.moodlemodel.MoodleModule;
 import in.co.praveenkumar.mdroid.moodlemodel.MoodleSection;
 import in.co.praveenkumar.mdroid.task.CourseContentSync;
 import in.co.praveenkumar.mdroid.view.StickyListView.PinnedSectionListAdapter;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import android.content.Context;
 import android.os.AsyncTask;
@@ -22,29 +21,24 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 public class CourseContentActivity extends NavigationDrawer {
-	CourseListAdapter courseListAdapter;
+	CourseListAdapter courseContentListAdapter;
 	SessionSetting session;
-	List<MoodleCourse> mCourses;
-	ArrayList<MoodleSection> mSections;
+	ArrayList<listViewObject> listObjects = new ArrayList<listViewObject>();
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_course_contents);
+		setUpDrawer();
+
 		Bundle extras = getIntent().getExtras();
 		Long coursedbid = extras.getLong("coursedbid");
 		int courseid = extras.getInt("courseid");
-
-		setUpDrawer();
-
-		// Get all courses of this site
 		session = new SessionSetting(this);
-		mCourses = MoodleCourse.find(MoodleCourse.class, "siteid = ?",
-				session.getCurrentSiteId() + "");
 
 		ListView courseList = (ListView) findViewById(R.id.list_course_content);
-		courseListAdapter = new CourseListAdapter(this);
-		courseList.setAdapter(courseListAdapter);
+		courseContentListAdapter = new CourseListAdapter(this);
+		courseList.setAdapter(courseContentListAdapter);
 
 		new listCoursesThread(session.getmUrl(), session.getToken(), courseid,
 				coursedbid, session.getCurrentSiteId()).execute("");
@@ -74,24 +68,33 @@ public class CourseContentActivity extends NavigationDrawer {
 		protected Boolean doInBackground(String... params) {
 			System.out.println("Background execute");
 			syncStatus = ccs.syncCourseContents(courseid, coursedbid);
-			mSections = ccs.getCourseContents(courseid);
+			ArrayList<MoodleSection> sections = ccs.getCourseContents(courseid);
+
+			// Save all sections into a listObject array for easy access inside
+			mapSectionsToListObjects(sections);
+
 			if (syncStatus)
 				return true;
 			else
 				return false;
 		}
 
+		@Override
+		protected void onPostExecute(Boolean result) {
+			courseContentListAdapter.notifyDataSetChanged();
+		}
+
 	}
 
 	public class CourseListAdapter extends ArrayAdapter<String> implements
 			PinnedSectionListAdapter {
-		private static final int TYPE_ACCOUNT = 0;
-		private static final int TYPE_MENUITEM = 1;
-		private static final int TYPE_COUNT = 2;
-		private final Context context;
+		static final int TYPE_MODULE = 0;
+		static final int TYPE_HEADER = 1;
+		static final int TYPE_COUNT = 2;
+		final Context context;
 
 		public CourseListAdapter(Context context) {
-			super(context, R.layout.list_item_account, new String[mCourses
+			super(context, R.layout.list_item_account, new String[listObjects
 					.size()]);
 			this.context = context;
 		}
@@ -103,7 +106,7 @@ public class CourseContentActivity extends NavigationDrawer {
 
 		@Override
 		public int getItemViewType(int position) {
-			return (position % 2 == 0) ? TYPE_MENUITEM : TYPE_ACCOUNT;
+			return listObjects.get(position).viewType;
 		}
 
 		@Override
@@ -131,15 +134,17 @@ public class CourseContentActivity extends NavigationDrawer {
 			}
 
 			// Assign values
-			viewHolder.shortname.setText(mCourses.get(position).getShortname());
-			viewHolder.fullname.setText(mCourses.get(position).getFullname());
+			viewHolder.shortname.setText(listObjects.get(position).sectionname);
+			if (listObjects.get(position).module != null)
+				viewHolder.fullname.setText(listObjects.get(position).module
+						.getName());
 
 			return convertView;
 		}
 
 		@Override
 		public boolean isItemViewTypePinned(int viewType) {
-			if (viewType == TYPE_ACCOUNT)
+			if (viewType == TYPE_HEADER)
 				return false;
 			else
 				return true;
@@ -149,5 +154,61 @@ public class CourseContentActivity extends NavigationDrawer {
 	static class ViewHolder {
 		TextView shortname;
 		TextView fullname;
+	}
+
+	/**
+	 * This is used to hold all data of any list item in the coursecontent
+	 * listview. A list can be a Module or a section header. This view will be
+	 * to get appropriate view from position for our stickylistview which has
+	 * multiple view types
+	 * 
+	 * @author praveen
+	 * 
+	 */
+	class listViewObject {
+		/**
+		 * Follows type values as defined in CourseListAdapter. Check
+		 * CourseListAdapter.TYPE_ for available values
+		 */
+		int viewType;
+		/**
+		 * Name of the section to which this object belongs
+		 */
+		String sectionname;
+		/**
+		 * Id of the section to which this object belongs
+		 */
+		int sectionid;
+		/**
+		 * Module object. (Only for viewType = TYPE_MODULE)
+		 */
+		MoodleModule module;
+
+	}
+
+	private void mapSectionsToListObjects(ArrayList<MoodleSection> sections) {
+		if (sections == null)
+			return;
+
+		MoodleSection section;
+		listViewObject object = new listViewObject();
+		ArrayList<MoodleModule> modules;
+		for (int i = 0; i < sections.size(); i++) {
+			section = sections.get(i);
+			object.viewType = CourseListAdapter.TYPE_HEADER;
+			object.sectionid = section.getSectionid();
+			object.sectionname = section.getName();
+			listObjects.add(object);
+			modules = section.getModules();
+
+			// Add modules
+			for (int j = 0; j < modules.size(); j++) {
+				object.viewType = CourseListAdapter.TYPE_MODULE;
+				object.sectionid = section.getSectionid();
+				object.sectionname = section.getName();
+				object.module = modules.get(j);
+				listObjects.add(object);
+			}
+		}
 	}
 }
