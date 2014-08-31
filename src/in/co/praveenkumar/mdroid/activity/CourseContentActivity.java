@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -162,8 +163,12 @@ public class CourseContentActivity extends NavigationDrawer {
 			case TYPE_MODULE:
 				viewHolder.modulename.setText(listObjects.get(position).module
 						.getModname());
-				viewHolder.moduledesc.setText(listObjects.get(position).module
-						.getDescription());
+				String description = listObjects.get(position).module
+						.getDescription();
+				if (description == null)
+					description = "";
+				viewHolder.moduledesc.setText(Html.fromHtml(description)
+						.toString());
 				break;
 			}
 			return convertView;
