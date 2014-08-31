@@ -172,9 +172,9 @@ public class CourseContentActivity extends NavigationDrawer {
 		@Override
 		public boolean isItemViewTypePinned(int viewType) {
 			if (viewType == TYPE_HEADER)
-				return false;
-			else
 				return true;
+			else
+				return false;
 		}
 	}
 
