@@ -222,21 +222,23 @@ public class CourseContentActivity extends NavigationDrawer {
 		ArrayList<MoodleModule> modules;
 		for (int i = 0; i < sections.size(); i++) {
 			section = sections.get(i);
-			listViewObject object = new listViewObject();
-			object.viewType = CourseListAdapter.TYPE_HEADER;
-			object.sectionid = section.getSectionid();
-			object.sectionname = section.getName();
-			listObjects.add(object);
 			modules = section.getModules();
+			if (modules.size() > 0) {
+				listViewObject object = new listViewObject();
+				object.viewType = CourseListAdapter.TYPE_HEADER;
+				object.sectionid = section.getSectionid();
+				object.sectionname = section.getName();
+				listObjects.add(object);
 
-			// Add modules
-			for (int j = 0; j < modules.size(); j++) {
-				listViewObject mObject = new listViewObject();
-				mObject.viewType = CourseListAdapter.TYPE_MODULE;
-				mObject.sectionid = section.getSectionid();
-				mObject.sectionname = section.getName();
-				mObject.module = modules.get(j);
-				listObjects.add(mObject);
+				// Add modules
+				for (int j = 0; j < modules.size(); j++) {
+					listViewObject mObject = new listViewObject();
+					mObject.viewType = CourseListAdapter.TYPE_MODULE;
+					mObject.sectionid = section.getSectionid();
+					mObject.sectionname = section.getName();
+					mObject.module = modules.get(j);
+					listObjects.add(mObject);
+				}
 			}
 		}
 	}
