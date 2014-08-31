@@ -158,7 +158,7 @@ public class CourseContentSync {
 
 			// Update or save in database
 			dbContents = MoodleModuleContent.find(MoodleModuleContent.class,
-					"setParentid = ? and siteid = ?", content.getParentid()
+					"parentid = ? and siteid = ?", content.getParentid()
 							+ "", content.getSiteid() + "");
 			if (dbContents.size() > 0)
 				content.setId(dbContents.get(0).getId()); // updates on save()
