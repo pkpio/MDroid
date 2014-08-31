@@ -74,6 +74,7 @@ public class CourseContentActivity extends NavigationDrawer {
 		protected Boolean doInBackground(String... params) {
 			System.out.println("Background execute");
 			syncStatus = ccs.syncCourseContents(courseid, coursedbid);
+			mSections = ccs.getCourseContents(courseid);
 			if (syncStatus)
 				return true;
 			else
