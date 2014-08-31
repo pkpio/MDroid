@@ -3,9 +3,11 @@ package in.co.praveenkumar.mdroid.activity;
 import in.co.praveenkumar.mdroid.adapter.LoginTabsAdapter;
 import in.co.praveenkumar.mdroid.apis.R;
 import in.co.praveenkumar.mdroid.helper.ActionBarTabs;
+import in.co.praveenkumar.mdroid.helper.SessionSetting;
 import android.app.ActionBar;
 import android.app.ActionBar.Tab;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
@@ -56,6 +58,13 @@ public class LoginActivity extends FragmentActivity implements
 			public void onPageScrollStateChanged(int arg0) {
 			}
 		});
+
+		// Skip login if user is logged in already
+		SessionSetting session = new SessionSetting(this);
+		if (session.getCurrentSiteId() != 9999) {
+			Intent i = new Intent(this, CourseActivity.class);
+			this.startActivity(i);
+		}
 	}
 
 	@Override
