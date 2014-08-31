@@ -36,6 +36,11 @@ public class CourseContentActivity extends NavigationDrawer {
 		int courseid = extras.getInt("courseid");
 		session = new SessionSetting(this);
 
+		CourseContentSync ccs = new CourseContentSync(session.getmUrl(),
+				session.getToken(), session.getCurrentSiteId());
+		ArrayList<MoodleSection> sections = ccs.getCourseContents(courseid);
+		mapSectionsToListObjects(sections);
+
 		ListView courseList = (ListView) findViewById(R.id.list_course_content);
 		courseContentListAdapter = new CourseListAdapter(this);
 		courseList.setAdapter(courseContentListAdapter);
@@ -191,10 +196,10 @@ public class CourseContentActivity extends NavigationDrawer {
 			return;
 
 		MoodleSection section;
-		listViewObject object = new listViewObject();
 		ArrayList<MoodleModule> modules;
 		for (int i = 0; i < sections.size(); i++) {
 			section = sections.get(i);
+			listViewObject object = new listViewObject();
 			object.viewType = CourseListAdapter.TYPE_HEADER;
 			object.sectionid = section.getSectionid();
 			object.sectionname = section.getName();
