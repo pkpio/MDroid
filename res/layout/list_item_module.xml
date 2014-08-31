@@ -20,7 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="25dp"
             android:padding="3dp"
-            android:text="File Assignment 2"
+            android:text="@string/sample_modulename"
             android:textSize="16sp" />
         
         <TextView
