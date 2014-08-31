@@ -1,6 +1,7 @@
 package in.co.praveenkumar.mdroid.moodlemodel;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.google.gson.annotations.SerializedName;
 import com.orm.SugarRecord;
@@ -163,6 +164,16 @@ public class MoodleModule extends SugarRecord<MoodleModule> {
 	}
 
 	/**
+	 * Set list of contents <br/>
+	 * Used when getting course contents from database
+	 * 
+	 * @return
+	 */
+	public void setContents(List<MoodleModuleContent> contents) {
+		this.contents = new ArrayList<MoodleModuleContent>(contents);
+	}
+
+	/**
 	 * Get the database id of the parent section. Not to be confused with actual
 	 * sectionid given to a section from Moodle site. This id is given by Sugar
 	 * db while saving the parent section
@@ -224,7 +235,8 @@ public class MoodleModule extends SugarRecord<MoodleModule> {
 	/**
 	 * Set the module parent section Moodle id
 	 * 
-	 * @param section.id
+	 * @param section
+	 *            .id
 	 */
 	public void setSectionid(int sectionid) {
 		this.sectionid = sectionid;
