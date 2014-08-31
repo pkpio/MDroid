@@ -177,7 +177,7 @@ public class CourseContentSync {
 	 *            Moodle courseid of the course
 	 * @return List of sections
 	 */
-	public List<MoodleSection> getCourseContents(int courseid) {
+	public ArrayList<MoodleSection> getCourseContents(int courseid) {
 		List<MoodleSection> sections = MoodleSection.find(MoodleSection.class,
 				"courseid = ? and siteid = ?", courseid + "", siteid + "");
 
@@ -199,6 +199,6 @@ public class CourseContentSync {
 			sections.get(i).setModules(dbModules);
 		}
 
-		return sections;
+		return new ArrayList<MoodleSection>(sections);
 	}
 }
