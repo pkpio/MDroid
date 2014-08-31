@@ -231,11 +231,12 @@ public class CourseContentActivity extends NavigationDrawer {
 
 			// Add modules
 			for (int j = 0; j < modules.size(); j++) {
-				object.viewType = CourseListAdapter.TYPE_MODULE;
-				object.sectionid = section.getSectionid();
-				object.sectionname = section.getName();
-				object.module = modules.get(j);
-				listObjects.add(object);
+				listViewObject mObject = new listViewObject();
+				mObject.viewType = CourseListAdapter.TYPE_MODULE;
+				mObject.sectionid = section.getSectionid();
+				mObject.sectionname = section.getName();
+				mObject.module = modules.get(j);
+				listObjects.add(mObject);
 			}
 		}
 	}
