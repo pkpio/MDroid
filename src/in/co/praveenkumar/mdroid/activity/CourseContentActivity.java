@@ -4,11 +4,15 @@ import in.co.praveenkumar.mdroid.adapter.NavigationDrawer;
 import in.co.praveenkumar.mdroid.apis.R;
 import in.co.praveenkumar.mdroid.helper.SessionSetting;
 import in.co.praveenkumar.mdroid.moodlemodel.MoodleCourse;
+import in.co.praveenkumar.mdroid.moodlemodel.MoodleSection;
+import in.co.praveenkumar.mdroid.task.CourseContentSync;
 import in.co.praveenkumar.mdroid.view.StickyListView.PinnedSectionListAdapter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import android.content.Context;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,11 +25,16 @@ public class CourseContentActivity extends NavigationDrawer {
 	CourseListAdapter courseListAdapter;
 	SessionSetting session;
 	List<MoodleCourse> mCourses;
+	ArrayList<MoodleSection> mSections;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_course_contents);
+		Bundle extras = getIntent().getExtras();
+		Long coursedbid = extras.getLong("coursedbid");
+		int courseid = extras.getInt("courseid");
+
 		setUpDrawer();
 
 		// Get all courses of this site
@@ -36,6 +45,40 @@ public class CourseContentActivity extends NavigationDrawer {
 		ListView courseList = (ListView) findViewById(R.id.list_course_content);
 		courseListAdapter = new CourseListAdapter(this);
 		courseList.setAdapter(courseListAdapter);
+
+		new listCoursesThread(session.getmUrl(), session.getToken(), courseid,
+				coursedbid, session.getCurrentSiteId()).execute("");
+
+	}
+
+	private class listCoursesThread extends AsyncTask<String, Integer, Boolean> {
+		CourseContentSync ccs;
+		int courseid;
+		Long coursedbid;
+		Boolean syncStatus;
+
+		public listCoursesThread(String mUrl, String token, int courseid,
+				Long coursedbid, Long siteid) {
+			ccs = new CourseContentSync(mUrl, token, siteid);
+			this.courseid = courseid;
+			this.coursedbid = coursedbid;
+		}
+
+		@Override
+		protected void onPreExecute() {
+			System.out.println("Pre execute");
+			// mSections = ccs.getCourseContents(courseid);
+		}
+
+		@Override
+		protected Boolean doInBackground(String... params) {
+			System.out.println("Background execute");
+			syncStatus = ccs.syncCourseContents(courseid, coursedbid);
+			if (syncStatus)
+				return true;
+			else
+				return false;
+		}
 
 	}
 

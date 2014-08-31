@@ -8,9 +8,11 @@ import in.co.praveenkumar.mdroid.moodlemodel.MoodleCourse;
 import java.util.List;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -47,7 +49,8 @@ public class CourseActivity extends NavigationDrawer {
 		}
 
 		@Override
-		public View getView(int position, View convertView, ViewGroup parent) {
+		public View getView(final int position, View convertView,
+				ViewGroup parent) {
 			final ViewHolder viewHolder;
 
 			if (convertView == null) {
@@ -73,6 +76,17 @@ public class CourseActivity extends NavigationDrawer {
 			// Assign values
 			viewHolder.shortname.setText(mCourses.get(position).getShortname());
 			viewHolder.fullname.setText(mCourses.get(position).getFullname());
+
+			convertView.setOnClickListener(new OnClickListener() {
+
+				@Override
+				public void onClick(View arg0) {
+					Intent i = new Intent(context, CourseContentActivity.class);
+					i.putExtra("courseid", mCourses.get(position).getCourseid());
+					i.putExtra("coursedbid", mCourses.get(position).getId());
+					context.startActivity(i);
+				}
+			});
 
 			return convertView;
 		}
