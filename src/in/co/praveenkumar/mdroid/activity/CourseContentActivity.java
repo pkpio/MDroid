@@ -116,20 +116,34 @@ public class CourseContentActivity extends NavigationDrawer {
 
 		@Override
 		public View getView(int position, View convertView, ViewGroup parent) {
-			final ViewHolder viewHolder;
+			ViewHolder viewHolder;
+			int type = getItemViewType(position);
 
 			if (convertView == null) {
 				viewHolder = new ViewHolder();
 				LayoutInflater inflater = (LayoutInflater) context
 						.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-				convertView = inflater.inflate(R.layout.list_item_course,
-						parent, false);
+				// Choose layout
+				switch (type) {
+				case TYPE_HEADER:
+					convertView = inflater.inflate(R.layout.list_item_section,
+							parent, false);
 
-				viewHolder.shortname = (TextView) convertView
-						.findViewById(R.id.list_course_shortname);
-				viewHolder.fullname = (TextView) convertView
-						.findViewById(R.id.list_course_fullname);
+					viewHolder.sectionname = (TextView) convertView
+							.findViewById(R.id.list_sectionname);
+					break;
+
+				case TYPE_MODULE:
+					convertView = inflater.inflate(R.layout.list_item_module,
+							parent, false);
+
+					viewHolder.modulename = (TextView) convertView
+							.findViewById(R.id.list_modulename);
+					viewHolder.moduledesc = (TextView) convertView
+							.findViewById(R.id.list_moduledescription);
+					break;
+				}
 
 				// Save the holder with the view
 				convertView.setTag(viewHolder);
@@ -139,11 +153,19 @@ public class CourseContentActivity extends NavigationDrawer {
 			}
 
 			// Assign values
-			viewHolder.shortname.setText(listObjects.get(position).sectionname);
-			if (listObjects.get(position).module != null)
-				viewHolder.fullname.setText(listObjects.get(position).module
-						.getName());
+			switch (type) {
+			case TYPE_HEADER:
+				viewHolder.sectionname
+						.setText(listObjects.get(position).sectionname);
+				break;
 
+			case TYPE_MODULE:
+				viewHolder.modulename.setText(listObjects.get(position).module
+						.getModname());
+				viewHolder.moduledesc.setText(listObjects.get(position).module
+						.getDescription());
+				break;
+			}
 			return convertView;
 		}
 
@@ -157,8 +179,9 @@ public class CourseContentActivity extends NavigationDrawer {
 	}
 
 	static class ViewHolder {
-		TextView shortname;
-		TextView fullname;
+		TextView sectionname;
+		TextView modulename;
+		TextView moduledesc;
 	}
 
 	/**
