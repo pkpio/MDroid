@@ -1,6 +1,7 @@
 package in.co.praveenkumar.mdroid.moodlemodel;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.google.gson.annotations.SerializedName;
 import com.orm.SugarRecord;
@@ -88,6 +89,16 @@ public class MoodleSection extends SugarRecord<MoodleSection> {
 	 */
 	public ArrayList<MoodleModule> getModules() {
 		return modules;
+	}
+
+	/**
+	 * Set the list of modules in this section <br/>
+	 * Used while fetching course contents from database.
+	 * 
+	 * @return
+	 */
+	public void setModules(List<MoodleModule> modules) {
+		this.modules = new ArrayList<MoodleModule>(modules);
 	}
 
 	/**
