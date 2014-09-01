@@ -4,7 +4,7 @@ Roadmap or plan for the new API version of MDroid (In priority order).
 - [x] Multiple account support
 - [x] Course listing
 - [x] Account switching from side navigation
-- [ ] Course content listing
+- [x] Course content listing
 - [ ] Downloading files
 - [ ] Course Forums listing
 - [ ] Forum discussion listing
@@ -17,4 +17,5 @@ Roadmap or plan for the new API version of MDroid (In priority order).
 - [ ] Notes creation or deletion
 - [ ] Files listing
 - [ ] Uploading files
-
+- [x] Document errors
+- [x] Open source licenses
