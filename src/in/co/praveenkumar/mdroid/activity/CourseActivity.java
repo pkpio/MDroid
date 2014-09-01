@@ -1,100 +1,75 @@
 package in.co.praveenkumar.mdroid.activity;
 
+import in.co.praveenkumar.mdroid.adapter.CourseTabsAdapter;
 import in.co.praveenkumar.mdroid.adapter.NavigationDrawer;
 import in.co.praveenkumar.mdroid.apis.R;
-import in.co.praveenkumar.mdroid.helper.SessionSetting;
-import in.co.praveenkumar.mdroid.moodlemodel.MoodleCourse;
-
-import java.util.List;
-
-import android.content.Context;
-import android.content.Intent;
+import in.co.praveenkumar.mdroid.helper.ActionBarTabs;
+import android.app.ActionBar;
+import android.app.ActionBar.Tab;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-import android.widget.TextView;
+import android.support.v4.view.ViewPager;
 
-public class CourseActivity extends NavigationDrawer {
-	CourseListAdapter courseListAdapter;
-	SessionSetting session;
-	List<MoodleCourse> mCourses;
+public class CourseActivity extends NavigationDrawer implements
+		ActionBar.TabListener {
+
+	private ViewPager viewPager;
+	private CourseTabsAdapter mAdapter;
+	private ActionBar actionBar;
+	private String[] tabs = { "Normal", "Paranoid" };
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_course);
-		setUpDrawer();
 
-		// Get all courses of this site
-		session = new SessionSetting(this);
-		mCourses = MoodleCourse.find(MoodleCourse.class, "siteid = ?",
-				session.getCurrentSiteId() + "");
+		// Initialization
+		viewPager = (ViewPager) findViewById(R.id.course_pager);
+		actionBar = getActionBar();
+		mAdapter = new CourseTabsAdapter(getSupportFragmentManager());
 
-		ListView courseList = (ListView) findViewById(R.id.content_course);
-		courseListAdapter = new CourseListAdapter(this);
-		courseList.setAdapter(courseListAdapter);
-	}
+		viewPager.setAdapter(mAdapter);
+		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+		ActionBarTabs.setHasEmbeddedTabs(actionBar, false);
 
-	public class CourseListAdapter extends ArrayAdapter<String> {
-		private final Context context;
-
-		public CourseListAdapter(Context context) {
-			super(context, R.layout.list_item_account, new String[mCourses
-					.size()]);
-			this.context = context;
+		// Adding Tabs
+		for (String tab_name : tabs) {
+			actionBar.addTab(actionBar.newTab().setText(tab_name)
+					.setTabListener(this));
 		}
 
-		@Override
-		public View getView(final int position, View convertView,
-				ViewGroup parent) {
-			final ViewHolder viewHolder;
+		/**
+		 * on swiping the viewpager make respective tab selected
+		 * */
+		viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
 
-			if (convertView == null) {
-				viewHolder = new ViewHolder();
-				LayoutInflater inflater = (LayoutInflater) context
-						.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
-				convertView = inflater.inflate(R.layout.list_item_course,
-						parent, false);
-
-				viewHolder.shortname = (TextView) convertView
-						.findViewById(R.id.list_course_shortname);
-				viewHolder.fullname = (TextView) convertView
-						.findViewById(R.id.list_course_fullname);
-
-				// Save the holder with the view
-				convertView.setTag(viewHolder);
-			} else {
-				// Just use the viewHolder and avoid findviewbyid()
-				viewHolder = (ViewHolder) convertView.getTag();
+			@Override
+			public void onPageSelected(int position) {
+				actionBar.setSelectedNavigationItem(position);
 			}
 
-			// Assign values
-			viewHolder.shortname.setText(mCourses.get(position).getShortname());
-			viewHolder.fullname.setText(mCourses.get(position).getFullname());
+			@Override
+			public void onPageScrolled(int arg0, float arg1, int arg2) {
+			}
 
-			convertView.setOnClickListener(new OnClickListener() {
-
-				@Override
-				public void onClick(View arg0) {
-					Intent i = new Intent(context, CourseContentActivity.class);
-					i.putExtra("courseid", mCourses.get(position).getCourseid());
-					i.putExtra("coursedbid", mCourses.get(position).getId());
-					context.startActivity(i);
-				}
-			});
-
-			return convertView;
-		}
+			@Override
+			public void onPageScrollStateChanged(int arg0) {
+			}
+		});
 	}
 
-	static class ViewHolder {
-		TextView shortname;
-		TextView fullname;
+	@Override
+	public void onTabReselected(Tab tab, FragmentTransaction ft) {
+	}
+
+	@Override
+	public void onTabSelected(Tab tab, FragmentTransaction ft) {
+		// on tab selected. Show respected fragment view
+		viewPager.setCurrentItem(tab.getPosition());
+	}
+
+	@Override
+	public void onTabUnselected(Tab tab, FragmentTransaction ft) {
 	}
 
 }
