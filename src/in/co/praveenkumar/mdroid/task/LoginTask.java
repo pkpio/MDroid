@@ -13,7 +13,7 @@ import android.widget.Button;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
-public class Login extends AsyncTask<String, Integer, Boolean> {
+public class LoginTask extends AsyncTask<String, Integer, Boolean> {
 	String username;
 	String password;
 	String mUrl;
@@ -43,7 +43,7 @@ public class Login extends AsyncTask<String, Integer, Boolean> {
 	 * @param context
 	 *            So that we can start course activity if all goes well
 	 */
-	public Login(String username, String password, String mUrl,
+	public LoginTask(String username, String password, String mUrl,
 			Button loginButton, ScrollView loginProgressSV,
 			TextView loginProgressTV, Context context) {
 		this.username = username;
@@ -70,7 +70,7 @@ public class Login extends AsyncTask<String, Integer, Boolean> {
 	 * @param context
 	 *            So that we can start course activity if all goes well
 	 */
-	public Login(String token, String mUrl, Button loginButton,
+	public LoginTask(String token, String mUrl, Button loginButton,
 			ScrollView loginProgressSV, TextView loginProgressTV,
 			Context context) {
 		this.token = token;
@@ -108,8 +108,8 @@ public class Login extends AsyncTask<String, Integer, Boolean> {
 
 		// Sync data
 		updateProgress("Syncing data");
-		new Download(null).download(siteInfo.getUserpictureurl(), "."
-				+ siteInfo.getId(), false, Download.APP_DOWNLOADER);
+		new DownloadTask(null).download(siteInfo.getUserpictureurl(), "."
+				+ siteInfo.getId(), false, DownloadTask.APP_DOWNLOADER);
 		if (!getCourseInfo())
 			return false;
 
@@ -185,7 +185,7 @@ public class Login extends AsyncTask<String, Integer, Boolean> {
 	 * @return User course sync status
 	 */
 	private Boolean getCourseInfo() {
-		CourseSync cs = new CourseSync(mUrl, token, siteInfo.getId());
+		CourseSyncTask cs = new CourseSyncTask(mUrl, token, siteInfo.getId());
 
 		updateProgress("Syncing all Moodle courses");
 		Boolean allCourseSyncStatus = cs.syncAllCourses();

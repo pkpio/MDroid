@@ -1,7 +1,7 @@
 package in.co.praveenkumar.mdroid.fragment;
 
 import in.co.praveenkumar.mdroid.apis.R;
-import in.co.praveenkumar.mdroid.task.Login;
+import in.co.praveenkumar.mdroid.task.LoginTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -57,7 +57,7 @@ public class NormalLoginFragment extends Fragment {
 		String password = passwordET.getText().toString();
 		String mUrl = murlET.getText().toString();
 
-		new Login(username, password, mUrl, loginButton, loginProgressSV,
+		new LoginTask(username, password, mUrl, loginButton, loginProgressSV,
 				loginProgressTV, getActivity()).execute("");
 	}
 
