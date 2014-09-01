@@ -19,7 +19,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
-public class Course extends Fragment {
+public class CourseFragment extends Fragment {
 	/**
 	 * List all courses in Moodle site
 	 */
@@ -42,7 +42,7 @@ public class Course extends Fragment {
 	 * All courses will be listed. You can choose something else by using
 	 * Course(type) method.
 	 */
-	public Course() {
+	public CourseFragment() {
 	}
 
 	/**
@@ -52,7 +52,7 @@ public class Course extends Fragment {
 	 * @param Type
 	 *            Choose what all courses have to listed.
 	 */
-	public Course(int Type) {
+	public CourseFragment(int Type) {
 		this.Type = Type;
 	}
 

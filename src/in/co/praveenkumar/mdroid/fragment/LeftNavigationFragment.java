@@ -26,7 +26,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-public class LeftNavigation extends Fragment {
+public class LeftNavigationFragment extends Fragment {
 	DrawerStateInterface drawerState;
 	final String DEBUG_TAG = "Left Navigation Fragment";
 	ListView navListView;

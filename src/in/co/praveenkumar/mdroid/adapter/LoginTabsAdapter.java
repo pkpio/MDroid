@@ -1,7 +1,7 @@
 package in.co.praveenkumar.mdroid.adapter;
 
-import in.co.praveenkumar.mdroid.fragment.NormalLogin;
-import in.co.praveenkumar.mdroid.fragment.ParanoidLogin;
+import in.co.praveenkumar.mdroid.fragment.NormalLoginFragment;
+import in.co.praveenkumar.mdroid.fragment.ParanoidLoginFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -18,10 +18,10 @@ public class LoginTabsAdapter extends FragmentPagerAdapter {
 		switch (index) {
 		case 0:
 			// Normal login fragment activity
-			return new NormalLogin();
+			return new NormalLoginFragment();
 		case 1:
 			// Paranoid login fragment activity
-			return new ParanoidLogin();
+			return new ParanoidLoginFragment();
 		}
 
 		return null;
