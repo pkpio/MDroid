@@ -13,7 +13,7 @@ import android.widget.EditText;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
-public class ParanoidLogin extends Fragment {
+public class ParanoidLoginFragment extends Fragment {
 	EditText tokenET;
 	EditText murlET;
 	Button loginButton;

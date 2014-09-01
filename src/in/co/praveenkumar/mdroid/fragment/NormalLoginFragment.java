@@ -13,7 +13,7 @@ import android.widget.EditText;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
-public class NormalLogin extends Fragment {
+public class NormalLoginFragment extends Fragment {
 	EditText usernameET;
 	EditText passwordET;
 	EditText murlET;

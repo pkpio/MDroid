@@ -17,7 +17,7 @@
 
     <fragment
         android:id="@+id/left_nav_layout"
-        android:name="in.co.praveenkumar.mdroid.fragment.LeftNavigation"
+        android:name="in.co.praveenkumar.mdroid.fragment.LeftNavigationFragment"
         android:layout_width="240dp"
         android:layout_height="match_parent"
         android:layout_gravity="start" />
