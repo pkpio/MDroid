@@ -43,9 +43,14 @@ public class CourseContentSync {
 				+ "");
 
 		/** Error checking **/
+		if (mSections == null) {
+			error = "Network issue!";
+			return false;
+		}
+
 		// Some network or encoding issue.
 		if (mSections.size() == 0) {
-			error = "Network issue!";
+			error = "No data received! Permissions issue?";
 			return false;
 		}
 
@@ -158,8 +163,8 @@ public class CourseContentSync {
 
 			// Update or save in database
 			dbContents = MoodleModuleContent.find(MoodleModuleContent.class,
-					"parentid = ? and siteid = ?", content.getParentid()
-							+ "", content.getSiteid() + "");
+					"parentid = ? and siteid = ?", content.getParentid() + "",
+					content.getSiteid() + "");
 			if (dbContents.size() > 0)
 				content.setId(dbContents.get(0).getId()); // updates on save()
 			content.save();
