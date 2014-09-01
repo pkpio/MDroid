@@ -16,7 +16,7 @@ public class CourseActivity extends NavigationDrawer implements
 	private ViewPager viewPager;
 	private CourseTabsAdapter mAdapter;
 	private ActionBar actionBar;
-	private String[] tabs = { "Normal", "Paranoid" };
+	private String[] tabs = { "All Course", "My Courses", "Fav Courses" };
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
