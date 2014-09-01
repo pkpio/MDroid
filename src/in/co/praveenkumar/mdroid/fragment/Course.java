@@ -7,7 +7,7 @@ import in.co.praveenkumar.mdroid.moodlemodel.MoodleCourse;
 
 import java.util.List;
 
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -20,9 +20,41 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 public class Course extends Fragment {
+	/**
+	 * List all courses in Moodle site
+	 */
+	public static final int TYPE_ALL_COURSES = 0;
+	/**
+	 * List only user courses
+	 */
+	public static final int TYPE_USER_COURSES = 1;
+	/**
+	 * List only courses favourited by user
+	 */
+	public static final int TYPE_FAV_COURSES = 2;
+
 	CourseListAdapter courseListAdapter;
 	SessionSetting session;
 	List<MoodleCourse> mCourses;
+	int Type = 0;
+
+	/**
+	 * All courses will be listed. You can choose something else by using
+	 * Course(type) method.
+	 */
+	public Course() {
+	}
+
+	/**
+	 * Course.TYPE_ALL_COURSES, TYPE_USER_COURSES, TYPE_FAV_COURSES are
+	 * available options
+	 * 
+	 * @param Type
+	 *            Choose what all courses have to listed.
+	 */
+	public Course(int Type) {
+		this.Type = Type;
+	}
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
