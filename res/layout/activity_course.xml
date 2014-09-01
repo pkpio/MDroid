@@ -6,15 +6,12 @@
 
     <!-- Main content -->
 
-    <ListView
-        android:id="@+id/content_course"
+    <android.support.v4.view.ViewPager
+        android:id="@+id/course_pager"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:adjustViewBounds="true"
-        android:background="@color/card_listview_bg"
-        android:divider="@null"
-        android:dividerHeight="0dp" >
-    </ListView>
+        android:layout_height="match_parent" >
+    </android.support.v4.view.ViewPager>
+
 
     <!-- Left navigation -->
 
