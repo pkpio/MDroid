@@ -15,6 +15,14 @@ public class CourseContentSyncTask {
 	int courseid;
 	String error;
 
+	/**
+	 * 
+	 * @param mUrl
+	 * @param token
+	 * @param siteid
+	 * 
+	 * @author Praveen Kumar Pendyala (praveen@praveenkumar.co.in)
+	 */
 	public CourseContentSyncTask(String mUrl, String token, long siteid) {
 		this.mUrl = mUrl;
 		this.token = token;
@@ -34,6 +42,8 @@ public class CourseContentSyncTask {
 	 *            to link the contents with this course for offline use. This id
 	 *            can be obtained by calling getId() on your MoodleCourse object
 	 * @return syncStatus
+	 * 
+	 * @author Praveen Kumar Pendyala (praveen@praveenkumar.co.in)
 	 */
 	public Boolean syncCourseContents(int courseid, Long coursedbid) {
 		this.courseid = courseid;
@@ -96,6 +106,8 @@ public class CourseContentSyncTask {
 	 *            Database id of the section to which these modules belong
 	 * @param sectionid
 	 *            Moodle sectionid of the section to which these modules belong
+	 * 
+	 * @author Praveen Kumar Pendyala (praveen@praveenkumar.co.in)
 	 */
 	private void syncModules(ArrayList<MoodleModule> modules, Long sectiondbid,
 			int sectionid) {
@@ -142,6 +154,8 @@ public class CourseContentSyncTask {
 	 *            Moodle moduleid of the module to which these contents belong
 	 * @param sectionid
 	 *            Moodle sectionid of the section to which these modules belong
+	 * 
+	 * @author Praveen Kumar Pendyala (praveen@praveenkumar.co.in)
 	 */
 	private void syncModuleContents(ArrayList<MoodleModuleContent> contents,
 			Long moduledbid, int moduleid, int sectionid) {
@@ -181,6 +195,8 @@ public class CourseContentSyncTask {
 	 * @param courseid
 	 *            Moodle courseid of the course
 	 * @return List of sections
+	 * 
+	 * @author Praveen Kumar Pendyala (praveen@praveenkumar.co.in)
 	 */
 	public ArrayList<MoodleSection> getCourseContents(int courseid) {
 		List<MoodleSection> sections = MoodleSection.find(MoodleSection.class,

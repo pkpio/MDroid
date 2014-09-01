@@ -31,6 +31,8 @@ public class MoodleRestCourseContent {
 	 * are found, then it could mean a network or encoding issue.
 	 * 
 	 * @return ArrayList<MoodleCourse>
+	 * 
+	 * @author Praveen Kumar Pendyala (praveen@praveenkumar.co.in)
 	 */
 	public ArrayList<MoodleSection> getCourseContent(String courseid) {
 		ArrayList<MoodleSection> sections = null;

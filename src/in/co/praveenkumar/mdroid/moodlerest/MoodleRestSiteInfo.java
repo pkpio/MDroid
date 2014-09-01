@@ -21,6 +21,13 @@ public class MoodleRestSiteInfo {
 		this.token = token;
 	}
 
+	/**
+	 * Get the siteinfo for the current account
+	 * 
+	 * @return siteinfo object
+	 * 
+	 * @author Praveen Kumar Pendyala (praveen@praveenkumar.co.in)
+	 */
 	public MoodleSiteInfo getSiteInfo() {
 		String format = MoodleRestOption.RESPONSE_FORMAT;
 		String function = MoodleRestOption.FUNCTION_GET_SITE_INFO;

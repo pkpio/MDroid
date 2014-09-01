@@ -29,7 +29,7 @@ public class DownloadTask {
 	 * The downloader may be chosen while starting the download using the
 	 * download method.
 	 * 
-	 * @author praveen
+	 * @author Praveen Kumar Pendyala (praveen@praveenkumar.co.in)
 	 * 
 	 */
 	public DownloadTask(Context context) {
@@ -53,6 +53,8 @@ public class DownloadTask {
 	 * 
 	 * 
 	 * @return Bytes of the file downloaded
+	 * 
+	 * @author Praveen Kumar Pendyala (praveen@praveenkumar.co.in)
 	 */
 	public long download(String fileUrl, String fileName, Boolean visibility,
 			Boolean choice) {

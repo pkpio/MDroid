@@ -42,6 +42,8 @@ public class LoginTask extends AsyncTask<String, Integer, Boolean> {
 	 *            Login progress message showing TextView widget
 	 * @param context
 	 *            So that we can start course activity if all goes well
+	 * 
+	 * @author Praveen Kumar Pendyala (praveen@praveenkumar.co.in)
 	 */
 	public LoginTask(String username, String password, String mUrl,
 			Button loginButton, ScrollView loginProgressSV,
@@ -69,6 +71,8 @@ public class LoginTask extends AsyncTask<String, Integer, Boolean> {
 	 *            Login progress message showing TextView widget
 	 * @param context
 	 *            So that we can start course activity if all goes well
+	 * 
+	 * @author Praveen Kumar Pendyala (praveen@praveenkumar.co.in)
 	 */
 	public LoginTask(String token, String mUrl, Button loginButton,
 			ScrollView loginProgressSV, TextView loginProgressTV,
@@ -126,6 +130,8 @@ public class LoginTask extends AsyncTask<String, Integer, Boolean> {
 	 * Get a token from username, password and mUrl. Token found in this.token
 	 * 
 	 * @return True: If token fetched. False: otherwise.
+	 * 
+	 * @author Praveen Kumar Pendyala (praveen@praveenkumar.co.in)
 	 */
 	private Boolean getToken() {
 		updateProgress("Fetching token");
@@ -153,6 +159,8 @@ public class LoginTask extends AsyncTask<String, Integer, Boolean> {
 	 * Get siteinfo from this.token and this.mUrl
 	 * 
 	 * @return True: If info fetched. False: otherwise.
+	 * 
+	 * @author Praveen Kumar Pendyala (praveen@praveenkumar.co.in)
 	 */
 	private Boolean getSiteInfo() {
 		updateProgress("Fetching site info");
@@ -183,6 +191,8 @@ public class LoginTask extends AsyncTask<String, Integer, Boolean> {
 	 * Sync all Moodle courses and user's courses
 	 * 
 	 * @return User course sync status
+	 * 
+	 * @author Praveen Kumar Pendyala (praveen@praveenkumar.co.in)
 	 */
 	private Boolean getCourseInfo() {
 		CourseSyncTask cs = new CourseSyncTask(mUrl, token, siteInfo.getId());

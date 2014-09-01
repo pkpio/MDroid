@@ -31,6 +31,8 @@ public class MoodleRestCourse {
 	 * are found, then it could mean a network or encoding issue.
 	 * 
 	 * @return ArrayList<MoodleCourse>
+	 * 
+	 * @author Praveen Kumar Pendyala (praveen@praveenkumar.co.in)
 	 */
 	public ArrayList<MoodleCourse> getAllCourses() {
 		ArrayList<MoodleCourse> mCourses = new ArrayList<MoodleCourse>();
@@ -76,6 +78,8 @@ public class MoodleRestCourse {
 	 * @param userId
 	 *            userId of the user whose courses are needed
 	 * @return ArrayList<MoodleCourse>
+	 * 
+	 * @author Praveen Kumar Pendyala (praveen@praveenkumar.co.in)
 	 */
 	public ArrayList<MoodleCourse> getEnrolledCourses(String userId) {
 		ArrayList<MoodleCourse> mCourses = new ArrayList<MoodleCourse>();
