@@ -22,6 +22,7 @@ public class CourseActivity extends NavigationDrawer implements
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_course);
+		setUpDrawer();
 
 		// Initialization
 		viewPager = (ViewPager) findViewById(R.id.course_pager);
