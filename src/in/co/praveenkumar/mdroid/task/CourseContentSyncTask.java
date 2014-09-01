@@ -8,14 +8,14 @@ import in.co.praveenkumar.mdroid.moodlerest.MoodleRestCourseContent;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CourseContentSync {
+public class CourseContentSyncTask {
 	String mUrl;
 	String token;
 	long siteid;
 	int courseid;
 	String error;
 
-	public CourseContentSync(String mUrl, String token, long siteid) {
+	public CourseContentSyncTask(String mUrl, String token, long siteid) {
 		this.mUrl = mUrl;
 		this.token = token;
 		this.siteid = siteid;

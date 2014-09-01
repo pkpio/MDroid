@@ -5,7 +5,7 @@ import in.co.praveenkumar.mdroid.apis.R;
 import in.co.praveenkumar.mdroid.helper.SessionSetting;
 import in.co.praveenkumar.mdroid.moodlemodel.MoodleModule;
 import in.co.praveenkumar.mdroid.moodlemodel.MoodleSection;
-import in.co.praveenkumar.mdroid.task.CourseContentSync;
+import in.co.praveenkumar.mdroid.task.CourseContentSyncTask;
 import in.co.praveenkumar.mdroid.view.StickyListView.PinnedSectionListAdapter;
 
 import java.util.ArrayList;
@@ -37,7 +37,7 @@ public class CourseContentActivity extends NavigationDrawer {
 		int courseid = extras.getInt("courseid");
 		session = new SessionSetting(this);
 
-		CourseContentSync ccs = new CourseContentSync(session.getmUrl(),
+		CourseContentSyncTask ccs = new CourseContentSyncTask(session.getmUrl(),
 				session.getToken(), session.getCurrentSiteId());
 		ArrayList<MoodleSection> sections = ccs.getCourseContents(courseid);
 		mapSectionsToListObjects(sections);
@@ -52,14 +52,14 @@ public class CourseContentActivity extends NavigationDrawer {
 	}
 
 	private class listCoursesThread extends AsyncTask<String, Integer, Boolean> {
-		CourseContentSync ccs;
+		CourseContentSyncTask ccs;
 		int courseid;
 		Long coursedbid;
 		Boolean syncStatus;
 
 		public listCoursesThread(String mUrl, String token, int courseid,
 				Long coursedbid, Long siteid) {
-			ccs = new CourseContentSync(mUrl, token, siteid);
+			ccs = new CourseContentSyncTask(mUrl, token, siteid);
 			this.courseid = courseid;
 			this.coursedbid = coursedbid;
 		}

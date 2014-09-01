@@ -13,7 +13,7 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Environment;
 
-public class Download {
+public class DownloadTask {
 	public static final Boolean SYSTEM_DOWNLOADER = true;
 	public static final Boolean APP_DOWNLOADER = false;
 	Context context;
@@ -32,7 +32,7 @@ public class Download {
 	 * @author praveen
 	 * 
 	 */
-	public Download(Context context) {
+	public DownloadTask(Context context) {
 		this.context = context;
 
 	}

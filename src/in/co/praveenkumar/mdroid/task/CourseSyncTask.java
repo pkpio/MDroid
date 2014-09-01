@@ -7,13 +7,13 @@ import in.co.praveenkumar.mdroid.moodlerest.MoodleRestCourse;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CourseSync {
+public class CourseSyncTask {
 	String mUrl;
 	String token;
 	long siteid;
 	String error;
 
-	public CourseSync(String mUrl, String token, long siteid) {
+	public CourseSyncTask(String mUrl, String token, long siteid) {
 		this.mUrl = mUrl;
 		this.token = token;
 		this.siteid = siteid;

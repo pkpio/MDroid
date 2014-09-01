@@ -1,7 +1,7 @@
 package in.co.praveenkumar.mdroid.fragment;
 
 import in.co.praveenkumar.mdroid.apis.R;
-import in.co.praveenkumar.mdroid.task.Login;
+import in.co.praveenkumar.mdroid.task.LoginTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -52,7 +52,7 @@ public class ParanoidLoginFragment extends Fragment {
 		String token = tokenET.getText().toString();
 		String mUrl = murlET.getText().toString();
 
-		new Login(token, mUrl, loginButton, loginProgressSV, loginProgressTV,
+		new LoginTask(token, mUrl, loginButton, loginProgressSV, loginProgressTV,
 				getActivity()).execute("");
 	}
 }
