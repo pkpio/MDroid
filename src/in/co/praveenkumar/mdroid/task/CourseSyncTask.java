@@ -13,6 +13,14 @@ public class CourseSyncTask {
 	long siteid;
 	String error;
 
+	/**
+	 * 
+	 * @param mUrl
+	 * @param token
+	 * @param siteid
+	 * 
+	 * @author Praveen Kumar Pendyala (praveen@praveenkumar.co.in)
+	 */
 	public CourseSyncTask(String mUrl, String token, long siteid) {
 		this.mUrl = mUrl;
 		this.token = token;
@@ -23,6 +31,8 @@ public class CourseSyncTask {
 	 * Sync all the courses in the current site.
 	 * 
 	 * @return syncStatus
+	 * 
+	 * @author Praveen Kumar Pendyala (praveen@praveenkumar.co.in)
 	 */
 	public Boolean syncAllCourses() {
 		MoodleRestCourse mrc = new MoodleRestCourse(mUrl, token);
@@ -64,6 +74,8 @@ public class CourseSyncTask {
 	 * Sync all courses of logged in user in the current site.
 	 * 
 	 * @return syncStatus
+	 * 
+	 * @author Praveen Kumar Pendyala (praveen@praveenkumar.co.in)
 	 */
 	public Boolean syncUserCourses() {
 		// Get userid
@@ -106,7 +118,9 @@ public class CourseSyncTask {
 	/**
 	 * Error message from the last failed sync operation.
 	 * 
-	 * @return
+	 * @return error
+	 * 
+	 * @author Praveen Kumar Pendyala (praveen@praveenkumar.co.in)
 	 */
 	public String getError() {
 		return error;

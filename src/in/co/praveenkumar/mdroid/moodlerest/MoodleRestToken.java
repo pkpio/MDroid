@@ -36,7 +36,9 @@ public class MoodleRestToken {
 	 * If there were errors, they can be checked in the error field of the token
 	 * object
 	 * 
-	 * @return MoodleToken
+	 * @return MoodleToken object
+	 * 
+	 * @author Praveen Kumar Pendyala (praveen@praveenkumar.co.in)
 	 * 
 	 */
 	public MoodleToken getToken() {
@@ -99,7 +101,9 @@ public class MoodleRestToken {
 	 * Get token for a custom service name
 	 * 
 	 * @param serviceName
-	 * @return
+	 * @return token object
+	 * 
+	 * @author Praveen Kumar Pendyala (praveen@praveenkumar.co.in)
 	 */
 	public MoodleToken getCustomServiceToken(String serviceName) {
 		String urlParams = "";

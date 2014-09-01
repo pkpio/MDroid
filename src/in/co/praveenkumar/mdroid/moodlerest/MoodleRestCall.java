@@ -12,6 +12,17 @@ import android.util.Log;
 public class MoodleRestCall {
 	private final String DEBUG_TAG = "MoodleRestCall";
 
+	/**
+	 * Executes the Moodle Rest call with the set parameters
+	 * 
+	 * @param restUrl
+	 *            Moodle url to make rest calls
+	 * @param params
+	 *            Params for the rest call
+	 * @return InputStreamReader to read the content from
+	 * 
+	 * @author Praveen Kumar Pendyala (praveen@praveenkumar.co.in)
+	 */
 	public InputStreamReader fetchContent(String restUrl, String params) {
 
 		Log.d(DEBUG_TAG, restUrl + params);
