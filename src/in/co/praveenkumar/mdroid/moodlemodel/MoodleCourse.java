@@ -405,7 +405,7 @@ public class MoodleCourse extends SugarRecord<MoodleCourse> {
 	}
 
 	/**
-	 * set the course id of this course
+	 * set the site id of this course
 	 * 
 	 * @param siteid
 	 */

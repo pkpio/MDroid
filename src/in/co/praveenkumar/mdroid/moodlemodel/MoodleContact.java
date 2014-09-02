@@ -33,22 +33,7 @@ public class MoodleContact extends SugarRecord<MoodleContact> {
 	@SerializedName("status")
 	int status;
 
-	// Errors. Not to be stored in sql db.
-	@Ignore
-	@SerializedName("exception")
-	String exception;
-
-	@Ignore
-	@SerializedName("errorcode")
-	String errorcode;
-
-	@Ignore
-	@SerializedName("message")
-	String message;
-
-	@Ignore
-	@SerializedName("debuginfo")
-	String debuginfo;
+	// Error fields are required only for Contacts instead
 
 	// Relational fields
 	long siteid;
@@ -110,42 +95,6 @@ public class MoodleContact extends SugarRecord<MoodleContact> {
 	 */
 	public int getStatus() {
 		return status;
-	}
-
-	/**
-	 * Exception occurred while retrieving
-	 * 
-	 * @return
-	 */
-	public String getException() {
-		return exception;
-	}
-
-	/**
-	 * Errorcode of error occurred while retrieving
-	 * 
-	 * @return
-	 */
-	public String getErrorcode() {
-		return errorcode;
-	}
-
-	/**
-	 * Message of error occurred while retrieving
-	 * 
-	 * @return
-	 */
-	public String getMessage() {
-		return message;
-	}
-
-	/**
-	 * Debug info on the error occurred
-	 * 
-	 * @return
-	 */
-	public String getDebuginfo() {
-		return debuginfo;
 	}
 
 	/**

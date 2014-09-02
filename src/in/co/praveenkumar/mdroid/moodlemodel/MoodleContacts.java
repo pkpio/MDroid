@@ -2,6 +2,8 @@ package in.co.praveenkumar.mdroid.moodlemodel;
 
 import java.util.ArrayList;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  * Moodle returns contacts in 3 objects - Online, Offline and Strangers with
  * contacts filled in each section. We won't be using this model for db
@@ -12,9 +14,27 @@ import java.util.ArrayList;
  * 
  */
 public class MoodleContacts {
+	@SerializedName("online")
 	ArrayList<MoodleContact> online;
+
+	@SerializedName("offline")
 	ArrayList<MoodleContact> offline;
+
+	@SerializedName("strangers")
 	ArrayList<MoodleContact> strangers;
+
+	// Errors. Not to be stored in sql db.
+	@SerializedName("exception")
+	String exception;
+
+	@SerializedName("errorcode")
+	String errorcode;
+
+	@SerializedName("message")
+	String message;
+
+	@SerializedName("debuginfo")
+	String debuginfo;
 
 	/**
 	 * Get ArrayList of online MoodleContact
@@ -42,4 +62,41 @@ public class MoodleContacts {
 	public ArrayList<MoodleContact> getStrangers() {
 		return strangers;
 	}
+
+	/**
+	 * Exception occurred while retrieving
+	 * 
+	 * @return
+	 */
+	public String getException() {
+		return exception;
+	}
+
+	/**
+	 * Errorcode of error occurred while retrieving
+	 * 
+	 * @return
+	 */
+	public String getErrorcode() {
+		return errorcode;
+	}
+
+	/**
+	 * Message of error occurred while retrieving
+	 * 
+	 * @return
+	 */
+	public String getMessage() {
+		return message;
+	}
+
+	/**
+	 * Debug info on the error occurred
+	 * 
+	 * @return
+	 */
+	public String getDebuginfo() {
+		return debuginfo;
+	}
+
 }
