@@ -9,6 +9,10 @@
     <color name="grey8">#888888</color>
     <color name="grey9">#999999</color>
     <color name="grey10">#AAAAAA</color>
+    <color name="grey11">#BBBBBB</color>
+    <color name="grey12">#CCCCCC</color>
+    <color name="grey13">#DDDDDD</color>
+    <color name="grey14">#EEEEEE</color>
     <color name="tab_text_color">#050505</color>
     <color name="white">#ffffff</color>
     <color name="edittext_hint_color">#cccccc</color>

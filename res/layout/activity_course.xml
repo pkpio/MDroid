@@ -12,7 +12,6 @@
         android:layout_height="match_parent" >
     </android.support.v4.view.ViewPager>
 
-
     <!-- Left navigation -->
 
     <fragment
@@ -21,5 +20,14 @@
         android:layout_width="240dp"
         android:layout_height="match_parent"
         android:layout_gravity="start" />
+
+    <!-- Right navigation -->
+
+    <fragment
+        android:id="@+id/right_nav_layout"
+        android:name="in.co.praveenkumar.mdroid.fragment.RightNavigationFragment"
+        android:layout_width="240dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="end" />
 
 </android.support.v4.widget.DrawerLayout>
