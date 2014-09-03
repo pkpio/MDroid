@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="30dp"
+    android:layout_height="55dp"
     android:background="@color/white"
     android:gravity="center_vertical"
     android:orientation="horizontal"
-    android:paddingLeft="8dp"
-    android:paddingRight="8dp" >
+    android:padding="16dp" >
 
     <TextView
         android:id="@+id/list_contact_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="0.9"
-        android:text="David Hemsworth"
-        android:textColor="@color/grey7" />
+        android:text="David Hemsworth pan"
+        android:textColor="@color/grey2"
+        android:textSize="18sp" />
 
     <TextView
         android:id="@+id/list_unread_count"
