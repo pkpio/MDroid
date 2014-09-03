@@ -38,8 +38,8 @@ public class MoodleRestEvent {
 	 * 
 	 * @author Praveen Kumar Pendyala (praveen@praveenkumar.co.in)
 	 */
-	public MoodleEvents getEventsForCourseIds(List<String> ids, int idType) {
-		MoodleEvents mEvents = new MoodleEvents();
+	public MoodleEvents getEventsForIds(List<String> ids, int idType) {
+		MoodleEvents mEvents = null;
 		String format = MoodleRestOption.RESPONSE_FORMAT;
 		String function = MoodleRestOption.FUNCTION_GET_EVENTS;
 
