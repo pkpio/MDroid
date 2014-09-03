@@ -78,6 +78,7 @@ public class ContactSyncTask {
 			for (int i = 0; i < contacts.size(); i++) {
 				contact = contacts.get(i);
 				contact.setStatus(status);
+				contact.setSiteid(siteid);
 				/*
 				 * -TODO- Improve this search with only Sql operation
 				 */
