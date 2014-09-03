@@ -15,13 +15,13 @@ import com.google.gson.annotations.SerializedName;
  */
 public class MoodleContacts {
 	@SerializedName("online")
-	ArrayList<MoodleContact> online;
+	ContactStatus online;
 
 	@SerializedName("offline")
-	ArrayList<MoodleContact> offline;
+	ContactStatus offline;
 
 	@SerializedName("strangers")
-	ArrayList<MoodleContact> strangers;
+	ContactStatus strangers;
 
 	// Errors. Not to be stored in sql db.
 	@SerializedName("exception")
@@ -42,7 +42,9 @@ public class MoodleContacts {
 	 * @return online contacts
 	 */
 	public ArrayList<MoodleContact> getOnline() {
-		return online;
+		if (online == null)
+			return null;
+		return online.getContacts();
 	}
 
 	/**
@@ -51,7 +53,9 @@ public class MoodleContacts {
 	 * @return offline contacts
 	 */
 	public ArrayList<MoodleContact> getOffline() {
-		return offline;
+		if (offline == null)
+			return null;
+		return offline.getContacts();
 	}
 
 	/**
@@ -60,7 +64,9 @@ public class MoodleContacts {
 	 * @return stranger contacts
 	 */
 	public ArrayList<MoodleContact> getStrangers() {
-		return strangers;
+		if (strangers == null)
+			return null;
+		return strangers.getContacts();
 	}
 
 	/**
@@ -97,6 +103,21 @@ public class MoodleContacts {
 	 */
 	public String getDebuginfo() {
 		return debuginfo;
+	}
+
+	/**
+	 * Helper class for Moodle contacts decoding
+	 * 
+	 * @author praveen
+	 * 
+	 */
+	public class ContactStatus {
+		ArrayList<MoodleContact> contacts;
+
+		public ArrayList<MoodleContact> getContacts() {
+			return this.contacts;
+		}
+
 	}
 
 }
