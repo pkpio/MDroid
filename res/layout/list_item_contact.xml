@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="30dp"
+    android:background="@color/white"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingLeft="8dp"
+    android:paddingRight="8dp" >
+
+    <TextView
+        android:id="@+id/list_contact_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.9"
+        android:text="David Hemsworth"
+        android:textColor="@color/grey7" />
+
+    <TextView
+        android:id="@+id/list_unread_count"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.1"
+        android:background="@color/moodle_color"
+        android:gravity="center"
+        android:text="10"
+        android:textColor="@color/white" />
+
+</LinearLayout>
