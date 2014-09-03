@@ -10,7 +10,7 @@ Roadmap or plan for the new API version of MDroid (In priority order).
 - [ ] Forum discussion listing
 - [ ] Discussion thread listing
 - [ ] Calender
-- [ ] Contacts listing
+- [x] Contacts listing
 - [ ] Messaging
 - [ ] Course participants
 - [ ] Notes listing
