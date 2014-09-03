@@ -5,13 +5,11 @@ import in.co.praveenkumar.mdroid.moodlemodel.MoodleContacts;
 
 import java.io.Reader;
 import java.net.URLEncoder;
-import java.util.List;
 
 import android.util.Log;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.reflect.TypeToken;
 
 public class MoodleRestContact {
 	private final String DEBUG_TAG = "MoodleRestContact";
@@ -52,9 +50,7 @@ public class MoodleRestContact {
 			Gson gson = new GsonBuilder()
 					.addDeserializationExclusionStrategy(ex)
 					.addSerializationExclusionStrategy(ex).create();
-			mContacts = gson.fromJson(reader,
-					new TypeToken<List<MoodleContacts>>() {
-					}.getType());
+			mContacts = gson.fromJson(reader, MoodleContacts.class);
 			reader.close();
 
 		} catch (Exception e) {
@@ -64,5 +60,4 @@ public class MoodleRestContact {
 
 		return mContacts;
 	}
-
 }
