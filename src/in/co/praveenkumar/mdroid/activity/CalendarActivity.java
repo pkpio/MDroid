@@ -7,6 +7,7 @@ import in.co.praveenkumar.mdroid.helper.TimeFormat;
 import in.co.praveenkumar.mdroid.moodlemodel.MoodleCourse;
 import in.co.praveenkumar.mdroid.moodlemodel.MoodleEvent;
 import in.co.praveenkumar.mdroid.task.EventSyncTask;
+import in.co.praveenkumar.mdroid.view.StickyListView.PinnedSectionListAdapter;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -28,6 +29,7 @@ public class CalendarActivity extends NavigationDrawer {
 	CalendarListAdapter calendarListAdapter;
 	SessionSetting session;
 	List<MoodleEvent> mEvents;
+	ArrayList<CalenderObject> listObjects = new ArrayList<CalenderObject>();
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -41,7 +43,7 @@ public class CalendarActivity extends NavigationDrawer {
 		session = new SessionSetting(this);
 		mEvents = MoodleEvent.find(MoodleEvent.class, "siteid = ?",
 				session.getCurrentSiteId() + "");
-		sortEvents();
+		setupCalenderObjects();
 
 		ListView courseList = (ListView) findViewById(R.id.list_calendar);
 		calendarListAdapter = new CalendarListAdapter(this);
@@ -74,7 +76,7 @@ public class CalendarActivity extends NavigationDrawer {
 			if (syncStatus) {
 				mEvents = MoodleEvent.find(MoodleEvent.class, "siteid = ?",
 						session.getCurrentSiteId() + "");
-				sortEvents();
+				setupCalenderObjects();
 				return true;
 			} else
 				return false;
@@ -87,32 +89,62 @@ public class CalendarActivity extends NavigationDrawer {
 
 	}
 
-	public class CalendarListAdapter extends ArrayAdapter<String> {
+	public class CalendarListAdapter extends ArrayAdapter<String> implements
+			PinnedSectionListAdapter {
 		final Context context;
+		static final int TYPE_EVENT = 0;
+		static final int TYPE_DATE = 1;
+		static final int TYPE_COUNT = 2;
 
 		public CalendarListAdapter(Context context) {
-			super(context, R.layout.list_item_event, new String[mEvents.size()]);
+			super(context, R.layout.list_item_event, new String[listObjects
+					.size()]);
 			this.context = context;
+		}
+
+		@Override
+		public int getViewTypeCount() {
+			return TYPE_COUNT;
+		}
+
+		@Override
+		public int getItemViewType(int position) {
+			return listObjects.get(position).viewType;
 		}
 
 		@Override
 		public View getView(int position, View convertView, ViewGroup parent) {
 			ViewHolder viewHolder;
+			int type = getItemViewType(position);
+
 			if (convertView == null) {
 				viewHolder = new ViewHolder();
 				LayoutInflater inflater = (LayoutInflater) context
 						.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-				convertView = inflater.inflate(R.layout.list_item_event,
-						parent, false);
 
-				viewHolder.eventname = (TextView) convertView
-						.findViewById(R.id.event_name);
-				viewHolder.eventcourse = (TextView) convertView
-						.findViewById(R.id.event_coursename);
-				viewHolder.eventtime = (TextView) convertView
-						.findViewById(R.id.event_time);
-				viewHolder.eventdesc = (TextView) convertView
-						.findViewById(R.id.event_desc);
+				// Choose layout
+				switch (type) {
+				case TYPE_EVENT:
+					convertView = inflater.inflate(R.layout.list_item_event,
+							parent, false);
+
+					viewHolder.eventname = (TextView) convertView
+							.findViewById(R.id.event_name);
+					viewHolder.eventcourse = (TextView) convertView
+							.findViewById(R.id.event_coursename);
+					viewHolder.eventtime = (TextView) convertView
+							.findViewById(R.id.event_time);
+					viewHolder.eventdesc = (TextView) convertView
+							.findViewById(R.id.event_desc);
+					break;
+				case TYPE_DATE:
+					convertView = inflater.inflate(
+							R.layout.list_item_calender_day, parent, false);
+
+					viewHolder.title = (TextView) convertView
+							.findViewById(R.id.list_calender_time);
+					break;
+				}
 
 				// Save the holder with the view
 				convertView.setTag(viewHolder);
@@ -121,20 +153,38 @@ public class CalendarActivity extends NavigationDrawer {
 			}
 
 			// Assign values
-			viewHolder.eventname.setText(mEvents.get(position).getName());
-			viewHolder.eventcourse.setText(mEvents.get(position)
-					.getCoursename());
-			viewHolder.eventtime.setText(TimeFormat.getMinimalTime(mEvents.get(
-					position).getTimestart()));
+			switch (type) {
+			case TYPE_EVENT:
+				viewHolder.eventname.setText(listObjects.get(position).event
+						.getName());
+				viewHolder.eventcourse.setText(listObjects.get(position).event
+						.getCoursename());
+				viewHolder.eventtime.setText(TimeFormat
+						.getMinimalTime(listObjects.get(position).event
+								.getTimestart()));
 
-			String description = mEvents.get(position).getDescription();
-			if (description == null)
-				description = "";
-			else
-				description = Html.fromHtml(description).toString().trim();
-			viewHolder.eventdesc.setText(description);
+				String description = listObjects.get(position).event
+						.getDescription();
+				if (description == null)
+					description = "";
+				else
+					description = Html.fromHtml(description).toString().trim();
+				viewHolder.eventdesc.setText(description);
+				break;
+			case TYPE_DATE:
+				viewHolder.title.setText(listObjects.get(position).title);
+				break;
+			}
 
 			return convertView;
+		}
+
+		@Override
+		public boolean isItemViewTypePinned(int viewType) {
+			if (viewType == TYPE_DATE)
+				return true;
+			else
+				return false;
 		}
 	}
 
@@ -143,9 +193,13 @@ public class CalendarActivity extends NavigationDrawer {
 		TextView eventcourse;
 		TextView eventtime;
 		TextView eventdesc;
+		TextView title;
 	}
 
-	private void sortEvents() {
+	private void setupCalenderObjects() {
+		if (mEvents == null)
+			return;
+
 		Collections.sort(mEvents, new Comparator<MoodleEvent>() {
 			public int compare(MoodleEvent o1, MoodleEvent o2) {
 				if (o1.getTimestart() == o2.getTimestart())
@@ -153,5 +207,43 @@ public class CalendarActivity extends NavigationDrawer {
 				return o1.getTimestart() < o2.getTimestart() ? -1 : 1;
 			}
 		});
+
+		// Build titles + events objects for pinned listview
+		String titlePrev = TimeFormat.getSection(mEvents.get(0).getTimestart());
+		String titleNow = "";
+		listObjects.add(new CalenderObject(null, CalendarListAdapter.TYPE_DATE,
+				titlePrev));
+		listObjects.add(new CalenderObject(mEvents.get(0),
+				CalendarListAdapter.TYPE_EVENT, titlePrev));
+		for (int i = 1; i < mEvents.size(); i++) {
+			titleNow = TimeFormat.getSection(mEvents.get(i).getTimestart());
+			if (titleNow.contentEquals(titlePrev))
+				listObjects.add(new CalenderObject(null,
+						CalendarListAdapter.TYPE_DATE, titleNow));
+			listObjects.add(new CalenderObject(mEvents.get(i),
+					CalendarListAdapter.TYPE_EVENT, titleNow));
+			titlePrev = titleNow;
+		}
+	}
+
+	/**
+	 * For simplified pinned listview usage
+	 * 
+	 * @author praveen
+	 * 
+	 */
+	class CalenderObject {
+		MoodleEvent event;
+		int viewType;
+		String title;
+
+		public CalenderObject() {
+		}
+
+		public CalenderObject(MoodleEvent event, int viewType, String title) {
+			this.event = event;
+			this.viewType = viewType;
+			this.title = title;
+		}
 	}
 }
