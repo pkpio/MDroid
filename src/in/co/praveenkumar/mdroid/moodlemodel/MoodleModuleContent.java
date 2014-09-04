@@ -49,6 +49,88 @@ public class MoodleModuleContent extends SugarRecord<MoodleModuleContent> {
 	Long siteid;
 
 	/**
+	 * Get content type
+	 * 
+	 * @return
+	 */
+	public String getType() {
+		return type;
+	}
+
+	/**
+	 * Get filename as saved in Moodle
+	 * 
+	 * @return
+	 */
+	public String getFilename() {
+		return filename;
+	}
+
+	/**
+	 * Get filepath
+	 * 
+	 * @return
+	 */
+	public String getFilepath() {
+		return filepath;
+	}
+
+	/**
+	 * Get filesize
+	 * 
+	 * @return
+	 */
+	public int getFilesize() {
+		return filesize;
+	}
+
+	/**
+	 * Get file download url. <br/>
+	 * <b>Note:</b> token must be appended as a param to download
+	 * 
+	 * @return
+	 */
+	public String getFileurl() {
+		return fileurl;
+	}
+
+	public String getContent() {
+		return content;
+	}
+
+	public int getTimecreated() {
+		return timecreated;
+	}
+
+	public int getTimemodified() {
+		return timemodified;
+	}
+
+	public int getSortorder() {
+		return sortorder;
+	}
+
+	/**
+	 * Get author userid
+	 * @return
+	 */
+	public int getUserid() {
+		return userid;
+	}
+
+	/**
+	 * Get author name
+	 * @return
+	 */
+	public String getAuthor() {
+		return author;
+	}
+
+	public String getLicense() {
+		return license;
+	}
+
+	/**
 	 * Get the database id of the parent module. Not to be confused with actual
 	 * moduleid given to a module by Moodle site. This id is given by Sugar db
 	 * while saving the parent module
