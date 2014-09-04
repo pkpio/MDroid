@@ -165,7 +165,7 @@ public class CourseContentActivity extends NavigationDrawer {
 
 			case TYPE_MODULE:
 				viewHolder.modulename.setText(listObjects.get(position).module
-						.getModname());
+						.getName());
 				String description = listObjects.get(position).module
 						.getDescription();
 				if (description == null)

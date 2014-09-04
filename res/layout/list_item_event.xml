@@ -20,7 +20,7 @@
             android:textColor="@color/black"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Assignment 1 submission"
+            android:text="@string/sample_contact_name"
             android:textSize="18sp" />
 
         <LinearLayout
@@ -34,7 +34,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.75"
-                android:text="EE 101"
+                android:text="@string/sample_modulename"
                 android:textColor="@color/grey3"
                 android:textSize="14sp" />
 
@@ -44,7 +44,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0.25"
                 android:gravity="right"
-                android:text="12:22 PM"
+                android:text="@string/sample_calendar_date"
                 android:textColor="@color/grey3"
                 android:textSize="14sp" />
         </LinearLayout>
@@ -54,7 +54,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingTop="5dp"
-            android:text="This is some description about the event that has be added"
+            android:text="@string/sample_sectionname"
             android:textColor="@color/grey4"
             android:textSize="14sp" />
     </LinearLayout>

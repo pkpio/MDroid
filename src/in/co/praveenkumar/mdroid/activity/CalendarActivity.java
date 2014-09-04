@@ -31,12 +31,14 @@ public class CalendarActivity extends NavigationDrawer {
 	SessionSetting session;
 	List<MoodleEvent> mEvents;
 	ArrayList<CalenderObject> listObjects = new ArrayList<CalenderObject>();
+	TextView progressTV;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_calendar);
 		setUpDrawer();
+		progressTV = (TextView) findViewById(R.id.calendar_sync_report);
 
 		/**
 		 * -TODO- Move db operation to bg thread
@@ -87,6 +89,7 @@ public class CalendarActivity extends NavigationDrawer {
 		@Override
 		protected void onPostExecute(Boolean result) {
 			calendarListAdapter.notifyDataSetChanged();
+			progressTV.setVisibility(TextView.GONE);
 		}
 
 	}
