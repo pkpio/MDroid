@@ -7,6 +7,7 @@ import in.co.praveenkumar.mdroid.helper.TimeFormat;
 import in.co.praveenkumar.mdroid.moodlemodel.MoodleCourse;
 import in.co.praveenkumar.mdroid.moodlemodel.MoodleEvent;
 import in.co.praveenkumar.mdroid.task.EventSyncTask;
+import in.co.praveenkumar.mdroid.view.StickyListView;
 import in.co.praveenkumar.mdroid.view.StickyListView.PinnedSectionListAdapter;
 
 import java.util.ArrayList;
@@ -45,9 +46,10 @@ public class CalendarActivity extends NavigationDrawer {
 				session.getCurrentSiteId() + "");
 		setupCalenderObjects();
 
-		ListView courseList = (ListView) findViewById(R.id.list_calendar);
+		ListView eventList = (ListView) findViewById(R.id.list_calendar);
 		calendarListAdapter = new CalendarListAdapter(this);
-		courseList.setAdapter(calendarListAdapter);
+		((StickyListView) eventList).setShadowVisible(false);
+		eventList.setAdapter(calendarListAdapter);
 
 		new ListEventsThread(session.getmUrl(), session.getToken(),
 				session.getCurrentSiteId()).execute("");

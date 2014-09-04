@@ -27,13 +27,11 @@ public class TimeFormat {
 	public static String getSection(int time) {
 		long ltime = ((long) time) * 1000;
 		Calendar c = Calendar.getInstance();
-		int nowHour = c.get(Calendar.HOUR_OF_DAY);
 		int nowDay = c.get(Calendar.DATE);
 		int nowMonth = c.get(Calendar.MONTH);
 		int nowYear = c.get(Calendar.YEAR);
 
 		c.setTimeInMillis(ltime);
-		int givenHour = c.get(Calendar.HOUR_OF_DAY);
 		int givenDay = c.get(Calendar.DATE);
 		int givenMonth = c.get(Calendar.MONTH);
 		int givenYear = c.get(Calendar.YEAR);
