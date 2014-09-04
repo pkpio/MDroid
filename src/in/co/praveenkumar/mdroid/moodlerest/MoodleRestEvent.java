@@ -68,12 +68,12 @@ public class MoodleRestEvent {
 					+ URLEncoder.encode("7258098600", "UTF-8");
 
 			// Hide user events if set to
-			if (userEvents)
+			if (!userEvents)
 				params += "&options[userevents]="
 						+ URLEncoder.encode("0", "UTF-8");
 
 			// Hide site events if set to
-			if (siteEvents)
+			if (!siteEvents)
 				params += "&options[siteevents]="
 						+ URLEncoder.encode("0", "UTF-8");
 
