@@ -28,29 +28,31 @@ public class EventSyncTask {
 	}
 
 	/**
-	 * Sync all the events of a course.
+	 * Sync all the events of a course. This will also sync user and site events
+	 * whose scope is outside course.
 	 * 
 	 * @return syncStatus
 	 * 
 	 * @author Praveen Kumar Pendyala (praveen@praveenkumar.co.in)
 	 */
-	public Boolean syncCourseEvents(int courseid) {
+	public Boolean syncEvents(int courseid) {
 		ArrayList<String> courseids = new ArrayList<String>();
 		courseids.add(courseid + "");
-		return syncCourseEvents(courseids);
+		return syncEvents(courseids);
 	}
 
 	/**
-	 * Sync all the events in the list of courses.
+	 * Sync all the events in the list of courses. This will also sync user and
+	 * site events whose scope is outside courses.
 	 * 
 	 * @return syncStatus
 	 * 
 	 * @author Praveen Kumar Pendyala (praveen@praveenkumar.co.in)
 	 */
-	public Boolean syncCourseEvents(ArrayList<String> courseids) {
+	public Boolean syncEvents(ArrayList<String> courseids) {
 		MoodleRestEvent mre = new MoodleRestEvent(mUrl, token);
 		MoodleEvents mEvents = mre.getEventsForIds(courseids,
-				MoodleRestEvent.ID_TYPE_COURSE);
+				MoodleRestEvent.ID_TYPE_COURSE, true, true);
 
 		/** Error checking **/
 		// Some network or encoding issue.
