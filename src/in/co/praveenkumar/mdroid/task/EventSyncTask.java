@@ -1,5 +1,6 @@
 package in.co.praveenkumar.mdroid.task;
 
+import in.co.praveenkumar.mdroid.moodlemodel.MoodleCourse;
 import in.co.praveenkumar.mdroid.moodlemodel.MoodleEvent;
 import in.co.praveenkumar.mdroid.moodlemodel.MoodleEvents;
 import in.co.praveenkumar.mdroid.moodlerest.MoodleRestEvent;
@@ -71,6 +72,7 @@ public class EventSyncTask {
 		ArrayList<MoodleEvent> events = mEvents.getEvents();
 		// Warnings are not being handled
 		List<MoodleEvent> dbEvents;
+		List<MoodleCourse> dbCourses;
 		MoodleEvent event = new MoodleEvent();
 
 		if (events != null)
@@ -83,6 +85,11 @@ public class EventSyncTask {
 				dbEvents = MoodleEvent.find(MoodleEvent.class,
 						"eventid = ? and siteid = ?", event.getEventid() + "",
 						siteid + "");
+				dbCourses = MoodleCourse.find(MoodleCourse.class,
+						"courseid = ? and siteid = ?",
+						event.getCourseid() + "", siteid + "");
+				if (dbCourses.size() > 0)
+					event.setCoursename(dbCourses.get(0).getShortname());
 				if (dbEvents.size() > 0)
 					event.setId(dbEvents.get(0).getId());
 				event.save();

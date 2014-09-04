@@ -64,6 +64,25 @@ public class MoodleEvent extends SugarRecord<MoodleEvent> {
 
 	// Relational and other fields
 	long siteid;
+	String coursename;
+
+	/**
+	 * Get coursename of the event
+	 * 
+	 * @return
+	 */
+	public String getCoursename() {
+		return coursename;
+	}
+
+	/**
+	 * Set coursename of the event
+	 * 
+	 * @param coursename
+	 */
+	public void setCoursename(String coursename) {
+		this.coursename = coursename;
+	}
 
 	/**
 	 * get the site id of this course
