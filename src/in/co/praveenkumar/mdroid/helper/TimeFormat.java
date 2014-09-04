@@ -51,6 +51,8 @@ public class TimeFormat {
 				return (nowDay - givenDay) + " days ago";
 			else if (nowDay - givenDay == 1 && (24 - givenHour) + nowHour > 3)
 				return "Yesterday";
+			else if (nowDay - givenDay == 0 && (nowHour - givenHour) > 3)
+				return "Today";
 			else
 				return "Now";
 		}
@@ -68,6 +70,8 @@ public class TimeFormat {
 			else if (givenDay - nowDay > 1)
 				return "In " + (givenDay - nowDay) + " days";
 			else if (givenDay - nowDay == 1 && (24 - nowHour) + givenDay > 3)
+				return "Tomorrow";
+			else if (givenDay - nowDay == 0 && (givenHour - nowHour) > 3)
 				return "Today";
 			else
 				return "Now";
