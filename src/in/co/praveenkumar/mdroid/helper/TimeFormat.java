@@ -25,13 +25,14 @@ public class TimeFormat {
 	 * @return section title
 	 */
 	public static String getSection(int time) {
+		long ltime = ((long) time) * 1000;
 		Calendar c = Calendar.getInstance();
 		int nowHour = c.get(Calendar.HOUR_OF_DAY);
 		int nowDay = c.get(Calendar.DATE);
 		int nowMonth = c.get(Calendar.MONTH);
 		int nowYear = c.get(Calendar.YEAR);
 
-		c.setTimeInMillis(time * 1000);
+		c.setTimeInMillis(ltime);
 		int givenHour = c.get(Calendar.HOUR_OF_DAY);
 		int givenDay = c.get(Calendar.DATE);
 		int givenMonth = c.get(Calendar.MONTH);
@@ -49,12 +50,10 @@ public class TimeFormat {
 				return "1 month ago";
 			else if (nowDay - givenDay > 1)
 				return (nowDay - givenDay) + " days ago";
-			else if (nowDay - givenDay == 1 && (24 - givenHour) + nowHour > 3)
+			else if (nowDay - givenDay == 1)
 				return "Yesterday";
-			else if (nowDay - givenDay == 0 && (nowHour - givenHour) > 3)
-				return "Today";
 			else
-				return "Now";
+				return "Today";
 		}
 
 		// Future
@@ -69,12 +68,10 @@ public class TimeFormat {
 				return "In 1 month";
 			else if (givenDay - nowDay > 1)
 				return "In " + (givenDay - nowDay) + " days";
-			else if (givenDay - nowDay == 1 && (24 - nowHour) + givenDay > 3)
+			else if (givenDay - nowDay == 1)
 				return "Tomorrow";
-			else if (givenDay - nowDay == 0 && (givenHour - nowHour) > 3)
-				return "Today";
 			else
-				return "Now";
+				return "Today";
 		}
 	}
 
@@ -86,8 +83,9 @@ public class TimeFormat {
 	 * @return formatted time
 	 */
 	public static String getMinimalTime(int time) {
+		long ltime = ((long) time) * 1000;
 		Calendar c = Calendar.getInstance();
-		c.setTimeInMillis(time);
+		c.setTimeInMillis(ltime);
 		int hour = c.get(Calendar.HOUR);
 		int minute = c.get(Calendar.MINUTE);
 		String AmPm = (c.get(Calendar.AM_PM) == Calendar.AM) ? "AM" : "PM";
