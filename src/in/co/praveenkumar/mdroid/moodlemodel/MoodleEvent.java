@@ -41,7 +41,7 @@ public class MoodleEvent extends SugarRecord<MoodleEvent> {
 
 	@SerializedName("timestart")
 	int timestart;
-	
+
 	@SerializedName("timeduration")
 	int timeduration;
 
@@ -62,7 +62,7 @@ public class MoodleEvent extends SugarRecord<MoodleEvent> {
 
 	// Error fields are required only for Events instead
 
-	// Relational fields
+	// Relational and other fields
 	long siteid;
 
 	/**
@@ -121,6 +121,7 @@ public class MoodleEvent extends SugarRecord<MoodleEvent> {
 
 	/**
 	 * get course id
+	 * 
 	 * @return
 	 */
 	public int getCourseid() {
@@ -129,6 +130,7 @@ public class MoodleEvent extends SugarRecord<MoodleEvent> {
 
 	/**
 	 * Get group id
+	 * 
 	 * @return
 	 */
 	public int getGroupid() {
@@ -137,6 +139,7 @@ public class MoodleEvent extends SugarRecord<MoodleEvent> {
 
 	/**
 	 * Get user id
+	 * 
 	 * @return
 	 */
 	public int getUserid() {
@@ -145,6 +148,7 @@ public class MoodleEvent extends SugarRecord<MoodleEvent> {
 
 	/**
 	 * Get repeat id
+	 * 
 	 * @return
 	 */
 	public int getRepeatid() {
@@ -153,6 +157,7 @@ public class MoodleEvent extends SugarRecord<MoodleEvent> {
 
 	/**
 	 * Get (Optional) module name
+	 * 
 	 * @return
 	 */
 	public String getModulename() {
@@ -161,6 +166,7 @@ public class MoodleEvent extends SugarRecord<MoodleEvent> {
 
 	/**
 	 * Get instance id
+	 * 
 	 * @return
 	 */
 	public int getInstance() {
@@ -169,6 +175,7 @@ public class MoodleEvent extends SugarRecord<MoodleEvent> {
 
 	/**
 	 * Get Event type
+	 * 
 	 * @return
 	 */
 	public String getEventtype() {
@@ -177,23 +184,25 @@ public class MoodleEvent extends SugarRecord<MoodleEvent> {
 
 	/**
 	 * Get timestart
+	 * 
 	 * @return
 	 */
 	public int getTimestart() {
 		return timestart;
 	}
 
-	
 	/**
 	 * Get timeduration
+	 * 
 	 * @return
 	 */
-	public int getTimeduration(){
+	public int getTimeduration() {
 		return timeduration;
 	}
-	
+
 	/**
 	 * Get visible
+	 * 
 	 * @return
 	 */
 	public int getVisible() {
@@ -202,6 +211,7 @@ public class MoodleEvent extends SugarRecord<MoodleEvent> {
 
 	/**
 	 * Get (Optional) unique id of ical events
+	 * 
 	 * @return
 	 */
 	public String getUuid() {
@@ -210,6 +220,7 @@ public class MoodleEvent extends SugarRecord<MoodleEvent> {
 
 	/**
 	 * Get sequence
+	 * 
 	 * @return
 	 */
 	public int getSequence() {
@@ -218,6 +229,7 @@ public class MoodleEvent extends SugarRecord<MoodleEvent> {
 
 	/**
 	 * Get time modified
+	 * 
 	 * @return
 	 */
 	public int getTimemodified() {
@@ -226,6 +238,7 @@ public class MoodleEvent extends SugarRecord<MoodleEvent> {
 
 	/**
 	 * Get (Optional) Subscription id
+	 * 
 	 * @return
 	 */
 	public int getSubscriptionid() {

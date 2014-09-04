@@ -32,6 +32,8 @@
         </activity>
         <activity android:name="in.co.praveenkumar.mdroid.activity.CourseContentActivity" >
         </activity>
+        <activity android:name="in.co.praveenkumar.mdroid.activity.CalendarActivity" >
+        </activity>
 
         <!-- Sugar SqlLite related -->
         <meta-data
