@@ -24,7 +24,7 @@ public class TimeFormat {
 	 *            in seconds
 	 * @return section title
 	 */
-	public static String getSection(long time) {
+	public static String getSection(int time) {
 		Calendar c = Calendar.getInstance();
 		int nowHour = c.get(Calendar.HOUR_OF_DAY);
 		int nowDay = c.get(Calendar.DATE);
@@ -85,7 +85,7 @@ public class TimeFormat {
 	 *            in seconds
 	 * @return formatted time
 	 */
-	public static String getMinimalTime(long time) {
+	public static String getMinimalTime(int time) {
 		Calendar c = Calendar.getInstance();
 		c.setTimeInMillis(time);
 		int hour = c.get(Calendar.HOUR_OF_DAY);
