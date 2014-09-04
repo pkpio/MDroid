@@ -24,7 +24,7 @@ import android.widget.TextView;
 public class CourseContentActivity extends NavigationDrawer {
 	CourseListAdapter courseContentListAdapter;
 	SessionSetting session;
-	ArrayList<listViewObject> listObjects = new ArrayList<listViewObject>();
+	ArrayList<CourseContentObject> listObjects = new ArrayList<CourseContentObject>();
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -37,8 +37,9 @@ public class CourseContentActivity extends NavigationDrawer {
 		int courseid = extras.getInt("courseid");
 		session = new SessionSetting(this);
 
-		CourseContentSyncTask ccs = new CourseContentSyncTask(session.getmUrl(),
-				session.getToken(), session.getCurrentSiteId());
+		CourseContentSyncTask ccs = new CourseContentSyncTask(
+				session.getmUrl(), session.getToken(),
+				session.getCurrentSiteId());
 		ArrayList<MoodleSection> sections = ccs.getCourseContents(courseid);
 		mapSectionsToListObjects(sections);
 
@@ -167,8 +168,9 @@ public class CourseContentActivity extends NavigationDrawer {
 						.getDescription();
 				if (description == null)
 					description = "";
-				viewHolder.moduledesc.setText(Html.fromHtml(description)
-						.toString());
+				else
+					description = Html.fromHtml(description).toString().trim();
+				viewHolder.moduledesc.setText(description);
 				break;
 			}
 			return convertView;
@@ -198,7 +200,7 @@ public class CourseContentActivity extends NavigationDrawer {
 	 * @author praveen
 	 * 
 	 */
-	class listViewObject {
+	class CourseContentObject {
 		/**
 		 * Follows type values as defined in CourseListAdapter. Check
 		 * CourseListAdapter.TYPE_ for available values
@@ -229,7 +231,7 @@ public class CourseContentActivity extends NavigationDrawer {
 			section = sections.get(i);
 			modules = section.getModules();
 			if (modules.size() > 0) {
-				listViewObject object = new listViewObject();
+				CourseContentObject object = new CourseContentObject();
 				object.viewType = CourseListAdapter.TYPE_HEADER;
 				object.sectionid = section.getSectionid();
 				object.sectionname = section.getName();
@@ -237,7 +239,7 @@ public class CourseContentActivity extends NavigationDrawer {
 
 				// Add modules
 				for (int j = 0; j < modules.size(); j++) {
-					listViewObject mObject = new listViewObject();
+					CourseContentObject mObject = new CourseContentObject();
 					mObject.viewType = CourseListAdapter.TYPE_MODULE;
 					mObject.sectionid = section.getSectionid();
 					mObject.sectionname = section.getName();
