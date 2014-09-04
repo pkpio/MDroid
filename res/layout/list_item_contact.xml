@@ -12,7 +12,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="0.9"
-        android:text="David Hemsworth pan"
+        android:text="@string/sample_contact_name"
         android:textColor="@color/grey2"
         android:textSize="18sp" />
 
@@ -23,7 +23,7 @@
         android:layout_weight="0.1"
         android:background="@color/moodle_color"
         android:gravity="center"
-        android:text="10"
+        android:text="@string/sample_contact_unread"
         android:textColor="@color/white" />
 
 </LinearLayout>
