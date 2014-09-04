@@ -21,7 +21,7 @@ public class TimeFormat {
 	 * Evaluates a section title suitable for the given time stamp
 	 * 
 	 * @param time
-	 *            in milliseconds
+	 *            in seconds
 	 * @return section title
 	 */
 	public static String getSection(long time) {
@@ -31,14 +31,14 @@ public class TimeFormat {
 		int nowMonth = c.get(Calendar.MONTH);
 		int nowYear = c.get(Calendar.YEAR);
 
-		c.setTimeInMillis(time);
+		c.setTimeInMillis(time * 1000);
 		int givenHour = c.get(Calendar.HOUR_OF_DAY);
 		int givenDay = c.get(Calendar.DATE);
 		int givenMonth = c.get(Calendar.MONTH);
 		int givenYear = c.get(Calendar.YEAR);
 
 		// Past
-		if (time < System.currentTimeMillis()) {
+		if (time * 1000 < System.currentTimeMillis()) {
 			if (nowYear - givenYear > 1)
 				return (nowYear - givenYear) + " years ago";
 			else if (nowYear - givenYear == 1)
@@ -82,7 +82,7 @@ public class TimeFormat {
 	 * Evaluates a simple time format like 12:23 AM
 	 * 
 	 * @param time
-	 *            in milliseconds
+	 *            in seconds
 	 * @return formatted time
 	 */
 	public static String getMinimalTime(long time) {
