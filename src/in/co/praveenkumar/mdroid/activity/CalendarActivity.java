@@ -217,7 +217,7 @@ public class CalendarActivity extends NavigationDrawer {
 				CalendarListAdapter.TYPE_EVENT, titlePrev));
 		for (int i = 1; i < mEvents.size(); i++) {
 			titleNow = TimeFormat.getSection(mEvents.get(i).getTimestart());
-			if (titleNow.contentEquals(titlePrev))
+			if (!titleNow.contentEquals(titlePrev))
 				listObjects.add(new CalenderObject(null,
 						CalendarListAdapter.TYPE_DATE, titleNow));
 			listObjects.add(new CalenderObject(mEvents.get(i),
