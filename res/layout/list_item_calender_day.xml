@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="2dp"
+    android:layout_marginTop="2dp"
+    android:gravity="center_vertical"
+    android:orientation="horizontal" >
+
+    <LinearLayout
+        android:id="@+id/list_calender_left_strip"
+        android:layout_width="8dp"
+        android:layout_height="3dp"
+        android:background="#ff0000"
+        android:orientation="vertical"
+        android:paddingLeft="0dp" >
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/list_calender_time"
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
+        android:background="#ff0000"
+        android:gravity="center_vertical"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:text="@string/sample_sectionname"
+        android:textColor="@color/white"
+        android:textSize="14sp" />
+
+</LinearLayout>
