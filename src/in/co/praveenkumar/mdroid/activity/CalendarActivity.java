@@ -68,9 +68,11 @@ public class CalendarActivity extends NavigationDrawer {
 				courseIds.add(mCourses.get(i).getCourseid() + "");
 			syncStatus = est.syncEvents(courseIds);
 
-			if (syncStatus)
+			if (syncStatus) {
+				mEvents = MoodleEvent.find(MoodleEvent.class, "siteid = ?",
+						session.getCurrentSiteId() + "");
 				return true;
-			else
+			} else
 				return false;
 		}
 
@@ -116,8 +118,8 @@ public class CalendarActivity extends NavigationDrawer {
 
 			// Assign values
 			viewHolder.eventname.setText(mEvents.get(position).getName());
-			viewHolder.eventcourse.setText(mEvents.get(position).getCourseid()
-					+ "");
+			viewHolder.eventcourse.setText(mEvents.get(position)
+					.getCoursename());
 			viewHolder.eventtime.setText(TimeFormat.getMinimalTime(mEvents.get(
 					position).getTimestart()));
 
@@ -138,5 +140,4 @@ public class CalendarActivity extends NavigationDrawer {
 		TextView eventtime;
 		TextView eventdesc;
 	}
-
 }
