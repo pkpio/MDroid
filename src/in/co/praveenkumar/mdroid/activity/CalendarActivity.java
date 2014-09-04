@@ -9,6 +9,8 @@ import in.co.praveenkumar.mdroid.moodlemodel.MoodleEvent;
 import in.co.praveenkumar.mdroid.task.EventSyncTask;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import android.content.Context;
@@ -39,6 +41,7 @@ public class CalendarActivity extends NavigationDrawer {
 		session = new SessionSetting(this);
 		mEvents = MoodleEvent.find(MoodleEvent.class, "siteid = ?",
 				session.getCurrentSiteId() + "");
+		sortEvents();
 
 		ListView courseList = (ListView) findViewById(R.id.list_calendar);
 		calendarListAdapter = new CalendarListAdapter(this);
@@ -71,6 +74,7 @@ public class CalendarActivity extends NavigationDrawer {
 			if (syncStatus) {
 				mEvents = MoodleEvent.find(MoodleEvent.class, "siteid = ?",
 						session.getCurrentSiteId() + "");
+				sortEvents();
 				return true;
 			} else
 				return false;
@@ -139,5 +143,15 @@ public class CalendarActivity extends NavigationDrawer {
 		TextView eventcourse;
 		TextView eventtime;
 		TextView eventdesc;
+	}
+
+	private void sortEvents() {
+		Collections.sort(mEvents, new Comparator<MoodleEvent>() {
+			public int compare(MoodleEvent o1, MoodleEvent o2) {
+				if (o1.getTimestart() == o2.getTimestart())
+					return 0;
+				return o1.getTimestart() < o2.getTimestart() ? -1 : 1;
+			}
+		});
 	}
 }
