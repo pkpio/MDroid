@@ -1,5 +1,7 @@
 package in.co.praveenkumar.mdroid.fragment;
 
+import in.co.praveenkumar.mdroid.activity.CalendarActivity;
+import in.co.praveenkumar.mdroid.activity.CourseActivity;
 import in.co.praveenkumar.mdroid.apis.R;
 import in.co.praveenkumar.mdroid.helper.ImageDecoder;
 import in.co.praveenkumar.mdroid.helper.SessionSetting;
@@ -11,6 +13,7 @@ import java.util.List;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Environment;
@@ -58,6 +61,20 @@ public class LeftNavigationFragment extends Fragment {
 				if (position < sites.size()) {
 					session.setCurrentSiteId(sites.get(position).getId());
 					getActivity().recreate();
+				} else {
+					Context context = getActivity();
+					switch (position - sites.size()) {
+					// Courses
+					case 0:
+						context.startActivity(new Intent(context,
+								CourseActivity.class));
+						break;
+					case 1:
+						context.startActivity(new Intent(context,
+								CalendarActivity.class));
+						break;
+
+					}
 				}
 				drawerState.setDrawerState(false);
 			}
