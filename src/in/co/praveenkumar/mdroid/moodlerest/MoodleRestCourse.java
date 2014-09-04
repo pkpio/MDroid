@@ -30,7 +30,7 @@ public class MoodleRestCourse {
 	 * entry is added to the list with only error fields filled. If no entries
 	 * are found, then it could mean a network or encoding issue.
 	 * 
-	 * @return ArrayList<MoodleCourse>
+	 * @return ArrayList of MoodleCourse
 	 * 
 	 * @author Praveen Kumar Pendyala (praveen@praveenkumar.co.in)
 	 */

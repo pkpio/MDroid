@@ -28,7 +28,6 @@ public class CourseActivity extends NavigationDrawer implements
 		viewPager = (ViewPager) findViewById(R.id.course_pager);
 		actionBar = getActionBar();
 		mAdapter = new CourseTabsAdapter(getSupportFragmentManager());
-
 		viewPager.setAdapter(mAdapter);
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 		ActionBarTabs.setHasEmbeddedTabs(actionBar, false);

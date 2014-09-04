@@ -1,15 +1,29 @@
+/**
+ * Developed as a part of the MDroid project. Check project repository for License.
+ * 
+ * Link: https://github.com/praveendath92/MDroid
+ */
+
 package in.co.praveenkumar.mdroid.helper;
 
 import java.util.Calendar;
 
+/**
+ * Time formatter.
+ * 
+ * Offers time formats for section title and other methods
+ * 
+ * @author Praveen Kumar Pendyala(praveen@praveenkumar.co.in)
+ * 
+ */
 public class TimeFormat {
-	static int SECONDS = 1000; // milliseconds
-	static int MINUTES = SECONDS * 60;
-	static int HOURS = MINUTES * 60;
-	static int DAYS = HOURS * 24;
-	static int MONTHS = DAYS * 30;
-	static int YEARS = MONTHS * 12;
-
+	/**
+	 * Evaluates a section title suitable for the given time stamp
+	 * 
+	 * @param time
+	 *            in milliseconds
+	 * @return section title
+	 */
 	public static String getSection(long time) {
 		Calendar c = Calendar.getInstance();
 		int nowHour = c.get(Calendar.HOUR_OF_DAY);
@@ -58,5 +72,22 @@ public class TimeFormat {
 			else
 				return "Now";
 		}
+	}
+
+	/**
+	 * Evaluates a simple time format like 12:23 AM
+	 * 
+	 * @param time
+	 *            in milliseconds
+	 * @return formatted time
+	 */
+	public static String getMinimalTime(long time) {
+		Calendar c = Calendar.getInstance();
+		c.setTimeInMillis(time);
+		int hour = c.get(Calendar.HOUR_OF_DAY);
+		int minute = c.get(Calendar.MINUTE);
+		String AmPm = (c.get(Calendar.AM_PM) == Calendar.AM) ? "AM" : "PM";
+
+		return hour + ":" + minute + " " + AmPm;
 	}
 }
