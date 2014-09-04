@@ -201,6 +201,8 @@ public class CalendarActivity extends NavigationDrawer {
 	private void setupCalenderObjects() {
 		if (mEvents == null)
 			return;
+		if (mEvents.size() == 0)
+			return;
 
 		Collections.sort(mEvents, new Comparator<MoodleEvent>() {
 			public int compare(MoodleEvent o1, MoodleEvent o2) {

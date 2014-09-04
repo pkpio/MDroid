@@ -23,6 +23,7 @@
             android:id="@+id/list_course_content"
             android:layout_width="match_parent"
             android:layout_height="fill_parent"
+            android:background="@color/grey14"
             android:divider="@null"
             android:dividerHeight="0dp" >
         </in.co.praveenkumar.mdroid.view.StickyListView>
