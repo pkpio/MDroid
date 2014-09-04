@@ -6,6 +6,7 @@ import in.co.praveenkumar.mdroid.helper.SessionSetting;
 import in.co.praveenkumar.mdroid.moodlemodel.MoodleModule;
 import in.co.praveenkumar.mdroid.moodlemodel.MoodleSection;
 import in.co.praveenkumar.mdroid.task.CourseContentSyncTask;
+import in.co.praveenkumar.mdroid.view.StickyListView;
 import in.co.praveenkumar.mdroid.view.StickyListView.PinnedSectionListAdapter;
 
 import java.util.ArrayList;
@@ -45,6 +46,7 @@ public class CourseContentActivity extends NavigationDrawer {
 
 		ListView courseList = (ListView) findViewById(R.id.list_course_content);
 		courseContentListAdapter = new CourseListAdapter(this);
+		((StickyListView) courseList).setShadowVisible(false);
 		courseList.setAdapter(courseContentListAdapter);
 
 		new listCoursesThread(session.getmUrl(), session.getToken(), courseid,
