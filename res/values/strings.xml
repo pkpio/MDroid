@@ -30,5 +30,8 @@
     <string name="syncing">Syncing..</string>
     <string name="sample_sectionname">16th August - 19th August</string>
     <string name="sample_modulename">Assignment 2</string>
+    <string name="sample_calendar_date">Today</string>
+    <string name="sample_contact_name">David Hemsworth pan</string>
+    <string name="sample_contact_unread">10</string>
 
 </resources>

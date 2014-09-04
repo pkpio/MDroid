@@ -23,7 +23,7 @@
         android:background="#ff0000"
         android:gravity="center_vertical"
         android:paddingLeft="5dp"
-        android:text="Today"
+        android:text="@string/sample_calendar_date"
         android:textColor="@color/white"
         android:textSize="14sp" />
 
