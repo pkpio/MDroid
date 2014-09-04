@@ -88,10 +88,12 @@ public class TimeFormat {
 	public static String getMinimalTime(int time) {
 		Calendar c = Calendar.getInstance();
 		c.setTimeInMillis(time);
-		int hour = c.get(Calendar.HOUR_OF_DAY);
+		int hour = c.get(Calendar.HOUR);
 		int minute = c.get(Calendar.MINUTE);
 		String AmPm = (c.get(Calendar.AM_PM) == Calendar.AM) ? "AM" : "PM";
+		// Because 12:07 AM better than 12:7 AM
+		String mins = (minute > 9) ? minute + "" : "0" + minute;
 
-		return hour + ":" + minute + " " + AmPm;
+		return hour + ":" + mins + " " + AmPm;
 	}
 }
