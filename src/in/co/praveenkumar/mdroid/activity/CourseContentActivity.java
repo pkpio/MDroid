@@ -4,8 +4,10 @@ import in.co.praveenkumar.mdroid.adapter.NavigationDrawer;
 import in.co.praveenkumar.mdroid.apis.R;
 import in.co.praveenkumar.mdroid.helper.SessionSetting;
 import in.co.praveenkumar.mdroid.moodlemodel.MoodleModule;
+import in.co.praveenkumar.mdroid.moodlemodel.MoodleModuleContent;
 import in.co.praveenkumar.mdroid.moodlemodel.MoodleSection;
 import in.co.praveenkumar.mdroid.task.CourseContentSyncTask;
+import in.co.praveenkumar.mdroid.task.DownloadTask;
 import in.co.praveenkumar.mdroid.view.StickyListView;
 import in.co.praveenkumar.mdroid.view.StickyListView.PinnedSectionListAdapter;
 
@@ -17,6 +19,7 @@ import android.os.Bundle;
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -119,7 +122,8 @@ public class CourseContentActivity extends NavigationDrawer {
 		}
 
 		@Override
-		public View getView(int position, View convertView, ViewGroup parent) {
+		public View getView(final int position, View convertView,
+				ViewGroup parent) {
 			ViewHolder viewHolder;
 			int type = getItemViewType(position);
 
@@ -175,6 +179,23 @@ public class CourseContentActivity extends NavigationDrawer {
 				viewHolder.moduledesc.setText(description);
 				break;
 			}
+			convertView.setOnClickListener(new OnClickListener() {
+
+				@Override
+				public void onClick(View arg0) {
+					if (listObjects.get(position).module.getContents() != null) {
+						MoodleModuleContent content = listObjects.get(position).module
+								.getContents().get(0);
+						String url = content.getFileurl();
+						url += "&token=" + session.getToken();
+						DownloadTask dt = new DownloadTask(
+								getApplicationContext());
+						dt.download(url, content.getFilename(), true,
+								DownloadTask.SYSTEM_DOWNLOADER);
+					}
+				}
+			});
+
 			return convertView;
 		}
 
