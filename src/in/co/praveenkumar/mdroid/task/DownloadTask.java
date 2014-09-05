@@ -64,6 +64,8 @@ public class DownloadTask {
 					.getSystemService(Context.DOWNLOAD_SERVICE);
 			Request request = new Request(Uri.parse(fileUrl));
 			request.setDestinationInExternalPublicDir("/MDroid", fileName);
+			request.setTitle(fileName);
+			request.setDescription("MDroid file download");
 			if (!visibility)
 				request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_HIDDEN);
 			else
