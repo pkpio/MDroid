@@ -5,7 +5,7 @@ Roadmap or plan for the new API version of MDroid (In priority order).
 - [x] Course listing
 - [x] Account switching from side navigation
 - [x] Course content listing
-- [ ] Downloading files
+- [x] Downloading files
 - [ ] Course Forums listing
 - [ ] Forum discussion listing
 - [ ] Discussion thread listing
