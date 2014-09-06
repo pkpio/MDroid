@@ -73,6 +73,7 @@ public class LeftNavigationFragment extends Fragment {
 					case 1:
 						context.startActivity(new Intent(context,
 								CalendarActivity.class));
+						break;
 					case 2:
 						context.startActivity(new Intent(context,
 								ForumActivity.class));
