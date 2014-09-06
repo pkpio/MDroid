@@ -19,6 +19,7 @@
         android:theme="@style/Theme.Moodle" >
         <activity
             android:name="in.co.praveenkumar.mdroid.activity.LoginActivity"
+            android:configChanges="screenSize|orientation"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,15 +27,25 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="in.co.praveenkumar.mdroid.activity.MainActivity" >
+        <activity
+            android:name="in.co.praveenkumar.mdroid.activity.MainActivity"
+            android:configChanges="screenSize|orientation" >
         </activity>
-        <activity android:name="in.co.praveenkumar.mdroid.activity.CourseActivity" >
+        <activity
+            android:name="in.co.praveenkumar.mdroid.activity.CourseActivity"
+            android:configChanges="screenSize|orientation" >
         </activity>
-        <activity android:name="in.co.praveenkumar.mdroid.activity.CourseContentActivity" >
+        <activity
+            android:name="in.co.praveenkumar.mdroid.activity.CourseContentActivity"
+            android:configChanges="screenSize|orientation" >
         </activity>
-        <activity android:name="in.co.praveenkumar.mdroid.activity.CalendarActivity" >
+        <activity
+            android:name="in.co.praveenkumar.mdroid.activity.CalendarActivity"
+            android:configChanges="screenSize|orientation" >
         </activity>
-        <activity android:name="in.co.praveenkumar.mdroid.activity.ForumActivity" >
+        <activity
+            android:name="in.co.praveenkumar.mdroid.activity.ForumActivity"
+            android:configChanges="screenSize|orientation" >
         </activity>
 
         <!-- Sugar SqlLite related -->
