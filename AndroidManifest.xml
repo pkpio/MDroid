@@ -34,6 +34,8 @@
         </activity>
         <activity android:name="in.co.praveenkumar.mdroid.activity.CalendarActivity" >
         </activity>
+        <activity android:name="in.co.praveenkumar.mdroid.activity.ForumActivity" >
+        </activity>
 
         <!-- Sugar SqlLite related -->
         <meta-data
@@ -41,7 +43,7 @@
             android:value="mdroid.db" />
         <meta-data
             android:name="VERSION"
-            android:value="5" />
+            android:value="6" />
         <meta-data
             android:name="QUERY_LOG"
             android:value="true" />
