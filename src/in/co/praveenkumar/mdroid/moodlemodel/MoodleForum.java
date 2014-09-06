@@ -95,6 +95,25 @@ public class MoodleForum extends SugarRecord<MoodleForum> {
 
 	// Relational and other fields
 	long siteid;
+	String coursename;
+
+	/**
+	 * Get coursename of the forum
+	 * 
+	 * @return
+	 */
+	public String getCoursename() {
+		return coursename;
+	}
+
+	/**
+	 * Set coursename of the forum
+	 * 
+	 * @param coursename
+	 */
+	public void setCoursename(String coursename) {
+		this.coursename = coursename;
+	}
 
 	/**
 	 * Get Forum id
@@ -346,6 +365,15 @@ public class MoodleForum extends SugarRecord<MoodleForum> {
 	 */
 	public long getSiteid() {
 		return siteid;
+	}
+
+	/**
+	 * Set siteid
+	 * 
+	 * @return
+	 */
+	public void setSiteid(long siteid) {
+		this.siteid = siteid;
 	}
 
 }
