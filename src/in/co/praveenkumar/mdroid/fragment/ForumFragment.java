@@ -25,7 +25,7 @@ import android.widget.TextView;
 public class ForumFragment extends Fragment {
 	ForumListAdapter forumListAdapter;
 	SessionSetting session;
-	static int courseid = 0;
+	int courseid = 0;
 	List<MoodleForum> mForums;
 
 	/**
@@ -41,7 +41,7 @@ public class ForumFragment extends Fragment {
 	 * @param courseid
 	 */
 	public ForumFragment(int courseid) {
-		ForumFragment.courseid = courseid;
+		this.courseid = courseid;
 	}
 
 	@Override

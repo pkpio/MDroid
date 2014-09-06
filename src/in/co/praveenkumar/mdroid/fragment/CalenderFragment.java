@@ -28,7 +28,7 @@ import android.widget.TextView;
 
 public class CalenderFragment extends Fragment {
 	Context context;
-	static int courseid = 0;
+	int courseid = 0;
 	CalendarListAdapter calendarListAdapter;
 	SessionSetting session;
 	List<MoodleEvent> mEvents;
@@ -46,7 +46,7 @@ public class CalenderFragment extends Fragment {
 	 * @param courseid
 	 */
 	public CalenderFragment(int courseid) {
-		CalenderFragment.courseid = courseid;
+		this.courseid = courseid;
 	}
 
 	@Override
