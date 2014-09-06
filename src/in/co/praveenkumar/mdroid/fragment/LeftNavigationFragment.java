@@ -65,7 +65,6 @@ public class LeftNavigationFragment extends Fragment {
 				} else {
 					Context context = getActivity();
 					switch (position - sites.size()) {
-					// Courses
 					case 0:
 						context.startActivity(new Intent(context,
 								CourseActivity.class));
