@@ -26,6 +26,7 @@ public class CourseActivity extends NavigationDrawer implements
 
 		// Initialization
 		viewPager = (ViewPager) findViewById(R.id.course_pager);
+		viewPager.setOffscreenPageLimit(3);
 		actionBar = getActionBar();
 		mAdapter = new CourseTabsAdapter(getSupportFragmentManager());
 		viewPager.setAdapter(mAdapter);
