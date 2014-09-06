@@ -1,34 +1,22 @@
 package in.co.praveenkumar.mdroid.activity;
 
+import in.co.praveenkumar.mdroid.adapter.CourseContentTabsAdapter;
 import in.co.praveenkumar.mdroid.adapter.NavigationDrawer;
 import in.co.praveenkumar.mdroid.apis.R;
-import in.co.praveenkumar.mdroid.helper.SessionSetting;
-import in.co.praveenkumar.mdroid.moodlemodel.MoodleModule;
-import in.co.praveenkumar.mdroid.moodlemodel.MoodleModuleContent;
-import in.co.praveenkumar.mdroid.moodlemodel.MoodleSection;
-import in.co.praveenkumar.mdroid.task.CourseContentSyncTask;
-import in.co.praveenkumar.mdroid.task.DownloadTask;
-import in.co.praveenkumar.mdroid.view.StickyListView;
-import in.co.praveenkumar.mdroid.view.StickyListView.PinnedSectionListAdapter;
-
-import java.util.ArrayList;
-
-import android.content.Context;
-import android.os.AsyncTask;
+import in.co.praveenkumar.mdroid.helper.ActionBarTabs;
+import android.app.ActionBar;
+import android.app.ActionBar.Tab;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
-import android.text.Html;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-import android.widget.TextView;
+import android.support.v4.view.ViewPager;
 
-public class CourseContentActivity extends NavigationDrawer {
-	CourseListAdapter courseContentListAdapter;
-	SessionSetting session;
-	ArrayList<CourseContentObject> listObjects = new ArrayList<CourseContentObject>();
+public class CourseContentActivity extends NavigationDrawer implements
+		ActionBar.TabListener {
+
+	private ViewPager viewPager;
+	private CourseContentTabsAdapter mAdapter;
+	private ActionBar actionBar;
+	private String[] tabs = { "Contents", "Forums", "Calendar" };
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -39,237 +27,54 @@ public class CourseContentActivity extends NavigationDrawer {
 		Bundle extras = getIntent().getExtras();
 		Long coursedbid = extras.getLong("coursedbid");
 		int courseid = extras.getInt("courseid");
-		session = new SessionSetting(this);
+		// Initialization
+		viewPager = (ViewPager) findViewById(R.id.course_content_pager);
+		viewPager.setOffscreenPageLimit(3);
+		actionBar = getActionBar();
+		mAdapter = new CourseContentTabsAdapter(getSupportFragmentManager(),
+				courseid, coursedbid);
+		viewPager.setAdapter(mAdapter);
+		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+		ActionBarTabs.setHasEmbeddedTabs(actionBar, false);
 
-		CourseContentSyncTask ccs = new CourseContentSyncTask(
-				session.getmUrl(), session.getToken(),
-				session.getCurrentSiteId());
-		ArrayList<MoodleSection> sections = ccs.getCourseContents(courseid);
-		mapSectionsToListObjects(sections);
-
-		ListView courseList = (ListView) findViewById(R.id.list_course_content);
-		courseContentListAdapter = new CourseListAdapter(this);
-		((StickyListView) courseList).setShadowVisible(false);
-		courseList.setAdapter(courseContentListAdapter);
-
-		new listCoursesThread(session.getmUrl(), session.getToken(), courseid,
-				coursedbid, session.getCurrentSiteId()).execute("");
-
-	}
-
-	private class listCoursesThread extends AsyncTask<String, Integer, Boolean> {
-		CourseContentSyncTask ccs;
-		int courseid;
-		Long coursedbid;
-		Boolean syncStatus;
-
-		public listCoursesThread(String mUrl, String token, int courseid,
-				Long coursedbid, Long siteid) {
-			ccs = new CourseContentSyncTask(mUrl, token, siteid);
-			this.courseid = courseid;
-			this.coursedbid = coursedbid;
+		// Adding Tabs
+		for (String tab_name : tabs) {
+			actionBar.addTab(actionBar.newTab().setText(tab_name)
+					.setTabListener(this));
 		}
 
-		@Override
-		protected void onPreExecute() {
-			System.out.println("Pre execute");
-			// mSections = ccs.getCourseContents(courseid);
-		}
+		/**
+		 * on swiping the viewpager make respective tab selected
+		 * */
+		viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
 
-		@Override
-		protected Boolean doInBackground(String... params) {
-			System.out.println("Background execute");
-			syncStatus = ccs.syncCourseContents(courseid, coursedbid);
-			ArrayList<MoodleSection> sections = ccs.getCourseContents(courseid);
-
-			// Save all sections into a listObject array for easy access inside
-			mapSectionsToListObjects(sections);
-
-			if (syncStatus)
-				return true;
-			else
-				return false;
-		}
-
-		@Override
-		protected void onPostExecute(Boolean result) {
-			courseContentListAdapter.notifyDataSetChanged();
-		}
-
-	}
-
-	public class CourseListAdapter extends ArrayAdapter<String> implements
-			PinnedSectionListAdapter {
-		static final int TYPE_MODULE = 0;
-		static final int TYPE_HEADER = 1;
-		static final int TYPE_COUNT = 2;
-		final Context context;
-
-		public CourseListAdapter(Context context) {
-			super(context, R.layout.list_item_account, new String[listObjects
-					.size()]);
-			this.context = context;
-		}
-
-		@Override
-		public int getViewTypeCount() {
-			return TYPE_COUNT;
-		}
-
-		@Override
-		public int getItemViewType(int position) {
-			return listObjects.get(position).viewType;
-		}
-
-		@Override
-		public View getView(final int position, View convertView,
-				ViewGroup parent) {
-			ViewHolder viewHolder;
-			int type = getItemViewType(position);
-
-			if (convertView == null) {
-				viewHolder = new ViewHolder();
-				LayoutInflater inflater = (LayoutInflater) context
-						.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
-				// Choose layout
-				switch (type) {
-				case TYPE_HEADER:
-					convertView = inflater.inflate(R.layout.list_item_section,
-							parent, false);
-
-					viewHolder.sectionname = (TextView) convertView
-							.findViewById(R.id.list_sectionname);
-					break;
-
-				case TYPE_MODULE:
-					convertView = inflater.inflate(R.layout.list_item_module,
-							parent, false);
-
-					viewHolder.modulename = (TextView) convertView
-							.findViewById(R.id.list_modulename);
-					viewHolder.moduledesc = (TextView) convertView
-							.findViewById(R.id.list_moduledescription);
-					break;
-				}
-
-				// Save the holder with the view
-				convertView.setTag(viewHolder);
-			} else {
-				// Just use the viewHolder and avoid findviewbyid()
-				viewHolder = (ViewHolder) convertView.getTag();
+			@Override
+			public void onPageSelected(int position) {
+				actionBar.setSelectedNavigationItem(position);
 			}
 
-			// Assign values
-			switch (type) {
-			case TYPE_HEADER:
-				viewHolder.sectionname
-						.setText(listObjects.get(position).sectionname);
-				break;
-
-			case TYPE_MODULE:
-				viewHolder.modulename.setText(listObjects.get(position).module
-						.getName());
-				String description = listObjects.get(position).module
-						.getDescription();
-				if (description == null)
-					description = "";
-				else
-					description = Html.fromHtml(description).toString().trim();
-				viewHolder.moduledesc.setText(description);
-				break;
+			@Override
+			public void onPageScrolled(int arg0, float arg1, int arg2) {
 			}
-			convertView.setOnClickListener(new OnClickListener() {
 
-				@Override
-				public void onClick(View arg0) {
-					if (listObjects.get(position).module.getContents() != null) {
-						MoodleModuleContent content = listObjects.get(position).module
-								.getContents().get(0);
-						String url = content.getFileurl();
-						url += "&token=" + session.getToken();
-						DownloadTask dt = new DownloadTask(
-								getApplicationContext());
-						dt.download(url, content.getFilename(), true,
-								DownloadTask.SYSTEM_DOWNLOADER);
-					}
-				}
-			});
-
-			return convertView;
-		}
-
-		@Override
-		public boolean isItemViewTypePinned(int viewType) {
-			if (viewType == TYPE_HEADER)
-				return true;
-			else
-				return false;
-		}
-	}
-
-	static class ViewHolder {
-		TextView sectionname;
-		TextView modulename;
-		TextView moduledesc;
-	}
-
-	/**
-	 * This is used to hold all data of any list item in the coursecontent
-	 * listview. A list can be a Module or a section header. This view will be
-	 * to get appropriate view from position for our stickylistview which has
-	 * multiple view types
-	 * 
-	 * @author praveen
-	 * 
-	 */
-	class CourseContentObject {
-		/**
-		 * Follows type values as defined in CourseListAdapter. Check
-		 * CourseListAdapter.TYPE_ for available values
-		 */
-		int viewType;
-		/**
-		 * Name of the section to which this object belongs
-		 */
-		String sectionname;
-		/**
-		 * Id of the section to which this object belongs
-		 */
-		int sectionid;
-		/**
-		 * Module object. (Only for viewType = TYPE_MODULE)
-		 */
-		MoodleModule module;
-
-	}
-
-	private void mapSectionsToListObjects(ArrayList<MoodleSection> sections) {
-		if (sections == null)
-			return;
-
-		MoodleSection section;
-		ArrayList<MoodleModule> modules;
-		for (int i = 0; i < sections.size(); i++) {
-			section = sections.get(i);
-			modules = section.getModules();
-			if (modules.size() > 0) {
-				CourseContentObject object = new CourseContentObject();
-				object.viewType = CourseListAdapter.TYPE_HEADER;
-				object.sectionid = section.getSectionid();
-				object.sectionname = section.getName();
-				listObjects.add(object);
-
-				// Add modules
-				for (int j = 0; j < modules.size(); j++) {
-					CourseContentObject mObject = new CourseContentObject();
-					mObject.viewType = CourseListAdapter.TYPE_MODULE;
-					mObject.sectionid = section.getSectionid();
-					mObject.sectionname = section.getName();
-					mObject.module = modules.get(j);
-					listObjects.add(mObject);
-				}
+			@Override
+			public void onPageScrollStateChanged(int arg0) {
 			}
-		}
+		});
 	}
+
+	@Override
+	public void onTabReselected(Tab tab, FragmentTransaction ft) {
+	}
+
+	@Override
+	public void onTabSelected(Tab tab, FragmentTransaction ft) {
+		// on tab selected. Show respected fragment view
+		viewPager.setCurrentItem(tab.getPosition());
+	}
+
+	@Override
+	public void onTabUnselected(Tab tab, FragmentTransaction ft) {
+	}
+
 }
