@@ -25,7 +25,24 @@ import android.widget.TextView;
 public class ForumFragment extends Fragment {
 	ForumListAdapter forumListAdapter;
 	SessionSetting session;
+	static int courseid = 0;
 	List<MoodleForum> mForums;
+
+	/**
+	 * This constructor lists all forums in the site. Don't use this
+	 * constructor.
+	 */
+	public ForumFragment() {
+	}
+
+	/**
+	 * If you want to list all forums, use courseid = 0
+	 * 
+	 * @param courseid
+	 */
+	public ForumFragment(int courseid) {
+		ForumFragment.courseid = courseid;
+	}
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -33,10 +50,15 @@ public class ForumFragment extends Fragment {
 
 		View rootView = inflater.inflate(R.layout.frag_forum, container, false);
 
-		// Get all courses of this site
+		// Get all courses of this site or course
 		session = new SessionSetting(getActivity());
-		mForums = MoodleForum.find(MoodleForum.class, "siteid = ?",
-				session.getCurrentSiteId() + "");
+		if (courseid == 0)
+			mForums = MoodleForum.find(MoodleForum.class, "siteid = ?",
+					session.getCurrentSiteId() + "");
+		else
+			mForums = MoodleForum.find(MoodleForum.class,
+					"siteid = ? and courseid = ?", session.getCurrentSiteId()
+							+ "", courseid + "");
 
 		ListView forumList = (ListView) rootView
 				.findViewById(R.id.content_forum);
