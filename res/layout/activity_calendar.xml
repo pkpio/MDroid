@@ -6,28 +6,11 @@
 
     <!-- Main content -->
 
-    <LinearLayout
+    <fragment
+        android:id="@+id/calender_fragment"
+        android:name="in.co.praveenkumar.mdroid.fragment.CalenderFragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical" >
-
-        <TextView
-            android:id="@+id/calendar_sync_report"
-            android:layout_width="match_parent"
-            android:layout_height="20dp"
-            android:background="@color/yellow"
-            android:gravity="center"
-            android:text="@string/syncing" />
-
-        <in.co.praveenkumar.mdroid.view.StickyListView
-            android:id="@+id/list_calendar"
-            android:layout_width="match_parent"
-            android:layout_height="fill_parent"
-            android:background="@color/grey14"
-            android:divider="@null"
-            android:dividerHeight="0dp" >
-        </in.co.praveenkumar.mdroid.view.StickyListView>
-    </LinearLayout>
+        android:layout_height="match_parent" />
 
     <!-- Left navigation -->
 
