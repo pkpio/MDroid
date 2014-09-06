@@ -1,7 +1,8 @@
 package in.co.praveenkumar.mdroid.adapter;
 
+import in.co.praveenkumar.mdroid.fragment.CalenderFragment;
 import in.co.praveenkumar.mdroid.fragment.ContentFragment;
-import in.co.praveenkumar.mdroid.fragment.CourseFragment;
+import in.co.praveenkumar.mdroid.fragment.ForumFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -22,14 +23,14 @@ public class CourseContentTabsAdapter extends FragmentPagerAdapter {
 
 		switch (index) {
 		case 0:
-			// List all courses
+			// Course Content
 			return new ContentFragment(courseid, coursedbid);
 		case 1:
-			// List only user courses
-			return new CourseFragment(CourseFragment.TYPE_USER_COURSES);
+			// Course Forum
+			return new ForumFragment(courseid);
 		case 2:
-			// List only fav courses
-			return new CourseFragment(CourseFragment.TYPE_FAV_COURSES);
+			// Course Calendar
+			return new CalenderFragment(courseid);
 		}
 		return null;
 	}
