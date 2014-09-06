@@ -27,11 +27,18 @@ import android.widget.TextView;
 
 public class ContentFragment extends Fragment {
 	Context context;
-	long coursedbid;
-	int courseid;
+	static long coursedbid;
+	static int courseid;
 	CourseListAdapter courseContentListAdapter;
 	SessionSetting session;
 	ArrayList<CourseContentObject> listObjects = new ArrayList<CourseContentObject>();
+
+	/**
+	 * This constructor is required to prevent exceptions on app usage. Don't
+	 * use this constructor.
+	 */
+	public ContentFragment() {
+	}
 
 	/**
 	 * 
@@ -42,8 +49,8 @@ public class ContentFragment extends Fragment {
 	 *            details sync
 	 */
 	public ContentFragment(int courseid, long coursedbid) {
-		this.courseid = courseid;
-		this.coursedbid = coursedbid;
+		ContentFragment.courseid = courseid;
+		ContentFragment.coursedbid = coursedbid;
 	}
 
 	@Override
