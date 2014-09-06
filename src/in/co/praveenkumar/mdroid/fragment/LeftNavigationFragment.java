@@ -2,6 +2,7 @@ package in.co.praveenkumar.mdroid.fragment;
 
 import in.co.praveenkumar.mdroid.activity.CalendarActivity;
 import in.co.praveenkumar.mdroid.activity.CourseActivity;
+import in.co.praveenkumar.mdroid.activity.ForumActivity;
 import in.co.praveenkumar.mdroid.apis.R;
 import in.co.praveenkumar.mdroid.helper.ImageDecoder;
 import in.co.praveenkumar.mdroid.helper.SessionSetting;
@@ -72,6 +73,9 @@ public class LeftNavigationFragment extends Fragment {
 					case 1:
 						context.startActivity(new Intent(context,
 								CalendarActivity.class));
+					case 2:
+						context.startActivity(new Intent(context,
+								ForumActivity.class));
 						break;
 
 					}
