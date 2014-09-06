@@ -6,28 +6,11 @@
 
     <!-- Main content -->
 
-    <LinearLayout
+    <android.support.v4.view.ViewPager
+        android:id="@+id/course_content_pager"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical" >
-
-        <TextView
-            android:id="@+id/course_content_sync_report"
-            android:layout_width="match_parent"
-            android:layout_height="20dp"
-            android:background="@color/yellow"
-            android:gravity="center"
-            android:text="@string/syncing" />
-
-        <in.co.praveenkumar.mdroid.view.StickyListView
-            android:id="@+id/list_course_content"
-            android:layout_width="match_parent"
-            android:layout_height="fill_parent"
-            android:background="@color/grey14"
-            android:divider="@null"
-            android:dividerHeight="0dp" >
-        </in.co.praveenkumar.mdroid.view.StickyListView>
-    </LinearLayout>
+        android:layout_height="match_parent" >
+    </android.support.v4.view.ViewPager>
 
     <!-- Left navigation -->
 
@@ -37,5 +20,14 @@
         android:layout_width="240dp"
         android:layout_height="match_parent"
         android:layout_gravity="start" />
+
+    <!-- Right navigation -->
+
+    <fragment
+        android:id="@+id/right_nav_layout"
+        android:name="in.co.praveenkumar.mdroid.fragment.ContactsFragment"
+        android:layout_width="240dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="end" />
 
 </android.support.v4.widget.DrawerLayout>
