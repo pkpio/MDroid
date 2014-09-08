@@ -23,7 +23,7 @@ import android.widget.TextView;
 
 public class ContactsFragment extends Fragment {
 	DrawerStateInterface drawerState;
-	final String DEBUG_TAG = "Right Navigation Fragment";
+	final String DEBUG_TAG = "ContactsFragment";
 	ListView navListView;
 	List<MoodleContact> contacts;
 	RightNavListAdapter adapter;
