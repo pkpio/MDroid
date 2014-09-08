@@ -68,8 +68,8 @@ public class ContactsFragment extends Fragment {
 		private final Context context;
 
 		public RightNavListAdapter(Context context) {
-			super(context, R.layout.list_item_account, new String[contacts
-					.size()]);
+			super(context, R.layout.list_item_account,
+					new String[(contacts == null) ? 0 : contacts.size()]);
 			this.context = context;
 		}
 
