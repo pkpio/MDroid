@@ -1,5 +1,7 @@
 package in.co.praveenkumar.mdroid.helper;
 
+import org.apache.commons.validator.routines.UrlValidator;
+
 public class FormValidate {
 
 	/**
@@ -41,9 +43,6 @@ public class FormValidate {
 		return null;
 	}
 
-	// UrlValidator urlValidator = new UrlValidator();
-	// urlValidator.isValid("http://my favorite site!");
-
 	/**
 	 * Check the validity of the url field.
 	 * 
@@ -54,7 +53,9 @@ public class FormValidate {
 	public static String url(String url) {
 		if (url.contentEquals(""))
 			return "url can't be empty";
-		//UrlValidator uri;
+		UrlValidator urlValidator = new UrlValidator();
+		if (!urlValidator.isValid(url))
+			return "Invalid moodle url";
 		return null;
 	}
 
