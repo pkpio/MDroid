@@ -15,12 +15,21 @@
         android:orientation="horizontal" >
 
         <LinearLayout
-            android:id="@+id/list_calender_left_strip"
             android:layout_width="8dp"
-            android:layout_height="3dp"
-            android:background="@color/section_title_color"
+            android:layout_height="match_parent"
+            android:background="@color/grey14"
+            android:gravity="center_vertical"
             android:orientation="vertical"
             android:paddingLeft="0dp" >
+
+            <LinearLayout
+                android:id="@+id/list_section_left_strip"
+                android:layout_width="8dp"
+                android:layout_height="3dp"
+                android:background="@color/section_title_color"
+                android:orientation="vertical"
+                android:paddingLeft="0dp" >
+            </LinearLayout>
         </LinearLayout>
 
         <TextView
