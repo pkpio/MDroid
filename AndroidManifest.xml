@@ -18,9 +18,10 @@
         android:label="@string/app_name"
         android:theme="@style/Theme.Moodle" >
         <activity
-            android:name="in.co.praveenkumar.mdroid.activity.LoginActivity"
+            android:name="in.co.praveenkumar.mdroid.activity.TutorialActivity"
             android:configChanges="screenSize|orientation"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -28,8 +29,9 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="in.co.praveenkumar.mdroid.activity.MainActivity"
-            android:configChanges="screenSize|orientation" >
+            android:name="in.co.praveenkumar.mdroid.activity.LoginActivity"
+            android:configChanges="screenSize|orientation"
+            android:label="@string/app_name" >
         </activity>
         <activity
             android:name="in.co.praveenkumar.mdroid.activity.CourseActivity"
