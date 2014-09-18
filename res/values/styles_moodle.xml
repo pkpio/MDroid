@@ -36,6 +36,17 @@
         <item name="android:actionBarTabTextStyle">@style/ActionBarTabTextStyle.Moodle</item>
     </style>
 
+    <!-- Moodle No actionbar theme. -->
+    <style name="Theme.Moodle.NoActionbar" parent="Theme.Moodle">
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+    <!-- Moodle No fullscreen theme. -->
+    <style name="Theme.Moodle.NoActionbar.Fullscreen" parent="Theme.Moodle">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
     <style name="ActionBar.Solid.Moodle" parent="@android:style/Widget.Holo.Light.ActionBar.Solid.Inverse">
         <item name="android:background">@drawable/ab_solid_moodle</item>
         <item name="android:backgroundStacked">@drawable/ab_stacked_solid_moodle</item>
