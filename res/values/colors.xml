@@ -25,5 +25,15 @@
     <color name="black">#000000</color>
     <color name="card_listview_bg">#E2E2E2</color>
     <color name="yellow">#fffaaa</color>
+    
+    <!-- beautiful colors -->
+    <color name="beautiful_blue">#43adf1</color>
+    <color name="beautiful_red">#e2574c</color>
+    <color name="beautiful_red_dark">#d42222</color>
+    <color name="beautiful_green">#3db39e</color>
+    <color name="beautiful_green_dark">#2f8a78</color>
+    <color name="beautiful_grey">#777575</color>
+    <color name="beautiful_yellow_dark">#d07c40</color>
+    <color name="beautiful_yellow">#f4b459</color>
 
 </resources>
