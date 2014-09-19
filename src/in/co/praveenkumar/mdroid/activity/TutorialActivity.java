@@ -27,20 +27,18 @@ public class TutorialActivity extends FragmentActivity {
 
 		mPager = (ViewPager) findViewById(R.id.pager);
 		mPager.setAdapter(mAdapter);
-		mPager.setOffscreenPageLimit(4);
+		mPager.setOffscreenPageLimit(TutorialFragment.TUTORIAL_PAGE_COUNT);
 
 		mIndicator = (CirclePageIndicator) findViewById(R.id.indicator);
 		mIndicator.setViewPager(mPager);
 	}
 
-	class TestFragmentAdapter extends FragmentPagerAdapter implements
-			IconPagerAdapter {
-		final String[] CONTENT = new String[] { "This", "Is", "A", "Test", };
+	class TestFragmentAdapter extends FragmentPagerAdapter {
 		final int[] ICONS = new int[] { R.drawable.expand_less,
 				R.drawable.expand_less_grey, R.drawable.icon_refresh,
 				R.drawable.drive_ms_powerpoint };
 
-		private int mCount = CONTENT.length;
+		private int mCount = TutorialFragment.TUTORIAL_PAGE_COUNT;
 
 		public TestFragmentAdapter(FragmentManager fm) {
 			super(fm);
@@ -58,13 +56,13 @@ public class TutorialActivity extends FragmentActivity {
 
 		@Override
 		public CharSequence getPageTitle(int position) {
-			return CONTENT[position % CONTENT.length];
+			return "Tutorial";
 		}
 
-		@Override
-		public int getIconResId(int index) {
-			return ICONS[index % ICONS.length];
-		}
+		// @Override
+		// public int getIconResId(int index) {
+		// return ICONS[index % ICONS.length];
+		// }
 
 		public void setCount(int count) {
 			if (count > 0 && count <= 10) {
