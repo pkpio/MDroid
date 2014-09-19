@@ -32,10 +32,23 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
-            android:text="You won't need one."
+            android:text="You won&apos;t need one."
             android:textColor="@color/white"
             android:textSize="16sp"
             android:textStyle="italic" />
     </LinearLayout>
+
+    <Button
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginBottom="30dp"
+        android:background="@drawable/tutorial_end_btn_bg"
+        android:gravity="center"
+        android:padding="8dp"
+        android:onClick="openLoginPage"
+        android:text="Let&apos;s roll"
+        android:textSize="20sp"
+        android:textColor="@color/white" />
 
 </FrameLayout>
