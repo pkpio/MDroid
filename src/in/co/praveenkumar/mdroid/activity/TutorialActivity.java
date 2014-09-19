@@ -2,15 +2,16 @@ package in.co.praveenkumar.mdroid.activity;
 
 import in.co.praveenkumar.mdroid.apis.R;
 import in.co.praveenkumar.mdroid.fragment.TutorialFragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.view.View;
 
 import com.viewpagerindicator.CirclePageIndicator;
-import com.viewpagerindicator.IconPagerAdapter;
 import com.viewpagerindicator.PageIndicator;
 
 public class TutorialActivity extends FragmentActivity {
@@ -59,16 +60,15 @@ public class TutorialActivity extends FragmentActivity {
 			return "Tutorial";
 		}
 
-		// @Override
-		// public int getIconResId(int index) {
-		// return ICONS[index % ICONS.length];
-		// }
-
 		public void setCount(int count) {
 			if (count > 0 && count <= 10) {
 				mCount = count;
 				notifyDataSetChanged();
 			}
 		}
+	}
+
+	public void openLoginPage(View v) {
+		startActivity(new Intent(this, LoginActivity.class));
 	}
 }
