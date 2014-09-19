@@ -8,13 +8,13 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:gravity="center" >
+        android:gravity="center"
+        android:orientation="vertical" >
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Hello"
+            android:text="Tutorial?"
             android:textColor="@color/white"
             android:textSize="38sp"
             android:textStyle="bold" />
@@ -23,19 +23,19 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
-            android:text="Beautiful!"
-            android:textStyle="italic"
+            android:text="It&apos;s intutive!"
             android:textColor="@color/white"
-            android:textSize="30sp" />
-    </LinearLayout>
+            android:textSize="30sp"
+            android:textStyle="italic" />
 
-    <TextView
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_marginBottom="20dp"
-        android:gravity="bottom|center_horizontal"
-        android:text="Swipe left"
-        android:textColor="@color/white"
-        android:textSize="16sp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="You won't need one."
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="italic" />
+    </LinearLayout>
 
 </FrameLayout>

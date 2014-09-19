@@ -2,7 +2,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/beautiful_blue"
+    android:background="@color/beautiful_yellow"
     android:orientation="vertical" >
 
     <LinearLayout
@@ -14,12 +14,12 @@
         <ImageView
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:src="@drawable/code_inverted"/>
+            android:src="@drawable/favorite_inverted"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="50,000 lines of code"
+            android:text="..and with lots of love.."
             android:layout_marginTop="30dp"
             android:textColor="@color/white"
             android:textSize="30sp"
