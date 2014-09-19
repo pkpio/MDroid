@@ -15,14 +15,28 @@
         android:background="@drawable/clickable_card"
         android:orientation="vertical" >
 
-        <TextView
-            android:id="@+id/list_modulename"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="25dp"
-            android:padding="3dp"
-            android:text="@string/sample_modulename"
-            android:textSize="16sp" />
-        
+            android:layout_height="50dp"
+            android:orientation="horizontal" >
+
+            <ImageView
+                android:contentDescription="@string/sample_modulename"
+                android:id="@+id/list_moduleicon"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/icon_messages" />
+
+            <TextView
+                android:id="@+id/list_modulename"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:gravity="center_vertical"
+                android:padding="3dp"
+                android:text="@string/sample_modulename"
+                android:textSize="16sp" />
+        </LinearLayout>
+
         <TextView
             android:id="@+id/list_moduledescription"
             android:layout_width="match_parent"
@@ -31,7 +45,6 @@
             android:padding="3dp"
             android:text="@string/list_course_sample_fullname"
             android:textSize="14sp" />
-
     </LinearLayout>
 
 </LinearLayout>
