@@ -197,8 +197,7 @@ public class ContentFragment extends Fragment {
 			case TYPE_MODULE:
 				MoodleModule module = listObjects.get(position).module;
 				viewHolder.modulename.setText(module.getName());
-				viewHolder.moduleicon.setImageBitmap(ModuleIcon.of(module,
-						context));
+				viewHolder.moduleicon.setImageResource(ModuleIcon.of(module));
 				String description = module.getDescription();
 				if (description == null)
 					description = "";
