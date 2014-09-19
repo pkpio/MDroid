@@ -1,6 +1,7 @@
 package in.co.praveenkumar.mdroid.fragment;
 
 import in.co.praveenkumar.mdroid.apis.R;
+import in.co.praveenkumar.mdroid.helper.ModuleIcon;
 import in.co.praveenkumar.mdroid.helper.SessionSetting;
 import in.co.praveenkumar.mdroid.moodlemodel.MoodleModule;
 import in.co.praveenkumar.mdroid.moodlemodel.MoodleModuleContent;
@@ -22,6 +23,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -173,6 +175,8 @@ public class ContentFragment extends Fragment {
 							.findViewById(R.id.list_modulename);
 					viewHolder.moduledesc = (TextView) convertView
 							.findViewById(R.id.list_moduledescription);
+					viewHolder.moduleicon = (ImageView) convertView
+							.findViewById(R.id.list_moduleicon);
 					break;
 				}
 
@@ -191,10 +195,11 @@ public class ContentFragment extends Fragment {
 				break;
 
 			case TYPE_MODULE:
-				viewHolder.modulename.setText(listObjects.get(position).module
-						.getName());
-				String description = listObjects.get(position).module
-						.getDescription();
+				MoodleModule module = listObjects.get(position).module;
+				viewHolder.modulename.setText(module.getName());
+				viewHolder.moduleicon.setImageBitmap(ModuleIcon.of(module,
+						context));
+				String description = module.getDescription();
 				if (description == null)
 					description = "";
 				else
@@ -233,6 +238,7 @@ public class ContentFragment extends Fragment {
 	static class ViewHolder {
 		TextView sectionname;
 		TextView modulename;
+		ImageView moduleicon;
 		TextView moduledesc;
 	}
 
