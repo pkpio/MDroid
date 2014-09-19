@@ -2,7 +2,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/beautiful_blue"
+    android:background="@color/beautiful_grey"
     android:orientation="vertical" >
 
     <LinearLayout
@@ -10,20 +10,28 @@
         android:layout_height="match_parent"
         android:gravity="center"
         android:orientation="vertical" >
-        
+
         <ImageView
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:src="@drawable/code_inverted"/>
+            android:src="@drawable/star_inverted" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="50,000 lines of code"
             android:layout_marginTop="30dp"
+            android:text="Show some love"
             android:textColor="@color/white"
             android:textSize="30sp"
             android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="with a 5 star rating, may be"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
     </LinearLayout>
 
 </FrameLayout>
