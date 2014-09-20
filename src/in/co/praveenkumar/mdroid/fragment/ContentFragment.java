@@ -213,29 +213,31 @@ public class ContentFragment extends Fragment {
 				@Override
 				public void onClick(View arg0) {
 					MoodleModule module = listObjects.get(position).module;
+					Intent i = new Intent(context, AppBrowserActivity.class);
+					String modurl = module.getUrl();
+					modurl = (modurl == null) ? session.getmUrl() : modurl;
+					i.putExtra("url", modurl);
+
 					if (!module.getModname().contentEquals("resource")) {
-						context.startActivity(new Intent(context,
-								AppBrowserActivity.class));
+						context.startActivity(i);
 						return;
 					}
 
 					if (module.getContents() == null) {
-						context.startActivity(new Intent(context,
-								AppBrowserActivity.class));
+						context.startActivity(i);
 						return;
 					}
 
 					if (module.getContents().size() == 0) {
-						context.startActivity(new Intent(context,
-								AppBrowserActivity.class));
+						context.startActivity(i);
 						return;
 					}
 
 					MoodleModuleContent content = module.getContents().get(0);
-					String url = content.getFileurl();
-					url += "&token=" + session.getToken();
+					String fileurl = content.getFileurl();
+					fileurl += "&token=" + session.getToken();
 					DownloadTask dt = new DownloadTask(context);
-					dt.download(url, content.getFilename(), true,
+					dt.download(fileurl, content.getFilename(), true,
 							DownloadTask.SYSTEM_DOWNLOADER);
 
 				}
