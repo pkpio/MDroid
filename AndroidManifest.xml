@@ -49,6 +49,10 @@
             android:name="in.co.praveenkumar.mdroid.activity.ForumActivity"
             android:configChanges="screenSize|orientation" >
         </activity>
+        <activity
+            android:name="in.co.praveenkumar.mdroid.activity.AppBrowserActivity"
+            android:configChanges="screenSize|orientation" >
+        </activity>
 
         <!-- Sugar SqlLite related -->
         <meta-data
