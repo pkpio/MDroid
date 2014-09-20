@@ -26,6 +26,10 @@ public class ModuleIcon {
 			return R.drawable.icon_file;
 
 		// -TODO- Icon
+		if (modname.contentEquals("choice"))
+			return R.drawable.icon_file;
+
+		// -TODO- Icon
 		if (modname.contentEquals("url"))
 			return R.drawable.icon_explorer;
 

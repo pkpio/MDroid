@@ -37,7 +37,7 @@ public class SessionSetting {
 	}
 
 	private void setCurrentValues() {
-		currentSiteId = appSharedPrefs.getLong("currentSiteId", 99999);
+		currentSiteId = appSharedPrefs.getLong("currentSiteId", 999);
 		siteInfo = MoodleSiteInfo.findById(MoodleSiteInfo.class, currentSiteId);
 
 		// If no site found. Get the 1st site in database.
