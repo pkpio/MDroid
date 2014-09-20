@@ -1,5 +1,6 @@
 package in.co.praveenkumar.mdroid.fragment;
 
+import in.co.praveenkumar.mdroid.activity.AppBrowserActivity;
 import in.co.praveenkumar.mdroid.apis.R;
 import in.co.praveenkumar.mdroid.helper.ModuleIcon;
 import in.co.praveenkumar.mdroid.helper.SessionSetting;
@@ -14,6 +15,7 @@ import in.co.praveenkumar.mdroid.view.StickyListView.PinnedSectionListAdapter;
 import java.util.ArrayList;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -210,15 +212,32 @@ public class ContentFragment extends Fragment {
 
 				@Override
 				public void onClick(View arg0) {
-					if (listObjects.get(position).module.getContents() != null) {
-						MoodleModuleContent content = listObjects.get(position).module
-								.getContents().get(0);
-						String url = content.getFileurl();
-						url += "&token=" + session.getToken();
-						DownloadTask dt = new DownloadTask(context);
-						dt.download(url, content.getFilename(), true,
-								DownloadTask.SYSTEM_DOWNLOADER);
+					MoodleModule module = listObjects.get(position).module;
+					if (!module.getModname().contentEquals("resource")) {
+						context.startActivity(new Intent(context,
+								AppBrowserActivity.class));
+						return;
 					}
+
+					if (module.getContents() == null) {
+						context.startActivity(new Intent(context,
+								AppBrowserActivity.class));
+						return;
+					}
+
+					if (module.getContents().size() == 0) {
+						context.startActivity(new Intent(context,
+								AppBrowserActivity.class));
+						return;
+					}
+
+					MoodleModuleContent content = module.getContents().get(0);
+					String url = content.getFileurl();
+					url += "&token=" + session.getToken();
+					DownloadTask dt = new DownloadTask(context);
+					dt.download(url, content.getFilename(), true,
+							DownloadTask.SYSTEM_DOWNLOADER);
+
 				}
 			});
 
