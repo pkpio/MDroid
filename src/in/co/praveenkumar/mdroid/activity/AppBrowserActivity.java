@@ -3,7 +3,9 @@ package in.co.praveenkumar.mdroid.activity;
 import in.co.praveenkumar.mdroid.adapter.NavigationDrawer;
 import in.co.praveenkumar.mdroid.apis.R;
 import android.os.Bundle;
+import android.webkit.CookieSyncManager;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 
 public class AppBrowserActivity extends NavigationDrawer {
 	WebView mBrowser;
@@ -13,8 +15,21 @@ public class AppBrowserActivity extends NavigationDrawer {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_appbrowser);
 		setUpDrawer();
+		String url = getIntent().getStringExtra("url");
+
 		mBrowser = (WebView) findViewById(R.id.webview);
-		mBrowser.loadUrl("http://moodle.praveenkumar.co.in");
+		CookieSyncManager.createInstance(this);
+		CookieSyncManager.getInstance().startSync();
+
+		mBrowser.setWebViewClient(new WebViewClient() {
+			@Override
+			public boolean shouldOverrideUrlLoading(WebView view, String url) {
+				view.loadUrl(url);
+				return true;
+			}
+		});
+
+		mBrowser.loadUrl(url);
 	}
 
 }
