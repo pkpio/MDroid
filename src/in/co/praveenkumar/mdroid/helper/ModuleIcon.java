@@ -23,23 +23,23 @@ public class ModuleIcon {
 
 		// -TODO- Icon
 		if (modname.contentEquals("page"))
-			return R.drawable.icon_note_taking;
+			return R.drawable.icon_file;
 
 		// -TODO- Icon
 		if (modname.contentEquals("url"))
-			return R.drawable.module_book;
+			return R.drawable.icon_explorer;
 
 		// -TODO- Icon
 		if (modname.contentEquals("glossary"))
-			return R.drawable.icon_note_taking;
+			return R.drawable.icon_glossary;
 
 		// -TODO- Icon
 		if (modname.contentEquals("book"))
-			return R.drawable.module_book;
+			return R.drawable.format_book;
 
 		// -TODO- Icon
 		if (modname.contentEquals("quiz"))
-			return R.drawable.module_book;
+			return R.drawable.icon_quiz;
 
 		if (modname.contentEquals("resource")) {
 			ArrayList<MoodleModuleContent> contents = module.getContents();
