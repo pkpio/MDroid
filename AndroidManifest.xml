@@ -32,7 +32,7 @@
             android:name="in.co.praveenkumar.mdroid.activity.LoginActivity"
             android:configChanges="screenSize|orientation"
             android:label="@string/app_name"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" >
         </activity>
         <activity
             android:name="in.co.praveenkumar.mdroid.activity.CourseActivity"
