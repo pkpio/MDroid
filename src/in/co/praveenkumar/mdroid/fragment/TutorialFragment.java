@@ -19,6 +19,11 @@ public class TutorialFragment extends Fragment {
 	public TutorialFragment(int index) {
 		this.index = index;
 	}
+	
+
+	public TutorialFragment() {
+		this.index = TUTORIAL_PAGE_COUNT;
+	}
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
