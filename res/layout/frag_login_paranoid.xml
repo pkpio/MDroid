@@ -19,7 +19,7 @@
             android:maxWidth="600dp"
             android:minWidth="600dp"
             android:orientation="vertical"
-            android:paddingTop="40dp" >
+            android:paddingTop="100dp" >
 
             <!-- Token -->
 
@@ -92,16 +92,16 @@
 
             <Button
                 android:id="@+id/login_paranoid_login"
-                android:layout_width="match_parent"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
                 android:layout_marginBottom="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginTop="30dp"
-                android:background="@drawable/login_button_bg"
-                android:padding="5dp"
+                android:layout_marginTop="40dp"
+                android:background="@drawable/white_btn_bg"
+                android:padding="8dp"
                 android:text="@string/activity_login_login_button"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                android:textSize="20sp" />
         </LinearLayout>
     </ScrollView>
 

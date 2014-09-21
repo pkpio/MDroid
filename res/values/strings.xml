@@ -15,7 +15,7 @@
     <string name="activity_login_password_icon_desc">Login icon</string>
     <string name="activity_login_url_hint">moodle url</string>
     <string name="activity_login_url_icon_desc">Url icon</string>
-    <string name="activity_login_login_button">login</string>
+    <string name="activity_login_login_button">Login</string>
     <string name="activity_login_token_hint">your account token</string>
     <string name="activity_login_status_title">Logging in..</string>
 
