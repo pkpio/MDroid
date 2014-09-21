@@ -25,11 +25,12 @@
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
+                android:layout_marginBottom="40dp"
                 android:background="@drawable/white_btn_bg"
+                android:onClick="changePage"
                 android:padding="8dp"
                 android:text="Paranoid"
                 android:textColor="@color/white"
-                android:layout_marginBottom="40dp"
                 android:textSize="18sp" />
 
             <!-- Username -->

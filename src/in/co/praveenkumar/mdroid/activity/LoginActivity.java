@@ -12,6 +12,7 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.view.View;
 
 public class LoginActivity extends FragmentActivity {
 	LoginFragmentAdapter mAdapter;
@@ -28,7 +29,7 @@ public class LoginActivity extends FragmentActivity {
 		mPager = (ViewPager) findViewById(R.id.pager);
 		mPager.setAdapter(mAdapter);
 		mPager.setOffscreenPageLimit(TutorialFragment.TUTORIAL_PAGE_COUNT);
-		
+
 		// Skip login if user is logged in already
 		SessionSetting session = new SessionSetting(this);
 		if (session.getCurrentSiteId() != 9999) {
@@ -60,6 +61,13 @@ public class LoginActivity extends FragmentActivity {
 		public CharSequence getPageTitle(int position) {
 			return tabs[position];
 		}
+	}
+
+	public void changePage(View v) {
+		if (mPager.getCurrentItem() == 0)
+			mPager.setCurrentItem(1);
+		else
+			mPager.setCurrentItem(0);
 	}
 
 }
