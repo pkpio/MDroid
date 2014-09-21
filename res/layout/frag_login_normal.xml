@@ -19,7 +19,18 @@
             android:maxWidth="600dp"
             android:minWidth="600dp"
             android:orientation="vertical"
-            android:paddingTop="80dp" >
+            android:paddingTop="40dp" >
+
+            <Button
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:background="@drawable/white_btn_bg"
+                android:padding="8dp"
+                android:text="Paranoid"
+                android:textColor="@color/white"
+                android:layout_marginBottom="40dp"
+                android:textSize="18sp" />
 
             <!-- Username -->
 

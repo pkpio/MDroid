@@ -19,7 +19,18 @@
             android:maxWidth="600dp"
             android:minWidth="600dp"
             android:orientation="vertical"
-            android:paddingTop="100dp" >
+            android:paddingTop="40dp" >
+
+            <Button
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginBottom="60dp"
+                android:background="@drawable/white_btn_bg"
+                android:padding="8dp"
+                android:text="Normal"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
 
             <!-- Token -->
 
