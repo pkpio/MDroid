@@ -129,7 +129,13 @@ public class ContactsFragment extends Fragment {
 				contacts = MoodleContact.find(MoodleContact.class,
 						"siteid = ?", session.getCurrentSiteId() + "");
 				if (adapter == null)
-					adapter = new RightNavListAdapter(getActivity());
+					try {
+						adapter = new RightNavListAdapter(getActivity());
+					} catch (Exception e) {
+						// sometimes user may have navigated to a different
+						// activity where contacts layout may not exist. Throws
+						// a null pointer exception
+					}
 				navListView.setAdapter(adapter);
 			}
 		}
