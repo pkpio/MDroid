@@ -15,7 +15,7 @@ import com.viewpagerindicator.CirclePageIndicator;
 import com.viewpagerindicator.PageIndicator;
 
 public class TutorialActivity extends FragmentActivity {
-	TestFragmentAdapter mAdapter;
+	TutorialFragmentAdapter mAdapter;
 	ViewPager mPager;
 	PageIndicator mIndicator;
 
@@ -24,7 +24,7 @@ public class TutorialActivity extends FragmentActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_tutorial);
 
-		mAdapter = new TestFragmentAdapter(getSupportFragmentManager());
+		mAdapter = new TutorialFragmentAdapter(getSupportFragmentManager());
 
 		mPager = (ViewPager) findViewById(R.id.pager);
 		mPager.setAdapter(mAdapter);
@@ -34,14 +34,14 @@ public class TutorialActivity extends FragmentActivity {
 		mIndicator.setViewPager(mPager);
 	}
 
-	class TestFragmentAdapter extends FragmentPagerAdapter {
+	class TutorialFragmentAdapter extends FragmentPagerAdapter {
 		final int[] ICONS = new int[] { R.drawable.expand_less,
 				R.drawable.expand_less_grey, R.drawable.icon_refresh,
 				R.drawable.drive_ms_powerpoint };
 
 		private int mCount = TutorialFragment.TUTORIAL_PAGE_COUNT;
 
-		public TestFragmentAdapter(FragmentManager fm) {
+		public TutorialFragmentAdapter(FragmentManager fm) {
 			super(fm);
 		}
 
