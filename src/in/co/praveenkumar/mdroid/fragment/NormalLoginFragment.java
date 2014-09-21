@@ -25,7 +25,7 @@ public class NormalLoginFragment extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 
-		View rootView = inflater.inflate(R.layout.frag_normal_login, container,
+		View rootView = inflater.inflate(R.layout.frag_login_normal, container,
 				false);
 		setUpWidgets(rootView);
 
