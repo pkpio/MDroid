@@ -43,7 +43,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|center_horizontal"
         android:layout_marginBottom="30dp"
-        android:background="@drawable/tutorial_end_btn_bg"
+        android:background="@drawable/white_btn_bg"
         android:gravity="center"
         android:padding="8dp"
         android:onClick="openLoginPage"
