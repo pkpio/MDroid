@@ -34,6 +34,19 @@ public class TutorialActivity extends FragmentActivity {
 		mIndicator.setViewPager(mPager);
 	}
 
+	@Override
+	protected void onResume() {
+		super.onResume();
+		mAdapter = new TutorialFragmentAdapter(getSupportFragmentManager());
+
+		mPager = (ViewPager) findViewById(R.id.pager);
+		mPager.setAdapter(mAdapter);
+		mPager.setOffscreenPageLimit(TutorialFragment.TUTORIAL_PAGE_COUNT);
+
+		mIndicator = (CirclePageIndicator) findViewById(R.id.indicator);
+		mIndicator.setViewPager(mPager);
+	}
+
 	class TutorialFragmentAdapter extends FragmentPagerAdapter {
 		final int[] ICONS = new int[] { R.drawable.expand_less,
 				R.drawable.expand_less_grey, R.drawable.icon_refresh,
