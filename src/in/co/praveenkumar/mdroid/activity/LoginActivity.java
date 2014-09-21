@@ -1,23 +1,21 @@
 package in.co.praveenkumar.mdroid.activity;
 
-import in.co.praveenkumar.mdroid.adapter.LoginTabsAdapter;
 import in.co.praveenkumar.mdroid.apis.R;
-import in.co.praveenkumar.mdroid.helper.ActionBarTabs;
+import in.co.praveenkumar.mdroid.fragment.NormalLoginFragment;
+import in.co.praveenkumar.mdroid.fragment.ParanoidLoginFragment;
+import in.co.praveenkumar.mdroid.fragment.TutorialFragment;
 import in.co.praveenkumar.mdroid.helper.SessionSetting;
-import android.app.ActionBar;
-import android.app.ActionBar.Tab;
-import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 
-public class LoginActivity extends FragmentActivity implements
-		ActionBar.TabListener {
-
-	private ViewPager viewPager;
-	private LoginTabsAdapter mAdapter;
-	private ActionBar actionBar;
+public class LoginActivity extends FragmentActivity {
+	LoginFragmentAdapter mAdapter;
+	ViewPager mPager;
 	private String[] tabs = { "Normal", "Paranoid" };
 
 	@Override
@@ -25,40 +23,12 @@ public class LoginActivity extends FragmentActivity implements
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login);
 
-		// Initialization
-		viewPager = (ViewPager) findViewById(R.id.pager);
-		actionBar = getActionBar();
-		mAdapter = new LoginTabsAdapter(getSupportFragmentManager());
+		mAdapter = new LoginFragmentAdapter(getSupportFragmentManager());
 
-		viewPager.setAdapter(mAdapter);
-		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-		ActionBarTabs.setHasEmbeddedTabs(actionBar, false);
-
-		// Adding Tabs
-		for (String tab_name : tabs) {
-			actionBar.addTab(actionBar.newTab().setText(tab_name)
-					.setTabListener(this));
-		}
-
-		/**
-		 * on swiping the viewpager make respective tab selected
-		 * */
-		viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-
-			@Override
-			public void onPageSelected(int position) {
-				actionBar.setSelectedNavigationItem(position);
-			}
-
-			@Override
-			public void onPageScrolled(int arg0, float arg1, int arg2) {
-			}
-
-			@Override
-			public void onPageScrollStateChanged(int arg0) {
-			}
-		});
-
+		mPager = (ViewPager) findViewById(R.id.pager);
+		mPager.setAdapter(mAdapter);
+		mPager.setOffscreenPageLimit(TutorialFragment.TUTORIAL_PAGE_COUNT);
+		
 		// Skip login if user is logged in already
 		SessionSetting session = new SessionSetting(this);
 		if (session.getCurrentSiteId() != 9999) {
@@ -67,18 +37,29 @@ public class LoginActivity extends FragmentActivity implements
 		}
 	}
 
-	@Override
-	public void onTabReselected(Tab tab, FragmentTransaction ft) {
-	}
+	class LoginFragmentAdapter extends FragmentPagerAdapter {
 
-	@Override
-	public void onTabSelected(Tab tab, FragmentTransaction ft) {
-		// on tab selected. Show respected fragment view
-		viewPager.setCurrentItem(tab.getPosition());
-	}
+		public LoginFragmentAdapter(FragmentManager fm) {
+			super(fm);
+		}
 
-	@Override
-	public void onTabUnselected(Tab tab, FragmentTransaction ft) {
+		@Override
+		public Fragment getItem(int position) {
+			if (position == 0)
+				return new NormalLoginFragment();
+			else
+				return new ParanoidLoginFragment();
+		}
+
+		@Override
+		public int getCount() {
+			return tabs.length;
+		}
+
+		@Override
+		public CharSequence getPageTitle(int position) {
+			return tabs[position];
+		}
 	}
 
 }
