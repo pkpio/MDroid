@@ -29,7 +29,7 @@
                 android:background="@drawable/white_btn_bg"
                 android:onClick="changePage"
                 android:padding="8dp"
-                android:text="Paranoid"
+                android:text="@string/activity_login_normal"
                 android:textColor="@color/white"
                 android:textSize="18sp" />
 

@@ -9,6 +9,8 @@
     <string name="drawer_close">close</string>
 
     <!-- Login activity -->
+    <string name="activity_login_normal">Normal</string>
+    <string name="activity_login_paranoid">Paranoid</string>
     <string name="activity_login_email_hint">username or email</string>
     <string name="activity_login_email_icon_desc">Login icon</string>
     <string name="activity_login_password_hint">password</string>
