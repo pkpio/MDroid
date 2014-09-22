@@ -18,6 +18,7 @@ public class NormalLoginFragment extends Fragment {
 	EditText passwordET;
 	EditText murlET;
 	Button loginButton;
+	Button retryButton;
 	ScrollView loginProgressSV;
 	TextView loginProgressTV;
 
@@ -36,6 +37,15 @@ public class NormalLoginFragment extends Fragment {
 			}
 		});
 
+		retryButton.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				loginProgressSV.setVisibility(ScrollView.GONE);
+				loginButton.setText("Login");
+				loginButton.setEnabled(true);
+			}
+		});
+
 		return rootView;
 	}
 
@@ -50,6 +60,7 @@ public class NormalLoginFragment extends Fragment {
 				.findViewById(R.id.login_progress_layout);
 		loginProgressTV = (TextView) rootView
 				.findViewById(R.id.login_progress_message);
+		retryButton = (Button) rootView.findViewById(R.id.login_normal_retry);
 	}
 
 	private void doNormalLogin() {
