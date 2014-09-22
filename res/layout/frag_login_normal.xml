@@ -210,6 +210,17 @@
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
                 android:textColor="@color/white" />
+
+            <Button
+                android:id="@+id/login_normal_retry"
+                android:layout_marginTop="10dp"
+                android:padding="8dp"
+                android:textSize="18sp"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/white_btn_bg"
+                android:text="retry"
+                android:textColor="@color/white" />
         </LinearLayout>
     </ScrollView>
 
