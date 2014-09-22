@@ -32,7 +32,7 @@ public class LoginActivity extends FragmentActivity {
 
 		// Skip login if user is logged in already
 		SessionSetting session = new SessionSetting(this);
-		if (session.getCurrentSiteId() != 9999) {
+		if (session.getCurrentSiteId() != SessionSetting.NO_SITE_ID) {
 			Intent i = new Intent(this, CourseActivity.class);
 			this.startActivity(i);
 		}
