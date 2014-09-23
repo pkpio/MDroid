@@ -36,7 +36,7 @@
         <item name="android:actionBarTabTextStyle">@style/ActionBarTabTextStyle.Moodle</item>
 
         <!-- ViewPageIndicator specific -->
-        <item name="vpiTabPageIndicatorStyle">@style/CustomTabPageIndicator</item>
+        <item name="vpiTabPageIndicatorStyle">@style/TabPageIndicator.Moodle</item>
     </style>
 
     <!-- Moodle No actionbar theme. -->
@@ -99,7 +99,7 @@
     </style>
 
     <!-- ViewPageInidicator styles -->
-    <style name="CustomTabPageIndicator" parent="Widget.TabPageIndicator">
+    <style name="TabPageIndicator.Moodle" parent="Widget.TabPageIndicator">
 
         <!-- <item name="android:background">@drawable/custom_tab_indicator</item> -->
         <!-- <item name="android:textAppearance">@style/CustomTabPageIndicator.Text</item> -->
