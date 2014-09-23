@@ -37,6 +37,9 @@ public class LeftNavigationFragment extends Fragment {
 	List<MoodleSiteInfo> sites;
 	String[] menuItems = new String[] { "Courses", "Calender", "Forums",
 			"Notes" };
+	int[] menuIcons = new int[] { R.drawable.icon_course,
+			R.drawable.icon_calendar, R.drawable.icon_messages,
+			R.drawable.icon_note_taking };
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -150,6 +153,8 @@ public class LeftNavigationFragment extends Fragment {
 
 					viewHolder.menuItemName = (TextView) convertView
 							.findViewById(R.id.nav_menuitem);
+					viewHolder.menuItemIcon = (ImageView) convertView
+							.findViewById(R.id.nav_menuicon);
 					break;
 				}
 
@@ -176,6 +181,9 @@ public class LeftNavigationFragment extends Fragment {
 			case TYPE_MENUITEM:
 				viewHolder.menuItemName.setText(menuItems[position
 						- sites.size()]);
+				viewHolder.menuItemIcon
+						.setImageResource(menuIcons[position
+								- sites.size()]);
 				break;
 			}
 			return convertView;
@@ -187,6 +195,7 @@ public class LeftNavigationFragment extends Fragment {
 		TextView sitename;
 		ImageView userimage;
 		TextView menuItemName;
+		ImageView menuItemIcon;
 	}
 
 }
