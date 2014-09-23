@@ -34,6 +34,9 @@
         <!-- Light.DarkActionBar specific -->
         <item name="android:actionBarWidgetTheme">@style/Theme.Moodle.Widget</item>
         <item name="android:actionBarTabTextStyle">@style/ActionBarTabTextStyle.Moodle</item>
+
+        <!-- ViewPageIndicator specific -->
+        <item name="vpiTabPageIndicatorStyle">@style/CustomTabPageIndicator</item>
     </style>
 
     <!-- Moodle No actionbar theme. -->
@@ -93,6 +96,22 @@
 
     <style name="ActionBarTabTextStyle.Moodle" parent="@android:style/Widget.Holo.ActionBar.TabText">
         <item name="android:textColor">@color/tab_text_color</item>
+    </style>
+
+    <!-- ViewPageInidicator styles -->
+    <style name="CustomTabPageIndicator" parent="Widget.TabPageIndicator">
+
+        <!-- <item name="android:background">@drawable/custom_tab_indicator</item> -->
+        <!-- <item name="android:textAppearance">@style/CustomTabPageIndicator.Text</item> -->
+        <item name="android:textColor">#FF555555</item>
+        <item name="android:textSize">16sp</item>
+        <!-- <item name="android:divider">@drawable/custom_tab_indicator_divider</item> -->
+        <item name="android:dividerPadding">10dp</item>
+        <item name="android:showDividers">middle</item>
+        <item name="android:paddingLeft">8dp</item>
+        <item name="android:paddingRight">8dp</item>
+        <item name="android:fadingEdge">horizontal</item>
+        <item name="android:fadingEdgeLength">8dp</item>
     </style>
 
 </resources>
