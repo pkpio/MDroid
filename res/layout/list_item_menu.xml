@@ -2,7 +2,15 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="horizontal" >
+
+    <ImageView
+        android:id="@+id/nav_menuicon"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:contentDescription="@string/list_item_sample_menu"
+        android:padding="8dp"
+        android:src="@drawable/icon_course" />
 
     <TextView
         android:id="@+id/nav_menuitem"
@@ -10,7 +18,7 @@
         android:layout_height="60dp"
         android:gravity="start|center_vertical"
         android:paddingEnd="16dp"
-        android:paddingLeft="16dp"
+        android:paddingLeft="0dp"
         android:paddingRight="16dp"
         android:paddingStart="16dp"
         android:text="@string/list_item_sample_menu"
