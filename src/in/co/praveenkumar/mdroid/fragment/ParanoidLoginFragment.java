@@ -17,6 +17,7 @@ public class ParanoidLoginFragment extends Fragment {
 	EditText tokenET;
 	EditText murlET;
 	Button loginButton;
+	Button retryButton;
 	ScrollView loginProgressSV;
 	TextView loginProgressTV;
 
@@ -35,6 +36,15 @@ public class ParanoidLoginFragment extends Fragment {
 			}
 		});
 
+		retryButton.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				loginProgressSV.setVisibility(ScrollView.GONE);
+				loginButton.setText("Login");
+				loginButton.setEnabled(true);
+			}
+		});
+
 		return rootView;
 	}
 
@@ -46,13 +56,14 @@ public class ParanoidLoginFragment extends Fragment {
 				.findViewById(R.id.login_progress_layout);
 		loginProgressTV = (TextView) rootView
 				.findViewById(R.id.login_progress_message);
+		retryButton = (Button) rootView.findViewById(R.id.login_paranoid_retry);
 	}
 
 	private void doParanoidLogin() {
 		String token = tokenET.getText().toString();
 		String mUrl = murlET.getText().toString();
 
-		new LoginTask(token, mUrl, loginButton, loginProgressSV, loginProgressTV,
-				getActivity()).execute("");
+		new LoginTask(token, mUrl, loginButton, loginProgressSV,
+				loginProgressTV, getActivity()).execute("");
 	}
 }
