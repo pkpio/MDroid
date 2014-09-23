@@ -213,14 +213,14 @@
 
             <Button
                 android:id="@+id/login_normal_retry"
-                android:layout_marginTop="10dp"
-                android:padding="8dp"
-                android:textSize="18sp"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
+                android:layout_margin="10dp"
                 android:background="@drawable/white_btn_bg"
+                android:padding="8dp"
                 android:text="retry"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                android:textSize="18sp" />
         </LinearLayout>
     </ScrollView>
 

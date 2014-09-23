@@ -176,6 +176,17 @@
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
                 android:textColor="@color/white" />
+
+            <Button
+                android:id="@+id/login_paranoid_retry"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@drawable/white_btn_bg"
+                android:padding="8dp"
+                android:text="retry"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
         </LinearLayout>
     </ScrollView>
 
