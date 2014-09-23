@@ -1,22 +1,21 @@
 package in.co.praveenkumar.mdroid.activity;
 
-import in.co.praveenkumar.mdroid.adapter.CourseTabsAdapter;
+import com.viewpagerindicator.TabPageIndicator;
+
 import in.co.praveenkumar.mdroid.adapter.NavigationDrawer;
 import in.co.praveenkumar.mdroid.apis.R;
-import in.co.praveenkumar.mdroid.helper.ActionBarTabs;
-import android.app.ActionBar;
-import android.app.ActionBar.Tab;
-import android.app.FragmentTransaction;
+import in.co.praveenkumar.mdroid.fragment.CourseFragment;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 
-public class CourseActivity extends NavigationDrawer implements
-		ActionBar.TabListener {
+public class CourseActivity extends NavigationDrawer {
 
 	private ViewPager viewPager;
-	private CourseTabsAdapter mAdapter;
-	private ActionBar actionBar;
-	private String[] tabs = { "All Course", "My Courses", "Fav Courses" };
+	private static final String[] TABS = { "All Course", "My Courses",
+			"Fav Courses" };
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -24,53 +23,48 @@ public class CourseActivity extends NavigationDrawer implements
 		setContentView(R.layout.activity_course);
 		setUpDrawer();
 
-		// Initialization
+		FragmentPagerAdapter mAdapter = new CourseTabsAdapter(
+				getSupportFragmentManager());
+
 		viewPager = (ViewPager) findViewById(R.id.course_pager);
 		viewPager.setOffscreenPageLimit(3);
-		actionBar = getActionBar();
-		mAdapter = new CourseTabsAdapter(getSupportFragmentManager());
-		viewPager.setAdapter(mAdapter);
-		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-		ActionBarTabs.setHasEmbeddedTabs(actionBar, false);
 
-		// Adding Tabs
-		for (String tab_name : tabs) {
-			actionBar.addTab(actionBar.newTab().setText(tab_name)
-					.setTabListener(this));
+		viewPager.setAdapter(mAdapter);
+
+        TabPageIndicator indicator = (TabPageIndicator)findViewById(R.id.indicator);
+        indicator.setViewPager(viewPager);
+	}
+
+	class CourseTabsAdapter extends FragmentPagerAdapter {
+		public CourseTabsAdapter(FragmentManager fm) {
+			super(fm);
 		}
 
-		/**
-		 * on swiping the viewpager make respective tab selected
-		 * */
-		viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-
-			@Override
-			public void onPageSelected(int position) {
-				actionBar.setSelectedNavigationItem(position);
+		@Override
+		public Fragment getItem(int position) {
+			switch (position) {
+			case 0:
+				// List all courses
+				return new CourseFragment();
+			case 1:
+				// List only user courses
+				return new CourseFragment(CourseFragment.TYPE_USER_COURSES);
+			case 2:
+				// List only fav courses
+				return new CourseFragment(CourseFragment.TYPE_FAV_COURSES);
 			}
+			return null;
+		}
 
-			@Override
-			public void onPageScrolled(int arg0, float arg1, int arg2) {
-			}
+		@Override
+		public CharSequence getPageTitle(int position) {
+			return TABS[position];
+		}
 
-			@Override
-			public void onPageScrollStateChanged(int arg0) {
-			}
-		});
-	}
-
-	@Override
-	public void onTabReselected(Tab tab, FragmentTransaction ft) {
-	}
-
-	@Override
-	public void onTabSelected(Tab tab, FragmentTransaction ft) {
-		// on tab selected. Show respected fragment view
-		viewPager.setCurrentItem(tab.getPosition());
-	}
-
-	@Override
-	public void onTabUnselected(Tab tab, FragmentTransaction ft) {
+		@Override
+		public int getCount() {
+			return TABS.length;
+		}
 	}
 
 }
