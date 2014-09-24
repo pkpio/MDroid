@@ -36,7 +36,7 @@
 
     <fragment
         android:id="@+id/right_nav_layout"
-        android:name="in.co.praveenkumar.mdroid.fragment.ContactsFragment"
+        android:name="in.co.praveenkumar.mdroid.fragment.RightNavigationFragment"
         android:layout_width="240dp"
         android:layout_height="match_parent"
         android:layout_gravity="end" />

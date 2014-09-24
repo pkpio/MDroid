@@ -21,7 +21,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
-public class ContactsFragment extends Fragment {
+public class RightNavigationFragment extends Fragment {
 	DrawerStateInterface drawerState;
 	final String DEBUG_TAG = "ContactsFragment";
 	ListView navListView;
