@@ -14,8 +14,7 @@ import com.viewpagerindicator.TabPageIndicator;
 public class CourseActivity extends AppNavigationDrawer {
 
 	private ViewPager viewPager;
-	private static final String[] TABS = { "All Course", "My Courses",
-			"Fav Courses" };
+	private static final String[] TABS = { "My Courses", "Fav Courses" };
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -31,8 +30,8 @@ public class CourseActivity extends AppNavigationDrawer {
 
 		viewPager.setAdapter(mAdapter);
 
-        TabPageIndicator indicator = (TabPageIndicator)findViewById(R.id.indicator);
-        indicator.setViewPager(viewPager);
+		TabPageIndicator indicator = (TabPageIndicator) findViewById(R.id.indicator);
+		indicator.setViewPager(viewPager);
 	}
 
 	class CourseTabsAdapter extends FragmentPagerAdapter {
@@ -44,12 +43,9 @@ public class CourseActivity extends AppNavigationDrawer {
 		public Fragment getItem(int position) {
 			switch (position) {
 			case 0:
-				// List all courses
-				return new CourseFragment();
-			case 1:
 				// List only user courses
 				return new CourseFragment(CourseFragment.TYPE_USER_COURSES);
-			case 2:
+			case 1:
 				// List only fav courses
 				return new CourseFragment(CourseFragment.TYPE_FAV_COURSES);
 			}
