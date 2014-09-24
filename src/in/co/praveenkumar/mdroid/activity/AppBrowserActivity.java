@@ -1,13 +1,13 @@
 package in.co.praveenkumar.mdroid.activity;
 
-import in.co.praveenkumar.mdroid.adapter.NavigationDrawer;
 import in.co.praveenkumar.mdroid.apis.R;
+import in.co.praveenkumar.mdroid.helper.AppNavigationDrawer;
 import android.os.Bundle;
 import android.webkit.CookieSyncManager;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-public class AppBrowserActivity extends NavigationDrawer {
+public class AppBrowserActivity extends AppNavigationDrawer {
 	WebView mBrowser;
 
 	@Override
