@@ -64,7 +64,8 @@ public class ForumFragment extends Fragment {
 					"siteid = ? and courseid = ?", session.getCurrentSiteId()
 							+ "", courseid + "");
 
-		ListView forumList = (ListView) rootView.findViewById(R.id.content_forum);
+		ListView forumList = (ListView) rootView
+				.findViewById(R.id.content_forum);
 		forumListAdapter = new ForumListAdapter(getActivity());
 
 		forumList.setAdapter(forumListAdapter);
@@ -170,8 +171,13 @@ public class ForumFragment extends Fragment {
 			syncStatus = fst.syncForums(courseIds);
 
 			if (syncStatus) {
-				mForums = MoodleForum.find(MoodleForum.class, "siteid = ?",
-						session.getCurrentSiteId() + "");
+				if (courseid == 0)
+					mForums = MoodleForum.find(MoodleForum.class, "siteid = ?",
+							session.getCurrentSiteId() + "");
+				else
+					mForums = MoodleForum.find(MoodleForum.class,
+							"siteid = ? and courseid = ?",
+							session.getCurrentSiteId() + "", courseid + "");
 				return true;
 			} else
 				return false;
