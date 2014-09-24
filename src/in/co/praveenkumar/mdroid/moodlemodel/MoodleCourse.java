@@ -111,6 +111,7 @@ public class MoodleCourse extends SugarRecord<MoodleCourse> {
 	// Relational fields
 	long siteid;
 	Boolean isUserCourse;
+	Boolean isFavCourse;
 
 	public MoodleCourse() {
 
@@ -393,6 +394,24 @@ public class MoodleCourse extends SugarRecord<MoodleCourse> {
 	 */
 	public void setIsUserCourse(Boolean isUserCourse) {
 		this.isUserCourse = isUserCourse;
+	}
+
+	/**
+	 * Get favourite status course in the app
+	 * 
+	 * @return
+	 */
+	public Boolean getIsFavCourse() {
+		return isFavCourse;
+	}
+
+	/**
+	 * Set favourite status course in the app
+	 * 
+	 * @return
+	 */
+	public void setIsFavCourse(Boolean isFavCourse) {
+		this.isFavCourse = isFavCourse;
 	}
 
 	/**
