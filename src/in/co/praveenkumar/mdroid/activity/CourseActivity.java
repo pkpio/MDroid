@@ -1,17 +1,17 @@
 package in.co.praveenkumar.mdroid.activity;
 
-import com.viewpagerindicator.TabPageIndicator;
-
-import in.co.praveenkumar.mdroid.adapter.NavigationDrawer;
 import in.co.praveenkumar.mdroid.apis.R;
 import in.co.praveenkumar.mdroid.fragment.CourseFragment;
+import in.co.praveenkumar.mdroid.helper.AppNavigationDrawer;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 
-public class CourseActivity extends NavigationDrawer {
+import com.viewpagerindicator.TabPageIndicator;
+
+public class CourseActivity extends AppNavigationDrawer {
 
 	private ViewPager viewPager;
 	private static final String[] TABS = { "All Course", "My Courses",

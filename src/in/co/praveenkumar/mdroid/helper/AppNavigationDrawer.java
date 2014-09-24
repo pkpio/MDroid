@@ -1,4 +1,4 @@
-package in.co.praveenkumar.mdroid.adapter;
+package in.co.praveenkumar.mdroid.helper;
 
 import in.co.praveenkumar.mdroid.apis.R;
 import in.co.praveenkumar.mdroid.interfaces.DrawerStateInterface;
@@ -11,7 +11,7 @@ import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 
-public class NavigationDrawer extends FragmentActivity implements
+public class AppNavigationDrawer extends FragmentActivity implements
 		DrawerStateInterface {
 	private DrawerLayout mDrawerLayout;
 	private ActionBarDrawerToggle mDrawerToggle;

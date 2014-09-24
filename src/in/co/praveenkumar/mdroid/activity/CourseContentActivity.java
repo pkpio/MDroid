@@ -1,10 +1,10 @@
 package in.co.praveenkumar.mdroid.activity;
 
-import in.co.praveenkumar.mdroid.adapter.NavigationDrawer;
 import in.co.praveenkumar.mdroid.apis.R;
 import in.co.praveenkumar.mdroid.fragment.CalenderFragment;
 import in.co.praveenkumar.mdroid.fragment.ContentFragment;
 import in.co.praveenkumar.mdroid.fragment.ForumFragment;
+import in.co.praveenkumar.mdroid.helper.AppNavigationDrawer;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -13,7 +13,7 @@ import android.support.v4.view.ViewPager;
 
 import com.viewpagerindicator.TabPageIndicator;
 
-public class CourseContentActivity extends NavigationDrawer {
+public class CourseContentActivity extends AppNavigationDrawer {
 	private long coursedbid;
 	private int courseid;
 	private ViewPager viewPager;

@@ -1,10 +1,10 @@
 package in.co.praveenkumar.mdroid.activity;
 
-import in.co.praveenkumar.mdroid.adapter.NavigationDrawer;
 import in.co.praveenkumar.mdroid.apis.R;
+import in.co.praveenkumar.mdroid.helper.AppNavigationDrawer;
 import android.os.Bundle;
 
-public class CalendarActivity extends NavigationDrawer {
+public class CalendarActivity extends AppNavigationDrawer {
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
