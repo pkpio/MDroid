@@ -2,13 +2,13 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/grey14"
     android:orientation="vertical" >
 
     <in.co.praveenkumar.mdroid.view.StickyListView
         android:id="@+id/list_course_content"
         android:layout_width="match_parent"
         android:layout_height="fill_parent"
-        android:background="@color/grey14"
         android:divider="@null"
         android:dividerHeight="0dp" >
     </in.co.praveenkumar.mdroid.view.StickyListView>
@@ -28,10 +28,10 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:padding="16dp"
             android:text="No contents here"
-            android:textSize="20sp"
             android:textColor="@color/grey8"
-            android:padding="16dp" />
+            android:textSize="20sp" />
     </LinearLayout>
 
 </FrameLayout>
