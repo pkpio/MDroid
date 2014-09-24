@@ -1,11 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ListView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/content_course"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:adjustViewBounds="true"
-    android:background="@color/card_listview_bg"
-    android:divider="@null"
-    android:dividerHeight="0dp" >
+    android:background="@color/grey14"
+    android:orientation="vertical" >
 
-</ListView>
+    <ListView
+        android:id="@+id/content_course"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:adjustViewBounds="true"
+        android:background="@color/card_listview_bg"
+        android:divider="@null"
+        android:dividerHeight="0dp" >
+    </ListView>
+
+    <LinearLayout
+        android:id="@+id/course_empty_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical" >
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/icon_course_greyscale" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:text="No courses here"
+            android:textColor="@color/grey8"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+</FrameLayout>
