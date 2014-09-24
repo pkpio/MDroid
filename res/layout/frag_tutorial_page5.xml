@@ -20,7 +20,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
-            android:text="Show some love"
+            android:text="Support us"
             android:textColor="@color/white"
             android:textSize="30sp"
             android:textStyle="bold" />
@@ -29,7 +29,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
-            android:text="with a 5 star rating, may be"
+            android:text="with a 5 star rating if you may"
             android:textColor="@color/white"
             android:textSize="16sp" />
     </LinearLayout>
