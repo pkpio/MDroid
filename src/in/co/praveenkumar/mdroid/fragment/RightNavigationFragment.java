@@ -18,6 +18,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -27,6 +28,7 @@ public class RightNavigationFragment extends Fragment {
 	List<MoodleContact> contacts;
 	RightNavListAdapter adapter;
 	SessionSetting session;
+	LinearLayout chatEmptyLayout;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -34,6 +36,8 @@ public class RightNavigationFragment extends Fragment {
 
 		View rootView = inflater.inflate(R.layout.frag_right_navigation,
 				container, false);
+		chatEmptyLayout = (LinearLayout) rootView
+				.findViewById(R.id.chat_empty_layout);
 		ListView navListView = (ListView) rootView
 				.findViewById(R.id.right_nav_list);
 
@@ -66,6 +70,8 @@ public class RightNavigationFragment extends Fragment {
 
 		public RightNavListAdapter(Context context) {
 			this.context = context;
+			if (contacts.size() != 0)
+				chatEmptyLayout.setVisibility(LinearLayout.GONE);
 		}
 
 		@Override
@@ -138,6 +144,8 @@ public class RightNavigationFragment extends Fragment {
 			contacts = MoodleContact.find(MoodleContact.class, "siteid = ?",
 					session.getCurrentSiteId() + "");
 			adapter.notifyDataSetChanged();
+			if (contacts.size() != 0)
+				chatEmptyLayout.setVisibility(LinearLayout.GONE);
 		}
 
 	}
