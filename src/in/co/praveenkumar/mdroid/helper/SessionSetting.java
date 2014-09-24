@@ -61,6 +61,8 @@ public class SessionSetting {
 			mUrl = siteInfo.getSiteurl();
 			token = siteInfo.getToken();
 			currentSiteId = siteInfo.getId();
+		} else {
+			currentSiteId = NO_SITE_ID;
 		}
 	}
 
