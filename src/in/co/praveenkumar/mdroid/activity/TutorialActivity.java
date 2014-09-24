@@ -2,6 +2,7 @@ package in.co.praveenkumar.mdroid.activity;
 
 import in.co.praveenkumar.mdroid.apis.R;
 import in.co.praveenkumar.mdroid.fragment.TutorialFragment;
+import in.co.praveenkumar.mdroid.helper.SessionSetting;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -23,6 +24,14 @@ public class TutorialActivity extends FragmentActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_tutorial);
+
+		// Skip login if user is logged in already
+		SessionSetting session = new SessionSetting(this);
+		if (session.isTutored()) {
+			Intent i = new Intent(this, LoginActivity.class);
+			this.startActivity(i);
+			return;
+		}
 
 		mAdapter = new TutorialFragmentAdapter(getSupportFragmentManager());
 
@@ -82,6 +91,8 @@ public class TutorialActivity extends FragmentActivity {
 	}
 
 	public void openLoginPage(View v) {
+		// Skip tutorial from next time
+		new SessionSetting(this).setTutored(true);
 		startActivity(new Intent(this, LoginActivity.class));
 	}
 }
