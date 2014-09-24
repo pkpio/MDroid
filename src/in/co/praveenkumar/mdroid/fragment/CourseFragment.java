@@ -18,6 +18,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -39,6 +40,7 @@ public class CourseFragment extends Fragment {
 	SessionSetting session;
 	List<MoodleCourse> mCourses;
 	int Type = 0;
+	LinearLayout courseEmptyLayout;
 
 	/**
 	 * All courses will be listed. You can choose something else by using
@@ -70,6 +72,8 @@ public class CourseFragment extends Fragment {
 		mCourses = MoodleCourse.find(MoodleCourse.class, "siteid = ?",
 				session.getCurrentSiteId() + "");
 
+		courseEmptyLayout = (LinearLayout) rootView
+				.findViewById(R.id.course_empty_layout);
 		ListView courseList = (ListView) rootView
 				.findViewById(R.id.content_course);
 		courseListAdapter = new CourseListAdapter(getActivity());
@@ -87,6 +91,8 @@ public class CourseFragment extends Fragment {
 
 		public CourseListAdapter(Context context) {
 			this.context = context;
+			if (mCourses.size() != 0)
+				courseEmptyLayout.setVisibility(LinearLayout.GONE);
 		}
 
 		@Override
@@ -175,6 +181,8 @@ public class CourseFragment extends Fragment {
 			mCourses = MoodleCourse.find(MoodleCourse.class, "siteid = ?",
 					session.getCurrentSiteId() + "");
 			courseListAdapter.notifyDataSetChanged();
+			if (mCourses.size() != 0)
+				courseEmptyLayout.setVisibility(LinearLayout.GONE);
 		}
 	}
 
