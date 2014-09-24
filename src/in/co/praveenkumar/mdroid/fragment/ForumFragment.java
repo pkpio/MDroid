@@ -18,13 +18,14 @@ import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
 public class ForumFragment extends Fragment {
 	ForumListAdapter forumListAdapter;
+	ListView forumList;
 	SessionSetting session;
 	int courseid = 0;
 	List<MoodleForum> mForums;
@@ -64,21 +65,19 @@ public class ForumFragment extends Fragment {
 					"siteid = ? and courseid = ?", session.getCurrentSiteId()
 							+ "", courseid + "");
 
-		ListView forumList = (ListView) rootView
-				.findViewById(R.id.content_forum);
+		forumList = (ListView) rootView.findViewById(R.id.content_forum);
 		forumListAdapter = new ForumListAdapter(getActivity());
+
 		forumList.setAdapter(forumListAdapter);
 		new AsyncForumSync(session.getmUrl(), session.getToken(),
 				session.getCurrentSiteId()).execute("");
 		return rootView;
 	}
 
-	public class ForumListAdapter extends ArrayAdapter<String> {
+	public class ForumListAdapter extends BaseAdapter {
 		private final Context context;
 
 		public ForumListAdapter(Context context) {
-			super(context, R.layout.list_item_account, new String[mForums
-					.size()]);
 			this.context = context;
 			if (mForums.size() != 0)
 				forumEmptyLayout.setVisibility(LinearLayout.GONE);
@@ -127,6 +126,21 @@ public class ForumFragment extends Fragment {
 
 			return convertView;
 		}
+
+		@Override
+		public int getCount() {
+			return mForums.size();
+		}
+
+		@Override
+		public Object getItem(int position) {
+			return mForums.get(position);
+		}
+
+		@Override
+		public long getItemId(int position) {
+			return position;
+		}
 	}
 
 	static class ViewHolder {
@@ -166,6 +180,9 @@ public class ForumFragment extends Fragment {
 
 		@Override
 		protected void onPostExecute(Boolean result) {
+			// forumListAdapter = new ForumListAdapter(getActivity());
+			// forumList.setAdapter(forumListAdapter);
+			System.out.println("Forums size:" + mForums.size());
 			forumListAdapter.notifyDataSetChanged();
 			if (mForums.size() != 0)
 				forumEmptyLayout.setVisibility(LinearLayout.GONE);
