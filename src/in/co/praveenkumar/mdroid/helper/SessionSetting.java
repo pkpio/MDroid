@@ -142,4 +142,25 @@ public class SessionSetting {
 	public MoodleSiteInfo getSiteInfo() {
 		return siteInfo;
 	}
+
+	/**
+	 * Get whether the user has gone through the app tutorial.
+	 * 
+	 * @return TutoredStatus
+	 */
+	public Boolean isTutored() {
+		return appSharedPrefs.getBoolean("isTutored", false);
+	}
+
+	/**
+	 * Set whether the user has gone through the app tutorial. If true, tutorial
+	 * won't be shown to the user again.
+	 * 
+	 * @param TutoredStatus
+	 */
+	public void setTutored(Boolean TutoredStatus) {
+		Log.d(DEBUG_TAG, "isTutored updated");
+		prefsEditor.putBoolean("isTutored", TutoredStatus);
+		prefsEditor.commit();
+	}
 }
