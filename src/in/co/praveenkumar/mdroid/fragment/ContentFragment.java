@@ -219,7 +219,10 @@ public class ContentFragment extends Fragment {
 				@Override
 				public void onClick(View arg0) {
 					MoodleModule module = listObjects.get(position).module;
+					if (module == null)
+						return;	
 					Intent i = new Intent(context, AppBrowserActivity.class);
+
 					String modurl = module.getUrl();
 					modurl = (modurl == null) ? session.getmUrl() : modurl;
 					i.putExtra("url", modurl);
