@@ -25,7 +25,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -102,7 +102,7 @@ public class LeftNavigationFragment extends Fragment {
 		}
 	}
 
-	public class LeftNavListAdapter extends ArrayAdapter<String> {
+	public class LeftNavListAdapter extends BaseAdapter {
 		private static final int TYPE_ACCOUNT = 0;
 		private static final int TYPE_MENUITEM = 1;
 		private static final int TYPE_COUNT = 2;
@@ -110,8 +110,6 @@ public class LeftNavigationFragment extends Fragment {
 		private final Context context;
 
 		public LeftNavListAdapter(Context context) {
-			super(context, R.layout.list_item_account, new String[sites.size()
-					+ menuItems.length]);
 			this.context = context;
 		}
 
@@ -189,6 +187,21 @@ public class LeftNavigationFragment extends Fragment {
 				break;
 			}
 			return convertView;
+		}
+
+		@Override
+		public int getCount() {
+			return sites.size() + menuItems.length;
+		}
+
+		@Override
+		public Object getItem(int position) {
+			return null;
+		}
+
+		@Override
+		public long getItemId(int position) {
+			return position;
 		}
 	}
 
