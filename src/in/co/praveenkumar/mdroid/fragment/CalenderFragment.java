@@ -22,7 +22,7 @@ import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -120,7 +120,7 @@ public class CalenderFragment extends Fragment {
 
 	}
 
-	public class CalendarListAdapter extends ArrayAdapter<String> implements
+	public class CalendarListAdapter extends BaseAdapter implements
 			PinnedSectionListAdapter {
 		final Context context;
 		static final int TYPE_EVENT = 0;
@@ -128,8 +128,6 @@ public class CalenderFragment extends Fragment {
 		static final int TYPE_COUNT = 2;
 
 		public CalendarListAdapter(Context context) {
-			super(context, R.layout.list_item_event, new String[listObjects
-					.size()]);
 			this.context = context;
 			if (listObjects.size() != 0)
 				calenderEmptyLayout.setVisibility(LinearLayout.GONE);
@@ -218,6 +216,21 @@ public class CalenderFragment extends Fragment {
 				return true;
 			else
 				return false;
+		}
+
+		@Override
+		public int getCount() {
+			return listObjects.size();
+		}
+
+		@Override
+		public Object getItem(int position) {
+			return listObjects.get(position);
+		}
+
+		@Override
+		public long getItemId(int position) {
+			return position;
 		}
 	}
 
