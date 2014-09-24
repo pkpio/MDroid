@@ -17,14 +17,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
 public class RightNavigationFragment extends Fragment {
 	DrawerStateInterface drawerState;
 	final String DEBUG_TAG = "ContactsFragment";
-	ListView navListView;
 	List<MoodleContact> contacts;
 	RightNavListAdapter adapter;
 	SessionSetting session;
@@ -35,18 +34,16 @@ public class RightNavigationFragment extends Fragment {
 
 		View rootView = inflater.inflate(R.layout.frag_right_navigation,
 				container, false);
-		navListView = (ListView) rootView.findViewById(R.id.right_nav_list);
+		ListView navListView = (ListView) rootView
+				.findViewById(R.id.right_nav_list);
 
 		// Get sites info
 		session = new SessionSetting(getActivity());
 		contacts = MoodleContact.find(MoodleContact.class, "siteid = ?",
 				session.getCurrentSiteId() + "");
 
-		if (contacts != null)
-			if (contacts.size() != 0) {
-				adapter = new RightNavListAdapter(getActivity());
-				navListView.setAdapter(adapter);
-			}
+		adapter = new RightNavListAdapter(getActivity());
+		navListView.setAdapter(adapter);
 
 		new contactSyncerBg().execute("");
 
@@ -63,13 +60,11 @@ public class RightNavigationFragment extends Fragment {
 		}
 	}
 
-	public class RightNavListAdapter extends ArrayAdapter<String> {
+	public class RightNavListAdapter extends BaseAdapter {
 
 		private final Context context;
 
 		public RightNavListAdapter(Context context) {
-			super(context, R.layout.list_item_account,
-					new String[(contacts == null) ? 0 : contacts.size()]);
 			this.context = context;
 		}
 
@@ -104,6 +99,21 @@ public class RightNavigationFragment extends Fragment {
 
 			return convertView;
 		}
+
+		@Override
+		public int getCount() {
+			return contacts.size();
+		}
+
+		@Override
+		public Object getItem(int position) {
+			return contacts.get(position);
+		}
+
+		@Override
+		public long getItemId(int position) {
+			return position;
+		}
 	}
 
 	static class ViewHolder {
@@ -125,19 +135,9 @@ public class RightNavigationFragment extends Fragment {
 
 		@Override
 		protected void onPostExecute(Boolean result) {
-			if (result) {
-				contacts = MoodleContact.find(MoodleContact.class,
-						"siteid = ?", session.getCurrentSiteId() + "");
-				if (adapter == null)
-					try {
-						adapter = new RightNavListAdapter(getActivity());
-					} catch (Exception e) {
-						// sometimes user may have navigated to a different
-						// activity where contacts layout may not exist. Throws
-						// a null pointer exception
-					}
-				navListView.setAdapter(adapter);
-			}
+			contacts = MoodleContact.find(MoodleContact.class, "siteid = ?",
+					session.getCurrentSiteId() + "");
+			adapter.notifyDataSetChanged();
 		}
 
 	}
