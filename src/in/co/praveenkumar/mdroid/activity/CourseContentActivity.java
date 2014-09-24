@@ -1,22 +1,23 @@
 package in.co.praveenkumar.mdroid.activity;
 
-import in.co.praveenkumar.mdroid.adapter.CourseContentTabsAdapter;
 import in.co.praveenkumar.mdroid.adapter.NavigationDrawer;
 import in.co.praveenkumar.mdroid.apis.R;
-import in.co.praveenkumar.mdroid.helper.ActionBarTabs;
-import android.app.ActionBar;
-import android.app.ActionBar.Tab;
-import android.app.FragmentTransaction;
+import in.co.praveenkumar.mdroid.fragment.CalenderFragment;
+import in.co.praveenkumar.mdroid.fragment.ContentFragment;
+import in.co.praveenkumar.mdroid.fragment.ForumFragment;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 
-public class CourseContentActivity extends NavigationDrawer implements
-		ActionBar.TabListener {
+import com.viewpagerindicator.TabPageIndicator;
 
+public class CourseContentActivity extends NavigationDrawer {
+	private long coursedbid;
+	private int courseid;
 	private ViewPager viewPager;
-	private CourseContentTabsAdapter mAdapter;
-	private ActionBar actionBar;
-	private String[] tabs = { "Contents", "Forums", "Calendar" };
+	private static final String[] TABS = { "Contents", "Forums", "Calendar" };
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -25,56 +26,50 @@ public class CourseContentActivity extends NavigationDrawer implements
 		setUpDrawer();
 
 		Bundle extras = getIntent().getExtras();
-		Long coursedbid = extras.getLong("coursedbid");
-		int courseid = extras.getInt("courseid");
-		// Initialization
+		coursedbid = extras.getLong("coursedbid");
+		courseid = extras.getInt("courseid");
+
+		FragmentPagerAdapter mAdapter = new CourseContentTabsAdapter(
+				getSupportFragmentManager());
+
 		viewPager = (ViewPager) findViewById(R.id.course_content_pager);
 		viewPager.setOffscreenPageLimit(3);
-		actionBar = getActionBar();
-		mAdapter = new CourseContentTabsAdapter(getSupportFragmentManager(),
-				courseid, coursedbid);
 		viewPager.setAdapter(mAdapter);
-		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-		ActionBarTabs.setHasEmbeddedTabs(actionBar, false);
 
-		// Adding Tabs
-		for (String tab_name : tabs) {
-			actionBar.addTab(actionBar.newTab().setText(tab_name)
-					.setTabListener(this));
+		TabPageIndicator indicator = (TabPageIndicator) findViewById(R.id.indicator);
+		indicator.setViewPager(viewPager);
+	}
+
+	class CourseContentTabsAdapter extends FragmentPagerAdapter {
+		public CourseContentTabsAdapter(FragmentManager fm) {
+			super(fm);
 		}
 
-		/**
-		 * on swiping the viewpager make respective tab selected
-		 * */
-		viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-
-			@Override
-			public void onPageSelected(int position) {
-				actionBar.setSelectedNavigationItem(position);
+		@Override
+		public Fragment getItem(int position) {
+			switch (position) {
+			case 0:
+				// Course Content
+				return new ContentFragment(courseid, coursedbid);
+			case 1:
+				// Course Forum
+				return new ForumFragment(courseid);
+			case 2:
+				// Course Calendar
+				return new CalenderFragment(courseid);
 			}
+			return null;
+		}
 
-			@Override
-			public void onPageScrolled(int arg0, float arg1, int arg2) {
-			}
+		@Override
+		public CharSequence getPageTitle(int position) {
+			return TABS[position];
+		}
 
-			@Override
-			public void onPageScrollStateChanged(int arg0) {
-			}
-		});
-	}
-
-	@Override
-	public void onTabReselected(Tab tab, FragmentTransaction ft) {
-	}
-
-	@Override
-	public void onTabSelected(Tab tab, FragmentTransaction ft) {
-		// on tab selected. Show respected fragment view
-		viewPager.setCurrentItem(tab.getPosition());
-	}
-
-	@Override
-	public void onTabUnselected(Tab tab, FragmentTransaction ft) {
+		@Override
+		public int getCount() {
+			return TABS.length;
+		}
 	}
 
 }
