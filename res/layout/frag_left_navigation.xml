@@ -11,6 +11,7 @@
         android:layout_height="wrap_content"
         android:adjustViewBounds="true"
         android:divider="@null"
+        android:choiceMode="multipleChoice"
         android:dividerHeight="0dp" >
     </ListView>
 

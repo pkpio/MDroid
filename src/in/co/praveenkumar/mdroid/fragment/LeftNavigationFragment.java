@@ -35,6 +35,8 @@ public class LeftNavigationFragment extends Fragment {
 	final String DEBUG_TAG = "Left Navigation Fragment";
 	ListView navListView;
 	List<MoodleSiteInfo> sites;
+	SessionSetting session;
+
 	String[] menuItems = new String[] { "Courses", "Calender", "Forums",
 			"Notes" };
 	int[] menuIcons = new int[] { R.drawable.icon_course,
@@ -50,7 +52,7 @@ public class LeftNavigationFragment extends Fragment {
 		navListView = (ListView) rootView.findViewById(R.id.left_nav_list);
 
 		// Get sites info
-		final SessionSetting session = new SessionSetting(getActivity());
+		session = new SessionSetting(getActivity());
 		Log.d(DEBUG_TAG, session.getCurrentSiteId() + "");
 		sites = MoodleSiteInfo.listAll(MoodleSiteInfo.class);
 
@@ -157,11 +159,8 @@ public class LeftNavigationFragment extends Fragment {
 							.findViewById(R.id.nav_menuicon);
 					break;
 				}
-
-				// Save the holder with the view
 				convertView.setTag(viewHolder);
 			} else {
-				// Just use the viewHolder and avoid findviewbyid()
 				viewHolder = (ViewHolder) convertView.getTag();
 			}
 
@@ -176,14 +175,17 @@ public class LeftNavigationFragment extends Fragment {
 								+ sites.get(position).getId()));
 				if (userImage != null)
 					viewHolder.userimage.setImageBitmap(userImage);
+
+				// Show this as current account if it is
+				if (session.getCurrentSiteId() == sites.get(position).getId())
+					navListView.setSelection(position);
 				break;
 
 			case TYPE_MENUITEM:
 				viewHolder.menuItemName.setText(menuItems[position
 						- sites.size()]);
-				viewHolder.menuItemIcon
-						.setImageResource(menuIcons[position
-								- sites.size()]);
+				viewHolder.menuItemIcon.setImageResource(menuIcons[position
+						- sites.size()]);
 				break;
 			}
 			return convertView;
