@@ -46,8 +46,14 @@ public class SessionSetting {
 			List<MoodleSiteInfo> sites = MoodleSiteInfo
 					.listAll(MoodleSiteInfo.class);
 			// Check if at least one site is present in database
-			if (sites.size() != 0)
+			if (sites.size() != 0) {
 				siteInfo = sites.get(0);
+
+				// Save this as current site for all future references.
+				// Do NOT use setCurrentSiteId call as it causes a loop.
+				prefsEditor.putLong("currentSiteId", siteInfo.getId());
+				prefsEditor.commit();
+			}
 		}
 
 		// set other fields if siteInfo was set
