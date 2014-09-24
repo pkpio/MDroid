@@ -4,11 +4,13 @@ import in.co.praveenkumar.mdroid.activity.CourseContentActivity;
 import in.co.praveenkumar.mdroid.apis.R;
 import in.co.praveenkumar.mdroid.helper.SessionSetting;
 import in.co.praveenkumar.mdroid.moodlemodel.MoodleCourse;
+import in.co.praveenkumar.mdroid.task.CourseSyncTask;
 
 import java.util.List;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -72,6 +74,10 @@ public class CourseFragment extends Fragment {
 				.findViewById(R.id.content_course);
 		courseListAdapter = new CourseListAdapter(getActivity());
 		courseList.setAdapter(courseListAdapter);
+
+		// -TODO- Change this sync to happen only when listing user courses
+		// Now it's happening twice. User and Fav courses
+		new courseSyncerBg().execute("");
 
 		return rootView;
 	}
@@ -145,6 +151,31 @@ public class CourseFragment extends Fragment {
 	static class ViewHolder {
 		TextView shortname;
 		TextView fullname;
+	}
+
+	/**
+	 * Syncs the courses of the current user in background and updates list *
+	 * 
+	 * @author Praveen Kumar Pendyala (praveen@praveenkumar.co.in)
+	 * 
+	 */
+	private class courseSyncerBg extends AsyncTask<String, Integer, Boolean> {
+		@Override
+		protected Boolean doInBackground(String... params) {
+			CourseSyncTask cs = new CourseSyncTask(session.getmUrl(),
+					session.getToken(), session.getCurrentSiteId());
+			if (cs.syncUserCourses())
+				return true;
+			else
+				return false;
+		}
+
+		@Override
+		protected void onPostExecute(Boolean result) {
+			mCourses = MoodleCourse.find(MoodleCourse.class, "siteid = ?",
+					session.getCurrentSiteId() + "");
+			courseListAdapter.notifyDataSetChanged();
+		}
 	}
 
 }
