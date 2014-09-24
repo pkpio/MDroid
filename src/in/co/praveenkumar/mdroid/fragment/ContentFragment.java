@@ -26,6 +26,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -36,6 +37,7 @@ public class ContentFragment extends Fragment {
 	CourseListAdapter courseContentListAdapter;
 	SessionSetting session;
 	ArrayList<CourseContentObject> listObjects = new ArrayList<CourseContentObject>();
+	LinearLayout contentEmptyLayout;
 
 	/**
 	 * This constructor is required to prevent exceptions on app usage. Don't
@@ -63,6 +65,8 @@ public class ContentFragment extends Fragment {
 
 		View rootView = inflater.inflate(R.layout.frag_content, container,
 				false);
+		contentEmptyLayout = (LinearLayout) rootView
+				.findViewById(R.id.content_empty_layout);
 		this.context = getActivity();
 		session = new SessionSetting(context);
 
@@ -121,6 +125,8 @@ public class ContentFragment extends Fragment {
 		@Override
 		protected void onPostExecute(Boolean result) {
 			courseContentListAdapter.notifyDataSetChanged();
+			if (listObjects.size() != 0)
+				contentEmptyLayout.setVisibility(LinearLayout.GONE);
 		}
 
 	}
@@ -136,6 +142,8 @@ public class ContentFragment extends Fragment {
 			super(context, R.layout.list_item_account, new String[listObjects
 					.size()]);
 			this.context = context;
+			if (listObjects.size() != 0)
+				contentEmptyLayout.setVisibility(LinearLayout.GONE);
 		}
 
 		@Override
