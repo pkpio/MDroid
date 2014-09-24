@@ -220,11 +220,13 @@ public class ContentFragment extends Fragment {
 				public void onClick(View arg0) {
 					MoodleModule module = listObjects.get(position).module;
 					if (module == null)
-						return;	
+						return;
 					Intent i = new Intent(context, AppBrowserActivity.class);
 
 					String modurl = module.getUrl();
-					modurl = (modurl == null) ? session.getmUrl() : modurl;
+					String courseurl = session.getmUrl()
+							+ "/course/view.php?id=" + courseid;
+					modurl = (modurl == null) ? courseurl : modurl;
 					i.putExtra("url", modurl);
 
 					if (!module.getModname().contentEquals("resource")) {
