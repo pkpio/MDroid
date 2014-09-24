@@ -103,8 +103,13 @@ public class CalenderFragment extends Fragment {
 			syncStatus = est.syncEvents(courseIds);
 
 			if (syncStatus) {
-				mEvents = MoodleEvent.find(MoodleEvent.class, "siteid = ?",
-						session.getCurrentSiteId() + "");
+				if (courseid == 0)
+					mEvents = MoodleEvent.find(MoodleEvent.class, "siteid = ?",
+							session.getCurrentSiteId() + "");
+				else
+					mEvents = MoodleEvent.find(MoodleEvent.class,
+							"siteid = ? and courseid = ?",
+							session.getCurrentSiteId() + "", courseid + "");
 				setupCalenderObjects();
 				return true;
 			} else
