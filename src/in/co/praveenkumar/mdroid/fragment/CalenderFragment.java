@@ -23,6 +23,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -33,6 +34,7 @@ public class CalenderFragment extends Fragment {
 	SessionSetting session;
 	List<MoodleEvent> mEvents;
 	ArrayList<CalenderObject> listObjects = new ArrayList<CalenderObject>();
+	LinearLayout calenderEmptyLayout;
 
 	/**
 	 * Don't use this constructor
@@ -55,6 +57,8 @@ public class CalenderFragment extends Fragment {
 		this.context = getActivity();
 		View rootView = inflater.inflate(R.layout.frag_calender, container,
 				false);
+		calenderEmptyLayout = (LinearLayout) rootView
+				.findViewById(R.id.calender_empty_layout);
 		ListView eventList = (ListView) rootView
 				.findViewById(R.id.list_calendar);
 
@@ -110,6 +114,8 @@ public class CalenderFragment extends Fragment {
 		@Override
 		protected void onPostExecute(Boolean result) {
 			calendarListAdapter.notifyDataSetChanged();
+			if (listObjects.size() != 0)
+				calenderEmptyLayout.setVisibility(LinearLayout.GONE);
 		}
 
 	}
@@ -125,6 +131,8 @@ public class CalenderFragment extends Fragment {
 			super(context, R.layout.list_item_event, new String[listObjects
 					.size()]);
 			this.context = context;
+			if (listObjects.size() != 0)
+				calenderEmptyLayout.setVisibility(LinearLayout.GONE);
 		}
 
 		@Override

@@ -1,16 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/grey14"
     android:orientation="vertical" >
 
     <in.co.praveenkumar.mdroid.view.StickyListView
         android:id="@+id/list_calendar"
         android:layout_width="match_parent"
         android:layout_height="fill_parent"
-        android:background="@color/grey14"
         android:divider="@null"
         android:dividerHeight="0dp" >
     </in.co.praveenkumar.mdroid.view.StickyListView>
 
-</LinearLayout>
+    <LinearLayout
+        android:id="@+id/calender_empty_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical" >
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/icon_calender_alt_greyscale" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:text="No events here"
+            android:textColor="@color/grey8"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+</FrameLayout>

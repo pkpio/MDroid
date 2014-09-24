@@ -19,6 +19,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -27,6 +28,7 @@ public class ForumFragment extends Fragment {
 	SessionSetting session;
 	int courseid = 0;
 	List<MoodleForum> mForums;
+	LinearLayout forumEmptyLayout;
 
 	/**
 	 * This constructor lists all forums in the site. Don't use this
@@ -49,6 +51,8 @@ public class ForumFragment extends Fragment {
 			Bundle savedInstanceState) {
 
 		View rootView = inflater.inflate(R.layout.frag_forum, container, false);
+		forumEmptyLayout = (LinearLayout) rootView
+				.findViewById(R.id.forum_empty_layout);
 
 		// Get all courses of this site or course
 		session = new SessionSetting(getActivity());
@@ -76,6 +80,8 @@ public class ForumFragment extends Fragment {
 			super(context, R.layout.list_item_account, new String[mForums
 					.size()]);
 			this.context = context;
+			if (mForums.size() != 0)
+				forumEmptyLayout.setVisibility(LinearLayout.GONE);
 		}
 
 		@Override
@@ -161,6 +167,8 @@ public class ForumFragment extends Fragment {
 		@Override
 		protected void onPostExecute(Boolean result) {
 			forumListAdapter.notifyDataSetChanged();
+			if (mForums.size() != 0)
+				forumEmptyLayout.setVisibility(LinearLayout.GONE);
 		}
 
 	}
