@@ -25,7 +25,6 @@ import android.widget.TextView;
 
 public class ForumFragment extends Fragment {
 	ForumListAdapter forumListAdapter;
-	ListView forumList;
 	SessionSetting session;
 	int courseid = 0;
 	List<MoodleForum> mForums;
@@ -65,7 +64,7 @@ public class ForumFragment extends Fragment {
 					"siteid = ? and courseid = ?", session.getCurrentSiteId()
 							+ "", courseid + "");
 
-		forumList = (ListView) rootView.findViewById(R.id.content_forum);
+		ListView forumList = (ListView) rootView.findViewById(R.id.content_forum);
 		forumListAdapter = new ForumListAdapter(getActivity());
 
 		forumList.setAdapter(forumListAdapter);
@@ -180,9 +179,6 @@ public class ForumFragment extends Fragment {
 
 		@Override
 		protected void onPostExecute(Boolean result) {
-			// forumListAdapter = new ForumListAdapter(getActivity());
-			// forumList.setAdapter(forumListAdapter);
-			System.out.println("Forums size:" + mForums.size());
 			forumListAdapter.notifyDataSetChanged();
 			if (mForums.size() != 0)
 				forumEmptyLayout.setVisibility(LinearLayout.GONE);
