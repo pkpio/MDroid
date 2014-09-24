@@ -15,7 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -76,12 +76,10 @@ public class CourseFragment extends Fragment {
 		return rootView;
 	}
 
-	public class CourseListAdapter extends ArrayAdapter<String> {
+	public class CourseListAdapter extends BaseAdapter {
 		private final Context context;
 
 		public CourseListAdapter(Context context) {
-			super(context, R.layout.list_item_account, new String[mCourses
-					.size()]);
 			this.context = context;
 		}
 
@@ -126,6 +124,21 @@ public class CourseFragment extends Fragment {
 			});
 
 			return convertView;
+		}
+
+		@Override
+		public int getCount() {
+			return mCourses.size();
+		}
+
+		@Override
+		public Object getItem(int position) {
+			return mCourses.get(position);
+		}
+
+		@Override
+		public long getItemId(int position) {
+			return position;
 		}
 	}
 
