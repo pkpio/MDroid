@@ -17,7 +17,6 @@ public class ModuleIcon {
 		if (modname.contentEquals("assign"))
 			return R.drawable.icon_note_taking;
 
-		// -TODO- Icon
 		if (modname.contentEquals("label"))
 			return R.drawable.icon_label;
 
