@@ -69,8 +69,18 @@ public class CourseFragment extends Fragment {
 
 		// Get all courses of this site
 		session = new SessionSetting(getActivity());
-		mCourses = MoodleCourse.find(MoodleCourse.class, "siteid = ?",
-				session.getCurrentSiteId() + "");
+
+		if (Type == TYPE_USER_COURSES)
+			mCourses = MoodleCourse.find(MoodleCourse.class,
+					"siteid = ? and is_user_course = ?",
+					session.getCurrentSiteId() + "", "1");
+		else if (Type == TYPE_FAV_COURSES)
+			mCourses = MoodleCourse.find(MoodleCourse.class,
+					"siteid = ? and is_fav_course = ?",
+					session.getCurrentSiteId() + "", "1");
+		else
+			mCourses = MoodleCourse.find(MoodleCourse.class, "siteid = ? and ",
+					session.getCurrentSiteId() + "");
 
 		courseEmptyLayout = (LinearLayout) rootView
 				.findViewById(R.id.course_empty_layout);
@@ -79,9 +89,9 @@ public class CourseFragment extends Fragment {
 		courseListAdapter = new CourseListAdapter(getActivity());
 		courseList.setAdapter(courseListAdapter);
 
-		// -TODO- Change this sync to happen only when listing user courses
-		// Now it's happening twice. User and Fav courses
-		new courseSyncerBg().execute("");
+		// We don't want to run sync in each course listing
+		if (Type == TYPE_USER_COURSES)
+			new courseSyncerBg().execute("");
 
 		return rootView;
 	}
@@ -178,8 +188,17 @@ public class CourseFragment extends Fragment {
 
 		@Override
 		protected void onPostExecute(Boolean result) {
-			mCourses = MoodleCourse.find(MoodleCourse.class, "siteid = ?",
-					session.getCurrentSiteId() + "");
+			if (Type == TYPE_USER_COURSES)
+				mCourses = MoodleCourse.find(MoodleCourse.class,
+						"siteid = ? and is_user_course = ?",
+						session.getCurrentSiteId() + "", "1");
+			else if (Type == TYPE_FAV_COURSES)
+				mCourses = MoodleCourse.find(MoodleCourse.class,
+						"siteid = ? and is_fav_course = ?",
+						session.getCurrentSiteId() + "", "1");
+			else
+				mCourses = MoodleCourse.find(MoodleCourse.class,
+						"siteid = ? and ", session.getCurrentSiteId() + "");
 			courseListAdapter.notifyDataSetChanged();
 			if (mCourses.size() != 0)
 				courseEmptyLayout.setVisibility(LinearLayout.GONE);
