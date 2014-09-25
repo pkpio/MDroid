@@ -62,8 +62,12 @@ public class CourseSyncTask {
 			dbCourses = MoodleCourse.find(MoodleCourse.class,
 					"courseid = ? and siteid = ?", course.getCourseid() + "",
 					course.getSiteid() + "");
-			if (dbCourses.size() > 0)
-				course.setId(dbCourses.get(0).getId()); // updates on save()
+			if (dbCourses.size() > 0) {
+				// Set app specific fields explicitly
+				course.setId(dbCourses.get(0).getId());
+				course.setIsUserCourse(dbCourses.get(0).getIsUserCourse());
+				course.setIsFavCourse(dbCourses.get(0).getIsFavCourse());
+			}
 			course.save();
 		}
 
@@ -107,8 +111,11 @@ public class CourseSyncTask {
 			dbCourses = MoodleCourse.find(MoodleCourse.class,
 					"courseid = ? and siteid = ?", course.getCourseid() + "",
 					course.getSiteid() + "");
-			if (dbCourses.size() > 0)
-				course.setId(dbCourses.get(0).getId()); // updates on save()
+			if (dbCourses.size() > 0) {
+				// Set app specific fields explicitly
+				course.setId(dbCourses.get(0).getId());
+				course.setIsFavCourse(dbCourses.get(0).getIsFavCourse());
+			}
 			course.save();
 		}
 
