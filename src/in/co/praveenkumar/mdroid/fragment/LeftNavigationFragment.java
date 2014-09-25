@@ -40,7 +40,7 @@ public class LeftNavigationFragment extends Fragment {
 	String[] menuItems = new String[] { "Courses", "Calender", "Forums",
 			"Notes" };
 	int[] menuIcons = new int[] { R.drawable.icon_course,
-			R.drawable.icon_calendar, R.drawable.icon_messages,
+			R.drawable.icon_calender_alt, R.drawable.icon_messages,
 			R.drawable.icon_note_taking };
 
 	@Override
