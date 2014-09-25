@@ -15,14 +15,38 @@
         android:background="@drawable/clickable_card"
         android:orientation="vertical" >
 
-        <TextView
-            android:id="@+id/list_course_shortname"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="25dp"
-            android:gravity="start|center_vertical"
-            android:padding="3dp"
-            android:text="@string/list_course_sample_shortname"
-            android:textSize="16sp" />
+            android:layout_height="40dp"
+            android:orientation="horizontal" >
+
+            <ImageView
+                android:id="@+id/list_course_icon"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:contentDescription="@string/list_course_sample_shortname"
+                android:src="@drawable/icon_course" />
+
+            <ImageView
+                android:layout_alignParentRight="true"
+                android:id="@+id/list_course_fav"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:contentDescription="@string/list_course_sample_shortname"
+                android:src="@drawable/icon_favorite_outline" />
+
+            <TextView
+                android:id="@+id/list_course_shortname"
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent"
+                android:layout_toLeftOf="@id/list_course_fav"
+                android:layout_toRightOf="@id/list_course_icon"
+                android:gravity="start|center_vertical"
+                android:padding="3dp"
+                android:text="@string/list_course_sample_shortname"
+                android:textSize="16sp" />
+
+        </RelativeLayout>
 
         <TextView
             android:id="@+id/list_course_fullname"

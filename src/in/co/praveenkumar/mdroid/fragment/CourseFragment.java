@@ -18,6 +18,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -122,6 +123,8 @@ public class CourseFragment extends Fragment {
 						.findViewById(R.id.list_course_shortname);
 				viewHolder.fullname = (TextView) convertView
 						.findViewById(R.id.list_course_fullname);
+				viewHolder.favIcon = (ImageView) convertView
+						.findViewById(R.id.list_course_fav);
 
 				// Save the holder with the view
 				convertView.setTag(viewHolder);
@@ -131,17 +134,35 @@ public class CourseFragment extends Fragment {
 			}
 
 			// Assign values
-			viewHolder.shortname.setText(mCourses.get(position).getShortname());
-			viewHolder.fullname.setText(mCourses.get(position).getFullname());
+			final MoodleCourse mCourse = mCourses.get(position);
+			viewHolder.shortname.setText(mCourse.getShortname());
+			viewHolder.fullname.setText(mCourse.getFullname());
+			if (mCourses.get(position).getIsFavCourse())
+				viewHolder.favIcon.setImageResource(R.drawable.icon_favorite);
+			else
+				viewHolder.favIcon
+						.setImageResource(R.drawable.icon_favorite_outline);
 
 			convertView.setOnClickListener(new OnClickListener() {
-
 				@Override
 				public void onClick(View arg0) {
 					Intent i = new Intent(context, CourseContentActivity.class);
 					i.putExtra("courseid", mCourses.get(position).getCourseid());
 					i.putExtra("coursedbid", mCourses.get(position).getId());
 					context.startActivity(i);
+				}
+			});
+
+			viewHolder.favIcon.setOnClickListener(new OnClickListener() {
+				@Override
+				public void onClick(View arg0) {
+					mCourse.setIsFavCourse(!mCourse.getIsFavCourse());
+					mCourse.save();
+
+					// Update listview
+					mCourses.get(position).setIsFavCourse(
+							mCourse.getIsFavCourse());
+					courseListAdapter.notifyDataSetChanged();
 				}
 			});
 
@@ -167,6 +188,7 @@ public class CourseFragment extends Fragment {
 	static class ViewHolder {
 		TextView shortname;
 		TextView fullname;
+		ImageView favIcon;
 	}
 
 	/**
