@@ -321,6 +321,9 @@ public class ContentFragment extends Fragment {
 	private void mapSectionsToListObjects(ArrayList<MoodleSection> sections) {
 		if (sections == null)
 			return;
+		
+		// To avoid duplicates in listing
+		listObjects.clear();
 
 		MoodleSection section;
 		ArrayList<MoodleModule> modules;
