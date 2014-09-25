@@ -110,8 +110,8 @@ public class MoodleCourse extends SugarRecord<MoodleCourse> {
 
 	// Relational fields
 	long siteid;
-	Boolean isUserCourse;
-	Boolean isFavCourse;
+	Boolean isUserCourse = false;
+	Boolean isFavCourse = false;
 
 	public MoodleCourse() {
 
