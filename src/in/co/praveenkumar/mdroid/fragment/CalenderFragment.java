@@ -260,6 +260,9 @@ public class CalenderFragment extends Fragment {
 				return o1.getTimestart() < o2.getTimestart() ? -1 : 1;
 			}
 		});
+		
+		// To avoid duplicates in listing
+		listObjects.clear();
 
 		// Build titles + events objects for pinned listview
 		String titlePrev = TimeFormat.getSection(mEvents.get(0).getTimestart());
