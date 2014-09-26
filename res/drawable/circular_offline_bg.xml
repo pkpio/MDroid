@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android" 
+    android:shape="oval">
+    <corners android:radius="20dip"/>
+    <stroke android:color="@color/contact_offline_color" android:width="0dip"/>
+    <solid android:color="@color/contact_offline_color"/>
+</shape>
