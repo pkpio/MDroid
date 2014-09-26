@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<fragment xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/right_nav_layout"
+    android:name="in.co.praveenkumar.mdroid.fragment.RightNavigationFragment"
+    android:layout_width="@dimen/activity_right_nav_width"
+    android:layout_height="match_parent"
+    android:layout_gravity="end" />

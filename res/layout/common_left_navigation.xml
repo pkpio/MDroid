@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<fragment xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/left_nav_layout"
+    android:name="in.co.praveenkumar.mdroid.fragment.LeftNavigationFragment"
+    android:layout_width="@dimen/activity_left_nav_width"
+    android:layout_height="match_parent"
+    android:layout_gravity="start" />
