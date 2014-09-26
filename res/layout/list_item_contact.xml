@@ -1,29 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="55dp"
+    android:layout_height="50dp"
+    android:layout_marginLeft="8dp"
+    android:layout_marginRight="8dp"
     android:background="@color/white"
     android:gravity="center_vertical"
-    android:orientation="horizontal"
-    android:padding="16dp" >
-
-    <TextView
-        android:id="@+id/list_contact_name"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.9"
-        android:text="@string/sample_contact_name"
-        android:textColor="@color/grey2"
-        android:textSize="18sp" />
+    android:paddingLeft="8dp"
+    android:paddingRight="8dp" >
 
     <TextView
         android:id="@+id/list_unread_count"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.1"
-        android:background="@color/moodle_color"
-        android:gravity="center"
+        android:layout_width="18dp"
+        android:layout_height="18dp"
+        android:layout_centerVertical="true"
+        android:background="@drawable/circular_online_bg"
         android:text="@string/sample_contact_unread"
-        android:textColor="@color/white" />
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:textSize="12sp" />
 
-</LinearLayout>
+    <ImageView
+        android:id="@+id/list_message_icon"
+        android:contentDescription="@string/sample_contact_name"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_gravity="center_vertical"
+        android:src="@drawable/icon_chat_greyscale" />
+
+    <TextView
+        android:id="@+id/list_contact_name"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@id/list_message_icon"
+        android:layout_toRightOf="@id/list_unread_count"
+        android:paddingLeft="8dp"
+        android:text="@string/sample_contact_name"
+        android:textColor="@color/grey6"
+        android:textSize="16sp" />
+
+</RelativeLayout>
