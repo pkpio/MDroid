@@ -5,16 +5,22 @@ Roadmap or plan for the new API version of MDroid (In priority order).
 - [x] Course listing
 - [x] Account switching from side navigation
 - [x] Course content listing
+- [x] Webview for module and other content viewing
 - [x] Downloading files
-- [ ] Course Forums listing
+- [x] Course Forums listing
 - [ ] Forum discussion listing
 - [ ] Discussion thread listing
 - [x] Calender
+- [x] Course Calender events listing
 - [x] Contacts listing
-- [ ] Messaging
+- [ ] Sending messages
 - [ ] Course participants
 - [ ] Notes listing
-- [ ] Notes creation or deletion
+- [ ] Search feature
+- [x] Course favourites
+- [ ] Background services and notifications
+- [ ] Calender events creation
+- [ ] Notes creation
 - [ ] Files listing
 - [ ] Uploading files
 - [x] Document errors
