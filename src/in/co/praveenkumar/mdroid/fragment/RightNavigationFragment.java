@@ -102,6 +102,20 @@ public class RightNavigationFragment extends Fragment {
 					.getFullname());
 			viewHolder.unreadcount.setText(contacts.get(position).getUnread()
 					+ "");
+			switch (contacts.get(position).getStatus()) {
+			case MoodleContact.STATUS_ONLINE:
+				viewHolder.unreadcount
+						.setBackgroundResource(R.drawable.circular_online_bg);
+				break;
+			case MoodleContact.STATUS_OFFLINE:
+				viewHolder.unreadcount
+						.setBackgroundResource(R.drawable.circular_offline_bg);
+				break;
+			case MoodleContact.STATUS_STRANGER:
+				viewHolder.unreadcount
+						.setBackgroundResource(R.drawable.circular_stranger_bg);
+				break;
+			}
 
 			return convertView;
 		}
