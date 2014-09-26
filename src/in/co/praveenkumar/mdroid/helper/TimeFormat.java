@@ -160,7 +160,7 @@ public class TimeFormat {
 	}
 
 	/**
-	 * Evaluates a simple time format like 12:23 AM
+	 * Evaluates a simple time format like 23 Feb 12:23 AM
 	 * 
 	 * @param time
 	 *            in seconds
@@ -170,12 +170,49 @@ public class TimeFormat {
 		long ltime = ((long) time) * 1000;
 		Calendar c = Calendar.getInstance();
 		c.setTimeInMillis(ltime);
+
+		int month = c.get(Calendar.MONTH);
+		int day = c.get(Calendar.DAY_OF_MONTH);
 		int hour = c.get(Calendar.HOUR);
 		int minute = c.get(Calendar.MINUTE);
 		String AmPm = (c.get(Calendar.AM_PM) == Calendar.AM) ? "AM" : "PM";
+
 		// Because 12:07 AM better than 12:7 AM
 		String mins = (minute > 9) ? minute + "" : "0" + minute;
 
-		return hour + ":" + mins + " " + AmPm;
+		return day + " " + getMonthName(month) + " " + hour + ":" + mins + " "
+				+ AmPm;
+	}
+
+	private static String getMonthName(int month) {
+		// Month name
+		switch (month) {
+		case 1:
+			return "Jan";
+		case 2:
+			return "Feb";
+		case 3:
+			return "Mar";
+		case 4:
+			return "Apr";
+		case 5:
+			return "May";
+		case 6:
+			return "Jun";
+		case 7:
+			return "Jul";
+		case 8:
+			return "Aug";
+		case 9:
+			return "Sep";
+		case 10:
+			return "Oct";
+		case 11:
+			return "Nov";
+		case 12:
+			return "Dec";
+		default:
+			return "Err";
+		}
 	}
 }
