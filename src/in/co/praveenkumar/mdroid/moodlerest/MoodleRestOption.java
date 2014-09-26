@@ -22,4 +22,5 @@ public class MoodleRestOption {
 	public static final String FUNCTION_GET_SITE_INFO = "core_webservice_get_site_info";
 	public static final String FUNCTION_GET_CONTACTS = "core_message_get_contacts";
 	public static final String FUNCTION_GET_EVENTS = "core_calendar_get_calendar_events";
+	public static final String FUNCTION_GET_USERS_FROM_FIELD = "core_user_get_users_by_field";
 }
