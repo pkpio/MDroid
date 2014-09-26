@@ -12,22 +12,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-    <!-- Left navigation -->
+    <!-- Navigations -->
 
-    <fragment
-        android:id="@+id/left_nav_layout"
-        android:name="in.co.praveenkumar.mdroid.fragment.LeftNavigationFragment"
-        android:layout_width="240dp"
-        android:layout_height="match_parent"
-        android:layout_gravity="start" />
+    <include layout="@layout/common_left_navigation" />
 
-    <!-- Right navigation -->
-
-    <fragment
-        android:id="@+id/right_nav_layout"
-        android:name="in.co.praveenkumar.mdroid.fragment.RightNavigationFragment"
-        android:layout_width="240dp"
-        android:layout_height="match_parent"
-        android:layout_gravity="end" />
+    <include layout="@layout/common_right_navigation" />
 
 </android.support.v4.widget.DrawerLayout>
