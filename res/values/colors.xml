@@ -38,5 +38,10 @@
     <color name="beautiful_grey">#777575</color>
     <color name="beautiful_yellow_dark">#d07c40</color>
     <color name="beautiful_yellow">#f4b459</color>
+    
+    <!-- Status colors -->
+    <color name="contact_online_color">#61D125</color>
+    <color name="contact_offline_color">#FFB200</color>
+    <color name="contact_stranger_color">#C0C0C0</color>
 
 </resources>
