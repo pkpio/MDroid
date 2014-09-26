@@ -3,6 +3,10 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
+    
+    <!-- Side navigation layout size -->
+    <dimen name="activity_left_nav_width">240dp</dimen>
+    <dimen name="activity_right_nav_width">240dp</dimen>
 
     <!-- Login activity -->
     <dimen name="activity_login_framelayout_height">40dp</dimen>
