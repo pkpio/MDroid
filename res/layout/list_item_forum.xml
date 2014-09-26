@@ -15,13 +15,27 @@
         android:background="@drawable/clickable_card"
         android:orientation="vertical" >
 
-        <TextView
-            android:id="@+id/forum_name"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/sample_contact_name"
-            android:textColor="@color/black"
-            android:textSize="18sp" />
+            android:layout_height="40dp"
+            android:contentDescription="@string/sample_contact_name"
+            android:gravity="center_vertical"
+            android:orientation="horizontal" >
+            
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/icon_messages" />
+
+            <TextView
+                android:id="@+id/forum_name"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="@string/sample_contact_name"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
