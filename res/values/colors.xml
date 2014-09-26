@@ -2,7 +2,7 @@
 <resources>
 
     
-    <color name="section_title_color">#ff0000</color>
+    <color name="section_title_color">#e2574c</color>
     <color name="transparent">#00000000</color>
     <color name="transparent_white">#55ffffff</color>
     <color name="moodle_color">#ff8800</color>
