@@ -13,6 +13,8 @@ Roadmap or plan for the new API version of MDroid (In priority order).
 - [x] Calender
 - [x] Course Calender events listing
 - [x] Contacts listing
+- [ ] Donation option in side menu
+- [ ] In-app purchase of app feature requests
 - [ ] Sending messages
 - [ ] Course participants
 - [ ] Notes listing
