@@ -34,9 +34,9 @@ public class DiscussionFragment extends Fragment {
 	}
 
 	/**
-	 * If you want to list all forums, use courseid = 0
+	 * Lists all discussions in a forum
 	 * 
-	 * @param courseid
+	 * @param forumid
 	 */
 	public DiscussionFragment(int forumid) {
 		this.forumid = forumid;
