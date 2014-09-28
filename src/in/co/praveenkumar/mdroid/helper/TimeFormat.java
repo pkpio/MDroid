@@ -187,6 +187,10 @@ public class TimeFormat {
 	 * @return formatted time
 	 */
 	public static String getNiceTime(int time) {
+		// When time is 0
+		if (time == 0)
+			return "";
+
 		long ltime = ((long) time) * 1000;
 		Calendar c = Calendar.getInstance();
 		int yearnow = c.get(Calendar.YEAR);
