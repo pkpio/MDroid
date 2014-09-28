@@ -15,26 +15,68 @@
         android:background="@drawable/clickable_card"
         android:orientation="vertical" >
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:contentDescription="@string/sample_contact_name"
             android:gravity="center_vertical"
             android:orientation="horizontal" >
-            
+
             <ImageView
+                android:id="@+id/discussion_icon"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
+                android:contentDescription="@string/sample_contact_name"
                 android:src="@drawable/icon_people" />
+
+            <TextView
+                android:id="@+id/discussion_reply_count"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/circular_offline_bg"
+                android:gravity="center"
+                android:text="@string/sample_contact_unread"
+                android:textColor="@color/white"
+                android:textSize="12sp" />
 
             <TextView
                 android:id="@+id/discussion_name"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_toLeftOf="@id/discussion_reply_count"
+                android:layout_toRightOf="@id/discussion_icon"
                 android:gravity="center_vertical"
                 android:text="@string/sample_contact_name"
                 android:textColor="@color/black"
                 android:textSize="16sp" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="5dp" >
+
+            <TextView
+                android:id="@+id/discussion_startedtime"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:text="23 Feb &apos;13 12:23 AM"
+                android:textColor="@color/grey3"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/discussion_lastmodifiedtime"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:gravity="right"
+                android:text="23 Feb &apos;13 12:23 AM"
+                android:textColor="@color/grey3"
+                android:textSize="14sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -48,29 +90,20 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.5"
-                android:text="@string/sample_modulename"
+                android:text="David gind"
                 android:textColor="@color/grey3"
                 android:textSize="14sp" />
 
             <TextView
-                android:id="@+id/discussion_lastmodified"
+                android:id="@+id/discussion_lastmodifiedby"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.5"
                 android:gravity="right"
-                android:text="@string/sample_calendar_date"
+                android:text="Brian O&apos;Conner"
                 android:textColor="@color/grey3"
                 android:textSize="14sp" />
         </LinearLayout>
-
-        <TextView
-            android:id="@+id/discussion_firstpost"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingTop="5dp"
-            android:text="@string/sample_sectionname"
-            android:textColor="@color/grey4"
-            android:textSize="14sp" />
     </LinearLayout>
 
 </LinearLayout>

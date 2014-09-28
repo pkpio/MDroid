@@ -196,7 +196,7 @@ public class CalenderFragment extends Fragment {
 				viewHolder.eventcourse.setText(listObjects.get(position).event
 						.getCoursename());
 				viewHolder.eventtime.setText(TimeFormat
-						.getMinimalTime(listObjects.get(position).event
+						.getReadableTime(listObjects.get(position).event
 								.getTimestart()));
 
 				String description = listObjects.get(position).event
@@ -265,14 +265,14 @@ public class CalenderFragment extends Fragment {
 		listObjects.clear();
 
 		// Build titles + events objects for pinned listview
-		String titlePrev = TimeFormat.getSection(mEvents.get(0).getTimestart());
+		String titlePrev = TimeFormat.getSectionTitle(mEvents.get(0).getTimestart());
 		String titleNow = "";
 		listObjects.add(new CalenderObject(null, CalendarListAdapter.TYPE_DATE,
 				titlePrev));
 		listObjects.add(new CalenderObject(mEvents.get(0),
 				CalendarListAdapter.TYPE_EVENT, titlePrev));
 		for (int i = 1; i < mEvents.size(); i++) {
-			titleNow = TimeFormat.getSection(mEvents.get(i).getTimestart());
+			titleNow = TimeFormat.getSectionTitle(mEvents.get(i).getTimestart());
 			if (!titleNow.contentEquals(titlePrev))
 				listObjects.add(new CalenderObject(null,
 						CalendarListAdapter.TYPE_DATE, titleNow));
