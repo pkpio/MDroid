@@ -48,11 +48,16 @@ public class MoodlePost extends SugarRecord<MoodlePost> {
 	@SerializedName("mailnow")
 	int mailnow;
 
+	/*
+	 * The below two fields - canreply and postread are indicated as int in the
+	 * moodle Web services API Documentation but however the json response is
+	 * given as Boolean for both.
+	 */
 	@SerializedName("canreply")
-	int canreply;
+	Boolean canreply;
 
 	@SerializedName("postread")
-	int postread;
+	Boolean postread;
 
 	@SerializedName("userfullname")
 	String userfullname;
@@ -191,7 +196,7 @@ public class MoodlePost extends SugarRecord<MoodlePost> {
 	 * 
 	 * @return
 	 */
-	public int getCanreply() {
+	public Boolean getCanreply() {
 		return canreply;
 	}
 
@@ -200,7 +205,7 @@ public class MoodlePost extends SugarRecord<MoodlePost> {
 	 * 
 	 * @return
 	 */
-	public int getPostread() {
+	public Boolean getPostread() {
 		return postread;
 	}
 
