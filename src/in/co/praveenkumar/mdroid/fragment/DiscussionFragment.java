@@ -59,11 +59,11 @@ public class DiscussionFragment extends Fragment {
 				"siteid = ? and forumid = ?", session.getCurrentSiteId() + "",
 				forumid + "");
 
-		ListView forumList = (ListView) rootView
+		ListView topicList = (ListView) rootView
 				.findViewById(R.id.content_discussion);
 		topicListAdapter = new TopicListAdapter(getActivity());
 
-		forumList.setAdapter(topicListAdapter);
+		topicList.setAdapter(topicListAdapter);
 		new AsyncTopicsSync(session.getmUrl(), session.getToken(),
 				session.getCurrentSiteId()).execute("");
 		return rootView;
