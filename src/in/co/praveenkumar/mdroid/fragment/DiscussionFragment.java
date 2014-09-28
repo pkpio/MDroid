@@ -115,14 +115,24 @@ public class DiscussionFragment extends Fragment {
 			viewHolder.topicname.setText(mTopics.get(position).getName());
 			viewHolder.topicreplies.setText(mTopics.get(position)
 					.getNumreplies());
-			viewHolder.topicstarttime.setText(TimeFormat.getNiceTime(mTopics
-					.get(position).getTimestart()));
 			viewHolder.topicstartby.setText(mTopics.get(position)
 					.getFirstuserfullname());
-			viewHolder.topiclasttime.setText(TimeFormat.getNiceTime(mTopics
-					.get(position).getTimemodified()));
 			viewHolder.topiclastby.setText(mTopics.get(position)
 					.getLastuserfullname());
+
+			// Time values
+			String timeString = TimeFormat.getNiceTime(mTopics.get(position)
+					.getTimestart());
+			if (timeString.contentEquals(""))
+				viewHolder.topicstarttime.setText("Started by");
+			else
+				viewHolder.topicstarttime.setText(timeString);
+			timeString = TimeFormat.getNiceTime(mTopics.get(position)
+					.getTimemodified());
+			if (timeString.contentEquals(""))
+				viewHolder.topiclasttime.setText("Last replied");
+			else
+				viewHolder.topiclasttime.setText(timeString);
 
 			return convertView;
 		}
