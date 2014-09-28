@@ -8,7 +8,7 @@ Roadmap or plan for the new API version of MDroid (In priority order).
 - [x] Webview for module and other content viewing
 - [x] Downloading files
 - [x] Course Forums listing
-- [ ] Forum discussion listing
+- [x] Forum discussion listing
 - [ ] Discussion thread listing
 - [x] Calender
 - [x] Course Calender events listing
