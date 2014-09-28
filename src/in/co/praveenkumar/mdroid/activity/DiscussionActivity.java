@@ -14,7 +14,4 @@ public class DiscussionActivity extends AppNavigationDrawer {
 		setUpDrawer();
 	}
 	
-	public int getForumid() {
-        return forumid;
-    }
 }
