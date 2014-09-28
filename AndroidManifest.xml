@@ -53,6 +53,10 @@
             android:configChanges="screenSize|orientation" >
         </activity>
         <activity
+            android:name="in.co.praveenkumar.mdroid.activity.DiscussionActivity"
+            android:configChanges="screenSize|orientation" >
+        </activity>
+        <activity
             android:name="in.co.praveenkumar.mdroid.activity.AppBrowserActivity"
             android:configChanges="screenSize|orientation" >
         </activity>
@@ -63,7 +67,7 @@
             android:value="mdroid.db" />
         <meta-data
             android:name="VERSION"
-            android:value="7" />
+            android:value="9" />
         <meta-data
             android:name="QUERY_LOG"
             android:value="true" />
