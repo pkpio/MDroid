@@ -47,7 +47,7 @@ public class PostFragment extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 
-		View rootView = inflater.inflate(R.layout.frag_discussion, container,
+		View rootView = inflater.inflate(R.layout.frag_post, container,
 				false);
 		postsEmptyLayout = (LinearLayout) rootView
 				.findViewById(R.id.post_empty_layout);
