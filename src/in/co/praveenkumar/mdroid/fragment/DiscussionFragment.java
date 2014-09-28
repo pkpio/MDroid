@@ -28,8 +28,7 @@ public class DiscussionFragment extends Fragment {
 	LinearLayout topicsEmptyLayout;
 
 	/**
-	 * This constructor lists all forums in the site. Don't use this
-	 * constructor.
+	 * Don't use this constructor. We need a forumid.
 	 */
 	public DiscussionFragment() {
 	}
