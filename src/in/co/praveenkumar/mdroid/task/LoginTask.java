@@ -215,8 +215,11 @@ public class LoginTask extends AsyncTask<String, Integer, Boolean> {
 
 	@Override
 	protected void onPostExecute(Boolean status) {
-		if (status)
-			context.startActivity(new Intent(context, CourseActivity.class));
+		if (status) {
+			Intent i = new Intent(context, CourseActivity.class);
+			i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+			context.startActivity(i);
+		}
 	}
 
 }
