@@ -1,5 +1,6 @@
 package in.co.praveenkumar.mdroid.fragment;
 
+import in.co.praveenkumar.mdroid.activity.DiscussionActivity;
 import in.co.praveenkumar.mdroid.apis.R;
 import in.co.praveenkumar.mdroid.helper.SessionSetting;
 import in.co.praveenkumar.mdroid.helper.TimeFormat;
@@ -11,12 +12,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
@@ -115,14 +118,23 @@ public class ForumFragment extends Fragment {
 			viewHolder.forumname.setText(mForums.get(position).getName());
 			viewHolder.forumcourse.setText(mForums.get(position)
 					.getCoursename());
-			viewHolder.forumtime.setText(TimeFormat.getNiceRelativeTime(mForums.get(
-					position).getTimemodified()));
+			viewHolder.forumtime.setText(TimeFormat.getNiceRelativeTime(mForums
+					.get(position).getTimemodified()));
 			String intro = mForums.get(position).getIntro();
 			if (intro == null)
 				intro = "";
 			else
 				intro = Html.fromHtml(intro).toString().trim();
 			viewHolder.forumdesc.setText(intro);
+
+			convertView.setOnClickListener(new OnClickListener() {
+				@Override
+				public void onClick(View arg0) {
+					Intent i = new Intent(context, DiscussionActivity.class);
+					i.putExtra("forumid", mForums.get(position).getForumid());
+					context.startActivity(i);
+				}
+			});
 
 			return convertView;
 		}

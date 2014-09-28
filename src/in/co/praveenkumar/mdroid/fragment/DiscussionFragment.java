@@ -23,7 +23,7 @@ import android.widget.TextView;
 public class DiscussionFragment extends Fragment {
 	TopicListAdapter topicListAdapter;
 	SessionSetting session;
-	int forumid = 0;
+	int forumid = 30;
 	List<MoodleDiscussion> mTopics;
 	LinearLayout topicsEmptyLayout;
 
@@ -52,6 +52,10 @@ public class DiscussionFragment extends Fragment {
 		topicsEmptyLayout = (LinearLayout) rootView
 				.findViewById(R.id.discussion_empty_layout);
 
+		if (forumid == 0)
+			return rootView;
+
+		session = new SessionSetting(getActivity());
 		mTopics = MoodleDiscussion.find(MoodleDiscussion.class,
 				"siteid = ? and forumid = ?", session.getCurrentSiteId() + "",
 				forumid + "");
