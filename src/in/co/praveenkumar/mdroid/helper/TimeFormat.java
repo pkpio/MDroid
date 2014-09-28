@@ -18,13 +18,14 @@ import java.util.Calendar;
  */
 public class TimeFormat {
 	/**
-	 * Evaluates a section title suitable for the given time stamp
+	 * Evaluates a section title suitable for the given time stamp. For use in
+	 * Calender fragment.
 	 * 
 	 * @param time
 	 *            in seconds
 	 * @return section title
 	 */
-	public static String getSection(int time) {
+	public static String getSectionTitle(int time) {
 		long ltime = ((long) time) * 1000;
 		Calendar c = Calendar.getInstance();
 		int nowDay = c.get(Calendar.DATE);
@@ -160,17 +161,22 @@ public class TimeFormat {
 	}
 
 	/**
-	 * Evaluates a simple time format like 23 Feb 12:23 AM
+	 * Evaluates a simple more reader friendly time format like 23 Feb 12:23 AM
+	 * 
+	 * If the year in the time stamp is not the current year then the format
+	 * would look like 23 Feb '13 12:23 AM
 	 * 
 	 * @param time
 	 *            in seconds
 	 * @return formatted time
 	 */
-	public static String getMinimalTime(int time) {
+	public static String getReadableTime(int time) {
 		long ltime = ((long) time) * 1000;
 		Calendar c = Calendar.getInstance();
-		c.setTimeInMillis(ltime);
+		int yearnow = c.get(Calendar.YEAR);
 
+		c.setTimeInMillis(ltime);
+		int year = c.get(Calendar.YEAR);
 		int month = c.get(Calendar.MONTH);
 		int day = c.get(Calendar.DAY_OF_MONTH);
 		int hour = c.get(Calendar.HOUR);
@@ -180,8 +186,15 @@ public class TimeFormat {
 		// Because 12:07 AM better than 12:7 AM
 		String mins = (minute > 9) ? minute + "" : "0" + minute;
 
-		return day + " " + getMonthName(month) + " " + hour + ":" + mins + " "
-				+ AmPm;
+		if (year == yearnow || String.valueOf(year).length() != 4)
+			return day + " " + getMonthName(month) + " " + hour + ":" + mins
+					+ " " + AmPm;
+
+		String yearString = String.valueOf(year);
+		yearString = yearString.substring(yearString.length(),
+				yearString.length() - 2);
+		return day + " " + getMonthName(month) + " '" + yearString + " " + hour
+				+ ":" + mins + " " + AmPm;
 	}
 
 	private static String getMonthName(int month) {
