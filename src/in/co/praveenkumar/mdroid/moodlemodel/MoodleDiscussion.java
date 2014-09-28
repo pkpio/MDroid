@@ -7,7 +7,7 @@ public class MoodleDiscussion extends SugarRecord<MoodleDiscussion> {
 
 	// since id is a reserved field in SugarRecord
 	@SerializedName("id")
-	int forumid;
+	int discussionid;
 
 	@SerializedName("course")
 	int course;
@@ -81,16 +81,17 @@ public class MoodleDiscussion extends SugarRecord<MoodleDiscussion> {
 	@SerializedName("lastuseremail")
 	String lastuseremail;
 
-	// Relational fields
+	// Relational and other fields
 	long siteid;
+	String forumname;
 
 	/**
 	 * Forum id
 	 * 
 	 * @return
 	 */
-	public int getForumid() {
-		return forumid;
+	public int getDiscussionid() {
+		return discussionid;
 	}
 
 	/**
@@ -324,6 +325,25 @@ public class MoodleDiscussion extends SugarRecord<MoodleDiscussion> {
 	 */
 	public void setSiteid(long siteid) {
 		this.siteid = siteid;
+	}
+
+	/**
+	 * Get name of the forum to which this discussion belong
+	 * 
+	 * @return forumname
+	 */
+	public String getForumname() {
+		return forumname;
+	}
+
+	/**
+	 * Set name of the forum to which this discussion belong
+	 * 
+	 * @param forumname
+	 *            name of the forum to which this discussion belong
+	 */
+	public void setForumname(String forumname) {
+		this.forumname = forumname;
 	}
 
 }
