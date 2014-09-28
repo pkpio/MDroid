@@ -117,7 +117,14 @@ public class PostFragment extends Fragment {
 					.getUserfullname());
 			viewHolder.postlastmodified.setText(TimeFormat.getNiceTime(mPosts
 					.get(position).getModified()));
-			viewHolder.postcontent.setText(mPosts.get(position).getMessage());
+
+			// Post content. Could be HTML. So, make it plain text first.
+			String message = mPosts.get(position).getMessage();
+			if (message == null)
+				message = "";
+			else
+				message = Html.fromHtml(message).toString().trim();
+			viewHolder.postcontent.setText(message);
 
 			// Author image color and value
 			String authorLetter = mPosts.get(position).getUserfullname();
