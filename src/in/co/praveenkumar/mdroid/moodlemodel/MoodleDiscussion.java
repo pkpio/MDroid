@@ -10,10 +10,10 @@ public class MoodleDiscussion extends SugarRecord<MoodleDiscussion> {
 	int discussionid;
 
 	@SerializedName("course")
-	int course;
+	int courseid;
 
 	@SerializedName("forum")
-	int forum;
+	int forumid;
 
 	@SerializedName("name")
 	String name;
@@ -100,7 +100,7 @@ public class MoodleDiscussion extends SugarRecord<MoodleDiscussion> {
 	 * @return
 	 */
 	public int getCourse() {
-		return course;
+		return courseid;
 	}
 
 	/**
@@ -109,7 +109,7 @@ public class MoodleDiscussion extends SugarRecord<MoodleDiscussion> {
 	 * @return
 	 */
 	public int getForum() {
-		return forum;
+		return forumid;
 	}
 
 	/**
