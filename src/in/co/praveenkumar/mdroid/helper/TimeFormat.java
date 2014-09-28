@@ -207,8 +207,8 @@ public class TimeFormat {
 					+ " " + AmPm;
 
 		String yearString = String.valueOf(year);
-		yearString = yearString.substring(yearString.length(),
-				yearString.length() - 2);
+		yearString = yearString.substring(yearString.length() - 2,
+				yearString.length());
 		return day + " " + getMonthName(month) + " '" + yearString + " " + hour
 				+ ":" + mins + " " + AmPm;
 	}
