@@ -6,12 +6,15 @@ import in.co.praveenkumar.mdroid.helper.TimeFormat;
 import in.co.praveenkumar.mdroid.moodlemodel.MoodlePost;
 import in.co.praveenkumar.mdroid.task.PostSyncTask;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,8 +50,7 @@ public class PostFragment extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 
-		View rootView = inflater.inflate(R.layout.frag_post, container,
-				false);
+		View rootView = inflater.inflate(R.layout.frag_post, container, false);
 		postsEmptyLayout = (LinearLayout) rootView
 				.findViewById(R.id.post_empty_layout);
 
@@ -59,6 +61,7 @@ public class PostFragment extends Fragment {
 		mPosts = MoodlePost.find(MoodlePost.class,
 				"siteid = ? and discussionid = ?", session.getCurrentSiteId()
 						+ "", discussionid + "");
+		sortPostsByTime();
 
 		ListView postList = (ListView) rootView.findViewById(R.id.content_post);
 		postListAdapter = new PostListAdapter(getActivity());
@@ -88,8 +91,8 @@ public class PostFragment extends Fragment {
 				LayoutInflater inflater = (LayoutInflater) context
 						.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-				convertView = inflater.inflate(R.layout.list_item_post,
-						parent, false);
+				convertView = inflater.inflate(R.layout.list_item_post, parent,
+						false);
 
 				viewHolder.postauthorimage = (TextView) convertView
 						.findViewById(R.id.post_authorimage);
@@ -151,6 +154,20 @@ public class PostFragment extends Fragment {
 		TextView postcontent;
 	}
 
+	/**
+	 * This will sort the posts by the time they were posted. This is requried
+	 * after every update to posts list or else the order may be lost.
+	 */
+	private void sortPostsByTime() {
+		Collections.sort(mPosts, new Comparator<MoodlePost>() {
+			public int compare(MoodlePost o1, MoodlePost o2) {
+				if (o1.getCreated() == o2.getCreated())
+					return 0;
+				return o1.getCreated() < o2.getCreated() ? -1 : 1;
+			}
+		});
+	}
+
 	private class AsyncPostsSync extends AsyncTask<String, Integer, Boolean> {
 		Long siteid;
 		PostSyncTask pst;
@@ -169,6 +186,7 @@ public class PostFragment extends Fragment {
 				mPosts = MoodlePost.find(MoodlePost.class,
 						"siteid = ? and discussionid = ?", siteid + "",
 						discussionid + "");
+				sortPostsByTime();
 				return true;
 			} else
 				return false;
