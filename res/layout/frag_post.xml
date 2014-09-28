@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/grey14" >
+
+    <ListView
+        android:id="@+id/content_post"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:adjustViewBounds="true"
+        android:divider="@null"
+        android:dividerHeight="0dp" />
+
+    <LinearLayout
+        android:id="@+id/post_empty_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical" >
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:contentDescription="@string/sample_modulename"
+            android:src="@drawable/icon_messages_greyscale" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:text="No posts here"
+            android:textColor="@color/grey8"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+</FrameLayout>
