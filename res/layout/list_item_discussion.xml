@@ -31,15 +31,15 @@
 
             <TextView
                 android:id="@+id/discussion_reply_count"
-                android:layout_width="18dp"
-                android:layout_height="18dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:background="@drawable/circular_offline_bg"
                 android:gravity="center"
                 android:text="@string/sample_contact_unread"
                 android:textColor="@color/white"
-                android:textSize="12sp" />
+                android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/discussion_name"
