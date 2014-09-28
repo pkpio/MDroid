@@ -196,7 +196,7 @@ public class CalenderFragment extends Fragment {
 				viewHolder.eventcourse.setText(listObjects.get(position).event
 						.getCoursename());
 				viewHolder.eventtime.setText(TimeFormat
-						.getReadableTime(listObjects.get(position).event
+						.getNiceTime(listObjects.get(position).event
 								.getTimestart()));
 
 				String description = listObjects.get(position).event

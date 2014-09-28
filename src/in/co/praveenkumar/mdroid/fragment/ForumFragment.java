@@ -115,7 +115,7 @@ public class ForumFragment extends Fragment {
 			viewHolder.forumname.setText(mForums.get(position).getName());
 			viewHolder.forumcourse.setText(mForums.get(position)
 					.getCoursename());
-			viewHolder.forumtime.setText(TimeFormat.getReadableRelativeTime(mForums.get(
+			viewHolder.forumtime.setText(TimeFormat.getNiceRelativeTime(mForums.get(
 					position).getTimemodified()));
 			String intro = mForums.get(position).getIntro();
 			if (intro == null)
