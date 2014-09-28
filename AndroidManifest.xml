@@ -57,6 +57,10 @@
             android:configChanges="screenSize|orientation" >
         </activity>
         <activity
+            android:name="in.co.praveenkumar.mdroid.activity.PostActivity"
+            android:configChanges="screenSize|orientation" >
+        </activity>
+        <activity
             android:name="in.co.praveenkumar.mdroid.activity.AppBrowserActivity"
             android:configChanges="screenSize|orientation" >
         </activity>
