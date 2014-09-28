@@ -66,7 +66,7 @@ public class PostSyncTask {
 				 * -TODO- Improve this search with only Sql operation
 				 */
 				dbPosts = MoodlePost.find(MoodlePost.class,
-						"postingid = ? and siteid = ?", post.getPostid() + "",
+						"postid = ? and siteid = ?", post.getPostid() + "",
 						siteid + "");
 				if (dbPosts.size() > 0)
 					post.setId(dbPosts.get(0).getId());
