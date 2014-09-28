@@ -95,9 +95,9 @@ public class TimeFormat {
 	 * 
 	 * @param time
 	 *            in seconds
-	 * @return readable relative time string
+	 * @return neat relative time string
 	 */
-	public static String getReadableRelativeTime(int time) {
+	public static String getNiceRelativeTime(int time) {
 		long ltime = ((long) time) * 1000;
 		Calendar c = Calendar.getInstance();
 		int nowMin = c.get(Calendar.MINUTE);
@@ -186,7 +186,7 @@ public class TimeFormat {
 	 *            in seconds
 	 * @return formatted time
 	 */
-	public static String getReadableTime(int time) {
+	public static String getNiceTime(int time) {
 		long ltime = ((long) time) * 1000;
 		Calendar c = Calendar.getInstance();
 		int yearnow = c.get(Calendar.YEAR);
