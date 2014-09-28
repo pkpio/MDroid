@@ -75,13 +75,29 @@ public class TimeFormat {
 	}
 
 	/**
-	 * Evaluates relative time for given time stamp
+	 * Evaluates relative time for given time stamp. The outputs could looks
+	 * like,<br/>
+	 * <b> For past </b><br/>
+	 * 2 years ago <br/>
+	 * 3 months ago <br/>
+	 * 5 minutes ago <br/>
+	 * A moment ago <br/>
+	 * <br/>
+	 * <b> For furture </b><br/>
+	 * In 2 years<br/>
+	 * In 3 months<br/>
+	 * In 5 minutes<br/>
+	 * In a moment<br/>
+	 * <br/>
+	 * 
+	 * <b>Note:</b> Plural and singular of the numbers are also considered. Like
+	 * 1 minute ago and 2 minutes ago<br/>
 	 * 
 	 * @param time
 	 *            in seconds
-	 * @return section title
+	 * @return readable relative time string
 	 */
-	public static String getRelTime(int time) {
+	public static String getReadableRelativeTime(int time) {
 		long ltime = ((long) time) * 1000;
 		Calendar c = Calendar.getInstance();
 		int nowMin = c.get(Calendar.MINUTE);
