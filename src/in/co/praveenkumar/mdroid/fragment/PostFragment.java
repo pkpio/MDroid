@@ -88,7 +88,7 @@ public class PostFragment extends Fragment {
 				LayoutInflater inflater = (LayoutInflater) context
 						.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-				convertView = inflater.inflate(R.layout.list_item_discussion,
+				convertView = inflater.inflate(R.layout.list_item_post,
 						parent, false);
 
 				viewHolder.postauthorimage = (TextView) convertView
