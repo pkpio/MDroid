@@ -28,7 +28,7 @@ import android.widget.TextView;
 public class DiscussionFragment extends Fragment {
 	TopicListAdapter topicListAdapter;
 	SessionSetting session;
-	int forumid = 30;
+	int forumid = 0;
 	List<MoodleDiscussion> mTopics;
 	LinearLayout topicsEmptyLayout;
 
