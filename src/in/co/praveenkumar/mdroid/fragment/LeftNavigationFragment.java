@@ -33,6 +33,7 @@ import android.widget.TextView;
 
 public class LeftNavigationFragment extends Fragment {
 	DrawerStateInterface drawerState;
+	Context context;
 	final String DEBUG_TAG = "Left Navigation Fragment";
 	ListView navListView;
 	List<MoodleSiteInfo> sites;
@@ -51,6 +52,7 @@ public class LeftNavigationFragment extends Fragment {
 		View rootView = inflater.inflate(R.layout.frag_left_navigation,
 				container, false);
 		navListView = (ListView) rootView.findViewById(R.id.left_nav_list);
+		this.context = getActivity();
 
 		// Get sites info
 		session = new SessionSetting(getActivity());
@@ -67,9 +69,12 @@ public class LeftNavigationFragment extends Fragment {
 					int position, long id) {
 				if (position < sites.size()) {
 					session.setCurrentSiteId(sites.get(position).getId());
-					getActivity().recreate();
+					Intent i = new Intent(context, CourseActivity.class);
+					i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
+							| Intent.FLAG_ACTIVITY_CLEAR_TASK);
+					context.startActivity(i);
 				} else {
-					Context context = getActivity();
+					context = getActivity();
 					switch (position - sites.size()) {
 					case 0:
 						context.startActivity(new Intent(context,
