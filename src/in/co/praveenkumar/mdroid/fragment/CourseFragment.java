@@ -80,7 +80,7 @@ public class CourseFragment extends Fragment {
 					"siteid = ? and is_fav_course = ?",
 					session.getCurrentSiteId() + "", "1");
 		else
-			mCourses = MoodleCourse.find(MoodleCourse.class, "siteid = ? and ",
+			mCourses = MoodleCourse.find(MoodleCourse.class, "siteid = ?",
 					session.getCurrentSiteId() + "");
 
 		courseEmptyLayout = (LinearLayout) rootView
