@@ -11,7 +11,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.MenuItem;
-import android.view.View;
 
 public class AppNavigationDrawer extends FragmentActivity implements
 		DrawerStateInterface {
@@ -61,9 +60,10 @@ public class AppNavigationDrawer extends FragmentActivity implements
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		if (keyCode == KeyEvent.KEYCODE_MENU) {
-			if (!mDrawerLayout.isDrawerOpen(GravityCompat.START))
+			if (!mDrawerLayout.isDrawerOpen(GravityCompat.START)) {
 				mDrawerLayout.openDrawer(Gravity.START);
-			else
+				mDrawerLayout.closeDrawer(Gravity.END);
+			} else
 				mDrawerLayout.closeDrawer(Gravity.START);
 			return true;
 		}
@@ -75,6 +75,7 @@ public class AppNavigationDrawer extends FragmentActivity implements
 		// Pass the event to ActionBarDrawerToggle, if it returns
 		// true, then it has handled the app icon touch event
 		if (mDrawerToggle.onOptionsItemSelected(item)) {
+			mDrawerLayout.closeDrawer(Gravity.END); // to prevent overlapping
 			return true;
 		}
 
@@ -89,9 +90,10 @@ public class AppNavigationDrawer extends FragmentActivity implements
 	 */
 	@Override
 	public void setDrawerState(Boolean state) {
-		if (state)
+		if (state) {
 			mDrawerLayout.openDrawer(Gravity.START);
-		else
+			mDrawerLayout.closeDrawer(Gravity.END); // to prevent overlapping
+		} else
 			mDrawerLayout.closeDrawer(Gravity.START);
 	}
 
