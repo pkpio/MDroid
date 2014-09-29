@@ -6,8 +6,10 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -28,16 +30,7 @@ public class AppNavigationDrawer extends FragmentActivity implements
 		R.drawable.ic_drawer, /* nav drawer icon to replace 'Up' caret */
 		R.string.drawer_open, /* "open drawer" description */
 		R.string.drawer_close /* "close drawer" description */
-		) {
-
-			/** Called when a drawer has settled in a completely closed state. */
-			public void onDrawerClosed(View view) {
-			}
-
-			/** Called when a drawer has settled in a completely open state. */
-			public void onDrawerOpened(View drawerView) {
-			}
-		};
+		);
 
 		// Set the drawer toggle as the DrawerListener
 		mDrawerLayout.setDrawerListener(mDrawerToggle);
@@ -57,6 +50,24 @@ public class AppNavigationDrawer extends FragmentActivity implements
 	public void onConfigurationChanged(Configuration newConfig) {
 		super.onConfigurationChanged(newConfig);
 		mDrawerToggle.onConfigurationChanged(newConfig);
+	}
+
+	/**
+	 * Overriding menu key press to show left navigation menu. All other menu
+	 * related functions like onPrepareOptionsMenuare, onCreateOptionsMenu are
+	 * also called once when the Activity is created. So, we are taking this
+	 * approach.
+	 */
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		if (keyCode == KeyEvent.KEYCODE_MENU) {
+			if (!mDrawerLayout.isDrawerOpen(GravityCompat.START))
+				mDrawerLayout.openDrawer(Gravity.START);
+			else
+				mDrawerLayout.closeDrawer(Gravity.START);
+			return true;
+		}
+		return super.onKeyDown(keyCode, event);
 	}
 
 	@Override
