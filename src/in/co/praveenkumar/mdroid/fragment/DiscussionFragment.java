@@ -149,7 +149,7 @@ public class DiscussionFragment extends Fragment {
 				@Override
 				public void onClick(View arg0) {
 					Intent i = new Intent(context, PostActivity.class);
-					i.putExtra("forumid", mTopics.get(position)
+					i.putExtra("discussionid", mTopics.get(position)
 							.getDiscussionid());
 					context.startActivity(i);
 				}
