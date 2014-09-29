@@ -12,9 +12,11 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.View;
 
 public class LoginActivity extends FragmentActivity {
+	private final String DEBUG_TAG = "LoginActivity";
 	LoginFragmentAdapter mAdapter;
 	ViewPager mPager;
 	private String[] tabs = { "Normal", "Paranoid" };
@@ -24,6 +26,14 @@ public class LoginActivity extends FragmentActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login);
 
+		// Is Login called by user to add an account
+		Boolean explicitCall = false;
+		try {
+			explicitCall = getIntent().getExtras().getBoolean("explicitCall");
+		} catch (Exception e) {
+			Log.d(DEBUG_TAG, "Not an explicit call");
+		}
+
 		mAdapter = new LoginFragmentAdapter(getSupportFragmentManager());
 
 		mPager = (ViewPager) findViewById(R.id.pager);
@@ -32,7 +42,8 @@ public class LoginActivity extends FragmentActivity {
 
 		// Skip login if user is logged in already
 		SessionSetting session = new SessionSetting(this);
-		if (session.getCurrentSiteId() != SessionSetting.NO_SITE_ID) {
+		if (session.getCurrentSiteId() != SessionSetting.NO_SITE_ID
+				&& !explicitCall) {
 			Intent i = new Intent(this, CourseActivity.class);
 			this.startActivity(i);
 		}
