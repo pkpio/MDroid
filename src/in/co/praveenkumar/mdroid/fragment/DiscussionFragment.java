@@ -1,8 +1,8 @@
 package in.co.praveenkumar.mdroid.fragment;
 
-import in.co.praveenkumar.mdroid.activity.DiscussionActivity;
 import in.co.praveenkumar.mdroid.activity.PostActivity;
 import in.co.praveenkumar.mdroid.apis.R;
+import in.co.praveenkumar.mdroid.helper.AppInterface.ForumIdInterface;
 import in.co.praveenkumar.mdroid.helper.SessionSetting;
 import in.co.praveenkumar.mdroid.helper.TimeFormat;
 import in.co.praveenkumar.mdroid.moodlemodel.MoodleDiscussion;
@@ -10,6 +10,7 @@ import in.co.praveenkumar.mdroid.task.DiscussionSyncTask;
 
 import java.util.List;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -17,8 +18,8 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -44,6 +45,13 @@ public class DiscussionFragment extends Fragment {
 	 */
 	public DiscussionFragment(int forumid) {
 		this.forumid = forumid;
+	}
+
+	@Override
+	public void onAttach(Activity a) {
+		super.onAttach(a);
+		ForumIdInterface forumidInterface = (ForumIdInterface) a;
+		this.forumid = forumidInterface.getForumId();
 	}
 
 	@Override
