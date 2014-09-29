@@ -16,6 +16,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -25,7 +26,14 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
+/**
+ * Any activity that includes this Fragment must implement ForumIdInterface
+ * 
+ * @author Praveen Kumar Pendyala (praveen@praveenkumar.co.in)
+ * 
+ */
 public class DiscussionFragment extends Fragment {
+	private final String DEBUG_TAG = "DiscussionFragment";
 	TopicListAdapter topicListAdapter;
 	SessionSetting session;
 	int forumid = 0;
@@ -33,15 +41,20 @@ public class DiscussionFragment extends Fragment {
 	LinearLayout topicsEmptyLayout;
 
 	/**
-	 * Don't use this constructor. We need a forumid.
+	 * Don't use this constructor. We need a forumid. Any activity that includes
+	 * this Fragment must implement ForumIdInterface
+	 * 
+	 * @author Praveen Kumar Pendyala (praveen@praveenkumar.co.in)
 	 */
 	public DiscussionFragment() {
 	}
 
 	/**
-	 * Lists all discussions in a forum
+	 * Lists all discussions in a forum. Any activity that includes this
+	 * Fragment must implement ForumIdInterface
 	 * 
 	 * @param forumid
+	 * @author Praveen Kumar Pendyala (praveen@praveenkumar.co.in)
 	 */
 	public DiscussionFragment(int forumid) {
 		this.forumid = forumid;
@@ -50,8 +63,15 @@ public class DiscussionFragment extends Fragment {
 	@Override
 	public void onAttach(Activity a) {
 		super.onAttach(a);
-		ForumIdInterface forumidInterface = (ForumIdInterface) a;
-		this.forumid = forumidInterface.getForumId();
+		try {
+			ForumIdInterface forumidInterface = (ForumIdInterface) a;
+			this.forumid = forumidInterface.getForumId();
+		} catch (ClassCastException e) {
+			e.printStackTrace();
+			Log.d(DEBUG_TAG,
+					a.toString()
+							+ " did not implement ForumIdInterface. Fragment may not list any discussions.");
+		}
 	}
 
 	@Override

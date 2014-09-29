@@ -17,6 +17,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.Html;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,6 +27,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 public class PostFragment extends Fragment {
+	private final String DEBUG_TAG = "PostFragment";
 	PostListAdapter postListAdapter;
 	SessionSetting session;
 	int discussionid = 0;
@@ -51,8 +53,15 @@ public class PostFragment extends Fragment {
 	@Override
 	public void onAttach(Activity a) {
 		super.onAttach(a);
-		DiscussionIdInterface discussionidInterface = (DiscussionIdInterface) a;
-		this.discussionid = discussionidInterface.getDiscussionId();
+		try {
+			DiscussionIdInterface discussionidInterface = (DiscussionIdInterface) a;
+			this.discussionid = discussionidInterface.getDiscussionId();
+		} catch (ClassCastException e) {
+			e.printStackTrace();
+			Log.d(DEBUG_TAG,
+					a.toString()
+							+ " did not implement DiscussionIdInterface. Fragment may not list any posts.");
+		}
 	}
 
 	@Override
