@@ -28,12 +28,30 @@ public class AppInterface {
 	 */
 	public interface ForumIdInterface {
 		/**
-		 * Set navigation drawers state
+		 * Get the forumid
 		 * 
-		 * @param state
-		 *            True: open. False: close
+		 * @return forumid
 		 */
 		public int getForumId();
+
+	}
+
+	/**
+	 * Gives an interface for passing discussionid between activity and
+	 * fragments.
+	 * 
+	 * Useful in Post fragment and post activity
+	 * 
+	 * @author Praveen Kumar Pendyala (praveen@praveenkumar.co.in)
+	 * 
+	 */
+	public interface DiscussionIdInterface {
+		/**
+		 * Get the discussionid
+		 * 
+		 * @return discussionid
+		 */
+		public int getDiscussionId();
 
 	}
 

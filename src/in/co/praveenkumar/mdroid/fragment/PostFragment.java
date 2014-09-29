@@ -1,6 +1,7 @@
 package in.co.praveenkumar.mdroid.fragment;
 
 import in.co.praveenkumar.mdroid.apis.R;
+import in.co.praveenkumar.mdroid.helper.AppInterface.DiscussionIdInterface;
 import in.co.praveenkumar.mdroid.helper.SessionSetting;
 import in.co.praveenkumar.mdroid.helper.TimeFormat;
 import in.co.praveenkumar.mdroid.moodlemodel.MoodlePost;
@@ -10,6 +11,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -44,6 +46,13 @@ public class PostFragment extends Fragment {
 	 */
 	public PostFragment(int discussionid) {
 		this.discussionid = discussionid;
+	}
+
+	@Override
+	public void onAttach(Activity a) {
+		super.onAttach(a);
+		DiscussionIdInterface discussionidInterface = (DiscussionIdInterface) a;
+		this.discussionid = discussionidInterface.getDiscussionId();
 	}
 
 	@Override
