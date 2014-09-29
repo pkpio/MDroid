@@ -3,6 +3,7 @@ package in.co.praveenkumar.mdroid.fragment;
 import in.co.praveenkumar.mdroid.activity.CalendarActivity;
 import in.co.praveenkumar.mdroid.activity.CourseActivity;
 import in.co.praveenkumar.mdroid.activity.ForumActivity;
+import in.co.praveenkumar.mdroid.activity.LoginActivity;
 import in.co.praveenkumar.mdroid.apis.R;
 import in.co.praveenkumar.mdroid.helper.AppInterface.DrawerStateInterface;
 import in.co.praveenkumar.mdroid.helper.ImageDecoder;
@@ -38,10 +39,10 @@ public class LeftNavigationFragment extends Fragment {
 	SessionSetting session;
 
 	String[] menuItems = new String[] { "Courses", "Calender", "Forums",
-			"Notes" };
+			"Notes", "Add account" };
 	int[] menuIcons = new int[] { R.drawable.icon_course,
 			R.drawable.icon_calender_alt, R.drawable.icon_messages,
-			R.drawable.icon_note_taking };
+			R.drawable.icon_note_taking, R.drawable.icon_plus };
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -81,6 +82,14 @@ public class LeftNavigationFragment extends Fragment {
 					case 2:
 						context.startActivity(new Intent(context,
 								ForumActivity.class));
+						break;
+					case 3:
+						// NOTES HERE
+						break;
+					case 4:
+						Intent i = new Intent(context, LoginActivity.class);
+						i.putExtra("explicitCall", true);
+						context.startActivity(i);
 						break;
 
 					}
