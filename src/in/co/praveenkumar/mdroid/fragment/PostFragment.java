@@ -28,7 +28,7 @@ import android.widget.TextView;
 public class PostFragment extends Fragment {
 	PostListAdapter postListAdapter;
 	SessionSetting session;
-	int discussionid = 18;
+	int discussionid = 0;
 	List<MoodlePost> mPosts;
 	LinearLayout postsEmptyLayout;
 
