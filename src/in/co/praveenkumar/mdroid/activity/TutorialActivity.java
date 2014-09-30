@@ -1,6 +1,6 @@
 package in.co.praveenkumar.mdroid.activity;
 
-import in.co.praveenkumar.mdroid.apis.R;
+import in.co.praveenkumar.mdroid.legacy.R;
 import in.co.praveenkumar.mdroid.fragment.TutorialFragment;
 import in.co.praveenkumar.mdroid.helper.SessionSetting;
 import android.content.Intent;

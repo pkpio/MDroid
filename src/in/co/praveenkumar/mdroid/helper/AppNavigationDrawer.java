@@ -1,6 +1,6 @@
 package in.co.praveenkumar.mdroid.helper;
 
-import in.co.praveenkumar.mdroid.apis.R;
+import in.co.praveenkumar.mdroid.legacy.R;
 import in.co.praveenkumar.mdroid.helper.AppInterface.DrawerStateInterface;
 import android.content.res.Configuration;
 import android.os.Bundle;
