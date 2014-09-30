@@ -1,7 +1,7 @@
 package in.co.praveenkumar.mdroid.activity;
 
 import android.os.Bundle;
-import in.co.praveenkumar.mdroid.apis.R;
+import in.co.praveenkumar.mdroid.legacy.R;
 import in.co.praveenkumar.mdroid.helper.AppNavigationDrawer;
 import in.co.praveenkumar.mdroid.helper.AppInterface.ForumIdInterface;
 

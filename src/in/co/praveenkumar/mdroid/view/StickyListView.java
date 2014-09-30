@@ -15,7 +15,7 @@
  */
 package in.co.praveenkumar.mdroid.view;
 
-import in.co.praveenkumar.mdroid.apis.BuildConfig;
+import in.co.praveenkumar.mdroid.legacy.BuildConfig;
 import android.content.Context;
 import android.database.DataSetObserver;
 import android.graphics.Canvas;
