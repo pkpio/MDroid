@@ -39,11 +39,17 @@ public class LeftNavigationFragment extends Fragment {
 	List<MoodleSiteInfo> sites;
 	SessionSetting session;
 
-	String[] menuItems = new String[] { "Courses", "Calender", "Forums",
-			"Notes", "Add account" };
-	int[] menuIcons = new int[] { R.drawable.icon_course,
+	String[] moodleMenuItems = new String[] { "Courses", "Calender", "Forums",
+			"Notes" };
+	String[] appMenuItems = new String[] { "Request features", "Settings",
+			"About", "Add account" };
+
+	int[] moodleMenuIcons = new int[] { R.drawable.icon_course,
 			R.drawable.icon_calender_alt, R.drawable.icon_messages,
-			R.drawable.icon_note_taking, R.drawable.icon_plus };
+			R.drawable.icon_note_taking };
+	int[] appMenuIcons = new int[] { R.drawable.icon_extension_greyscale,
+			R.drawable.icon_settings_greyscale, R.drawable.icon_info_greyscale,
+			R.drawable.icon_plus_greyscale };
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -67,14 +73,15 @@ public class LeftNavigationFragment extends Fragment {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
-				if (position < sites.size()) {
+				switch (adapter.getItemViewType(position)) {
+				case LeftNavListAdapter.TYPE_ACCOUNT:
 					session.setCurrentSiteId(sites.get(position).getId());
 					Intent i = new Intent(context, CourseActivity.class);
 					i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
 							| Intent.FLAG_ACTIVITY_CLEAR_TASK);
 					context.startActivity(i);
-				} else {
-					context = getActivity();
+					break;
+				case LeftNavListAdapter.TYPE_MOODLE_MENUITEM:
 					switch (position - sites.size()) {
 					case 0:
 						context.startActivity(new Intent(context,
@@ -91,13 +98,26 @@ public class LeftNavigationFragment extends Fragment {
 					case 3:
 						// NOTES HERE
 						break;
-					case 4:
-						Intent i = new Intent(context, LoginActivity.class);
-						i.putExtra("explicitCall", true);
-						context.startActivity(i);
-						break;
-
 					}
+					break;
+				case LeftNavListAdapter.TYPE_APP_MENUITEM:
+					switch (position - sites.size() - moodleMenuItems.length) {
+					case 0:
+						// Request features
+						break;
+					case 1:
+						// Settings
+						break;
+					case 2:
+						// Help
+						break;
+					case 3:
+						Intent j = new Intent(context, LoginActivity.class);
+						j.putExtra("explicitCall", true);
+						context.startActivity(j);
+						break;
+					}
+					break;
 				}
 				drawerState.setDrawerState(false);
 			}
@@ -118,8 +138,9 @@ public class LeftNavigationFragment extends Fragment {
 
 	public class LeftNavListAdapter extends BaseAdapter {
 		private static final int TYPE_ACCOUNT = 0;
-		private static final int TYPE_MENUITEM = 1;
-		private static final int TYPE_COUNT = 2;
+		private static final int TYPE_MOODLE_MENUITEM = 1;
+		private static final int TYPE_APP_MENUITEM = 2;
+		private static final int TYPE_COUNT = 3;
 
 		private final Context context;
 
@@ -134,7 +155,12 @@ public class LeftNavigationFragment extends Fragment {
 
 		@Override
 		public int getItemViewType(int position) {
-			return (position >= sites.size()) ? TYPE_MENUITEM : TYPE_ACCOUNT;
+			if (position >= sites.size() + moodleMenuItems.length)
+				return TYPE_APP_MENUITEM;
+			if (position >= sites.size())
+				return TYPE_MOODLE_MENUITEM;
+			return TYPE_ACCOUNT;
+
 		}
 
 		@Override
@@ -161,15 +187,23 @@ public class LeftNavigationFragment extends Fragment {
 							.findViewById(R.id.nav_user_image);
 					break;
 
-				case TYPE_MENUITEM:
-					convertView = inflater.inflate(R.layout.list_item_moodle_menu,
-							parent, false);
+				case TYPE_MOODLE_MENUITEM:
+					convertView = inflater.inflate(
+							R.layout.list_item_moodle_menu, parent, false);
 
 					viewHolder.menuItemName = (TextView) convertView
 							.findViewById(R.id.nav_menuitem);
 					viewHolder.menuItemIcon = (ImageView) convertView
 							.findViewById(R.id.nav_menuicon);
 					break;
+				case TYPE_APP_MENUITEM:
+					convertView = inflater.inflate(R.layout.list_item_app_menu,
+							parent, false);
+
+					viewHolder.menuItemName = (TextView) convertView
+							.findViewById(R.id.nav_menuitem);
+					viewHolder.menuItemIcon = (ImageView) convertView
+							.findViewById(R.id.nav_menuicon);
 				}
 				convertView.setTag(viewHolder);
 			} else {
@@ -193,11 +227,18 @@ public class LeftNavigationFragment extends Fragment {
 					navListView.setSelection(position);
 				break;
 
-			case TYPE_MENUITEM:
-				viewHolder.menuItemName.setText(menuItems[position
+			case TYPE_MOODLE_MENUITEM:
+				viewHolder.menuItemName.setText(moodleMenuItems[position
 						- sites.size()]);
-				viewHolder.menuItemIcon.setImageResource(menuIcons[position
-						- sites.size()]);
+				viewHolder.menuItemIcon
+						.setImageResource(moodleMenuIcons[position
+								- sites.size()]);
+				break;
+			case TYPE_APP_MENUITEM:
+				viewHolder.menuItemName.setText(appMenuItems[position
+						- sites.size() - moodleMenuItems.length]);
+				viewHolder.menuItemIcon.setImageResource(appMenuIcons[position
+						- sites.size() - moodleMenuItems.length]);
 				break;
 			}
 			return convertView;
@@ -205,7 +246,7 @@ public class LeftNavigationFragment extends Fragment {
 
 		@Override
 		public int getCount() {
-			return sites.size() + menuItems.length;
+			return sites.size() + moodleMenuItems.length + appMenuItems.length;
 		}
 
 		@Override
