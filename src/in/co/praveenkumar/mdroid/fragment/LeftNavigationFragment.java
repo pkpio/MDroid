@@ -162,7 +162,7 @@ public class LeftNavigationFragment extends Fragment {
 					break;
 
 				case TYPE_MENUITEM:
-					convertView = inflater.inflate(R.layout.list_item_menu,
+					convertView = inflater.inflate(R.layout.list_item_moodle_menu,
 							parent, false);
 
 					viewHolder.menuItemName = (TextView) convertView
