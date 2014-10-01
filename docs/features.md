@@ -1,4 +1,5 @@
-1. Multiple accounts
+#1. Multiple accounts
+-----------------------
   Status: Implemented
   Description: Support multiple accounts at the same time in the app. Accounts can be on the same Moodle server or on different moodle servers
 
