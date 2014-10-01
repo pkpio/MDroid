@@ -1,0 +1,82 @@
+[
+    {
+        "id": 1,
+        "name": "Multiple accounts",
+        "Status": 2,
+        "votestarget": 0,
+        "votescasted": 0,
+        "Description": "Support multiple accounts at the same time in the app. Accounts can be on the same Moodle server or on different moodle servers"
+    },
+    {
+        "id": 2,
+        "name": "Paranoid login",
+        "Status": 2,
+        "votestarget": 0,
+        "votescasted": 0,
+        "Description": "Login without password. Authenticated using a token given by Moodle site. This way your password is safe."
+    },
+    {
+        "id": 3,
+        "name": "Intelligent file download",
+        "Status": 2,
+        "votestarget": 0,
+        "votescasted": 0,
+        "Description": "Intelligent file download using system downloader. Your file downloads are persistant across network failures, switching networks (between Mobile data and Wifi) and even device reboots!"
+    },
+    {
+        "id": 4,
+        "name": "Calender",
+        "Status": 1,
+        "votestarget": 0,
+        "votescasted": 0,
+        "Description": "Moodle site calender. Includes a calender in the courses for course specific events. Adding events to be implemented."
+    },
+    {
+        "id": 5,
+        "name": "Messaging",
+        "Status": 1,
+        "votestarget": 5,
+        "votescasted": 0,
+        "Description": "Lists unread message counts. Indications of sender status - Online, Offline, Stranger. Option to send messages to be implemented. Reading messages in not supported in Moodle APIs but we will be using webview in the app to read messages."
+    },
+    {
+        "id": 6,
+        "name": "Course participants",
+        "Status": 0,
+        "votestarget": 10,
+        "votescasted": 0,
+        "Description": "Adds a section in the course to show the list of participants in that course. Will also have options to add a participant as a contact, view profile and send messages"
+    },
+    {
+        "id": 7,
+        "name": "New content notifications",
+        "Status": 0,
+        "votestarget": 20,
+        "votescasted": 0,
+        "Description": "Periodic checking for new contents and sending notification to user. Options will given to set the frequency of checking and more."
+    },
+    {
+        "id": 8,
+        "name": "Uploading files",
+        "Status": 0,
+        "votestarget": 30,
+        "votescasted": 0,
+        "Description": "User will be able to upload files to the Moodle server to their private files section. Depending on the support in Moodle APIs, this will be extended to other sections."
+    },
+    {
+        "id": 9,
+        "name": "Forums",
+        "Status": 2,
+        "votestarget": 0,
+        "votescasted": 0,
+        "Description": "Listing forums, topics inside a forum and post in a topic implemented. Reply option is not supported by Moodle APIs so, webview is used to fulfil that."
+    },
+    {
+        "id": 10,
+        "name": "Notes",
+        "Status": 0,
+        "votestarget": 20,
+        "votescasted": 0,
+        "Description": "Viewing notes created by the user. Will also be having an option to create notes for a user, course or personal note."
+    }
+]
