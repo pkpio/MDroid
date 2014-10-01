@@ -2,6 +2,7 @@ package in.co.praveenkumar.mdroid.fragment;
 
 import in.co.praveenkumar.mdroid.activity.CalendarActivity;
 import in.co.praveenkumar.mdroid.activity.CourseActivity;
+import in.co.praveenkumar.mdroid.activity.DonationActivity;
 import in.co.praveenkumar.mdroid.activity.ForumActivity;
 import in.co.praveenkumar.mdroid.activity.LoginActivity;
 import in.co.praveenkumar.mdroid.legacy.R;
@@ -103,7 +104,8 @@ public class LeftNavigationFragment extends Fragment {
 				case LeftNavListAdapter.TYPE_APP_MENUITEM:
 					switch (position - sites.size() - moodleMenuItems.length) {
 					case 0:
-						// Request features
+						context.startActivity(new Intent(context,
+								DonationActivity.class));
 						break;
 					case 1:
 						// Settings
