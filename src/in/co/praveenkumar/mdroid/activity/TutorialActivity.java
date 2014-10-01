@@ -57,10 +57,6 @@ public class TutorialActivity extends FragmentActivity {
 	}
 
 	class TutorialFragmentAdapter extends FragmentPagerAdapter {
-		final int[] ICONS = new int[] { R.drawable.expand_less,
-				R.drawable.expand_less_grey, R.drawable.icon_refresh,
-				R.drawable.drive_ms_powerpoint };
-
 		private int mCount = TutorialFragment.TUTORIAL_PAGE_COUNT;
 
 		public TutorialFragmentAdapter(FragmentManager fm) {
