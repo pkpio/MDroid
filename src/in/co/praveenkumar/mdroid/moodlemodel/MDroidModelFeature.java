@@ -1,4 +1,4 @@
-package in.co.praveenkumar.mdroid.donation;
+package in.co.praveenkumar.mdroid.moodlemodel;
 
 import com.google.gson.annotations.SerializedName;
 import com.orm.SugarRecord;
