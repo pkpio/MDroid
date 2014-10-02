@@ -10,18 +10,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.anjlab.android.iab.v3.BillingProcessor;
+import com.anjlab.android.iab.v3.TransactionDetails;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -29,27 +35,89 @@ import com.google.gson.reflect.TypeToken;
 public class DonationActivity extends AppNavigationDrawer {
 	private final String DEBUG_TAG = "DonationActivity";
 	List<MDroidModelFeature> features = new ArrayList<MDroidModelFeature>();
+	Context context;
 	FeatureListAdapter featureListAdapter;
+	private BillingProcessor donationProcessor;
+	private static final String LICENSE_KEY = "";
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_donations);
 		setUpDrawer();
+		this.context = this;
 
+		// Setup billing
+		donationProcessor = new BillingProcessor(this, LICENSE_KEY,
+				new BillingProcessor.IBillingHandler() {
+					@Override
+					public void onProductPurchased(String productId,
+							TransactionDetails details) {
+						Toast.makeText(context,
+								"You voted already. Thank you :)",
+								Toast.LENGTH_LONG).show();
+					}
+
+					@Override
+					public void onBillingError(int errorCode, Throwable error) {
+						Toast.makeText(context,
+								"Voting failed! Please try again!",
+								Toast.LENGTH_LONG).show();
+					}
+
+					@Override
+					public void onBillingInitialized() {
+					}
+
+					@Override
+					public void onPurchaseHistoryRestored() {
+					}
+				});
+
+		// Get features from local db to start with
 		features = MDroidModelFeature.listAll(MDroidModelFeature.class);
 		if (features.size() == 0)
 			parseFeaturesFromAssetFile();
 
 		ListView featureList = (ListView) findViewById(R.id.list_donations);
 
+		// Added header and footers to the list
 		LayoutInflater inflater = this.getLayoutInflater();
 		LinearLayout listHeaderView = (LinearLayout) inflater.inflate(
 				R.layout.list_item_donations_header, null);
 		featureList.addHeaderView(listHeaderView);
 
+		// Set the list adapter
 		featureListAdapter = new FeatureListAdapter(this);
 		featureList.setAdapter(featureListAdapter);
+
+		// Setup listitem clicklisteners
+		featureList.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+				donationProcessor.consumePurchase(features.get(position)
+						.getProductid());
+				donationProcessor.purchase(features.get(position)
+						.getProductid());
+			}
+		});
+
+	}
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		if (!donationProcessor.handleActivityResult(requestCode, resultCode,
+				data))
+			super.onActivityResult(requestCode, resultCode, data);
+	}
+
+	@Override
+	public void onDestroy() {
+		if (donationProcessor != null)
+			donationProcessor.release();
+		super.onDestroy();
 	}
 
 	public class FeatureListAdapter extends BaseAdapter {

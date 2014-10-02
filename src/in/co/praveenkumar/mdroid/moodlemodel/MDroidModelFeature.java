@@ -5,6 +5,7 @@ import com.orm.SugarRecord;
 import com.orm.dsl.Ignore;
 
 public class MDroidModelFeature extends SugarRecord<MDroidModelFeature> {
+
 	@Ignore
 	public static final int NOT_IMPLEMENTED = 0;
 
@@ -16,6 +17,9 @@ public class MDroidModelFeature extends SugarRecord<MDroidModelFeature> {
 
 	@SerializedName("featureid")
 	int featureid;
+
+	@SerializedName("productid")
+	String productid;
 
 	@SerializedName("name")
 	String name;
@@ -40,6 +44,15 @@ public class MDroidModelFeature extends SugarRecord<MDroidModelFeature> {
 	 */
 	public int getFeatureid() {
 		return featureid;
+	}
+
+	/**
+	 * Get the productid of this feature for donating.
+	 * 
+	 * @return productid
+	 */
+	public String getProductid() {
+		return productid;
 	}
 
 	/**
