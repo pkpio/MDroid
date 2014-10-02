@@ -27,7 +27,7 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:contentDescription="@string/app_name"
-                android:src="@drawable/icon_extension" />
+                android:src="@drawable/icon_plusone_red" />
 
             <LinearLayout
                 android:id="@+id/feature_votes_layout"
