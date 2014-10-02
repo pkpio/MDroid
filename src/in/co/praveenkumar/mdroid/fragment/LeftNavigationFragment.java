@@ -238,7 +238,7 @@ public class LeftNavigationFragment extends Fragment {
 				break;
 			case TYPE_APP_MENUITEM:
 				viewHolder.menuItemName.setText(appMenuItems[position
-						- sites.size() - moodleMenuItems.length]);
+						- sites.size() - moodleMenuItems.length].toUpperCase());
 				viewHolder.menuItemIcon.setImageResource(appMenuIcons[position
 						- sites.size() - moodleMenuItems.length]);
 				break;
