@@ -12,8 +12,8 @@
 
         <ImageView
             android:id="@+id/nav_menuicon"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
             android:layout_gravity="center_vertical"
             android:contentDescription="@string/list_item_sample_menu"
             android:padding="8dp"
@@ -28,9 +28,9 @@
             android:paddingLeft="0dp"
             android:paddingRight="16dp"
             android:paddingStart="16dp"
-            android:text="Request features"
+            android:text="SETTINGS"
             android:textColor="@color/grey6"
-            android:textSize="15sp" />
+            android:textSize="14sp" />
     </LinearLayout>
 
     <LinearLayout
