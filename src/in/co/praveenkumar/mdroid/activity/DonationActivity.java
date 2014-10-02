@@ -97,10 +97,13 @@ public class DonationActivity extends AppNavigationDrawer {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
+				position--; // Because there is a header
+				if (position < 0)
+					return;
 				donationProcessor.consumePurchase(features.get(position)
-						.getProductid());
+						.getProductid() + "test");
 				donationProcessor.purchase(features.get(position)
-						.getProductid());
+						.getProductid() + "test");
 			}
 		});
 
