@@ -78,5 +78,13 @@
         "votestarget": 20,
         "votescasted": 0,
         "description": "Viewing notes created by the user. Will also be having an option to create notes for a user, course or personal note."
+    },
+    {
+        "id": 11,
+        "name": "Uploads and downloads section",
+        "status": 0,
+        "votestarget": 25,
+        "votescasted": 0,
+        "description": "A seperate section in MDroid application where you can check all the current transfers - file downloads or uploads. This will also show the progress of the transfer and works irrespective of, from where the transfer has been initiated. You can also check finished transfers here."
     }
 ]
