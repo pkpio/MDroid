@@ -47,3 +47,8 @@
   <b>Status:</b> Not implemented<br/>
   <b> Votes needed: </b> 20 <br/>
   <b>Description:</b> Viewing notes created by the user. Will also be having an option to create notes for a user, course or personal note.
+  
+###11. Uploads and downloads section
+  <b>Status:</b> Not implemented<br/>
+  <b> Votes needed: </b> 25 <br/>
+  <b>Description:</b> A seperate section in MDroid application where you can check all the current transfers - file downloads or uploads. This will also show the progress of the transfer and works irrespective of, from where the transfer has been initiated. You can also check finished transfers here.
