@@ -104,15 +104,15 @@ public class DonationActivity extends AppNavigationDrawer {
 			switch (features.get(position).getStatus()) {
 			case MDroidModelFeature.IMPLEMENTED:
 				viewHolder.featureimage
-						.setImageResource(R.drawable.icon_extension_green);
+						.setImageResource(R.drawable.icon_done_green);
 				break;
 			case MDroidModelFeature.NOT_IMPLEMENTED:
 				viewHolder.featureimage
-						.setImageResource(R.drawable.icon_extension_blue);
+						.setImageResource(R.drawable.icon_plusone_red);
 				break;
 			case MDroidModelFeature.PARTIALLY_IMPLEMENTED:
 				viewHolder.featureimage
-						.setImageResource(R.drawable.icon_extension_yellow);
+						.setImageResource(R.drawable.icon_plusone_yellow);
 				break;
 			}
 
