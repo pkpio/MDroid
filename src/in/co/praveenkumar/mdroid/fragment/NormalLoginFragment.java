@@ -1,5 +1,6 @@
 package in.co.praveenkumar.mdroid.fragment;
 
+import in.co.praveenkumar.mdroid.helper.FormValidate;
 import in.co.praveenkumar.mdroid.legacy.R;
 import in.co.praveenkumar.mdroid.task.LoginTask;
 import android.os.Bundle;
@@ -67,6 +68,13 @@ public class NormalLoginFragment extends Fragment {
 		String username = usernameET.getText().toString();
 		String password = passwordET.getText().toString();
 		String mUrl = murlET.getText().toString();
+		FormValidate fv = new FormValidate();
+		if (!fv.valid(username, password, mUrl)) {
+			usernameET.setError(fv.getUsernameError(username));
+			passwordET.setError(fv.getPasswordError(password));
+			murlET.setError(fv.getUrlError(mUrl));
+			return;
+		}
 
 		new LoginTask(username, password, mUrl, loginButton, loginProgressSV,
 				loginProgressTV, getActivity()).execute("");
