@@ -1,9 +1,10 @@
 package in.co.praveenkumar.mdroid.fragment;
 
-import in.co.praveenkumar.mdroid.legacy.R;
 import in.co.praveenkumar.mdroid.helper.AppInterface.DiscussionIdInterface;
+import in.co.praveenkumar.mdroid.helper.LetterColor;
 import in.co.praveenkumar.mdroid.helper.SessionSetting;
 import in.co.praveenkumar.mdroid.helper.TimeFormat;
+import in.co.praveenkumar.mdroid.legacy.R;
 import in.co.praveenkumar.mdroid.moodlemodel.MoodlePost;
 import in.co.praveenkumar.mdroid.task.PostSyncTask;
 
@@ -145,12 +146,12 @@ public class PostFragment extends Fragment {
 			viewHolder.postcontent.setText(message);
 
 			// Author image color and value
-			String authorLetter = mPosts.get(position).getUserfullname();
-			if (authorLetter.length() != 0)
-				authorLetter = authorLetter.charAt(0) + "";
-			viewHolder.postauthorimage.setText(authorLetter);
-			viewHolder.postauthorimage.setBackgroundColor(getResources()
-					.getColor(R.color.beautiful_green));
+			String authorName = mPosts.get(position).getUserfullname();
+			char firstChar = 0;
+			if (authorName.length() != 0)
+				firstChar = authorName.charAt(0);
+			viewHolder.postauthorimage.setText(firstChar + "");
+			viewHolder.postauthorimage.setBackgroundColor(LetterColor.of(firstChar));
 
 			return convertView;
 		}
