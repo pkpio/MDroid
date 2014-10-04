@@ -148,10 +148,12 @@ public class PostFragment extends Fragment {
 			// Author image color and value
 			String authorName = mPosts.get(position).getUserfullname();
 			char firstChar = 0;
-			if (authorName.length() != 0)
-				firstChar = authorName.charAt(0);
+			if (authorName != null)
+				if (authorName.length() != 0)
+					firstChar = authorName.charAt(0);
 			viewHolder.postauthorimage.setText(firstChar + "");
-			viewHolder.postauthorimage.setBackgroundColor(LetterColor.of(firstChar));
+			viewHolder.postauthorimage.setBackgroundColor(LetterColor
+					.of(firstChar));
 
 			return convertView;
 		}
