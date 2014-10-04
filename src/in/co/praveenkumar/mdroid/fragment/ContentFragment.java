@@ -204,14 +204,26 @@ public class ContentFragment extends Fragment {
 
 			case TYPE_MODULE:
 				MoodleModule module = listObjects.get(position).module;
-				viewHolder.modulename.setText(module.getName());
+				
+				// Module name
+				String modulename = module.getName();
+				if (modulename == null)
+					modulename = "";
+				else
+					modulename = Html.fromHtml(modulename).toString().trim();
+				viewHolder.modulename.setText(modulename);
+				
+				// Module icon
 				viewHolder.moduleicon.setImageResource(ModuleIcon.of(module));
+				
+				// Module description
 				String description = module.getDescription();
 				if (description == null)
 					description = "";
 				else
 					description = Html.fromHtml(description).toString().trim();
 				viewHolder.moduledesc.setText(description);
+				
 				break;
 			}
 			convertView.setOnClickListener(new OnClickListener() {
