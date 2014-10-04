@@ -198,13 +198,17 @@ public class ContentFragment extends Fragment {
 			// Assign values
 			switch (type) {
 			case TYPE_HEADER:
-				viewHolder.sectionname
-						.setText(listObjects.get(position).sectionname);
+				String sectionname = listObjects.get(position).sectionname;
+				if (sectionname == null)
+					sectionname = "";
+				else
+					sectionname = Html.fromHtml(sectionname).toString().trim();
+				viewHolder.sectionname.setText(sectionname);
 				break;
 
 			case TYPE_MODULE:
 				MoodleModule module = listObjects.get(position).module;
-				
+
 				// Module name
 				String modulename = module.getName();
 				if (modulename == null)
@@ -212,10 +216,10 @@ public class ContentFragment extends Fragment {
 				else
 					modulename = Html.fromHtml(modulename).toString().trim();
 				viewHolder.modulename.setText(modulename);
-				
+
 				// Module icon
 				viewHolder.moduleicon.setImageResource(ModuleIcon.of(module));
-				
+
 				// Module description
 				String description = module.getDescription();
 				if (description == null)
@@ -223,7 +227,7 @@ public class ContentFragment extends Fragment {
 				else
 					description = Html.fromHtml(description).toString().trim();
 				viewHolder.moduledesc.setText(description);
-				
+
 				break;
 			}
 			convertView.setOnClickListener(new OnClickListener() {
@@ -333,7 +337,7 @@ public class ContentFragment extends Fragment {
 	private void mapSectionsToListObjects(ArrayList<MoodleSection> sections) {
 		if (sections == null)
 			return;
-		
+
 		// To avoid duplicates in listing
 		listObjects.clear();
 
