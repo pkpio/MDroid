@@ -1,5 +1,6 @@
 package in.co.praveenkumar.mdroid.fragment;
 
+import in.co.praveenkumar.mdroid.helper.FormValidate;
 import in.co.praveenkumar.mdroid.legacy.R;
 import in.co.praveenkumar.mdroid.task.LoginTask;
 import android.os.Bundle;
@@ -62,6 +63,12 @@ public class ParanoidLoginFragment extends Fragment {
 	private void doParanoidLogin() {
 		String token = tokenET.getText().toString();
 		String mUrl = murlET.getText().toString();
+		FormValidate fv = new FormValidate();
+		if (!fv.valid(token, mUrl)) {
+			tokenET.setError(fv.getTokenError(token));
+			murlET.setError(fv.getUrlError(mUrl));
+			return;
+		}
 
 		new LoginTask(token, mUrl, loginButton, loginProgressSV,
 				loginProgressTV, getActivity()).execute("");
