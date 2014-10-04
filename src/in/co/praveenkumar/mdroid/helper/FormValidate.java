@@ -3,15 +3,53 @@ package in.co.praveenkumar.mdroid.helper;
 import org.apache.commons.validator.routines.UrlValidator;
 
 public class FormValidate {
+	String username;
+	String password;
+	String token;
+	String url;
 
 	/**
-	 * Check the validity of the username field.
+	 * Check field validity for login fields
+	 * 
+	 * @param username
+	 * @param password
+	 * @param url
+	 * @return validity true if valid. false, otherwise.
+	 */
+	public Boolean valid(String username, String password, String url) {
+		this.username = username;
+		this.password = password;
+		this.url = url;
+		if (getUsernameError(username) != null
+				|| getPasswordError(password) != null
+				|| getUrlError(url) != null)
+			return false;
+		return true;
+	}
+
+	/**
+	 * Check field validity for login fields
+	 * 
+	 * @param token
+	 * @param url
+	 * @return validity true if valid. false, otherwise.
+	 */
+	public Boolean valid(String token, String url) {
+		this.token = token;
+		this.url = url;
+		if (getTokenError(token) != null || getUrlError(url) != null)
+			return false;
+		return true;
+	}
+
+	/**
+	 * Get errors while validating username field.
 	 * 
 	 * @param username
 	 *            Username to check
 	 * @return Error message (null if valid)
 	 */
-	public static String username(String username) {
+	public String getUsernameError(String username) {
 		if (username.contentEquals(""))
 			return "Username can't be empty";
 		return null;
@@ -24,7 +62,7 @@ public class FormValidate {
 	 *            password to check
 	 * @return Error message (null if valid)
 	 */
-	public static String password(String password) {
+	public String getPasswordError(String password) {
 		if (password.contentEquals(""))
 			return "Password can't be empty";
 		return null;
@@ -37,7 +75,7 @@ public class FormValidate {
 	 *            token to check
 	 * @return Error message (null if valid)
 	 */
-	public static String token(String token) {
+	public String getTokenError(String token) {
 		if (token.contentEquals(""))
 			return "Token can't be empty";
 		return null;
@@ -50,7 +88,7 @@ public class FormValidate {
 	 *            url to check
 	 * @return Error message (null if valid)
 	 */
-	public static String url(String url) {
+	public String getUrlError(String url) {
 		if (url.contentEquals(""))
 			return "url can't be empty";
 		UrlValidator urlValidator = new UrlValidator();
