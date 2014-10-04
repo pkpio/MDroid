@@ -3,8 +3,6 @@ package in.co.praveenkumar.mdroid.activity;
 import in.co.praveenkumar.mdroid.helper.AppNavigationDrawer;
 import in.co.praveenkumar.mdroid.legacy.R;
 import android.os.Bundle;
-import android.view.View;
-import android.view.View.OnClickListener;
 import android.webkit.CookieSyncManager;
 import android.webkit.JsResult;
 import android.webkit.WebChromeClient;
