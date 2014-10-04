@@ -61,7 +61,7 @@ public class LetterColor {
 		case 'I':
 			return Color.parseColor(GREEN);
 		case 'J':
-			return Color.parseColor(EMERALD);
+			return Color.parseColor(BEAUTIFUL_GREEN);
 		case 'K':
 			return Color.parseColor(MAUVE);
 		case 'L':
@@ -73,7 +73,7 @@ public class LetterColor {
 		case 'O':
 			return Color.parseColor(RED);
 		case 'P':
-			return Color.parseColor(BEAUTIFUL_GREEN);
+			return Color.parseColor(EMERALD);
 		case 'Q':
 			return Color.parseColor(SIENNA);
 		case 'R':
