@@ -13,6 +13,7 @@ import in.co.praveenkumar.mdroid.moodlemodel.MoodleSiteInfo;
 
 import java.io.File;
 import java.util.List;
+import java.util.Locale;
 
 import android.app.Activity;
 import android.content.Context;
@@ -223,12 +224,7 @@ public class LeftNavigationFragment extends Fragment {
 								+ sites.get(position).getId()));
 				if (userImage != null)
 					viewHolder.userimage.setImageBitmap(userImage);
-
-				// Show this as current account if it is
-				if (session.getCurrentSiteId() == sites.get(position).getId())
-					navListView.setSelection(position);
 				break;
-
 			case TYPE_MOODLE_MENUITEM:
 				viewHolder.menuItemName.setText(moodleMenuItems[position
 						- sites.size()]);
@@ -238,7 +234,8 @@ public class LeftNavigationFragment extends Fragment {
 				break;
 			case TYPE_APP_MENUITEM:
 				viewHolder.menuItemName.setText(appMenuItems[position
-						- sites.size() - moodleMenuItems.length].toUpperCase());
+						- sites.size() - moodleMenuItems.length]
+						.toUpperCase(Locale.ENGLISH));
 				viewHolder.menuItemIcon.setImageResource(appMenuIcons[position
 						- sites.size() - moodleMenuItems.length]);
 				break;
