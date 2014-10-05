@@ -39,6 +39,14 @@ public class LetterColor {
 	static final String BEAUTIFUL_DARK_YELLOW = "#d07c40";
 	static final String MOODLE_COLOR = "#ff8800";
 
+	public static int ofFirstLetterIn(String name) {
+		char firstChar = 0;
+		if (name != null)
+			if (name.length() != 0)
+				firstChar = name.charAt(0);
+		return LetterColor.of(firstChar);
+	}
+
 	public static int of(char letter) {
 		letter = Character.toUpperCase(letter);
 		switch (letter) {
