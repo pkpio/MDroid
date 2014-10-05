@@ -2,6 +2,7 @@ package in.co.praveenkumar.mdroid.fragment;
 
 import in.co.praveenkumar.mdroid.legacy.R;
 import in.co.praveenkumar.mdroid.helper.AppInterface.DrawerStateInterface;
+import in.co.praveenkumar.mdroid.helper.LetterColor;
 import in.co.praveenkumar.mdroid.helper.SessionSetting;
 import in.co.praveenkumar.mdroid.moodlemodel.MoodleContact;
 import in.co.praveenkumar.mdroid.task.ContactSyncTask;
@@ -86,6 +87,8 @@ public class RightNavigationFragment extends Fragment {
 				convertView = inflater.inflate(R.layout.list_item_contact,
 						parent, false);
 
+				viewHolder.userimage = (TextView) convertView
+						.findViewById(R.id.list_contact_image);
 				viewHolder.userfullname = (TextView) convertView
 						.findViewById(R.id.list_contact_name);
 				viewHolder.unreadcount = (TextView) convertView
@@ -98,22 +101,39 @@ public class RightNavigationFragment extends Fragment {
 				viewHolder = (ViewHolder) convertView.getTag();
 			}
 
+			// Contact image color and value
+			String name = contacts.get(position).getFullname();
+			char firstChar = 0;
+			if (name.length() != 0)
+				firstChar = name.charAt(0);
+			viewHolder.userimage.setText(firstChar + "");
+			viewHolder.userimage.setBackgroundColor(LetterColor.of(firstChar));
+
+			// Name
 			viewHolder.userfullname.setText(contacts.get(position)
 					.getFullname());
-			viewHolder.unreadcount.setText(contacts.get(position).getUnread()
-					+ "");
+
+			// Unread counts
+			int count = contacts.get(position).getUnread();
+			if (count == 0)
+				viewHolder.unreadcount.setVisibility(TextView.GONE);
+			else {
+				viewHolder.unreadcount.setVisibility(TextView.VISIBLE);
+				viewHolder.unreadcount.setText(count + "");
+			}
+
 			switch (contacts.get(position).getStatus()) {
 			case MoodleContact.STATUS_ONLINE:
-				viewHolder.unreadcount
-						.setBackgroundResource(R.drawable.circular_online_bg);
+				// viewHolder.unreadcount
+				// .setBackgroundResource(R.drawable.circular_online_bg);
 				break;
 			case MoodleContact.STATUS_OFFLINE:
-				viewHolder.unreadcount
-						.setBackgroundResource(R.drawable.circular_offline_bg);
+				// viewHolder.unreadcount
+				// .setBackgroundResource(R.drawable.circular_offline_bg);
 				break;
 			case MoodleContact.STATUS_STRANGER:
-				viewHolder.unreadcount
-						.setBackgroundResource(R.drawable.circular_stranger_bg);
+				// viewHolder.unreadcount
+				// .setBackgroundResource(R.drawable.circular_stranger_bg);
 				break;
 			}
 
@@ -137,6 +157,7 @@ public class RightNavigationFragment extends Fragment {
 	}
 
 	static class ViewHolder {
+		TextView userimage;
 		TextView userfullname;
 		TextView unreadcount;
 	}
