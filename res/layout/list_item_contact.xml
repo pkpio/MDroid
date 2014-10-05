@@ -28,13 +28,13 @@
 
         <TextView
             android:id="@+id/list_unread_count"
-            android:layout_width="18dp"
-            android:layout_height="18dp"
-            android:layout_gravity="bottom|right"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_gravity="top|right"
             android:background="@drawable/circular_bg"
             android:gravity="center"
             android:text="@string/sample_contact_unread"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="12sp" />
     </FrameLayout>
 
