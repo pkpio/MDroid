@@ -188,6 +188,8 @@ public class LeftNavigationFragment extends Fragment {
 							.findViewById(R.id.nav_sitename);
 					viewHolder.userimage = (ImageView) convertView
 							.findViewById(R.id.nav_user_image);
+					viewHolder.userselected = (ImageView) convertView
+							.findViewById(R.id.nav_user_selected);
 					break;
 
 				case TYPE_MOODLE_MENUITEM:
@@ -224,7 +226,14 @@ public class LeftNavigationFragment extends Fragment {
 								+ sites.get(position).getId()));
 				if (userImage != null)
 					viewHolder.userimage.setImageBitmap(userImage);
+
+				// Show this as current account if it is
+				if (session.getCurrentSiteId() == sites.get(position).getId())
+					viewHolder.userselected.setVisibility(ImageView.VISIBLE);
+				else
+					viewHolder.userselected.setVisibility(ImageView.GONE);
 				break;
+
 			case TYPE_MOODLE_MENUITEM:
 				viewHolder.menuItemName.setText(moodleMenuItems[position
 						- sites.size()]);
@@ -262,6 +271,7 @@ public class LeftNavigationFragment extends Fragment {
 	static class ViewHolder {
 		TextView userfullname;
 		TextView sitename;
+		ImageView userselected;
 		ImageView userimage;
 		TextView menuItemName;
 		ImageView menuItemIcon;
