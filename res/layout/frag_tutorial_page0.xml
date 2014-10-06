@@ -8,25 +8,16 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:gravity="center" >
+        android:gravity="center"
+        android:orientation="vertical" >
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Hello"
+            android:text="@string/activity_tutorial_beautiful"
             android:textColor="@color/white"
             android:textSize="38sp"
             android:textStyle="bold" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:text="Beautiful!"
-            android:textStyle="italic"
-            android:textColor="@color/white"
-            android:textSize="30sp" />
     </LinearLayout>
 
     <TextView
@@ -34,7 +25,7 @@
         android:layout_height="fill_parent"
         android:layout_marginBottom="20dp"
         android:gravity="bottom|center_horizontal"
-        android:text="Swipe left"
+        android:text="@string/activity_tutorial_swipe_instruction"
         android:textColor="@color/white"
         android:textSize="16sp" />
 

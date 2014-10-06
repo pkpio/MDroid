@@ -14,7 +14,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Tutorial?"
+            android:text="@string/activity_tutorial_tutorial_title"
             android:textColor="@color/white"
             android:textSize="38sp"
             android:textStyle="bold" />
@@ -23,18 +23,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
-            android:text="It&apos;s intutive!"
+            android:text="@string/activity_tutorial_tutorial_description"
             android:textColor="@color/white"
             android:textSize="30sp"
-            android:textStyle="italic" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:text="You won&apos;t need one."
-            android:textColor="@color/white"
-            android:textSize="16sp"
             android:textStyle="italic" />
     </LinearLayout>
 
@@ -45,10 +36,10 @@
         android:layout_marginBottom="30dp"
         android:background="@drawable/white_btn_bg"
         android:gravity="center"
-        android:padding="8dp"
         android:onClick="openLoginPage"
-        android:text="Let&apos;s roll"
-        android:textSize="20sp"
-        android:textColor="@color/white" />
+        android:padding="8dp"
+        android:text="@string/activity_tutorial_tutorial_end_button"
+        android:textColor="@color/white"
+        android:textSize="20sp" />
 
 </FrameLayout>
