@@ -2,6 +2,7 @@ package in.co.praveenkumar.mdroid.activity;
 
 import in.co.praveenkumar.mdroid.helper.AppNavigationDrawer;
 import in.co.praveenkumar.mdroid.legacy.R;
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.webkit.CookieSyncManager;
 import android.webkit.JsResult;
@@ -9,6 +10,7 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
+@SuppressLint("SetJavaScriptEnabled")
 public class AppBrowserActivity extends AppNavigationDrawer {
 	WebView mBrowser;
 
@@ -44,13 +46,10 @@ public class AppBrowserActivity extends AppNavigationDrawer {
 				return true;
 			}
 
-			int count = 0;
-
 			@Override
 			public void onPageFinished(WebView view, String url) {
 				view.loadUrl("javascript:"
 						+ "document.getElementById('password').value='lola';");
-				count++;
 				System.out.println("Page loaded!");
 			}
 		});
