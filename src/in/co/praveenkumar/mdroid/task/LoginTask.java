@@ -6,27 +6,26 @@ import in.co.praveenkumar.mdroid.moodlemodel.MoodleSiteInfo;
 import in.co.praveenkumar.mdroid.moodlemodel.MoodleToken;
 import in.co.praveenkumar.mdroid.moodlerest.MoodleRestSiteInfo;
 import in.co.praveenkumar.mdroid.moodlerest.MoodleRestToken;
+import in.co.praveenkumar.mdroid.view.LoginStatusViewHolder;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.widget.Button;
-import android.widget.ScrollView;
-import android.widget.TextView;
+import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 
 public class LoginTask extends AsyncTask<String, Integer, Boolean> {
 	String username;
 	String password;
 	String mUrl;
-	String progress = "";
 	String token;
+	String progress = "";
 	MoodleSiteInfo siteInfo = new MoodleSiteInfo();
 	SessionSetting session;
 	Context context;
 
 	// Widgets
-	Button loginButton;
-	ScrollView loginProgressSV;
-	TextView loginProgressTV;
+	LoginStatusViewHolder progressViews;
 
 	/**
 	 * Do a normal login with Username, Password and Moodle Url.
@@ -34,26 +33,20 @@ public class LoginTask extends AsyncTask<String, Integer, Boolean> {
 	 * @param username
 	 * @param password
 	 * @param mUrl
-	 * @param loginButton
-	 *            Login button widget
-	 * @param loginProgressLL
-	 *            Login progress linearlayout
-	 * @param loginProgressTV
-	 *            Login progress message showing TextView widget
+	 * @param progressViews
+	 *            Views to show progress of login
+	 * 
 	 * @param context
 	 *            So that we can start course activity if all goes well
 	 * 
 	 * @author Praveen Kumar Pendyala (praveen@praveenkumar.co.in)
 	 */
 	public LoginTask(String username, String password, String mUrl,
-			Button loginButton, ScrollView loginProgressSV,
-			TextView loginProgressTV, Context context) {
+			LoginStatusViewHolder progressViews, Context context) {
 		this.username = username;
 		this.password = password;
 		this.mUrl = mUrl;
-		this.loginButton = loginButton;
-		this.loginProgressSV = loginProgressSV;
-		this.loginProgressTV = loginProgressTV;
+		this.progressViews = progressViews;
 		this.context = context;
 		session = new SessionSetting(context);
 	}
@@ -63,39 +56,35 @@ public class LoginTask extends AsyncTask<String, Integer, Boolean> {
 	 * 
 	 * @param token
 	 * @param mUrl
-	 * @param loginButton
-	 *            Login button widget
-	 * @param loginProgressLL
-	 *            Login progress linearlayout
-	 * @param loginProgressTV
-	 *            Login progress message showing TextView widget
+	 * @param progressViews
+	 *            Views to show progress of login
 	 * @param context
 	 *            So that we can start course activity if all goes well
 	 * 
 	 * @author Praveen Kumar Pendyala (praveen@praveenkumar.co.in)
 	 */
-	public LoginTask(String token, String mUrl, Button loginButton,
-			ScrollView loginProgressSV, TextView loginProgressTV,
-			Context context) {
+	public LoginTask(String token, String mUrl,
+			LoginStatusViewHolder progressViews, Context context) {
 		this.token = token;
 		this.mUrl = mUrl;
-		this.loginButton = loginButton;
-		this.loginProgressSV = loginProgressSV;
-		this.loginProgressTV = loginProgressTV;
+		this.progressViews = progressViews;
 		this.context = context.getApplicationContext();
 		session = new SessionSetting(context);
 	}
 
 	@Override
 	protected void onPreExecute() {
-		loginButton.setText("Logging in..");
-		loginButton.setEnabled(false);
-		loginProgressSV.setVisibility(ScrollView.VISIBLE);
+		progressViews.loginButton.setText("Logging in..");
+		progressViews.loginButton.setEnabled(false);
+		progressViews.retryButton.setVisibility(Button.GONE);
+		progressViews.statusLayout.setVisibility(RelativeLayout.VISIBLE);
+		progressViews.progressBar.setVisibility(ProgressBar.VISIBLE);
+		progressViews.progressTitle.setText("Logging in..");
 	}
 
 	@Override
 	protected void onProgressUpdate(Integer... params) {
-		loginProgressTV.setText(progress);
+		progressViews.progressText.setText(progress);
 	}
 
 	@Override
@@ -140,7 +129,7 @@ public class LoginTask extends AsyncTask<String, Integer, Boolean> {
 
 		if (mt.getToken() == null) {
 			updateProgress("Token fetch failed!");
-			updateProgress("\nError: \n" + mt.getError());
+			updateProgress("\nError\n" + mt.getError());
 
 			if (session.getDebugMode()) {
 				updateProgress("Moodle url: " + mt.getReproductionlink());
@@ -219,6 +208,10 @@ public class LoginTask extends AsyncTask<String, Integer, Boolean> {
 			Intent i = new Intent(context, CourseActivity.class);
 			i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 			context.startActivity(i);
+		} else {
+			progressViews.progressTitle.setText("Login failed");
+			progressViews.progressBar.setVisibility(ProgressBar.GONE);
+			progressViews.retryButton.setVisibility(Button.VISIBLE);
 		}
 	}
 
