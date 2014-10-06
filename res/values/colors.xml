@@ -27,6 +27,7 @@
     <color name="white">#ffffff</color>
     <color name="edittext_hint_color">#cccccc</color>
     <color name="semi_transparent">#aa000000</color>
+    <color name="login_progress_bg">#cc000000</color>
     <color name="black">#000000</color>
     <color name="card_listview_bg">#E2E2E2</color>
     <color name="yellow">#fffaaa</color>
