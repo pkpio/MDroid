@@ -167,61 +167,73 @@
         </LinearLayout>
     </ScrollView>
 
-    <ScrollView
+    <!-- Progress layout -->
+
+    <RelativeLayout
         android:id="@+id/login_progress_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/semi_transparent"
+        android:background="@color/login_progress_bg"
         android:clickable="true"
-        android:gravity="center_horizontal"
         android:visibility="gone" >
 
+        <!-- Progress title -->
+
         <LinearLayout
+            android:id="@+id/login_progress_title_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
             android:gravity="center_horizontal"
-            android:orientation="vertical" >
+            android:orientation="horizontal"
+            android:paddingBottom="15dp"
+            android:paddingTop="30dp" >
 
-            <LinearLayout
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/login_progress_title"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:orientation="horizontal"
-                android:paddingBottom="15dp"
-                android:paddingTop="30dp" >
+                android:text="@string/activity_login_status_title"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/activity_login_status_title"
-                    android:textColor="@color/white"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+            <ProgressBar
+                android:id="@+id/login_progress_progressbar"
+                android:layout_width="25dp"
+                android:layout_height="25dp" />
+        </LinearLayout>
 
-                <ProgressBar
-                    android:id="@+id/progressBar1"
-                    android:layout_width="25dp"
-                    android:layout_height="25dp" />
-            </LinearLayout>
+        <!-- Retry button -->
+
+        <Button
+            android:id="@+id/login_progress_retry"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="20dp"
+            android:background="@drawable/white_btn_bg"
+            android:padding="8dp"
+            android:text="@string/activity_login_progress_retry"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+
+        <!-- Progress text -->
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:layout_above="@id/login_progress_retry"
+            android:layout_below="@id/login_progress_title_layout" >
 
             <TextView
                 android:id="@+id/login_progress_message"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
                 android:textColor="@color/white" />
-
-            <Button
-                android:id="@+id/login_normal_retry"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:background="@drawable/white_btn_bg"
-                android:padding="8dp"
-                android:text="retry"
-                android:textColor="@color/white"
-                android:textSize="18sp" />
-        </LinearLayout>
-    </ScrollView>
+        </ScrollView>
+    </RelativeLayout>
 
 </FrameLayout>
