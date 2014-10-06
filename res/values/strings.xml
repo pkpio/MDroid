@@ -8,6 +8,21 @@
     <string name="drawer_open">open</string>
     <string name="drawer_close">close</string>
 
+    <!-- Tutorial activity -->
+    <string name="activity_tutorial_beautiful">Hello Beautiful!</string>
+    <string name="activity_tutorial_swipe_instruction">Swipe left</string>
+    <string name="activity_tutorial_lines_of_code">60,000+ lines of code..</string>
+    <string name="activity_tutorial_hours">Uncountable hours..</string>
+    <string name="activity_tutorial_love">and with lots of love</string>
+    <string name="activity_tutorial_mdroid_made">MDroid was made!</string>
+    <string name="activity_tutorial_support_title">Support me</string>
+    <string name="activity_tutorial_support_description">with a 5 star rating if you may</string>
+    <string name="activity_tutorial_bugs_title">Bugs?</string>
+    <string name="activity_tutorial_bugs_description">Let me know through bug report</string>
+    <string name="activity_tutorial_tutorial_title">Tutorial?</string>
+    <string name="activity_tutorial_tutorial_description">It\'s intuitive!</string>
+    <string name="activity_tutorial_tutorial_end_button">Let\'s roll</string>
+
     <!-- Login activity -->
     <string name="activity_login_normal">Normal</string>
     <string name="activity_login_paranoid">Paranoid</string>
