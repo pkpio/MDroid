@@ -48,6 +48,17 @@ public class ParanoidLoginFragment extends Fragment {
 			}
 		});
 
+		// Demo setup
+		RelativeLayout demoButton = (RelativeLayout) rootView
+				.findViewById(R.id.login_demo);
+		demoButton.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View arg0) {
+				tokenET.setText("demo");
+				murlET.setText("http://moodle.praveenkumar.co.in");
+			}
+		});
+
 		return rootView;
 	}
 
