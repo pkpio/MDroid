@@ -51,6 +51,18 @@ public class NormalLoginFragment extends Fragment {
 			}
 		});
 
+		// Demo setup
+		RelativeLayout demoButton = (RelativeLayout) rootView
+				.findViewById(R.id.login_demo);
+		demoButton.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View arg0) {
+				usernameET.setText("demo");
+				passwordET.setText("demo");
+				murlET.setText("http://moodle.praveenkumar.co.in");
+			}
+		});
+
 		return rootView;
 	}
 
