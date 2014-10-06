@@ -3,6 +3,7 @@ package in.co.praveenkumar.mdroid.fragment;
 import in.co.praveenkumar.mdroid.helper.FormValidate;
 import in.co.praveenkumar.mdroid.legacy.R;
 import in.co.praveenkumar.mdroid.task.LoginTask;
+import in.co.praveenkumar.mdroid.view.LoginStatusViewHolder;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -11,16 +12,15 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ScrollView;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 public class ParanoidLoginFragment extends Fragment {
 	EditText tokenET;
 	EditText murlET;
-	Button loginButton;
-	Button retryButton;
-	ScrollView loginProgressSV;
-	TextView loginProgressTV;
+	LoginStatusViewHolder progressViews = new LoginStatusViewHolder();
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -30,19 +30,21 @@ public class ParanoidLoginFragment extends Fragment {
 				container, false);
 		setUpWidgets(rootView);
 
-		loginButton.setOnClickListener(new OnClickListener() {
+		progressViews.loginButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				doParanoidLogin();
 			}
 		});
 
-		retryButton.setOnClickListener(new OnClickListener() {
+		progressViews.retryButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				loginProgressSV.setVisibility(ScrollView.GONE);
-				loginButton.setText("Login");
-				loginButton.setEnabled(true);
+				tokenET.setEnabled(true);
+				murlET.setEnabled(true);
+				progressViews.loginButton.setEnabled(true);
+				progressViews.statusLayout.setVisibility(LinearLayout.GONE);
+				progressViews.loginButton.setText("Login");
 			}
 		});
 
@@ -52,12 +54,20 @@ public class ParanoidLoginFragment extends Fragment {
 	private void setUpWidgets(View rootView) {
 		tokenET = (EditText) rootView.findViewById(R.id.login_paranoid_token);
 		murlET = (EditText) rootView.findViewById(R.id.login_paranoid_url);
-		loginButton = (Button) rootView.findViewById(R.id.login_paranoid_login);
-		loginProgressSV = (ScrollView) rootView
+		progressViews.loginButton = (Button) rootView
+				.findViewById(R.id.login_paranoid_login);
+
+		// Progress views
+		progressViews.statusLayout = (RelativeLayout) rootView
 				.findViewById(R.id.login_progress_layout);
-		loginProgressTV = (TextView) rootView
+		progressViews.progressTitle = (TextView) rootView
+				.findViewById(R.id.login_progress_title);
+		progressViews.progressBar = (ProgressBar) rootView
+				.findViewById(R.id.login_progress_progressbar);
+		progressViews.progressText = (TextView) rootView
 				.findViewById(R.id.login_progress_message);
-		retryButton = (Button) rootView.findViewById(R.id.login_paranoid_retry);
+		progressViews.retryButton = (Button) rootView
+				.findViewById(R.id.login_progress_retry);
 	}
 
 	private void doParanoidLogin() {
@@ -70,7 +80,6 @@ public class ParanoidLoginFragment extends Fragment {
 			return;
 		}
 
-		new LoginTask(token, mUrl, loginButton, loginProgressSV,
-				loginProgressTV, getActivity()).execute("");
+		new LoginTask(token, mUrl, progressViews, getActivity()).execute("");
 	}
 }
