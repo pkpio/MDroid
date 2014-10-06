@@ -1,6 +1,5 @@
 package in.co.praveenkumar.mdroid.task;
 
-import in.co.praveenkumar.mdroid.moodlemodel.MoodleEvent;
 import in.co.praveenkumar.mdroid.moodlemodel.MoodlePost;
 import in.co.praveenkumar.mdroid.moodlemodel.MoodlePosts;
 import in.co.praveenkumar.mdroid.moodlerest.MoodleRestPost;
