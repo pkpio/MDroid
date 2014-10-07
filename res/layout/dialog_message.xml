@@ -1,64 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:layout_gravity="center_horizontal"
     android:background="@color/white"
-    android:gravity="center_vertical"
-    android:maxWidth="600dp"
+    android:gravity="center_horizontal"
     android:minWidth="600dp"
-    android:paddingLeft="8dp"
-    android:paddingRight="8dp" >
+    android:orientation="vertical" >
 
-    <FrameLayout
-        android:id="@+id/list_contact_image_layout"
-        android:layout_width="45dp"
-        android:layout_height="45dp"
-        android:layout_centerVertical="true" >
-
-        <TextView
-            android:id="@+id/list_contact_image"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="4dp"
-            android:background="@color/beautiful_yellow"
-            android:gravity="center"
-            android:text="@string/sample_contact_unread"
-            android:textColor="@color/white"
-            android:textSize="26sp" />
-
-        <TextView
-            android:id="@+id/list_unread_count"
-            android:layout_width="16dp"
-            android:layout_height="16dp"
-            android:layout_gravity="top|right"
-            android:background="@drawable/circular_bg"
-            android:gravity="center"
-            android:text="@string/sample_contact_unread"
-            android:textColor="@color/black"
-            android:textSize="12sp" />
-    </FrameLayout>
-
-    <ImageView
-        android:id="@+id/list_message_icon"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"
-        android:layout_gravity="center_vertical"
-        android:contentDescription="@string/sample_contact_name"
-        android:src="@drawable/icon_chat_greyscale" />
-
-    <TextView
-        android:id="@+id/list_contact_name"
-        android:layout_width="fill_parent"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_toLeftOf="@id/list_message_icon"
-        android:layout_toRightOf="@id/list_contact_image_layout"
-        android:paddingLeft="8dp"
-        android:text="@string/sample_contact_name"
-        android:textColor="@color/black"
-        android:textSize="16sp" />
+        android:orientation="horizontal" >
 
-</RelativeLayout>
+        <FrameLayout
+            android:id="@+id/list_contact_image_layout"
+            android:layout_width="53dp"
+            android:layout_height="45dp" >
+
+            <TextView
+                android:id="@+id/list_contact_image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginRight="8dp"
+                android:background="@color/moodle_color"
+                android:gravity="center"
+                android:text="@string/sample_contact_unread"
+                android:textColor="@color/white"
+                android:textSize="26sp" />
+
+            <TextView
+                android:id="@+id/list_unread_count"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_gravity="top|right"
+                android:background="@drawable/circular_bg"
+                android:gravity="center"
+                android:text="@string/sample_contact_unread"
+                android:textColor="@color/black"
+                android:textSize="12sp" />
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/list_contact_name"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:paddingLeft="8dp"
+            android:text="@string/sample_contact_name"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/moodle_color" >
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/dialog_message_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:gravity="top"
+        android:hint="Enter your message"
+        android:inputType="textMultiLine"
+        android:maxHeight="150dp"
+        android:minHeight="100dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:textColorHint="@color/edittext_hint_color" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0.8dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:background="@color/grey12" >
+    </LinearLayout>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:text="Send" />
+
+</LinearLayout>
