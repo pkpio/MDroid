@@ -41,13 +41,31 @@ public class CourseActivity extends AppNavigationDrawer {
 
 		@Override
 		public Fragment getItem(int position) {
+			/*
+			 * We use bundle to pass course listing type because, by using other
+			 * methods we will lose the listing type information in the fragment
+			 * on onResume (this calls empty constructor). For the same reason
+			 * interface may not work. Bundles are passed again on onResume
+			 */
 			switch (position) {
 			case 0:
-				// List only user courses
-				return new CourseFragment(CourseFragment.TYPE_USER_COURSES);
+				CourseFragment userCourses = new CourseFragment();
+
+				// Set the listing type to only user courses in bundle.
+				Bundle bundle = new Bundle();
+				bundle.putInt("coursesType", CourseFragment.TYPE_USER_COURSES);
+				userCourses.setArguments(bundle);
+
+				return userCourses;
 			case 1:
-				// List only fav courses
-				return new CourseFragment(CourseFragment.TYPE_FAV_COURSES);
+				CourseFragment favCourses = new CourseFragment();
+
+				// Set the listing type to only user courses in bundle.
+				Bundle bundle1 = new Bundle();
+				bundle1.putInt("coursesType", CourseFragment.TYPE_FAV_COURSES);
+				favCourses.setArguments(bundle1);
+
+				return favCourses;
 			}
 			return null;
 		}

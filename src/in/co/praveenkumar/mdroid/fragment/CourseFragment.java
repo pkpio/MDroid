@@ -1,8 +1,8 @@
 package in.co.praveenkumar.mdroid.fragment;
 
 import in.co.praveenkumar.mdroid.activity.CourseContentActivity;
-import in.co.praveenkumar.mdroid.legacy.R;
 import in.co.praveenkumar.mdroid.helper.SessionSetting;
+import in.co.praveenkumar.mdroid.legacy.R;
 import in.co.praveenkumar.mdroid.moodlemodel.MoodleCourse;
 import in.co.praveenkumar.mdroid.task.CourseSyncTask;
 
@@ -44,21 +44,17 @@ public class CourseFragment extends Fragment {
 	LinearLayout courseEmptyLayout;
 
 	/**
-	 * All courses will be listed. You can choose something else by using
-	 * Course(type) method.
+	 * Pass the course listing type as a bundle param of type int with name
+	 * coursesType
 	 */
 	public CourseFragment() {
 	}
 
-	/**
-	 * Course.TYPE_ALL_COURSES, TYPE_USER_COURSES, TYPE_FAV_COURSES are
-	 * available options
-	 * 
-	 * @param Type
-	 *            Choose what all courses have to listed.
-	 */
-	public CourseFragment(int Type) {
-		this.Type = Type;
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		if (this.getArguments() != null)
+			Type = this.getArguments().getInt("coursesType", TYPE_USER_COURSES);
 	}
 
 	@Override
