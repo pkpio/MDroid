@@ -1,9 +1,10 @@
 package in.co.praveenkumar.mdroid.fragment;
 
-import in.co.praveenkumar.mdroid.legacy.R;
+import in.co.praveenkumar.mdroid.dialog.MessageDialog;
 import in.co.praveenkumar.mdroid.helper.AppInterface.DrawerStateInterface;
 import in.co.praveenkumar.mdroid.helper.LetterColor;
 import in.co.praveenkumar.mdroid.helper.SessionSetting;
+import in.co.praveenkumar.mdroid.legacy.R;
 import in.co.praveenkumar.mdroid.moodlemodel.MoodleContact;
 import in.co.praveenkumar.mdroid.task.ContactSyncTask;
 
@@ -18,6 +19,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -49,6 +52,17 @@ public class RightNavigationFragment extends Fragment {
 
 		adapter = new RightNavListAdapter(getActivity());
 		navListView.setAdapter(adapter);
+
+		// OnItem click
+		navListView.setOnItemClickListener(new OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View arg1,
+					int position, long arg3) {
+				MoodleContact contact = contacts.get(position);
+				MessageDialog md = new MessageDialog(getActivity());
+				md.show();
+			}
+		});
 
 		new contactSyncerBg().execute("");
 
