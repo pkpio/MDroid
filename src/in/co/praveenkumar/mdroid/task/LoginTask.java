@@ -101,7 +101,7 @@ public class LoginTask extends AsyncTask<String, Integer, Boolean> {
 
 		// Sync data
 		updateProgress("Syncing data");
-		new DownloadTask(null).download(siteInfo.getUserpictureurl(), "."
+		new DownloadTask(null).download(siteInfo.getUserpictureurl(), "", "."
 				+ siteInfo.getId(), false, DownloadTask.APP_DOWNLOADER);
 		if (!getCourseInfo())
 			return false;

@@ -42,8 +42,11 @@ public class DownloadTask {
 	 * 
 	 * @param fileUrl
 	 *            Source url of the file
+	 * @param filepath
+	 *            Destination file path. Base path is fixed to /sdcard/MDroid.
+	 *            Set this to "" if not required.
 	 * @param fileName
-	 *            File name. Path is fixed to /sdcard/MDroid
+	 *            File name
 	 * @param visibility
 	 *            Set to true if a notification has to be displayed while
 	 *            downloading. Works only when you choose SYSTEM_DOWNLOADER
@@ -56,14 +59,22 @@ public class DownloadTask {
 	 * 
 	 * @author Praveen Kumar Pendyala (praveen@praveenkumar.co.in)
 	 */
-	public long download(String fileUrl, String fileName, Boolean visibility,
-			Boolean choice) {
+	public long download(String fileUrl, String filepath, String fileName,
+			Boolean visibility, Boolean choice) {
+		// Make directories if required
+		File f = new File(
+				Environment.getExternalStoragePublicDirectory("/MDroid")
+						+ filepath);
+		if (!f.exists())
+			f.mkdirs();
+
 		long reqId;
 		if (choice == SYSTEM_DOWNLOADER) {
 			DownloadManager manager = (DownloadManager) context
 					.getSystemService(Context.DOWNLOAD_SERVICE);
 			Request request = new Request(Uri.parse(fileUrl));
-			request.setDestinationInExternalPublicDir("/MDroid", fileName);
+			request.setDestinationInExternalPublicDir("/MDroid", filepath
+					+ fileName);
 			request.setTitle(fileName);
 			request.setDescription("MDroid file download");
 			if (!visibility)
