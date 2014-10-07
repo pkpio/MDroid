@@ -12,12 +12,14 @@ import in.co.praveenkumar.mdroid.task.DownloadTask;
 import in.co.praveenkumar.mdroid.view.StickyListView;
 import in.co.praveenkumar.mdroid.view.StickyListView.PinnedSectionListAdapter;
 
+import java.io.File;
 import java.util.ArrayList;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v4.app.Fragment;
 import android.text.Html;
 import android.view.LayoutInflater;
@@ -261,11 +263,22 @@ public class ContentFragment extends Fragment {
 					}
 
 					MoodleModuleContent content = module.getContents().get(0);
-					String fileurl = content.getFileurl();
-					fileurl += "&token=" + session.getToken();
-					DownloadTask dt = new DownloadTask(context);
-					dt.download(fileurl, content.getFilename(), true,
-							DownloadTask.SYSTEM_DOWNLOADER);
+					String path = "/s" + session.getCurrentSiteId() + "c"
+							+ courseid + "/";
+					File file = new File(Environment
+							.getExternalStoragePublicDirectory("/MDroid")
+							+ path + content.getFilename());
+
+					// Download if file doesn't already exist
+					if (!file.exists()) {
+						String fileurl = content.getFileurl();
+						fileurl += "&token=" + session.getToken();
+						DownloadTask dt = new DownloadTask(context);
+						dt.download(fileurl, path, content.getFilename(), true,
+								DownloadTask.SYSTEM_DOWNLOADER);
+					} else {
+
+					}
 
 				}
 			});
