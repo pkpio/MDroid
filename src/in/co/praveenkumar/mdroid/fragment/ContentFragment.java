@@ -2,6 +2,7 @@ package in.co.praveenkumar.mdroid.fragment;
 
 import in.co.praveenkumar.mdroid.activity.AppBrowserActivity;
 import in.co.praveenkumar.mdroid.legacy.R;
+import in.co.praveenkumar.mdroid.helper.FileOpener;
 import in.co.praveenkumar.mdroid.helper.ModuleIcon;
 import in.co.praveenkumar.mdroid.helper.SessionSetting;
 import in.co.praveenkumar.mdroid.moodlemodel.MoodleModule;
@@ -277,7 +278,7 @@ public class ContentFragment extends Fragment {
 						dt.download(fileurl, path, content.getFilename(), true,
 								DownloadTask.SYSTEM_DOWNLOADER);
 					} else {
-
+						FileOpener.open(context, file);
 					}
 
 				}
