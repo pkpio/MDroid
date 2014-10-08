@@ -8,18 +8,18 @@
     android:minWidth="600dp"
     android:orientation="vertical" >
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal" >
 
         <FrameLayout
-            android:id="@+id/list_contact_image_layout"
+            android:id="@+id/dialog_contact_image_layout"
             android:layout_width="53dp"
             android:layout_height="45dp" >
 
             <TextView
-                android:id="@+id/list_contact_image"
+                android:id="@+id/dialog_contact_image"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginRight="8dp"
@@ -30,7 +30,7 @@
                 android:textSize="26sp" />
 
             <TextView
-                android:id="@+id/list_unread_count"
+                android:id="@+id/dialog_unread_count"
                 android:layout_width="16dp"
                 android:layout_height="16dp"
                 android:layout_gravity="top|right"
@@ -41,49 +41,45 @@
                 android:textSize="12sp" />
         </FrameLayout>
 
+        <ImageView
+            android:id="@+id/dialog_message_sendbutton"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/icon_send" />
+
         <TextView
-            android:id="@+id/list_contact_name"
+            android:id="@+id/dialog_contact_name"
             android:layout_width="fill_parent"
-            android:layout_height="match_parent"
+            android:layout_height="45dp"
+            android:layout_toLeftOf="@id/dialog_message_sendbutton"
+            android:layout_toRightOf="@id/dialog_contact_image_layout"
             android:gravity="center_vertical"
             android:paddingLeft="8dp"
             android:text="@string/sample_contact_name"
             android:textColor="@color/black"
-            android:textSize="20sp" />
-    </LinearLayout>
+            android:textSize="18sp" />
+    </RelativeLayout>
 
     <LinearLayout
+        android:id="@+id/dialog_header_line"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/moodle_color" >
+        android:background="@color/moodle_color"
+        android:orientation="vertical" >
     </LinearLayout>
 
     <EditText
         android:id="@+id/dialog_message_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@null"
         android:gravity="top"
         android:hint="Enter your message"
         android:inputType="textMultiLine"
         android:maxHeight="150dp"
         android:minHeight="100dp"
         android:paddingLeft="8dp"
-        android:paddingRight="8dp"
-        android:textColorHint="@color/edittext_hint_color" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0.8dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:background="@color/grey12" >
-    </LinearLayout>
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@null"
-        android:text="Send" />
+        android:paddingRight="8dp" />
 
 </LinearLayout>
