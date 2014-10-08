@@ -15,6 +15,7 @@
     <application
         android:name="com.orm.SugarApp"
         android:allowBackup="true"
+        android:logo="@drawable/ic_actionbar_icon"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/Theme.Moodle" >
