@@ -7,7 +7,8 @@ package in.co.praveenkumar.mdroid.moodlerest;
  */
 public class MoodleRestOption {
 	// Supported web services
-	public static final String SERVICE_MOODLE_MOBILE = "moodle_mobile";
+	// -TODO- Check moodle mobile service name
+	public static final String SERVICE_MOODLE_MOBILE = "moodle_mobile_app";
 	public static final String SERVICE_MOODY = "moody_service";
 	public static final String SERVICE_MDROID = "mdroid_service";
 
