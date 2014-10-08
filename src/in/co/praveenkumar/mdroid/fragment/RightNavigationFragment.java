@@ -60,6 +60,7 @@ public class RightNavigationFragment extends Fragment {
 					int position, long arg3) {
 				MoodleContact contact = contacts.get(position);
 				MessageDialog md = new MessageDialog(getActivity());
+				md.setContact(contact);
 				md.show();
 			}
 		});
