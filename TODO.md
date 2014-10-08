@@ -1,4 +1,4 @@
-Roadmap or plan for the new API version of MDroid (In priority order).
+Road:map or plan for the new API version of MDroid (In priority order).
 
 - [x] Normal and paranoid login
 - [x] Multiple account support
@@ -9,13 +9,13 @@ Roadmap or plan for the new API version of MDroid (In priority order).
 - [x] Downloading files
 - [x] Course Forums listing
 - [x] Forum discussion listing
-- [ ] Discussion thread listing
+- [x] Discussion thread listing
 - [x] Calender
 - [x] Course Calender events listing
 - [x] Contacts listing
-- [ ] Donation option in side menu
-- [ ] In-app purchase of app feature requests
-- [ ] Sending messages
+- [x] Donation option in side menu
+- [x] In-app purchase of app feature requests
+- [x] Sending messages
 - [ ] Course participants
 - [ ] Notes listing
 - [ ] Search feature
