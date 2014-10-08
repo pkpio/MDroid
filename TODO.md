@@ -5,8 +5,8 @@ Road:map or plan for the new API version of MDroid (In priority order).
 - [x] Course listing
 - [x] Account switching from side navigation
 - [x] Course content listing
-- [x] Webview for module and other content viewing
 - [x] Downloading files
+- [x] Webview for module viewing
 - [x] Course Forums listing
 - [x] Forum discussion listing
 - [x] Discussion thread listing
@@ -16,14 +16,15 @@ Road:map or plan for the new API version of MDroid (In priority order).
 - [x] Donation option in side menu
 - [x] In-app purchase of app feature requests
 - [x] Sending messages
-- [ ] Course participants
-- [ ] Notes listing
-- [ ] Search feature
+- [x] Open source licenses
 - [x] Course favourites
+- [ ] Settings implemetation
 - [ ] Background services and notifications
+- [ ] Document errors
+- [ ] Search feature
+- [ ] Course participants
 - [ ] Calender events creation
+- [ ] Notes listing
 - [ ] Notes creation
 - [ ] Files listing
 - [ ] Uploading files
-- [x] Document errors
-- [x] Open source licenses
