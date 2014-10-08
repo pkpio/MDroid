@@ -84,14 +84,14 @@ public class MoodleRestMessage {
 			// Adding all parameters.
 			String params = "" + URLEncoder.encode("", "UTF-8");
 
-			params += "&messages[0][touserid]"
+			params += "&messages[0][touserid]="
 					+ URLEncoder.encode(String.valueOf(userid), "UTF-8");
-			params += "&messages[0][text]"
+			params += "&messages[0][text]="
 					+ URLEncoder.encode(message, "UTF-8");
-			params += "&messages[0][textformat]"
+			params += "&messages[0][textformat]="
 					+ URLEncoder.encode(String.valueOf(messageformat), "UTF-8");
 			if (!clientmsgid.contentEquals(""))
-				params += "&messages[0][clientmsgid]"
+				params += "&messages[0][clientmsgid]="
 						+ URLEncoder.encode(clientmsgid, "UTF-8");
 
 			// Build a REST call url to make a call.
