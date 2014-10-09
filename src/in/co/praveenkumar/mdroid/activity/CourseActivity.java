@@ -8,30 +8,35 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v4.view.ViewPager.OnPageChangeListener;
 
 import com.viewpagerindicator.TabPageIndicator;
 
-public class CourseActivity extends AppNavigationDrawer {
+public class CourseActivity extends AppNavigationDrawer implements
+		OnPageChangeListener {
 
 	private ViewPager viewPager;
 	private static final String[] TABS = { "My Courses", "Fav Courses" };
+	private static final String[] TITLES = { "My Courses", "Favourite Courses" };
+	CharSequence title;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_course);
 		setUpDrawer();
+		setTitle(TITLES[0]);
 
 		FragmentPagerAdapter mAdapter = new CourseTabsAdapter(
 				getSupportFragmentManager());
 
 		viewPager = (ViewPager) findViewById(R.id.course_pager);
 		viewPager.setOffscreenPageLimit(3);
-
 		viewPager.setAdapter(mAdapter);
 
 		TabPageIndicator indicator = (TabPageIndicator) findViewById(R.id.indicator);
 		indicator.setViewPager(viewPager);
+		indicator.setOnPageChangeListener(this);
 	}
 
 	class CourseTabsAdapter extends FragmentPagerAdapter {
@@ -79,6 +84,30 @@ public class CourseActivity extends AppNavigationDrawer {
 		public int getCount() {
 			return TABS.length;
 		}
+	}
+
+	@Override
+	public void onPageScrollStateChanged(int arg0) {
+	}
+
+	@Override
+	public void onPageScrolled(int arg0, float arg1, int arg2) {
+	}
+
+	@Override
+	public void onPageSelected(int position) {
+		setTitle(TITLES[position]);
+	}
+
+	// @Override
+	// public CharSequence getActivityTitle() {
+	// return this.title;
+	// }
+
+	@Override
+	public void setTitle(CharSequence title) {
+		super.setTitle(title);
+		this.title = title;
 	}
 
 }
