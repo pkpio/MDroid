@@ -5,6 +5,7 @@ import in.co.praveenkumar.mdroid.activity.CourseActivity;
 import in.co.praveenkumar.mdroid.activity.DonationActivity;
 import in.co.praveenkumar.mdroid.activity.ForumActivity;
 import in.co.praveenkumar.mdroid.activity.LoginActivity;
+import in.co.praveenkumar.mdroid.activity.SettingsActivity;
 import in.co.praveenkumar.mdroid.legacy.R;
 import in.co.praveenkumar.mdroid.helper.AppInterface.DrawerStateInterface;
 import in.co.praveenkumar.mdroid.helper.ImageDecoder;
@@ -109,7 +110,8 @@ public class LeftNavigationFragment extends Fragment {
 								DonationActivity.class));
 						break;
 					case 1:
-						// Settings
+						context.startActivity(new Intent(context,
+								SettingsActivity.class));
 						break;
 					case 2:
 						// Help
