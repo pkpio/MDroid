@@ -1,10 +1,10 @@
 package in.co.praveenkumar.mdroid.fragment;
 
 import in.co.praveenkumar.mdroid.activity.PostActivity;
-import in.co.praveenkumar.mdroid.legacy.R;
 import in.co.praveenkumar.mdroid.helper.AppInterface.ForumIdInterface;
 import in.co.praveenkumar.mdroid.helper.SessionSetting;
 import in.co.praveenkumar.mdroid.helper.TimeFormat;
+import in.co.praveenkumar.mdroid.legacy.R;
 import in.co.praveenkumar.mdroid.moodlemodel.MoodleDiscussion;
 import in.co.praveenkumar.mdroid.task.DiscussionSyncTask;
 

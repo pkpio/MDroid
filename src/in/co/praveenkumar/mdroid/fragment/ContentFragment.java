@@ -1,10 +1,10 @@
 package in.co.praveenkumar.mdroid.fragment;
 
 import in.co.praveenkumar.mdroid.activity.AppBrowserActivity;
-import in.co.praveenkumar.mdroid.legacy.R;
 import in.co.praveenkumar.mdroid.helper.FileOpener;
 import in.co.praveenkumar.mdroid.helper.ModuleIcon;
 import in.co.praveenkumar.mdroid.helper.SessionSetting;
+import in.co.praveenkumar.mdroid.legacy.R;
 import in.co.praveenkumar.mdroid.moodlemodel.MoodleModule;
 import in.co.praveenkumar.mdroid.moodlemodel.MoodleModuleContent;
 import in.co.praveenkumar.mdroid.moodlemodel.MoodleSection;
