@@ -55,4 +55,21 @@ public class AppInterface {
 
 	}
 
+	/**
+	 * Gives an interface for passing actionbar title between activity and
+	 * fragments.
+	 * 
+	 * @author Praveen Kumar Pendyala (praveen@praveenkumar.co.in)
+	 * 
+	 */
+	public interface TitleInterface {
+		/**
+		 * Get the activity title
+		 * 
+		 * @return title
+		 */
+		public String getTitle();
+
+	}
+
 }
