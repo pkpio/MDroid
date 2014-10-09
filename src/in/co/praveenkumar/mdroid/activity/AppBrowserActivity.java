@@ -13,13 +13,24 @@ import android.webkit.WebViewClient;
 @SuppressLint("SetJavaScriptEnabled")
 public class AppBrowserActivity extends AppNavigationDrawer {
 	WebView mBrowser;
+	String DEFAULT_URL = "http://mdroid.praveenkumar.co.in";
+	String DEFAULT_TITLE = "MDroid browser";
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_appbrowser);
 		setUpDrawer();
-		String url = getIntent().getStringExtra("url");
+
+		String url = DEFAULT_URL;
+		String title = DEFAULT_TITLE;
+		try {
+			url = getIntent().getStringExtra("url");
+			title = getIntent().getStringExtra("title");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		setTitle(title);
 
 		mBrowser = (WebView) findViewById(R.id.webview);
 		CookieSyncManager.createInstance(this);
@@ -48,8 +59,8 @@ public class AppBrowserActivity extends AppNavigationDrawer {
 
 			@Override
 			public void onPageFinished(WebView view, String url) {
-				view.loadUrl("javascript:"
-						+ "document.getElementById('password').value='lola';");
+				// view.loadUrl("javascript:"
+				// + "document.getElementById('password').value='lola';");
 				System.out.println("Page loaded!");
 			}
 		});
