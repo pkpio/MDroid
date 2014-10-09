@@ -6,10 +6,10 @@ import in.co.praveenkumar.mdroid.activity.DonationActivity;
 import in.co.praveenkumar.mdroid.activity.ForumActivity;
 import in.co.praveenkumar.mdroid.activity.LoginActivity;
 import in.co.praveenkumar.mdroid.activity.SettingsActivity;
-import in.co.praveenkumar.mdroid.legacy.R;
 import in.co.praveenkumar.mdroid.helper.AppInterface.DrawerStateInterface;
 import in.co.praveenkumar.mdroid.helper.ImageDecoder;
 import in.co.praveenkumar.mdroid.helper.SessionSetting;
+import in.co.praveenkumar.mdroid.legacy.R;
 import in.co.praveenkumar.mdroid.moodlemodel.MoodleSiteInfo;
 
 import java.io.File;
@@ -45,14 +45,13 @@ public class LeftNavigationFragment extends Fragment {
 	String[] moodleMenuItems = new String[] { "Courses", "Calender", "Forums",
 			"Notes" };
 	String[] appMenuItems = new String[] { "Request features", "Settings",
-			"About", "Add account" };
+			"Add account" };
 
 	int[] moodleMenuIcons = new int[] { R.drawable.icon_course,
 			R.drawable.icon_calender_alt, R.drawable.icon_messages,
 			R.drawable.icon_note_taking };
 	int[] appMenuIcons = new int[] { R.drawable.icon_extension_greyscale,
-			R.drawable.icon_settings_greyscale, R.drawable.icon_info_greyscale,
-			R.drawable.icon_plus_greyscale };
+			R.drawable.icon_settings_greyscale, R.drawable.icon_plus_greyscale };
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -114,9 +113,6 @@ public class LeftNavigationFragment extends Fragment {
 								SettingsActivity.class));
 						break;
 					case 2:
-						// Help
-						break;
-					case 3:
 						Intent j = new Intent(context, LoginActivity.class);
 						j.putExtra("explicitCall", true);
 						context.startActivity(j);
