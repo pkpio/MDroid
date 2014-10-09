@@ -1,10 +1,10 @@
 package in.co.praveenkumar.mdroid.activity;
 
-import in.co.praveenkumar.mdroid.legacy.R;
 import in.co.praveenkumar.mdroid.fragment.NormalLoginFragment;
 import in.co.praveenkumar.mdroid.fragment.ParanoidLoginFragment;
 import in.co.praveenkumar.mdroid.fragment.TutorialFragment;
 import in.co.praveenkumar.mdroid.helper.SessionSetting;
+import in.co.praveenkumar.mdroid.legacy.R;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;

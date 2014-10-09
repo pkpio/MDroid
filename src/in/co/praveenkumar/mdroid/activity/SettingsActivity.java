@@ -1,5 +1,7 @@
 package in.co.praveenkumar.mdroid.activity;
 
+import in.co.praveenkumar.mdroid.dialog.LogoutDialog;
+import in.co.praveenkumar.mdroid.helper.SessionSetting;
 import in.co.praveenkumar.mdroid.legacy.R;
 import android.content.Intent;
 import android.net.Uri;
@@ -20,9 +22,9 @@ public class SettingsActivity extends PreferenceActivity implements
 
 		// Add preference click listeners
 		findPreference("logout").setOnPreferenceClickListener(this);
-		findPreference("resetCourseData").setOnPreferenceClickListener(this);
-		findPreference("resetForumData").setOnPreferenceClickListener(this);
-		findPreference("resetCalendarData").setOnPreferenceClickListener(this);
+		// findPreference("resetCourseData").setOnPreferenceClickListener(this);
+		// findPreference("resetForumData").setOnPreferenceClickListener(this);
+		// findPreference("resetCalendarData").setOnPreferenceClickListener(this);
 
 		findPreference("help").setOnPreferenceClickListener(this);
 		findPreference("privacyPolicy").setOnPreferenceClickListener(this);
@@ -35,6 +37,12 @@ public class SettingsActivity extends PreferenceActivity implements
 	@Override
 	public boolean onPreferenceClick(Preference preference) {
 		String key = preference.getKey();
+
+		if (key.contentEquals("logout")) {
+			LogoutDialog lod = new LogoutDialog(this,
+					new SessionSetting(this).getCurrentSiteId());
+			lod.show();
+		}
 
 		if (key.contentEquals("aboutMDroid")) {
 			Intent browserIntent = new Intent(Intent.ACTION_VIEW,
@@ -51,6 +59,7 @@ public class SettingsActivity extends PreferenceActivity implements
 		if (key.contentEquals("licenses")) {
 			Intent i = new Intent(this, AppBrowserActivity.class);
 			i.putExtra("url", "file:///android_asset/os_licenses.html");
+			i.putExtra("title", "Open Source Licences");
 			this.startActivity(i);
 		}
 
