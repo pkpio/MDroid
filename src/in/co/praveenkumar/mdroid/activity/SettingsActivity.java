@@ -2,6 +2,7 @@ package in.co.praveenkumar.mdroid.activity;
 
 import in.co.praveenkumar.mdroid.legacy.R;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.Preference.OnPreferenceClickListener;
@@ -34,6 +35,18 @@ public class SettingsActivity extends PreferenceActivity implements
 	@Override
 	public boolean onPreferenceClick(Preference preference) {
 		String key = preference.getKey();
+
+		if (key.contentEquals("aboutMDroid")) {
+			Intent browserIntent = new Intent(Intent.ACTION_VIEW,
+					Uri.parse("http://mdroid.praveenkumar.co.in"));
+			startActivity(browserIntent);
+		}
+
+		if (key.contentEquals("aboutDev")) {
+			Intent browserIntent = new Intent(Intent.ACTION_VIEW,
+					Uri.parse("http://praveenkumar.co.in"));
+			startActivity(browserIntent);
+		}
 
 		if (key.contentEquals("licenses")) {
 			Intent i = new Intent(this, AppBrowserActivity.class);
