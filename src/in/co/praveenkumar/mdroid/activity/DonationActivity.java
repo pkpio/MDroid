@@ -45,6 +45,7 @@ public class DonationActivity extends AppNavigationDrawer {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_donations);
 		setUpDrawer();
+		setTitle("Request features");
 		this.context = this;
 
 		// Setup billing

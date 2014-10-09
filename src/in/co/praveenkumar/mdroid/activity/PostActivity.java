@@ -1,8 +1,13 @@
 package in.co.praveenkumar.mdroid.activity;
 
-import in.co.praveenkumar.mdroid.legacy.R;
 import in.co.praveenkumar.mdroid.helper.AppInterface.DiscussionIdInterface;
 import in.co.praveenkumar.mdroid.helper.AppNavigationDrawer;
+import in.co.praveenkumar.mdroid.helper.SessionSetting;
+import in.co.praveenkumar.mdroid.legacy.R;
+import in.co.praveenkumar.mdroid.moodlemodel.MoodleDiscussion;
+
+import java.util.List;
+
 import android.os.Bundle;
 
 public class PostActivity extends AppNavigationDrawer implements
@@ -15,6 +20,14 @@ public class PostActivity extends AppNavigationDrawer implements
 		discussionid = getIntent().getExtras().getInt("discussionid");
 		setContentView(R.layout.activity_post);
 		setUpDrawer();
+
+		// Set title
+		SessionSetting session = new SessionSetting(this);
+		List<MoodleDiscussion> mDiscussions = MoodleDiscussion.find(
+				MoodleDiscussion.class, "discussionid = ? and siteid = ?",
+				discussionid + "", session.getCurrentSiteId() + "");
+		if (mDiscussions.size() > 0)
+			setTitle(mDiscussions.get(0).getName());
 	}
 
 	@Override
