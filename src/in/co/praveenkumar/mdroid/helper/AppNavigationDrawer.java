@@ -1,25 +1,29 @@
 package in.co.praveenkumar.mdroid.helper;
 
-import in.co.praveenkumar.mdroid.legacy.R;
 import in.co.praveenkumar.mdroid.helper.AppInterface.DrawerStateInterface;
+import in.co.praveenkumar.mdroid.legacy.R;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v4.widget.DrawerLayout.DrawerListener;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.MenuItem;
+import android.view.View;
 
-public class AppNavigationDrawer extends FragmentActivity implements
-		DrawerStateInterface {
+public abstract class AppNavigationDrawer extends FragmentActivity implements
+		DrawerStateInterface, DrawerListener {
 	private DrawerLayout mDrawerLayout;
 	private ActionBarDrawerToggle mDrawerToggle;
+	private CharSequence title = "MDroid";
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		setTitle("");
 	}
 
 	public void setUpDrawer() {
@@ -97,4 +101,29 @@ public class AppNavigationDrawer extends FragmentActivity implements
 			mDrawerLayout.closeDrawer(Gravity.START);
 	}
 
+	@Override
+	public void onDrawerClosed(View arg0) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void onDrawerOpened(View arg0) {
+		// this.title = getActivityTitle();
+		setTitle("MDroid");
+	}
+
+	@Override
+	public void onDrawerSlide(View arg0, float arg1) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void onDrawerStateChanged(int arg0) {
+		// TODO Auto-generated method stub
+
+	}
+
+	// public abstract CharSequence getActivityTitle();
 }
