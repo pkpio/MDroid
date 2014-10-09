@@ -1,7 +1,7 @@
 package in.co.praveenkumar.mdroid.activity;
 
-import in.co.praveenkumar.mdroid.legacy.R;
 import in.co.praveenkumar.mdroid.helper.AppNavigationDrawer;
+import in.co.praveenkumar.mdroid.legacy.R;
 import android.os.Bundle;
 
 public class ForumActivity extends AppNavigationDrawer {
@@ -11,6 +11,7 @@ public class ForumActivity extends AppNavigationDrawer {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_forum);
 		setUpDrawer();
+		setTitle("Forums");
 	}
 
 }
