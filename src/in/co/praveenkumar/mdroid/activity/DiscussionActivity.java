@@ -1,9 +1,14 @@
 package in.co.praveenkumar.mdroid.activity;
 
-import android.os.Bundle;
-import in.co.praveenkumar.mdroid.legacy.R;
-import in.co.praveenkumar.mdroid.helper.AppNavigationDrawer;
 import in.co.praveenkumar.mdroid.helper.AppInterface.ForumIdInterface;
+import in.co.praveenkumar.mdroid.helper.AppNavigationDrawer;
+import in.co.praveenkumar.mdroid.helper.SessionSetting;
+import in.co.praveenkumar.mdroid.legacy.R;
+import in.co.praveenkumar.mdroid.moodlemodel.MoodleForum;
+
+import java.util.List;
+
+import android.os.Bundle;
 
 public class DiscussionActivity extends AppNavigationDrawer implements
 		ForumIdInterface {
@@ -15,6 +20,14 @@ public class DiscussionActivity extends AppNavigationDrawer implements
 		forumid = getIntent().getExtras().getInt("forumid");
 		setContentView(R.layout.activity_discussion);
 		setUpDrawer();
+
+		// Set title
+		SessionSetting session = new SessionSetting(this);
+		List<MoodleForum> mForums = MoodleForum.find(MoodleForum.class,
+				"forumid = ? and siteid = ?", forumid + "",
+				session.getCurrentSiteId() + "");
+		if (mForums.size() > 0)
+			setTitle(mForums.get(0).getName());
 	}
 
 	@Override
