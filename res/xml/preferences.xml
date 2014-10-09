@@ -11,6 +11,8 @@
             android:key="logout"
             android:summary="logout current account"
             android:title="Logout" />
+
+        <!--
         <Preference
             android:key="resetCourseData"
             android:summary="reset courses data for current account"
@@ -23,6 +25,7 @@
             android:key="resetCalendarData"
             android:summary="reset calendar data for current account"
             android:title="Reset calendar data" />
+        -->
     </PreferenceCategory>
 
     <!-- Debugging -->
@@ -53,10 +56,10 @@
         android:title="About" >
         <Preference
             android:key="aboutMDroid"
-            android:title="About MDroid" />
+            android:title="Website" />
         <Preference
             android:key="aboutDev"
-            android:title="About developer" />
+            android:title="Developer" />
         <Preference
             android:key="licenses"
             android:title="Open source licenses" />
