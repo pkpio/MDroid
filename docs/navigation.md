@@ -2,7 +2,7 @@
 
 [About](index.md)
 
-[Quick start]()
+[Quickstart]()
 
   * [First time here](first-time.md)
   * [Screenshots](screenshots.md)
