@@ -66,7 +66,8 @@ MDroid would not have existed if it weren't for these great piece of software / 
   * PinnedSectionView
   * ViewPagerIndicator
   * Android-inapp-billing-v3
-  * Android support library v4
+  * AOSP - android-support-v4.jar
+  * AppCompact
   * iconfinder.com
 
 Check the complete list and licensing at [Open Source Licenses](opensource-licenses)
