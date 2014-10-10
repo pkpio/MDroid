@@ -54,4 +54,19 @@ Best
   * [Web services with MDroid custom service enabled](advanced-webservices-setup.md)
   * [Additional setup configured](additional-setup.md)
 
+------------------------
 
+## Credits / Technologies
+MDroid would not have existed if it weren't for these great piece of software / resources:
+ 
+  * Google Gson
+  * Sugar ORM
+  * ActionBar style generator
+  * Material design icons
+  * PinnedSectionView
+  * ViewPagerIndicator
+  * Android-inapp-billing-v3
+  * Android support library v4
+  * iconfinder.com
+
+Check the complete list and licensing at [Open Source Licenses](opensource-licenses)
