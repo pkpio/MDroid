@@ -25,7 +25,7 @@
   * [FAQ](faq.md)
   * [Errors](errors.md)
 
-[Download](play.google.com/store/apps/details?id=in.co.praveenkumar)
+[Download](https://play.google.com/store/apps/details?id=in.co.praveenkumar)
 
 [gimmick:ForkMeOnGitHub](http://www.github.com/praveendath92/MDroid)
 [gimmick:theme](united)
