@@ -38,6 +38,13 @@
     <string name="activity_login_progress_retry">Retry</string>
     <string name="activity_login_demo">Demo</string>
 
+    <!-- Webservices help -->
+    <string name="activity_webservices_main_title">Webservices off</string>
+    <string name="activity_webservices_main_description">Webservices are required for MDroid to work.</string>
+    <string name="activity_webservices_help_button">Help with Webservices</string>
+    <string name="activity_webservices_legacy_version_text">Previous version worked for you? \nEnabling webservices is not a feasible option?</string>
+    <string name="activity_webservices_legacy_version_button">Try Legacy version</string>
+
     <!-- Course activity -->
     <string name="user_picture">User profile image</string>
     <string name="list_course_summary">Summary</string>
