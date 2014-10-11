@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/beautiful_red"
+    android:gravity="center"
+    android:orientation="vertical" >
+
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:contentDescription="@string/activity_webservices_main_title"
+        android:src="@drawable/icon_cloud_off" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/activity_webservices_main_title"
+        android:textColor="@color/white"
+        android:textSize="24sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:padding="8dp"
+        android:text="@string/activity_webservices_main_description"
+        android:textColor="@color/white"
+        android:textSize="16sp" />
+
+    <!-- Webservices help -->
+
+    <Button
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/white_btn_bg"
+        android:padding="8dp"
+        android:text="@string/activity_webservices_help_button"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:onClick="webservicesHelp" />
+
+    <!-- Legacy version text -->
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:gravity="center"
+        android:padding="8dp"
+        android:text="@string/activity_webservices_legacy_version_text"
+        android:textColor="@color/white" />
+
+    <Button
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/white_btn_bg"
+        android:onClick="tryLegacyVersion"
+        android:padding="8dp"
+        android:text="@string/activity_webservices_legacy_version_button"
+        android:textColor="@color/white"
+        android:textSize="16sp" />
+
+</LinearLayout>
