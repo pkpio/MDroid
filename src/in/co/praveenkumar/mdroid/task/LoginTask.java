@@ -1,6 +1,7 @@
 package in.co.praveenkumar.mdroid.task;
 
 import in.co.praveenkumar.mdroid.activity.CourseActivity;
+import in.co.praveenkumar.mdroid.activity.WebservicesoffActivity;
 import in.co.praveenkumar.mdroid.helper.SessionSetting;
 import in.co.praveenkumar.mdroid.moodlemodel.MoodleSiteInfo;
 import in.co.praveenkumar.mdroid.moodlemodel.MoodleToken;
@@ -23,6 +24,7 @@ public class LoginTask extends AsyncTask<String, Integer, Boolean> {
 	MoodleSiteInfo siteInfo = new MoodleSiteInfo();
 	SessionSetting session;
 	Context context;
+	Boolean webservices = true;
 
 	// Widgets
 	LoginStatusViewHolder progressViews;
@@ -131,6 +133,13 @@ public class LoginTask extends AsyncTask<String, Integer, Boolean> {
 			updateProgress("Token fetch failed!");
 			updateProgress("\nError\n" + mt.getError());
 
+			// Check webservice here. We are using a short text because, the
+			// Moodle could be setup with a non-english language.
+			if (mt.getError().contains("Web services"))
+				webservices = false;
+			else
+				webservices = true;
+
 			if (session.getDebugMode()) {
 				updateProgress("Moodle url: " + mt.getReproductionlink());
 				updateProgress("Stacktrace: " + mt.getStacktrace());
@@ -206,12 +215,19 @@ public class LoginTask extends AsyncTask<String, Integer, Boolean> {
 	protected void onPostExecute(Boolean status) {
 		if (status) {
 			Intent i = new Intent(context, CourseActivity.class);
-			i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+			i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
+					| Intent.FLAG_ACTIVITY_CLEAR_TASK);
 			context.startActivity(i);
+			return;
 		} else {
 			progressViews.progressTitle.setText("Login failed");
 			progressViews.progressBar.setVisibility(ProgressBar.GONE);
 			progressViews.retryButton.setVisibility(Button.VISIBLE);
+		}
+
+		if (!webservices) {
+			Intent i = new Intent(context, WebservicesoffActivity.class);
+			context.startActivity(i);
 		}
 	}
 
