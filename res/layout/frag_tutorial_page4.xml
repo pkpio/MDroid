@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/beautiful_green_dark"
+    android:background="@color/moodle_color"
     android:gravity="center"
     android:orientation="vertical" >
 
@@ -10,7 +10,7 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:contentDescription="@string/activity_tutorial_mdroid_made"
-        android:src="@drawable/mdroid_logo_inverted" />
+        android:src="@drawable/ic_actionbar_icon" />
 
     <TextView
         android:layout_width="wrap_content"
