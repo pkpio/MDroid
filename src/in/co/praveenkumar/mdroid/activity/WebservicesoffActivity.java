@@ -25,7 +25,7 @@ public class WebservicesoffActivity extends Activity {
 	public void webservicesHelp(View v) {
 		Intent i = new Intent(
 				Intent.ACTION_VIEW,
-				Uri.parse("http://mdroid.praveenkumar.co.in/#!simple-webservices-setup.md"));
+				Uri.parse("http://mdroid.praveenkumar.co.in/#!moodle-setup.md"));
 		startActivity(i);
 	}
 
