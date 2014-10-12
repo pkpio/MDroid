@@ -1,3 +1,6 @@
+Error documentation
+====
+
 This is a list of known errors (not bugs) - explaination for the error or errorcode that you may have encountered in the application
 
 - Login errors
@@ -19,7 +22,4 @@ This is a list of known errors (not bugs) - explaination for the error or errorc
     The user does not have access to that particular section. Example: User may have access to My Courses but not all Courses in the Moodle site.
 
 
-While attempts have been made to list all non-trivial errors, it is possible that some of them may have missed my notice. If you encounter an
-error which is not abvious, please write to me. I will try to fix it, if it can be or document it on this page.
-
-PS: Credits will be given :P
+While attempts have been made to list all non-trivial errors, it is possible that some of them may have missed my notice. If you encounter an error which is not listed here, please report me or document the error and send me a pull request.
