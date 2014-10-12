@@ -1,3 +1,6 @@
+Features and requests
+====
+
 ## 1. Multiple accounts
   <b>Status:</b> Implemented<br/>
   <b> Votes needed: </b> 0 <br/>
