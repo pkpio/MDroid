@@ -14,6 +14,22 @@ Frequently Asked Questions
 * ### How do I make use of Paranoid login?
   Paranoid login uses a unique token generated for your account by your Moodle site. Fill the form below and open generated token url.
   
+  <script>
+    function genTokenUrl() {
+	    var username = document.getElementById("username").value;
+	    var password = document.getElementById("password").value;
+	    var url = document.getElementById("url").value;
+	    var service = document.getElementById("service").value;
+	    document.getElementById("tokenurl").innerHTML = url + "/login/token.php?" + "username=" + username + "&password=" + password + "&service=" + service;
+    }
+
+    function openTokenUrl(){
+	    var url = document.getElementById("tokenurl").textContent;
+	    var win = window.open(url, '_blank');
+	    win.focus();
+    }
+  </script>
+  
   <div class="alert alert-success col-sm-11"><b>Tip:</b> If you are truely paranoid, Please fill form with test data and build your url from that.</div>
     
   <form class="form-horizontal" role="form">
@@ -56,7 +72,7 @@ Frequently Asked Questions
      </div>
   </form>
   
-  <code id="tokenurl" class="col-sm-offset-2" onclick="openTokenUrl()">Your token url appears here</code>
+  <a href="#"><code id="tokenurl" class="col-sm-offset-2" onclick="openTokenUrl()">Your token url appears here</code></a>
   <div class="col-sm-11">Token is alpha-numberic and looks like: <code>075734723faf1827e4279e4c46f08c01</code></div>
   
   <br/><br/>
