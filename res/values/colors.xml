@@ -29,8 +29,11 @@
     <color name="semi_transparent">#aa000000</color>
     <color name="login_progress_bg">#cc000000</color>
     <color name="black">#000000</color>
-    <color name="card_listview_bg">#E2E2E2</color>
     <color name="yellow">#fffaaa</color>
+    
+    <!-- From Google Now -->
+    <color name="card_listview_bg">#eeeeee</color>
+    <color name="card_item_clicked_bg">#f8f8f8</color>
     
     <!-- beautiful colors -->
     <color name="beautiful_blue">#43adf1</color>
@@ -46,5 +49,6 @@
     <color name="contact_online_color">#61D125</color>
     <color name="contact_offline_color">#FFB200</color>
     <color name="contact_stranger_color">#C0C0C0</color>
+    <color name="very_light_blue">#cfe9f3</color>
 
 </resources>
