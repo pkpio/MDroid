@@ -16,7 +16,7 @@
             android:shape="rectangle" >
             <corners android:radius="2dp" />
 
-            <solid android:color="@color/moodle_click_color" />
+            <solid android:color="@color/very_light_blue" />
 
             <padding
                 android:bottom="8dp"
