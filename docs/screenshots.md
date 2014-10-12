@@ -14,6 +14,9 @@ Screenshots
 ![](images/screenshots/Nexus 4/posts_framed.png "Posts")
 
 
+-----------------------------------------------------------------
+
+
 ## Nexus 7
 ![](images/screenshots/Nexus 7/normal_login_framed.png "Normal login")
 ![](images/screenshots/Nexus 7/paranoid_login_framed.png "Paranoid login")
@@ -23,6 +26,9 @@ Screenshots
 ![](images/screenshots/Nexus 7/calender_framed.png "Calender")
 ![](images/screenshots/Nexus 7/discussions_framed.png "Discussions")
 ![](images/screenshots/Nexus 7/posts_framed.png "Posts")
+
+
+-------------------------------------------------------------------
 
 
 ## Nexus 10
