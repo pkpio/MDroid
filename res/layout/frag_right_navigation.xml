@@ -2,7 +2,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/grey14" >
+    android:background="@color/card_listview_bg" >
 
     <ListView
         android:id="@+id/right_nav_list"
