@@ -67,7 +67,7 @@ Frequently Asked Questions
         
      <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10" onclick="genTokenUrl()">
-           <button type="submit" class="btn btn-default">Generate token url</button>
+           <button class="btn btn-default" type="button">Generate token url</button>
         </div>
      </div>
   </form>
