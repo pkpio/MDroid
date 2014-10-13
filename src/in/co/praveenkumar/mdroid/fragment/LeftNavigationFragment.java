@@ -6,6 +6,7 @@ import in.co.praveenkumar.mdroid.activity.DonationActivity;
 import in.co.praveenkumar.mdroid.activity.ForumActivity;
 import in.co.praveenkumar.mdroid.activity.LoginActivity;
 import in.co.praveenkumar.mdroid.activity.SettingsActivity;
+import in.co.praveenkumar.mdroid.activity.WorkInProgressActivity;
 import in.co.praveenkumar.mdroid.helper.AppInterface.DrawerStateInterface;
 import in.co.praveenkumar.mdroid.helper.ImageDecoder;
 import in.co.praveenkumar.mdroid.helper.SessionSetting;
@@ -43,13 +44,14 @@ public class LeftNavigationFragment extends Fragment {
 	SessionSetting session;
 
 	String[] moodleMenuItems = new String[] { "Courses", "Calender", "Forums",
-			"Notes" };
+			"Assignments", "Notes", "Notifications" };
 	String[] appMenuItems = new String[] { "Request features", "Settings",
 			"Add account" };
 
 	int[] moodleMenuIcons = new int[] { R.drawable.icon_course,
 			R.drawable.icon_calender_alt, R.drawable.icon_messages,
-			R.drawable.icon_note_taking };
+			R.drawable.icon_quiz, R.drawable.icon_note_taking,
+			R.drawable.icon_notifications };
 	int[] appMenuIcons = new int[] { R.drawable.icon_extension_greyscale,
 			R.drawable.icon_settings_greyscale, R.drawable.icon_plus_greyscale };
 
@@ -98,7 +100,19 @@ public class LeftNavigationFragment extends Fragment {
 								ForumActivity.class));
 						break;
 					case 3:
+						// ASSIGNMENTS HERE
+						context.startActivity(new Intent(context,
+								WorkInProgressActivity.class));
+						break;
+					case 4:
 						// NOTES HERE
+						context.startActivity(new Intent(context,
+								WorkInProgressActivity.class));
+						break;
+					case 5:
+						// NOTIFICATIONS HERE
+						context.startActivity(new Intent(context,
+								WorkInProgressActivity.class));
 						break;
 					}
 					break;

@@ -43,6 +43,10 @@
             android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" >
         </activity>
         <activity
+            android:name="in.co.praveenkumar.mdroid.activity.WorkInProgressActivity"
+            android:configChanges="screenSize|orientation" >
+        </activity>
+        <activity
             android:name="in.co.praveenkumar.mdroid.activity.CourseActivity"
             android:configChanges="screenSize|orientation" >
         </activity>
