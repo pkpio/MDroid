@@ -24,7 +24,7 @@ This website is the main source of documentation for users, moodle administrator
   * [Seemless offline browsing]()
   * Native Android - quick and smooth
 
-Oh, I didn't tell you the best part yet. It's completely <b>[Free](play.google.com/store/apps/details?id=in.co.praveenkumar)</b> and <b>[Open Source](https://github.com/praveendath92/MDroid)</b>
+Oh, I didn't tell you the best part yet. It's completely <b>[Free](https://play.google.com/store/apps/details?id=in.co.praveenkumar)</b> and <b>[Open Source](https://github.com/praveendath92/MDroid)</b>
 
 I'm constantly working on new features and you can also [request features](features.md) you want to see the most.
 
