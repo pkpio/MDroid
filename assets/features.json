@@ -25,38 +25,22 @@
     },
     {
         "id": 4,
-        "name": "Calender",
-        "status": 1,
-        "votestarget": 0,
+        "name": "Search option",
+        "status": 0,
+        "votestarget": 20,
         "votescasted": 0,
-        "description": "Moodle site calender. Includes a calender in the courses for course specific events. Adding events to be implemented."
+        "description": "Once implemented, you will be able to search any information on your Moodle site - Courses, Course contents, Forums, Discussions, Posts, Calender etc.,. The best part is, it woould all work even when you are offline!"
     },
     {
         "id": 5,
-        "name": "Messaging",
-        "status": 1,
-        "votestarget": 5,
-        "votescasted": 0,
-        "description": "Lists unread message counts. Indications of sender status - Online, Offline, Stranger. Option to send messages to be implemented. Reading messages in not supported in Moodle APIs but we will be using webview in the app to read messages."
-    },
-    {
-        "id": 6,
-        "name": "Course participants",
-        "status": 0,
-        "votestarget": 10,
-        "votescasted": 0,
-        "description": "Adds a section in the course to show the list of participants in that course. Will also have options to add a participant as a contact, view profile and send messages"
-    },
-    {
-        "id": 7,
         "name": "New content notifications",
         "status": 0,
         "votestarget": 20,
         "votescasted": 0,
-        "description": "Periodic checking for new contents and sending notification to user. Options will given to set the frequency of checking and more."
+        "description": "Periodic checking for new contents and sending notification to user. Options will given to set the frequency of checking and more on per account basis."
     },
     {
-        "id": 8,
+        "id": 6,
         "name": "Uploading files",
         "status": 0,
         "votestarget": 30,
@@ -64,27 +48,51 @@
         "description": "User will be able to upload files to the Moodle server to their private files section. Depending on the support in Moodle APIs, this will be extended to other sections."
     },
     {
-        "id": 9,
-        "name": "Forums",
-        "status": 2,
-        "votestarget": 0,
+        "id": 7,
+        "name": "Transfers section",
+        "status": 0,
+        "votestarget": 25,
         "votescasted": 0,
-        "description": "Listing forums, topics inside a forum and post in a topic implemented. Reply option is not supported by Moodle APIs so, webview is used to fulfil that."
+        "description": "A seperate section in MDroid application where you can check all the current transfers - file downloads or uploads. This will also show the progress of the transfer and works irrespective of, from where the transfer has been initiated. You can also check finished transfers here."
+    },
+    {
+        "id": 8,
+        "name": "Messaging",
+        "status": 1,
+        "votestarget": 5,
+        "votescasted": 0,
+        "description": "Lists unread message counts. Indications of sender status - Online, Offline, Stranger. Option to send messages to be implemented. Reading messages in not supported in Moodle APIs but we will be using webview in the app to read messages."
+    },
+    {
+        "id": 9,
+        "name": "Course participants",
+        "status": 0,
+        "votestarget": 10,
+        "votescasted": 0,
+        "description": "Adds a section in the course to show the list of participants in that course. Will also have options to add a participant as a contact, view profile and send messages"
     },
     {
         "id": 10,
+        "name": "Calender",
+        "status": 1,
+        "votestarget": 5,
+        "votescasted": 0,
+        "description": "Moodle site calender. Includes a calender in the courses for course specific events. Adding events to be implemented."
+    },
+    {
+        "id": 11,
+        "name": "Forums",
+        "status": 1,
+        "votestarget": 0,
+        "votescasted": 0,
+        "description": "Listing forums, topics inside a forum and post in a topic implemented. Reply option is not supported by Moodle APIs so, webview is used to fulfil that. Reply option is yet to be added."
+    },
+    {
+        "id": 12,
         "name": "Notes",
         "status": 0,
         "votestarget": 20,
         "votescasted": 0,
         "description": "Viewing notes created by the user. Will also be having an option to create notes for a user, course or personal note."
-    },
-    {
-        "id": 11,
-        "name": "Uploads and downloads section",
-        "status": 0,
-        "votestarget": 25,
-        "votescasted": 0,
-        "description": "A seperate section in MDroid application where you can check all the current transfers - file downloads or uploads. This will also show the progress of the transfer and works irrespective of, from where the transfer has been initiated. You can also check finished transfers here."
     }
 ]
