@@ -24,6 +24,7 @@
 
   * [FAQ](faq.md)
   * [Errors](errors.md)
+  * [Privacy Policy](privacy-policy.md)
 
 [Download](https://play.google.com/store/apps/details?id=in.co.praveenkumar)
 
