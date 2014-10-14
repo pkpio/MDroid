@@ -22,9 +22,6 @@ public class SettingsActivity extends PreferenceActivity implements
 
 		// Add preference click listeners
 		findPreference("logout").setOnPreferenceClickListener(this);
-		// findPreference("resetCourseData").setOnPreferenceClickListener(this);
-		// findPreference("resetForumData").setOnPreferenceClickListener(this);
-		// findPreference("resetCalendarData").setOnPreferenceClickListener(this);
 
 		findPreference("help").setOnPreferenceClickListener(this);
 		findPreference("privacyPolicy").setOnPreferenceClickListener(this);
@@ -42,6 +39,19 @@ public class SettingsActivity extends PreferenceActivity implements
 			LogoutDialog lod = new LogoutDialog(this,
 					new SessionSetting(this).getCurrentSiteId());
 			lod.show();
+		}
+
+		if (key.contentEquals("help")) {
+			Intent browserIntent = new Intent(Intent.ACTION_VIEW,
+					Uri.parse("http://mdroid.praveenkumar.co.in/#!faq.md"));
+			startActivity(browserIntent);
+		}
+
+		if (key.contentEquals("privacyPolicy")) {
+			Intent browserIntent = new Intent(
+					Intent.ACTION_VIEW,
+					Uri.parse("http://mdroid.praveenkumar.co.in/#!privacy-policy.md"));
+			startActivity(browserIntent);
 		}
 
 		if (key.contentEquals("aboutMDroid")) {
