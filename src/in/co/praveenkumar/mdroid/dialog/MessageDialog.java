@@ -2,7 +2,7 @@ package in.co.praveenkumar.mdroid.dialog;
 
 import in.co.praveenkumar.mdroid.helper.LetterColor;
 import in.co.praveenkumar.mdroid.helper.SessionSetting;
-import in.co.praveenkumar.mdroid.legacy.R;
+import in.co.praveenkumar.R;
 import in.co.praveenkumar.mdroid.moodlemodel.MoodleContact;
 import in.co.praveenkumar.mdroid.moodlerest.MoodleRestMessage;
 import android.app.Dialog;

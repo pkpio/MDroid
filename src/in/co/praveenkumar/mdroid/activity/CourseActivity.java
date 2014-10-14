@@ -2,7 +2,7 @@ package in.co.praveenkumar.mdroid.activity;
 
 import in.co.praveenkumar.mdroid.fragment.CourseFragment;
 import in.co.praveenkumar.mdroid.helper.AppNavigationDrawer;
-import in.co.praveenkumar.mdroid.legacy.R;
+import in.co.praveenkumar.R;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;

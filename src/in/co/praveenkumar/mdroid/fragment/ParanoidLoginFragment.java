@@ -1,7 +1,7 @@
 package in.co.praveenkumar.mdroid.fragment;
 
 import in.co.praveenkumar.mdroid.helper.FormValidate;
-import in.co.praveenkumar.mdroid.legacy.R;
+import in.co.praveenkumar.R;
 import in.co.praveenkumar.mdroid.task.LoginTask;
 import in.co.praveenkumar.mdroid.view.LoginStatusViewHolder;
 import android.os.Bundle;

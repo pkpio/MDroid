@@ -2,7 +2,7 @@ package in.co.praveenkumar.mdroid.activity;
 
 import in.co.praveenkumar.mdroid.dialog.LogoutDialog;
 import in.co.praveenkumar.mdroid.helper.SessionSetting;
-import in.co.praveenkumar.mdroid.legacy.R;
+import in.co.praveenkumar.R;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;

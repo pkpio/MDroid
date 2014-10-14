@@ -2,7 +2,7 @@ package in.co.praveenkumar.mdroid.activity;
 
 import in.co.praveenkumar.mdroid.helper.AppNavigationDrawer;
 import in.co.praveenkumar.mdroid.helper.GsonExclude;
-import in.co.praveenkumar.mdroid.legacy.R;
+import in.co.praveenkumar.R;
 import in.co.praveenkumar.mdroid.moodlemodel.MDroidModelFeature;
 
 import java.io.InputStreamReader;

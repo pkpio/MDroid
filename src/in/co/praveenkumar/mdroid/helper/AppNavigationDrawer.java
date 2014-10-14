@@ -1,7 +1,7 @@
 package in.co.praveenkumar.mdroid.helper;
 
 import in.co.praveenkumar.mdroid.helper.AppInterface.DrawerStateInterface;
-import in.co.praveenkumar.mdroid.legacy.R;
+import in.co.praveenkumar.R;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;

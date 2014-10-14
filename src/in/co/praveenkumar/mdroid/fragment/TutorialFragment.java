@@ -1,6 +1,6 @@
 package in.co.praveenkumar.mdroid.fragment;
 
-import in.co.praveenkumar.mdroid.legacy.R;
+import in.co.praveenkumar.R;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;

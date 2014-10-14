@@ -3,7 +3,7 @@ package in.co.praveenkumar.mdroid.dialog;
 import in.co.praveenkumar.mdroid.activity.CourseActivity;
 import in.co.praveenkumar.mdroid.helper.ImageDecoder;
 import in.co.praveenkumar.mdroid.helper.SessionSetting;
-import in.co.praveenkumar.mdroid.legacy.R;
+import in.co.praveenkumar.R;
 import in.co.praveenkumar.mdroid.moodlemodel.MoodleContact;
 import in.co.praveenkumar.mdroid.moodlemodel.MoodleCourse;
 import in.co.praveenkumar.mdroid.moodlemodel.MoodleDiscussion;
