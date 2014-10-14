@@ -79,3 +79,8 @@ Frequently Asked Questions
   
 * ### Can I add multiple accounts?
   Yes! You may add as many accounts as you want. There is no limit or performance effect by having multiple accounts.
+
+<br/>
+
+* ### Where do I get more information on an error I got?
+  I'm sorry you see an error. I documented some of the most common and possible errors while using the app here in [Error docs](errors.md)
