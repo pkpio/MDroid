@@ -45,6 +45,8 @@ public class LoginActivity extends FragmentActivity {
 		if (session.getCurrentSiteId() != SessionSetting.NO_SITE_ID
 				&& !explicitCall) {
 			Intent i = new Intent(this, CourseActivity.class);
+			i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
+					| Intent.FLAG_ACTIVITY_CLEAR_TASK);
 			this.startActivity(i);
 		}
 	}
