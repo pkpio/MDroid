@@ -101,10 +101,8 @@ public class DonationActivity extends AppNavigationDrawer {
 				position--; // Because there is a header
 				if (position < 0)
 					return;
-				donationProcessor.consumePurchase(features.get(position)
-						.getProductid() + "test");
 				donationProcessor.purchase(features.get(position)
-						.getProductid() + "test");
+						.getProductid());
 			}
 		});
 
