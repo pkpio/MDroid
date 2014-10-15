@@ -56,7 +56,7 @@ public class ParanoidLoginFragment extends Fragment {
 		demoButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
-				tokenET.setText("demo");
+				tokenET.setText("e01e28c5b1a24296cfb394af77adcc65");
 				murlET.setText("http://moodle.praveenkumar.co.in");
 			}
 		});
