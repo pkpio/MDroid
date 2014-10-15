@@ -34,7 +34,7 @@
         android:title="Debugging" >
         <CheckBoxPreference
             android:key="debugging"
-            android:summary="If enabled gives more information on login and other errors"
+            android:summary="If enabled, gives more information on login and other errors"
             android:title="Advanced logging" />
     </PreferenceCategory>
 
