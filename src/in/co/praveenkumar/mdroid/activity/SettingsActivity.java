@@ -62,7 +62,7 @@ public class SettingsActivity extends PreferenceActivity implements
 
 		if (key.contentEquals("aboutDev")) {
 			Intent browserIntent = new Intent(Intent.ACTION_VIEW,
-					Uri.parse("http://praveenkumar.co.in"));
+					Uri.parse("https://github.com/praveendath92"));
 			startActivity(browserIntent);
 		}
 
