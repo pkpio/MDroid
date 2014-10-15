@@ -4,6 +4,8 @@ import in.co.praveenkumar.mdroid.helper.FormValidate;
 import in.co.praveenkumar.R;
 import in.co.praveenkumar.mdroid.task.LoginTask;
 import in.co.praveenkumar.mdroid.view.LoginStatusViewHolder;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -56,6 +58,19 @@ public class ParanoidLoginFragment extends Fragment {
 			public void onClick(View arg0) {
 				tokenET.setText("demo");
 				murlET.setText("http://moodle.praveenkumar.co.in");
+			}
+		});
+
+		// Help button setup
+		RelativeLayout helpButton = (RelativeLayout) rootView
+				.findViewById(R.id.login_help);
+		helpButton.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View arg0) {
+				Intent browserIntent = new Intent(
+						Intent.ACTION_VIEW,
+						Uri.parse("http://mdroid.praveenkumar.co.in/#!faq.md#What_is_Paranoid_login?"));
+				startActivity(browserIntent);
 			}
 		});
 

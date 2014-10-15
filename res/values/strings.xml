@@ -37,6 +37,7 @@
     <string name="activity_login_status_title">Logging in..</string>
     <string name="activity_login_progress_retry">Retry</string>
     <string name="activity_login_demo">Demo</string>
+    <string name="activity_login_help">Help</string>
 
     <!-- Webservices help -->
     <string name="activity_webservices_main_title">Webservices off</string>
