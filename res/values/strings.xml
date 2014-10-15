@@ -62,6 +62,6 @@
     <string name="sample_contact_unread">10</string>
 
     <!-- Donations -->
-    <string name="donations_header_text">Green: Implemented \nYellow: Partially implemented \Red: Not implemented \n\nVote for the features you want us to implement. Also please donate for your favourite existing features.</string>
+    <string name="donations_header_text">Green: Implemented \nYellow: Partially implemented \nRed: Not implemented \n\nVote for the features you want us to implement. Also please donate for your favourite existing features.</string>
 
 </resources>
