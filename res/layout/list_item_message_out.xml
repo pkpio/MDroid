@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="70dp"
+    android:layout_height="90dp"
     android:background="@color/grey13"
     android:orientation="vertical"
     android:paddingBottom="10dp"
@@ -22,13 +22,14 @@
     <TextView
         android:id="@+id/list_message_text"
         android:layout_width="wrap_content"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:layout_marginLeft="8dp"
         android:layout_toLeftOf="@id/list_message_user_image"
-        android:background="@drawable/clickable_card_normal"
+        android:background="@drawable/card_green"
         android:gravity="center_vertical"
-        android:padding="5dp"
-        android:text="Hello there. How are you doing brother?"
+        android:padding="8dp"
+        android:text="Hello there. How are you doing brother? I hope you are doing fine. For the love of god. Reply!"
         android:textColor="@color/black" />
 
     <!-- Triangular arrow -->
