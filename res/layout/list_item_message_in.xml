@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/grey13"
+    android:orientation="vertical"
+    android:paddingTop="10dp" >
+
+    <!-- User image -->
+
+    <TextView
+        android:id="@+id/list_message_user_image"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@color/moodle_color"
+        android:gravity="center"
+        android:text="A"
+        android:textColor="@color/white"
+        android:textSize="30sp" />
+
+    <!-- Message text -->
+
+    <TextView
+        android:id="@+id/list_message_text"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_marginRight="8dp"
+        android:layout_toRightOf="@id/list_message_user_image"
+        android:background="@drawable/clickable_card_normal"
+        android:gravity="center_vertical"
+        android:padding="5dp"
+        android:text="Hello there. How are you doing brother?"
+        android:textColor="@color/black" />
+
+    <!-- Triangular arrow -->
+
+    <LinearLayout
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginLeft="40dp"
+        android:background="@drawable/xmld_message_left_triangle" >
+    </LinearLayout>
+
+</RelativeLayout>
