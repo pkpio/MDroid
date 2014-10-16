@@ -38,7 +38,7 @@
         android:layout_width="20dp"
         android:layout_height="20dp"
         android:layout_marginLeft="40dp"
-        android:background="@drawable/xmld_message_left_triangle" >
+        android:background="@drawable/xmld_message_triangle_left" >
     </LinearLayout>
 
 </RelativeLayout>
