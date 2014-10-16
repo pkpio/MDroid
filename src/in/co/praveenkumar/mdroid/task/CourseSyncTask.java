@@ -85,6 +85,10 @@ public class CourseSyncTask {
 		// Get userid
 		MoodleSiteInfo site = MoodleSiteInfo.findById(MoodleSiteInfo.class,
 				siteid);
+		
+		if (site == null)
+			return false;
+
 		int userid = site.getUserid();
 
 		MoodleRestCourse mrc = new MoodleRestCourse(mUrl, token);
