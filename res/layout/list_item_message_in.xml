@@ -23,13 +23,14 @@
     <TextView
         android:id="@+id/list_message_text"
         android:layout_width="wrap_content"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
+        android:minHeight="50dp"
         android:layout_marginRight="8dp"
         android:layout_toRightOf="@id/list_message_user_image"
         android:background="@drawable/clickable_card_normal"
         android:gravity="center_vertical"
-        android:padding="5dp"
-        android:text="Hello there. How are you doing brother?"
+        android:padding="8dp"
+        android:text="Hello there. How are you doing brother? I hope you are doing fine. For the love of god. Reply!"
         android:textColor="@color/black" />
 
     <!-- Triangular arrow -->
