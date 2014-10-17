@@ -1,8 +1,8 @@
 package in.co.praveenkumar.mdroid.fragment;
 
+import in.co.praveenkumar.R;
 import in.co.praveenkumar.mdroid.activity.CourseContentActivity;
 import in.co.praveenkumar.mdroid.helper.SessionSetting;
-import in.co.praveenkumar.R;
 import in.co.praveenkumar.mdroid.moodlemodel.MoodleCourse;
 import in.co.praveenkumar.mdroid.task.CourseSyncTask;
 
@@ -13,17 +13,20 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
-public class CourseFragment extends Fragment {
+public class CourseFragment extends Fragment implements OnRefreshListener {
 	/**
 	 * List all courses in Moodle site
 	 */
@@ -42,6 +45,8 @@ public class CourseFragment extends Fragment {
 	List<MoodleCourse> mCourses;
 	int Type = 0;
 	LinearLayout courseEmptyLayout;
+	SwipeRefreshLayout swipeLayout;
+	ListView courseList;
 
 	/**
 	 * Pass the course listing type as a bundle param of type int with name
@@ -81,10 +86,13 @@ public class CourseFragment extends Fragment {
 
 		courseEmptyLayout = (LinearLayout) rootView
 				.findViewById(R.id.course_empty_layout);
-		ListView courseList = (ListView) rootView
-				.findViewById(R.id.content_course);
+		courseList = (ListView) rootView.findViewById(R.id.content_course);
 		courseListAdapter = new CourseListAdapter(getActivity());
 		courseList.setAdapter(courseListAdapter);
+
+		swipeLayout = (SwipeRefreshLayout) rootView
+				.findViewById(R.id.swipe_refresh);
+		setupSwipeLayout();
 
 		// We don't want to run sync in each course listing
 		if (Type == TYPE_USER_COURSES)
@@ -195,6 +203,11 @@ public class CourseFragment extends Fragment {
 	 */
 	private class courseSyncerBg extends AsyncTask<String, Integer, Boolean> {
 		@Override
+		protected void onPreExecute() {
+			swipeLayout.setRefreshing(true);
+		}
+
+		@Override
 		protected Boolean doInBackground(String... params) {
 			CourseSyncTask cs = new CourseSyncTask(session.getmUrl(),
 					session.getToken(), session.getCurrentSiteId());
@@ -220,7 +233,41 @@ public class CourseFragment extends Fragment {
 			courseListAdapter.notifyDataSetChanged();
 			if (mCourses.size() != 0)
 				courseEmptyLayout.setVisibility(LinearLayout.GONE);
+			swipeLayout.setRefreshing(false);
 		}
+	}
+
+	@Override
+	public void onRefresh() {
+		new courseSyncerBg().execute("");
+	}
+
+	void setupSwipeLayout() {
+		if (swipeLayout == null || courseList == null)
+			return;
+
+		swipeLayout.setColorSchemeResources(android.R.color.holo_blue_bright,
+				android.R.color.holo_green_light,
+				android.R.color.holo_orange_light,
+				android.R.color.holo_red_light);
+		swipeLayout.setOnRefreshListener(this);
+
+		// Link swipeLayout with underlying listview
+		courseList.setOnScrollListener(new AbsListView.OnScrollListener() {
+			@Override
+			public void onScrollStateChanged(AbsListView view, int scrollState) {
+
+			}
+
+			@Override
+			public void onScroll(AbsListView view, int firstVisibleItem,
+					int visibleItemCount, int totalItemCount) {
+				int topRowVerticalPosition = (courseList == null || courseList
+						.getChildCount() == 0) ? 0 : courseList.getChildAt(0)
+						.getTop();
+				swipeLayout.setEnabled(topRowVerticalPosition >= 0);
+			}
+		});
 	}
 
 }
