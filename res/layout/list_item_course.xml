@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#E2E2E2"
+    android:background="@color/transparent"
     android:orientation="vertical" >
 
     <LinearLayout
@@ -28,10 +28,10 @@
                 android:src="@drawable/icon_course" />
 
             <ImageView
-                android:layout_alignParentRight="true"
                 android:id="@+id/list_course_fav"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
+                android:layout_alignParentRight="true"
                 android:contentDescription="@string/list_course_sample_shortname"
                 android:src="@drawable/icon_favorite_outline" />
 
@@ -45,7 +45,6 @@
                 android:padding="3dp"
                 android:text="@string/list_course_sample_shortname"
                 android:textSize="16sp" />
-
         </RelativeLayout>
 
         <TextView
