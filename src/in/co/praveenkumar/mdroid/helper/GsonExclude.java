@@ -18,7 +18,7 @@ import com.google.gson.annotations.SerializedName;
 /**
  * This ignores all the fields without a serializeName from decoding
  * 
- * @author praveen
+ * @author Praveen Kumar Pendyala (praveen@praveenkumar.co.in)
  * 
  */
 public class GsonExclude implements ExclusionStrategy {
