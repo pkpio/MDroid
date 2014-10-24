@@ -53,6 +53,9 @@ public class MoodleRestSiteInfo {
 			e.printStackTrace();
 		}
 
+		if (siteInfo == null)
+			return new MoodleSiteInfo();
+
 		return siteInfo;
 	}
 
