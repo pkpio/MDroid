@@ -26,7 +26,6 @@ public class MoodleRestToken {
 		this.uname = uname;
 		this.pswd = pswd;
 		this.url = baseUrl + "/login/token.php";
-
 	}
 
 	/**
@@ -57,13 +56,23 @@ public class MoodleRestToken {
 		getTokenForService(urlParams, MoodleRestOption.SERVICE_MDROID);
 
 		// Check Moody service if above failed.
-		if (token.getToken() == null)
-			getTokenForService(urlParams, MoodleRestOption.SERVICE_MOODY);
+		if (token != null) {
+			if (token.getToken() == null)
+				getTokenForService(urlParams, MoodleRestOption.SERVICE_MOODY);
+		} else {
+			token = new MoodleToken();
+			token.appenedError("Token fetch failed!");
+		}
 
 		// Check Moodle mobile service if above failed.
-		if (token.getToken() == null)
-			getTokenForService(urlParams,
-					MoodleRestOption.SERVICE_MOODLE_MOBILE);
+		if (token != null) {
+			if (token.getToken() == null)
+				getTokenForService(urlParams,
+						MoodleRestOption.SERVICE_MOODLE_MOBILE);
+		} else {
+			token = new MoodleToken();
+			token.appenedError("Token fetch failed!");
+		}
 
 		return token;
 	}
