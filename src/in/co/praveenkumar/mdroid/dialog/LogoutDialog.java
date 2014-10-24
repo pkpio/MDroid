@@ -1,6 +1,7 @@
 package in.co.praveenkumar.mdroid.dialog;
 
 import in.co.praveenkumar.mdroid.activity.CourseActivity;
+import in.co.praveenkumar.mdroid.activity.LoginActivity;
 import in.co.praveenkumar.mdroid.helper.ImageDecoder;
 import in.co.praveenkumar.mdroid.helper.SessionSetting;
 import in.co.praveenkumar.R;
@@ -82,7 +83,7 @@ public class LogoutDialog extends Dialog implements
 
 		// set a new site from db as current site. The below call will pick a
 		// new site from db as current site
-		new SessionSetting(context);
+		SessionSetting session = new SessionSetting(context);
 
 		// Now delete all other info related to that site
 		MoodleCourse.deleteAll(MoodleCourse.class, "siteid = ?", siteid + "");
@@ -96,8 +97,12 @@ public class LogoutDialog extends Dialog implements
 		MoodleContact.deleteAll(MoodleContact.class, "siteid = ?", siteid + "");
 		MoodleEvent.deleteAll(MoodleEvent.class, "siteid = ?", siteid + "");
 
-		// Reopen app with new account
-		Intent i = new Intent(context, CourseActivity.class);
+		Intent i;
+		if (session.getCurrentSiteId() == SessionSetting.NO_SITE_ID)
+			i = new Intent(context, LoginActivity.class); // No more sites in db
+		else
+			i = new Intent(context, CourseActivity.class); // New site from db
+
 		i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
 				| Intent.FLAG_ACTIVITY_CLEAR_TASK);
 		context.startActivity(i);
