@@ -41,7 +41,7 @@ public class SessionSetting {
 		currentSiteId = appSharedPrefs.getLong("currentSiteId", NO_SITE_ID);
 		siteInfo = MoodleSiteInfo.findById(MoodleSiteInfo.class, currentSiteId);
 
-		// If no site found. Get the 1st site in database.
+		// If site not found. Get the 1st site in database.
 		if (siteInfo == null) {
 			List<MoodleSiteInfo> sites = MoodleSiteInfo
 					.listAll(MoodleSiteInfo.class);
@@ -61,7 +61,9 @@ public class SessionSetting {
 			mUrl = siteInfo.getSiteurl();
 			token = siteInfo.getToken();
 			currentSiteId = siteInfo.getId();
-		} else {
+		}
+		// No more sites found in database
+		else {
 			currentSiteId = NO_SITE_ID;
 		}
 	}
