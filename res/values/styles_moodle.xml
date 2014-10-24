@@ -20,20 +20,7 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <style name="Theme.Moodle" parent="@android:style/Theme.Holo.Light.DarkActionBar">
-        <item name="android:actionBarItemBackground">@drawable/selectable_background_moodle</item>
-        <item name="android:popupMenuStyle">@style/PopupMenu.Moodle</item>
-        <item name="android:dropDownListViewStyle">@style/DropDownListView.Moodle</item>
-        <item name="android:actionBarTabStyle">@style/ActionBarTabStyle.Moodle</item>
-        <item name="android:actionDropDownStyle">@style/DropDownNav.Moodle</item>
-        <item name="android:actionBarStyle">@style/ActionBar.Solid.Moodle</item>
-        <item name="android:actionModeBackground">@drawable/cab_background_top_moodle</item>
-        <item name="android:actionModeSplitBackground">@drawable/cab_background_bottom_moodle</item>
-        <item name="android:actionModeCloseButtonStyle">@style/ActionButton.CloseMode.Moodle</item>
-
-        <!-- Light.DarkActionBar specific -->
-        <item name="android:actionBarWidgetTheme">@style/Theme.Moodle.Widget</item>
-        <item name="android:actionBarTabTextStyle">@style/ActionBarTabTextStyle.Moodle</item>
+    <style name="Theme.Moodle" parent="@style/Theme.AppCompat.Light.DarkActionBar">
 
         <!-- ViewPageIndicator specific -->
         <item name="vpiTabPageIndicatorStyle">@style/TabPageIndicator.Moodle</item>
@@ -48,67 +35,6 @@
     <style name="Theme.Moodle.NoActionbar.Fullscreen" parent="Theme.Moodle">
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowFullscreen">true</item>
-    </style>
-
-    <style name="ActionBar.Solid.Moodle" parent="@android:style/Widget.Holo.Light.ActionBar.Solid.Inverse">
-        <item name="android:background">@drawable/ab_solid_moodle</item>
-        <item name="android:backgroundStacked">@drawable/ab_stacked_solid_moodle</item>
-        <item name="android:backgroundSplit">@drawable/ab_bottom_solid_moodle</item>
-        <item name="android:progressBarStyle">@style/ProgressBar.Moodle</item>
-    </style>
-
-    <style name="ActionBar.Transparent.Moodle" parent="@android:style/Widget.Holo.ActionBar">
-        <item name="android:background">@drawable/ab_transparent_moodle</item>
-        <item name="android:progressBarStyle">@style/ProgressBar.Moodle</item>
-    </style>
-
-    <style name="PopupMenu.Moodle" parent="@android:style/Widget.Holo.ListPopupWindow">
-        <item name="android:popupBackground">@drawable/menu_dropdown_panel_moodle</item>
-    </style>
-
-    <style name="DropDownListView.Moodle" parent="@android:style/Widget.Holo.ListView.DropDown">
-        <item name="android:listSelector">@drawable/selectable_background_moodle</item>
-    </style>
-
-    <style name="ActionBarTabStyle.Moodle" parent="@android:style/Widget.Holo.ActionBar.TabView">
-        <item name="android:background">@drawable/tab_indicator_ab_moodle</item>
-    </style>
-
-    <style name="DropDownNav.Moodle" parent="@android:style/Widget.Holo.Spinner">
-        <item name="android:background">@drawable/spinner_background_ab_moodle</item>
-        <item name="android:popupBackground">@drawable/menu_dropdown_panel_moodle</item>
-        <item name="android:dropDownSelector">@drawable/selectable_background_moodle</item>
-    </style>
-
-    <style name="ProgressBar.Moodle" parent="@android:style/Widget.Holo.ProgressBar.Horizontal">
-        <item name="android:progressDrawable">@drawable/progress_horizontal_moodle</item>
-    </style>
-
-    <style name="ActionButton.CloseMode.Moodle" parent="@android:style/Widget.Holo.ActionButton.CloseMode">
-        <item name="android:background">@drawable/btn_cab_done_moodle</item>
-    </style>
-
-    <!-- this style is only referenced in a Light.DarkActionBar based theme -->
-    <style name="Theme.Moodle.Widget" parent="@android:style/Theme.Holo">
-        <item name="android:popupMenuStyle">@style/PopupMenu.Moodle</item>
-        <item name="android:dropDownListViewStyle">@style/DropDownListView.Moodle</item>
-    </style>
-
-    <style name="ActionBarTabTextStyle.Moodle" parent="@android:style/Widget.Holo.ActionBar.TabText">
-        <item name="android:textColor">@color/tab_text_color</item>
-    </style>
-
-    <!-- ViewPageInidicator styles -->
-    <style name="TabPageIndicator.Moodle" parent="Widget.TabPageIndicator">
-        <item name="android:background">@drawable/tab_indicator_ab_moodle</item>
-        <item name="android:textColor">#FF555555</item>
-        <item name="android:textSize">16sp</item>
-        <item name="android:dividerPadding">10dp</item>
-        <item name="android:showDividers">middle</item>
-        <item name="android:paddingLeft">8dp</item>
-        <item name="android:paddingRight">8dp</item>
-        <item name="android:fadingEdge">horizontal</item>
-        <item name="android:fadingEdgeLength">8dp</item>
     </style>
 
 </resources>
