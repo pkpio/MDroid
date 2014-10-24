@@ -88,14 +88,15 @@ public class DownloadTask {
 			request.setTitle(fileName);
 			request.setDescription("MDroid file download");
 
+			// Visibility setting not available in versions below Honeycomb
 			if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.HONEYCOMB)
 				if (!visibility)
 					request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_HIDDEN);
 				else
 					request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
 
+			//-TODO- save this id somewhere for progress retrievel
 			reqId = manager.enqueue(request);
-			// save this id somewhere
 		} else {
 			mdroidDownload(fileUrl, fileName);
 			reqId = 0;
