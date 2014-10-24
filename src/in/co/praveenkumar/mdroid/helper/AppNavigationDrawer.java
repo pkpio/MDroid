@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v4.widget.DrawerLayout.DrawerListener;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Gravity;
 import android.view.KeyEvent;
@@ -15,10 +14,11 @@ import android.view.MenuItem;
 import android.view.View;
 
 public abstract class AppNavigationDrawer extends ActionBarActivity implements
-		DrawerStateInterface, DrawerListener {
+		DrawerStateInterface {
 	private DrawerLayout mDrawerLayout;
 	private ActionBarDrawerToggle mDrawerToggle;
-	private CharSequence title = "MDroid";
+	private CharSequence MenuTitle = "MDroid";
+	private CharSequence Title = "MDroid";
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -33,7 +33,19 @@ public abstract class AppNavigationDrawer extends ActionBarActivity implements
 		R.drawable.ic_navigation_drawer, /* nav drawer icon to replace 'Up' caret */
 		R.string.drawer_open, /* "open drawer" description */
 		R.string.drawer_close /* "close drawer" description */
-		);
+		) {
+
+			/** Called when a drawer has settled in a completely closed state. */
+			public void onDrawerClosed(View view) {
+				setTitle(Title);
+			}
+
+			/** Called when a drawer has settled in a completely open state. */
+			public void onDrawerOpened(View drawerView) {
+				Title = getTitle();
+				setTitle(MenuTitle);
+			}
+		};
 
 		// Set the drawer toggle as the DrawerListener
 		mDrawerLayout.setDrawerListener(mDrawerToggle);
@@ -65,10 +77,10 @@ public abstract class AppNavigationDrawer extends ActionBarActivity implements
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		if (keyCode == KeyEvent.KEYCODE_MENU) {
 			if (!mDrawerLayout.isDrawerOpen(GravityCompat.START)) {
-				mDrawerLayout.openDrawer(Gravity.START);
-				mDrawerLayout.closeDrawer(Gravity.END);
+				mDrawerLayout.openDrawer(Gravity.LEFT);
+				mDrawerLayout.closeDrawer(Gravity.RIGHT);
 			} else
-				mDrawerLayout.closeDrawer(Gravity.START);
+				mDrawerLayout.closeDrawer(Gravity.LEFT);
 			return true;
 		}
 		return super.onKeyDown(keyCode, event);
@@ -79,7 +91,7 @@ public abstract class AppNavigationDrawer extends ActionBarActivity implements
 		// Pass the event to ActionBarDrawerToggle, if it returns
 		// true, then it has handled the app icon touch event
 		if (mDrawerToggle.onOptionsItemSelected(item)) {
-			mDrawerLayout.closeDrawer(Gravity.END); // to prevent overlapping
+			mDrawerLayout.closeDrawer(Gravity.RIGHT); // to prevent overlapping
 			return true;
 		}
 
@@ -95,35 +107,9 @@ public abstract class AppNavigationDrawer extends ActionBarActivity implements
 	@Override
 	public void setDrawerState(Boolean state) {
 		if (state) {
-			mDrawerLayout.openDrawer(Gravity.START);
-			mDrawerLayout.closeDrawer(Gravity.END); // to prevent overlapping
+			mDrawerLayout.openDrawer(Gravity.LEFT);
+			mDrawerLayout.closeDrawer(Gravity.RIGHT); // to prevent overlapping
 		} else
-			mDrawerLayout.closeDrawer(Gravity.START);
+			mDrawerLayout.closeDrawer(Gravity.LEFT);
 	}
-
-	@Override
-	public void onDrawerClosed(View arg0) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void onDrawerOpened(View arg0) {
-		// this.title = getActivityTitle();
-		setTitle("MDroid");
-	}
-
-	@Override
-	public void onDrawerSlide(View arg0, float arg1) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void onDrawerStateChanged(int arg0) {
-		// TODO Auto-generated method stub
-
-	}
-
-	// public abstract CharSequence getActivityTitle();
 }
