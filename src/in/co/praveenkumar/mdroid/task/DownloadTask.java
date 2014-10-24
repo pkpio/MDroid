@@ -7,11 +7,14 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import android.annotation.TargetApi;
 import android.app.DownloadManager;
 import android.app.DownloadManager.Request;
 import android.content.Context;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Environment;
+import android.widget.Toast;
 
 public class DownloadTask {
 	public static final Boolean SYSTEM_DOWNLOADER = true;
@@ -59,6 +62,7 @@ public class DownloadTask {
 	 * 
 	 * @author Praveen Kumar Pendyala (praveen@praveenkumar.co.in)
 	 */
+	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 	public long download(String fileUrl, String filepath, String fileName,
 			Boolean visibility, Boolean choice) {
 		// Make directories if required
@@ -73,14 +77,22 @@ public class DownloadTask {
 			DownloadManager manager = (DownloadManager) context
 					.getSystemService(Context.DOWNLOAD_SERVICE);
 			Request request = new Request(Uri.parse(fileUrl));
-			request.setDestinationInExternalPublicDir("/MDroid", filepath
-					+ fileName);
+			try {
+				request.setDestinationInExternalPublicDir("/MDroid", filepath
+						+ fileName);
+			} catch (Exception e) {
+				Toast.makeText(context, "External storage not found!",
+						Toast.LENGTH_SHORT).show();
+				return 0;
+			}
 			request.setTitle(fileName);
 			request.setDescription("MDroid file download");
-			if (!visibility)
-				request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_HIDDEN);
-			else
-				request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
+
+			if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.HONEYCOMB)
+				if (!visibility)
+					request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_HIDDEN);
+				else
+					request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
 
 			reqId = manager.enqueue(request);
 			// save this id somewhere
