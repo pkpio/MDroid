@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="in.co.praveenkumar"
-    android:versionCode="35"
-    android:versionName="6.1.1 MDroid APIs" >
+    android:versionCode="36"
+    android:versionName="6.2.0 MDroid APIs" >
 
     <uses-sdk
         android:minSdkVersion="9"
@@ -90,7 +90,7 @@
             android:value="mdroid.db" />
         <meta-data
             android:name="VERSION"
-            android:value="2" />
+            android:value="3" />
         <meta-data
             android:name="QUERY_LOG"
             android:value="true" />
