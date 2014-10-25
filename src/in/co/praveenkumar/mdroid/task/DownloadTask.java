@@ -95,7 +95,7 @@ public class DownloadTask {
 				else
 					request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
 
-			//-TODO- save this id somewhere for progress retrievel
+			//-TODO- save this id somewhere for progress retrieval
 			reqId = manager.enqueue(request);
 		} else {
 			mdroidDownload(fileUrl, fileName);
