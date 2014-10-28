@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     File created by the Android Action Bar Style Generator
+
+     Copyright (C) 2011 The Android Open Source Project
+     Copyright (C) 2012 readyState Software Ltd
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+  
+          http://www.apache.org/licenses/LICENSE-2.0
+  
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+
+<resources>
+
+    <style name="Theme.Moodle2" parent="@style/Theme.AppCompat.Light.DarkActionBar">
+
+        <!-- ViewPageIndicator specific -->
+        <item name="vpiTabPageIndicatorStyle">@style/TabPageIndicator.Moodle2</item>
+    </style>
+
+    <style name="ActionBar.Solid.Moodle2" parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">
+        <item name="background">@drawable/ab_solid_moodle2</item>
+        <item name="backgroundStacked">@drawable/ab_stacked_solid_moodle2</item>
+        <item name="backgroundSplit">@drawable/ab_bottom_solid_moodle2</item>
+        <item name="progressBarStyle">@style/ProgressBar.Moodle2</item>
+    </style>
+
+    <style name="ActionBar.Transparent.Moodle2" parent="@style/Widget.AppCompat.ActionBar">
+        <item name="background">@drawable/ab_transparent_moodle2</item>
+        <item name="progressBarStyle">@style/ProgressBar.Moodle2</item>
+    </style>
+
+    <style name="PopupMenu.Moodle2" parent="@style/Widget.AppCompat.PopupMenu">
+        <item name="android:popupBackground">@drawable/menu_dropdown_panel_moodle2</item>
+    </style>
+
+    <style name="DropDownListView.Moodle2" parent="@style/Widget.AppCompat.ListView.DropDown">
+        <item name="android:listSelector">@drawable/selectable_background_moodle2</item>
+    </style>
+
+    <style name="ActionBarTabStyle.Moodle2" parent="@style/Widget.AppCompat.ActionBar.TabView">
+        <item name="android:background">@drawable/tab_indicator_ab_moodle2</item>
+    </style>
+
+    <style name="DropDownNav.Moodle2" parent="@style/Widget.AppCompat.Spinner.DropDown.ActionBar">
+        <item name="android:background">@drawable/spinner_background_ab_moodle2</item>
+        <item name="android:popupBackground">@drawable/menu_dropdown_panel_moodle2</item>
+        <item name="android:dropDownSelector">@drawable/selectable_background_moodle2</item>
+    </style>
+
+    <style name="ProgressBar.Moodle2" parent="@style/Widget.AppCompat.ProgressBar.Horizontal">
+        <item name="android:progressDrawable">@drawable/progress_horizontal_moodle2</item>
+    </style>
+
+    <style name="ActionButton.CloseMode.Moodle2" parent="@style/Widget.AppCompat.ActionButton.CloseMode">
+        <item name="android:background">@drawable/btn_cab_done_moodle2</item>
+    </style>
+
+    <!-- this style is only referenced in a Light.DarkActionBar based theme -->
+    <style name="Theme.Moodle2.Widget" parent="@style/Theme.AppCompat">
+        <item name="popupMenuStyle">@style/PopupMenu.Moodle2</item>
+        <item name="dropDownListViewStyle">@style/DropDownListView.Moodle2</item>
+    </style>
+
+    <!-- Moodle No actionbar theme. -->
+    <style name="Theme.Moodle2.NoActionbar" parent="Theme.Moodle2">
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+    <!-- Moodle No fullscreen theme. -->
+    <style name="Theme.Moodle2.NoActionbar.Fullscreen" parent="Theme.Moodle2">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
+    <!-- ViewPageInidicator styles -->
+    <style name="TabPageIndicator.Moodle2" parent="Widget.TabPageIndicator">
+        <item name="android:background">@drawable/tab_indicator_ab_moodle2</item>
+        <item name="android:textColor">#FF555555</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:paddingLeft">8dp</item>
+        <item name="android:paddingRight">8dp</item>
+        <item name="android:fadingEdge">horizontal</item>
+        <item name="android:fadingEdgeLength">8dp</item>
+    </style>
+
+</resources>
