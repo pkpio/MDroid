@@ -21,7 +21,6 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 
     <style name="Theme.Moodle2" parent="@style/Theme.AppCompat.Light.DarkActionBar">
-        <item name="android:actionBarItemBackground">@drawable/selectable_background_moodle2</item>
         <item name="android:popupMenuStyle">@style/PopupMenu.Moodle2</item>
         <item name="android:dropDownListViewStyle">@style/DropDownListView.Moodle2</item>
         <item name="android:actionBarTabStyle">@style/ActionBarTabStyle.Moodle2</item>
@@ -29,11 +28,7 @@
         <!-- <item name="android:actionDropDownStyle">@style/DropDownNav.Moodle2</item> -->
         <item name="android:actionBarStyle">@style/ActionBar.Solid.Moodle2</item>
         <item name="android:actionModeBackground">@drawable/cab_background_top_moodle2</item>
-        <item name="android:actionModeSplitBackground">@drawable/cab_background_bottom_moodle2</item>
         <item name="android:actionModeCloseButtonStyle">@style/ActionButton.CloseMode.Moodle2</item>
-
-        <!-- Light.DarkActionBar specific -->
-        <item name="android:actionBarWidgetTheme">@style/Theme.Moodle2.Widget</item>
 
         <!-- ViewPageIndicator specific -->
         <item name="vpiTabPageIndicatorStyle">@style/TabPageIndicator.Moodle2</item>
@@ -44,8 +39,6 @@
 
     <style name="ActionBar.Solid.Moodle2" parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">
         <item name="android:background">@color/moodle_color</item>
-        <item name="android:backgroundStacked">@drawable/ab_stacked_solid_moodle2</item>
-        <item name="android:backgroundSplit">@drawable/ab_bottom_solid_moodle2</item>
         <item name="android:progressBarStyle">@style/ProgressBar.Moodle2</item>
     </style>
 
@@ -106,16 +99,6 @@
         <item name="android:paddingRight">8dp</item>
         <item name="android:fadingEdge">horizontal</item>
         <item name="android:fadingEdgeLength">8dp</item>
-    </style>
-
-    <!-- Testing -->
-    <style name="Widget.MyTitlepageIndicator">
-        <item name="footerColor">#ff99cc33</item>
-        <item name="footerIndicatorStyle">underline</item>
-        <item name="footerIndicatorHeight">3dp</item>
-        <item name="footerLineHeight">1.5dp</item>
-        <item name="footerPadding">6dp</item>
-        <item name="selectedColor">#ffffffff</item>
     </style>
 
 </resources>
