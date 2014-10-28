@@ -18,7 +18,7 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:logo="@drawable/ic_actionbar_icon"
-        android:theme="@style/Theme.Moodle" >
+        android:theme="@style/Theme.Moodle2" >
         <activity
             android:name="in.co.praveenkumar.mdroid.activity.TutorialActivity"
             android:configChanges="screenSize|orientation"
