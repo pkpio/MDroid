@@ -53,4 +53,10 @@
     <!-- Picked from elsewhere -->
     <color name="hangout_reply_green">#def3d8</color>
 
+    <!-- Swipe refresh colors - from Gmail app -->
+    <color name="refresh_blue">#3e7ee7</color>
+    <color name="refresh_yellow">#e7aa00</color>
+    <color name="refresh_green">#0e9755</color>
+    <color name="refresh_red">#cf4034</color>
+
 </resources>
