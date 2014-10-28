@@ -24,6 +24,9 @@
 
         <!-- ViewPageIndicator specific -->
         <item name="vpiTabPageIndicatorStyle">@style/TabPageIndicator.Moodle2</item>
+
+        <!-- Removing showdow between ab and tabs -->
+        <item name="android:windowContentOverlay">@null</item>
     </style>
 
     <style name="ActionBar.Solid.Moodle2" parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">
