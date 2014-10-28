@@ -246,10 +246,9 @@ public class CourseFragment extends Fragment implements OnRefreshListener {
 		if (swipeLayout == null || courseList == null)
 			return;
 
-		swipeLayout.setColorSchemeResources(android.R.color.holo_blue_bright,
-				android.R.color.holo_green_light,
-				android.R.color.holo_orange_light,
-				android.R.color.holo_red_light);
+		swipeLayout.setColorSchemeResources(R.color.refresh_green,
+				R.color.refresh_red, R.color.refresh_blue,
+				R.color.refresh_yellow);
 		swipeLayout.setOnRefreshListener(this);
 
 		// Link swipeLayout with underlying listview
