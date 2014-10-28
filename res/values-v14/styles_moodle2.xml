@@ -108,14 +108,4 @@
         <item name="android:fadingEdgeLength">8dp</item>
     </style>
 
-    <!-- Testing -->
-    <style name="Widget.MyTitlepageIndicator">
-        <item name="footerColor">#ff99cc33</item>
-        <item name="footerIndicatorStyle">underline</item>
-        <item name="footerIndicatorHeight">3dp</item>
-        <item name="footerLineHeight">1.5dp</item>
-        <item name="footerPadding">6dp</item>
-        <item name="selectedColor">#ffffffff</item>
-    </style>
-
 </resources>
