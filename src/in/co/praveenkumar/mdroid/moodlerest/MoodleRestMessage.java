@@ -29,6 +29,9 @@ public class MoodleRestMessage {
 		this.token = token;
 	}
 
+	// -TODO- Remove so many methods for sendMessage and use MoodleMessage as
+	// only param and just one method
+
 	/**
 	 * Sends a message to a Moodle user. Uses plaintext as the message format.
 	 * 
