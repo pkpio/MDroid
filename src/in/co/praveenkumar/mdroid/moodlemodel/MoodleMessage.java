@@ -1,14 +1,78 @@
 package in.co.praveenkumar.mdroid.moodlemodel;
 
+import com.google.gson.annotations.SerializedName;
+
 public class MoodleMessage {
-	// Fields while sending message
+	/*
+	 * Fields common to fetch and send
+	 */
+	@SerializedName("touserid")
 	int touserid;
+
+	@SerializedName("text")
 	String text;
+
+	/*
+	 * Fields specific to send
+	 */
+	@SerializedName("textformat")
 	int textformat;
+
+	@SerializedName("clientmsgid")
 	String clientmsgid;
 
-	// Fields for response
+	/*
+	 * Fields specific to fetch
+	 */
+	@SerializedName("id")
+	int messageid;
+
+	@SerializedName("useridfrom")
+	int useridfrom; // User from id
+
+	@SerializedName("subject")
+	String subject; // The message subject
+
+	@SerializedName("fullmessage")
+	String fullmessage; // The message
+
+	@SerializedName("fullmessageformat")
+	int fullmessageformat; // The message message format
+
+	@SerializedName("fullmessagehtml")
+	String fullmessagehtml; // The message in html
+
+	@SerializedName("smallmessage")
+	String smallmessage; // The shorten message
+
+	@SerializedName("notification")
+	int notification; // Is a notification?
+
+	@SerializedName("contexturl")
+	String contexturl; // Context URL
+
+	@SerializedName("contexturlname")
+	String contexturlname; // Context URL link name
+
+	@SerializedName("timecreated")
+	int timecreated; // Time created
+
+	@SerializedName("timeread")
+	int timeread; // Time read
+
+	@SerializedName("usertofullname")
+	String usertofullname;// User to full name
+
+	@SerializedName("userfromfullname")
+	String userfromfullname;// User from full name
+
+	/*
+	 * Fields for response
+	 */
+	@SerializedName("msgid")
 	int msgid;
+
+	@SerializedName("errormessage")
 	String errormessage;
 
 	/**
@@ -102,6 +166,62 @@ public class MoodleMessage {
 	 */
 	public String getErrormessage() {
 		return errormessage;
+	}
+
+	public int getMessageid() {
+		return messageid;
+	}
+
+	public int getUseridfrom() {
+		return useridfrom;
+	}
+
+	public String getSubject() {
+		return subject;
+	}
+
+	public String getFullmessage() {
+		return fullmessage;
+	}
+
+	public int getFullmessageformat() {
+		return fullmessageformat;
+	}
+
+	public String getFullmessagehtml() {
+		return fullmessagehtml;
+	}
+
+	public String getSmallmessage() {
+		return smallmessage;
+	}
+
+	public int getNotification() {
+		return notification;
+	}
+
+	public String getContexturl() {
+		return contexturl;
+	}
+
+	public String getContexturlname() {
+		return contexturlname;
+	}
+
+	public int getTimecreated() {
+		return timecreated;
+	}
+
+	public int getTimeread() {
+		return timeread;
+	}
+
+	public String getUsertofullname() {
+		return usertofullname;
+	}
+
+	public String getUserfromfullname() {
+		return userfromfullname;
 	}
 
 }
