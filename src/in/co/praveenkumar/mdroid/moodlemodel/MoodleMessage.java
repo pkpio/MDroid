@@ -1,11 +1,17 @@
 package in.co.praveenkumar.mdroid.moodlemodel;
 
 import com.google.gson.annotations.SerializedName;
+import com.orm.SugarRecord;
+import com.orm.dsl.Ignore;
 
-public class MoodleMessage {
+public class MoodleMessage extends SugarRecord<MoodleMessage> {
+	@Ignore
 	public static final int MESSAGE_FORMAT_HTML = 1;
+	@Ignore
 	public static final int MESSAGE_FORMAT_MOODLE = 0;
+	@Ignore
 	public static final int MESSAGE_FORMAT_PLAIN = 2;
+	@Ignore
 	public static final int MESSAGE_FORMAT_MARKDOWN = 4;
 
 	/*
