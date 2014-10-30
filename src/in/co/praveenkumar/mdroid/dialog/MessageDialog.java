@@ -4,6 +4,7 @@ import in.co.praveenkumar.mdroid.helper.LetterColor;
 import in.co.praveenkumar.mdroid.helper.SessionSetting;
 import in.co.praveenkumar.R;
 import in.co.praveenkumar.mdroid.moodlemodel.MoodleContact;
+import in.co.praveenkumar.mdroid.moodlemodel.MoodleMessage;
 import in.co.praveenkumar.mdroid.moodlerest.MoodleRestMessage;
 import android.app.Dialog;
 import android.content.Context;
@@ -94,7 +95,8 @@ public class MessageDialog extends Dialog implements
 		@Override
 		protected Boolean doInBackground(String... params) {
 			mrm = new MoodleRestMessage(mUrl, token);
-			return mrm.sendMessage(userid, message);
+			MoodleMessage mMessage = new MoodleMessage(userid, message);
+			return mrm.sendMessage(mMessage);
 		}
 
 		@Override
