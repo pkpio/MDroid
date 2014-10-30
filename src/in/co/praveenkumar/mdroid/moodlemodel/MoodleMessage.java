@@ -3,6 +3,11 @@ package in.co.praveenkumar.mdroid.moodlemodel;
 import com.google.gson.annotations.SerializedName;
 
 public class MoodleMessage {
+	public static final int MESSAGE_FORMAT_HTML = 1;
+	public static final int MESSAGE_FORMAT_MOODLE = 0;
+	public static final int MESSAGE_FORMAT_PLAIN = 2;
+	public static final int MESSAGE_FORMAT_MARKDOWN = 4;
+
 	/*
 	 * Fields common to fetch and send
 	 */
@@ -74,6 +79,61 @@ public class MoodleMessage {
 
 	@SerializedName("errormessage")
 	String errormessage;
+
+	/**
+	 * Default message with no params set.
+	 */
+	public MoodleMessage() {
+	}
+
+	/**
+	 * Uses plaintext as the message format.
+	 * 
+	 * @param touserid
+	 *            Moodle userid of the user
+	 * @param text
+	 *            message content
+	 */
+	public MoodleMessage(int touserid, String text) {
+		this.touserid = touserid;
+		this.text = text;
+		this.textformat = MESSAGE_FORMAT_PLAIN;
+		this.clientmsgid = "";
+	}
+
+	/**
+	 * @param touserid
+	 *            Moodle userid of the user
+	 * @param text
+	 *            message content
+	 * @param textformat
+	 *            message format. Use contants MESSAGE_FORMAT_
+	 */
+	public MoodleMessage(int touserid, String text, int textformat) {
+		this.touserid = touserid;
+		this.text = text;
+		this.textformat = textformat;
+		this.clientmsgid = "";
+	}
+
+	/**
+	 * @param touserid
+	 *            Moodle userid of the user
+	 * @param text
+	 *            message content
+	 * @param textformat
+	 *            message format. Use contants MESSAGE_FORMAT_
+	 * @param clientmsgid
+	 *            your own client id for the message. If this id is provided,
+	 *            the fail message id will be returned to you
+	 */
+	public MoodleMessage(int touserid, String text, int textformat,
+			String clientmsgid) {
+		this.touserid = touserid;
+		this.text = text;
+		this.textformat = textformat;
+		this.clientmsgid = clientmsgid;
+	}
 
 	/**
 	 * id of the user to send the private message
