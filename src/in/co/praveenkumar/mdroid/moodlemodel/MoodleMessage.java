@@ -28,43 +28,43 @@ public class MoodleMessage {
 	int messageid;
 
 	@SerializedName("useridfrom")
-	int useridfrom; // User from id
+	int useridfrom;
 
 	@SerializedName("subject")
-	String subject; // The message subject
+	String subject;
 
 	@SerializedName("fullmessage")
-	String fullmessage; // The message
+	String fullmessage;
 
 	@SerializedName("fullmessageformat")
-	int fullmessageformat; // The message message format
+	int fullmessageformat;
 
 	@SerializedName("fullmessagehtml")
-	String fullmessagehtml; // The message in html
+	String fullmessagehtml;
 
 	@SerializedName("smallmessage")
-	String smallmessage; // The shorten message
+	String smallmessage;
 
 	@SerializedName("notification")
-	int notification; // Is a notification?
+	int notification;
 
 	@SerializedName("contexturl")
-	String contexturl; // Context URL
+	String contexturl;
 
 	@SerializedName("contexturlname")
-	String contexturlname; // Context URL link name
+	String contexturlname;
 
 	@SerializedName("timecreated")
-	int timecreated; // Time created
+	int timecreated;
 
 	@SerializedName("timeread")
-	int timeread; // Time read
+	int timeread;
 
 	@SerializedName("usertofullname")
-	String usertofullname;// User to full name
+	String usertofullname;
 
 	@SerializedName("userfromfullname")
-	String userfromfullname;// User from full name
+	String userfromfullname;
 
 	/*
 	 * Fields for response
@@ -168,58 +168,126 @@ public class MoodleMessage {
 		return errormessage;
 	}
 
+	/**
+	 * Moodle site id for message
+	 * 
+	 * @return
+	 */
 	public int getMessageid() {
 		return messageid;
 	}
 
+	/**
+	 * User from id
+	 * 
+	 * @return
+	 */
 	public int getUseridfrom() {
 		return useridfrom;
 	}
 
+	/**
+	 * The message subject
+	 * 
+	 * @return
+	 */
 	public String getSubject() {
 		return subject;
 	}
 
+	/**
+	 * The message
+	 * 
+	 * @return
+	 */
 	public String getFullmessage() {
 		return fullmessage;
 	}
 
+	/**
+	 * The message message format
+	 * 
+	 * @return
+	 */
 	public int getFullmessageformat() {
 		return fullmessageformat;
 	}
 
+	/**
+	 * The message in html
+	 * 
+	 * @return
+	 */
 	public String getFullmessagehtml() {
 		return fullmessagehtml;
 	}
 
+	/**
+	 * The shorten message
+	 * 
+	 * @return
+	 */
 	public String getSmallmessage() {
 		return smallmessage;
 	}
 
+	/**
+	 * Is a notification?
+	 * 
+	 * @return
+	 */
 	public int getNotification() {
 		return notification;
 	}
 
+	/**
+	 * Context URL
+	 * 
+	 * @return
+	 */
 	public String getContexturl() {
 		return contexturl;
 	}
 
+	/**
+	 * Context URL link name
+	 * 
+	 * @return
+	 */
 	public String getContexturlname() {
 		return contexturlname;
 	}
 
+	/**
+	 * Time created
+	 * 
+	 * @return
+	 */
 	public int getTimecreated() {
 		return timecreated;
 	}
 
+	/**
+	 * Time read
+	 * 
+	 * @return
+	 */
 	public int getTimeread() {
 		return timeread;
 	}
 
+	/**
+	 * User to full name
+	 * 
+	 * @return
+	 */
 	public String getUsertofullname() {
 		return usertofullname;
 	}
 
+	/**
+	 * User from full name
+	 */
 	public String getUserfromfullname() {
 		return userfromfullname;
 	}
