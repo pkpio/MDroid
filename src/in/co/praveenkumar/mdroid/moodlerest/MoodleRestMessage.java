@@ -38,6 +38,12 @@ public class MoodleRestMessage {
 		String function = MoodleRestOption.FUNCTION_SEND_MESSAGE;
 		ArrayList<MoodleMessage> mMessages = new ArrayList<MoodleMessage>();
 
+		if (message == null) {
+			Log.d(DEBUG_TAG, "Message not setup correctly");
+			error = "Message not setup correctly. Report to developer";
+			return false;
+		}
+
 		try {
 			// Adding all parameters.
 			String params = "" + URLEncoder.encode("", "UTF-8");
