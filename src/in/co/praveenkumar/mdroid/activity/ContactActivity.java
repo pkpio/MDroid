@@ -11,6 +11,7 @@ public class ContactActivity extends AppNavigationDrawer {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_contact);
 		setUpDrawer();
+		setTitle("Contacts");
 	}
 
 }
