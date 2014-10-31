@@ -2,41 +2,29 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/menu_appitem_bg"
-    android:orientation="vertical" >
+    android:orientation="horizontal"
+    android:padding="5dp" >
 
-    <LinearLayout
+    <ImageView
+        android:id="@+id/nav_menuicon"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginRight="8dp"
+        android:contentDescription="@string/list_item_sample_menu"
+        android:paddingLeft="16dp"
+        android:src="@drawable/icon_school_greyscale" />
+
+    <TextView
+        android:id="@+id/nav_menuitem"
         android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:orientation="horizontal" >
-
-        <ImageView
-            android:id="@+id/nav_menuicon"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:layout_gravity="center_vertical"
-            android:contentDescription="@string/list_item_sample_menu"
-            android:padding="8dp"
-            android:src="@drawable/icon_extension_greyscale" />
-
-        <TextView
-            android:id="@+id/nav_menuitem"
-            android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:gravity="start|center_vertical"
-            android:paddingEnd="16dp"
-            android:paddingLeft="0dp"
-            android:paddingRight="16dp"
-            android:paddingStart="16dp"
-            android:text="SETTINGS"
-            android:textColor="@color/grey6"
-            android:textSize="14sp" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/grey13" >
-    </LinearLayout>
+        android:layout_height="40dp"
+        android:gravity="start|center_vertical"
+        android:paddingBottom="5dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="5dp"
+        android:paddingTop="5dp"
+        android:text="@string/list_item_sample_menu"
+        android:textColor="@color/left_menu_text"
+        android:textSize="14sp" />
 
 </LinearLayout>
