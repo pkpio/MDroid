@@ -52,6 +52,10 @@
             android:configChanges="screenSize|orientation" >
         </activity>
         <activity
+            android:name="in.co.praveenkumar.mdroid.activity.ContactActivity"
+            android:configChanges="screenSize|orientation" >
+        </activity>
+        <activity
             android:name="in.co.praveenkumar.mdroid.activity.CourseContentActivity"
             android:configChanges="screenSize|orientation" >
         </activity>
