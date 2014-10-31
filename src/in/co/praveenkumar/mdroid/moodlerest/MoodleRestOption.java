@@ -25,6 +25,7 @@ public class MoodleRestOption {
 	public static final String FUNCTION_GET_CONTACTS = "core_message_get_contacts";
 	public static final String FUNCTION_GET_EVENTS = "core_calendar_get_calendar_events";
 	public static final String FUNCTION_GET_USERS_FROM_FIELD = "core_user_get_users_by_field";
-	public static final String FUNCTION_SEND_MESSAGE = "core_message_send_instant_messages ";
+	public static final String FUNCTION_SEND_MESSAGE = "core_message_send_instant_messages";
+	public static final String FUNCTION_GET_MESSAGES = "local_mobile_core_message_get_messages";
 
 }
