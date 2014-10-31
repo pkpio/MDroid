@@ -1,6 +1,8 @@
 package in.co.praveenkumar.mdroid.moodlerest;
 
+import in.co.praveenkumar.mdroid.helper.GsonExclude;
 import in.co.praveenkumar.mdroid.moodlemodel.MoodleMessage;
+import in.co.praveenkumar.mdroid.moodlemodel.MoodleMessages;
 
 import java.io.Reader;
 import java.net.URLEncoder;
@@ -102,5 +104,58 @@ public class MoodleRestMessage {
 	 */
 	public String getError() {
 		return error;
+	}
+
+	/**
+	 * Get all the messages exchanged by two users. User MUST have the required
+	 * permissions (user who logged into this account) or an access denied
+	 * exception may occur. <br/>
+	 * <br/>
+	 * <b>Note:<b/> <br/>
+	 * 1. To get list of messages received by a user, set useridfrom to 0 <br/>
+	 * 2. To get list of messages sent by a user, set useridto to 0
+	 * 
+	 * @param useridto
+	 *            userid of the user who received these messages
+	 * @param useridfrom
+	 *            userid of the user who sent these messages
+	 * @return MoodleMessages
+	 */
+	public List<MoodleMessage> getMessages(int useridto, int useridfrom) {
+		MoodleMessages mMessages = null;
+		String format = MoodleRestOption.RESPONSE_FORMAT;
+		String function = MoodleRestOption.FUNCTION_GET_MESSAGES;
+
+		try {
+			// Adding all parameters.
+			String params = "";
+
+			params += "&useridto="
+					+ URLEncoder.encode(String.valueOf(useridto), "UTF-8");
+			params += "&useridfrom="
+					+ URLEncoder.encode(String.valueOf(useridfrom), "UTF-8");
+
+			// Build a REST call url to make a call.
+			String restUrl = mUrl + "/webservice/rest/server.php" + "?wstoken="
+					+ token + "&wsfunction=" + function
+					+ "&moodlewsrestformat=" + format;
+
+			// Fetch content now.
+			MoodleRestCall mrc = new MoodleRestCall();
+			Reader reader = mrc.fetchContent(restUrl, params);
+			GsonExclude ex = new GsonExclude();
+			Gson gson = new GsonBuilder()
+					.addDeserializationExclusionStrategy(ex)
+					.addSerializationExclusionStrategy(ex).create();
+			mMessages = gson.fromJson(reader, MoodleMessages.class);
+		} catch (Exception e) {
+			Log.d(DEBUG_TAG, "URL encoding failed");
+			e.printStackTrace();
+		}
+
+		if (mMessages == null)
+			return null;
+
+		return mMessages.getMessages();
 	}
 }
