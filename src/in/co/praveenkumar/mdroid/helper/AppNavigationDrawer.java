@@ -76,10 +76,9 @@ public abstract class AppNavigationDrawer extends ActionBarActivity implements
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		if (keyCode == KeyEvent.KEYCODE_MENU) {
-			if (!mDrawerLayout.isDrawerOpen(GravityCompat.START)) {
+			if (!mDrawerLayout.isDrawerOpen(GravityCompat.START))
 				mDrawerLayout.openDrawer(Gravity.LEFT);
-				mDrawerLayout.closeDrawer(Gravity.RIGHT);
-			} else
+			else
 				mDrawerLayout.closeDrawer(Gravity.LEFT);
 			return true;
 		}
@@ -90,10 +89,8 @@ public abstract class AppNavigationDrawer extends ActionBarActivity implements
 	public boolean onOptionsItemSelected(MenuItem item) {
 		// Pass the event to ActionBarDrawerToggle, if it returns
 		// true, then it has handled the app icon touch event
-		if (mDrawerToggle.onOptionsItemSelected(item)) {
-			mDrawerLayout.closeDrawer(Gravity.RIGHT); // to prevent overlapping
+		if (mDrawerToggle.onOptionsItemSelected(item))
 			return true;
-		}
 
 		return super.onOptionsItemSelected(item);
 	}
@@ -106,10 +103,9 @@ public abstract class AppNavigationDrawer extends ActionBarActivity implements
 	 */
 	@Override
 	public void setDrawerState(Boolean state) {
-		if (state) {
+		if (state)
 			mDrawerLayout.openDrawer(Gravity.LEFT);
-			mDrawerLayout.closeDrawer(Gravity.RIGHT); // to prevent overlapping
-		} else
+		else
 			mDrawerLayout.closeDrawer(Gravity.LEFT);
 	}
 }
