@@ -1,5 +1,6 @@
 package in.co.praveenkumar.mdroid.fragment;
 
+import in.co.praveenkumar.R;
 import in.co.praveenkumar.mdroid.activity.CalendarActivity;
 import in.co.praveenkumar.mdroid.activity.ContactActivity;
 import in.co.praveenkumar.mdroid.activity.CourseActivity;
@@ -11,13 +12,12 @@ import in.co.praveenkumar.mdroid.activity.WorkInProgressActivity;
 import in.co.praveenkumar.mdroid.helper.AppInterface.DrawerStateInterface;
 import in.co.praveenkumar.mdroid.helper.ImageDecoder;
 import in.co.praveenkumar.mdroid.helper.SessionSetting;
-import in.co.praveenkumar.R;
 import in.co.praveenkumar.mdroid.moodlemodel.MoodleSiteInfo;
 
 import java.io.File;
 import java.util.List;
-import java.util.Locale;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -36,6 +36,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+@SuppressLint("InlinedApi")
 public class LeftNavigationFragment extends Fragment {
 	DrawerStateInterface drawerState;
 	Context context;
@@ -260,8 +261,7 @@ public class LeftNavigationFragment extends Fragment {
 				break;
 			case TYPE_APP_MENUITEM:
 				viewHolder.menuItemName.setText(appMenuItems[position
-						- sites.size() - moodleMenuItems.length]
-						.toUpperCase(Locale.ENGLISH));
+						- sites.size() - moodleMenuItems.length]);
 				viewHolder.menuItemIcon.setImageResource(appMenuIcons[position
 						- sites.size() - moodleMenuItems.length]);
 				break;
