@@ -29,6 +29,4 @@
 
     <include layout="@layout/common_left_navigation" />
 
-    <include layout="@layout/common_right_navigation" />
-
 </android.support.v4.widget.DrawerLayout>
