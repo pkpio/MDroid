@@ -2,27 +2,29 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal" >
+    android:orientation="horizontal"
+    android:padding="5dp" >
 
     <ImageView
         android:id="@+id/nav_menuicon"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginRight="8dp"
         android:contentDescription="@string/list_item_sample_menu"
-        android:padding="8dp"
-        android:src="@drawable/icon_course" />
+        android:paddingLeft="16dp"
+        android:src="@drawable/icon_school_greyscale" />
 
     <TextView
         android:id="@+id/nav_menuitem"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="40dp"
         android:gravity="start|center_vertical"
-        android:paddingEnd="16dp"
-        android:paddingLeft="0dp"
-        android:paddingRight="16dp"
-        android:paddingStart="16dp"
+        android:paddingBottom="5dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="5dp"
+        android:paddingTop="5dp"
         android:text="@string/list_item_sample_menu"
-        android:textColor="@color/black"
-        android:textSize="22sp" />
+        android:textColor="@color/left_menu_text"
+        android:textSize="16sp" />
 
 </LinearLayout>
