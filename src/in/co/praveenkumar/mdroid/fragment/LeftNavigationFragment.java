@@ -45,14 +45,13 @@ public class LeftNavigationFragment extends Fragment {
 	SessionSetting session;
 
 	String[] moodleMenuItems = new String[] { "Courses", "Contacts",
-			"Calender", "Forums", "Assignments", "Notes", "Notifications" };
+			"Calender", "Forums", "Notifications" };
 	String[] appMenuItems = new String[] { "Request features", "Settings",
 			"Add account" };
 
 	int[] moodleMenuIcons = new int[] { R.drawable.icon_course,
 			R.drawable.icon_people, R.drawable.icon_calender_alt,
-			R.drawable.icon_messages, R.drawable.icon_quiz,
-			R.drawable.icon_note_taking, R.drawable.icon_notifications };
+			R.drawable.icon_messages, R.drawable.icon_notifications };
 	int[] appMenuIcons = new int[] { R.drawable.icon_extension_greyscale,
 			R.drawable.icon_settings_greyscale, R.drawable.icon_plus_greyscale };
 
