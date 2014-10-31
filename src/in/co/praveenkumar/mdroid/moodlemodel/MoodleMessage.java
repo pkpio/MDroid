@@ -86,6 +86,9 @@ public class MoodleMessage extends SugarRecord<MoodleMessage> {
 	@SerializedName("errormessage")
 	String errormessage;
 
+	// Relational and other fields
+	long siteid;
+
 	/**
 	 * Default message with no params set.
 	 */
@@ -356,6 +359,24 @@ public class MoodleMessage extends SugarRecord<MoodleMessage> {
 	 */
 	public String getUserfromfullname() {
 		return userfromfullname;
+	}
+
+	/**
+	 * Get siteid
+	 * 
+	 * @return
+	 */
+	public long getSiteid() {
+		return siteid;
+	}
+
+	/**
+	 * Set siteid
+	 * 
+	 * @return
+	 */
+	public void setSiteid(long siteid) {
+		this.siteid = siteid;
 	}
 
 }
