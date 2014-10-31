@@ -29,6 +29,7 @@
     <color name="login_progress_bg">#cc000000</color>
     <color name="black">#000000</color>
     <color name="yellow">#fffaaa</color>
+    <color name="left_menu_text">#212121</color>
 
     <!-- From Google Now -->
     <color name="card_listview_bg">#eeeeee</color>
