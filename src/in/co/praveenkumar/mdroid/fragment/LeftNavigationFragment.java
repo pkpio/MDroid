@@ -1,6 +1,7 @@
 package in.co.praveenkumar.mdroid.fragment;
 
 import in.co.praveenkumar.mdroid.activity.CalendarActivity;
+import in.co.praveenkumar.mdroid.activity.ContactActivity;
 import in.co.praveenkumar.mdroid.activity.CourseActivity;
 import in.co.praveenkumar.mdroid.activity.DonationActivity;
 import in.co.praveenkumar.mdroid.activity.ForumActivity;
@@ -43,15 +44,15 @@ public class LeftNavigationFragment extends Fragment {
 	List<MoodleSiteInfo> sites;
 	SessionSetting session;
 
-	String[] moodleMenuItems = new String[] { "Courses", "Calender", "Forums",
-			"Assignments", "Notes", "Notifications" };
+	String[] moodleMenuItems = new String[] { "Courses", "Contacts",
+			"Calender", "Forums", "Assignments", "Notes", "Notifications" };
 	String[] appMenuItems = new String[] { "Request features", "Settings",
 			"Add account" };
 
 	int[] moodleMenuIcons = new int[] { R.drawable.icon_course,
-			R.drawable.icon_calender_alt, R.drawable.icon_messages,
-			R.drawable.icon_quiz, R.drawable.icon_note_taking,
-			R.drawable.icon_notifications };
+			R.drawable.icon_people, R.drawable.icon_calender_alt,
+			R.drawable.icon_messages, R.drawable.icon_quiz,
+			R.drawable.icon_note_taking, R.drawable.icon_notifications };
 	int[] appMenuIcons = new int[] { R.drawable.icon_extension_greyscale,
 			R.drawable.icon_settings_greyscale, R.drawable.icon_plus_greyscale };
 
@@ -93,23 +94,27 @@ public class LeftNavigationFragment extends Fragment {
 						break;
 					case 1:
 						context.startActivity(new Intent(context,
-								CalendarActivity.class));
+								ContactActivity.class));
 						break;
 					case 2:
 						context.startActivity(new Intent(context,
-								ForumActivity.class));
+								CalendarActivity.class));
 						break;
 					case 3:
+						context.startActivity(new Intent(context,
+								ForumActivity.class));
+						break;
+					case 4:
 						// ASSIGNMENTS HERE
 						context.startActivity(new Intent(context,
 								WorkInProgressActivity.class));
 						break;
-					case 4:
+					case 5:
 						// NOTES HERE
 						context.startActivity(new Intent(context,
 								WorkInProgressActivity.class));
 						break;
-					case 5:
+					case 6:
 						// NOTIFICATIONS HERE
 						context.startActivity(new Intent(context,
 								WorkInProgressActivity.class));
