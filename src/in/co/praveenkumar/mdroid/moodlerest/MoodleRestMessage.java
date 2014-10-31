@@ -121,7 +121,7 @@ public class MoodleRestMessage {
 	 *            userid of the user who sent these messages
 	 * @return MoodleMessages
 	 */
-	public List<MoodleMessage> getMessages(int useridto, int useridfrom) {
+	public MoodleMessages getMessages(int useridto, int useridfrom) {
 		MoodleMessages mMessages = null;
 		String format = MoodleRestOption.RESPONSE_FORMAT;
 		String function = MoodleRestOption.FUNCTION_GET_MESSAGES;
@@ -153,9 +153,6 @@ public class MoodleRestMessage {
 			e.printStackTrace();
 		}
 
-		if (mMessages == null)
-			return null;
-
-		return mMessages.getMessages();
+		return mMessages;
 	}
 }
