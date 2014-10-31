@@ -45,12 +45,13 @@ public class LeftNavigationFragment extends Fragment {
 	List<MoodleSiteInfo> sites;
 	SessionSetting session;
 
-	String[] moodleMenuItems = new String[] { "Courses", "Contacts",
-			"Calender", "Forums", "Notifications" };
+	String[] moodleMenuItems = new String[] { "Courses", "Messaging",
+			"Contacts", "Calender", "Forums", "Notifications" };
 	String[] appMenuItems = new String[] { "Request features", "Settings",
 			"Add account" };
 
 	int[] moodleMenuIcons = new int[] { R.drawable.icon_school_greyscale,
+			R.drawable.icon_message_greyscale,
 			R.drawable.icon_people_greyscale2, R.drawable.icon_today_greyscale,
 			R.drawable.icon_forum_greyscale,
 			R.drawable.icon_notifications_greyscale };
@@ -99,23 +100,17 @@ public class LeftNavigationFragment extends Fragment {
 						break;
 					case 2:
 						context.startActivity(new Intent(context,
-								CalendarActivity.class));
+								ContactActivity.class));
 						break;
 					case 3:
 						context.startActivity(new Intent(context,
-								ForumActivity.class));
+								CalendarActivity.class));
 						break;
 					case 4:
-						// ASSIGNMENTS HERE
 						context.startActivity(new Intent(context,
-								WorkInProgressActivity.class));
+								ForumActivity.class));
 						break;
 					case 5:
-						// NOTES HERE
-						context.startActivity(new Intent(context,
-								WorkInProgressActivity.class));
-						break;
-					case 6:
 						// NOTIFICATIONS HERE
 						context.startActivity(new Intent(context,
 								WorkInProgressActivity.class));
