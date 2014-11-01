@@ -17,8 +17,13 @@ public abstract class AppNavigationDrawer extends ActionBarActivity implements
 		DrawerStateInterface {
 	private DrawerLayout mDrawerLayout;
 	private ActionBarDrawerToggle mDrawerToggle;
+
+	// Title and icon settings
 	private CharSequence MenuTitle = "MDroid";
-	private CharSequence Title = "MDroid";
+	private int MenuIcon = R.drawable.mdroid_logo_inverted;
+
+	private CharSequence LastTitle = "MDroid";
+	private int LastIcon = R.drawable.mdroid_logo_inverted;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -37,13 +42,13 @@ public abstract class AppNavigationDrawer extends ActionBarActivity implements
 
 			/** Called when a drawer has settled in a completely closed state. */
 			public void onDrawerClosed(View view) {
-				setTitle(Title);
+				getSupportActionBar().setTitle(LastTitle);
 			}
 
 			/** Called when a drawer has settled in a completely open state. */
 			public void onDrawerOpened(View drawerView) {
-				Title = getTitle();
-				setTitle(MenuTitle);
+				LastTitle = getSupportActionBar().getTitle();
+				getSupportActionBar().setTitle(MenuTitle);
 			}
 		};
 
