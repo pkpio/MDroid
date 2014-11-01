@@ -11,6 +11,7 @@ public class CalendarActivity extends AppNavigationDrawer {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_calendar);
 		setUpDrawer();
-		setTitle("Calendar");
+		getSupportActionBar().setTitle("Calendar");
+		getSupportActionBar().setIcon(R.drawable.icon_today_greyscale);
 	}
 }
