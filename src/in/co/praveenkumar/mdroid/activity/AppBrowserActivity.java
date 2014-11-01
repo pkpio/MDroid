@@ -30,7 +30,8 @@ public class AppBrowserActivity extends AppNavigationDrawer {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		setTitle(title);
+		getSupportActionBar().setTitle(title);
+		getSupportActionBar().setIcon(R.drawable.icon_public_white);
 
 		mBrowser = (WebView) findViewById(R.id.webview);
 		CookieSyncManager.createInstance(this);
