@@ -85,7 +85,7 @@ public class CourseSyncTask {
 		// Get userid
 		MoodleSiteInfo site = MoodleSiteInfo.findById(MoodleSiteInfo.class,
 				siteid);
-		
+
 		if (site == null)
 			return false;
 
@@ -95,6 +95,10 @@ public class CourseSyncTask {
 		ArrayList<MoodleCourse> mCourses = mrc.getEnrolledCourses(userid + "");
 
 		/** Error checking **/
+		// Some network or encoding issue.
+		if (mCourses == null)
+			return false;
+
 		// Some network or encoding issue.
 		if (mCourses.size() == 0)
 			return false;
