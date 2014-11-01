@@ -18,7 +18,6 @@ public class CourseActivity extends AppNavigationDrawer implements
 	private ViewPager viewPager;
 	private static final String[] TABS = { "My Courses", "Fav Courses" };
 	private static final String[] TITLES = { "My Courses", "Favourite Courses" };
-	CharSequence title;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -96,18 +95,6 @@ public class CourseActivity extends AppNavigationDrawer implements
 
 	@Override
 	public void onPageSelected(int position) {
-		setTitle(TITLES[position]);
-	}
-
-	// @Override
-	// public CharSequence getActivityTitle() {
-	// return this.title;
-	// }
-
-	@Override
-	public void setTitle(CharSequence title) {
-		super.setTitle(title);
-		this.title = title;
 	}
 
 }
