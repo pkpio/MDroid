@@ -16,15 +16,15 @@ public class CourseActivity extends AppNavigationDrawer implements
 		OnPageChangeListener {
 
 	private ViewPager viewPager;
-	private static final String[] TABS = { "My Courses", "Fav Courses" };
-	private static final String[] TITLES = { "My Courses", "Favourite Courses" };
+	private static final String[] TABS = { "All Courses", "Favourite" };
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_course);
 		setUpDrawer();
-		setTitle(TITLES[0]);
+		getSupportActionBar().setTitle("Moodle Home");
+		getSupportActionBar().setIcon(R.drawable.ic_actionbar_icon);
 
 		FragmentPagerAdapter mAdapter = new CourseTabsAdapter(
 				getSupportFragmentManager());

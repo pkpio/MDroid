@@ -27,7 +27,8 @@ public class DiscussionActivity extends AppNavigationDrawer implements
 				"forumid = ? and siteid = ?", forumid + "",
 				session.getCurrentSiteId() + "");
 		if (mForums.size() > 0)
-			setTitle(mForums.get(0).getName());
+			getSupportActionBar().setTitle(mForums.get(0).getName());
+		getSupportActionBar().setIcon(R.drawable.icon_forum);
 	}
 
 	@Override
