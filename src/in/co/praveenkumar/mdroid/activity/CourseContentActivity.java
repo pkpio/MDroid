@@ -31,7 +31,8 @@ public class CourseContentActivity extends AppNavigationDrawer {
 		courseid = extras.getInt("courseid");
 		MoodleCourse mCourse = MoodleCourse.findById(MoodleCourse.class,
 				coursedbid);
-		setTitle(mCourse.getFullname());
+		getSupportActionBar().setTitle(mCourse.getFullname());
+		getSupportActionBar().setIcon(R.drawable.icon_school);
 
 		FragmentPagerAdapter mAdapter = new CourseContentTabsAdapter(
 				getSupportFragmentManager());
