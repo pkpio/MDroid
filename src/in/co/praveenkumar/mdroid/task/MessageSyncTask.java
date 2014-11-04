@@ -37,8 +37,10 @@ public class MessageSyncTask {
 	 */
 	public Boolean syncMessages(int userid) {
 		MoodleRestMessage mrm = new MoodleRestMessage(mUrl, token);
-		return saveMessages(mrm.getMessages(userid, 0))
-				&& saveMessages(mrm.getMessages(0, userid));
+		return saveMessages(mrm.getMessages(userid, 0, 0))
+				&& saveMessages(mrm.getMessages(userid, 0, 1))
+				&& saveMessages(mrm.getMessages(0, userid, 0))
+				&& saveMessages(mrm.getMessages(0, userid, 1));
 	}
 
 	private Boolean saveMessages(MoodleMessages moodleMessages) {
