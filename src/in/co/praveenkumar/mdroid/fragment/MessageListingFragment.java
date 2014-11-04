@@ -2,7 +2,11 @@ package in.co.praveenkumar.mdroid.fragment;
 
 import in.co.praveenkumar.R;
 import in.co.praveenkumar.mdroid.helper.SessionSetting;
+import in.co.praveenkumar.mdroid.moodlemodel.MoodleMessage;
 import in.co.praveenkumar.mdroid.task.MessageSyncTask;
+
+import java.util.List;
+
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -13,7 +17,7 @@ import android.widget.LinearLayout;
 
 public class MessageListingFragment extends Fragment {
 	final String DEBUG_TAG = "MessageListingFragment";
-	// List<MoodleContact> contacts;
+	List<MoodleMessage> messages;
 	// ContactListAdapter adapter;
 	SessionSetting session;
 	LinearLayout chatEmptyLayout;
@@ -28,12 +32,12 @@ public class MessageListingFragment extends Fragment {
 		// Get sites info
 		session = new SessionSetting(getActivity());
 
-		new contactSyncerBg().execute("");
+		new MessageSyncerBg().execute("");
 
 		return rootView;
 	}
 
-	private class contactSyncerBg extends AsyncTask<String, Integer, Boolean> {
+	private class MessageSyncerBg extends AsyncTask<String, Integer, Boolean> {
 
 		@Override
 		protected Boolean doInBackground(String... params) {
