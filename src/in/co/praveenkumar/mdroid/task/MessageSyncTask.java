@@ -70,7 +70,7 @@ public class MessageSyncTask {
 				 * -TODO- Improve this search with only Sql operation
 				 */
 				dbMessages = MoodleMessage.find(MoodleMessage.class,
-						"postid = ? and siteid = ?", message.getMessageid()
+						"messageid = ? and siteid = ?", message.getMessageid()
 								+ "", siteid + "");
 				if (dbMessages.size() > 0)
 					message.setId(dbMessages.get(0).getId());
