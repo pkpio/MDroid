@@ -70,7 +70,10 @@ public class MoodleRestMessage {
 			// Fetch content now.
 			MoodleRestCall mrc = new MoodleRestCall();
 			Reader reader = mrc.fetchContent(restUrl, params);
-			Gson gson = new GsonBuilder().create();
+			GsonExclude ex = new GsonExclude();
+			Gson gson = new GsonBuilder()
+					.addDeserializationExclusionStrategy(ex)
+					.addSerializationExclusionStrategy(ex).create();
 			mMessages = gson.fromJson(reader,
 					new TypeToken<List<MoodleMessage>>() {
 					}.getType());
