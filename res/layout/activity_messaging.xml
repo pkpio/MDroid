@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <!-- Main content -->
+
+    <fragment
+        android:id="@+id/messaging_layout"
+        android:name="in.co.praveenkumar.mdroid.fragment.MessageListingFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <!-- Navigations -->
+
+    <include layout="@layout/common_left_navigation" />
+
+</android.support.v4.widget.DrawerLayout>
