@@ -23,7 +23,7 @@ import android.widget.TextView;
 
 public class MessageListingFragment extends Fragment {
 	final String DEBUG_TAG = "MessageListingFragment";
-	List<MoodleMessage> messages;
+	List<ListMessage> messages;
 	MessageListAdapter adapter;
 	SessionSetting session;
 	LinearLayout messagesEmptyLayout;
@@ -41,8 +41,7 @@ public class MessageListingFragment extends Fragment {
 
 		// Get sites info
 		session = new SessionSetting(getActivity());
-		messages = MoodleMessage.find(MoodleMessage.class, "siteid = ?",
-				session.getCurrentSiteId() + "");
+		setupMessages();
 
 		adapter = new MessageListAdapter(getActivity());
 		navListView.setAdapter(adapter);
@@ -66,8 +65,7 @@ public class MessageListingFragment extends Fragment {
 
 		@Override
 		protected void onPostExecute(Boolean result) {
-			messages = MoodleMessage.find(MoodleMessage.class, "siteid = ?",
-					session.getCurrentSiteId() + "");
+			setupMessages();
 			adapter.notifyDataSetChanged();
 			if (messages.size() != 0)
 				messagesEmptyLayout.setVisibility(LinearLayout.GONE);
@@ -81,7 +79,7 @@ public class MessageListingFragment extends Fragment {
 
 		public MessageListAdapter(Context context) {
 			this.context = context;
-			if (messages.size() != 0)
+			if (messages == null || messages.size() != 0)
 				messagesEmptyLayout.setVisibility(LinearLayout.GONE);
 		}
 
@@ -110,7 +108,7 @@ public class MessageListingFragment extends Fragment {
 			}
 
 			// Contact image color and value
-			String name = messages.get(position).getUserfromfullname();
+			String name = messages.get(position).userfullname;
 			char firstChar = 0;
 			if (name.length() != 0)
 				firstChar = name.charAt(0);
@@ -118,15 +116,18 @@ public class MessageListingFragment extends Fragment {
 			viewHolder.userimage.setBackgroundColor(LetterColor.of(firstChar));
 
 			// Name and last message
-			viewHolder.userfullname.setText(messages.get(position)
-					.getUserfromfullname());
-			viewHolder.lastmessage.setText(messages.get(position).getText());
+			viewHolder.userfullname
+					.setText(messages.get(position).userfullname);
+			viewHolder.lastmessage.setText(messages.get(position).message
+					.getText());
 
 			return convertView;
 		}
 
 		@Override
 		public int getCount() {
+			if (messages == null)
+				return 0;
 			return messages.size();
 		}
 
@@ -147,15 +148,72 @@ public class MessageListingFragment extends Fragment {
 		TextView lastmessage;
 	}
 
-	void loadMessagesPerUser() {
+	void setupMessages() {
+		List<MoodleMessage> mMessages = MoodleMessage.find(MoodleMessage.class,
+				"siteid = ?", session.getCurrentSiteId() + "");
+		List<ListMessage> lMessages = new ArrayList<MessageListingFragment.ListMessage>();
+
+		// -TODO- Sort messages by time
+
 		List<Integer> userids = new ArrayList<Integer>();
 		int currentuserid = session.getSiteInfo().getUserid();
-		for (int i = 0; i < messages.size(); i++) {
-			int id = messages.get(i);
-			if (userids.contains(messages.get(i)))
-				return;
+		System.out.println("curent user " + currentuserid);
+
+		for (int i = 0; i < mMessages.size(); i++) {
+
+			// Message sent by current user
+			if (currentuserid != mMessages.get(i).getUseridto()) {
+				if (!isInList(userids, mMessages.get(i).getUseridto())) {
+					ListMessage mes = new ListMessage();
+					mes.message = mMessages.get(i);
+					mes.userid = mMessages.get(i).getUseridto();
+					mes.userfullname = mMessages.get(i).getUsertofullname();
+					lMessages.add(mes);
+					userids.add(mMessages.get(i).getUseridto());
+				}
+			}
+
+			// Message received by current user
+			else {
+				if (!isInList(userids, mMessages.get(i).getUseridfrom())) {
+					ListMessage mes = new ListMessage();
+					mes.message = mMessages.get(i);
+					mes.userid = mMessages.get(i).getUseridfrom();
+					mes.userfullname = mMessages.get(i).getUserfromfullname();
+					lMessages.add(mes);
+					userids.add(mMessages.get(i).getUseridfrom());
+				}
+			}
+
+			messages = (lMessages != null) ? lMessages
+					: new ArrayList<MessageListingFragment.ListMessage>();
 		}
 
+	}
+
+	Boolean isInList(List<Integer> ids, int id) {
+		for (int i = 0; i < ids.size(); i++)
+			if (ids.get(i).intValue() == id)
+				return true;
+		return false;
+	}
+
+	class ListMessage {
+		/**
+		 * Moodle message
+		 */
+		MoodleMessage message;
+		/**
+		 * userid of the user, other the current login user, who is
+		 * participating in this message
+		 */
+		int userid;
+
+		/**
+		 * Fullname of the user, other the current login user, who is
+		 * participating in this message
+		 */
+		String userfullname;
 	}
 
 }
