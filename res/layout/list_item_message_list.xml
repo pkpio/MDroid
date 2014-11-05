@@ -45,7 +45,7 @@
         android:paddingLeft="4dp" >
 
         <TextView
-            android:id="@+id/list_message_contact"
+            android:id="@+id/list_message_contact_name"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="@string/sample_contact_name"
@@ -53,7 +53,7 @@
             android:textSize="16sp" />
 
         <TextView
-            android:id="@+id/list_last_message"
+            android:id="@+id/list_message_last_message"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="@string/sample_contact_name"
