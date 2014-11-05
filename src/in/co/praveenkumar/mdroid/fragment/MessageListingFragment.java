@@ -6,6 +6,7 @@ import in.co.praveenkumar.mdroid.helper.SessionSetting;
 import in.co.praveenkumar.mdroid.moodlemodel.MoodleMessage;
 import in.co.praveenkumar.mdroid.task.MessageSyncTask;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import android.content.Context;
@@ -100,15 +101,11 @@ public class MessageListingFragment extends Fragment {
 						.findViewById(R.id.list_message_contact_image);
 				viewHolder.userfullname = (TextView) convertView
 						.findViewById(R.id.list_message_contact_name);
-				viewHolder.unreadcount = (TextView) convertView
-						.findViewById(R.id.list_message_unread_count);
 				viewHolder.lastmessage = (TextView) convertView
 						.findViewById(R.id.list_message_last_message);
 
-				// Save the holder with the view
 				convertView.setTag(viewHolder);
 			} else {
-				// Just use the viewHolder and avoid findviewbyid()
 				viewHolder = (ViewHolder) convertView.getTag();
 			}
 
@@ -120,21 +117,9 @@ public class MessageListingFragment extends Fragment {
 			viewHolder.userimage.setText(firstChar + "");
 			viewHolder.userimage.setBackgroundColor(LetterColor.of(firstChar));
 
-			// Name
+			// Name and last message
 			viewHolder.userfullname.setText(messages.get(position)
 					.getUserfromfullname());
-
-			// Unread counts
-			// -TODO- Get contact and do accordingly
-			int count = 0;
-			if (count == 0)
-				viewHolder.unreadcount.setVisibility(TextView.GONE);
-			else {
-				viewHolder.unreadcount.setVisibility(TextView.VISIBLE);
-				viewHolder.unreadcount.setText(count + "");
-			}
-
-			// Last message
 			viewHolder.lastmessage.setText(messages.get(position).getText());
 
 			return convertView;
@@ -159,8 +144,18 @@ public class MessageListingFragment extends Fragment {
 	static class ViewHolder {
 		TextView userimage;
 		TextView userfullname;
-		TextView unreadcount;
 		TextView lastmessage;
+	}
+
+	void loadMessagesPerUser() {
+		List<Integer> userids = new ArrayList<Integer>();
+		int currentuserid = session.getSiteInfo().getUserid();
+		for (int i = 0; i < messages.size(); i++) {
+			int id = messages.get(i);
+			if (userids.contains(messages.get(i)))
+				return;
+		}
+
 	}
 
 }
