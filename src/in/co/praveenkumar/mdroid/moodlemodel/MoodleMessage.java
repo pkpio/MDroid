@@ -41,6 +41,9 @@ public class MoodleMessage extends SugarRecord<MoodleMessage> {
 	@SerializedName("useridfrom")
 	int useridfrom;
 
+	@SerializedName("useridto")
+	int useridto;
+
 	@SerializedName("subject")
 	String subject;
 
@@ -253,6 +256,15 @@ public class MoodleMessage extends SugarRecord<MoodleMessage> {
 	 */
 	public int getUseridfrom() {
 		return useridfrom;
+	}
+
+	/**
+	 * User from id
+	 * 
+	 * @return
+	 */
+	public int getUseridto() {
+		return useridto;
 	}
 
 	/**
