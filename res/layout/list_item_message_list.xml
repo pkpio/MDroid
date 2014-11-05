@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:layout_marginLeft="4dp"
+    android:layout_marginRight="4dp"
+    android:background="@color/white"
+    android:gravity="center_vertical" >
+
+    <FrameLayout
+        android:id="@+id/list_contact_image_layout"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_centerVertical="true" >
+
+        <TextView
+            android:id="@+id/list_contact_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="4dp"
+            android:background="@color/beautiful_yellow"
+            android:gravity="center"
+            android:text="@string/sample_contact_unread"
+            android:textColor="@color/white"
+            android:textSize="26sp" />
+
+        <TextView
+            android:id="@+id/list_unread_count"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_gravity="top|right"
+            android:background="@drawable/circular_bg"
+            android:gravity="center"
+            android:text="@string/sample_contact_unread"
+            android:textColor="@color/black"
+            android:textSize="12sp" />
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@id/list_message_icon"
+        android:layout_toRightOf="@id/list_contact_image_layout"
+        android:orientation="vertical"
+        android:paddingLeft="4dp" >
+
+        <TextView
+            android:id="@+id/list_message_contact"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/sample_contact_name"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/list_last_message"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/sample_contact_name"
+            android:textColor="@color/grey7"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+</RelativeLayout>
