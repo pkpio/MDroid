@@ -195,12 +195,12 @@ public class LoginTask extends AsyncTask<String, Integer, Boolean> {
 	private Boolean getCourseInfo() {
 		CourseSyncTask cs = new CourseSyncTask(mUrl, token, siteInfo.getId());
 
-		updateProgress("Syncing all Moodle courses");
-		Boolean allCourseSyncStatus = cs.syncAllCourses();
-		if (!allCourseSyncStatus)
-			updateProgress(cs.getError());
+		// updateProgress("Syncing all Moodle courses");
+		// Boolean allCourseSyncStatus = cs.syncAllCourses();
+		// if (!allCourseSyncStatus)
+		// updateProgress(cs.getError());
 
-		updateProgress("Syncing user's courses");
+		updateProgress("Syncing courses");
 		Boolean usrCourseSyncStatus = cs.syncUserCourses();
 		if (!usrCourseSyncStatus) {
 			updateProgress(cs.getError());

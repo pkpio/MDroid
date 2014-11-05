@@ -70,7 +70,10 @@ public class MoodleRestMessage {
 			// Fetch content now.
 			MoodleRestCall mrc = new MoodleRestCall();
 			Reader reader = mrc.fetchContent(restUrl, params);
-			Gson gson = new GsonBuilder().create();
+			GsonExclude ex = new GsonExclude();
+			Gson gson = new GsonBuilder()
+					.addDeserializationExclusionStrategy(ex)
+					.addSerializationExclusionStrategy(ex).create();
 			mMessages = gson.fromJson(reader,
 					new TypeToken<List<MoodleMessage>>() {
 					}.getType());
@@ -109,19 +112,25 @@ public class MoodleRestMessage {
 	/**
 	 * Get all the messages exchanged by two users. User MUST have the required
 	 * permissions (user who logged into this account) or an access denied
-	 * exception may occur. <br/>
-	 * <br/>
-	 * <b>Note:<b/> <br/>
-	 * 1. To get list of messages received by a user, set useridfrom to 0 <br/>
-	 * 2. To get list of messages sent by a user, set useridto to 0
+	 * exception may occur.
 	 * 
 	 * @param useridto
 	 *            userid of the user who received these messages
 	 * @param useridfrom
 	 *            userid of the user who sent these messages
+	 * @param read
+	 *            read - only read messages. 0 - only unread messages.
 	 * @return MoodleMessages
+	 * 
+	 * <br/>
+	 *         <b>Note:<b/> <br/>
+	 *         1. To get list of messages received by a user, set useridfrom to
+	 *         0 <br/>
+	 *         2. To get list of messages sent by a user, set useridto to 0 <br/>
+	 *         3. Due to Moodle API limitation you need make 2 calls - read = 0
+	 *         and read = 1 to get all messages.<br/>
 	 */
-	public MoodleMessages getMessages(int useridto, int useridfrom) {
+	public MoodleMessages getMessages(int useridto, int useridfrom, int read) {
 		MoodleMessages mMessages = null;
 		String format = MoodleRestOption.RESPONSE_FORMAT;
 		String function = MoodleRestOption.FUNCTION_GET_MESSAGES;
@@ -134,6 +143,8 @@ public class MoodleRestMessage {
 					+ URLEncoder.encode(String.valueOf(useridto), "UTF-8");
 			params += "&useridfrom="
 					+ URLEncoder.encode(String.valueOf(useridfrom), "UTF-8");
+			params += "&read="
+					+ URLEncoder.encode(String.valueOf(read), "UTF-8");
 
 			// Build a REST call url to make a call.
 			String restUrl = mUrl + "/webservice/rest/server.php" + "?wstoken="
