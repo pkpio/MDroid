@@ -1,46 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="50dp"
     android:background="@color/white" >
 
-    <FrameLayout
-        android:id="@+id/list_message_contact_image_layout"
+    <TextView
+        android:id="@+id/list_message_contact_image"
         android:layout_width="45dp"
         android:layout_height="45dp"
-        android:layout_centerVertical="true"
-        android:layout_marginBottom="4dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="4dp" >
-
-        <TextView
-            android:id="@+id/list_message_contact_image"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="4dp"
-            android:background="@color/beautiful_yellow"
-            android:gravity="center"
-            android:text="@string/sample_contact_unread"
-            android:textColor="@color/white"
-            android:textSize="26sp" />
-
-        <TextView
-            android:id="@+id/list_message_unread_count"
-            android:layout_width="16dp"
-            android:layout_height="16dp"
-            android:layout_gravity="top|right"
-            android:background="@drawable/circular_bg"
-            android:gravity="center"
-            android:text="@string/sample_contact_unread"
-            android:textColor="@color/black"
-            android:textSize="12sp" />
-    </FrameLayout>
+        android:layout_margin="4dp"
+        android:background="@color/beautiful_yellow"
+        android:gravity="center"
+        android:text="@string/sample_contact_unread"
+        android:textColor="@color/white"
+        android:textSize="26sp" />
 
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:layout_toRightOf="@id/list_message_contact_image_layout"
+        android:layout_toRightOf="@id/list_message_contact_image"
         android:orientation="vertical"
         android:paddingLeft="4dp" >
 
