@@ -15,13 +15,17 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.AdapterView.OnItemClickListener;
 
 public class MessageListingFragment extends Fragment {
 	final String DEBUG_TAG = "MessageListingFragment";
@@ -43,6 +47,20 @@ public class MessageListingFragment extends Fragment {
 
 		adapter = new MessageListAdapter(getActivity());
 		navListView.setAdapter(adapter);
+
+		// itemclick listener
+		navListView.setOnItemClickListener(new OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+				FragmentManager fm = getFragmentManager();
+				FragmentTransaction ft = fm.beginTransaction();
+
+				MessagingFragment mf = new MessagingFragment();
+				ft.replace(R.id.messaging_layout, mf);
+				ft.commit();
+			}
+		});
 
 		new MessageSyncerBg().execute("");
 
