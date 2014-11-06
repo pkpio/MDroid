@@ -51,7 +51,7 @@
             android:configChanges="screenSize|orientation" >
         </activity>
         <activity
-            android:name="in.co.praveenkumar.mdroid.activity.MessageListingActivity"
+            android:name="in.co.praveenkumar.mdroid.activity.MessagingActivity"
             android:configChanges="screenSize|orientation" >
         </activity>
         <activity
