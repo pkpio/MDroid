@@ -30,18 +30,18 @@ public class MessagingFragment extends Fragment {
 	MessageListAdapter adapter;
 	SessionSetting session;
 	LinearLayout messagingEmptyLayout;
-	int userid = 1;
+	int userid = 2;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 
-		View rootView = inflater.inflate(R.layout.frag_message_listing,
-				container, false);
+		View rootView = inflater.inflate(R.layout.frag_messaging, container,
+				false);
 		messagingEmptyLayout = (LinearLayout) rootView
 				.findViewById(R.id.messaging_empty_layout);
 		ListView navListView = (ListView) rootView
-				.findViewById(R.id.content_message_listing);
+				.findViewById(R.id.content_messaging);
 
 		adapter = new MessageListAdapter(getActivity());
 		navListView.setAdapter(adapter);
@@ -107,7 +107,7 @@ public class MessagingFragment extends Fragment {
 
 		@Override
 		public int getItemViewType(int position) {
-			if (messages.get(position).getTouserid() == session.getSiteInfo()
+			if (messages.get(position).getUseridto() == session.getSiteInfo()
 					.getUserid())
 				return TYPE_MESSAGE_IN;
 			else
@@ -199,8 +199,9 @@ public class MessagingFragment extends Fragment {
 
 	void setupMessages() {
 		List<MoodleMessage> mMessages = MoodleMessage.find(MoodleMessage.class,
-				"useridfrom = ? or useridto = ? and siteid = ?",
-				session.getCurrentSiteId() + "");
+				"useridfrom = ? or useridto = ? and siteid = ?", userid + "",
+				userid + "", session.getCurrentSiteId() + "");
+		System.out.println("size- " + mMessages.size());
 
 		// Sort messages with newest last in list
 		Collections.sort(mMessages, new Comparator<MoodleMessage>() {
@@ -211,6 +212,6 @@ public class MessagingFragment extends Fragment {
 			}
 		});
 
+		messages = mMessages;
 	}
-
 }
