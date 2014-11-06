@@ -172,7 +172,8 @@ public class MessageListingFragment extends Fragment {
 			}
 
 			// Message received by current user
-			else if (!isInList(userids, mMessages.get(i).getUseridfrom())) {
+			else if (currentuserid != mMessages.get(i).getUseridfrom()
+					&& !isInList(userids, mMessages.get(i).getUseridfrom())) {
 				ListMessage mes = new ListMessage();
 				mes.message = mMessages.get(i);
 				mes.userid = mMessages.get(i).getUseridfrom();
