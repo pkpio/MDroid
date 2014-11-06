@@ -3,7 +3,6 @@ package in.co.praveenkumar.mdroid.fragment;
 import in.co.praveenkumar.R;
 import in.co.praveenkumar.mdroid.helper.LetterColor;
 import in.co.praveenkumar.mdroid.helper.SessionSetting;
-import in.co.praveenkumar.mdroid.moodlemodel.MoodleEvent;
 import in.co.praveenkumar.mdroid.moodlemodel.MoodleMessage;
 import in.co.praveenkumar.mdroid.task.MessageSyncTask;
 
