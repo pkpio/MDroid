@@ -157,37 +157,35 @@ public class MessageListingFragment extends Fragment {
 
 		List<Integer> userids = new ArrayList<Integer>();
 		int currentuserid = session.getSiteInfo().getUserid();
-		System.out.println("curent user " + currentuserid);
 
 		for (int i = 0; i < mMessages.size(); i++) {
 
 			// Message sent by current user
-			if (currentuserid != mMessages.get(i).getUseridto()) {
-				if (!isInList(userids, mMessages.get(i).getUseridto())) {
-					ListMessage mes = new ListMessage();
-					mes.message = mMessages.get(i);
-					mes.userid = mMessages.get(i).getUseridto();
-					mes.userfullname = mMessages.get(i).getUsertofullname();
-					lMessages.add(mes);
-					userids.add(mMessages.get(i).getUseridto());
-				}
+			if (currentuserid != mMessages.get(i).getUseridto()
+					&& !isInList(userids, mMessages.get(i).getUseridto())) {
+				ListMessage mes = new ListMessage();
+				mes.message = mMessages.get(i);
+				mes.userid = mMessages.get(i).getUseridto();
+				mes.userfullname = mMessages.get(i).getUsertofullname();
+				lMessages.add(mes);
+				userids.add(mMessages.get(i).getUseridto());
 			}
 
 			// Message received by current user
-			else {
-				if (!isInList(userids, mMessages.get(i).getUseridfrom())) {
-					ListMessage mes = new ListMessage();
-					mes.message = mMessages.get(i);
-					mes.userid = mMessages.get(i).getUseridfrom();
-					mes.userfullname = mMessages.get(i).getUserfromfullname();
-					lMessages.add(mes);
-					userids.add(mMessages.get(i).getUseridfrom());
-				}
+			else if (!isInList(userids, mMessages.get(i).getUseridfrom())) {
+				ListMessage mes = new ListMessage();
+				mes.message = mMessages.get(i);
+				mes.userid = mMessages.get(i).getUseridfrom();
+				mes.userfullname = mMessages.get(i).getUserfromfullname();
+				lMessages.add(mes);
+				userids.add(mMessages.get(i).getUseridfrom());
 			}
-
-			messages = (lMessages != null) ? lMessages
-					: new ArrayList<MessageListingFragment.ListMessage>();
 		}
+
+		// Assign to messages now and make sure notifydatasetchanged is called
+		// soon after this
+		messages = (lMessages != null) ? lMessages
+				: new ArrayList<MessageListingFragment.ListMessage>();
 
 	}
 
