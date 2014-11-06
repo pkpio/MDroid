@@ -23,7 +23,7 @@ import android.widget.TextView;
 
 public class MessageListingFragment extends Fragment {
 	final String DEBUG_TAG = "MessageListingFragment";
-	List<ListMessage> messages;
+	List<ListMessage> messages = new ArrayList<MessageListingFragment.ListMessage>();
 	MessageListAdapter adapter;
 	SessionSetting session;
 	LinearLayout messagesEmptyLayout;
@@ -39,10 +39,6 @@ public class MessageListingFragment extends Fragment {
 		ListView navListView = (ListView) rootView
 				.findViewById(R.id.content_message_listing);
 
-		// Get sites info
-		session = new SessionSetting(getActivity());
-		setupMessages();
-
 		adapter = new MessageListAdapter(getActivity());
 		navListView.setAdapter(adapter);
 
@@ -55,17 +51,32 @@ public class MessageListingFragment extends Fragment {
 
 		@Override
 		protected Boolean doInBackground(String... params) {
+			// Get sites info
+			session = new SessionSetting(getActivity());
+
+			// Setup previously sync messages
+			setupMessages();
+			publishProgress(0);
+
+			// Sync from server and update
 			MessageSyncTask mst = new MessageSyncTask(session.getmUrl(),
 					session.getToken(), session.getCurrentSiteId());
-			if (mst.syncMessages(session.getSiteInfo().getUserid()))
+			if (mst.syncMessages(session.getSiteInfo().getUserid())) {
+				setupMessages();
 				return true;
-			else
-				return false;
+			}
+			return false;
+		}
+
+		@Override
+		protected void onProgressUpdate(Integer... progress) {
+			adapter.notifyDataSetChanged();
+			if (messages.size() != 0)
+				messagesEmptyLayout.setVisibility(LinearLayout.GONE);
 		}
 
 		@Override
 		protected void onPostExecute(Boolean result) {
-			setupMessages();
 			adapter.notifyDataSetChanged();
 			if (messages.size() != 0)
 				messagesEmptyLayout.setVisibility(LinearLayout.GONE);
