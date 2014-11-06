@@ -3,10 +3,13 @@ package in.co.praveenkumar.mdroid.fragment;
 import in.co.praveenkumar.R;
 import in.co.praveenkumar.mdroid.helper.LetterColor;
 import in.co.praveenkumar.mdroid.helper.SessionSetting;
+import in.co.praveenkumar.mdroid.moodlemodel.MoodleEvent;
 import in.co.praveenkumar.mdroid.moodlemodel.MoodleMessage;
 import in.co.praveenkumar.mdroid.task.MessageSyncTask;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import android.content.Context;
@@ -164,7 +167,14 @@ public class MessageListingFragment extends Fragment {
 				"siteid = ?", session.getCurrentSiteId() + "");
 		List<ListMessage> lMessages = new ArrayList<MessageListingFragment.ListMessage>();
 
-		// -TODO- Sort messages by time
+		// Sort messages with newest first in list
+		Collections.sort(mMessages, new Comparator<MoodleMessage>() {
+			public int compare(MoodleMessage m1, MoodleMessage m2) {
+				if (m1.getTimecreated() == m2.getTimecreated())
+					return 0;
+				return m1.getTimecreated() < m2.getTimecreated() ? 1 : -1;
+			}
+		});
 
 		List<Integer> userids = new ArrayList<Integer>();
 		int currentuserid = session.getSiteInfo().getUserid();
