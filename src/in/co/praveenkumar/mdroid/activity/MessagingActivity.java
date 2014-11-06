@@ -11,7 +11,8 @@ public class MessagingActivity extends AppNavigationDrawer {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_messaging);
 		setUpDrawer();
-		setTitle("Messaging");
+		getSupportActionBar().setTitle("Messaging");
+		getSupportActionBar().setIcon(R.drawable.icon_message);
 	}
 
 }
