@@ -1,6 +1,7 @@
 package in.co.praveenkumar.mdroid.fragment;
 
 import in.co.praveenkumar.R;
+import in.co.praveenkumar.mdroid.helper.AppInterface.UserIdInterface;
 import in.co.praveenkumar.mdroid.helper.LetterColor;
 import in.co.praveenkumar.mdroid.helper.SessionSetting;
 import in.co.praveenkumar.mdroid.moodlemodel.MoodleMessage;
@@ -11,10 +12,12 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,7 +33,7 @@ public class MessagingFragment extends Fragment {
 	MessageListAdapter adapter;
 	SessionSetting session;
 	LinearLayout messagingEmptyLayout;
-	int userid = 2;
+	int userid;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -49,6 +52,20 @@ public class MessagingFragment extends Fragment {
 		new MessageSyncerBg().execute("");
 
 		return rootView;
+	}
+
+	@Override
+	public void onAttach(Activity a) {
+		super.onAttach(a);
+		try {
+			UserIdInterface useridInterface = (UserIdInterface) a;
+			this.userid = useridInterface.getUserId();
+		} catch (ClassCastException e) {
+			e.printStackTrace();
+			Log.d(DEBUG_TAG,
+					a.toString()
+							+ " did not implement DiscussionIdInterface. Fragment may not list any posts.");
+		}
 	}
 
 	private class MessageSyncerBg extends AsyncTask<String, Integer, Boolean> {
