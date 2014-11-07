@@ -40,6 +40,7 @@
                 android:id="@+id/list_message_last_message"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:lines="1"
                 android:text="@string/sample_contact_name"
                 android:textColor="@color/grey7"
                 android:textSize="14sp" />
