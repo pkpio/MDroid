@@ -4,19 +4,54 @@
     android:layout_height="match_parent"
     android:background="@color/card_listview_bg" >
 
-    <ListView
-        android:id="@+id/content_messaging"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:adjustViewBounds="true"
-        android:background="@color/grey13"
-        android:divider="@null"
-        android:dividerHeight="0dp" />
+        android:gravity="center"
+        android:orientation="vertical" >
+
+        <EditText
+            android:id="@+id/messaging_message_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@color/white"
+            android:hint="@null"
+            android:maxHeight="160dp"
+            android:minHeight="45dp"
+            android:paddingBottom="8dp"
+            android:paddingLeft="8dp"
+            android:paddingRight="53dp"
+            android:paddingTop="8dp"
+            android:scrollbars="vertical" />
+
+        <ImageView
+            android:id="@+id/messaging_sendbutton"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:contentDescription="@string/sample_modulename"
+            android:padding="5dp"
+            android:src="@drawable/icon_send" />
+
+        <ListView
+            android:id="@+id/content_messaging"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:layout_above="@id/messaging_message_text"
+            android:adjustViewBounds="true"
+            android:background="@color/grey13"
+            android:divider="@null"
+            android:dividerHeight="0dp" />
+    </RelativeLayout>
 
     <LinearLayout
         android:id="@+id/messaging_empty_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:clickable="false"
         android:gravity="center"
         android:orientation="vertical" >
 
