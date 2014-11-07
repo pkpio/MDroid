@@ -18,7 +18,9 @@ Road:map or plan for the new API version of MDroid (In priority order).
 - [x] Sending messages
 - [x] Open source licenses
 - [x] Course favourites
-- [ ] Settings implemetation
+- [x] Settings implemetation
+- [x] Chat like messaging
+- [ ] Messaging server setup docs
 - [ ] Background services and notifications
 - [ ] Document errors
 - [ ] Search feature
