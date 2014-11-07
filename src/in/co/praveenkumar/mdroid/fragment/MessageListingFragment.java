@@ -19,6 +19,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -164,11 +165,14 @@ public class MessageListingFragment extends Fragment {
 			viewHolder.userimage.setText(firstChar + "");
 			viewHolder.userimage.setBackgroundColor(LetterColor.of(firstChar));
 
-			// Name and last message
+			// Name
 			viewHolder.userfullname
 					.setText(messages.get(position).userfullname);
-			viewHolder.lastmessage.setText(messages.get(position).message
-					.getText());
+
+			// Last message after trimming html special chars
+			String msg = messages.get(position).message.getText();
+			msg = (msg == null) ? "" : Html.fromHtml(msg).toString().trim();
+			viewHolder.lastmessage.setText(msg);
 
 			return convertView;
 		}
