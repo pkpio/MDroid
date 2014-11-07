@@ -21,6 +21,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v4.app.Fragment;
+import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -178,10 +179,12 @@ public class MessagingFragment extends Fragment {
 				viewHolder = (ViewHolder) convertView.getTag();
 			}
 
+			String msg = null;
+
 			// Choose layout
 			switch (type) {
 			case TYPE_MESSAGE_IN:
-				// Contact image color and message
+				// Contact image color
 				String name = messages.get(position).getUserfromfullname();
 				char firstChar = 0;
 				if (name.length() != 0)
@@ -189,10 +192,19 @@ public class MessagingFragment extends Fragment {
 				viewHolder.userimage.setText(firstChar + "");
 				viewHolder.userimage.setBackgroundColor(LetterColor
 						.of(firstChar));
-				viewHolder.message.setText(messages.get(position).getText());
+
+				// Set message after trimming html special chars
+				msg = messages.get(position).getText();
+				msg = (msg == null) ? "" : Html.fromHtml(msg).toString().trim();
+				viewHolder.message.setText(msg);
 				break;
 			case TYPE_MESSAGE_OUT:
-				viewHolder.message.setText(messages.get(position).getText());
+				// Set message after trimming html special chars
+				msg = messages.get(position).getText();
+				msg = (msg == null) ? "" : Html.fromHtml(msg).toString().trim();
+				viewHolder.message.setText(msg);
+
+				// Set user image
 				if (loginUserImage != null)
 					viewHolder.userIcon.setImageBitmap(loginUserImage);
 				break;
