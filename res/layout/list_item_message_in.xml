@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     android:background="@color/grey13"
     android:orientation="vertical"
+    android:paddingBottom="10dp"
     android:paddingTop="10dp" >
 
     <!-- User image -->
@@ -24,11 +25,11 @@
         android:id="@+id/list_message_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:minHeight="51dp"
         android:layout_marginRight="8dp"
         android:layout_toRightOf="@id/list_message_user_image"
         android:background="@drawable/clickable_card_normal"
         android:gravity="center_vertical"
+        android:minHeight="51dp"
         android:padding="8dp"
         android:text="Hello there"
         android:textColor="@color/black" />
