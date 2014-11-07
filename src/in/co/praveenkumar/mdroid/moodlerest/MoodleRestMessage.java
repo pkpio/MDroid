@@ -93,8 +93,9 @@ public class MoodleRestMessage {
 
 		} catch (Exception e) {
 			Log.d(DEBUG_TAG, "URL encoding failed");
-			error = "URL encoding failed";
+			error = "Check internet connection!";
 			e.printStackTrace();
+			return false;
 		}
 
 		return true;
