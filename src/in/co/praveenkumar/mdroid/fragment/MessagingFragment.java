@@ -6,6 +6,7 @@ import in.co.praveenkumar.mdroid.helper.ImageDecoder;
 import in.co.praveenkumar.mdroid.helper.LetterColor;
 import in.co.praveenkumar.mdroid.helper.SessionSetting;
 import in.co.praveenkumar.mdroid.moodlemodel.MoodleMessage;
+import in.co.praveenkumar.mdroid.moodlerest.MoodleRestMessage;
 import in.co.praveenkumar.mdroid.task.MessageSyncTask;
 
 import java.io.File;
@@ -25,21 +26,26 @@ import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MessagingFragment extends Fragment {
 	final String DEBUG_TAG = "MessageListingFragment";
+	Context context;
 	List<MoodleMessage> messages = new ArrayList<MoodleMessage>();
 	MessageListAdapter adapter;
 	SessionSetting session;
 	LinearLayout messagingEmptyLayout;
 	int userid;
 	Bitmap loginUserImage = null;
+	EditText messageET;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -51,7 +57,28 @@ public class MessagingFragment extends Fragment {
 				.findViewById(R.id.messaging_empty_layout);
 		ListView navListView = (ListView) rootView
 				.findViewById(R.id.content_messaging);
+		messageET = (EditText) rootView
+				.findViewById(R.id.messaging_message_text);
+		ImageView sendBtn = (ImageView) rootView
+				.findViewById(R.id.messaging_sendbutton);
 
+		// Get siteinfo
+		this.context = getActivity();
+		session = new SessionSetting(context);
+
+		// Set on click listener for message sending
+		sendBtn.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				new AsyncMessageSender(session.getmUrl(), session.getToken(),
+						userid, messageET.getText().toString()).execute("");
+				messageET.setText("");
+			}
+		});
+
+		// Setup listview
+		navListView.setTranscriptMode(ListView.TRANSCRIPT_MODE_ALWAYS_SCROLL);
+		navListView.setStackFromBottom(true);
 		adapter = new MessageListAdapter(getActivity());
 		navListView.setAdapter(adapter);
 
@@ -78,8 +105,7 @@ public class MessagingFragment extends Fragment {
 
 		@Override
 		protected Boolean doInBackground(String... params) {
-			// Get sites and user info
-			session = new SessionSetting(getActivity());
+			// set user info
 			loginUserImage = ImageDecoder.decodeImage(new File(Environment
 					.getExternalStorageDirectory()
 					+ "/MDroid/."
@@ -253,5 +279,45 @@ public class MessagingFragment extends Fragment {
 		});
 
 		messages = mMessages;
+	}
+
+	private class AsyncMessageSender extends
+			AsyncTask<String, Integer, Boolean> {
+		String mUrl;
+		String token;
+		int userid;
+		String message;
+		MoodleRestMessage mrm;
+
+		public AsyncMessageSender(String mUrl, String token, int userid,
+				String message) {
+			this.mUrl = mUrl;
+			this.token = token;
+			this.userid = userid;
+			this.message = message;
+		}
+
+		@Override
+		protected Boolean doInBackground(String... params) {
+			mrm = new MoodleRestMessage(mUrl, token);
+			MoodleMessage mMessage = new MoodleMessage(userid, message);
+			return mrm.sendMessage(mMessage);
+		}
+
+		@Override
+		protected void onPostExecute(Boolean result) {
+			if (!result)
+				Toast.makeText(context,
+						"Message sending failed. Error: " + mrm.getError(),
+						Toast.LENGTH_LONG).show();
+			else
+				Toast.makeText(context, "Message sent!", Toast.LENGTH_SHORT)
+						.show();
+
+			// refresh messages
+			new MessageSyncerBg().execute("");
+
+		}
+
 	}
 }
