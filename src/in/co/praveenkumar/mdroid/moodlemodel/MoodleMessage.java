@@ -99,6 +99,24 @@ public class MoodleMessage extends SugarRecord<MoodleMessage> {
 	}
 
 	/**
+	 * @param useridfrom
+	 *            Who sent the message
+	 * @param useridto
+	 *            Who received the message
+	 * @param text
+	 *            Message text
+	 * @param timecreated
+	 *            Created timestamp
+	 */
+	public MoodleMessage(int useridfrom, int useridto, String text,
+			int timecreated) {
+		this.useridfrom = useridfrom;
+		this.useridto = useridto;
+		this.text = text;
+		this.timecreated = timecreated;
+	}
+
+	/**
 	 * Uses plaintext as the message format.
 	 * 
 	 * @param touserid
