@@ -56,6 +56,32 @@ public class AppInterface {
 	}
 
 	/**
+	 * Gives an interface for passing userid between activity and fragments.
+	 * 
+	 * Useful in Messaging fragment, MessageListing fragment and Messaging
+	 * activity
+	 * 
+	 * @author Praveen Kumar Pendyala (praveen@praveenkumar.co.in)
+	 * 
+	 */
+	public interface UserIdInterface {
+		/**
+		 * Get the userid of current selected user
+		 * 
+		 * @return userid
+		 */
+		public int getUserId();
+
+		/**
+		 * Set the userid of current selected user
+		 * 
+		 * @param userid
+		 */
+		public void setUserId(int userid);
+
+	}
+
+	/**
 	 * Gives an interface for passing actionbar title between activity and
 	 * fragments.
 	 * 
