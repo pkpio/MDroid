@@ -3,6 +3,7 @@ package in.co.praveenkumar.mdroid.fragment;
 import in.co.praveenkumar.R;
 import in.co.praveenkumar.mdroid.helper.LetterColor;
 import in.co.praveenkumar.mdroid.helper.SessionSetting;
+import in.co.praveenkumar.mdroid.helper.AppInterface.UserIdInterface;
 import in.co.praveenkumar.mdroid.moodlemodel.MoodleMessage;
 import in.co.praveenkumar.mdroid.task.MessageSyncTask;
 
@@ -11,12 +12,14 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,6 +36,7 @@ public class MessageListingFragment extends Fragment {
 	MessageListAdapter adapter;
 	SessionSetting session;
 	LinearLayout messagesEmptyLayout;
+	UserIdInterface useridInterface;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -53,6 +57,7 @@ public class MessageListingFragment extends Fragment {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
+				useridInterface.setUserId(messages.get(position).userid);
 				FragmentManager fm = getFragmentManager();
 				FragmentTransaction ft = fm.beginTransaction();
 
@@ -65,6 +70,19 @@ public class MessageListingFragment extends Fragment {
 		new MessageSyncerBg().execute("");
 
 		return rootView;
+	}
+
+	@Override
+	public void onAttach(Activity a) {
+		super.onAttach(a);
+		try {
+			useridInterface = (UserIdInterface) a;
+		} catch (ClassCastException e) {
+			e.printStackTrace();
+			Log.d(DEBUG_TAG,
+					a.toString()
+							+ " did not implement DiscussionIdInterface. Fragment may not list any posts.");
+		}
 	}
 
 	private class MessageSyncerBg extends AsyncTask<String, Integer, Boolean> {
