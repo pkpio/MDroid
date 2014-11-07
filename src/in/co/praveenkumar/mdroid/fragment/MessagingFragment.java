@@ -2,11 +2,13 @@ package in.co.praveenkumar.mdroid.fragment;
 
 import in.co.praveenkumar.R;
 import in.co.praveenkumar.mdroid.helper.AppInterface.UserIdInterface;
+import in.co.praveenkumar.mdroid.helper.ImageDecoder;
 import in.co.praveenkumar.mdroid.helper.LetterColor;
 import in.co.praveenkumar.mdroid.helper.SessionSetting;
 import in.co.praveenkumar.mdroid.moodlemodel.MoodleMessage;
 import in.co.praveenkumar.mdroid.task.MessageSyncTask;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -14,8 +16,10 @@ import java.util.List;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -34,6 +38,7 @@ public class MessagingFragment extends Fragment {
 	SessionSetting session;
 	LinearLayout messagingEmptyLayout;
 	int userid;
+	Bitmap loginUserImage = null;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -72,8 +77,12 @@ public class MessagingFragment extends Fragment {
 
 		@Override
 		protected Boolean doInBackground(String... params) {
-			// Get sites info
+			// Get sites and user info
 			session = new SessionSetting(getActivity());
+			loginUserImage = ImageDecoder.decodeImage(new File(Environment
+					.getExternalStorageDirectory()
+					+ "/MDroid/."
+					+ session.getCurrentSiteId()));
 
 			// Setup previously sync messages
 			setupMessages();
@@ -184,6 +193,8 @@ public class MessagingFragment extends Fragment {
 				break;
 			case TYPE_MESSAGE_OUT:
 				viewHolder.message.setText(messages.get(position).getText());
+				if (loginUserImage != null)
+					viewHolder.userIcon.setImageBitmap(loginUserImage);
 				break;
 			}
 
