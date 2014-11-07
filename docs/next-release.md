@@ -1,8 +1,9 @@
-* [ ] Remove all implemented features from feature list
-* [ ] Make feature descriptions smaller
-* [ ] Make the feature count to 4 or 5 max.
+* [x] Remove all implemented features from feature list
+* [x] Make feature descriptions smaller
+* [x] Make the feature count to 4 or 5 max.
 * [x] Resolve Issue #43
-* [ ] Messaging section in the app
+* [x] Messaging section in the app
+* [x] Chat like Messaging
 * [ ] Signature 'Sent from MDroid' in messages
 * [ ] Option to remove signature in messages
 
