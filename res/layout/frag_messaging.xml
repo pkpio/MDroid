@@ -44,7 +44,9 @@
             android:adjustViewBounds="true"
             android:background="@color/grey13"
             android:divider="@null"
-            android:dividerHeight="0dp" />
+            android:dividerHeight="0dp"
+            android:stackFromBottom="true"
+            android:transcriptMode="alwaysScroll" />
     </RelativeLayout>
 
     <LinearLayout

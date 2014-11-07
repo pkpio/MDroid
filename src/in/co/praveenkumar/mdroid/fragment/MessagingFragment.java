@@ -76,9 +76,7 @@ public class MessagingFragment extends Fragment {
 			}
 		});
 
-		// Setup listview
-		navListView.setTranscriptMode(ListView.TRANSCRIPT_MODE_ALWAYS_SCROLL);
-		navListView.setStackFromBottom(true);
+		// Setup listview adapter
 		adapter = new MessageListAdapter(getActivity());
 		navListView.setAdapter(adapter);
 
