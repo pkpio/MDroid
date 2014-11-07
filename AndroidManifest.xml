@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="in.co.praveenkumar"
     android:versionCode="36"
-    android:versionName="6.2.0 MDroid APIs" >
+    android:versionName="6.3.0 MDroid APIs" >
 
     <uses-sdk
         android:minSdkVersion="9"
