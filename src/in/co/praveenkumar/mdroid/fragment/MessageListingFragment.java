@@ -59,12 +59,11 @@ public class MessageListingFragment extends Fragment {
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
 				useridInterface.setUserId(messages.get(position).userid);
-				FragmentManager fm = getFragmentManager();
-				FragmentTransaction ft = fm.beginTransaction();
-
-				MessagingFragment mf = new MessagingFragment();
-				ft.replace(R.id.messaging_layout, mf);
-				ft.commit();
+				getFragmentManager()
+						.beginTransaction()
+						.addToBackStack(null)
+						.replace(R.id.messaging_layout, new MessagingFragment())
+						.commit();
 			}
 		});
 
