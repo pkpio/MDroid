@@ -70,6 +70,12 @@ public class MessagingFragment extends Fragment {
 		sendBtn.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				// Add message to list for a quick visual response to user
+				messages.add(new MoodleMessage(session.getSiteInfo()
+						.getUserid(), userid, messageET.getText().toString(),
+						(int) System.currentTimeMillis() / 1000));
+				adapter.notifyDataSetChanged();
+
 				new AsyncMessageSender(session.getmUrl(), session.getToken(),
 						userid, messageET.getText().toString()).execute("");
 				messageET.setText("");
@@ -80,7 +86,7 @@ public class MessagingFragment extends Fragment {
 		adapter = new MessageListAdapter(getActivity());
 		navListView.setAdapter(adapter);
 
-		new MessageSyncerBg().execute("");
+		new MessageSyncerBg(false).execute("");
 
 		return rootView;
 	}
@@ -100,18 +106,31 @@ public class MessagingFragment extends Fragment {
 	}
 
 	private class MessageSyncerBg extends AsyncTask<String, Integer, Boolean> {
+		Boolean afterMsgSent = false;
+
+		/**
+		 * 
+		 * @param afterMsgSent
+		 *            Set true if this is being just after you sent a message to
+		 *            moodle
+		 */
+		MessageSyncerBg(Boolean afterMsgSent) {
+			this.afterMsgSent = afterMsgSent;
+		}
 
 		@Override
 		protected Boolean doInBackground(String... params) {
-			// set user info
-			loginUserImage = ImageDecoder.decodeImage(new File(Environment
-					.getExternalStorageDirectory()
-					+ "/MDroid/."
-					+ session.getCurrentSiteId()));
+			if (!afterMsgSent) {
+				// set user info
+				loginUserImage = ImageDecoder.decodeImage(new File(Environment
+						.getExternalStorageDirectory()
+						+ "/MDroid/."
+						+ session.getCurrentSiteId()));
 
-			// Setup previously sync messages
-			setupMessages();
-			publishProgress(0);
+				// Setup previously sync messages
+				setupMessages();
+				publishProgress(0);
+			}
 
 			// Sync from server and update
 			MessageSyncTask mst = new MessageSyncTask(session.getmUrl(),
@@ -132,6 +151,12 @@ public class MessagingFragment extends Fragment {
 
 		@Override
 		protected void onPostExecute(Boolean result) {
+			// Failed. Remove from list and put it back in edittext
+			if (!result && afterMsgSent) {
+				messageET.setText(messages.get(messages.size() - 1).getText());
+				messages.remove(messages.size() - 1);
+			}
+
 			adapter.notifyDataSetChanged();
 			if (messages.size() != 0)
 				messagingEmptyLayout.setVisibility(LinearLayout.GONE);
@@ -305,15 +330,11 @@ public class MessagingFragment extends Fragment {
 		@Override
 		protected void onPostExecute(Boolean result) {
 			if (!result)
-				Toast.makeText(context,
-						"Message sending failed. Error: " + mrm.getError(),
-						Toast.LENGTH_LONG).show();
-			else
-				Toast.makeText(context, "Message sent!", Toast.LENGTH_SHORT)
+				Toast.makeText(context, mrm.getError(), Toast.LENGTH_LONG)
 						.show();
 
 			// refresh messages
-			new MessageSyncerBg().execute("");
+			new MessageSyncerBg(true).execute("");
 
 		}
 
