@@ -11,7 +11,8 @@ public class ForumActivity extends AppNavigationDrawer {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_forum);
 		setUpDrawer();
-		setTitle("Forums");
+		getSupportActionBar().setTitle("Forums");
+		getSupportActionBar().setIcon(R.drawable.icon_forum);
 	}
 
 }
