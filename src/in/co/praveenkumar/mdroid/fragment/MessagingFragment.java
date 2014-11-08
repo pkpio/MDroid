@@ -94,7 +94,8 @@ public class MessagingFragment extends Fragment {
 		setupMessages();
 		adapter.notifyDataSetChanged();
 
-		new MessageSyncerBg(false).execute("");
+		// Refresh messages from server
+		new MessageSyncerBg().execute("");
 
 		return rootView;
 	}
@@ -107,45 +108,27 @@ public class MessagingFragment extends Fragment {
 			this.userid = useridInterface.getUserId();
 		} catch (ClassCastException e) {
 			e.printStackTrace();
-			Log.d(DEBUG_TAG,
-					a.toString()
-							+ " did not implement DiscussionIdInterface. Fragment may not list any posts.");
+			Log.d(DEBUG_TAG, a.toString()
+					+ " did not implement UserIdInterface.");
 		}
 	}
 
 	private class MessageSyncerBg extends AsyncTask<String, Integer, Boolean> {
-		Boolean afterMsgSent = false;
-
-		/**
-		 * 
-		 * @param afterMsgSent
-		 *            Set true if this is being just after you sent a message to
-		 *            moodle
-		 */
-		MessageSyncerBg(Boolean afterMsgSent) {
-			this.afterMsgSent = afterMsgSent;
-		}
 
 		@Override
 		protected Boolean doInBackground(String... params) {
 			// Sync from server and update
 			MessageSyncTask mst = new MessageSyncTask(session.getmUrl(),
 					session.getToken(), session.getCurrentSiteId());
-			if (mst.syncMessages(session.getSiteInfo().getUserid())) {
-				setupMessages();
+			if (mst.syncMessages(session.getSiteInfo().getUserid()))
 				return true;
-			}
-			return false;
+			else
+				return false;
 		}
 
 		@Override
 		protected void onPostExecute(Boolean result) {
-			// Failed. Remove from list and put it back in edittext
-			if (!result && afterMsgSent) {
-				messageET.setText(messages.get(messages.size() - 1).getText());
-				messages.remove(messages.size() - 1);
-			}
-
+			setupMessages();
 			adapter.notifyDataSetChanged();
 		}
 
@@ -285,7 +268,6 @@ public class MessagingFragment extends Fragment {
 				"useridfrom = ? and siteid = ? or useridto = ? and siteid = ?",
 				userid + "", session.getCurrentSiteId() + "", userid + "",
 				session.getCurrentSiteId() + "");
-		System.out.println("size- " + mMessages.size());
 
 		// Sort messages with newest last in list
 		Collections.sort(mMessages, new Comparator<MoodleMessage>() {
@@ -324,13 +306,16 @@ public class MessagingFragment extends Fragment {
 
 		@Override
 		protected void onPostExecute(Boolean result) {
-			if (!result)
+			if (!result) {
 				Toast.makeText(context, mrm.getError(), Toast.LENGTH_LONG)
 						.show();
-
-			// refresh messages
-			new MessageSyncerBg(true).execute("");
-
+				messageET.setText(messages.get(messages.size() - 1).getText());
+				messages.remove(messages.size() - 1);
+			} else {
+				// Refresh messages from server. The user will probably see the
+				// same thing though.
+				new MessageSyncerBg().execute("");
+			}
 		}
 
 	}
