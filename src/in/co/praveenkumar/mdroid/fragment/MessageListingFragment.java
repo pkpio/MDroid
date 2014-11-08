@@ -48,6 +48,11 @@ public class MessageListingFragment extends Fragment {
 		ListView navListView = (ListView) rootView
 				.findViewById(R.id.content_message_listing);
 
+		// Setup siteinfo and messages
+		session = new SessionSetting(getActivity());
+		setupMessages();
+
+		// Setup list adapter
 		adapter = new MessageListAdapter(getActivity());
 		navListView.setAdapter(adapter);
 
@@ -77,9 +82,8 @@ public class MessageListingFragment extends Fragment {
 			useridInterface = (UserIdInterface) a;
 		} catch (ClassCastException e) {
 			e.printStackTrace();
-			Log.d(DEBUG_TAG,
-					a.toString()
-							+ " did not implement DiscussionIdInterface. Fragment may not list any posts.");
+			Log.d(DEBUG_TAG, a.toString()
+					+ " did not implement UserIdInterface.");
 		}
 	}
 
@@ -87,35 +91,19 @@ public class MessageListingFragment extends Fragment {
 
 		@Override
 		protected Boolean doInBackground(String... params) {
-			// Get sites info
-			session = new SessionSetting(getActivity());
-
-			// Setup previously sync messages
-			setupMessages();
-			publishProgress(0);
-
 			// Sync from server and update
 			MessageSyncTask mst = new MessageSyncTask(session.getmUrl(),
 					session.getToken(), session.getCurrentSiteId());
-			if (mst.syncMessages(session.getSiteInfo().getUserid())) {
-				setupMessages();
+			if (mst.syncMessages(session.getSiteInfo().getUserid()))
 				return true;
-			}
-			return false;
-		}
-
-		@Override
-		protected void onProgressUpdate(Integer... progress) {
-			adapter.notifyDataSetChanged();
-			if (messages.size() != 0)
-				messagesEmptyLayout.setVisibility(LinearLayout.GONE);
+			else
+				return false;
 		}
 
 		@Override
 		protected void onPostExecute(Boolean result) {
+			setupMessages();
 			adapter.notifyDataSetChanged();
-			if (messages.size() != 0)
-				messagesEmptyLayout.setVisibility(LinearLayout.GONE);
 		}
 
 	}
@@ -126,7 +114,9 @@ public class MessageListingFragment extends Fragment {
 
 		public MessageListAdapter(Context context) {
 			this.context = context;
-			if (messages == null || messages.size() != 0)
+			if (messages == null || messages.size() == 0)
+				messagesEmptyLayout.setVisibility(LinearLayout.VISIBLE);
+			else
 				messagesEmptyLayout.setVisibility(LinearLayout.GONE);
 		}
 
@@ -190,6 +180,13 @@ public class MessageListingFragment extends Fragment {
 		public long getItemId(int position) {
 			return position;
 		}
+
+		@Override
+		public void notifyDataSetChanged() {
+			if (messages.size() != 0)
+				messagesEmptyLayout.setVisibility(LinearLayout.GONE);
+			super.notifyDataSetChanged();
+		}
 	}
 
 	static class ViewHolder {
@@ -239,12 +236,8 @@ public class MessageListingFragment extends Fragment {
 				userids.add(mMessages.get(i).getUseridfrom());
 			}
 		}
-
-		// Assign to messages now and make sure notifydatasetchanged is called
-		// soon after this
 		messages = (lMessages != null) ? lMessages
 				: new ArrayList<MessageListingFragment.ListMessage>();
-
 	}
 
 	Boolean isInList(List<Integer> ids, int id) {
