@@ -62,9 +62,13 @@ public class MessagingFragment extends Fragment {
 		ImageView sendBtn = (ImageView) rootView
 				.findViewById(R.id.messaging_sendbutton);
 
-		// Get siteinfo
+		// Get siteinfo and user info
 		this.context = getActivity();
 		session = new SessionSetting(context);
+		loginUserImage = ImageDecoder.decodeImage(new File(Environment
+				.getExternalStorageDirectory()
+				+ "/MDroid/."
+				+ session.getCurrentSiteId()));
 
 		// Set on click listener for message sending
 		sendBtn.setOnClickListener(new OnClickListener() {
@@ -85,6 +89,10 @@ public class MessagingFragment extends Fragment {
 		// Setup listview adapter
 		adapter = new MessageListAdapter(getActivity());
 		navListView.setAdapter(adapter);
+
+		// Set initial messages
+		setupMessages();
+		adapter.notifyDataSetChanged();
 
 		new MessageSyncerBg(false).execute("");
 
@@ -120,18 +128,6 @@ public class MessagingFragment extends Fragment {
 
 		@Override
 		protected Boolean doInBackground(String... params) {
-			if (!afterMsgSent) {
-				// set user info
-				loginUserImage = ImageDecoder.decodeImage(new File(Environment
-						.getExternalStorageDirectory()
-						+ "/MDroid/."
-						+ session.getCurrentSiteId()));
-
-				// Setup previously sync messages
-				setupMessages();
-				publishProgress(0);
-			}
-
 			// Sync from server and update
 			MessageSyncTask mst = new MessageSyncTask(session.getmUrl(),
 					session.getToken(), session.getCurrentSiteId());
@@ -143,13 +139,6 @@ public class MessagingFragment extends Fragment {
 		}
 
 		@Override
-		protected void onProgressUpdate(Integer... progress) {
-			adapter.notifyDataSetChanged();
-			if (messages.size() != 0)
-				messagingEmptyLayout.setVisibility(LinearLayout.GONE);
-		}
-
-		@Override
 		protected void onPostExecute(Boolean result) {
 			// Failed. Remove from list and put it back in edittext
 			if (!result && afterMsgSent) {
@@ -158,8 +147,6 @@ public class MessagingFragment extends Fragment {
 			}
 
 			adapter.notifyDataSetChanged();
-			if (messages.size() != 0)
-				messagingEmptyLayout.setVisibility(LinearLayout.GONE);
 		}
 
 	}
@@ -277,6 +264,13 @@ public class MessagingFragment extends Fragment {
 		@Override
 		public long getItemId(int position) {
 			return position;
+		}
+
+		@Override
+		public void notifyDataSetChanged() {
+			if (messages.size() != 0)
+				messagingEmptyLayout.setVisibility(LinearLayout.GONE);
+			super.notifyDataSetChanged();
 		}
 	}
 
