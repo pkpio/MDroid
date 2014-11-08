@@ -288,8 +288,9 @@ public class MessagingFragment extends Fragment {
 
 	void setupMessages() {
 		List<MoodleMessage> mMessages = MoodleMessage.find(MoodleMessage.class,
-				"useridfrom = ? or useridto = ? and siteid = ?", userid + "",
-				userid + "", session.getCurrentSiteId() + "");
+				"useridfrom = ? and siteid = ? or useridto = ? and siteid = ?",
+				userid + "", session.getCurrentSiteId() + "", userid + "",
+				session.getCurrentSiteId() + "");
 		System.out.println("size- " + mMessages.size());
 
 		// Sort messages with newest last in list
