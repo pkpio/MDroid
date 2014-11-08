@@ -1,10 +1,10 @@
 package in.co.praveenkumar.mdroid.fragment;
 
+import in.co.praveenkumar.R;
 import in.co.praveenkumar.mdroid.activity.PostActivity;
 import in.co.praveenkumar.mdroid.helper.AppInterface.ForumIdInterface;
 import in.co.praveenkumar.mdroid.helper.SessionSetting;
 import in.co.praveenkumar.mdroid.helper.TimeFormat;
-import in.co.praveenkumar.R;
 import in.co.praveenkumar.mdroid.moodlemodel.MoodleDiscussion;
 import in.co.praveenkumar.mdroid.task.DiscussionSyncTask;
 
@@ -68,9 +68,8 @@ public class DiscussionFragment extends Fragment {
 			this.forumid = forumidInterface.getForumId();
 		} catch (ClassCastException e) {
 			e.printStackTrace();
-			Log.d(DEBUG_TAG,
-					a.toString()
-							+ " did not implement ForumIdInterface. Fragment may not list any discussions.");
+			Log.d(DEBUG_TAG, a.toString()
+					+ " did not implement ForumIdInterface.");
 		}
 	}
 
@@ -192,6 +191,13 @@ public class DiscussionFragment extends Fragment {
 		public long getItemId(int position) {
 			return position;
 		}
+
+		@Override
+		public void notifyDataSetChanged() {
+			if (mTopics.size() != 0)
+				topicsEmptyLayout.setVisibility(LinearLayout.GONE);
+			super.notifyDataSetChanged();
+		}
 	}
 
 	static class ViewHolder {
@@ -206,7 +212,6 @@ public class DiscussionFragment extends Fragment {
 	private class AsyncTopicsSync extends AsyncTask<String, Integer, Boolean> {
 		Long siteid;
 		DiscussionSyncTask dst;
-		Boolean syncStatus;
 
 		public AsyncTopicsSync(String mUrl, String token, Long siteid) {
 			this.siteid = siteid;
@@ -215,23 +220,17 @@ public class DiscussionFragment extends Fragment {
 
 		@Override
 		protected Boolean doInBackground(String... params) {
-			syncStatus = dst.syncDiscussions(forumid);
-
-			if (syncStatus) {
-				mTopics = MoodleDiscussion
-						.find(MoodleDiscussion.class,
-								"siteid = ? and forumid = ?", siteid + "",
-								forumid + "");
-				return true;
-			} else
-				return false;
+			return dst.syncDiscussions(forumid);
 		}
 
 		@Override
 		protected void onPostExecute(Boolean result) {
+			if (result)
+				mTopics = MoodleDiscussion
+						.find(MoodleDiscussion.class,
+								"siteid = ? and forumid = ?", siteid + "",
+								forumid + "");
 			topicListAdapter.notifyDataSetChanged();
-			if (mTopics.size() != 0)
-				topicsEmptyLayout.setVisibility(LinearLayout.GONE);
 		}
 
 	}
