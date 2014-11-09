@@ -165,4 +165,26 @@ public class SessionSetting {
 		prefsEditor.putBoolean("isTutored", TutoredStatus);
 		prefsEditor.commit();
 	}
+
+	/**
+	 * Get message signature for the current account
+	 * 
+	 * @return Message signature
+	 */
+	public String getMessageSignature() {
+		return appSharedPrefs.getString("messageSignature" + currentSiteId,
+				Param.DefaultMessageSignature);
+	}
+
+	/**
+	 * Set message signature for the current account
+	 * 
+	 * @param sign
+	 *            Signature text
+	 */
+	public void setMessageSignature(String sign) {
+		Log.d(DEBUG_TAG, "Message signature updated");
+		prefsEditor.putString("messageSignature" + currentSiteId, sign);
+		prefsEditor.commit();
+	}
 }
