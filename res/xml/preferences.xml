@@ -11,21 +11,6 @@
             android:key="logout"
             android:summary="logout current account"
             android:title="Logout" />
-
-        <!--
-        <Preference
-            android:key="resetCourseData"
-            android:summary="reset courses data for current account"
-            android:title="Reset courses data" />
-        <Preference
-            android:key="resetForumData"
-            android:summary="reset forum data for current account"
-            android:title="Reset forum data" />
-        <Preference
-            android:key="resetCalendarData"
-            android:summary="reset calendar data for current account"
-            android:title="Reset calendar data" />
-        -->
     </PreferenceCategory>
 
     <!-- Debugging -->
