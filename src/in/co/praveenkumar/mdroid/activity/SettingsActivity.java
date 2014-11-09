@@ -1,8 +1,9 @@
 package in.co.praveenkumar.mdroid.activity;
 
-import in.co.praveenkumar.mdroid.dialog.LogoutDialog;
-import in.co.praveenkumar.mdroid.helper.SessionSetting;
 import in.co.praveenkumar.R;
+import in.co.praveenkumar.mdroid.dialog.LogoutDialog;
+import in.co.praveenkumar.mdroid.helper.Param;
+import in.co.praveenkumar.mdroid.helper.SessionSetting;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -10,11 +11,10 @@ import android.preference.Preference;
 import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.Preference.OnPreferenceClickListener;
 import android.preference.PreferenceActivity;
-import android.util.Log;
-import android.widget.Toast;
 
 public class SettingsActivity extends PreferenceActivity implements
 		OnPreferenceClickListener, OnPreferenceChangeListener {
+	SessionSetting session;
 
 	@SuppressWarnings("deprecation")
 	@Override
@@ -22,11 +22,12 @@ public class SettingsActivity extends PreferenceActivity implements
 		super.onCreate(savedInstanceState);
 		setTitle("Settings");
 		addPreferencesFromResource(R.xml.preferences);
+		session = new SessionSetting(this);
 
 		// Enable donate only preferences
 		findPreference("messagingSignature").setEnabled(true);
 		findPreference("messagingSignature").setSummary(
-				"Sent from MDroid - Moodle for Android");
+				Param.DefaultMessageSignature);
 		findPreference("messagingSignature")
 				.setOnPreferenceChangeListener(this);
 
@@ -93,9 +94,7 @@ public class SettingsActivity extends PreferenceActivity implements
 
 		if (!key.contentEquals("messagingSignature"))
 			return true;
-		Toast.makeText(getApplication(), newValue.toString(), Toast.LENGTH_LONG)
-				.show();
-		Log.d(key, newValue.toString());
+		session.setMessageSignature(newValue.toString());
 
 		return false;
 	}
