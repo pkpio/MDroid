@@ -11,6 +11,14 @@
             android:key="logout"
             android:summary="logout current account"
             android:title="Logout" />
+
+        <EditTextPreference
+            android:defaultValue="Sent from MDroid - Moodle for Android"
+            android:enabled="false"
+            android:key="messagingSignature"
+            android:positiveButtonText="Update"
+            android:summary="Donate only feature"
+            android:title="Message signature" />
     </PreferenceCategory>
 
     <!-- Debugging -->
