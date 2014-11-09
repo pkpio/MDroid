@@ -7,11 +7,14 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.Preference;
+import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.Preference.OnPreferenceClickListener;
 import android.preference.PreferenceActivity;
+import android.util.Log;
+import android.widget.Toast;
 
 public class SettingsActivity extends PreferenceActivity implements
-		OnPreferenceClickListener {
+		OnPreferenceClickListener, OnPreferenceChangeListener {
 
 	@SuppressWarnings("deprecation")
 	@Override
@@ -19,6 +22,13 @@ public class SettingsActivity extends PreferenceActivity implements
 		super.onCreate(savedInstanceState);
 		setTitle("Settings");
 		addPreferencesFromResource(R.xml.preferences);
+
+		// Enable donate only preferences
+		findPreference("messagingSignature").setEnabled(true);
+		findPreference("messagingSignature").setSummary(
+				"Sent from MDroid - Moodle for Android");
+		findPreference("messagingSignature")
+				.setOnPreferenceChangeListener(this);
 
 		// Add preference click listeners
 		findPreference("logout").setOnPreferenceClickListener(this);
@@ -74,6 +84,19 @@ public class SettingsActivity extends PreferenceActivity implements
 		}
 
 		System.out.println(preference.getKey());
+		return false;
+	}
+
+	@Override
+	public boolean onPreferenceChange(Preference preference, Object newValue) {
+		String key = preference.getKey();
+
+		if (!key.contentEquals("messagingSignature"))
+			return true;
+		Toast.makeText(getApplication(), newValue.toString(), Toast.LENGTH_LONG)
+				.show();
+		Log.d(key, newValue.toString());
+
 		return false;
 	}
 
