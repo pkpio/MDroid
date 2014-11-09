@@ -84,7 +84,6 @@ public class SettingsActivity extends PreferenceActivity implements
 			this.startActivity(i);
 		}
 
-		System.out.println(preference.getKey());
 		return false;
 	}
 
