@@ -1,7 +1,7 @@
 package in.co.praveenkumar.mdroid.activity;
 
 import in.co.praveenkumar.R;
-import in.co.praveenkumar.mdroid.helper.AppNavigationDrawer;
+import in.co.praveenkumar.mdroid.helper.BaseNavigationActivity;
 import in.co.praveenkumar.mdroid.helper.GsonExclude;
 import in.co.praveenkumar.mdroid.moodlemodel.MDroidModelFeature;
 
@@ -9,6 +9,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.AssetManager;
 import android.os.Bundle;
@@ -28,12 +29,13 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
-public class DonationActivity extends AppNavigationDrawer {
+public class DonationActivity extends BaseNavigationActivity {
 	private final String DEBUG_TAG = "DonationActivity";
 	List<MDroidModelFeature> features = new ArrayList<MDroidModelFeature>();
 	Context context;
 	FeatureListAdapter featureListAdapter;
 
+	@SuppressLint("InflateParams")
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
