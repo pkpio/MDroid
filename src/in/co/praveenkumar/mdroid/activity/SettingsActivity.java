@@ -27,7 +27,7 @@ public class SettingsActivity extends PreferenceActivity implements
 		// Enable donate only preferences
 		findPreference("messagingSignature").setEnabled(true);
 		findPreference("messagingSignature").setSummary(
-				Param.DefaultMessageSignature);
+				Param.DEFAULT_MSG_SIGN);
 		findPreference("messagingSignature")
 				.setOnPreferenceChangeListener(this);
 
