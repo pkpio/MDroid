@@ -2,6 +2,7 @@ package in.co.praveenkumar.mdroid.activity;
 
 import in.co.praveenkumar.R;
 import in.co.praveenkumar.mdroid.helper.AppInterface.DrawerStateInterface;
+import in.co.praveenkumar.mdroid.helper.Param;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -33,7 +34,6 @@ public abstract class BaseNavigationActivity extends ActionBarActivity
 	private DrawerLayout mDrawerLayout;
 	private ActionBarDrawerToggle mDrawerToggle;
 	public BillingProcessor billing;
-	private static final String LICENSE_KEY = "";
 
 	// Title settings
 	private CharSequence MenuTitle = "MDroid";
@@ -45,7 +45,7 @@ public abstract class BaseNavigationActivity extends ActionBarActivity
 		setTitle("");
 
 		// Setup billing
-		billing = new BillingProcessor(this, LICENSE_KEY,
+		billing = new BillingProcessor(this, Param.BILLING_LICENSE_KEY,
 				new BillingProcessor.IBillingHandler() {
 					@Override
 					public void onProductPurchased(String productId,
