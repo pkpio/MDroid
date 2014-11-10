@@ -1,8 +1,8 @@
 package in.co.praveenkumar.mdroid.activity;
 
+import in.co.praveenkumar.R;
 import in.co.praveenkumar.mdroid.helper.AppNavigationDrawer;
 import in.co.praveenkumar.mdroid.helper.GsonExclude;
-import in.co.praveenkumar.R;
 import in.co.praveenkumar.mdroid.moodlemodel.MDroidModelFeature;
 
 import java.io.InputStreamReader;
@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.util.Log;
@@ -24,10 +23,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.anjlab.android.iab.v3.BillingProcessor;
-import com.anjlab.android.iab.v3.TransactionDetails;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -37,8 +33,6 @@ public class DonationActivity extends AppNavigationDrawer {
 	List<MDroidModelFeature> features = new ArrayList<MDroidModelFeature>();
 	Context context;
 	FeatureListAdapter featureListAdapter;
-	private BillingProcessor donationProcessor;
-	private static final String LICENSE_KEY = "";
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -47,33 +41,6 @@ public class DonationActivity extends AppNavigationDrawer {
 		setUpDrawer();
 		setTitle("Request features");
 		this.context = this;
-
-		// Setup billing
-		donationProcessor = new BillingProcessor(this, LICENSE_KEY,
-				new BillingProcessor.IBillingHandler() {
-					@Override
-					public void onProductPurchased(String productId,
-							TransactionDetails details) {
-						Toast.makeText(context,
-								"You voted already. Thank you :)",
-								Toast.LENGTH_LONG).show();
-					}
-
-					@Override
-					public void onBillingError(int errorCode, Throwable error) {
-						Toast.makeText(context,
-								"Voting failed! Please try again!",
-								Toast.LENGTH_LONG).show();
-					}
-
-					@Override
-					public void onBillingInitialized() {
-					}
-
-					@Override
-					public void onPurchaseHistoryRestored() {
-					}
-				});
 
 		// Get features from local db to start with
 		features = MDroidModelFeature.listAll(MDroidModelFeature.class);
@@ -101,25 +68,10 @@ public class DonationActivity extends AppNavigationDrawer {
 				position--; // Because there is a header
 				if (position < 0)
 					return;
-				donationProcessor.purchase(features.get(position)
-						.getProductid());
+				billing.purchase(features.get(position).getProductid());
 			}
 		});
 
-	}
-
-	@Override
-	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		if (!donationProcessor.handleActivityResult(requestCode, resultCode,
-				data))
-			super.onActivityResult(requestCode, resultCode, data);
-	}
-
-	@Override
-	public void onDestroy() {
-		if (donationProcessor != null)
-			donationProcessor.release();
-		super.onDestroy();
 	}
 
 	public class FeatureListAdapter extends BaseAdapter {
