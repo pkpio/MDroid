@@ -3,7 +3,6 @@ package in.co.praveenkumar.mdroid.activity;
 import in.co.praveenkumar.mdroid.fragment.CalenderFragment;
 import in.co.praveenkumar.mdroid.fragment.ContentFragment;
 import in.co.praveenkumar.mdroid.fragment.ForumFragment;
-import in.co.praveenkumar.mdroid.helper.BaseNavigationActivity;
 import in.co.praveenkumar.R;
 import in.co.praveenkumar.mdroid.moodlemodel.MoodleCourse;
 import android.os.Bundle;

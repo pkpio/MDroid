@@ -1,6 +1,5 @@
 package in.co.praveenkumar.mdroid.activity;
 
-import in.co.praveenkumar.mdroid.helper.BaseNavigationActivity;
 import in.co.praveenkumar.R;
 import android.content.Intent;
 import android.os.Bundle;
