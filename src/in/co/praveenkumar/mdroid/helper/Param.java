@@ -7,6 +7,7 @@ package in.co.praveenkumar.mdroid.helper;
  * 
  */
 public class Param {
-	public static final String DefaultMessageSignature = "Sent from MDroid - Moodle for Android";
+	public static final String DEFAULT_MSG_SIGN = "Sent from MDroid - Moodle for Android";
+	public static final String DONATION_PRODUCT_ID = "";
 
 }

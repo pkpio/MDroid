@@ -173,7 +173,7 @@ public class SessionSetting {
 	 */
 	public String getMessageSignature() {
 		return appSharedPrefs.getString("messageSignature" + currentSiteId,
-				Param.DefaultMessageSignature);
+				Param.DEFAULT_MSG_SIGN);
 	}
 
 	/**
