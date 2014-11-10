@@ -1,6 +1,6 @@
 package in.co.praveenkumar.mdroid.activity;
 
-import in.co.praveenkumar.mdroid.helper.AppNavigationDrawer;
+import in.co.praveenkumar.mdroid.helper.BaseNavigationActivity;
 import in.co.praveenkumar.R;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
@@ -11,7 +11,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 @SuppressLint("SetJavaScriptEnabled")
-public class AppBrowserActivity extends AppNavigationDrawer {
+public class AppBrowserActivity extends BaseNavigationActivity {
 	WebView mBrowser;
 	String DEFAULT_URL = "http://mdroid.praveenkumar.co.in";
 	String DEFAULT_TITLE = "MDroid browser";

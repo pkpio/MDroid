@@ -18,9 +18,18 @@ import android.widget.Toast;
 import com.anjlab.android.iab.v3.BillingProcessor;
 import com.anjlab.android.iab.v3.TransactionDetails;
 
+/**
+ * Extending this would implement a side navigation and billing capabilities
+ * into a activity. <b>Requires:</b><br/>
+ * 1. Drawerlayout in the activity xml layout<br/>
+ * 2. Call to setUpDrawer() after inflating layout in onCreate()
+ * 
+ * @author Praveen Kumar Pendyala <praveen@praveenkumar.co.in>
+ * 
+ */
 @SuppressWarnings("deprecation")
-public abstract class AppNavigationDrawer extends ActionBarActivity implements
-		DrawerStateInterface {
+public abstract class BaseNavigationActivity extends ActionBarActivity
+		implements DrawerStateInterface {
 	private DrawerLayout mDrawerLayout;
 	private ActionBarDrawerToggle mDrawerToggle;
 	public BillingProcessor billing;

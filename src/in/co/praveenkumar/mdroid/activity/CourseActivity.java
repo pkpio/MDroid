@@ -1,7 +1,7 @@
 package in.co.praveenkumar.mdroid.activity;
 
 import in.co.praveenkumar.mdroid.fragment.CourseFragment;
-import in.co.praveenkumar.mdroid.helper.AppNavigationDrawer;
+import in.co.praveenkumar.mdroid.helper.BaseNavigationActivity;
 import in.co.praveenkumar.R;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -12,7 +12,7 @@ import android.support.v4.view.ViewPager.OnPageChangeListener;
 
 import com.viewpagerindicator.TabPageIndicator;
 
-public class CourseActivity extends AppNavigationDrawer implements
+public class CourseActivity extends BaseNavigationActivity implements
 		OnPageChangeListener {
 
 	private ViewPager viewPager;

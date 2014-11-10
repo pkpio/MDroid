@@ -1,12 +1,12 @@
 package in.co.praveenkumar.mdroid.activity;
 
-import in.co.praveenkumar.mdroid.helper.AppNavigationDrawer;
+import in.co.praveenkumar.mdroid.helper.BaseNavigationActivity;
 import in.co.praveenkumar.R;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-public class WorkInProgressActivity extends AppNavigationDrawer {
+public class WorkInProgressActivity extends BaseNavigationActivity {
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {

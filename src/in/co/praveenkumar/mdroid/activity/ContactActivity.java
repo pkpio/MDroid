@@ -2,9 +2,9 @@ package in.co.praveenkumar.mdroid.activity;
 
 import android.os.Bundle;
 import in.co.praveenkumar.R;
-import in.co.praveenkumar.mdroid.helper.AppNavigationDrawer;
+import in.co.praveenkumar.mdroid.helper.BaseNavigationActivity;
 
-public class ContactActivity extends AppNavigationDrawer {
+public class ContactActivity extends BaseNavigationActivity {
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {

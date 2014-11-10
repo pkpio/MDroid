@@ -2,10 +2,10 @@ package in.co.praveenkumar.mdroid.activity;
 
 import in.co.praveenkumar.R;
 import in.co.praveenkumar.mdroid.helper.AppInterface.UserIdInterface;
-import in.co.praveenkumar.mdroid.helper.AppNavigationDrawer;
+import in.co.praveenkumar.mdroid.helper.BaseNavigationActivity;
 import android.os.Bundle;
 
-public class MessagingActivity extends AppNavigationDrawer implements
+public class MessagingActivity extends BaseNavigationActivity implements
 		UserIdInterface {
 	int userid;
 

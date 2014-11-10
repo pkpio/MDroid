@@ -1,7 +1,7 @@
 package in.co.praveenkumar.mdroid.activity;
 
 import in.co.praveenkumar.mdroid.helper.AppInterface.ForumIdInterface;
-import in.co.praveenkumar.mdroid.helper.AppNavigationDrawer;
+import in.co.praveenkumar.mdroid.helper.BaseNavigationActivity;
 import in.co.praveenkumar.mdroid.helper.SessionSetting;
 import in.co.praveenkumar.R;
 import in.co.praveenkumar.mdroid.moodlemodel.MoodleForum;
@@ -10,7 +10,7 @@ import java.util.List;
 
 import android.os.Bundle;
 
-public class DiscussionActivity extends AppNavigationDrawer implements
+public class DiscussionActivity extends BaseNavigationActivity implements
 		ForumIdInterface {
 	int forumid;
 
