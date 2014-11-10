@@ -1,5 +1,8 @@
 package in.co.praveenkumar.mdroid.activity;
 
+import com.anjlab.android.iab.v3.BillingProcessor;
+import com.anjlab.android.iab.v3.TransactionDetails;
+
 import in.co.praveenkumar.R;
 import in.co.praveenkumar.mdroid.dialog.LogoutDialog;
 import in.co.praveenkumar.mdroid.helper.Param;
@@ -11,10 +14,12 @@ import android.preference.Preference;
 import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.Preference.OnPreferenceClickListener;
 import android.preference.PreferenceActivity;
+import android.widget.Toast;
 
 public class SettingsActivity extends PreferenceActivity implements
 		OnPreferenceClickListener, OnPreferenceChangeListener {
 	SessionSetting session;
+	public BillingProcessor billing;
 
 	@SuppressWarnings("deprecation")
 	@Override
@@ -24,13 +29,37 @@ public class SettingsActivity extends PreferenceActivity implements
 		addPreferencesFromResource(R.xml.preferences);
 		session = new SessionSetting(this);
 
-		// Setup billing processor
-		
-		
+		// Setup billing
+		billing = new BillingProcessor(this, Param.BILLING_LICENSE_KEY,
+				new BillingProcessor.IBillingHandler() {
+					@Override
+					public void onProductPurchased(String productId,
+							TransactionDetails details) {
+						Toast.makeText(getApplicationContext(),
+								"You purchased this already!",
+								Toast.LENGTH_LONG).show();
+					}
+
+					@Override
+					public void onBillingError(int errorCode, Throwable error) {
+						Toast.makeText(getApplicationContext(),
+								"Purchase failed! Please try again!",
+								Toast.LENGTH_LONG).show();
+					}
+
+					@Override
+					public void onBillingInitialized() {
+					}
+
+					@Override
+					public void onPurchaseHistoryRestored() {
+					}
+				});
+
 		// Enable donate only preferences
-		findPreference("messagingSignature").setEnabled(true);
-		findPreference("messagingSignature").setSummary(
-				Param.DEFAULT_MSG_SIGN);
+		findPreference("messagingSignature").setEnabled(
+				billing.isPurchased(Param.BILLING_DONATION_PRODUCT_ID));
+		findPreference("messagingSignature").setSummary(Param.DEFAULT_MSG_SIGN);
 		findPreference("messagingSignature")
 				.setOnPreferenceChangeListener(this);
 
@@ -99,6 +128,19 @@ public class SettingsActivity extends PreferenceActivity implements
 		session.setMessageSignature(newValue.toString());
 
 		return false;
+	}
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		if (!billing.handleActivityResult(requestCode, resultCode, data))
+			super.onActivityResult(requestCode, resultCode, data);
+	}
+
+	@Override
+	public void onDestroy() {
+		if (billing != null)
+			billing.release();
+		super.onDestroy();
 	}
 
 }
