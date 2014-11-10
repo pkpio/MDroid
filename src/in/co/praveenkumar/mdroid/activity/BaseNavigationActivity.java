@@ -1,4 +1,4 @@
-package in.co.praveenkumar.mdroid.helper;
+package in.co.praveenkumar.mdroid.activity;
 
 import in.co.praveenkumar.R;
 import in.co.praveenkumar.mdroid.helper.AppInterface.DrawerStateInterface;

@@ -24,6 +24,9 @@ public class SettingsActivity extends PreferenceActivity implements
 		addPreferencesFromResource(R.xml.preferences);
 		session = new SessionSetting(this);
 
+		// Setup billing processor
+		
+		
 		// Enable donate only preferences
 		findPreference("messagingSignature").setEnabled(true);
 		findPreference("messagingSignature").setSummary(

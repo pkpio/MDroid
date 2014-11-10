@@ -1,7 +1,6 @@
 package in.co.praveenkumar.mdroid.activity;
 
 import in.co.praveenkumar.mdroid.fragment.CourseFragment;
-import in.co.praveenkumar.mdroid.helper.BaseNavigationActivity;
 import in.co.praveenkumar.R;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
