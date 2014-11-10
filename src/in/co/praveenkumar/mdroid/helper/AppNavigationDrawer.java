@@ -2,6 +2,7 @@ package in.co.praveenkumar.mdroid.helper;
 
 import in.co.praveenkumar.R;
 import in.co.praveenkumar.mdroid.helper.AppInterface.DrawerStateInterface;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
@@ -12,23 +13,54 @@ import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
+import com.anjlab.android.iab.v3.BillingProcessor;
+import com.anjlab.android.iab.v3.TransactionDetails;
+
+@SuppressWarnings("deprecation")
 public abstract class AppNavigationDrawer extends ActionBarActivity implements
 		DrawerStateInterface {
 	private DrawerLayout mDrawerLayout;
 	private ActionBarDrawerToggle mDrawerToggle;
+	public BillingProcessor billing;
+	private static final String LICENSE_KEY = "";
 
-	// Title and icon settings
+	// Title settings
 	private CharSequence MenuTitle = "MDroid";
-	private int MenuIcon = R.drawable.mdroid_logo_inverted;
-
 	private CharSequence LastTitle = "MDroid";
-	private int LastIcon = R.drawable.mdroid_logo_inverted;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setTitle("");
+
+		// Setup billing
+		billing = new BillingProcessor(this, LICENSE_KEY,
+				new BillingProcessor.IBillingHandler() {
+					@Override
+					public void onProductPurchased(String productId,
+							TransactionDetails details) {
+						Toast.makeText(getApplicationContext(),
+								"You purchased this already!",
+								Toast.LENGTH_LONG).show();
+					}
+
+					@Override
+					public void onBillingError(int errorCode, Throwable error) {
+						Toast.makeText(getApplicationContext(),
+								"Purchase failed! Please try again!",
+								Toast.LENGTH_LONG).show();
+					}
+
+					@Override
+					public void onBillingInitialized() {
+					}
+
+					@Override
+					public void onPurchaseHistoryRestored() {
+					}
+				});
 	}
 
 	public void setUpDrawer() {
@@ -113,4 +145,18 @@ public abstract class AppNavigationDrawer extends ActionBarActivity implements
 		else
 			mDrawerLayout.closeDrawer(Gravity.LEFT);
 	}
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		if (!billing.handleActivityResult(requestCode, resultCode, data))
+			super.onActivityResult(requestCode, resultCode, data);
+	}
+
+	@Override
+	public void onDestroy() {
+		if (billing != null)
+			billing.release();
+		super.onDestroy();
+	}
+
 }
