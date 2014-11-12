@@ -34,13 +34,7 @@ public class LoginActivity extends FragmentActivity {
 			Log.d(DEBUG_TAG, "Not an explicit call");
 		}
 
-		mAdapter = new LoginFragmentAdapter(getSupportFragmentManager());
-
-		mPager = (ViewPager) findViewById(R.id.pager);
-		mPager.setAdapter(mAdapter);
-		mPager.setOffscreenPageLimit(TutorialFragment.TUTORIAL_PAGE_COUNT);
-
-		// Skip login if user is logged in already
+		// Skip to courses if logged in and not requested to add a new account
 		SessionSetting session = new SessionSetting(this);
 		if (session.getCurrentSiteId() != SessionSetting.NO_SITE_ID
 				&& !explicitCall) {
@@ -48,7 +42,14 @@ public class LoginActivity extends FragmentActivity {
 			i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
 					| Intent.FLAG_ACTIVITY_CLEAR_TASK);
 			this.startActivity(i);
+			return;
 		}
+
+		mAdapter = new LoginFragmentAdapter(getSupportFragmentManager());
+
+		mPager = (ViewPager) findViewById(R.id.pager);
+		mPager.setAdapter(mAdapter);
+		mPager.setOffscreenPageLimit(2);
 	}
 
 	class LoginFragmentAdapter extends FragmentPagerAdapter {
