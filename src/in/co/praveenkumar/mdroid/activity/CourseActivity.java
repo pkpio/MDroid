@@ -1,18 +1,16 @@
 package in.co.praveenkumar.mdroid.activity;
 
-import in.co.praveenkumar.mdroid.fragment.CourseFragment;
 import in.co.praveenkumar.R;
+import in.co.praveenkumar.mdroid.fragment.CourseFragment;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v4.view.ViewPager.OnPageChangeListener;
 
 import com.viewpagerindicator.TabPageIndicator;
 
-public class CourseActivity extends BaseNavigationActivity implements
-		OnPageChangeListener {
+public class CourseActivity extends BaseNavigationActivity {
 
 	private ViewPager viewPager;
 	private static final String[] TABS = { "All Courses", "Favourite" };
@@ -29,12 +27,11 @@ public class CourseActivity extends BaseNavigationActivity implements
 				getSupportFragmentManager());
 
 		viewPager = (ViewPager) findViewById(R.id.course_pager);
-		viewPager.setOffscreenPageLimit(3);
+		viewPager.setOffscreenPageLimit(2);
 		viewPager.setAdapter(mAdapter);
 
 		TabPageIndicator indicator = (TabPageIndicator) findViewById(R.id.indicator);
 		indicator.setViewPager(viewPager);
-		indicator.setOnPageChangeListener(this);
 	}
 
 	class CourseTabsAdapter extends FragmentPagerAdapter {
@@ -82,18 +79,6 @@ public class CourseActivity extends BaseNavigationActivity implements
 		public int getCount() {
 			return TABS.length;
 		}
-	}
-
-	@Override
-	public void onPageScrollStateChanged(int arg0) {
-	}
-
-	@Override
-	public void onPageScrolled(int arg0, float arg1, int arg2) {
-	}
-
-	@Override
-	public void onPageSelected(int position) {
 	}
 
 }
