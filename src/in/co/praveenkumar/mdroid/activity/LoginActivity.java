@@ -1,10 +1,10 @@
 package in.co.praveenkumar.mdroid.activity;
 
+import in.co.praveenkumar.R;
 import in.co.praveenkumar.mdroid.fragment.NormalLoginFragment;
 import in.co.praveenkumar.mdroid.fragment.ParanoidLoginFragment;
-import in.co.praveenkumar.mdroid.fragment.TutorialFragment;
 import in.co.praveenkumar.mdroid.helper.SessionSetting;
-import in.co.praveenkumar.R;
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -21,6 +21,7 @@ public class LoginActivity extends FragmentActivity {
 	ViewPager mPager;
 	private String[] tabs = { "Normal", "Paranoid" };
 
+	@SuppressLint("InlinedApi")
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
