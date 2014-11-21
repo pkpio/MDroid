@@ -29,11 +29,10 @@ public class SettingsActivity extends PreferenceActivity implements
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setTitle("Settings");
-		addPreferencesFromResource(R.xml.preferences);
-		session = new SessionSetting(this);
-		settings = PreferenceManager.getDefaultSharedPreferences(this);
 
 		// Setup billing
+		session = new SessionSetting(this);
+		settings = PreferenceManager.getDefaultSharedPreferences(this);
 		billing = new BillingProcessor(this, Param.BILLING_LICENSE_KEY,
 				new BillingProcessor.IBillingHandler() {
 					@Override
@@ -60,24 +59,28 @@ public class SettingsActivity extends PreferenceActivity implements
 					}
 				});
 
+		// Set signature in prefs to current account value
+		SharedPreferences.Editor editor = settings.edit();
+		editor.putString("messagingSignature", session.getMessageSignature());
+		editor.commit();
+
+		/*
+		 * Note: Inflate xml after setting signature value or the new value
+		 * won't reflect in the inflated setting
+		 */
+		addPreferencesFromResource(R.xml.preferences);
+
 		// Enable donate only preferences
-		if (billing.isPurchased(Param.BILLING_DONATION_PRODUCT_ID)) {
+		if (billing.isPurchased(Param.BILLING_DONATION_PRODUCT_ID))
 			findPreference("messagingSignature").setEnabled(true);
-			SharedPreferences.Editor editor1 = settings.edit();
-			editor1.putString("messagingSignature",
-					session.getMessageSignature());
-			editor1.commit();
-		} else {
+		else
 			findPreference("messagingSignature").setSummary(
 					R.string.message_signature_summary_donate);
-		}
 
+		// Add preference click / change listeners
+		findPreference("logout").setOnPreferenceClickListener(this);
 		findPreference("messagingSignature")
 				.setOnPreferenceChangeListener(this);
-
-		// Add preference click listeners
-		findPreference("logout").setOnPreferenceClickListener(this);
-		findPreference("messagingSignature").setOnPreferenceClickListener(this);
 
 		findPreference("help").setOnPreferenceClickListener(this);
 		findPreference("privacyPolicy").setOnPreferenceClickListener(this);
@@ -90,11 +93,6 @@ public class SettingsActivity extends PreferenceActivity implements
 	@Override
 	public boolean onPreferenceClick(Preference preference) {
 		String key = preference.getKey();
-
-		if (key.contentEquals("messagingSignature")) {
-			Toast.makeText(getApplicationContext(), "Donate only setting!",
-					Toast.LENGTH_LONG).show();
-		}
 
 		if (key.contentEquals("logout")) {
 			LogoutDialog lod = new LogoutDialog(this,
