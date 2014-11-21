@@ -1,25 +1,28 @@
 package in.co.praveenkumar.mdroid.activity;
 
-import com.anjlab.android.iab.v3.BillingProcessor;
-import com.anjlab.android.iab.v3.TransactionDetails;
-
 import in.co.praveenkumar.R;
 import in.co.praveenkumar.mdroid.dialog.LogoutDialog;
 import in.co.praveenkumar.mdroid.helper.Param;
 import in.co.praveenkumar.mdroid.helper.SessionSetting;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.Preference.OnPreferenceClickListener;
 import android.preference.PreferenceActivity;
+import android.preference.PreferenceManager;
 import android.widget.Toast;
+
+import com.anjlab.android.iab.v3.BillingProcessor;
+import com.anjlab.android.iab.v3.TransactionDetails;
 
 public class SettingsActivity extends PreferenceActivity implements
 		OnPreferenceClickListener, OnPreferenceChangeListener {
 	SessionSetting session;
 	public BillingProcessor billing;
+	SharedPreferences settings;
 
 	@SuppressWarnings("deprecation")
 	@Override
@@ -28,6 +31,7 @@ public class SettingsActivity extends PreferenceActivity implements
 		setTitle("Settings");
 		addPreferencesFromResource(R.xml.preferences);
 		session = new SessionSetting(this);
+		settings = PreferenceManager.getDefaultSharedPreferences(this);
 
 		// Setup billing
 		billing = new BillingProcessor(this, Param.BILLING_LICENSE_KEY,
@@ -57,14 +61,23 @@ public class SettingsActivity extends PreferenceActivity implements
 				});
 
 		// Enable donate only preferences
-		findPreference("messagingSignature").setEnabled(
-				billing.isPurchased(Param.BILLING_DONATION_PRODUCT_ID));
-		findPreference("messagingSignature").setSummary(Param.DEFAULT_MSG_SIGN);
+		if (billing.isPurchased(Param.BILLING_DONATION_PRODUCT_ID)) {
+			findPreference("messagingSignature").setEnabled(true);
+			SharedPreferences.Editor editor1 = settings.edit();
+			editor1.putString("messagingSignature",
+					session.getMessageSignature());
+			editor1.commit();
+		} else {
+			findPreference("messagingSignature").setSummary(
+					R.string.message_signature_summary_donate);
+		}
+
 		findPreference("messagingSignature")
 				.setOnPreferenceChangeListener(this);
 
 		// Add preference click listeners
 		findPreference("logout").setOnPreferenceClickListener(this);
+		findPreference("messagingSignature").setOnPreferenceClickListener(this);
 
 		findPreference("help").setOnPreferenceClickListener(this);
 		findPreference("privacyPolicy").setOnPreferenceClickListener(this);
@@ -77,6 +90,11 @@ public class SettingsActivity extends PreferenceActivity implements
 	@Override
 	public boolean onPreferenceClick(Preference preference) {
 		String key = preference.getKey();
+
+		if (key.contentEquals("messagingSignature")) {
+			Toast.makeText(getApplicationContext(), "Donate only setting!",
+					Toast.LENGTH_LONG).show();
+		}
 
 		if (key.contentEquals("logout")) {
 			LogoutDialog lod = new LogoutDialog(this,
@@ -127,7 +145,7 @@ public class SettingsActivity extends PreferenceActivity implements
 			return true;
 		session.setMessageSignature(newValue.toString());
 
-		return false;
+		return true;
 	}
 
 	@Override
