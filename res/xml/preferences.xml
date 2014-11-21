@@ -17,7 +17,7 @@
             android:enabled="false"
             android:key="messagingSignature"
             android:positiveButtonText="Update"
-            android:summary="Appends this text at the end of each message you send"
+            android:summary="@string/message_signature_summary"
             android:title="Message signature" />
     </PreferenceCategory>
 
