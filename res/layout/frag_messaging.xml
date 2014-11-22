@@ -16,7 +16,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:background="@color/white"
-            android:hint="@null"
+            android:hint="Enter your message"
             android:maxHeight="160dp"
             android:minHeight="45dp"
             android:paddingBottom="8dp"
