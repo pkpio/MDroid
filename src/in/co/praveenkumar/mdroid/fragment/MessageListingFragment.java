@@ -17,6 +17,8 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
 import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -24,18 +26,22 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AbsListView;
 import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
-public class MessageListingFragment extends Fragment {
+public class MessageListingFragment extends Fragment implements
+		OnRefreshListener {
 	final String DEBUG_TAG = "MessageListingFragment";
 	List<ListMessage> messages = new ArrayList<MessageListingFragment.ListMessage>();
 	MessageListAdapter adapter;
 	SessionSetting session;
 	LinearLayout messagesEmptyLayout;
 	UserIdInterface useridInterface;
+	SwipeRefreshLayout swipeLayout;
+	ListView messageList;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -45,7 +51,7 @@ public class MessageListingFragment extends Fragment {
 				container, false);
 		messagesEmptyLayout = (LinearLayout) rootView
 				.findViewById(R.id.messages_empty_layout);
-		ListView navListView = (ListView) rootView
+		messageList = (ListView) rootView
 				.findViewById(R.id.content_message_listing);
 
 		// Setup siteinfo and messages
@@ -54,10 +60,10 @@ public class MessageListingFragment extends Fragment {
 
 		// Setup list adapter
 		adapter = new MessageListAdapter(getActivity());
-		navListView.setAdapter(adapter);
+		messageList.setAdapter(adapter);
 
 		// itemclick listener
-		navListView.setOnItemClickListener(new OnItemClickListener() {
+		messageList.setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
@@ -69,6 +75,10 @@ public class MessageListingFragment extends Fragment {
 						.commit();
 			}
 		});
+
+		swipeLayout = (SwipeRefreshLayout) rootView
+				.findViewById(R.id.swipe_refresh);
+		setupSwipeLayout();
 
 		new MessageSyncerBg().execute("");
 
@@ -90,6 +100,11 @@ public class MessageListingFragment extends Fragment {
 	private class MessageSyncerBg extends AsyncTask<String, Integer, Boolean> {
 
 		@Override
+		protected void onPreExecute() {
+			swipeLayout.setRefreshing(true);
+		}
+
+		@Override
 		protected Boolean doInBackground(String... params) {
 			// Sync from server and update
 			MessageSyncTask mst = new MessageSyncTask(session.getmUrl(),
@@ -104,6 +119,7 @@ public class MessageListingFragment extends Fragment {
 		protected void onPostExecute(Boolean result) {
 			setupMessages();
 			adapter.notifyDataSetChanged();
+			swipeLayout.setRefreshing(false);
 		}
 
 	}
@@ -263,6 +279,38 @@ public class MessageListingFragment extends Fragment {
 		 * participating in this message
 		 */
 		String userfullname;
+	}
+
+	void setupSwipeLayout() {
+		if (swipeLayout == null || messageList == null)
+			return;
+
+		swipeLayout.setColorSchemeResources(R.color.refresh_green,
+				R.color.refresh_red, R.color.refresh_blue,
+				R.color.refresh_yellow);
+		swipeLayout.setOnRefreshListener(this);
+
+		// Link swipeLayout with underlying listview
+		messageList.setOnScrollListener(new AbsListView.OnScrollListener() {
+			@Override
+			public void onScrollStateChanged(AbsListView view, int scrollState) {
+
+			}
+
+			@Override
+			public void onScroll(AbsListView view, int firstVisibleItem,
+					int visibleItemCount, int totalItemCount) {
+				int topRowVerticalPosition = (messageList == null || messageList
+						.getChildCount() == 0) ? 0 : messageList.getChildAt(0)
+						.getTop();
+				swipeLayout.setEnabled(topRowVerticalPosition >= 0);
+			}
+		});
+	}
+
+	@Override
+	public void onRefresh() {
+		new MessageSyncerBg().execute("");
 	}
 
 }

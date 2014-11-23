@@ -1,37 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/swipe_refresh"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/card_listview_bg" >
+    android:layout_height="match_parent" >
 
-    <ListView
-        android:id="@+id/content_message_listing"
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:adjustViewBounds="true"
-        android:divider="@null"
-        android:dividerHeight="0dp" />
+        android:background="@color/card_listview_bg" >
 
-    <LinearLayout
-        android:id="@+id/messages_empty_layout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:orientation="vertical" >
+        <ListView
+            android:id="@+id/content_message_listing"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:adjustViewBounds="true"
+            android:divider="@null"
+            android:dividerHeight="0dp" />
 
-        <ImageView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:contentDescription="@string/sample_modulename"
-            android:src="@drawable/icon_message_greyscale" />
+        <LinearLayout
+            android:id="@+id/messages_empty_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical" >
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="16dp"
-            android:text="No Messages here"
-            android:textColor="@color/grey8"
-            android:textSize="20sp" />
-    </LinearLayout>
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:contentDescription="@string/sample_modulename"
+                android:src="@drawable/icon_message_greyscale" />
 
-</FrameLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:text="No Messages here"
+                android:textColor="@color/grey8"
+                android:textSize="20sp" />
+        </LinearLayout>
+    </FrameLayout>
+
+</android.support.v4.widget.SwipeRefreshLayout>
