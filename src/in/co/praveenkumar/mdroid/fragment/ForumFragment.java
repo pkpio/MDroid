@@ -16,22 +16,27 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
-public class ForumFragment extends Fragment {
+public class ForumFragment extends Fragment implements OnRefreshListener {
 	ForumListAdapter forumListAdapter;
 	SessionSetting session;
 	int courseid = 0;
 	List<MoodleForum> mForums;
 	LinearLayout forumEmptyLayout;
+	SwipeRefreshLayout swipeLayout;
+	ListView forumList;
 
 	/**
 	 * This constructor lists all forums in the site. Don't use this
@@ -67,11 +72,14 @@ public class ForumFragment extends Fragment {
 					"siteid = ? and courseid = ?", session.getCurrentSiteId()
 							+ "", courseid + "");
 
-		ListView forumList = (ListView) rootView
-				.findViewById(R.id.content_forum);
+		forumList = (ListView) rootView.findViewById(R.id.content_forum);
 		forumListAdapter = new ForumListAdapter(getActivity());
-
 		forumList.setAdapter(forumListAdapter);
+
+		swipeLayout = (SwipeRefreshLayout) rootView
+				.findViewById(R.id.swipe_refresh);
+		setupSwipeLayout();
+
 		new AsyncForumSync(session.getmUrl(), session.getToken(),
 				session.getCurrentSiteId()).execute("");
 		return rootView;
@@ -173,6 +181,11 @@ public class ForumFragment extends Fragment {
 		}
 
 		@Override
+		protected void onPreExecute() {
+			swipeLayout.setRefreshing(true);
+		}
+
+		@Override
 		protected Boolean doInBackground(String... params) {
 			// Get course ids
 			List<MoodleCourse> mCourses = MoodleCourse.find(MoodleCourse.class,
@@ -200,8 +213,42 @@ public class ForumFragment extends Fragment {
 			forumListAdapter.notifyDataSetChanged();
 			if (mForums.size() != 0)
 				forumEmptyLayout.setVisibility(LinearLayout.GONE);
+			swipeLayout.setRefreshing(false);
 		}
 
+	}
+
+	@Override
+	public void onRefresh() {
+		new AsyncForumSync(session.getmUrl(), session.getToken(),
+				session.getCurrentSiteId()).execute("");
+	}
+
+	void setupSwipeLayout() {
+		if (swipeLayout == null || forumList == null)
+			return;
+
+		swipeLayout.setColorSchemeResources(R.color.refresh_green,
+				R.color.refresh_red, R.color.refresh_blue,
+				R.color.refresh_yellow);
+		swipeLayout.setOnRefreshListener(this);
+
+		// Link swipeLayout with underlying listview
+		forumList.setOnScrollListener(new AbsListView.OnScrollListener() {
+			@Override
+			public void onScrollStateChanged(AbsListView view, int scrollState) {
+
+			}
+
+			@Override
+			public void onScroll(AbsListView view, int firstVisibleItem,
+					int visibleItemCount, int totalItemCount) {
+				int topRowVerticalPosition = (forumList == null || forumList
+						.getChildCount() == 0) ? 0 : forumList.getChildAt(0)
+						.getTop();
+				swipeLayout.setEnabled(topRowVerticalPosition >= 0);
+			}
+		});
 	}
 
 }
