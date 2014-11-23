@@ -63,7 +63,7 @@
 
     <!-- Preferences -->
     <string name="message_signature_summary">Appends this text at the end of each message you send using MDroid</string>
-    <string name="message_signature_summary_donate">Appends this text at the end of each message you send using MDroid. *Donate only*</string>
+    <string name="message_signature_summary_donate">Appends this text at the end of each message you send. Donate only!</string>
 
     <!-- Donations -->
     <string name="donations_header_text">Vote for the features you want us to implement soon.\n\nThe vote counts are updated after verification so, expect some delay.</string>
