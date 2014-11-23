@@ -22,18 +22,21 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
-public class ContentFragment extends Fragment {
+public class ContentFragment extends Fragment implements OnRefreshListener {
 	Context context;
 	long coursedbid;
 	int courseid;
@@ -41,6 +44,8 @@ public class ContentFragment extends Fragment {
 	SessionSetting session;
 	ArrayList<CourseContentObject> listObjects = new ArrayList<CourseContentObject>();
 	LinearLayout contentEmptyLayout;
+	SwipeRefreshLayout swipeLayout;
+	ListView contentList;
 
 	/**
 	 * This constructor is required to prevent exceptions on app usage. Don't
@@ -79,11 +84,15 @@ public class ContentFragment extends Fragment {
 		ArrayList<MoodleSection> sections = ccs.getCourseContents(courseid);
 		mapSectionsToListObjects(sections);
 
-		ListView courseList = (ListView) rootView
+		contentList = (ListView) rootView
 				.findViewById(R.id.list_course_content);
 		courseContentListAdapter = new CourseListAdapter(context);
-		((StickyListView) courseList).setShadowVisible(false);
-		courseList.setAdapter(courseContentListAdapter);
+		((StickyListView) contentList).setShadowVisible(false);
+		contentList.setAdapter(courseContentListAdapter);
+
+		swipeLayout = (SwipeRefreshLayout) rootView
+				.findViewById(R.id.swipe_refresh);
+		setupSwipeLayout();
 
 		new listCoursesThread(session.getmUrl(), session.getToken(), courseid,
 				coursedbid, session.getCurrentSiteId()).execute("");
@@ -106,8 +115,7 @@ public class ContentFragment extends Fragment {
 
 		@Override
 		protected void onPreExecute() {
-			System.out.println("Pre execute");
-			// mSections = ccs.getCourseContents(courseid);
+			swipeLayout.setRefreshing(true);
 		}
 
 		@Override
@@ -130,6 +138,7 @@ public class ContentFragment extends Fragment {
 			courseContentListAdapter.notifyDataSetChanged();
 			if (listObjects.size() != 0)
 				contentEmptyLayout.setVisibility(LinearLayout.GONE);
+			swipeLayout.setRefreshing(false);
 		}
 
 	}
@@ -378,6 +387,39 @@ public class ContentFragment extends Fragment {
 				}
 			}
 		}
+	}
+
+	void setupSwipeLayout() {
+		if (swipeLayout == null || contentList == null)
+			return;
+
+		swipeLayout.setColorSchemeResources(R.color.refresh_green,
+				R.color.refresh_red, R.color.refresh_blue,
+				R.color.refresh_yellow);
+		swipeLayout.setOnRefreshListener(this);
+
+		// Link swipeLayout with underlying listview
+		contentList.setOnScrollListener(new AbsListView.OnScrollListener() {
+			@Override
+			public void onScrollStateChanged(AbsListView view, int scrollState) {
+
+			}
+
+			@Override
+			public void onScroll(AbsListView view, int firstVisibleItem,
+					int visibleItemCount, int totalItemCount) {
+				int topRowVerticalPosition = (contentList == null || contentList
+						.getChildCount() == 0) ? 0 : contentList.getChildAt(0)
+						.getTop();
+				swipeLayout.setEnabled(topRowVerticalPosition >= 0);
+			}
+		});
+	}
+
+	@Override
+	public void onRefresh() {
+		new listCoursesThread(session.getmUrl(), session.getToken(), courseid,
+				coursedbid, session.getCurrentSiteId()).execute("");
 	}
 
 }
