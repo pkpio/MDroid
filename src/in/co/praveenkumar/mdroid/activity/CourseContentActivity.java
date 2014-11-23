@@ -17,7 +17,8 @@ public class CourseContentActivity extends BaseNavigationActivity {
 	private long coursedbid;
 	private int courseid;
 	private ViewPager viewPager;
-	private static final String[] TABS = { "Contents", "Forums", "Calendar", "Participants" };
+	private static final String[] TABS = { "Contents", "Forums", "Calendar",
+			"Participants" };
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -37,7 +38,7 @@ public class CourseContentActivity extends BaseNavigationActivity {
 				getSupportFragmentManager());
 
 		viewPager = (ViewPager) findViewById(R.id.course_content_pager);
-		viewPager.setOffscreenPageLimit(3);
+		viewPager.setOffscreenPageLimit(TABS.length);
 		viewPager.setAdapter(mAdapter);
 
 		SlidingTabLayout mSlidingTabLayout = (SlidingTabLayout) findViewById(R.id.sliding_tabs);
