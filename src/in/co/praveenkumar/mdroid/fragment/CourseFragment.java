@@ -202,6 +202,7 @@ public class CourseFragment extends Fragment implements OnRefreshListener {
 	 * 
 	 */
 	private class courseSyncerBg extends AsyncTask<String, Integer, Boolean> {
+
 		@Override
 		protected void onPreExecute() {
 			swipeLayout.setRefreshing(true);
