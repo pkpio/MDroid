@@ -1,75 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/swipe_refresh"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/card_listview_bg" >
+    android:layout_height="match_parent" >
 
-    <RelativeLayout
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
-        android:orientation="vertical" >
+        android:background="@color/card_listview_bg" >
 
-        <EditText
-            android:id="@+id/messaging_message_text"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:background="@color/white"
-            android:hint="Enter your message"
-            android:maxHeight="160dp"
-            android:minHeight="45dp"
-            android:paddingBottom="8dp"
-            android:paddingLeft="8dp"
-            android:paddingRight="53dp"
-            android:paddingTop="8dp"
-            android:scrollbars="vertical" />
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical" >
 
-        <ImageView
-            android:id="@+id/messaging_sendbutton"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:contentDescription="@string/sample_modulename"
-            android:padding="5dp"
-            android:src="@drawable/icon_send" />
+            <EditText
+                android:id="@+id/messaging_message_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:background="@color/white"
+                android:hint="Enter your message"
+                android:maxHeight="160dp"
+                android:minHeight="45dp"
+                android:paddingBottom="8dp"
+                android:paddingLeft="8dp"
+                android:paddingRight="53dp"
+                android:paddingTop="8dp"
+                android:scrollbars="vertical" />
 
-        <ListView
-            android:id="@+id/content_messaging"
+            <ImageView
+                android:id="@+id/messaging_sendbutton"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:contentDescription="@string/sample_modulename"
+                android:padding="5dp"
+                android:src="@drawable/icon_send" />
+
+            <ListView
+                android:id="@+id/content_messaging"
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:layout_above="@id/messaging_message_text"
+                android:adjustViewBounds="true"
+                android:background="@color/grey13"
+                android:divider="@null"
+                android:dividerHeight="0dp"
+                android:stackFromBottom="true"
+                android:transcriptMode="alwaysScroll" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/messaging_empty_layout"
             android:layout_width="match_parent"
-            android:layout_height="fill_parent"
-            android:layout_above="@id/messaging_message_text"
-            android:adjustViewBounds="true"
-            android:background="@color/grey13"
-            android:divider="@null"
-            android:dividerHeight="0dp"
-            android:stackFromBottom="true"
-            android:transcriptMode="alwaysScroll" />
-    </RelativeLayout>
+            android:layout_height="match_parent"
+            android:clickable="false"
+            android:gravity="center"
+            android:orientation="vertical" >
 
-    <LinearLayout
-        android:id="@+id/messaging_empty_layout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:clickable="false"
-        android:gravity="center"
-        android:orientation="vertical" >
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:contentDescription="@string/sample_modulename"
+                android:src="@drawable/icon_message_greyscale" />
 
-        <ImageView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:contentDescription="@string/sample_modulename"
-            android:src="@drawable/icon_message_greyscale" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:text="No Messages here"
+                android:textColor="@color/grey8"
+                android:textSize="20sp" />
+        </LinearLayout>
+    </FrameLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="16dp"
-            android:text="No Messages here"
-            android:textColor="@color/grey8"
-            android:textSize="20sp" />
-    </LinearLayout>
-
-</FrameLayout>
+</android.support.v4.widget.SwipeRefreshLayout>

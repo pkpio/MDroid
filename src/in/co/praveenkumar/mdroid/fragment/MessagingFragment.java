@@ -22,12 +22,15 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
 import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.BaseAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -36,7 +39,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class MessagingFragment extends Fragment {
+public class MessagingFragment extends Fragment implements OnRefreshListener {
 	final String DEBUG_TAG = "MessageListingFragment";
 	Context context;
 	List<MoodleMessage> messages = new ArrayList<MoodleMessage>();
@@ -46,6 +49,8 @@ public class MessagingFragment extends Fragment {
 	int userid;
 	Bitmap loginUserImage = null;
 	EditText messageET;
+	SwipeRefreshLayout swipeLayout;
+	ListView messageList;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -55,8 +60,7 @@ public class MessagingFragment extends Fragment {
 				false);
 		messagingEmptyLayout = (LinearLayout) rootView
 				.findViewById(R.id.messaging_empty_layout);
-		ListView navListView = (ListView) rootView
-				.findViewById(R.id.content_messaging);
+		messageList = (ListView) rootView.findViewById(R.id.content_messaging);
 		messageET = (EditText) rootView
 				.findViewById(R.id.messaging_message_text);
 		ImageView sendBtn = (ImageView) rootView
@@ -88,11 +92,15 @@ public class MessagingFragment extends Fragment {
 
 		// Setup listview adapter
 		adapter = new MessageListAdapter(getActivity());
-		navListView.setAdapter(adapter);
+		messageList.setAdapter(adapter);
 
 		// Set initial messages
 		setupMessages();
 		adapter.notifyDataSetChanged();
+
+		swipeLayout = (SwipeRefreshLayout) rootView
+				.findViewById(R.id.swipe_refresh);
+		setupSwipeLayout();
 
 		// Refresh messages from server
 		new MessageSyncerBg().execute("");
@@ -116,6 +124,11 @@ public class MessagingFragment extends Fragment {
 	private class MessageSyncerBg extends AsyncTask<String, Integer, Boolean> {
 
 		@Override
+		protected void onPreExecute() {
+			swipeLayout.setRefreshing(true);
+		}
+
+		@Override
 		protected Boolean doInBackground(String... params) {
 			// Sync from server and update
 			MessageSyncTask mst = new MessageSyncTask(session.getmUrl(),
@@ -130,6 +143,7 @@ public class MessagingFragment extends Fragment {
 		protected void onPostExecute(Boolean result) {
 			setupMessages();
 			adapter.notifyDataSetChanged();
+			swipeLayout.setRefreshing(false);
 		}
 
 	}
@@ -319,5 +333,37 @@ public class MessagingFragment extends Fragment {
 			}
 		}
 
+	}
+
+	@Override
+	public void onRefresh() {
+		new MessageSyncerBg().execute("");
+	}
+
+	void setupSwipeLayout() {
+		if (swipeLayout == null || messageList == null)
+			return;
+
+		swipeLayout.setColorSchemeResources(R.color.refresh_green,
+				R.color.refresh_red, R.color.refresh_blue,
+				R.color.refresh_yellow);
+		swipeLayout.setOnRefreshListener(this);
+
+		// Link swipeLayout with underlying listview
+		messageList.setOnScrollListener(new AbsListView.OnScrollListener() {
+			@Override
+			public void onScrollStateChanged(AbsListView view, int scrollState) {
+
+			}
+
+			@Override
+			public void onScroll(AbsListView view, int firstVisibleItem,
+					int visibleItemCount, int totalItemCount) {
+				int topRowVerticalPosition = (messageList == null || messageList
+						.getChildCount() == 0) ? 0 : messageList.getChildAt(0)
+						.getTop();
+				swipeLayout.setEnabled(topRowVerticalPosition >= 0);
+			}
+		});
 	}
 }
