@@ -18,16 +18,19 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
-public class CalenderFragment extends Fragment {
+public class CalenderFragment extends Fragment implements OnRefreshListener {
 	Context context;
 	int courseid = 0;
 	CalendarListAdapter calendarListAdapter;
@@ -35,6 +38,8 @@ public class CalenderFragment extends Fragment {
 	List<MoodleEvent> mEvents;
 	ArrayList<CalenderObject> listObjects = new ArrayList<CalenderObject>();
 	LinearLayout calenderEmptyLayout;
+	SwipeRefreshLayout swipeLayout;
+	ListView eventList;
 
 	/**
 	 * Don't use this constructor
@@ -76,6 +81,10 @@ public class CalenderFragment extends Fragment {
 		((StickyListView) eventList).setShadowVisible(false);
 		eventList.setAdapter(calendarListAdapter);
 
+		swipeLayout = (SwipeRefreshLayout) rootView
+				.findViewById(R.id.swipe_refresh);
+		setupSwipeLayout();
+
 		new ListEventsThread(session.getmUrl(), session.getToken(),
 				session.getCurrentSiteId()).execute("");
 
@@ -90,6 +99,11 @@ public class CalenderFragment extends Fragment {
 		public ListEventsThread(String mUrl, String token, Long siteid) {
 			this.siteid = siteid;
 			est = new EventSyncTask(mUrl, token, siteid);
+		}
+
+		@Override
+		protected void onPreExecute() {
+			swipeLayout.setRefreshing(true);
 		}
 
 		@Override
@@ -121,6 +135,7 @@ public class CalenderFragment extends Fragment {
 			calendarListAdapter.notifyDataSetChanged();
 			if (listObjects.size() != 0)
 				calenderEmptyLayout.setVisibility(LinearLayout.GONE);
+			swipeLayout.setRefreshing(false);
 		}
 
 	}
@@ -195,9 +210,8 @@ public class CalenderFragment extends Fragment {
 						.getName());
 				viewHolder.eventcourse.setText(listObjects.get(position).event
 						.getCoursename());
-				viewHolder.eventtime.setText(TimeFormat
-						.getNiceTime(listObjects.get(position).event
-								.getTimestart()));
+				viewHolder.eventtime.setText(TimeFormat.getNiceTime(listObjects
+						.get(position).event.getTimestart()));
 
 				String description = listObjects.get(position).event
 						.getDescription();
@@ -260,19 +274,21 @@ public class CalenderFragment extends Fragment {
 				return o1.getTimestart() < o2.getTimestart() ? -1 : 1;
 			}
 		});
-		
+
 		// To avoid duplicates in listing
 		listObjects.clear();
 
 		// Build titles + events objects for pinned listview
-		String titlePrev = TimeFormat.getSectionTitle(mEvents.get(0).getTimestart());
+		String titlePrev = TimeFormat.getSectionTitle(mEvents.get(0)
+				.getTimestart());
 		String titleNow = "";
 		listObjects.add(new CalenderObject(null, CalendarListAdapter.TYPE_DATE,
 				titlePrev));
 		listObjects.add(new CalenderObject(mEvents.get(0),
 				CalendarListAdapter.TYPE_EVENT, titlePrev));
 		for (int i = 1; i < mEvents.size(); i++) {
-			titleNow = TimeFormat.getSectionTitle(mEvents.get(i).getTimestart());
+			titleNow = TimeFormat
+					.getSectionTitle(mEvents.get(i).getTimestart());
 			if (!titleNow.contentEquals(titlePrev))
 				listObjects.add(new CalenderObject(null,
 						CalendarListAdapter.TYPE_DATE, titleNow));
@@ -301,6 +317,39 @@ public class CalenderFragment extends Fragment {
 			this.viewType = viewType;
 			this.title = title;
 		}
+	}
+
+	void setupSwipeLayout() {
+		if (swipeLayout == null || eventList == null)
+			return;
+
+		swipeLayout.setColorSchemeResources(R.color.refresh_green,
+				R.color.refresh_red, R.color.refresh_blue,
+				R.color.refresh_yellow);
+		swipeLayout.setOnRefreshListener(this);
+
+		// Link swipeLayout with underlying listview
+		eventList.setOnScrollListener(new AbsListView.OnScrollListener() {
+			@Override
+			public void onScrollStateChanged(AbsListView view, int scrollState) {
+
+			}
+
+			@Override
+			public void onScroll(AbsListView view, int firstVisibleItem,
+					int visibleItemCount, int totalItemCount) {
+				int topRowVerticalPosition = (eventList == null || eventList
+						.getChildCount() == 0) ? 0 : eventList.getChildAt(0)
+						.getTop();
+				swipeLayout.setEnabled(topRowVerticalPosition >= 0);
+			}
+		});
+	}
+
+	@Override
+	public void onRefresh() {
+		new ListEventsThread(session.getmUrl(), session.getToken(),
+				session.getCurrentSiteId()).execute("");
 	}
 
 }
