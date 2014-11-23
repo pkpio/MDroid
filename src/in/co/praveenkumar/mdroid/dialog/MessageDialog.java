@@ -23,6 +23,7 @@ public class MessageDialog extends Dialog implements
 	Context context;
 	MoodleContact contact = new MoodleContact();
 	EditText messageET;
+	SessionSetting session;
 
 	public MessageDialog(Context context) {
 		super(context);
@@ -63,7 +64,7 @@ public class MessageDialog extends Dialog implements
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.dialog_message_sendbutton:
-			SessionSetting session = new SessionSetting(context);
+			session = new SessionSetting(context);
 			new AsyncMessageSender(session.getmUrl(), session.getToken(),
 					contact.getContactid(), messageET.getText().toString())
 					.execute("");
@@ -95,7 +96,8 @@ public class MessageDialog extends Dialog implements
 		@Override
 		protected Boolean doInBackground(String... params) {
 			mrm = new MoodleRestMessage(mUrl, token);
-			MoodleMessage mMessage = new MoodleMessage(userid, message);
+			MoodleMessage mMessage = new MoodleMessage(userid, message + "\n"
+					+ session.getMessageSignature());
 			return mrm.sendMessage(mMessage);
 		}
 

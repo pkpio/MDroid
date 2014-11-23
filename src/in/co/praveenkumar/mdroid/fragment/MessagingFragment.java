@@ -17,10 +17,12 @@ import java.util.List;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.text.Html;
 import android.util.Log;
@@ -300,7 +302,8 @@ public class MessagingFragment extends Fragment {
 		@Override
 		protected Boolean doInBackground(String... params) {
 			mrm = new MoodleRestMessage(mUrl, token);
-			MoodleMessage mMessage = new MoodleMessage(userid, message);
+			MoodleMessage mMessage = new MoodleMessage(userid, message + "\n"
+					+ session.getMessageSignature());
 			return mrm.sendMessage(mMessage);
 		}
 
