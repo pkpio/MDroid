@@ -1,10 +1,10 @@
 package in.co.praveenkumar.mdroid.fragment;
 
+import in.co.praveenkumar.R;
 import in.co.praveenkumar.mdroid.helper.AppInterface.DiscussionIdInterface;
 import in.co.praveenkumar.mdroid.helper.LetterColor;
 import in.co.praveenkumar.mdroid.helper.SessionSetting;
 import in.co.praveenkumar.mdroid.helper.TimeFormat;
-import in.co.praveenkumar.R;
 import in.co.praveenkumar.mdroid.moodlemodel.MoodlePost;
 import in.co.praveenkumar.mdroid.task.PostSyncTask;
 
@@ -17,23 +17,28 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
 import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
-public class PostFragment extends Fragment {
+public class PostFragment extends Fragment implements OnRefreshListener {
 	private final String DEBUG_TAG = "PostFragment";
 	PostListAdapter postListAdapter;
 	SessionSetting session;
 	int discussionid = 0;
 	List<MoodlePost> mPosts;
 	LinearLayout postsEmptyLayout;
+	SwipeRefreshLayout swipeLayout;
+	ListView postList;
 
 	/**
 	 * This constructor lists all forums in the site. Don't use this
@@ -82,10 +87,14 @@ public class PostFragment extends Fragment {
 						+ "", discussionid + "");
 		sortPostsByTime();
 
-		ListView postList = (ListView) rootView.findViewById(R.id.content_post);
+		postList = (ListView) rootView.findViewById(R.id.content_post);
 		postListAdapter = new PostListAdapter(getActivity());
-
 		postList.setAdapter(postListAdapter);
+
+		swipeLayout = (SwipeRefreshLayout) rootView
+				.findViewById(R.id.swipe_refresh);
+		setupSwipeLayout();
+
 		new AsyncPostsSync(session.getmUrl(), session.getToken(),
 				session.getCurrentSiteId()).execute("");
 		return rootView;
@@ -207,6 +216,11 @@ public class PostFragment extends Fragment {
 		}
 
 		@Override
+		protected void onPreExecute() {
+			swipeLayout.setRefreshing(true);
+		}
+
+		@Override
 		protected Boolean doInBackground(String... params) {
 			syncStatus = pst.syncPosts(discussionid);
 
@@ -225,7 +239,41 @@ public class PostFragment extends Fragment {
 			postListAdapter.notifyDataSetChanged();
 			if (mPosts.size() != 0)
 				postsEmptyLayout.setVisibility(LinearLayout.GONE);
+			swipeLayout.setRefreshing(false);
 		}
 
+	}
+
+	@Override
+	public void onRefresh() {
+		new AsyncPostsSync(session.getmUrl(), session.getToken(),
+				session.getCurrentSiteId()).execute("");
+	}
+
+	void setupSwipeLayout() {
+		if (swipeLayout == null || postList == null)
+			return;
+
+		swipeLayout.setColorSchemeResources(R.color.refresh_green,
+				R.color.refresh_red, R.color.refresh_blue,
+				R.color.refresh_yellow);
+		swipeLayout.setOnRefreshListener(this);
+
+		// Link swipeLayout with underlying listview
+		postList.setOnScrollListener(new AbsListView.OnScrollListener() {
+			@Override
+			public void onScrollStateChanged(AbsListView view, int scrollState) {
+
+			}
+
+			@Override
+			public void onScroll(AbsListView view, int firstVisibleItem,
+					int visibleItemCount, int totalItemCount) {
+				int topRowVerticalPosition = (postList == null || postList
+						.getChildCount() == 0) ? 0 : postList.getChildAt(0)
+						.getTop();
+				swipeLayout.setEnabled(topRowVerticalPosition >= 0);
+			}
+		});
 	}
 }
