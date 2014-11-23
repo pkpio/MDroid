@@ -22,7 +22,7 @@
         "name": "New content notifications",
         "status": 0,
         "votestarget": 20,
-        "votescasted": 2,
+        "votescasted": 3,
         "productid": "in.co.praveenkumar.mdroid.donate.features.new_content_notifications",
         "description": "Periodic checking for new contents and sending notification to user. Options will given to set the frequency of checking and more on per account basis."
     },
