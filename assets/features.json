@@ -1,42 +1,29 @@
 [
     {
-        "id": 1,
-        "name": "Multiple accounts",
-        "status": 2,
+        "id": 0,
+        "name": "Donate",
+        "status": 0,
         "votestarget": 0,
         "votescasted": 0,
-        "description": "Support multiple accounts at the same time in the app. Accounts can be on the same Moodle server or on different moodle servers"
-    },
-    {
-        "id": 2,
-        "name": "Paranoid login",
-        "status": 2,
-        "votestarget": 0,
-        "votescasted": 0,
-        "description": "Login without password. Authenticated using a token given by Moodle site. This way your password is safe."
-    },
-    {
-        "id": 3,
-        "name": "Intelligent file download",
-        "status": 2,
-        "votestarget": 0,
-        "votescasted": 0,
-        "description": "Intelligent file download using system downloader. Your file downloads are persistant across network failures, switching networks (between Mobile data and Wifi) and even device reboots!"
+        "productid": "in.co.praveenkumar.mdroid.donate",
+        "description": "Support MDroid development and unlock special features!"
     },
     {
         "id": 4,
         "name": "Search option",
         "status": 0,
         "votestarget": 20,
-        "votescasted": 0,
-        "description": "Once implemented, you will be able to search any information on your Moodle site - Courses, Course contents, Forums, Discussions, Posts, Calender etc.,. The best part is, it woould all work even when you are offline!"
+        "votescasted": 1,
+        "productid": "in.co.praveenkumar.mdroid.donate.features.search_option",
+        "description": "Ability to search any information on your Moodle site - Courses, Course contents, Forums, Discussions, Posts, Calender etc.,. The best part is, it works offline!"
     },
     {
         "id": 5,
         "name": "New content notifications",
         "status": 0,
         "votestarget": 20,
-        "votescasted": 0,
+        "votescasted": 2,
+        "productid": "in.co.praveenkumar.mdroid.donate.features.new_content_notifications",
         "description": "Periodic checking for new contents and sending notification to user. Options will given to set the frequency of checking and more on per account basis."
     },
     {
@@ -45,23 +32,8 @@
         "status": 0,
         "votestarget": 30,
         "votescasted": 0,
+        "productid": "in.co.praveenkumar.mdroid.donate.features.uploading_files",
         "description": "User will be able to upload files to the Moodle server to their private files section. Depending on the support in Moodle APIs, this will be extended to other sections."
-    },
-    {
-        "id": 7,
-        "name": "Transfers section",
-        "status": 0,
-        "votestarget": 25,
-        "votescasted": 0,
-        "description": "A seperate section in MDroid application where you can check all the current transfers - file downloads or uploads. This will also show the progress of the transfer and works irrespective of, from where the transfer has been initiated. You can also check finished transfers here."
-    },
-    {
-        "id": 8,
-        "name": "Messaging",
-        "status": 1,
-        "votestarget": 5,
-        "votescasted": 0,
-        "description": "Lists unread message counts. Indications of sender status - Online, Offline, Stranger. Option to send messages to be implemented. Reading messages in not supported in Moodle APIs but we will be using webview in the app to read messages."
     },
     {
         "id": 9,
@@ -69,30 +41,7 @@
         "status": 0,
         "votestarget": 10,
         "votescasted": 0,
+        "productid": "in.co.praveenkumar.mdroid.donate.features.course_participants",
         "description": "Adds a section in the course to show the list of participants in that course. Will also have options to add a participant as a contact, view profile and send messages"
-    },
-    {
-        "id": 10,
-        "name": "Calender",
-        "status": 1,
-        "votestarget": 5,
-        "votescasted": 0,
-        "description": "Moodle site calender. Includes a calender in the courses for course specific events. Adding events to be implemented."
-    },
-    {
-        "id": 11,
-        "name": "Forums",
-        "status": 1,
-        "votestarget": 0,
-        "votescasted": 0,
-        "description": "Listing forums, topics inside a forum and post in a topic implemented. Reply option is not supported by Moodle APIs so, webview is used to fulfil that. Reply option is yet to be added."
-    },
-    {
-        "id": 12,
-        "name": "Notes",
-        "status": 0,
-        "votestarget": 20,
-        "votescasted": 0,
-        "description": "Viewing notes created by the user. Will also be having an option to create notes for a user, course or personal note."
     }
 ]
