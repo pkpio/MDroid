@@ -16,11 +16,14 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -32,13 +35,15 @@ import android.widget.TextView;
  * @author Praveen Kumar Pendyala (praveen@praveenkumar.co.in)
  * 
  */
-public class DiscussionFragment extends Fragment {
+public class DiscussionFragment extends Fragment implements OnRefreshListener {
 	private final String DEBUG_TAG = "DiscussionFragment";
 	TopicListAdapter topicListAdapter;
 	SessionSetting session;
 	int forumid = 0;
 	List<MoodleDiscussion> mTopics;
 	LinearLayout topicsEmptyLayout;
+	SwipeRefreshLayout swipeLayout;
+	ListView topicList;
 
 	/**
 	 * Don't use this constructor. We need a forumid. Any activity that includes
@@ -90,11 +95,14 @@ public class DiscussionFragment extends Fragment {
 				"siteid = ? and forumid = ?", session.getCurrentSiteId() + "",
 				forumid + "");
 
-		ListView topicList = (ListView) rootView
-				.findViewById(R.id.content_discussion);
+		topicList = (ListView) rootView.findViewById(R.id.content_discussion);
 		topicListAdapter = new TopicListAdapter(getActivity());
-
 		topicList.setAdapter(topicListAdapter);
+
+		swipeLayout = (SwipeRefreshLayout) rootView
+				.findViewById(R.id.swipe_refresh);
+		setupSwipeLayout();
+
 		new AsyncTopicsSync(session.getmUrl(), session.getToken(),
 				session.getCurrentSiteId()).execute("");
 		return rootView;
@@ -219,6 +227,11 @@ public class DiscussionFragment extends Fragment {
 		}
 
 		@Override
+		protected void onPreExecute() {
+			swipeLayout.setRefreshing(true);
+		}
+
+		@Override
 		protected Boolean doInBackground(String... params) {
 			return dst.syncDiscussions(forumid);
 		}
@@ -231,7 +244,40 @@ public class DiscussionFragment extends Fragment {
 								"siteid = ? and forumid = ?", siteid + "",
 								forumid + "");
 			topicListAdapter.notifyDataSetChanged();
+			swipeLayout.setRefreshing(false);
 		}
+	}
 
+	void setupSwipeLayout() {
+		if (swipeLayout == null || topicList == null)
+			return;
+
+		swipeLayout.setColorSchemeResources(R.color.refresh_green,
+				R.color.refresh_red, R.color.refresh_blue,
+				R.color.refresh_yellow);
+		swipeLayout.setOnRefreshListener(this);
+
+		// Link swipeLayout with underlying listview
+		topicList.setOnScrollListener(new AbsListView.OnScrollListener() {
+			@Override
+			public void onScrollStateChanged(AbsListView view, int scrollState) {
+
+			}
+
+			@Override
+			public void onScroll(AbsListView view, int firstVisibleItem,
+					int visibleItemCount, int totalItemCount) {
+				int topRowVerticalPosition = (topicList == null || topicList
+						.getChildCount() == 0) ? 0 : topicList.getChildAt(0)
+						.getTop();
+				swipeLayout.setEnabled(topRowVerticalPosition >= 0);
+			}
+		});
+	}
+
+	@Override
+	public void onRefresh() {
+		new AsyncTopicsSync(session.getmUrl(), session.getToken(),
+				session.getCurrentSiteId()).execute("");
 	}
 }
