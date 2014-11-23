@@ -14,13 +14,6 @@ public class CourseActivity extends BaseNavigationActivity {
 	private ViewPager viewPager;
 	private static final String[] TABS = { "MY COURSES", "FAVOURITE COURSES" };
 
-	/**
-	 * A custom {@link ViewPager} title strip which looks much like Tabs present
-	 * in Android v4.0 and above, but is designed to give continuous feedback to
-	 * the user when scrolling.
-	 */
-	private SlidingTabLayout mSlidingTabLayout;
-
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -35,15 +28,8 @@ public class CourseActivity extends BaseNavigationActivity {
 		viewPager = (ViewPager) findViewById(R.id.course_pager);
 		viewPager.setOffscreenPageLimit(2);
 		viewPager.setAdapter(mAdapter);
-		//
-		// TabPageIndicator indicator = (TabPageIndicator)
-		// findViewById(R.id.indicator);
-		// indicator.setViewPager(viewPager);
 
-		// Give the SlidingTabLayout the ViewPager, this must be done AFTER the
-		// ViewPager has had
-		// it's PagerAdapter set.
-		mSlidingTabLayout = (SlidingTabLayout) findViewById(R.id.sliding_tabs);
+		SlidingTabLayout mSlidingTabLayout = (SlidingTabLayout) findViewById(R.id.sliding_tabs);
 		mSlidingTabLayout.setViewPager(viewPager);
 	}
 
