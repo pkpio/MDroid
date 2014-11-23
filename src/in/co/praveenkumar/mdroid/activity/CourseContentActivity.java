@@ -4,6 +4,7 @@ import in.co.praveenkumar.R;
 import in.co.praveenkumar.mdroid.fragment.CalenderFragment;
 import in.co.praveenkumar.mdroid.fragment.ContentFragment;
 import in.co.praveenkumar.mdroid.fragment.ForumFragment;
+import in.co.praveenkumar.mdroid.fragment.WorkInProgressFragment;
 import in.co.praveenkumar.mdroid.moodlemodel.MoodleCourse;
 import in.co.praveenkumar.mdroid.view.SlidingTabLayout;
 import android.os.Bundle;
@@ -16,7 +17,7 @@ public class CourseContentActivity extends BaseNavigationActivity {
 	private long coursedbid;
 	private int courseid;
 	private ViewPager viewPager;
-	private static final String[] TABS = { "Contents", "Forums", "Calendar" };
+	private static final String[] TABS = { "Contents", "Forums", "Calendar", "Participants" };
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -60,6 +61,9 @@ public class CourseContentActivity extends BaseNavigationActivity {
 			case 2:
 				// Course Calendar
 				return new CalenderFragment(courseid);
+			case 3:
+				// Course Calendar
+				return new WorkInProgressFragment();
 			}
 			return null;
 		}
