@@ -38,7 +38,7 @@ public class RightNavigationFragment extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 
-		View rootView = inflater.inflate(R.layout.frag_right_navigation,
+		View rootView = inflater.inflate(R.layout.frag_contact,
 				container, false);
 		chatEmptyLayout = (LinearLayout) rootView
 				.findViewById(R.id.chat_empty_layout);
