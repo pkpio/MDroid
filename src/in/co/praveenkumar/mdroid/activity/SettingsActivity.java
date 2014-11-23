@@ -71,7 +71,7 @@ public class SettingsActivity extends PreferenceActivity implements
 		addPreferencesFromResource(R.xml.preferences);
 
 		// Enable donate only preferences
-		if (billing.isPurchased(Param.BILLING_DONATION_PRODUCT_ID))
+		if (isProUser())
 			findPreference("messagingSignature").setEnabled(true);
 		else
 			findPreference("messagingSignature").setSummary(
@@ -150,6 +150,14 @@ public class SettingsActivity extends PreferenceActivity implements
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if (!billing.handleActivityResult(requestCode, resultCode, data))
 			super.onActivityResult(requestCode, resultCode, data);
+	}
+
+	private Boolean isProUser() {
+		return billing.isPurchased(Param.BILLING_DONATION_PID)
+				|| billing.isPurchased(Param.BILLING_FEATURE_NOTIFICATIONS_PID)
+				|| billing.isPurchased(Param.BILLING_FEATURE_PARTICIPANTS_PID)
+				|| billing.isPurchased(Param.BILLING_FEATURE_SEARCH_PID)
+				|| billing.isPurchased(Param.BILLING_FEATURE_UPLOADS_PID);
 	}
 
 	@Override
