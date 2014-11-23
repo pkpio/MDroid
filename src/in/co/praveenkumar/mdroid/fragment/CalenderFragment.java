@@ -64,8 +64,7 @@ public class CalenderFragment extends Fragment implements OnRefreshListener {
 				false);
 		calenderEmptyLayout = (LinearLayout) rootView
 				.findViewById(R.id.calender_empty_layout);
-		ListView eventList = (ListView) rootView
-				.findViewById(R.id.list_calendar);
+		eventList = (ListView) rootView.findViewById(R.id.list_calendar);
 
 		session = new SessionSetting(context);
 		if (courseid == 0)
