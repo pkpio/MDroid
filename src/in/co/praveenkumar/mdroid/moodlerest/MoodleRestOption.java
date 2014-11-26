@@ -16,7 +16,7 @@ public class MoodleRestOption {
 
 	// Function names for getting contents
 	public static final String FUNCTION_GET_ALL_COURSES = "moodle_course_get_courses";// core_course_get_courses
-	public static final String FUNCTION_GET_ENROLLED_COURSES = "moodle_enrol_get_users_courses";//core_enrol_get_users_courses
+	public static final String FUNCTION_GET_ENROLLED_COURSES = "moodle_enrol_get_users_courses";// core_enrol_get_users_courses
 	public static final String FUNCTION_GET_COURSE_CONTENTS = "core_course_get_contents";// "core_course_get_contents";
 	public static final String FUNCTION_GET_FORUMS = "mod_forum_get_forums_by_courses";
 	public static final String FUNCTION_GET_DISCUSSIONS = "mod_forum_get_forum_discussions";

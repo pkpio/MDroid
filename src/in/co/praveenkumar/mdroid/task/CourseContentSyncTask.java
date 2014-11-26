@@ -64,11 +64,11 @@ public class CourseContentSyncTask {
 			return false;
 		}
 
-		// Moodle exception
-		if (mSections.size() == 1 && mSections.get(0).getCourseid() == 0) {
-			error = "Moodle Exception: User don't have permissions!";
-			return false;
-		}
+		// Moodle exception - Buggy exception handling -TODO- Improvise!
+		// if (mSections.size() == 1 && mSections.get(0).getCourseid() == 0) {
+		// error = "Moodle Exception: User don't have permissions!";
+		// return false;
+		// }
 
 		// Add relational fields to all sections and update
 		MoodleSection section = new MoodleSection();
