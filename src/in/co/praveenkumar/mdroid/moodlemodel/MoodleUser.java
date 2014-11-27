@@ -123,6 +123,10 @@ public class MoodleUser extends SugarRecord<MoodleUser> {
 	/**
 	 * Overridden / rewritten methods from sugar super class
 	 */
+
+	/**
+	 * Supports saving list of enrolled courses of the user as well.
+	 */
 	@Override
 	public void save() {
 		super.save();
@@ -146,14 +150,14 @@ public class MoodleUser extends SugarRecord<MoodleUser> {
 	}
 
 	/**
-	 * Get MoodleUser from id
+	 * Get MoodleUser from his moodle userid
 	 * 
 	 * @param userid
 	 *            MoodleUserId of the user. Don't confuse this with database
 	 *            userid
 	 * @param siteid
 	 *            MDroid siteid of the site to which this user belongs to
-	 * @return
+	 * @return {@link MoodleUser}
 	 */
 	public MoodleUser find(int userid, long siteid) {
 		List<MoodleUser> mUser = MoodleUser.find(MoodleUser.class,
