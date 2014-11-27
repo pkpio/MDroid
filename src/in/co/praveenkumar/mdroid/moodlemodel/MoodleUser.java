@@ -1,7 +1,10 @@
 package in.co.praveenkumar.mdroid.moodlemodel;
 
+import java.util.List;
+
 import com.google.gson.annotations.SerializedName;
 import com.orm.SugarRecord;
+import com.orm.dsl.Ignore;
 
 public class MoodleUser extends SugarRecord<MoodleUser> {
 
@@ -108,10 +111,64 @@ public class MoodleUser extends SugarRecord<MoodleUser> {
 	@SerializedName("profileimageurl")
 	String profileimageurl;
 
+	@Ignore
+	@SerializedName("enrolledcourses")
+	List<MoodleUserCourse> enrolledcourses;
+
 	// No support for custom fields and preferences yet.
 
 	// Relational fields
 	long siteid;
+
+	/**
+	 * Overridden / rewritten methods from sugar super class
+	 */
+	@Override
+	public void save() {
+		super.save();
+
+		// Save users' enrolled courses
+		if (enrolledcourses == null || enrolledcourses.size() == 0)
+			return;
+
+		MoodleUserCourse mUserCourse;
+		List<MoodleUserCourse> dbUserCourses;
+		for (int i = 0; i < enrolledcourses.size(); i++) {
+			mUserCourse = enrolledcourses.get(i);
+			mUserCourse.setSiteid(this.siteid);
+			mUserCourse.setUserid(this.userid);
+			dbUserCourses = MoodleUserCourse.find(MoodleUserCourse.class,
+					"userid = ? and siteid = ?", userid + "", siteid + "");
+			if (dbUserCourses != null && dbUserCourses.size() > 0)
+				mUserCourse.setId(dbUserCourses.get(0).getId());
+			mUserCourse.save();
+		}
+	}
+
+	/**
+	 * Get MoodleUser from id
+	 * 
+	 * @param userid
+	 *            MoodleUserId of the user. Don't confuse this with database
+	 *            userid
+	 * @param siteid
+	 *            MDroid siteid of the site to which this user belongs to
+	 * @return
+	 */
+	public MoodleUser find(int userid, long siteid) {
+		List<MoodleUser> mUser = MoodleUser.find(MoodleUser.class,
+				"userid = ? and siteid = ?", userid + "", siteid + "");
+
+		if (mUser == null || mUser.size() == 0)
+			return null;
+
+		// Set their enrolled courses
+		mUser.get(0).enrolledcourses = MoodleUserCourse.find(
+				MoodleUserCourse.class, "userid = ? and siteid = ?",
+				mUser.get(0).getId() + "", siteid + "");
+
+		return mUser.get(0);
+	}
 
 	public int getUserid() {
 		return userid;
@@ -119,6 +176,7 @@ public class MoodleUser extends SugarRecord<MoodleUser> {
 
 	/**
 	 * Get username
+	 * 
 	 * @return
 	 */
 	public String getUsername() {
@@ -127,6 +185,7 @@ public class MoodleUser extends SugarRecord<MoodleUser> {
 
 	/**
 	 * Get The first name(s) of the user
+	 * 
 	 * @return
 	 */
 	public String getFirstname() {
@@ -135,6 +194,7 @@ public class MoodleUser extends SugarRecord<MoodleUser> {
 
 	/**
 	 * Get The family name of the user
+	 * 
 	 * @return
 	 */
 	public String getLastname() {
@@ -143,6 +203,7 @@ public class MoodleUser extends SugarRecord<MoodleUser> {
 
 	/**
 	 * Get The fullname of the user
+	 * 
 	 * @return
 	 */
 	public String getFullname() {
@@ -151,6 +212,7 @@ public class MoodleUser extends SugarRecord<MoodleUser> {
 
 	/**
 	 * Get email
+	 * 
 	 * @return
 	 */
 	public String getEmail() {
@@ -159,6 +221,7 @@ public class MoodleUser extends SugarRecord<MoodleUser> {
 
 	/**
 	 * Get address
+	 * 
 	 * @return
 	 */
 	public String getAddress() {
@@ -167,6 +230,7 @@ public class MoodleUser extends SugarRecord<MoodleUser> {
 
 	/**
 	 * Get phone1
+	 * 
 	 * @return
 	 */
 	public String getPhone1() {
@@ -175,6 +239,7 @@ public class MoodleUser extends SugarRecord<MoodleUser> {
 
 	/**
 	 * Get phone2
+	 * 
 	 * @return
 	 */
 	public String getPhone2() {
@@ -183,6 +248,7 @@ public class MoodleUser extends SugarRecord<MoodleUser> {
 
 	/**
 	 * Get icq id
+	 * 
 	 * @return
 	 */
 	public String getIcq() {
@@ -191,6 +257,7 @@ public class MoodleUser extends SugarRecord<MoodleUser> {
 
 	/**
 	 * Get skype id
+	 * 
 	 * @return
 	 */
 	public String getSkype() {
@@ -199,6 +266,7 @@ public class MoodleUser extends SugarRecord<MoodleUser> {
 
 	/**
 	 * Get yahoo id
+	 * 
 	 * @return
 	 */
 	public String getYahoo() {
@@ -207,6 +275,7 @@ public class MoodleUser extends SugarRecord<MoodleUser> {
 
 	/**
 	 * Get aim id
+	 * 
 	 * @return
 	 */
 	public String getAim() {
@@ -215,6 +284,7 @@ public class MoodleUser extends SugarRecord<MoodleUser> {
 
 	/**
 	 * Get msn id
+	 * 
 	 * @return
 	 */
 	public String getMsn() {
@@ -223,6 +293,7 @@ public class MoodleUser extends SugarRecord<MoodleUser> {
 
 	/**
 	 * Get department
+	 * 
 	 * @return
 	 */
 	public String getDepartment() {
@@ -231,6 +302,7 @@ public class MoodleUser extends SugarRecord<MoodleUser> {
 
 	/**
 	 * Get institution
+	 * 
 	 * @return
 	 */
 	public String getInstitution() {
@@ -239,6 +311,7 @@ public class MoodleUser extends SugarRecord<MoodleUser> {
 
 	/**
 	 * Get An arbitrary ID code number perhaps from the institution
+	 * 
 	 * @return
 	 */
 	public String getIdnumber() {
@@ -247,6 +320,7 @@ public class MoodleUser extends SugarRecord<MoodleUser> {
 
 	/**
 	 * Get user interests (separated by commas)
+	 * 
 	 * @return
 	 */
 	public String getInterests() {
@@ -255,6 +329,7 @@ public class MoodleUser extends SugarRecord<MoodleUser> {
 
 	/**
 	 * Get first access to the site (0 if never)
+	 * 
 	 * @return
 	 */
 	public int getFirstaccess() {
@@ -263,6 +338,7 @@ public class MoodleUser extends SugarRecord<MoodleUser> {
 
 	/**
 	 * Get last access to the site (0 if never)
+	 * 
 	 * @return
 	 */
 	public int getLastaccess() {
@@ -271,6 +347,7 @@ public class MoodleUser extends SugarRecord<MoodleUser> {
 
 	/**
 	 * Get Auth plugins include manual, ldap, imap, etc
+	 * 
 	 * @return
 	 */
 	public String getAuth() {
@@ -279,6 +356,7 @@ public class MoodleUser extends SugarRecord<MoodleUser> {
 
 	/**
 	 * Get Active user: 1 if confirmed, 0 otherwise
+	 * 
 	 * @return
 	 */
 	public int getConfirmed() {
@@ -287,6 +365,7 @@ public class MoodleUser extends SugarRecord<MoodleUser> {
 
 	/**
 	 * Get Language code such as "en", must exist on server
+	 * 
 	 * @return
 	 */
 	public String getLang() {
@@ -295,6 +374,7 @@ public class MoodleUser extends SugarRecord<MoodleUser> {
 
 	/**
 	 * Get Calendar type such as "gregorian", must exist on server
+	 * 
 	 * @return
 	 */
 	public String getCalendartype() {
@@ -303,6 +383,7 @@ public class MoodleUser extends SugarRecord<MoodleUser> {
 
 	/**
 	 * Get Theme name such as "standard", must exist on server
+	 * 
 	 * @return
 	 */
 	public String getTheme() {
@@ -311,6 +392,7 @@ public class MoodleUser extends SugarRecord<MoodleUser> {
 
 	/**
 	 * Get Timezone code such as Australia/Perth, or 99 for default
+	 * 
 	 * @return
 	 */
 	public String getTimezone() {
@@ -319,6 +401,7 @@ public class MoodleUser extends SugarRecord<MoodleUser> {
 
 	/**
 	 * Get Mail format code is 0 for plain text, 1 for HTML etc
+	 * 
 	 * @return
 	 */
 	public int getMailformat() {
@@ -327,6 +410,7 @@ public class MoodleUser extends SugarRecord<MoodleUser> {
 
 	/**
 	 * Get User profile description
+	 * 
 	 * @return
 	 */
 	public String getDescription() {
@@ -335,6 +419,7 @@ public class MoodleUser extends SugarRecord<MoodleUser> {
 
 	/**
 	 * Get description format (1 = HTML, 0 = MOODLE, 2 = PLAIN or 4 = MARKDOWN)
+	 * 
 	 * @return
 	 */
 	public String getDescriptionformat() {
@@ -343,6 +428,7 @@ public class MoodleUser extends SugarRecord<MoodleUser> {
 
 	/**
 	 * Get Home city of the user
+	 * 
 	 * @return
 	 */
 	public String getCity() {
@@ -351,6 +437,7 @@ public class MoodleUser extends SugarRecord<MoodleUser> {
 
 	/**
 	 * Get URL of the user
+	 * 
 	 * @return
 	 */
 	public String getUrl() {
@@ -359,6 +446,7 @@ public class MoodleUser extends SugarRecord<MoodleUser> {
 
 	/**
 	 * Get Home country code of the user, such as AU or CZ
+	 * 
 	 * @return
 	 */
 	public String getCountry() {
@@ -367,6 +455,7 @@ public class MoodleUser extends SugarRecord<MoodleUser> {
 
 	/**
 	 * Get User image profile URL - small version
+	 * 
 	 * @return
 	 */
 	public String getProfileimageurlsmall() {
@@ -375,6 +464,7 @@ public class MoodleUser extends SugarRecord<MoodleUser> {
 
 	/**
 	 * Get User image profile URL - big version
+	 * 
 	 * @return
 	 */
 	public String getProfileimageurl() {
