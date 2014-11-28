@@ -5,7 +5,6 @@ import in.co.praveenkumar.mdroid.moodlemodel.MoodleUser;
 
 import java.io.Reader;
 import java.net.URLEncoder;
-import java.util.ArrayList;
 import java.util.List;
 
 import android.util.Log;
@@ -25,21 +24,23 @@ public class MoodleRestUser {
 	}
 
 	/**
-	 * Retrieve users information for a specified unique field. The search field
-	 * can be 'id' or 'idnumber' or 'username' or 'email'
+	 * Retrieve users registered in a course
 	 * 
-	 * @return MoodleUser
+	 * @param courseid
+	 *            Moodle courseid of the course
+	 * 
+	 * @return list of MoodleUser
 	 */
-	public MoodleUser getUserinfoByField(int userid) {
-		ArrayList<MoodleUser> mUsers = null; // So that we know about network
+	public List<MoodleUser> getUsers(int courseid) {
+		List<MoodleUser> mUsers = null; // So that we know about network
 		// failures
 		String format = MoodleRestOption.RESPONSE_FORMAT;
 		String function = MoodleRestOption.FUNCTION_GET_USERS_FROM_COURSE;
 
 		try {
 			// Adding all parameters.
-			String params = "values[0]="
-					+ URLEncoder.encode(userid + "", "UTF-8");
+			String params = "courseid="
+					+ URLEncoder.encode(courseid + "", "UTF-8");
 
 			// Build a REST call url to make a call.
 			String restUrl = mUrl + "/webservice/rest/server.php" + "?wstoken="
@@ -62,7 +63,7 @@ public class MoodleRestUser {
 			e.printStackTrace();
 		}
 
-		return mUsers.get(0);
+		return mUsers;
 	}
 
 }
