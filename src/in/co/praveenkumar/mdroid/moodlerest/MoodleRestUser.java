@@ -34,7 +34,7 @@ public class MoodleRestUser {
 		ArrayList<MoodleUser> mUsers = null; // So that we know about network
 		// failures
 		String format = MoodleRestOption.RESPONSE_FORMAT;
-		String function = MoodleRestOption.FUNCTION_GET_USERS_FROM_FIELD;
+		String function = MoodleRestOption.FUNCTION_GET_USERS_FROM_COURSE;
 
 		try {
 			// Adding all parameters.
