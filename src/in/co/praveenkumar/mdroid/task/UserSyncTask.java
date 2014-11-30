@@ -48,9 +48,7 @@ public class UserSyncTask {
 		for (int i = 0; i < mUsers.size(); i++) {
 			mUser = mUsers.get(i);
 			mUser.setSiteid(siteid);
-			/*
-			 * -TODO- Improve this search with only Sql operation
-			 */
+
 			dbUsers = MoodleUser.find(MoodleUser.class,
 					"userid = ? and siteid = ?", mUser.getUserid() + "", siteid
 							+ "");
