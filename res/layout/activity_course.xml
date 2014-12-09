@@ -6,24 +6,33 @@
 
     <!-- Main content -->
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical" >
+        android:layout_height="match_parent" >
 
         <in.co.praveenkumar.mdroid.view.SlidingTabLayout
             android:id="@+id/sliding_tabs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
             android:background="@drawable/viewpager_bg_moodle2" />
+
+        <fragment
+            android:id="@+id/adFragment"
+            android:name="in.co.praveenkumar.mdroid.fragment.AdFragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true" />
 
         <android.support.v4.view.ViewPager
             android:id="@+id/course_pager"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="fill_parent"
+            android:layout_above="@id/adFragment"
+            android:layout_below="@id/sliding_tabs"
             android:background="@color/grey14" >
         </android.support.v4.view.ViewPager>
-    </LinearLayout>
+    </RelativeLayout>
 
     <!-- Navigations -->
 
