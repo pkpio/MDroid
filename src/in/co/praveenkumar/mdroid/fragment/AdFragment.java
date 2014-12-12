@@ -2,6 +2,7 @@ package in.co.praveenkumar.mdroid.fragment;
 
 import in.co.praveenkumar.R;
 import in.co.praveenkumar.mdroid.helper.AppInterface.DonationInterface;
+import in.co.praveenkumar.mdroid.helper.Param;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -42,7 +43,7 @@ public class AdFragment extends Fragment {
 		mAdView = (AdView) getView().findViewById(R.id.adView);
 
 		// Hide ads if he is a pro user
-		if (donation != null && donation.isProUser()) {
+		if (donation != null && donation.isProUser() || Param.hideAdsForSession) {
 			mAdView.setVisibility(AdView.GONE);
 			return;
 		}
