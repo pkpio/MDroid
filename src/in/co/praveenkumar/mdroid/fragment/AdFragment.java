@@ -73,7 +73,11 @@ public class AdFragment extends Fragment {
 		if (mAdView != null) {
 			mAdView.resume();
 
-			// Hide ads if any setting were updated
+			// If Prouser, just skip settings check.
+			if (donation != null && donation.isProUser())
+				return;
+
+			// Ads based on setting update
 			if (Param.hideAdsForSession)
 				mAdView.setVisibility(AdView.GONE);
 			else
