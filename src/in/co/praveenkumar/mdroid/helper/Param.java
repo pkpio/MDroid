@@ -9,6 +9,9 @@ package in.co.praveenkumar.mdroid.helper;
 public class Param {
 	public static final String DEFAULT_MSG_SIGN = "Sent from MDroid";
 
+	// Ads hiding
+	public static Boolean hideAdsForSession = false;
+
 	// Billing related
 	public static final String BILLING_DONATION_PID = "in.co.praveenkumar.mdroid.donate";
 	public static final String BILLING_FEATURE_NOTIFICATIONS_PID = "in.co.praveenkumar.mdroid.donate.features.new_content_notifications";
