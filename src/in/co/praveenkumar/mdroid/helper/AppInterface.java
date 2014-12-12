@@ -19,6 +19,21 @@ public class AppInterface {
 	}
 
 	/**
+	 * Gives an interface for checking if the user donated or not.
+	 * 
+	 * @author Praveen Kumar Pendyala (praveen@praveenkumar.co.in)
+	 * 
+	 */
+	public interface DonationInterface {
+		/**
+		 * Get donation status
+		 * 
+		 * @return Donation status
+		 */
+		public Boolean isProUser();
+	}
+
+	/**
 	 * Gives an interface for passing forumid between activity and fragments.
 	 * 
 	 * Useful in Discussion fragment and discussion activity
