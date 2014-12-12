@@ -1,6 +1,7 @@
 package in.co.praveenkumar.mdroid.activity;
 
 import in.co.praveenkumar.R;
+import in.co.praveenkumar.mdroid.helper.AppInterface.DonationInterface;
 import in.co.praveenkumar.mdroid.helper.AppInterface.DrawerStateInterface;
 import in.co.praveenkumar.mdroid.helper.Param;
 import android.content.Intent;
@@ -30,7 +31,7 @@ import com.anjlab.android.iab.v3.TransactionDetails;
  */
 @SuppressWarnings("deprecation")
 public abstract class BaseNavigationActivity extends ActionBarActivity
-		implements DrawerStateInterface {
+		implements DrawerStateInterface, DonationInterface {
 	private DrawerLayout mDrawerLayout;
 	private ActionBarDrawerToggle mDrawerToggle;
 	public BillingProcessor billing;
@@ -166,6 +167,18 @@ public abstract class BaseNavigationActivity extends ActionBarActivity
 		if (billing != null)
 			billing.release();
 		super.onDestroy();
+	}
+
+	@Override
+	public Boolean isProUser() {
+		if (billing == null)
+			return false;
+
+		return billing.isPurchased(Param.BILLING_DONATION_PID)
+				|| billing.isPurchased(Param.BILLING_FEATURE_NOTIFICATIONS_PID)
+				|| billing.isPurchased(Param.BILLING_FEATURE_PARTICIPANTS_PID)
+				|| billing.isPurchased(Param.BILLING_FEATURE_SEARCH_PID)
+				|| billing.isPurchased(Param.BILLING_FEATURE_UPLOADS_PID);
 	}
 
 }
