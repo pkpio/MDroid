@@ -59,9 +59,10 @@ public class SettingsActivity extends PreferenceActivity implements
 					}
 				});
 
-		// Set signature in prefs to current account value
+		// Set signature & adsPref in prefs to current account value
 		SharedPreferences.Editor editor = settings.edit();
 		editor.putString("messagingSignature", session.getMessageSignature());
+		editor.putBoolean("hideAds", Param.hideAdsForSession);
 		editor.commit();
 
 		/*
@@ -81,6 +82,7 @@ public class SettingsActivity extends PreferenceActivity implements
 		findPreference("logout").setOnPreferenceClickListener(this);
 		findPreference("messagingSignature")
 				.setOnPreferenceChangeListener(this);
+		findPreference("hideAds").setOnPreferenceChangeListener(this);
 
 		findPreference("help").setOnPreferenceClickListener(this);
 		findPreference("privacyPolicy").setOnPreferenceClickListener(this);
@@ -139,9 +141,26 @@ public class SettingsActivity extends PreferenceActivity implements
 	public boolean onPreferenceChange(Preference preference, Object newValue) {
 		String key = preference.getKey();
 
-		if (!key.contentEquals("messagingSignature"))
-			return true;
-		session.setMessageSignature(newValue.toString());
+		if (key.contentEquals("hideAds")) {
+			int hideCount = session.getAdsHideCount();
+
+			// Deny if he at max hide count already
+			if (hideCount == 3 && !Param.hideAdsForSession) {
+				Toast.makeText(this,
+						"You have hidden ads more than 3 times already!",
+						Toast.LENGTH_LONG).show();
+				return false;
+			}
+
+			// Increment count only if he is indenting to hide ads
+			if (!Param.hideAdsForSession)
+				session.setAdsHideCount(++hideCount);
+
+			Param.hideAdsForSession = !Param.hideAdsForSession;
+		}
+
+		if (key.contentEquals("messagingSignature"))
+			session.setMessageSignature(newValue.toString());
 
 		return true;
 	}
