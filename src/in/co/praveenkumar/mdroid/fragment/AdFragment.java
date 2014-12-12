@@ -68,6 +68,12 @@ public class AdFragment extends Fragment {
 		super.onResume();
 		if (mAdView != null) {
 			mAdView.resume();
+
+			// Hide ads if any setting were updated
+			if (Param.hideAdsForSession)
+				mAdView.setVisibility(AdView.GONE);
+			else
+				mAdView.setVisibility(AdView.VISIBLE);
 		}
 	}
 
