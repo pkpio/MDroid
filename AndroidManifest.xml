@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="in.co.praveenkumar"
     android:versionCode="39"
-    android:versionName="6.3.2 MDroid APIs" >
+    android:versionName="6.3.3 MDroid APIs" >
 
     <uses-sdk
         android:minSdkVersion="9"
@@ -111,7 +111,7 @@
             android:value="mdroid.db" />
         <meta-data
             android:name="VERSION"
-            android:value="4" />
+            android:value="5" />
         <meta-data
             android:name="QUERY_LOG"
             android:value="true" />
