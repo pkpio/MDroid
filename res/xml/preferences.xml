@@ -26,9 +26,9 @@
         android:summary="General settings"
         android:title="General" >
         <CheckBoxPreference
-            android:key="hideads"
-            android:summary="Hide ads temporarily / permanently"
-            android:title="Hide ads" />
+            android:key="hideAds"
+            android:summary="Works only for 3 times. To hide them permanently, please make a donation."
+            android:title="Hide ads temporarily" />
         <CheckBoxPreference
             android:key="debugging"
             android:summary="If enabled, gives more information on login and other errors"
