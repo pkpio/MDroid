@@ -23,8 +23,12 @@
 
     <!-- Debugging -->
     <PreferenceCategory
-        android:summary="Debug log settings"
-        android:title="Debugging" >
+        android:summary="General settings"
+        android:title="General" >
+        <CheckBoxPreference
+            android:key="hideads"
+            android:summary="Hide ads temporarily / permanently"
+            android:title="Hide ads" />
         <CheckBoxPreference
             android:key="debugging"
             android:summary="If enabled, gives more information on login and other errors"
