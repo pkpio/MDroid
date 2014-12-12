@@ -6,11 +6,24 @@
 
     <!-- Main content -->
 
-    <fragment
-        android:id="@+id/contact_layout"
-        android:name="in.co.praveenkumar.mdroid.fragment.ContactFragment"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent" >
+
+        <fragment
+            android:id="@+id/adFragment"
+            android:name="in.co.praveenkumar.mdroid.fragment.AdFragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true" />
+
+        <fragment
+            android:id="@+id/contact_layout"
+            android:name="in.co.praveenkumar.mdroid.fragment.ContactFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@id/adFragment" />
+    </RelativeLayout>
 
     <!-- Navigations -->
 
