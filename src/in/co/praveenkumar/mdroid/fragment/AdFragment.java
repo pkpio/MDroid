@@ -47,7 +47,11 @@ public class AdFragment extends Fragment {
 			mAdView.setVisibility(AdView.GONE);
 			return;
 		}
+		loadAds();
+	}
 
+	private void loadAds() {
+		mAdView.setVisibility(AdView.VISIBLE);
 		AdRequest adRequest = new AdRequest.Builder().addTestDevice(
 				"B3EEABB8EE11C2BE770B684D95219ECB").build();
 		mAdView.loadAd(adRequest);
@@ -73,7 +77,7 @@ public class AdFragment extends Fragment {
 			if (Param.hideAdsForSession)
 				mAdView.setVisibility(AdView.GONE);
 			else
-				mAdView.setVisibility(AdView.VISIBLE);
+				loadAds();
 		}
 	}
 
