@@ -177,6 +177,26 @@ public class SessionSetting {
 	}
 
 	/**
+	 * Set count of # of sessions ads were hidden
+	 * 
+	 * @param count
+	 */
+	public void setAdsHideCount(int count) {
+		Log.d(DEBUG_TAG, "Ads hidden count updated");
+		prefsEditor.putInt("sessionAdsHideCount", count);
+		prefsEditor.commit();
+	}
+
+	/**
+	 * Get count of # of sessions ads were hidden
+	 * 
+	 * @return count
+	 */
+	public int getAdsHideCount() {
+		return appSharedPrefs.getInt("sessionAdsHideCount", 0);
+	}
+
+	/**
 	 * Set message signature for the current account
 	 * 
 	 * @param sign
