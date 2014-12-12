@@ -10,6 +10,7 @@ public class Param {
 	public static final String DEFAULT_MSG_SIGN = "Sent from MDroid";
 
 	// Ads hiding
+	public static final int maxAdsHideCount = 3;
 	public static Boolean hideAdsForSession = false;
 
 	// Billing related
