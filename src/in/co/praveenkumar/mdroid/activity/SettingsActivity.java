@@ -145,9 +145,11 @@ public class SettingsActivity extends PreferenceActivity implements
 			int hideCount = session.getAdsHideCount();
 
 			// Deny if he at max hide count already
-			if (hideCount == 3 && !Param.hideAdsForSession) {
-				Toast.makeText(this,
-						"You have hidden ads more than 3 times already!",
+			if (hideCount == Param.maxAdsHideCount && !Param.hideAdsForSession) {
+				Toast.makeText(
+						this,
+						"You have hidden ads more than "
+								+ Param.maxAdsHideCount + " times already!",
 						Toast.LENGTH_LONG).show();
 				return false;
 			}
