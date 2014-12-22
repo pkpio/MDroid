@@ -24,7 +24,7 @@ public class Param {
 	/**************************************************
 	 * Google analytics related
 	 **************************************************/
-	// Screens
+	// GA Screens
 	public static final String GA_SCREEN_TUTORIAL = "Tutorial";
 	public static final String GA_SCREEN_LOGIN = "Login";
 	public static final String GA_SCREEN_WEBSERVICESS_OFF = "WebServicesOff";
@@ -41,5 +41,24 @@ public class Param {
 	public static final String GA_SCREEN_DONATION = "Donation";
 	public static final String GA_SCREEN_WORKINPROGRESS = "WorkInProgress";
 	public static final String GA_SCREEN_SETTING = "Setting";
+
+	/** GA Event categories **/
+	public static final String GA_EVENT_CAT_LOGIN = "LoginScreen";
+	public static final String GA_EVENT_CAT_SETTING = "SettingScreen";
+	public static final String GA_EVENT_CAT_DONATION = "DonationScreen";
+
+	/** GA Events **/
+	// Login screen events
+	public static final String GA_EVENT_LOGIN_DEMO_NORMAL = "DemoLoginNormal";
+	public static final String GA_EVENT_LOGIN_DEMO_PARANOID = "DemoLoginParanoid";
+	public static final String GA_EVENT_LOGIN_NORMAL = "LoginNormal";
+	public static final String GA_EVENT_LOGIN_PARANOID = "LoginParanoid";
+	public static final String GA_EVENT_LOGIN_PARANOID_HELP = "ParanoidHelp";
+
+	// Settings screen events
+	public static final String GA_EVENT_SETTING_HIDEADS = "HideAds";
+
+	// Donation screen events
+	public static final String GA_EVENT_DONATION_BUTTON = "DonateButtonPress";
 
 }
