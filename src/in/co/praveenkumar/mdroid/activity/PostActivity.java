@@ -1,6 +1,8 @@
 package in.co.praveenkumar.mdroid.activity;
 
 import in.co.praveenkumar.mdroid.helper.AppInterface.DiscussionIdInterface;
+import in.co.praveenkumar.mdroid.helper.ApplicationClass;
+import in.co.praveenkumar.mdroid.helper.Param;
 import in.co.praveenkumar.mdroid.helper.SessionSetting;
 import in.co.praveenkumar.R;
 import in.co.praveenkumar.mdroid.moodlemodel.MoodleDiscussion;
@@ -19,6 +21,9 @@ public class PostActivity extends BaseNavigationActivity implements
 		discussionid = getIntent().getExtras().getInt("discussionid");
 		setContentView(R.layout.activity_post);
 		setUpDrawer();
+
+		// Send a tracker
+		((ApplicationClass) getApplication()).sendScreen(Param.GA_SCREEN_POST);
 
 		// Set title
 		SessionSetting session = new SessionSetting(this);

@@ -5,6 +5,8 @@ import in.co.praveenkumar.mdroid.fragment.CalenderFragment;
 import in.co.praveenkumar.mdroid.fragment.ContentFragment;
 import in.co.praveenkumar.mdroid.fragment.ForumFragment;
 import in.co.praveenkumar.mdroid.fragment.WorkInProgressFragment;
+import in.co.praveenkumar.mdroid.helper.ApplicationClass;
+import in.co.praveenkumar.mdroid.helper.Param;
 import in.co.praveenkumar.mdroid.moodlemodel.MoodleCourse;
 import in.co.praveenkumar.mdroid.view.SlidingTabLayout;
 import android.os.Bundle;
@@ -25,6 +27,10 @@ public class CourseContentActivity extends BaseNavigationActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_course_contents);
 		setUpDrawer();
+
+		// Send a tracker
+		((ApplicationClass) getApplication())
+				.sendScreen(Param.GA_SCREEN_CONTENT);
 
 		Bundle extras = getIntent().getExtras();
 		coursedbid = extras.getLong("coursedbid");

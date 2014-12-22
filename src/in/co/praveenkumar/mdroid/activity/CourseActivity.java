@@ -3,16 +3,13 @@ package in.co.praveenkumar.mdroid.activity;
 import in.co.praveenkumar.R;
 import in.co.praveenkumar.mdroid.fragment.CourseFragment;
 import in.co.praveenkumar.mdroid.helper.ApplicationClass;
-import in.co.praveenkumar.mdroid.helper.ApplicationClass.TrackerName;
+import in.co.praveenkumar.mdroid.helper.Param;
 import in.co.praveenkumar.mdroid.view.SlidingTabLayout;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-
-import com.google.android.gms.analytics.HitBuilders;
-import com.google.android.gms.analytics.Tracker;
 
 public class CourseActivity extends BaseNavigationActivity {
 
@@ -24,6 +21,11 @@ public class CourseActivity extends BaseNavigationActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_course);
 		setUpDrawer();
+
+		// Send a tracker
+		((ApplicationClass) getApplication())
+				.sendScreen(Param.GA_SCREEN_COURSE);
+
 		getSupportActionBar().setTitle("Moodle Home");
 		getSupportActionBar().setIcon(R.drawable.ic_actionbar_icon);
 
@@ -36,17 +38,6 @@ public class CourseActivity extends BaseNavigationActivity {
 
 		SlidingTabLayout mSlidingTabLayout = (SlidingTabLayout) findViewById(R.id.sliding_tabs);
 		mSlidingTabLayout.setViewPager(viewPager);
-
-		// Send a tracker
-		// Get tracker.
-		Tracker t = ((ApplicationClass) getApplication())
-				.getTracker(TrackerName.APP_TRACKER);
-
-		// Set screen name.
-		t.setScreenName("94351441");
-
-		// Send a screen view.
-		t.send(new HitBuilders.AppViewBuilder().build());
 	}
 
 	class CourseTabsAdapter extends FragmentPagerAdapter {
