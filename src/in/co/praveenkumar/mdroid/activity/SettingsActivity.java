@@ -2,6 +2,7 @@ package in.co.praveenkumar.mdroid.activity;
 
 import in.co.praveenkumar.R;
 import in.co.praveenkumar.mdroid.dialog.LogoutDialog;
+import in.co.praveenkumar.mdroid.helper.ApplicationClass;
 import in.co.praveenkumar.mdroid.helper.Param;
 import in.co.praveenkumar.mdroid.helper.SessionSetting;
 import android.content.Intent;
@@ -29,6 +30,10 @@ public class SettingsActivity extends PreferenceActivity implements
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setTitle("Settings");
+
+		// Send a tracker
+		((ApplicationClass) getApplication())
+				.sendScreen(Param.GA_SCREEN_SETTING);
 
 		// Setup billing
 		session = new SessionSetting(this);
@@ -153,6 +158,10 @@ public class SettingsActivity extends PreferenceActivity implements
 						Toast.LENGTH_LONG).show();
 				return false;
 			}
+
+			// Send a tracker event
+			((ApplicationClass) getApplication()).sendEvent(
+					Param.GA_EVENT_CAT_SETTING, Param.GA_EVENT_SETTING_HIDEADS);
 
 			// Increment count only if he is indenting to hide ads
 			if (!Param.hideAdsForSession)
