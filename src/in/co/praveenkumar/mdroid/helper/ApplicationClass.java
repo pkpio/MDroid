@@ -22,7 +22,7 @@ public class ApplicationClass extends SugarApp {
 	}
 
 	/**
-	 * Send a Google Analytics hit
+	 * Send a Google Analytics screen hit
 	 * 
 	 * @param ScreenName
 	 *            Name as it appears on the Analytics page
@@ -39,5 +39,23 @@ public class ApplicationClass extends SugarApp {
 
 		// Send a screen view.
 		t.send(new HitBuilders.AppViewBuilder().build());
+	}
+
+	/**
+	 * Send a Google Analytics event hit
+	 * 
+	 * @param ScreenName
+	 *            Name as it appears on the Analytics page
+	 */
+	public void sendEvent(String EventCategory, String EventAction) {
+		if (mTracker == null)
+			getTracker();
+
+		// Setup a tracker
+		Tracker t = mTracker;
+
+		// Send a event hit.
+		t.send(new HitBuilders.EventBuilder().setCategory(EventCategory)
+				.setAction(EventAction).build());
 	}
 }
