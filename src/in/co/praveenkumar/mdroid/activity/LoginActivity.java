@@ -3,6 +3,8 @@ package in.co.praveenkumar.mdroid.activity;
 import in.co.praveenkumar.R;
 import in.co.praveenkumar.mdroid.fragment.NormalLoginFragment;
 import in.co.praveenkumar.mdroid.fragment.ParanoidLoginFragment;
+import in.co.praveenkumar.mdroid.helper.ApplicationClass;
+import in.co.praveenkumar.mdroid.helper.Param;
 import in.co.praveenkumar.mdroid.helper.SessionSetting;
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -45,6 +47,9 @@ public class LoginActivity extends FragmentActivity {
 			this.startActivity(i);
 			return;
 		}
+
+		// Send a tracker
+		((ApplicationClass) getApplication()).sendScreen(Param.GA_SCREEN_LOGIN);
 
 		mAdapter = new LoginFragmentAdapter(getSupportFragmentManager());
 
