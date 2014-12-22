@@ -2,8 +2,10 @@ package in.co.praveenkumar.mdroid.fragment;
 
 import in.co.praveenkumar.R;
 import in.co.praveenkumar.mdroid.helper.AppInterface.UserIdInterface;
+import in.co.praveenkumar.mdroid.helper.ApplicationClass;
 import in.co.praveenkumar.mdroid.helper.ImageDecoder;
 import in.co.praveenkumar.mdroid.helper.LetterColor;
+import in.co.praveenkumar.mdroid.helper.Param;
 import in.co.praveenkumar.mdroid.helper.SessionSetting;
 import in.co.praveenkumar.mdroid.moodlemodel.MoodleMessage;
 import in.co.praveenkumar.mdroid.moodlerest.MoodleRestMessage;
@@ -55,6 +57,10 @@ public class MessagingFragment extends Fragment implements OnRefreshListener {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
+		
+		// Send a tracker
+		((ApplicationClass) getActivity().getApplication())
+				.sendScreen(Param.GA_SCREEN_MESSAGING);
 
 		View rootView = inflater.inflate(R.layout.frag_messaging, container,
 				false);
@@ -111,6 +117,7 @@ public class MessagingFragment extends Fragment implements OnRefreshListener {
 	@Override
 	public void onAttach(Activity a) {
 		super.onAttach(a);
+
 		try {
 			UserIdInterface useridInterface = (UserIdInterface) a;
 			this.userid = useridInterface.getUserId();
