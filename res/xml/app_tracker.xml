@@ -6,6 +6,9 @@
     <!-- Enable automatic Activity measurement -->
     <bool name="ga_autoActivityTracking">true</bool>
 
+    <!-- Enable Uncaught exceptions tracking -->
+    <bool name="ga_reportUncaughtExceptions">true</bool>
+
     <!-- The following value should be replaced with correct property id. -->
     <string name="ga_trackingId">UA-56133361-3</string>
 
