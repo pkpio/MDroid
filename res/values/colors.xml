@@ -5,6 +5,7 @@
     <color name="transparent">#00000000</color>
     <color name="transparent_white">#55ffffff</color>
     <color name="transparent_grey">#ddeeeeee</color>
+    <color name="transparent_black">#22000000</color>
     <color name="moodle_color">#ff8800</color>
     <color name="moodle_click_color">#ffb560</color>
     <color name="grey1">#111111</color>
