@@ -2,75 +2,70 @@
 <resources>
 
     <string name="app_name">MDroid - Moodle</string>
-    <string name="action_settings">ajustes</string>
+    <string name="action_settings">Settings</string>
 
     <!-- Left navigation -->
-    <string name="drawer_open">open</string>
-    <string name="drawer_close">close</string>
+    <string name="drawer_open">abrir</string>
+    <string name="drawer_close">cerrar</string>
 
     <!-- Tutorial activity -->
-    <string name="activity_tutorial_beautiful">Hello Beautiful!</string>
-    <string name="activity_tutorial_swipe_instruction">Swipe left</string>
-    <string name="activity_tutorial_lines_of_code">70,000+ lines of code..</string>
-    <string name="activity_tutorial_hours">Uncountable hours..</string>
-    <string name="activity_tutorial_love">and with lots of love</string>
-    <string name="activity_tutorial_mdroid_made">MDroid was made!</string>
-    <string name="activity_tutorial_support_title">Support me</string>
-    <string name="activity_tutorial_support_description">with a 5 star rating if you please</string>
-    <string name="activity_tutorial_bugs_title">Bugs?</string>
-    <string name="activity_tutorial_bugs_description">Let me know through bug report</string>
+    <string name="activity_tutorial_beautiful">Hello compañero</string>
+    <string name="activity_tutorial_swipe_instruction">Arrastra para seguir</string>
+    <string name="activity_tutorial_lines_of_code">mas de 70,000 lineas de codigo..</string>
+    <string name="activity_tutorial_hours">Incontables hours de desarrollo..</string>
+    <string name="activity_tutorial_love">y con mucho cariño</string>
+    <string name="activity_tutorial_mdroid_made">MDroid ha sido creado!</string>
+    <string name="activity_tutorial_support_title">Dame tu soporte</string>
+    <string name="activity_tutorial_support_description">con 5 estrellas si te ha agradado</string>
+    <string name="activity_tutorial_bugs_title">Errores?</string>
+    <string name="activity_tutorial_bugs_description">Reporte informe errores</string>
     <string name="activity_tutorial_tutorial_title">Tutorial?</string>
-    <string name="activity_tutorial_tutorial_description">It\'s intuitive!</string>
-    <string name="activity_tutorial_tutorial_end_button">Let\'s roll</string>
+    <string name="activity_tutorial_tutorial_description">Es intuitivo !</string>
+    <string name="activity_tutorial_tutorial_end_button">Vamos alla !</string>
 
     <!-- Login activity -->
     <string name="activity_login_normal">Normal</string>
     <string name="activity_login_paranoid">Paranoid</string>
-    <string name="activity_login_email_hint">username or email</string>
-    <string name="activity_login_email_icon_desc">Login icon</string>
-    <string name="activity_login_password_hint">password</string>
-    <string name="activity_login_password_icon_desc">Login icon</string>
-    <string name="activity_login_url_hint">moodle url</string>
-    <string name="activity_login_url_icon_desc">Url icon</string>
-    <string name="activity_login_login_button">Login</string>
-    <string name="activity_login_token_hint">your account token</string>
-    <string name="activity_login_status_title">Logging in..</string>
-    <string name="activity_login_progress_retry">Retry</string>
-    <string name="activity_login_demo">Demo</string>
-    <string name="activity_login_help">What\'s this</string>
+    <string name="activity_login_email_hint">usuario o cuenta de correo</string>
+    <string name="activity_login_email_icon_desc">Icono de entrada</string>
+    <string name="activity_login_password_hint">contaseña</string>
+    <string name="activity_login_password_icon_desc">Icono entrada</string>
+    <string name="activity_login_url_hint">dirección o url</string>
+    <string name="activity_login_url_icon_desc">Icono direccion o Url </string>
+    <string name="activity_login_login_button">Entrada</string>
+    <string name="activity_login_token_hint">tu cuenta de entrada</string>
+    <string name="activity_login_status_title">Accediendo..</string>
+    <string name="activity_login_progress_retry">Reintentando</string>
+    <string name="activity_login_demo">Demostración</string>
+    <string name="activity_login_help">Que es esto?</string>
 
     <!-- Webservices help -->
-    <string name="activity_webservices_main_title">Webservices off</string>
-    <string name="activity_webservices_main_description">Webservices are required for MDroid to work.</string>
-    <string name="activity_webservices_help_button">Help with Webservices</string>
-    <string name="activity_webservices_legacy_version_text">Previous version worked for you? \nEnabling webservices is not a feasible option?</string>
-    <string name="activity_webservices_legacy_version_button">Try Legacy version</string>
+    <string name="activity_webservices_main_title">Webservices apagado</string>
+    <string name="activity_webservices_main_description">Webservices son necesarios para funcionamiento de MDroid</string>
+    <string name="activity_webservices_help_button">Ayuda de Webservices</string>
+    <string name="activity_webservices_legacy_version_text">Las versiones anteriores te funcionaban?  La activacion de Webservices no es una opcion viable?</string>
+    <string name="activity_webservices_legacy_version_button">Intenta version legal</string>
 
     <!-- Course activity -->
-    <string name="user_picture">User profile image</string>
-    <string name="list_course_summary">Summary</string>
+    <string name="user_picture">Imagen Perfil Usuario</string>
+    <string name="list_course_summary">Resumen</string>
     <string name="list_course_sample_shortname">CS 101 2013 1</string>
-    <string name="list_course_sample_fullname">Introduction to computer science</string>
+    <string name="list_course_sample_fullname">Introduccion a Ciencias Computación</string>
 
     <!-- Sample values -->
-    <string name="list_item_sample_menu">Course</string>
-    <string name="syncing">Syncing..</string>
-    <string name="sample_sectionname">16th August - 19th August</string>
-    <string name="sample_modulename">Assignment 2</string>
-    <string name="sample_calendar_date">Today</string>
-    <string name="sample_contact_name">David Hemsworth pan</string>
+    <string name="list_item_sample_menu">Curso</string>
+    <string name="syncing">Sincronizando</string>
+    <string name="sample_sectionname">16 de August - 19 de August</string>
+    <string name="sample_modulename">Tarea 2</string>
+    <string name="sample_calendar_date">Hoy</string>
+    <string name="sample_contact_name">David Hemsworth </string>
     <string name="sample_contact_unread">10</string>
 
     <!-- Preferences -->
-    <string name="message_signature_summary">Appends this text at the end of each message you send using MDroid</string>
-    <string name="message_signature_summary_donate">Appends this text at the end of each message you send. Donate only!</string>
+    <string name="message_signature_summary">Añadir este texto al final de cada mensajge usando MDroid</string>
+    <string name="message_signature_summary_donate">Añade este texto al final de cada mensaje enviado. Solamente Donativos!</string>
 
-    <!-- Donations related -->
-    <string name="donations_header_text">Vote for the features you want us to implement soon.\n\nThe vote counts are updated after verification so, expect some delay.</string>
-    <string name="donations_already_purchased">You purchased this already!</string>
-    <string name="donations_purchase_failed">Purchase failed! Please try again!</string>
-
-    <!-- For ads -->
-    <string name="banner_ad_unit_id">ca-app-pub-5596738936514245/8048848210</string>
+    <!-- Donations -->
+    <string name="donations_header_text">Vota para las caracteristicas que quieres que implementemos pronto.\n\n El contador de votos será actualizado despues de verificarlo, excepto algun retrato.</string>
 
 </resources>
