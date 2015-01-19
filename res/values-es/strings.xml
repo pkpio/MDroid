@@ -2,7 +2,7 @@
 <resources>
 
     <string name="app_name">MDroid - Moodle</string>
-    <string name="action_settings">Settings</string>
+    <string name="action_settings">ajustes</string>
 
     <!-- Left navigation -->
     <string name="drawer_open">open</string>
