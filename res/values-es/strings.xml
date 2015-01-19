@@ -11,7 +11,7 @@
     <!-- Tutorial activity -->
     <string name="activity_tutorial_beautiful">Hello compañero</string>
     <string name="activity_tutorial_swipe_instruction">Arrastra para seguir</string>
-    <string name="activity_tutorial_lines_of_code">mas de 70,000 lineas de codigo..</string>
+    <string name="activity_tutorial_lines_of_code">mas de 70,000 líneas de codigo..</string>
     <string name="activity_tutorial_hours">Incontables hours de desarrollo..</string>
     <string name="activity_tutorial_love">y con mucho cariño</string>
     <string name="activity_tutorial_mdroid_made">MDroid ha sido creado!</string>
@@ -21,7 +21,7 @@
     <string name="activity_tutorial_bugs_description">Reporte informe errores</string>
     <string name="activity_tutorial_tutorial_title">Tutorial?</string>
     <string name="activity_tutorial_tutorial_description">Es intuitivo !</string>
-    <string name="activity_tutorial_tutorial_end_button">Vamos alla !</string>
+    <string name="activity_tutorial_tutorial_end_button">Vamos allá !</string>
 
     <!-- Login activity -->
     <string name="activity_login_normal">Normal</string>
@@ -66,6 +66,6 @@
     <string name="message_signature_summary_donate">Añade este texto al final de cada mensaje enviado. Solamente Donativos!</string>
 
     <!-- Donations -->
-    <string name="donations_header_text">Vota para las caracteristicas que quieres que implementemos pronto.\n\n El contador de votos será actualizado despues de verificarlo, excepto algun retrato.</string>
+    <string name="donations_header_text">Vota para las caracteristicas que quieres que implementemos pronto.\n\n El contador de votos será actualizado después de verificarlo, excepto algún retrato.</string>
 
 </resources>
