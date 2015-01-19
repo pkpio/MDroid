@@ -21,4 +21,44 @@ public class Param {
 	public static final String BILLING_FEATURE_UPLOADS_PID = "in.co.praveenkumar.mdroid.donate.features.uploading_files";
 	public static final String BILLING_LICENSE_KEY = "02425045829981832447";
 
+	/**************************************************
+	 * Google analytics related
+	 **************************************************/
+	// GA Screens
+	public static final String GA_SCREEN_TUTORIAL = "Tutorial";
+	public static final String GA_SCREEN_LOGIN = "Login";
+	public static final String GA_SCREEN_WEBSERVICESS_OFF = "WebServicesOff";
+	public static final String GA_SCREEN_COURSE = "Course";
+	public static final String GA_SCREEN_CONTENT = "Content";
+	public static final String GA_SCREEN_FORUM = "Forum";
+	public static final String GA_SCREEN_DISCUSSION = "Discussion";
+	public static final String GA_SCREEN_POST = "Posts";
+	public static final String GA_SCREEN_BROWSER = "Browser";
+	public static final String GA_SCREEN_CALENDAR = "Calendar";
+	public static final String GA_SCREEN_CONTACT = "Contact";
+	public static final String GA_SCREEN_MESSAGE_LISTING = "MessageListing";
+	public static final String GA_SCREEN_MESSAGING = "Messaging";
+	public static final String GA_SCREEN_DONATION = "Donation";
+	public static final String GA_SCREEN_WORKINPROGRESS = "WorkInProgress";
+	public static final String GA_SCREEN_SETTING = "Setting";
+
+	/** GA Event categories **/
+	public static final String GA_EVENT_CAT_LOGIN = "LoginScreen";
+	public static final String GA_EVENT_CAT_SETTING = "SettingScreen";
+	public static final String GA_EVENT_CAT_DONATION = "DonationScreen";
+
+	/** GA Events **/
+	// Login screen events
+	public static final String GA_EVENT_LOGIN_DEMO_NORMAL = "DemoLoginNormal";
+	public static final String GA_EVENT_LOGIN_DEMO_PARANOID = "DemoLoginParanoid";
+	public static final String GA_EVENT_LOGIN_NORMAL = "LoginNormal";
+	public static final String GA_EVENT_LOGIN_PARANOID = "LoginParanoid";
+	public static final String GA_EVENT_LOGIN_PARANOID_HELP = "ParanoidHelp";
+
+	// Settings screen events
+	public static final String GA_EVENT_SETTING_HIDEADS = "HideAds";
+
+	// Donation screen events
+	public static final String GA_EVENT_DONATION_BUTTON = "DonateButtonPress";
+
 }

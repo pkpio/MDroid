@@ -2,6 +2,8 @@ package in.co.praveenkumar.mdroid.activity;
 
 import in.co.praveenkumar.R;
 import in.co.praveenkumar.mdroid.fragment.CourseFragment;
+import in.co.praveenkumar.mdroid.helper.ApplicationClass;
+import in.co.praveenkumar.mdroid.helper.Param;
 import in.co.praveenkumar.mdroid.view.SlidingTabLayout;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -19,6 +21,11 @@ public class CourseActivity extends BaseNavigationActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_course);
 		setUpDrawer();
+
+		// Send a tracker
+		((ApplicationClass) getApplication())
+				.sendScreen(Param.GA_SCREEN_COURSE);
+
 		getSupportActionBar().setTitle("Moodle Home");
 		getSupportActionBar().setIcon(R.drawable.ic_actionbar_icon);
 

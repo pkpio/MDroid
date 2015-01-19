@@ -1,6 +1,8 @@
 package in.co.praveenkumar.mdroid.activity;
 
 import in.co.praveenkumar.R;
+import in.co.praveenkumar.mdroid.helper.ApplicationClass;
+import in.co.praveenkumar.mdroid.helper.Param;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.webkit.CookieSyncManager;
@@ -20,6 +22,10 @@ public class AppBrowserActivity extends BaseNavigationActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_appbrowser);
 		setUpDrawer();
+
+		// Send a tracker
+		((ApplicationClass) getApplication())
+				.sendScreen(Param.GA_SCREEN_BROWSER);
 
 		String url = DEFAULT_URL;
 		String title = DEFAULT_TITLE;

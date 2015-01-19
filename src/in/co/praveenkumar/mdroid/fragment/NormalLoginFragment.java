@@ -1,6 +1,8 @@
 package in.co.praveenkumar.mdroid.fragment;
 
+import in.co.praveenkumar.mdroid.helper.ApplicationClass;
 import in.co.praveenkumar.mdroid.helper.FormValidate;
+import in.co.praveenkumar.mdroid.helper.Param;
 import in.co.praveenkumar.R;
 import in.co.praveenkumar.mdroid.task.LoginTask;
 import in.co.praveenkumar.mdroid.view.LoginStatusViewHolder;
@@ -34,6 +36,9 @@ public class NormalLoginFragment extends Fragment {
 		progressViews.loginButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				// Send a tracker event
+				((ApplicationClass) getActivity().getApplication()).sendEvent(
+						Param.GA_EVENT_CAT_LOGIN, Param.GA_EVENT_LOGIN_NORMAL);
 
 				doNormalLogin();
 			}
@@ -60,6 +65,11 @@ public class NormalLoginFragment extends Fragment {
 				usernameET.setText("demo");
 				passwordET.setText("demo");
 				murlET.setText("http://moodle.praveenkumar.co.in");
+
+				// Send a tracker event
+				((ApplicationClass) getActivity().getApplication()).sendEvent(
+						Param.GA_EVENT_CAT_LOGIN,
+						Param.GA_EVENT_LOGIN_DEMO_NORMAL);
 			}
 		});
 

@@ -1,6 +1,8 @@
 package in.co.praveenkumar.mdroid.activity;
 
 import in.co.praveenkumar.mdroid.helper.AppInterface.ForumIdInterface;
+import in.co.praveenkumar.mdroid.helper.ApplicationClass;
+import in.co.praveenkumar.mdroid.helper.Param;
 import in.co.praveenkumar.mdroid.helper.SessionSetting;
 import in.co.praveenkumar.R;
 import in.co.praveenkumar.mdroid.moodlemodel.MoodleForum;
@@ -19,6 +21,10 @@ public class DiscussionActivity extends BaseNavigationActivity implements
 		forumid = getIntent().getExtras().getInt("forumid");
 		setContentView(R.layout.activity_discussion);
 		setUpDrawer();
+
+		// Send a tracker
+		((ApplicationClass) getApplication())
+				.sendScreen(Param.GA_SCREEN_DISCUSSION);
 
 		// Set title
 		SessionSetting session = new SessionSetting(this);
