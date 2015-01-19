@@ -65,8 +65,10 @@
     <string name="message_signature_summary">Appends this text at the end of each message you send using MDroid</string>
     <string name="message_signature_summary_donate">Appends this text at the end of each message you send. Donate only!</string>
 
-    <!-- Donations -->
+    <!-- Donations related -->
     <string name="donations_header_text">Vote for the features you want us to implement soon.\n\nThe vote counts are updated after verification so, expect some delay.</string>
+    <string name="donations_already_purchased">You purchased this already!</string>
+    <string name="donations_purchase_failed">Purchase failed! Please try again!</string>
 
     <!-- For ads -->
     <string name="banner_ad_unit_id">ca-app-pub-5596738936514245/8048848210</string>

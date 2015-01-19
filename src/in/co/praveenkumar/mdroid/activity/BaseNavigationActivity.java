@@ -52,14 +52,14 @@ public abstract class BaseNavigationActivity extends ActionBarActivity
 					public void onProductPurchased(String productId,
 							TransactionDetails details) {
 						Toast.makeText(getApplicationContext(),
-								"You purchased this already!",
+								R.string.donations_already_purchased,
 								Toast.LENGTH_LONG).show();
 					}
 
 					@Override
 					public void onBillingError(int errorCode, Throwable error) {
 						Toast.makeText(getApplicationContext(),
-								"Purchase failed! Please try again!",
+								R.string.donations_purchase_failed,
 								Toast.LENGTH_LONG).show();
 					}
 
