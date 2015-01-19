@@ -61,7 +61,11 @@
     <string name="sample_contact_name">David Hemsworth pan</string>
     <string name="sample_contact_unread">10</string>
 
-    <!-- Preferences -->
+    <!-- Settings activity -->
+    <string name="activity_settings_active_account_settings_title">Active account settings</string>
+    <string name="activity_settings_active_account_settings_summary">Active account settings</string>
+    <string name="activity_settings_active_account_logout_title">Logout</string>
+    <string name="activity_settings_active_account_logout_summary">logout current account</string>
     <string name="message_signature_summary">Appends this text at the end of each message you send using MDroid</string>
     <string name="message_signature_summary_donate">Appends this text at the end of each message you send. Donate only!</string>
 

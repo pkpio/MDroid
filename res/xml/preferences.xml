@@ -5,12 +5,12 @@
 
     <!-- Active account settings -->
     <PreferenceCategory
-        android:summary="Active account settings"
-        android:title="Active account settings" >
+        android:summary="@string/activity_settings_active_account_settings_summary"
+        android:title="@string/activity_settings_active_account_settings_title" >
         <Preference
             android:key="logout"
-            android:summary="logout current account"
-            android:title="Logout" />
+            android:summary="@string/activity_settings_active_account_logout_summary"
+            android:title="@string/activity_settings_active_account_logout_title" />
 
         <EditTextPreference
             android:defaultValue="Sent from MDroid - Moodle for Android"
