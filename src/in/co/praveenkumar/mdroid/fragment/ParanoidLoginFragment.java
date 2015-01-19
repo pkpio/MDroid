@@ -1,6 +1,8 @@
 package in.co.praveenkumar.mdroid.fragment;
 
+import in.co.praveenkumar.mdroid.helper.ApplicationClass;
 import in.co.praveenkumar.mdroid.helper.FormValidate;
+import in.co.praveenkumar.mdroid.helper.Param;
 import in.co.praveenkumar.R;
 import in.co.praveenkumar.mdroid.task.LoginTask;
 import in.co.praveenkumar.mdroid.view.LoginStatusViewHolder;
@@ -35,6 +37,11 @@ public class ParanoidLoginFragment extends Fragment {
 		progressViews.loginButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				// Send a tracker event
+				((ApplicationClass) getActivity().getApplication())
+						.sendEvent(Param.GA_EVENT_CAT_LOGIN,
+								Param.GA_EVENT_LOGIN_PARANOID);
+
 				doParanoidLogin();
 			}
 		});
@@ -56,8 +63,13 @@ public class ParanoidLoginFragment extends Fragment {
 		demoButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
-				tokenET.setText("e01e28c5b1a24296cfb394af77adcc65");
+				tokenET.setText("cdcd27cb862d03c3616bed2262ee5c8e");
 				murlET.setText("http://moodle.praveenkumar.co.in");
+
+				// Send a tracker event
+				((ApplicationClass) getActivity().getApplication()).sendEvent(
+						Param.GA_EVENT_CAT_LOGIN,
+						Param.GA_EVENT_LOGIN_DEMO_PARANOID);
 			}
 		});
 
@@ -67,6 +79,11 @@ public class ParanoidLoginFragment extends Fragment {
 		helpButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
+				// Send a tracker event
+				((ApplicationClass) getActivity().getApplication()).sendEvent(
+						Param.GA_EVENT_CAT_LOGIN,
+						Param.GA_EVENT_LOGIN_PARANOID_HELP);
+
 				Intent browserIntent = new Intent(
 						Intent.ACTION_VIEW,
 						Uri.parse("http://mdroid.praveenkumar.co.in/#!faq.md#What_is_Paranoid_login?"));

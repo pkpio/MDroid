@@ -1,7 +1,9 @@
 package in.co.praveenkumar.mdroid.activity;
 
 import in.co.praveenkumar.R;
+import in.co.praveenkumar.mdroid.helper.ApplicationClass;
 import in.co.praveenkumar.mdroid.helper.GsonExclude;
+import in.co.praveenkumar.mdroid.helper.Param;
 import in.co.praveenkumar.mdroid.moodlemodel.MDroidModelFeature;
 
 import java.io.InputStreamReader;
@@ -40,6 +42,11 @@ public class DonationActivity extends BaseNavigationActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_donations);
 		setUpDrawer();
+
+		// Send a tracker
+		((ApplicationClass) getApplication())
+				.sendScreen(Param.GA_SCREEN_DONATION);
+
 		setTitle("Request features");
 		this.context = this;
 
@@ -70,6 +77,11 @@ public class DonationActivity extends BaseNavigationActivity {
 				if (position < 0)
 					return;
 				billing.purchase(features.get(position).getProductid());
+
+				// Send a tracker event
+				((ApplicationClass) getApplication()).sendEvent(
+						Param.GA_EVENT_CAT_DONATION,
+						Param.GA_EVENT_DONATION_BUTTON);
 			}
 		});
 

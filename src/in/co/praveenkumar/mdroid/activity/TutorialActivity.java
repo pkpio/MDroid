@@ -1,6 +1,8 @@
 package in.co.praveenkumar.mdroid.activity;
 
 import in.co.praveenkumar.mdroid.fragment.TutorialFragment;
+import in.co.praveenkumar.mdroid.helper.ApplicationClass;
+import in.co.praveenkumar.mdroid.helper.Param;
 import in.co.praveenkumar.mdroid.helper.SessionSetting;
 import in.co.praveenkumar.R;
 import android.content.Intent;
@@ -32,6 +34,10 @@ public class TutorialActivity extends FragmentActivity {
 			this.startActivity(i);
 			return;
 		}
+
+		// Send a tracker
+		((ApplicationClass) getApplication())
+				.sendScreen(Param.GA_SCREEN_TUTORIAL);
 
 		mAdapter = new TutorialFragmentAdapter(getSupportFragmentManager());
 
