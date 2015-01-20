@@ -62,12 +62,33 @@
     <string name="sample_contact_unread">10</string>
 
     <!-- Settings activity -->
-    <string name="activity_settings_active_account_settings_title">Active account settings</string>
-    <string name="activity_settings_active_account_settings_summary">Active account settings</string>
-    <string name="activity_settings_active_account_logout_title">Logout</string>
-    <string name="activity_settings_active_account_logout_summary">logout current account</string>
-    <string name="message_signature_summary">Appends this text at the end of each message you send using MDroid</string>
-    <string name="message_signature_summary_donate">Appends this text at the end of each message you send. Donate only!</string>
+    <!-- Active account settings section -->
+    <string name="activity_settings_cat_active_account_title">Active account settings</string>
+    <string name="activity_settings_cat_active_account_summary">Active account settings</string>
+    <string name="activity_settings_logout_title">Logout</string>
+    <string name="activity_settings_logout_summary">logout current account</string>
+    <string name="activity_settings_message_sign_title">Message signature</string>
+    <string name="activity_settings_message_sign_positive_btn">Update</string>
+    <string name="activity_settings_message_sign_default">Sent from MDroid - Moodle for Android</string>
+    <string name="activity_settings_message_sign_summary">Appends this text at the end of each message you send. Donate only!</string>
+    <!-- General settings section -->
+    <string name="activity_settings_cat_general_title">General</string>
+    <string name="activity_settings_cat_general_summary">General settings</string>
+    <string name="activity_settings_hideads_title">Hide ads temporarily</string>
+    <string name="activity_settings_hideads_summary">Works only for 3 times. To hide them permanently, please make a donation.</string>
+    <string name="activity_settings_debug_title">Advanced logging</string>
+    <string name="activity_settings_debug_summary">If enabled, gives more information on login and other errors</string>
+    <!-- Help section -->
+    <string name="activity_settings_cat_help_title">Help</string>
+    <string name="activity_settings_cat_help_summary">app related help</string>
+    <string name="activity_settings_help_title">Help</string>
+    <string name="activity_settings_privacy_title">Privacy policy</string>
+    <!-- About section -->
+    <string name="activity_settings_cat_about_title">About</string>
+    <string name="activity_settings_cat_about_summary">about MDroid and developer</string>
+    <string name="activity_settings_website_title">Website</string>
+    <string name="activity_settings_dev_title">Developer</string>
+    <string name="activity_settings_osl_title">Open source licenses</string>
 
     <!-- Donations related -->
     <string name="donations_header_text">Vote for the features you want us to implement soon.\n\nThe vote counts are updated after verification so, expect some delay.</string>
