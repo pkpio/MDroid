@@ -28,13 +28,13 @@
             <ImageView
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:src="@drawable/icon_chat_greyscale" />
+                android:src="@drawable/icon_people_greyscale" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="16dp"
-                android:text="No messages here"
+                android:text="No contacts here"
                 android:textColor="@color/grey8"
                 android:textSize="20sp" />
         </LinearLayout>
