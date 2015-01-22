@@ -61,6 +61,7 @@
                     android:src="@drawable/icon_inbox_download" />
 
                 <TextView
+                    android:id="@+id/dialog_userinfo_user_phone"
                     android:layout_width="fill_parent"
                     android:layout_height="match_parent"
                     android:gravity="center_vertical"
@@ -85,6 +86,7 @@
                     android:src="@drawable/icon_inbox_download" />
 
                 <TextView
+                    android:id="@+id/dialog_userinfo_user_email"
                     android:layout_width="fill_parent"
                     android:layout_height="match_parent"
                     android:gravity="center_vertical"
@@ -109,6 +111,7 @@
                     android:src="@drawable/icon_inbox_download" />
 
                 <TextView
+                    android:id="@+id/dialog_userinfo_user_skype"
                     android:layout_width="fill_parent"
                     android:layout_height="match_parent"
                     android:gravity="center_vertical"
@@ -133,6 +136,7 @@
                     android:src="@drawable/icon_inbox_download" />
 
                 <TextView
+                    android:id="@+id/dialog_userinfo_user_url"
                     android:layout_width="fill_parent"
                     android:layout_height="match_parent"
                     android:gravity="center_vertical"
@@ -160,6 +164,7 @@
                 <!-- city, country -->
 
                 <TextView
+                    android:id="@+id/dialog_userinfo_user_city"
                     android:layout_width="fill_parent"
                     android:layout_height="match_parent"
                     android:gravity="center_vertical"
@@ -185,12 +190,46 @@
                     android:src="@drawable/icon_inbox_download" />
 
                 <TextView
+                    android:id="@+id/dialog_userinfo_user_address"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
                     android:padding="8dp"
                     android:text="7200 Brilgo Hills,\nHouston,\nTexas 77001"
                     android:textSize="18sp" />
+            </LinearLayout>
+
+            <!-- Courses -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:padding="0dp" >
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:padding="8dp"
+                    android:text="Courses"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/grey12" >
+                </LinearLayout>
+
+                <ListView
+                    android:id="@+id/dialog_userinfo_user_courselist"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:divider="@null"
+                    android:dividerHeight="0dp" >
+                </ListView>
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
