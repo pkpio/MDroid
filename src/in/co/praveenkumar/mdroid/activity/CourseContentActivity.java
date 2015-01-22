@@ -4,7 +4,7 @@ import in.co.praveenkumar.R;
 import in.co.praveenkumar.mdroid.fragment.CalenderFragment;
 import in.co.praveenkumar.mdroid.fragment.ContentFragment;
 import in.co.praveenkumar.mdroid.fragment.ForumFragment;
-import in.co.praveenkumar.mdroid.fragment.WorkInProgressFragment;
+import in.co.praveenkumar.mdroid.fragment.ParticipantFragment;
 import in.co.praveenkumar.mdroid.helper.ApplicationClass;
 import in.co.praveenkumar.mdroid.helper.Param;
 import in.co.praveenkumar.mdroid.moodlemodel.MoodleCourse;
@@ -69,8 +69,9 @@ public class CourseContentActivity extends BaseNavigationActivity {
 				// Course Calendar
 				return new CalenderFragment(courseid);
 			case 3:
-				// Course Calendar
-				return new WorkInProgressFragment();
+				// Course Participants
+				return new ParticipantFragment(courseid);
+				// return new WorkInProgressFragment();
 			}
 			return null;
 		}
