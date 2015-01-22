@@ -48,10 +48,11 @@ public class UserSyncTask {
 		for (int i = 0; i < mUsers.size(); i++) {
 			mUser = mUsers.get(i);
 			mUser.setSiteid(siteid);
+			mUser.setCourseid(courseid);
 
 			dbUsers = MoodleUser.find(MoodleUser.class,
-					"userid = ? and siteid = ?", mUser.getUserid() + "", siteid
-							+ "");
+					"userid = ? and siteid = ? and courseid = ?",
+					mUser.getUserid() + "", siteid + "", courseid + "");
 			if (dbUsers.size() > 0)
 				mUser.setId(dbUsers.get(0).getId());
 			mUser.save();
