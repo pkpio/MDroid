@@ -79,9 +79,6 @@ public class SettingsActivity extends PreferenceActivity implements
 		// Enable donate only preferences
 		if (isProUser())
 			findPreference("messagingSignature").setEnabled(true);
-		else
-			findPreference("messagingSignature").setSummary(
-					R.string.message_signature_summary_donate);
 
 		// Add preference click / change listeners
 		findPreference("logout").setOnPreferenceClickListener(this);
