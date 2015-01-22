@@ -39,7 +39,7 @@ public class MoodleRestUser {
 
 		try {
 			// Adding all parameters.
-			String params = "courseid="
+			String params = "&courseid="
 					+ URLEncoder.encode(courseid + "", "UTF-8");
 
 			// Build a REST call url to make a call.
