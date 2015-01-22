@@ -1,7 +1,6 @@
 package in.co.praveenkumar.mdroid.fragment;
 
 import in.co.praveenkumar.R;
-import in.co.praveenkumar.mdroid.dialog.MessageDialog;
 import in.co.praveenkumar.mdroid.dialog.UserinfoDialog;
 import in.co.praveenkumar.mdroid.helper.LetterColor;
 import in.co.praveenkumar.mdroid.helper.SessionSetting;
@@ -77,9 +76,9 @@ public class ParticipantFragment extends Fragment implements OnRefreshListener {
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1,
 					int position, long arg3) {
-				// MoodleContact contact = contacts.get(position);
+				MoodleUser participant = participants.get(position);
 				UserinfoDialog uid = new UserinfoDialog(getActivity(), session
-						.getCurrentSiteId());
+						.getCurrentSiteId(), participant.getUserid());
 				uid.show();
 			}
 		});
