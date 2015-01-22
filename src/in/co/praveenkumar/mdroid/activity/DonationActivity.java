@@ -60,7 +60,7 @@ public class DonationActivity extends BaseNavigationActivity {
 		// Added header and footers to the list
 		LayoutInflater inflater = this.getLayoutInflater();
 		LinearLayout listHeaderView = (LinearLayout) inflater.inflate(
-				R.layout.list_item_donations_header, null);
+				R.layout.list_header_donations, null);
 		featureList.addHeaderView(listHeaderView);
 
 		// Set the list adapter
