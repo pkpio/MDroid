@@ -143,36 +143,12 @@ public class MoodleUser extends SugarRecord<MoodleUser> {
 			mUserCourse.setSiteid(this.siteid);
 			mUserCourse.setUserid(this.userid);
 			dbUserCourses = MoodleUserCourse.find(MoodleUserCourse.class,
-					"userid = ? and siteid = ?", userid + "", siteid + "");
+					"userid = ? and siteid = ? and courseid = ?", userid + "",
+					siteid + "", mUserCourse.getCourseid() + "");
 			if (dbUserCourses != null && dbUserCourses.size() > 0)
 				mUserCourse.setId(dbUserCourses.get(0).getId());
 			mUserCourse.save();
 		}
-	}
-
-	/**
-	 * Get MoodleUser from his moodle userid
-	 * 
-	 * @param userid
-	 *            MoodleUserId of the user. Don't confuse this with database
-	 *            userid
-	 * @param siteid
-	 *            MDroid siteid of the site to which this user belongs to
-	 * @return {@link MoodleUser}
-	 */
-	public MoodleUser find(int userid, long siteid) {
-		List<MoodleUser> mUser = MoodleUser.find(MoodleUser.class,
-				"userid = ? and siteid = ?", userid + "", siteid + "");
-
-		if (mUser == null || mUser.size() == 0)
-			return null;
-
-		// Set their enrolled courses
-		mUser.get(0).enrolledcourses = MoodleUserCourse.find(
-				MoodleUserCourse.class, "userid = ? and siteid = ?",
-				mUser.get(0).getId() + "", siteid + "");
-
-		return mUser.get(0);
 	}
 
 	public int getUserid() {
@@ -510,5 +486,25 @@ public class MoodleUser extends SugarRecord<MoodleUser> {
 	 */
 	public void setCourseid(int courseid) {
 		this.courseid = courseid;
+	}
+
+	/**
+	 * Get list of Enrolled courses of user
+	 * 
+	 * @return List of MoodleUserCourse
+	 */
+	public List<MoodleUserCourse> getEnrolledcourses() {
+		return enrolledcourses;
+	}
+
+	/**
+	 * 
+	 * Set list of Enrolled courses of user
+	 * 
+	 * @param enrolledcourses
+	 *            List of MoodleUserCourse
+	 */
+	public void setEnrolledcourses(List<MoodleUserCourse> enrolledcourses) {
+		this.enrolledcourses = enrolledcourses;
 	}
 }
