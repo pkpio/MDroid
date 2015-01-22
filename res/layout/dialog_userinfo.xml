@@ -10,7 +10,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="150dp"
         android:orientation="horizontal" >
 
         <TextView
@@ -34,7 +34,7 @@
             android:padding="5dp"
             android:text="Praveen Kumar Pendyala"
             android:textColor="@color/white"
-            android:textSize="14sp" />
+            android:textSize="18sp" />
     </RelativeLayout>
 
     <ScrollView
@@ -53,12 +53,13 @@
                 android:layout_height="50dp"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
-                android:padding="5dp" >
+                android:padding="5dp"
+                android:visibility="gone" >
 
                 <ImageView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:src="@drawable/icon_inbox_download" />
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/icon_phone" />
 
                 <TextView
                     android:id="@+id/dialog_userinfo_user_phone"
@@ -81,9 +82,9 @@
                 android:padding="5dp" >
 
                 <ImageView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:src="@drawable/icon_inbox_download" />
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/icon_gmail" />
 
                 <TextView
                     android:id="@+id/dialog_userinfo_user_email"
@@ -106,9 +107,9 @@
                 android:padding="5dp" >
 
                 <ImageView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:src="@drawable/icon_inbox_download" />
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/icon_skype" />
 
                 <TextView
                     android:id="@+id/dialog_userinfo_user_skype"
@@ -131,9 +132,9 @@
                 android:padding="5dp" >
 
                 <ImageView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:src="@drawable/icon_inbox_download" />
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/public_net" />
 
                 <TextView
                     android:id="@+id/dialog_userinfo_user_url"
@@ -144,7 +145,7 @@
                     android:linksClickable="true"
                     android:padding="8dp"
                     android:text="http://praveenkumar.co.in/moodle/user.php?id=2"
-                    android:textSize="16sp" />
+                    android:textSize="18sp" />
             </LinearLayout>
 
             <!-- Location -->
@@ -157,9 +158,9 @@
                 android:padding="5dp" >
 
                 <ImageView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:src="@drawable/icon_inbox_download" />
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/icon_place" />
 
                 <!-- city, country -->
 
@@ -181,13 +182,14 @@
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
-                android:padding="5dp" >
+                android:padding="5dp"
+                android:visibility="gone" >
 
                 <ImageView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
                     android:layout_gravity="top"
-                    android:src="@drawable/icon_inbox_download" />
+                    android:src="@drawable/icon_mail" />
 
                 <TextView
                     android:id="@+id/dialog_userinfo_user_address"
