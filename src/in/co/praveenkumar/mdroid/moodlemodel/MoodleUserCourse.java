@@ -23,7 +23,7 @@ public class MoodleUserCourse extends SugarRecord<MoodleUserCourse> {
 
 	// Relational fields - for less logout complexity
 	long siteid;
-	long userid;
+	int userid; // Moodle userid
 
 	/**
 	 * Get id of the course
@@ -84,7 +84,7 @@ public class MoodleUserCourse extends SugarRecord<MoodleUserCourse> {
 	 * 
 	 * @return
 	 */
-	public void setUserid(long userid) {
+	public void setUserid(int userid) {
 		this.userid = userid;
 	}
 }
