@@ -1,10 +1,9 @@
 package in.co.praveenkumar.mdroid.fragment;
 
 import in.co.praveenkumar.R;
-import in.co.praveenkumar.mdroid.dialog.MessageDialog;
 import in.co.praveenkumar.mdroid.helper.LetterColor;
 import in.co.praveenkumar.mdroid.helper.SessionSetting;
-import in.co.praveenkumar.mdroid.moodlemodel.MoodleContact;
+import in.co.praveenkumar.mdroid.moodlemodel.MoodleUser;
 import in.co.praveenkumar.mdroid.task.ContactSyncTask;
 
 import java.util.List;
@@ -26,14 +25,30 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
-public class ContactFragment extends Fragment implements OnRefreshListener {
+public class ParticipantFragment extends Fragment implements OnRefreshListener {
 	final String DEBUG_TAG = "ContactsFragment";
-	List<MoodleContact> contacts;
-	ContactListAdapter adapter;
+	List<MoodleUser> participants;
+	int courseid = 0;
+	ParticipantListAdapter adapter;
 	SessionSetting session;
-	LinearLayout chatEmptyLayout;
+	LinearLayout listEmptyLayout;
 	SwipeRefreshLayout swipeLayout;
-	ListView contactList;
+	ListView participantList;
+
+	/**
+	 * Don't use this constructor.
+	 */
+	public ParticipantFragment() {
+	}
+
+	/**
+	 * If you want to list all forums, use courseid = 0
+	 * 
+	 * @param courseid
+	 */
+	public ParticipantFragment(int courseid) {
+		this.courseid = courseid;
+	}
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -41,27 +56,29 @@ public class ContactFragment extends Fragment implements OnRefreshListener {
 
 		View rootView = inflater.inflate(R.layout.frag_contact, container,
 				false);
-		chatEmptyLayout = (LinearLayout) rootView
-				.findViewById(R.id.chat_empty_layout);
-		contactList = (ListView) rootView.findViewById(R.id.right_nav_list);
+		listEmptyLayout = (LinearLayout) rootView
+				.findViewById(R.id.list_empty_layout);
+		participantList = (ListView) rootView
+				.findViewById(R.id.participant_list);
 
 		// Get sites info
 		session = new SessionSetting(getActivity());
-		contacts = MoodleContact.find(MoodleContact.class, "siteid = ?",
-				session.getCurrentSiteId() + "");
+		participants = MoodleUser.find(MoodleUser.class,
+				"siteid = ? & courseid = ?", session.getCurrentSiteId() + "",
+				courseid + "");
 
-		adapter = new ContactListAdapter(getActivity());
-		contactList.setAdapter(adapter);
+		adapter = new ParticipantListAdapter(getActivity());
+		participantList.setAdapter(adapter);
 
 		// OnItem click
-		contactList.setOnItemClickListener(new OnItemClickListener() {
+		participantList.setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1,
 					int position, long arg3) {
-				MoodleContact contact = contacts.get(position);
-				MessageDialog md = new MessageDialog(getActivity());
-				md.setContact(contact);
-				md.show();
+				// MoodleContact contact = contacts.get(position);
+				// MessageDialog md = new MessageDialog(getActivity());
+				// md.setContact(contact);
+				// md.show();
 			}
 		});
 
@@ -69,19 +86,19 @@ public class ContactFragment extends Fragment implements OnRefreshListener {
 				.findViewById(R.id.swipe_refresh);
 		setupSwipeLayout();
 
-		new contactSyncerBg().execute("");
+		new ParticipantSyncerBg().execute("");
 
 		return rootView;
 	}
 
-	public class ContactListAdapter extends BaseAdapter {
+	public class ParticipantListAdapter extends BaseAdapter {
 
 		private final Context context;
 
-		public ContactListAdapter(Context context) {
+		public ParticipantListAdapter(Context context) {
 			this.context = context;
-			if (contacts.size() != 0)
-				chatEmptyLayout.setVisibility(LinearLayout.GONE);
+			if (participants.size() != 0)
+				listEmptyLayout.setVisibility(LinearLayout.GONE);
 		}
 
 		@Override
@@ -100,8 +117,6 @@ public class ContactFragment extends Fragment implements OnRefreshListener {
 						.findViewById(R.id.list_contact_image);
 				viewHolder.userfullname = (TextView) convertView
 						.findViewById(R.id.list_contact_name);
-				viewHolder.unreadcount = (TextView) convertView
-						.findViewById(R.id.list_unread_count);
 
 				// Save the holder with the view
 				convertView.setTag(viewHolder);
@@ -111,7 +126,7 @@ public class ContactFragment extends Fragment implements OnRefreshListener {
 			}
 
 			// Contact image color and value
-			String name = contacts.get(position).getFullname();
+			String name = participants.get(position).getFullname();
 			char firstChar = 0;
 			if (name.length() != 0)
 				firstChar = name.charAt(0);
@@ -119,44 +134,20 @@ public class ContactFragment extends Fragment implements OnRefreshListener {
 			viewHolder.userimage.setBackgroundColor(LetterColor.of(firstChar));
 
 			// Name
-			viewHolder.userfullname.setText(contacts.get(position)
+			viewHolder.userfullname.setText(participants.get(position)
 					.getFullname());
-
-			// Unread counts
-			int count = contacts.get(position).getUnread();
-			if (count == 0)
-				viewHolder.unreadcount.setVisibility(TextView.GONE);
-			else {
-				viewHolder.unreadcount.setVisibility(TextView.VISIBLE);
-				viewHolder.unreadcount.setText(count + "");
-			}
-
-			switch (contacts.get(position).getStatus()) {
-			case MoodleContact.STATUS_ONLINE:
-				// viewHolder.unreadcount
-				// .setBackgroundResource(R.drawable.circular_online_bg);
-				break;
-			case MoodleContact.STATUS_OFFLINE:
-				// viewHolder.unreadcount
-				// .setBackgroundResource(R.drawable.circular_offline_bg);
-				break;
-			case MoodleContact.STATUS_STRANGER:
-				// viewHolder.unreadcount
-				// .setBackgroundResource(R.drawable.circular_stranger_bg);
-				break;
-			}
 
 			return convertView;
 		}
 
 		@Override
 		public int getCount() {
-			return contacts.size();
+			return participants.size();
 		}
 
 		@Override
 		public Object getItem(int position) {
-			return contacts.get(position);
+			return participants.get(position);
 		}
 
 		@Override
@@ -171,7 +162,8 @@ public class ContactFragment extends Fragment implements OnRefreshListener {
 		TextView unreadcount;
 	}
 
-	private class contactSyncerBg extends AsyncTask<String, Integer, Boolean> {
+	private class ParticipantSyncerBg extends
+			AsyncTask<String, Integer, Boolean> {
 
 		@Override
 		protected void onPreExecute() {
@@ -190,11 +182,12 @@ public class ContactFragment extends Fragment implements OnRefreshListener {
 
 		@Override
 		protected void onPostExecute(Boolean result) {
-			contacts = MoodleContact.find(MoodleContact.class, "siteid = ?",
-					session.getCurrentSiteId() + "");
+			participants = MoodleUser.find(MoodleUser.class,
+					"siteid = ? & courseid = ?", session.getCurrentSiteId()
+							+ "", courseid + "");
 			adapter.notifyDataSetChanged();
-			if (contacts.size() != 0)
-				chatEmptyLayout.setVisibility(LinearLayout.GONE);
+			if (participants.size() != 0)
+				listEmptyLayout.setVisibility(LinearLayout.GONE);
 			swipeLayout.setRefreshing(false);
 		}
 
@@ -202,11 +195,11 @@ public class ContactFragment extends Fragment implements OnRefreshListener {
 
 	@Override
 	public void onRefresh() {
-		new contactSyncerBg().execute("");
+		new ParticipantSyncerBg().execute("");
 	}
 
 	void setupSwipeLayout() {
-		if (swipeLayout == null || contactList == null)
+		if (swipeLayout == null || participantList == null)
 			return;
 
 		swipeLayout.setColorSchemeResources(R.color.refresh_green,
@@ -215,7 +208,7 @@ public class ContactFragment extends Fragment implements OnRefreshListener {
 		swipeLayout.setOnRefreshListener(this);
 
 		// Link swipeLayout with underlying listview
-		contactList.setOnScrollListener(new AbsListView.OnScrollListener() {
+		participantList.setOnScrollListener(new AbsListView.OnScrollListener() {
 			@Override
 			public void onScrollStateChanged(AbsListView view, int scrollState) {
 
@@ -224,12 +217,11 @@ public class ContactFragment extends Fragment implements OnRefreshListener {
 			@Override
 			public void onScroll(AbsListView view, int firstVisibleItem,
 					int visibleItemCount, int totalItemCount) {
-				int topRowVerticalPosition = (contactList == null || contactList
-						.getChildCount() == 0) ? 0 : contactList.getChildAt(0)
-						.getTop();
+				int topRowVerticalPosition = (participantList == null || participantList
+						.getChildCount() == 0) ? 0 : participantList
+						.getChildAt(0).getTop();
 				swipeLayout.setEnabled(topRowVerticalPosition >= 0);
 			}
 		});
 	}
-
 }
