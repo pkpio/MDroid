@@ -119,6 +119,7 @@ public class MoodleUser extends SugarRecord<MoodleUser> {
 
 	// Relational fields
 	long siteid;
+	int courseid;
 
 	/**
 	 * Overridden / rewritten methods from sugar super class
@@ -491,5 +492,23 @@ public class MoodleUser extends SugarRecord<MoodleUser> {
 	 */
 	public void setSiteid(long siteid) {
 		this.siteid = siteid;
+	}
+
+	/**
+	 * Get the siteid of this user
+	 * 
+	 * @return
+	 */
+	public long getCourseid() {
+		return courseid;
+	}
+
+	/**
+	 * set the site id of this user
+	 * 
+	 * @param siteid
+	 */
+	public void setCourseid(int courseid) {
+		this.courseid = courseid;
 	}
 }
