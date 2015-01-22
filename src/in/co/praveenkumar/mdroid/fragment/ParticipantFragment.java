@@ -4,7 +4,7 @@ import in.co.praveenkumar.R;
 import in.co.praveenkumar.mdroid.helper.LetterColor;
 import in.co.praveenkumar.mdroid.helper.SessionSetting;
 import in.co.praveenkumar.mdroid.moodlemodel.MoodleUser;
-import in.co.praveenkumar.mdroid.task.ContactSyncTask;
+import in.co.praveenkumar.mdroid.task.UserSyncTask;
 
 import java.util.List;
 
@@ -54,7 +54,7 @@ public class ParticipantFragment extends Fragment implements OnRefreshListener {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 
-		View rootView = inflater.inflate(R.layout.frag_contact, container,
+		View rootView = inflater.inflate(R.layout.frag_participant, container,
 				false);
 		listEmptyLayout = (LinearLayout) rootView
 				.findViewById(R.id.list_empty_layout);
@@ -64,7 +64,7 @@ public class ParticipantFragment extends Fragment implements OnRefreshListener {
 		// Get sites info
 		session = new SessionSetting(getActivity());
 		participants = MoodleUser.find(MoodleUser.class,
-				"siteid = ? & courseid = ?", session.getCurrentSiteId() + "",
+				"siteid = ? and courseid = ?", session.getCurrentSiteId() + "",
 				courseid + "");
 
 		adapter = new ParticipantListAdapter(getActivity());
@@ -110,7 +110,7 @@ public class ParticipantFragment extends Fragment implements OnRefreshListener {
 				LayoutInflater inflater = (LayoutInflater) context
 						.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-				convertView = inflater.inflate(R.layout.list_item_contact,
+				convertView = inflater.inflate(R.layout.list_item_participant,
 						parent, false);
 
 				viewHolder.userimage = (TextView) convertView
@@ -172,9 +172,9 @@ public class ParticipantFragment extends Fragment implements OnRefreshListener {
 
 		@Override
 		protected Boolean doInBackground(String... params) {
-			ContactSyncTask cst = new ContactSyncTask(session.getmUrl(),
+			UserSyncTask ust = new UserSyncTask(session.getmUrl(),
 					session.getToken(), session.getCurrentSiteId());
-			if (cst.syncAllContacts())
+			if (ust.syncUsers(courseid))
 				return true;
 			else
 				return false;
@@ -183,7 +183,7 @@ public class ParticipantFragment extends Fragment implements OnRefreshListener {
 		@Override
 		protected void onPostExecute(Boolean result) {
 			participants = MoodleUser.find(MoodleUser.class,
-					"siteid = ? & courseid = ?", session.getCurrentSiteId()
+					"siteid = ? and courseid = ?", session.getCurrentSiteId()
 							+ "", courseid + "");
 			adapter.notifyDataSetChanged();
 			if (participants.size() != 0)
