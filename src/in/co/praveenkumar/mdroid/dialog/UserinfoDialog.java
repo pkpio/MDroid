@@ -18,7 +18,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -50,18 +49,31 @@ public class UserinfoDialog extends Dialog implements
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.dialog_userinfo);
-
-		// Get views
-		LinearLayout userEmailLayout = (LinearLayout) findViewById(R.id.dialog_userinfo_layout_email);
-		LinearLayout userSkypeLayout = (LinearLayout) findViewById(R.id.dialog_userinfo_layout_skype);
-		LinearLayout userUrlLayout = (LinearLayout) findViewById(R.id.dialog_userinfo_layout_url);
-		LinearLayout userCityLayout = (LinearLayout) findViewById(R.id.dialog_userinfo_layout_location);
 		TextView userImage = (TextView) findViewById(R.id.dialog_userinfo_user_image);
 		TextView userFullname = (TextView) findViewById(R.id.dialog_userinfo_user_fullname);
-		TextView userEmail = (TextView) findViewById(R.id.dialog_userinfo_user_email);
-		TextView userSkype = (TextView) findViewById(R.id.dialog_userinfo_user_skype);
-		TextView userUrl = (TextView) findViewById(R.id.dialog_userinfo_user_url);
-		TextView userCity = (TextView) findViewById(R.id.dialog_userinfo_user_city);
+
+		// Set Info Header
+		LayoutInflater inflater = this.getLayoutInflater();
+		LinearLayout infoHeaderView = (LinearLayout) inflater.inflate(
+				R.layout.list_header_userinfo, null);
+
+		// Get views
+		LinearLayout userEmailLayout = (LinearLayout) infoHeaderView
+				.findViewById(R.id.dialog_userinfo_layout_email);
+		LinearLayout userSkypeLayout = (LinearLayout) infoHeaderView
+				.findViewById(R.id.dialog_userinfo_layout_skype);
+		LinearLayout userUrlLayout = (LinearLayout) infoHeaderView
+				.findViewById(R.id.dialog_userinfo_layout_url);
+		LinearLayout userCityLayout = (LinearLayout) infoHeaderView
+				.findViewById(R.id.dialog_userinfo_layout_location);
+		TextView userEmail = (TextView) infoHeaderView
+				.findViewById(R.id.dialog_userinfo_user_email);
+		TextView userSkype = (TextView) infoHeaderView
+				.findViewById(R.id.dialog_userinfo_user_skype);
+		TextView userUrl = (TextView) infoHeaderView
+				.findViewById(R.id.dialog_userinfo_user_url);
+		TextView userCity = (TextView) infoHeaderView
+				.findViewById(R.id.dialog_userinfo_user_city);
 
 		if (user == null)
 			return;
@@ -108,7 +120,8 @@ public class UserinfoDialog extends Dialog implements
 			userCityLayout.setVisibility(LinearLayout.GONE);
 
 		// Set course list
-		userCourseList = (ListView) findViewById(R.id.dialog_userinfo_user_courselist);
+		userCourseList = (ListView) findViewById(R.id.dialog_userinfo_user_infolist);
+		userCourseList.addHeaderView(infoHeaderView);
 		userCourseListAdapter = new CourseListAdapter(context);
 		userCourseList.setAdapter(userCourseListAdapter);
 	}
@@ -149,15 +162,13 @@ public class UserinfoDialog extends Dialog implements
 				LayoutInflater inflater = (LayoutInflater) context
 						.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-				convertView = inflater.inflate(R.layout.list_item_course,
+				convertView = inflater.inflate(R.layout.list_item_usercourse,
 						parent, false);
 
 				viewHolder.shortname = (TextView) convertView
 						.findViewById(R.id.list_course_shortname);
 				viewHolder.fullname = (TextView) convertView
 						.findViewById(R.id.list_course_fullname);
-				viewHolder.favIcon = (ImageView) convertView
-						.findViewById(R.id.list_course_fav);
 
 				// Save the holder with the view
 				convertView.setTag(viewHolder);
@@ -170,7 +181,6 @@ public class UserinfoDialog extends Dialog implements
 			final MoodleUserCourse mCourse = mCourses.get(position);
 			viewHolder.shortname.setText(mCourse.getShortname());
 			viewHolder.fullname.setText(mCourse.getFullname());
-			viewHolder.favIcon.setVisibility(ImageView.GONE);
 
 			return convertView;
 		}
@@ -194,7 +204,6 @@ public class UserinfoDialog extends Dialog implements
 	static class ViewHolder {
 		TextView shortname;
 		TextView fullname;
-		ImageView favIcon;
 	}
 
 }
