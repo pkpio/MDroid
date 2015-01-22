@@ -9,13 +9,16 @@ import java.util.List;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
 import android.view.Window;
-import android.widget.Button;
-import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
-public class UserinfoDialog extends Dialog {
+public class UserinfoDialog extends Dialog implements
+		android.view.View.OnClickListener {
 	Context context;
 	MoodleSiteInfo siteinfo;
 	MoodleUser user;
@@ -37,6 +40,10 @@ public class UserinfoDialog extends Dialog {
 		setContentView(R.layout.dialog_userinfo);
 
 		// Get views
+		LinearLayout userEmailLayout = (LinearLayout) findViewById(R.id.dialog_userinfo_layout_email);
+		LinearLayout userSkypeLayout = (LinearLayout) findViewById(R.id.dialog_userinfo_layout_skype);
+		LinearLayout userUrlLayout = (LinearLayout) findViewById(R.id.dialog_userinfo_layout_url);
+		LinearLayout userCityLayout = (LinearLayout) findViewById(R.id.dialog_userinfo_layout_location);
 		TextView userImage = (TextView) findViewById(R.id.dialog_userinfo_user_image);
 		TextView userFullname = (TextView) findViewById(R.id.dialog_userinfo_user_fullname);
 		TextView userEmail = (TextView) findViewById(R.id.dialog_userinfo_user_email);
@@ -47,7 +54,14 @@ public class UserinfoDialog extends Dialog {
 		if (user == null)
 			return;
 
+		// Set OnClickListeners
+		userEmailLayout.setOnClickListener(this);
+		userSkypeLayout.setOnClickListener(this);
+		userUrlLayout.setOnClickListener(this);
+		userCityLayout.setOnClickListener(this);
+
 		// Set values
+		// Name and Image
 		String name = user.getFullname();
 		char firstChar = 0;
 		if (name.length() != 0)
@@ -55,10 +69,49 @@ public class UserinfoDialog extends Dialog {
 		userImage.setText(firstChar + "");
 		userImage.setBackgroundColor(LetterColor.of(firstChar));
 		userFullname.setText(user.getFullname());
-		userEmail.setText(user.getEmail());
-		userSkype.setText(user.getSkype());
-		userUrl.setText(user.getUrl());
-		userCity.setText(user.getCity());
+
+		// Email
+		if (user.getEmail() != null && !user.getEmail().contentEquals(""))
+			userEmail.setText(user.getEmail());
+		else
+			userEmailLayout.setVisibility(LinearLayout.GONE);
+
+		// Skype
+		if (user.getSkype() != null && !user.getSkype().contentEquals(""))
+			userSkype.setText(user.getSkype());
+		else
+			userSkypeLayout.setVisibility(LinearLayout.GONE);
+
+		// Url
+		if (user.getUrl() != null && !user.getUrl().contentEquals(""))
+			userUrl.setText(user.getUrl());
+		else
+			userUrlLayout.setVisibility(LinearLayout.GONE);
+
+		// City
+		if (user.getCity() != null && !user.getCity().contentEquals(""))
+			userCity.setText(user.getCity());
+		else
+			userCityLayout.setVisibility(LinearLayout.GONE);
+	}
+
+	@Override
+	public void onClick(View v) {
+		switch (v.getId()) {
+		case R.id.dialog_userinfo_layout_email:
+			Intent intent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
+					"mailto", user.getEmail(), null));
+			context.startActivity(Intent.createChooser(intent, "Send Email"));
+
+			break;
+		case R.id.dialog_userinfo_user_email:
+			Intent intent2 = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
+					"mailto", user.getEmail(), null));
+			context.startActivity(Intent.createChooser(intent2, "Send Email"));
+
+			break;
+		}
+
 	}
 
 }
