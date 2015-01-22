@@ -5,46 +5,46 @@
 
     <!-- Active account settings -->
     <PreferenceCategory
-        android:summary="Active account settings"
-        android:title="Active account settings" >
+        android:summary="@string/activity_settings_cat_active_account_summary"
+        android:title="@string/activity_settings_cat_active_account_title" >
         <Preference
             android:key="logout"
-            android:summary="logout current account"
-            android:title="Logout" />
+            android:summary="@string/activity_settings_logout_summary"
+            android:title="@string/activity_settings_logout_title" />
 
         <EditTextPreference
-            android:defaultValue="Sent from MDroid - Moodle for Android"
+            android:defaultValue="@string/activity_settings_message_sign_default"
             android:enabled="false"
             android:key="messagingSignature"
-            android:positiveButtonText="Update"
-            android:summary="@string/message_signature_summary"
-            android:title="Message signature" />
+            android:positiveButtonText="@string/activity_settings_message_sign_positive_btn"
+            android:summary="@string/activity_settings_message_sign_summary"
+            android:title="@string/activity_settings_message_sign_title" />
     </PreferenceCategory>
 
-    <!-- Debugging -->
+    <!-- General settings -->
     <PreferenceCategory
-        android:summary="General settings"
-        android:title="General" >
+        android:summary="@string/activity_settings_cat_general_summary"
+        android:title="@string/activity_settings_cat_general_title" >
         <CheckBoxPreference
             android:key="hideAds"
-            android:summary="Works only for 3 times. To hide them permanently, please make a donation."
-            android:title="Hide ads temporarily" />
+            android:summary="@string/activity_settings_hideads_summary"
+            android:title="@string/activity_settings_hideads_title" />
         <CheckBoxPreference
             android:key="debugging"
-            android:summary="If enabled, gives more information on login and other errors"
-            android:title="Advanced logging" />
+            android:summary="@string/activity_settings_debug_summary"
+            android:title="@string/activity_settings_debug_title" />
     </PreferenceCategory>
 
     <!-- Help section -->
     <PreferenceCategory
-        android:summary="app related help"
-        android:title="Help" >
+        android:summary="@string/activity_settings_cat_help_summary"
+        android:title="@string/activity_settings_cat_help_title" >
         <Preference
             android:key="help"
-            android:title="Help" />
+            android:title="@string/activity_settings_help_title" />
         <Preference
             android:key="privacyPolicy"
-            android:title="Privacy policy" />
+            android:title="@string/activity_settings_privacy_title" />
     </PreferenceCategory>
 
     <!-- About section -->
@@ -53,13 +53,13 @@
         android:title="About" >
         <Preference
             android:key="aboutMDroid"
-            android:title="Website" />
+            android:title="@string/activity_settings_website_title" />
         <Preference
             android:key="aboutDev"
-            android:title="Developer" />
+            android:title="@string/activity_settings_dev_title" />
         <Preference
             android:key="licenses"
-            android:title="Open source licenses" />
+            android:title="@string/activity_settings_osl_title" />
     </PreferenceCategory>
 
 </PreferenceScreen>

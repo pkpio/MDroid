@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">MDroid - Moodle</string>
+    <string name="action_settings">Settings</string>
+
+    <!-- Left navigation -->
+    <string name="drawer_open">abrir</string>
+    <string name="drawer_close">cerrar</string>
+
+    <!-- Tutorial activity -->
+    <string name="activity_tutorial_beautiful">Hello compañero</string>
+    <string name="activity_tutorial_swipe_instruction">Arrastra para seguir</string>
+    <string name="activity_tutorial_lines_of_code">mas de 70,000 líneas de codigo..</string>
+    <string name="activity_tutorial_hours">Incontables hours de desarrollo..</string>
+    <string name="activity_tutorial_love">y con mucho cariño</string>
+    <string name="activity_tutorial_mdroid_made">MDroid ha sido creado!</string>
+    <string name="activity_tutorial_support_title">Dame tu soporte</string>
+    <string name="activity_tutorial_support_description">con 5 estrellas si te ha agradado</string>
+    <string name="activity_tutorial_bugs_title">Errores?</string>
+    <string name="activity_tutorial_bugs_description">Reporte informe errores</string>
+    <string name="activity_tutorial_tutorial_title">Tutorial?</string>
+    <string name="activity_tutorial_tutorial_description">Es intuitivo !</string>
+    <string name="activity_tutorial_tutorial_end_button">Vamos allá !</string>
+
+    <!-- Login activity -->
+    <string name="activity_login_normal">Normal</string>
+    <string name="activity_login_paranoid">Paranoid</string>
+    <string name="activity_login_email_hint">usuario o cuenta de correo</string>
+    <string name="activity_login_email_icon_desc">Icono de entrada</string>
+    <string name="activity_login_password_hint">contaseña</string>
+    <string name="activity_login_password_icon_desc">Icono entrada</string>
+    <string name="activity_login_url_hint">dirección o url</string>
+    <string name="activity_login_url_icon_desc">Icono direccion o Url </string>
+    <string name="activity_login_login_button">Entrada</string>
+    <string name="activity_login_token_hint">tu cuenta de entrada</string>
+    <string name="activity_login_status_title">Accediendo..</string>
+    <string name="activity_login_progress_retry">Reintentando</string>
+    <string name="activity_login_demo">Demostración</string>
+    <string name="activity_login_help">Que es esto?</string>
+
+    <!-- Webservices help -->
+    <string name="activity_webservices_main_title">Webservices apagado</string>
+    <string name="activity_webservices_main_description">Webservices son necesarios para funcionamiento de MDroid</string>
+    <string name="activity_webservices_help_button">Ayuda de Webservices</string>
+    <string name="activity_webservices_legacy_version_text">Las versiones anteriores te funcionaban?  La activacion de Webservices no es una opcion viable?</string>
+    <string name="activity_webservices_legacy_version_button">Intenta version legal</string>
+
+    <!-- Course activity -->
+    <string name="user_picture">Imagen Perfil Usuario</string>
+    <string name="list_course_summary">Resumen</string>
+    <string name="list_course_sample_shortname">CS 101 2013 1</string>
+    <string name="list_course_sample_fullname">Introduccion a Ciencias Computación</string>
+
+    <!-- Sample values -->
+    <string name="list_item_sample_menu">Curso</string>
+    <string name="syncing">Sincronizando</string>
+    <string name="sample_sectionname">16 de August - 19 de August</string>
+    <string name="sample_modulename">Tarea 2</string>
+    <string name="sample_calendar_date">Hoy</string>
+    <string name="sample_contact_name">David Hemsworth </string>
+    <string name="sample_contact_unread">10</string>
+
+    <!-- Settings activity -->
+    <!-- Active account settings section -->
+    <string name="activity_settings_cat_active_account_title">Active account settings</string>
+    <string name="activity_settings_cat_active_account_summary">Active account settings</string>
+    <string name="activity_settings_logout_title">Logout</string>
+    <string name="activity_settings_logout_summary">logout current account</string>
+    <string name="activity_settings_message_sign_title">Message signature</string>
+    <string name="activity_settings_message_sign_positive_btn">Update</string>
+    <string name="activity_settings_message_sign_default">Sent from MDroid - Moodle for Android</string>
+    <string name="activity_settings_message_sign_summary">Appends this text at the end of each message you send. Donate only!</string>
+    <!-- General settings section -->
+    <string name="activity_settings_cat_general_title">General</string>
+    <string name="activity_settings_cat_general_summary">General settings</string>
+    <string name="activity_settings_hideads_title">Hide ads temporarily</string>
+    <string name="activity_settings_hideads_summary">Works only for 3 times. To hide them permanently, please make a donation.</string>
+    <string name="activity_settings_debug_title">Advanced logging</string>
+    <string name="activity_settings_debug_summary">If enabled, gives more information on login and other errors</string>
+    <!-- Help section -->
+    <string name="activity_settings_cat_help_title">Help</string>
+    <string name="activity_settings_cat_help_summary">app related help</string>
+    <string name="activity_settings_help_title">Help</string>
+    <string name="activity_settings_privacy_title">Privacy policy</string>
+    <!-- About section -->
+    <string name="activity_settings_cat_about_title">About</string>
+    <string name="activity_settings_cat_about_summary">about MDroid and developer</string>
+    <string name="activity_settings_website_title">Website</string>
+    <string name="activity_settings_dev_title">Developer</string>
+    <string name="activity_settings_osl_title">Open source licenses</string>
+
+    <!-- Donations -->
+    <string name="donations_header_text">Vota para las caracteristicas que quieres que implementemos pronto.\n\n El contador de votos será actualizado después de verificarlo, excepto algún retrato.</string>
+    <string name="donations_already_purchased">You purchased this already!</string>
+    <string name="donations_purchase_failed">Purchase failed! Please try again!</string>
+
+</resources>
