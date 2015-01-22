@@ -4,6 +4,7 @@ import in.co.praveenkumar.R;
 import in.co.praveenkumar.mdroid.helper.LetterColor;
 import in.co.praveenkumar.mdroid.moodlemodel.MoodleSiteInfo;
 import in.co.praveenkumar.mdroid.moodlemodel.MoodleUser;
+import in.co.praveenkumar.mdroid.moodlemodel.MoodleUserCourse;
 
 import java.util.List;
 
@@ -12,9 +13,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 
 public class UserinfoDialog extends Dialog implements
@@ -22,6 +28,9 @@ public class UserinfoDialog extends Dialog implements
 	Context context;
 	MoodleSiteInfo siteinfo;
 	MoodleUser user;
+	List<MoodleUserCourse> mCourses;
+	CourseListAdapter userCourseListAdapter;
+	ListView userCourseList;
 
 	public UserinfoDialog(Context context, long siteid, int userid) {
 		super(context);
@@ -31,6 +40,9 @@ public class UserinfoDialog extends Dialog implements
 				"userid = ? and siteid = ?", userid + "", siteid + "");
 		if (mUsers != null && mUsers.size() > 0)
 			user = mUsers.get(0);
+		mCourses = MoodleUserCourse
+				.find(MoodleUserCourse.class, "userid = ? and siteid = ?",
+						user.getUserid() + "", siteid + "");
 	}
 
 	@Override
@@ -56,6 +68,7 @@ public class UserinfoDialog extends Dialog implements
 
 		// Set OnClickListeners
 		userEmailLayout.setOnClickListener(this);
+		userEmail.setOnClickListener(this);
 		userSkypeLayout.setOnClickListener(this);
 		userUrlLayout.setOnClickListener(this);
 		userCityLayout.setOnClickListener(this);
@@ -93,6 +106,11 @@ public class UserinfoDialog extends Dialog implements
 			userCity.setText(user.getCity());
 		else
 			userCityLayout.setVisibility(LinearLayout.GONE);
+
+		// Set course list
+		userCourseList = (ListView) findViewById(R.id.dialog_userinfo_user_courselist);
+		userCourseListAdapter = new CourseListAdapter(context);
+		userCourseList.setAdapter(userCourseListAdapter);
 	}
 
 	@Override
@@ -112,6 +130,71 @@ public class UserinfoDialog extends Dialog implements
 			break;
 		}
 
+	}
+
+	public class CourseListAdapter extends BaseAdapter {
+		private final Context context;
+
+		public CourseListAdapter(Context context) {
+			this.context = context;
+		}
+
+		@Override
+		public View getView(final int position, View convertView,
+				ViewGroup parent) {
+			final ViewHolder viewHolder;
+
+			if (convertView == null) {
+				viewHolder = new ViewHolder();
+				LayoutInflater inflater = (LayoutInflater) context
+						.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+				convertView = inflater.inflate(R.layout.list_item_course,
+						parent, false);
+
+				viewHolder.shortname = (TextView) convertView
+						.findViewById(R.id.list_course_shortname);
+				viewHolder.fullname = (TextView) convertView
+						.findViewById(R.id.list_course_fullname);
+				viewHolder.favIcon = (ImageView) convertView
+						.findViewById(R.id.list_course_fav);
+
+				// Save the holder with the view
+				convertView.setTag(viewHolder);
+			} else {
+				// Just use the viewHolder and avoid findviewbyid()
+				viewHolder = (ViewHolder) convertView.getTag();
+			}
+
+			// Assign values
+			final MoodleUserCourse mCourse = mCourses.get(position);
+			viewHolder.shortname.setText(mCourse.getShortname());
+			viewHolder.fullname.setText(mCourse.getFullname());
+			viewHolder.favIcon.setVisibility(ImageView.GONE);
+
+			return convertView;
+		}
+
+		@Override
+		public int getCount() {
+			return mCourses.size();
+		}
+
+		@Override
+		public Object getItem(int position) {
+			return mCourses.get(position);
+		}
+
+		@Override
+		public long getItemId(int position) {
+			return position;
+		}
+	}
+
+	static class ViewHolder {
+		TextView shortname;
+		TextView fullname;
+		ImageView favIcon;
 	}
 
 }
