@@ -76,7 +76,7 @@ public class DonationActivity extends BaseNavigationActivity {
 				position--; // Because there is a header
 				if (position < 0)
 					return;
-				billing.purchase(features.get(position).getProductid());
+				startPurchase(features.get(position).getProductid());
 
 				// Send a tracker event
 				((ApplicationClass) getApplication()).sendEvent(
@@ -85,6 +85,10 @@ public class DonationActivity extends BaseNavigationActivity {
 			}
 		});
 
+	}
+
+	private void startPurchase(String product) {
+		billing.purchase(this, product);
 	}
 
 	public class FeatureListAdapter extends BaseAdapter {
