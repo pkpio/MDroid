@@ -28,7 +28,7 @@ public class MoodleContact extends SugarRecord<MoodleContact> {
 	String profileimageurlsmall;
 
 	@SerializedName("unread")
-	int unread;
+	int unread = 0;
 
 	@SerializedName("status")
 	int status;
@@ -37,6 +37,21 @@ public class MoodleContact extends SugarRecord<MoodleContact> {
 
 	// Relational fields
 	long siteid;
+
+	public MoodleContact() {
+
+	}
+
+	/**
+	 * @param contactid
+	 *            Moodle userid
+	 * @param fullname
+	 *            Full name of the user
+	 */
+	public MoodleContact(int contactid, String fullname) {
+		this.contactid = contactid;
+		this.fullname = fullname;
+	}
 
 	/**
 	 * Moodle contact id for the contact
