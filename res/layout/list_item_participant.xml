@@ -28,13 +28,14 @@
     </FrameLayout>
 
     <ImageView
-        android:id="@+id/list_message_icon"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:id="@+id/list_participant_message_icon"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:layout_gravity="center_vertical"
         android:contentDescription="@string/sample_contact_name"
+        android:padding="5dp"
         android:src="@drawable/icon_chat_greyscale" />
 
     <TextView
