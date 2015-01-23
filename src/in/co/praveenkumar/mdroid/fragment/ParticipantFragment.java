@@ -1,9 +1,11 @@
 package in.co.praveenkumar.mdroid.fragment;
 
 import in.co.praveenkumar.R;
+import in.co.praveenkumar.mdroid.dialog.MessageDialog;
 import in.co.praveenkumar.mdroid.dialog.UserinfoDialog;
 import in.co.praveenkumar.mdroid.helper.LetterColor;
 import in.co.praveenkumar.mdroid.helper.SessionSetting;
+import in.co.praveenkumar.mdroid.moodlemodel.MoodleContact;
 import in.co.praveenkumar.mdroid.moodlemodel.MoodleUser;
 import in.co.praveenkumar.mdroid.task.UserSyncTask;
 
@@ -74,12 +76,24 @@ public class ParticipantFragment extends Fragment implements OnRefreshListener {
 		// OnItem click
 		participantList.setOnItemClickListener(new OnItemClickListener() {
 			@Override
-			public void onItemClick(AdapterView<?> arg0, View arg1,
+			public void onItemClick(AdapterView<?> arg0, View view,
 					int position, long arg3) {
 				MoodleUser participant = participants.get(position);
-				UserinfoDialog uid = new UserinfoDialog(getActivity(), session
-						.getCurrentSiteId(), participant.getUserid());
-				uid.show();
+
+				// Open message dialog if user clicked on Message icon
+				System.out.println("getID:" + view.getId() + " r.id:"
+						+ R.id.list_participant_message_icon);
+				if (view.getId() == R.id.list_participant_message_icon) {
+					MoodleContact contact = new MoodleContact(participant
+							.getUserid(), participant.getFullname());
+					MessageDialog md = new MessageDialog(getActivity());
+					md.setContact(contact);
+					md.show();
+				} else {
+					UserinfoDialog uid = new UserinfoDialog(getActivity(),
+							session.getCurrentSiteId(), participant.getUserid());
+					uid.show();
+				}
 			}
 		});
 
