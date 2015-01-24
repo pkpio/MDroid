@@ -88,6 +88,7 @@ public class SettingsActivity extends PreferenceActivity implements
 
 		findPreference("help").setOnPreferenceClickListener(this);
 		findPreference("privacyPolicy").setOnPreferenceClickListener(this);
+		findPreference("tutorial").setOnPreferenceClickListener(this);
 
 		findPreference("aboutMDroid").setOnPreferenceClickListener(this);
 		findPreference("aboutDev").setOnPreferenceClickListener(this);
@@ -115,6 +116,12 @@ public class SettingsActivity extends PreferenceActivity implements
 					Intent.ACTION_VIEW,
 					Uri.parse("http://mdroid.praveenkumar.co.in/#!privacy-policy.md"));
 			startActivity(browserIntent);
+		}
+
+		if (key.contentEquals("tutorial")) {
+			Intent tutorialIntent = new Intent(this, TutorialActivity.class);
+			tutorialIntent.putExtra("explicitCall", true);
+			this.startActivity(tutorialIntent);
 		}
 
 		if (key.contentEquals("aboutMDroid")) {

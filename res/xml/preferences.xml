@@ -45,6 +45,9 @@
         <Preference
             android:key="privacyPolicy"
             android:title="@string/activity_settings_privacy_title" />
+        <Preference
+            android:key="tutorial"
+            android:title="@string/activity_settings_tutorial_title" />
     </PreferenceCategory>
 
     <!-- About section -->
