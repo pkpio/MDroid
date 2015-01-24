@@ -28,8 +28,6 @@
     <string name="activity_tutorial_help_description_l1">Help docs are in Settings</string>
     <string name="activity_tutorial_help_description_l2">Still problem?</string>
     <string name="activity_tutorial_help_description_l3">Submit a bug report</string>
-    <string name="activity_tutorial_tutorial_title">Tutorial?</string>
-    <string name="activity_tutorial_tutorial_description">It\'s intuitive!</string>
     <string name="activity_tutorial_tutorial_end_button">Let\'s roll</string>
 
     <!-- Login activity -->
