@@ -65,7 +65,7 @@ public class ModuleIcon {
 				return R.drawable.format_excel;
 
 			// -TODO- More excel formats
-			if (fileExt.contentEquals("xls"))
+			if (fileExt.contentEquals("xls") || fileExt.contentEquals("xlsx"))
 				return R.drawable.format_excel;
 
 			// -TODO- More zip formats
