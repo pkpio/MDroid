@@ -2,6 +2,7 @@ package in.co.praveenkumar.mdroid.dialog;
 
 import in.co.praveenkumar.R;
 import in.co.praveenkumar.mdroid.helper.LetterColor;
+import in.co.praveenkumar.mdroid.moodlemodel.MoodleContact;
 import in.co.praveenkumar.mdroid.moodlemodel.MoodleSiteInfo;
 import in.co.praveenkumar.mdroid.moodlemodel.MoodleUser;
 import in.co.praveenkumar.mdroid.moodlemodel.MoodleUserCourse;
@@ -18,6 +19,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -51,6 +53,7 @@ public class UserinfoDialog extends Dialog implements
 		setContentView(R.layout.dialog_userinfo);
 		TextView userImage = (TextView) findViewById(R.id.dialog_userinfo_user_image);
 		TextView userFullname = (TextView) findViewById(R.id.dialog_userinfo_user_fullname);
+		ImageView messageIcon = (ImageView) findViewById(R.id.dialog_userinfo_message_icon);
 
 		// Set Info Header
 		LayoutInflater inflater = this.getLayoutInflater();
@@ -84,6 +87,7 @@ public class UserinfoDialog extends Dialog implements
 		userSkypeLayout.setOnClickListener(this);
 		userUrlLayout.setOnClickListener(this);
 		userCityLayout.setOnClickListener(this);
+		messageIcon.setOnClickListener(this);
 
 		// Set values
 		// Name and Image
@@ -129,6 +133,13 @@ public class UserinfoDialog extends Dialog implements
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
+		case R.id.dialog_userinfo_message_icon:
+			MoodleContact contact = new MoodleContact(user.getUserid(),
+					user.getFullname());
+			MessageDialog md = new MessageDialog(context);
+			md.setContact(contact);
+			md.show();
+			break;
 		case R.id.dialog_userinfo_layout_email:
 			Intent intent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
 					"mailto", user.getEmail(), null));

@@ -29,6 +29,7 @@
 
     <ImageView
         android:id="@+id/list_participant_message_icon"
+        android:visibility="gone"
         android:layout_width="45dp"
         android:layout_height="45dp"
         android:layout_alignParentRight="true"
