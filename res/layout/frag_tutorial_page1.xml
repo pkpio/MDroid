@@ -23,7 +23,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/activity_tutorial_symbol_plus"
+            android:text="@string/activity_tutorial_symbol_dot"
             android:textColor="@color/white"
             android:textSize="30sp"
             android:textStyle="bold" />
@@ -38,7 +38,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/activity_tutorial_symbol_plus"
+            android:text="@string/activity_tutorial_symbol_dot"
             android:textColor="@color/white"
             android:textSize="30sp"
             android:textStyle="bold" />
@@ -54,15 +54,31 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:text="@string/activity_tutorial_mdroid_made_content"
+        android:layout_marginTop="30dp"
+        android:text=""
         android:textColor="@color/white"
         android:textSize="20sp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="3dp"
+        android:text="@string/activity_tutorial_mdroid_made_description"
+        android:textColor="@color/white"
+        android:textSize="20sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:text=""
+        android:textColor="@color/white"
+        android:textSize="20sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
         android:text="@string/activity_tutorial_mdroid_made_title"
         android:textColor="@color/white"
         android:textSize="30sp"
