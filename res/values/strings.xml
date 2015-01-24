@@ -17,12 +17,12 @@
     <string name="activity_tutorial_mdroid_made_title">You got MDroid!</string>
     <string name="activity_tutorial_mdroid_made_description">..and that\' how</string>
     <string name="activity_tutorial_support_title">Support MDroid</string>
-    <string name="activity_tutorial_support_description_l1">A dollar</string>
-    <string name="activity_tutorial_support_description_l2">or</string>
-    <string name="activity_tutorial_support_description_l3">5 star rating</string>
+    <string name="activity_tutorial_support_description_l1">Donate a dollar</string>
+    <string name="activity_tutorial_support_description_l2">Rate it with 5 stars</string>
+    <string name="activity_tutorial_support_description_l3">It keeps us motivated</string>
     <string name="activity_tutorial_contribute_title">You can contribute!</string>
     <string name="activity_tutorial_contribute_description_l1">Translate to your language</string>
-    <string name="activity_tutorial_contribute_description_l2">Help me write code</string>
+    <string name="activity_tutorial_contribute_description_l2">Code a cool feature</string>
     <string name="activity_tutorial_contribute_description_l3">It\'s open source</string>
     <string name="activity_tutorial_help_title">Problem?</string>
     <string name="activity_tutorial_help_description_l1">Help docs are in Settings</string>
