@@ -7,7 +7,7 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/card_listview_bg" >
+        android:orientation="vertical" >
 
         <ListView
             android:id="@+id/content_message_listing"
@@ -15,7 +15,8 @@
             android:layout_height="match_parent"
             android:adjustViewBounds="true"
             android:divider="@null"
-            android:dividerHeight="0dp" />
+            android:dividerHeight="0dp" >
+        </ListView>
 
         <LinearLayout
             android:id="@+id/messages_empty_layout"
