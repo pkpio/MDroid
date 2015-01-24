@@ -18,6 +18,7 @@ public class ApplicationClass extends SugarApp {
 	synchronized public Tracker getTracker() {
 		GoogleAnalytics analytics = GoogleAnalytics.getInstance(this);
 		mTracker = analytics.newTracker(R.xml.app_tracker);
+		// analytics.getLogger().setLogLevel(LogLevel.VERBOSE);
 		return mTracker;
 	}
 
