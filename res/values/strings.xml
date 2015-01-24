@@ -11,10 +11,9 @@
     <!-- Tutorial activity -->
     <string name="activity_tutorial_beautiful">Hello Beautiful!</string>
     <string name="activity_tutorial_swipe_instruction">Swipe left</string>
-    <string name="activity_tutorial_lines_of_code">70,000+ lines of code..</string>
-    <string name="activity_tutorial_hours">Uncountable hours..</string>
-    <string name="activity_tutorial_love">and with lots of love</string>
-    <string name="activity_tutorial_mdroid_made">MDroid was made!</string>
+    <string name="activity_tutorial_symbol_plus">+</string>
+    <string name="activity_tutorial_mdroid_made_content">..and that\' how</string>
+    <string name="activity_tutorial_mdroid_made_title">You got MDroid!</string>
     <string name="activity_tutorial_support_title">Support me</string>
     <string name="activity_tutorial_support_description">with a 5 star rating if you please</string>
     <string name="activity_tutorial_bugs_title">Bugs?</string>

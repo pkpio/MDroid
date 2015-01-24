@@ -2,21 +2,68 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/beautiful_blue"
+    android:background="@color/moodle_color"
     android:gravity="center"
     android:orientation="vertical" >
 
-    <ImageView
-        android:layout_width="100dp"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:contentDescription="@string/activity_tutorial_lines_of_code"
-        android:src="@drawable/code_inverted" />
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:weightSum="3" >
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:layout_weight="1"
+            android:contentDescription="@string/activity_tutorial_beautiful"
+            android:src="@drawable/code_inverted" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/activity_tutorial_symbol_plus"
+            android:textColor="@color/white"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:layout_weight="1"
+            android:contentDescription="@string/activity_tutorial_beautiful"
+            android:src="@drawable/access_time_inverted" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/activity_tutorial_symbol_plus"
+            android:textColor="@color/white"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:layout_weight="1"
+            android:contentDescription="@string/activity_tutorial_beautiful"
+            android:src="@drawable/favorite_inverted" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="@string/activity_tutorial_mdroid_made_content"
+        android:textColor="@color/white"
+        android:textSize="20sp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:text="@string/activity_tutorial_lines_of_code"
+        android:text="@string/activity_tutorial_mdroid_made_title"
         android:textColor="@color/white"
         android:textSize="30sp"
         android:textStyle="bold" />
