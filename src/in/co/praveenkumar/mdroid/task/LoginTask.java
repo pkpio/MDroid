@@ -129,7 +129,7 @@ public class LoginTask extends AsyncTask<String, Integer, Boolean> {
 		MoodleRestToken mrt = new MoodleRestToken(username, password, mUrl);
 		MoodleToken mt = mrt.getToken();
 
-		if (mt.getToken() == null) {
+		if (mt == null || mt.getToken() == null) {
 			updateProgress("Token fetch failed!");
 			updateProgress("\nError\n" + mt.getError());
 
