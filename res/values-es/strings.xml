@@ -90,6 +90,7 @@
     <string name="activity_settings_cat_help_summary">app related help</string>
     <string name="activity_settings_help_title">Help</string>
     <string name="activity_settings_privacy_title">Privacy policy</string>
+    <string name="activity_settings_tutorial_title">Tutorial</string>
     <!-- About section -->
     <string name="activity_settings_cat_about_title">About</string>
     <string name="activity_settings_cat_about_summary">about MDroid and developer</string>
