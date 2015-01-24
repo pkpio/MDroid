@@ -12,12 +12,14 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.View;
 
 import com.viewpagerindicator.CirclePageIndicator;
 import com.viewpagerindicator.PageIndicator;
 
 public class TutorialActivity extends FragmentActivity {
+	private final String DEBUG_TAG = "TutorialActivity";
 	TutorialFragmentAdapter mAdapter;
 	ViewPager mPager;
 	PageIndicator mIndicator;
@@ -27,9 +29,17 @@ public class TutorialActivity extends FragmentActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_tutorial);
 
+		// Is Tutorial called by user to add an account
+		Boolean explicitCall = false;
+		try {
+			explicitCall = getIntent().getExtras().getBoolean("explicitCall");
+		} catch (Exception e) {
+			Log.d(DEBUG_TAG, "Not an explicit call");
+		}
+
 		// Skip login if user is logged in already
 		SessionSetting session = new SessionSetting(this);
-		if (session.isTutored()) {
+		if (session.isTutored() && !explicitCall) {
 			Intent i = new Intent(this, LoginActivity.class);
 			this.startActivity(i);
 			return;
