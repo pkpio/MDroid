@@ -31,6 +31,11 @@ public class FileOpener {
 		String extension = MimeTypeMap.getFileExtensionFromUrl(file.toString());
 		String mimeType = myMime.getMimeTypeFromExtension(extension);
 
+		// We failed to determine mimeType from above. Use a generic type and
+		// let Android system decide
+		if (mimeType == null)
+			mimeType = "*/*";
+
 		// Setup intent
 		Intent newIntent = new Intent(Intent.ACTION_VIEW);
 		newIntent.setDataAndType(Uri.fromFile(file), mimeType);
