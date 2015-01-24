@@ -33,6 +33,12 @@ public class UserinfoDialog extends Dialog implements
 	CourseListAdapter userCourseListAdapter;
 	ListView userCourseList;
 
+	// Widgets
+	TextView userEmail;
+	TextView userSkype;
+	TextView userUrl;
+	TextView userCity;
+
 	public UserinfoDialog(Context context, long siteid, int userid) {
 		super(context);
 		this.context = context;
@@ -69,13 +75,13 @@ public class UserinfoDialog extends Dialog implements
 				.findViewById(R.id.dialog_userinfo_layout_url);
 		LinearLayout userCityLayout = (LinearLayout) infoHeaderView
 				.findViewById(R.id.dialog_userinfo_layout_location);
-		TextView userEmail = (TextView) infoHeaderView
+		userEmail = (TextView) infoHeaderView
 				.findViewById(R.id.dialog_userinfo_user_email);
-		TextView userSkype = (TextView) infoHeaderView
+		userSkype = (TextView) infoHeaderView
 				.findViewById(R.id.dialog_userinfo_user_skype);
-		TextView userUrl = (TextView) infoHeaderView
+		userUrl = (TextView) infoHeaderView
 				.findViewById(R.id.dialog_userinfo_user_url);
-		TextView userCity = (TextView) infoHeaderView
+		userCity = (TextView) infoHeaderView
 				.findViewById(R.id.dialog_userinfo_user_city);
 
 		if (user == null)
@@ -83,7 +89,6 @@ public class UserinfoDialog extends Dialog implements
 
 		// Set OnClickListeners
 		userEmailLayout.setOnClickListener(this);
-		userEmail.setOnClickListener(this);
 		userSkypeLayout.setOnClickListener(this);
 		userUrlLayout.setOnClickListener(this);
 		userCityLayout.setOnClickListener(this);
@@ -132,6 +137,9 @@ public class UserinfoDialog extends Dialog implements
 
 	@Override
 	public void onClick(View v) {
+		Intent DefaultIntent = new Intent(android.content.Intent.ACTION_SEND);
+		DefaultIntent.setType("text/plain");
+
 		switch (v.getId()) {
 		case R.id.dialog_userinfo_message_icon:
 			MoodleContact contact = new MoodleContact(user.getUserid(),
@@ -144,13 +152,24 @@ public class UserinfoDialog extends Dialog implements
 			Intent intent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
 					"mailto", user.getEmail(), null));
 			context.startActivity(Intent.createChooser(intent, "Send Email"));
-
 			break;
-		case R.id.dialog_userinfo_user_email:
-			Intent intent2 = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
-					"mailto", user.getEmail(), null));
-			context.startActivity(Intent.createChooser(intent2, "Send Email"));
-
+		case R.id.dialog_userinfo_layout_skype:
+			DefaultIntent.putExtra(android.content.Intent.EXTRA_TEXT,
+					userSkype.getText());
+			context.startActivity(Intent.createChooser(DefaultIntent,
+					"Choose action for Skype"));
+			break;
+		case R.id.dialog_userinfo_layout_url:
+			DefaultIntent.putExtra(android.content.Intent.EXTRA_TEXT,
+					userUrl.getText());
+			context.startActivity(Intent.createChooser(DefaultIntent,
+					"Choose action for URL"));
+			break;
+		case R.id.dialog_userinfo_layout_location:
+			DefaultIntent.putExtra(android.content.Intent.EXTRA_TEXT,
+					userCity.getText());
+			context.startActivity(Intent.createChooser(DefaultIntent,
+					"Choose action for Location"));
 			break;
 		}
 
