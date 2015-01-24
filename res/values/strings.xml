@@ -99,7 +99,7 @@
     <string name="activity_settings_osl_title">Open source licenses</string>
 
     <!-- Donations related -->
-    <string name="donations_header_text">Vote for the features you want us to implement soon.\n\nThe vote counts are updated after verification so, expect some delay.</string>
+    <string name="donations_header_text">Donate for the features you want to see. Any donation will unlock pro access.</string>
     <string name="donations_already_purchased">You purchased this already!</string>
     <string name="donations_purchase_failed">Purchase failed! Please try again!</string>
 
