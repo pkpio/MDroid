@@ -76,6 +76,12 @@ public class DownloadTask {
 		if (choice == SYSTEM_DOWNLOADER) {
 			DownloadManager manager = (DownloadManager) context
 					.getSystemService(Context.DOWNLOAD_SERVICE);
+			/**
+			 * -TODO- Offer better alternative. Only a temporary, quick,
+			 * workaround for 2.3.x devices. May not work on all sites.
+			 */
+			if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.HONEYCOMB)
+				fileUrl = fileUrl.replace("https://", "http://");
 			Request request = new Request(Uri.parse(fileUrl));
 			try {
 				request.setDestinationInExternalPublicDir("/MDroid", filepath
@@ -95,7 +101,7 @@ public class DownloadTask {
 				else
 					request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
 
-			//-TODO- save this id somewhere for progress retrieval
+			// -TODO- save this id somewhere for progress retrieval
 			reqId = manager.enqueue(request);
 		} else {
 			mdroidDownload(fileUrl, fileName);
