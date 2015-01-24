@@ -11,16 +11,23 @@
     <!-- Tutorial activity -->
     <string name="activity_tutorial_beautiful">Hello compañero</string>
     <string name="activity_tutorial_swipe_instruction">Arrastra para seguir</string>
-    <string name="activity_tutorial_lines_of_code">mas de 70,000 líneas de codigo..</string>
-    <string name="activity_tutorial_hours">Incontables hours de desarrollo..</string>
-    <string name="activity_tutorial_love">y con mucho cariño</string>
-    <string name="activity_tutorial_mdroid_made">MDroid ha sido creado!</string>
-    <string name="activity_tutorial_support_title">Dame tu soporte</string>
-    <string name="activity_tutorial_support_description">con 5 estrellas si te ha agradado</string>
-    <string name="activity_tutorial_bugs_title">Errores?</string>
-    <string name="activity_tutorial_bugs_description">Reporte informe errores</string>
-    <string name="activity_tutorial_tutorial_title">Tutorial?</string>
-    <string name="activity_tutorial_tutorial_description">Es intuitivo !</string>
+    <string name="activity_tutorial_symbol_plus">+</string>
+    <string name="activity_tutorial_symbol_or">\/</string>
+    <string name="activity_tutorial_symbol_dot">.</string>
+    <string name="activity_tutorial_mdroid_made_title">You got MDroid!</string>
+    <string name="activity_tutorial_mdroid_made_description">..and that\' how</string>
+    <string name="activity_tutorial_support_title">Support MDroid</string>
+    <string name="activity_tutorial_support_description_l1">A dollar</string>
+    <string name="activity_tutorial_support_description_l2">or</string>
+    <string name="activity_tutorial_support_description_l3">5 star rating</string>
+    <string name="activity_tutorial_contribute_title">You can contribute!</string>
+    <string name="activity_tutorial_contribute_description_l1">Translate to your language</string>
+    <string name="activity_tutorial_contribute_description_l2">Help me write code</string>
+    <string name="activity_tutorial_contribute_description_l3">It\'s open source</string>
+    <string name="activity_tutorial_help_title">Problem?</string>
+    <string name="activity_tutorial_help_description_l1">Help docs are in Settings</string>
+    <string name="activity_tutorial_help_description_l2">Still problem?</string>
+    <string name="activity_tutorial_help_description_l3">Submit a bug report</string>
     <string name="activity_tutorial_tutorial_end_button">Vamos allá !</string>
 
     <!-- Login activity -->
