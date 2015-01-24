@@ -10,7 +10,7 @@
         android:id="@+id/dialog_userinfo_layout_email"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:clickable="true"
+        android:background="@drawable/clickable_item_default"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         android:padding="5dp" >
@@ -28,7 +28,6 @@
             android:lines="1"
             android:padding="8dp"
             android:text="praveendath92@gmail.com"
-            android:textIsSelectable="true"
             android:textSize="18sp" />
     </LinearLayout>
 
@@ -38,7 +37,7 @@
         android:id="@+id/dialog_userinfo_layout_skype"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:clickable="true"
+        android:background="@drawable/clickable_item_default"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         android:padding="5dp" >
@@ -56,7 +55,6 @@
             android:lines="1"
             android:padding="8dp"
             android:text="praveendath92"
-            android:textIsSelectable="true"
             android:textSize="18sp" />
     </LinearLayout>
 
@@ -66,7 +64,7 @@
         android:id="@+id/dialog_userinfo_layout_url"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:clickable="true"
+        android:background="@drawable/clickable_item_default"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         android:padding="5dp" >
@@ -85,7 +83,6 @@
             android:linksClickable="true"
             android:padding="8dp"
             android:text="http://praveenkumar.co.in/moodle/user.php?id=2"
-            android:textIsSelectable="true"
             android:textSize="18sp" />
     </LinearLayout>
 
@@ -95,7 +92,7 @@
         android:id="@+id/dialog_userinfo_layout_location"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:clickable="true"
+        android:background="@drawable/clickable_item_default"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         android:padding="5dp" >
@@ -113,7 +110,6 @@
             android:lines="1"
             android:padding="8dp"
             android:text="Mumbai, India"
-            android:textIsSelectable="true"
             android:textSize="18sp" />
     </LinearLayout>
 

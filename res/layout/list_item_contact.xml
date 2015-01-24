@@ -4,7 +4,7 @@
     android:layout_height="50dp"
     android:layout_marginLeft="4dp"
     android:layout_marginRight="4dp"
-    android:background="@color/white"
+    android:background="@drawable/clickable_item_default"
     android:gravity="center_vertical"
     android:paddingLeft="8dp"
     android:paddingRight="8dp" >
@@ -45,8 +45,8 @@
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:layout_gravity="center_vertical"
-        android:padding="5dp"
         android:contentDescription="@string/sample_contact_name"
+        android:padding="5dp"
         android:src="@drawable/icon_chat_greyscale" />
 
     <TextView
