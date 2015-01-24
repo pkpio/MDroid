@@ -220,29 +220,29 @@ public class TimeFormat {
 	private static String getMonthName(int month) {
 		// Month name
 		switch (month) {
-		case 1:
+		case Calendar.JANUARY:
 			return "Jan";
-		case 2:
+		case Calendar.FEBRUARY:
 			return "Feb";
-		case 3:
+		case Calendar.MARCH:
 			return "Mar";
-		case 4:
+		case Calendar.APRIL:
 			return "Apr";
-		case 5:
+		case Calendar.MAY:
 			return "May";
-		case 6:
+		case Calendar.JUNE:
 			return "Jun";
-		case 7:
+		case Calendar.JULY:
 			return "Jul";
-		case 8:
+		case Calendar.AUGUST:
 			return "Aug";
-		case 9:
+		case Calendar.SEPTEMBER:
 			return "Sep";
-		case 10:
+		case Calendar.OCTOBER:
 			return "Oct";
-		case 11:
+		case Calendar.NOVEMBER:
 			return "Nov";
-		case 12:
+		case Calendar.DECEMBER:
 			return "Dec";
 		default:
 			return "Err";
