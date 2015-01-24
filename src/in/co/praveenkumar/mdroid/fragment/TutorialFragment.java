@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 public class TutorialFragment extends Fragment {
-	public static final int TUTORIAL_PAGE_COUNT = 8;
+	public static final int TUTORIAL_PAGE_COUNT = 5;
 	int index = 0;
 
 	/**
@@ -19,7 +19,6 @@ public class TutorialFragment extends Fragment {
 	public TutorialFragment(int index) {
 		this.index = index;
 	}
-	
 
 	public TutorialFragment() {
 		this.index = TUTORIAL_PAGE_COUNT;
@@ -48,18 +47,6 @@ public class TutorialFragment extends Fragment {
 			break;
 		case 4:
 			rootView = inflater.inflate(R.layout.frag_tutorial_page4,
-					container, false);
-			break;
-		case 5:
-			rootView = inflater.inflate(R.layout.frag_tutorial_page5,
-					container, false);
-			break;
-		case 6:
-			rootView = inflater.inflate(R.layout.frag_tutorial_page6,
-					container, false);
-			break;
-		case 7:
-			rootView = inflater.inflate(R.layout.frag_tutorial_page7,
 					container, false);
 			break;
 
