@@ -51,9 +51,9 @@ public class DonationActivity extends BaseNavigationActivity {
 		this.context = this;
 
 		// Get features from local db to start with
-		features = MDroidModelFeature.listAll(MDroidModelFeature.class);
-		if (features.size() == 0)
-			parseFeaturesFromAssetFile();
+		// features = MDroidModelFeature.listAll(MDroidModelFeature.class);
+		// if (features.size() == 0)
+		parseFeaturesFromAssetFile();
 
 		ListView featureList = (ListView) findViewById(R.id.list_donations);
 
@@ -197,13 +197,12 @@ public class DonationActivity extends BaseNavigationActivity {
 					new TypeToken<List<MDroidModelFeature>>() {
 					}.getType());
 			reader.close();
-			System.out.println("Size is: " + features.size());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
-		for (int i = 0; i < features.size(); i++)
-			features.get(i).save();
+		// for (int i = 0; i < features.size(); i++)
+		// features.get(i).save();
 	}
 
 }
