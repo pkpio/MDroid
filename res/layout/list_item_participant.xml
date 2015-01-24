@@ -4,7 +4,7 @@
     android:layout_height="50dp"
     android:layout_marginLeft="4dp"
     android:layout_marginRight="4dp"
-    android:background="@color/white"
+    android:background="@drawable/clickable_item_default"
     android:gravity="center_vertical"
     android:paddingLeft="8dp"
     android:paddingRight="8dp" >
