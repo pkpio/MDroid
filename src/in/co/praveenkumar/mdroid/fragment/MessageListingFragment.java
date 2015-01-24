@@ -303,7 +303,18 @@ public class MessageListingFragment extends Fragment implements
 				int topRowVerticalPosition = (messageList == null || messageList
 						.getChildCount() == 0) ? 0 : messageList.getChildAt(0)
 						.getTop();
-				swipeLayout.setEnabled(topRowVerticalPosition >= 0);
+				/**
+				 * Note: There seem to be a bug only in this fragment. Usually
+				 * topRowVerticalPosition checking is sufficient.
+				 * topRowVerticalPosition stays negative until list is scrolled
+				 * all the way up - just an observation. Android could do
+				 * optimization and not draw it, when invisible - probably
+				 * that's what happening here. In any case, this is a more
+				 * foolproof solution. Don't see a reason why all instances be
+				 * checking this way.
+				 */
+				swipeLayout.setEnabled(topRowVerticalPosition >= 0
+						&& firstVisibleItem == 0);
 			}
 		});
 	}
