@@ -18,6 +18,8 @@ import android.util.Log;
  * 
  */
 public class SessionSetting {
+	public static final int TUTORIAL_VERSION = 2;
+
 	private String token;
 	private String mUrl;
 	private long currentSiteId;
@@ -151,7 +153,7 @@ public class SessionSetting {
 	 * @return TutoredStatus
 	 */
 	public Boolean isTutored() {
-		return appSharedPrefs.getBoolean("isTutored", false);
+		return appSharedPrefs.getBoolean("isTutored" + TUTORIAL_VERSION, false);
 	}
 
 	/**
@@ -162,7 +164,7 @@ public class SessionSetting {
 	 */
 	public void setTutored(Boolean TutoredStatus) {
 		Log.d(DEBUG_TAG, "isTutored updated");
-		prefsEditor.putBoolean("isTutored", TutoredStatus);
+		prefsEditor.putBoolean("isTutored" + TUTORIAL_VERSION, TutoredStatus);
 		prefsEditor.commit();
 	}
 
