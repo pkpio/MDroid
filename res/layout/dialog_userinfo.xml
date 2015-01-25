@@ -28,9 +28,9 @@
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_alignParentBottom="true"
-            android:gravity="center_vertical"
             android:layout_gravity="top"
             android:background="@color/transparent_black"
+            android:gravity="center_vertical"
             android:lines="1"
             android:padding="5dp"
             android:text="Praveen Kumar Pendyala"
@@ -38,12 +38,23 @@
             android:textSize="18sp" />
 
         <ImageView
-            android:id="@+id/dialog_userinfo_message_icon"
+            android:id="@+id/dialog_userinfo_contact_icon"
             android:layout_width="45dp"
             android:layout_height="40dp"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
             android:layout_gravity="center_vertical"
+            android:contentDescription="@string/sample_contact_name"
+            android:padding="5dp"
+            android:src="@drawable/icon_contact_add" />
+
+        <ImageView
+            android:id="@+id/dialog_userinfo_message_icon"
+            android:layout_width="45dp"
+            android:layout_height="40dp"
+            android:layout_alignParentBottom="true"
+            android:layout_gravity="center_vertical"
+            android:layout_toLeftOf="@id/dialog_userinfo_contact_icon"
             android:contentDescription="@string/sample_contact_name"
             android:padding="5dp"
             android:src="@drawable/icon_message" />
