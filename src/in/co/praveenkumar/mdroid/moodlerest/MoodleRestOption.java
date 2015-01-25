@@ -23,6 +23,8 @@ public class MoodleRestOption {
 	public static final String FUNCTION_GET_POSTS = "mod_forum_get_forum_discussion_posts";
 	public static final String FUNCTION_GET_SITE_INFO = "moodle_webservice_get_siteinfo";// core_webservice_get_site_info()
 	public static final String FUNCTION_GET_CONTACTS = "core_message_get_contacts";// no_alternatives
+	public static final String FUNCTION_CREATE_CONTACTS = "core_message_create_contacts";// no_alternatives
+	public static final String FUNCTION_DELETE_CONTACTS = "core_message_create_contacts";// no_alternatives
 	public static final String FUNCTION_GET_EVENTS = "core_calendar_get_calendar_events";// no_alternatives
 	public static final String FUNCTION_SEND_MESSAGE = "moodle_message_send_instantmessages";// core_message_send_instant_messages
 	public static final String FUNCTION_GET_MESSAGES = "local_mobile_core_message_get_messages";
