@@ -181,6 +181,7 @@ public class MoodleRestContact {
 			 */
 			char[] response = new char[4];
 			reader.read(response, 0, 4);
+			System.out.println(String.valueOf(response));
 			if (String.valueOf(response).contentEquals("null")) {
 				reader.close();
 				return true;

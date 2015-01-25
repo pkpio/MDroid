@@ -76,11 +76,29 @@ public class ContactSyncTask {
 	 * 
 	 * @param user
 	 *            MoodleUser
-	 * @return True is success
+	 * @return True if success
 	 */
 	public Boolean AddContact(MoodleUser user) {
 		MoodleRestContact mrc = new MoodleRestContact(mUrl, token);
-		return mrc.addContact(user);
+		if (mrc.addContact(user))
+			return true;
+		error = mrc.getError();
+		return false;
+	}
+
+	/**
+	 * Remove user as a contact
+	 * 
+	 * @param user
+	 *            MoodleUser
+	 * @return True if success
+	 */
+	public Boolean RemoveContact(MoodleUser user) {
+		MoodleRestContact mrc = new MoodleRestContact(mUrl, token);
+		if (mrc.removeContact(user))
+			return true;
+		error = mrc.getError();
+		return false;
 	}
 
 	/**
@@ -89,7 +107,7 @@ public class ContactSyncTask {
 	 * @return
 	 */
 	public String getError() {
-		return null;
+		return error;
 	}
 
 	private void saveToDb(ArrayList<MoodleContact> contacts, int status) {
