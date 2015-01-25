@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="in.co.praveenkumar"
-    android:versionCode="43"
-    android:versionName="6.4.1 MDroid APIs" >
+    android:versionCode="44"
+    android:versionName="6.4.2 MDroid APIs" >
 
     <uses-sdk
         android:minSdkVersion="9"
