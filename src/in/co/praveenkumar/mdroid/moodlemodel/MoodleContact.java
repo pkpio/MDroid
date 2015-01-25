@@ -144,4 +144,19 @@ public class MoodleContact extends SugarRecord<MoodleContact> {
 		this.status = status;
 	}
 
+	public class MoodleContactWarnings {
+		@SerializedName("item")
+		String item;
+
+		@SerializedName("itemid")
+		int itemid;
+
+		@SerializedName("warningcode")
+		String warningcode;// the warning code can be used by the client app to
+							// implement specific behaviour
+
+		@SerializedName("message")
+		String message;// untranslated english message to explain the warning
+	}
+
 }
