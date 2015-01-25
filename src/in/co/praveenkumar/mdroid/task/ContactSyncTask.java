@@ -2,6 +2,7 @@ package in.co.praveenkumar.mdroid.task;
 
 import in.co.praveenkumar.mdroid.moodlemodel.MoodleContact;
 import in.co.praveenkumar.mdroid.moodlemodel.MoodleContacts;
+import in.co.praveenkumar.mdroid.moodlemodel.MoodleUser;
 import in.co.praveenkumar.mdroid.moodlerest.MoodleRestContact;
 
 import java.util.ArrayList;
@@ -68,6 +69,27 @@ public class ContactSyncTask {
 		saveToDb(contacts, MoodleContact.STATUS_STRANGER);
 
 		return true;
+	}
+
+	/**
+	 * Adds user as a contact
+	 * 
+	 * @param user
+	 *            MoodleUser
+	 * @return True is success
+	 */
+	public Boolean AddContact(MoodleUser user) {
+		MoodleRestContact mrc = new MoodleRestContact(mUrl, token);
+		return mrc.addContact(user);
+	}
+
+	/**
+	 * Returns error occured during the last request
+	 * 
+	 * @return
+	 */
+	public String getError() {
+		return null;
 	}
 
 	private void saveToDb(ArrayList<MoodleContact> contacts, int status) {
