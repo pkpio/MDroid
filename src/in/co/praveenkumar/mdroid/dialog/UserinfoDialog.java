@@ -2,10 +2,12 @@ package in.co.praveenkumar.mdroid.dialog;
 
 import in.co.praveenkumar.R;
 import in.co.praveenkumar.mdroid.helper.LetterColor;
+import in.co.praveenkumar.mdroid.helper.SessionSetting;
 import in.co.praveenkumar.mdroid.moodlemodel.MoodleContact;
 import in.co.praveenkumar.mdroid.moodlemodel.MoodleSiteInfo;
 import in.co.praveenkumar.mdroid.moodlemodel.MoodleUser;
 import in.co.praveenkumar.mdroid.moodlemodel.MoodleUserCourse;
+import in.co.praveenkumar.mdroid.task.ContactSyncTask;
 
 import java.util.List;
 
@@ -13,6 +15,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,17 +26,21 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class UserinfoDialog extends Dialog implements
 		android.view.View.OnClickListener {
 	Context context;
+	SessionSetting session;
 	MoodleSiteInfo siteinfo;
 	MoodleUser user;
 	List<MoodleUserCourse> mCourses;
 	CourseListAdapter userCourseListAdapter;
 	ListView userCourseList;
+	Boolean isContact;
 
 	// Widgets
+	ImageView contactIcon;
 	TextView userEmail;
 	TextView userSkype;
 	TextView userUrl;
@@ -42,6 +49,7 @@ public class UserinfoDialog extends Dialog implements
 	public UserinfoDialog(Context context, long siteid, int userid) {
 		super(context);
 		this.context = context;
+		this.session = new SessionSetting(context);
 		siteinfo = MoodleSiteInfo.findById(MoodleSiteInfo.class, siteid);
 		List<MoodleUser> mUsers = MoodleUser.find(MoodleUser.class,
 				"userid = ? and siteid = ?", userid + "", siteid + "");
@@ -50,6 +58,12 @@ public class UserinfoDialog extends Dialog implements
 		mCourses = MoodleUserCourse
 				.find(MoodleUserCourse.class, "userid = ? and siteid = ?",
 						user.getUserid() + "", siteid + "");
+
+		// Check if this user is a contact
+		List<MoodleContact> mContacts = MoodleContact.find(MoodleContact.class,
+				"contactid = ? and siteid = ?", userid + "", siteid + "");
+		isContact = (mContacts != null && mContacts.size() != 0);
+
 	}
 
 	@Override
@@ -60,6 +74,7 @@ public class UserinfoDialog extends Dialog implements
 		TextView userImage = (TextView) findViewById(R.id.dialog_userinfo_user_image);
 		TextView userFullname = (TextView) findViewById(R.id.dialog_userinfo_user_fullname);
 		ImageView messageIcon = (ImageView) findViewById(R.id.dialog_userinfo_message_icon);
+		contactIcon = (ImageView) findViewById(R.id.dialog_userinfo_contact_icon);
 
 		// Set Info Header
 		LayoutInflater inflater = this.getLayoutInflater();
@@ -93,6 +108,7 @@ public class UserinfoDialog extends Dialog implements
 		userUrlLayout.setOnClickListener(this);
 		userCityLayout.setOnClickListener(this);
 		messageIcon.setOnClickListener(this);
+		contactIcon.setOnClickListener(this);
 
 		// Set values
 		// Name and Image
@@ -103,6 +119,12 @@ public class UserinfoDialog extends Dialog implements
 		userImage.setText(firstChar + "");
 		userImage.setBackgroundColor(LetterColor.of(firstChar));
 		userFullname.setText(user.getFullname());
+
+		// Contact icon
+		if (isContact)
+			contactIcon.setImageResource(R.drawable.icon_contact_remove);
+		else
+			contactIcon.setImageResource(R.drawable.icon_contact_add);
 
 		// Email
 		if (user.getEmail() != null && !user.getEmail().contentEquals(""))
@@ -148,6 +170,9 @@ public class UserinfoDialog extends Dialog implements
 			md.setContact(contact);
 			md.show();
 			break;
+		case R.id.dialog_userinfo_contact_icon:
+			new contactStateChangeBg().execute("");
+			break;
 		case R.id.dialog_userinfo_layout_email:
 			Intent intent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
 					"mailto", user.getEmail(), null));
@@ -173,6 +198,43 @@ public class UserinfoDialog extends Dialog implements
 			break;
 		}
 
+	}
+
+	private class contactStateChangeBg extends
+			AsyncTask<String, Integer, Boolean> {
+
+		@Override
+		protected void onPreExecute() {
+			if (isContact)
+				contactIcon.setImageResource(R.drawable.icon_contact_add);
+			else
+				contactIcon.setImageResource(R.drawable.icon_contact_remove);
+		}
+
+		@Override
+		protected Boolean doInBackground(String... params) {
+			ContactSyncTask cst = new ContactSyncTask(session.getmUrl(),
+					session.getToken(), session.getCurrentSiteId());
+			Boolean status = isContact ? cst.RemoveContact(user) : cst
+					.AddContact(user);
+			if (status)
+				cst.syncAllContacts();
+			return status;
+		}
+
+		@Override
+		protected void onPostExecute(Boolean result) {
+			if (result)
+				isContact = !isContact;
+			else
+				Toast.makeText(context, "Action failed!", Toast.LENGTH_LONG)
+						.show();
+
+			if (isContact)
+				contactIcon.setImageResource(R.drawable.icon_contact_remove);
+			else
+				contactIcon.setImageResource(R.drawable.icon_contact_add);
+		}
 	}
 
 	public class CourseListAdapter extends BaseAdapter {
