@@ -217,8 +217,18 @@ public class UserinfoDialog extends Dialog implements
 					session.getToken(), session.getCurrentSiteId());
 			Boolean status = isContact ? cst.RemoveContact(user) : cst
 					.AddContact(user);
-			if (status)
+			if (status) {
+				/**
+				 * Delete contact if it has been removed. Removed => currently a
+				 * contact.
+				 */
+				if (isContact)
+					MoodleContact.deleteAll(MoodleContact.class,
+							"siteid = ? and contactid = ?",
+							session.getCurrentSiteId() + "", user.getUserid()
+									+ "");
 				cst.syncAllContacts();
+			}
 			return status;
 		}
 
