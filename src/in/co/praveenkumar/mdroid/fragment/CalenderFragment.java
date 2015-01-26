@@ -1,8 +1,9 @@
 package in.co.praveenkumar.mdroid.fragment;
 
+import in.co.praveenkumar.R;
 import in.co.praveenkumar.mdroid.helper.SessionSetting;
 import in.co.praveenkumar.mdroid.helper.TimeFormat;
-import in.co.praveenkumar.R;
+import in.co.praveenkumar.mdroid.helper.Workarounds;
 import in.co.praveenkumar.mdroid.moodlemodel.MoodleCourse;
 import in.co.praveenkumar.mdroid.moodlemodel.MoodleEvent;
 import in.co.praveenkumar.mdroid.task.EventSyncTask;
@@ -24,7 +25,6 @@ import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AbsListView;
 import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -39,7 +39,6 @@ public class CalenderFragment extends Fragment implements OnRefreshListener {
 	ArrayList<CalenderObject> listObjects = new ArrayList<CalenderObject>();
 	LinearLayout calenderEmptyLayout;
 	SwipeRefreshLayout swipeLayout;
-	ListView eventList;
 
 	/**
 	 * Don't use this constructor
@@ -64,7 +63,8 @@ public class CalenderFragment extends Fragment implements OnRefreshListener {
 				false);
 		calenderEmptyLayout = (LinearLayout) rootView
 				.findViewById(R.id.calender_empty_layout);
-		eventList = (ListView) rootView.findViewById(R.id.list_calendar);
+		ListView eventList = (ListView) rootView
+				.findViewById(R.id.list_calendar);
 
 		session = new SessionSetting(context);
 		if (courseid == 0)
@@ -82,7 +82,8 @@ public class CalenderFragment extends Fragment implements OnRefreshListener {
 
 		swipeLayout = (SwipeRefreshLayout) rootView
 				.findViewById(R.id.swipe_refresh);
-		setupSwipeLayout();
+		Workarounds.linkSwipeRefreshAndListView(swipeLayout, eventList);
+		swipeLayout.setOnRefreshListener(this);
 
 		new ListEventsThread(session.getmUrl(), session.getToken(),
 				session.getCurrentSiteId()).execute("");
@@ -316,33 +317,6 @@ public class CalenderFragment extends Fragment implements OnRefreshListener {
 			this.viewType = viewType;
 			this.title = title;
 		}
-	}
-
-	void setupSwipeLayout() {
-		if (swipeLayout == null || eventList == null)
-			return;
-
-		swipeLayout.setColorSchemeResources(R.color.refresh_green,
-				R.color.refresh_red, R.color.refresh_blue,
-				R.color.refresh_yellow);
-		swipeLayout.setOnRefreshListener(this);
-
-		// Link swipeLayout with underlying listview
-		eventList.setOnScrollListener(new AbsListView.OnScrollListener() {
-			@Override
-			public void onScrollStateChanged(AbsListView view, int scrollState) {
-
-			}
-
-			@Override
-			public void onScroll(AbsListView view, int firstVisibleItem,
-					int visibleItemCount, int totalItemCount) {
-				int topRowVerticalPosition = (eventList == null || eventList
-						.getChildCount() == 0) ? 0 : eventList.getChildAt(0)
-						.getTop();
-				swipeLayout.setEnabled(topRowVerticalPosition >= 0);
-			}
-		});
 	}
 
 	@Override

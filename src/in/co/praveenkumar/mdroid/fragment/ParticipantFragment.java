@@ -4,6 +4,7 @@ import in.co.praveenkumar.R;
 import in.co.praveenkumar.mdroid.dialog.UserinfoDialog;
 import in.co.praveenkumar.mdroid.helper.LetterColor;
 import in.co.praveenkumar.mdroid.helper.SessionSetting;
+import in.co.praveenkumar.mdroid.helper.Workarounds;
 import in.co.praveenkumar.mdroid.moodlemodel.MoodleUser;
 import in.co.praveenkumar.mdroid.task.UserSyncTask;
 
@@ -18,7 +19,6 @@ import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
@@ -34,7 +34,6 @@ public class ParticipantFragment extends Fragment implements OnRefreshListener {
 	SessionSetting session;
 	LinearLayout listEmptyLayout;
 	SwipeRefreshLayout swipeLayout;
-	ListView participantList;
 
 	/**
 	 * Don't use this constructor.
@@ -59,7 +58,7 @@ public class ParticipantFragment extends Fragment implements OnRefreshListener {
 				false);
 		listEmptyLayout = (LinearLayout) rootView
 				.findViewById(R.id.list_empty_layout);
-		participantList = (ListView) rootView
+		ListView participantList = (ListView) rootView
 				.findViewById(R.id.participant_list);
 
 		// Get sites info
@@ -85,7 +84,8 @@ public class ParticipantFragment extends Fragment implements OnRefreshListener {
 
 		swipeLayout = (SwipeRefreshLayout) rootView
 				.findViewById(R.id.swipe_refresh);
-		setupSwipeLayout();
+		Workarounds.linkSwipeRefreshAndListView(swipeLayout, participantList);
+		swipeLayout.setOnRefreshListener(this);
 
 		new ParticipantSyncerBg().execute("");
 
@@ -197,32 +197,5 @@ public class ParticipantFragment extends Fragment implements OnRefreshListener {
 	@Override
 	public void onRefresh() {
 		new ParticipantSyncerBg().execute("");
-	}
-
-	void setupSwipeLayout() {
-		if (swipeLayout == null || participantList == null)
-			return;
-
-		swipeLayout.setColorSchemeResources(R.color.refresh_green,
-				R.color.refresh_red, R.color.refresh_blue,
-				R.color.refresh_yellow);
-		swipeLayout.setOnRefreshListener(this);
-
-		// Link swipeLayout with underlying listview
-		participantList.setOnScrollListener(new AbsListView.OnScrollListener() {
-			@Override
-			public void onScrollStateChanged(AbsListView view, int scrollState) {
-
-			}
-
-			@Override
-			public void onScroll(AbsListView view, int firstVisibleItem,
-					int visibleItemCount, int totalItemCount) {
-				int topRowVerticalPosition = (participantList == null || participantList
-						.getChildCount() == 0) ? 0 : participantList
-						.getChildAt(0).getTop();
-				swipeLayout.setEnabled(topRowVerticalPosition >= 0);
-			}
-		});
 	}
 }

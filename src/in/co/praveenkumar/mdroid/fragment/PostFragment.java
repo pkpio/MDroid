@@ -5,6 +5,7 @@ import in.co.praveenkumar.mdroid.helper.AppInterface.DiscussionIdInterface;
 import in.co.praveenkumar.mdroid.helper.LetterColor;
 import in.co.praveenkumar.mdroid.helper.SessionSetting;
 import in.co.praveenkumar.mdroid.helper.TimeFormat;
+import in.co.praveenkumar.mdroid.helper.Workarounds;
 import in.co.praveenkumar.mdroid.moodlemodel.MoodlePost;
 import in.co.praveenkumar.mdroid.task.PostSyncTask;
 
@@ -24,7 +25,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AbsListView;
 import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -38,7 +38,6 @@ public class PostFragment extends Fragment implements OnRefreshListener {
 	List<MoodlePost> mPosts;
 	LinearLayout postsEmptyLayout;
 	SwipeRefreshLayout swipeLayout;
-	ListView postList;
 
 	/**
 	 * This constructor lists all forums in the site. Don't use this
@@ -87,13 +86,14 @@ public class PostFragment extends Fragment implements OnRefreshListener {
 						+ "", discussionid + "");
 		sortPostsByTime();
 
-		postList = (ListView) rootView.findViewById(R.id.content_post);
+		ListView postList = (ListView) rootView.findViewById(R.id.content_post);
 		postListAdapter = new PostListAdapter(getActivity());
 		postList.setAdapter(postListAdapter);
 
 		swipeLayout = (SwipeRefreshLayout) rootView
 				.findViewById(R.id.swipe_refresh);
-		setupSwipeLayout();
+		Workarounds.linkSwipeRefreshAndListView(swipeLayout, postList);
+		swipeLayout.setOnRefreshListener(this);
 
 		new AsyncPostsSync(session.getmUrl(), session.getToken(),
 				session.getCurrentSiteId()).execute("");
@@ -248,32 +248,5 @@ public class PostFragment extends Fragment implements OnRefreshListener {
 	public void onRefresh() {
 		new AsyncPostsSync(session.getmUrl(), session.getToken(),
 				session.getCurrentSiteId()).execute("");
-	}
-
-	void setupSwipeLayout() {
-		if (swipeLayout == null || postList == null)
-			return;
-
-		swipeLayout.setColorSchemeResources(R.color.refresh_green,
-				R.color.refresh_red, R.color.refresh_blue,
-				R.color.refresh_yellow);
-		swipeLayout.setOnRefreshListener(this);
-
-		// Link swipeLayout with underlying listview
-		postList.setOnScrollListener(new AbsListView.OnScrollListener() {
-			@Override
-			public void onScrollStateChanged(AbsListView view, int scrollState) {
-
-			}
-
-			@Override
-			public void onScroll(AbsListView view, int firstVisibleItem,
-					int visibleItemCount, int totalItemCount) {
-				int topRowVerticalPosition = (postList == null || postList
-						.getChildCount() == 0) ? 0 : postList.getChildAt(0)
-						.getTop();
-				swipeLayout.setEnabled(topRowVerticalPosition >= 0);
-			}
-		});
 	}
 }

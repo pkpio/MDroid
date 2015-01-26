@@ -4,6 +4,7 @@ import in.co.praveenkumar.R;
 import in.co.praveenkumar.mdroid.dialog.MessageDialog;
 import in.co.praveenkumar.mdroid.helper.LetterColor;
 import in.co.praveenkumar.mdroid.helper.SessionSetting;
+import in.co.praveenkumar.mdroid.helper.Workarounds;
 import in.co.praveenkumar.mdroid.moodlemodel.MoodleContact;
 import in.co.praveenkumar.mdroid.task.ContactSyncTask;
 
@@ -18,7 +19,6 @@ import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
@@ -33,7 +33,6 @@ public class ContactFragment extends Fragment implements OnRefreshListener {
 	SessionSetting session;
 	LinearLayout chatEmptyLayout;
 	SwipeRefreshLayout swipeLayout;
-	ListView contactList;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -43,7 +42,8 @@ public class ContactFragment extends Fragment implements OnRefreshListener {
 				false);
 		chatEmptyLayout = (LinearLayout) rootView
 				.findViewById(R.id.chat_empty_layout);
-		contactList = (ListView) rootView.findViewById(R.id.right_nav_list);
+		ListView contactList = (ListView) rootView
+				.findViewById(R.id.right_nav_list);
 
 		// Get sites info
 		session = new SessionSetting(getActivity());
@@ -67,7 +67,8 @@ public class ContactFragment extends Fragment implements OnRefreshListener {
 
 		swipeLayout = (SwipeRefreshLayout) rootView
 				.findViewById(R.id.swipe_refresh);
-		setupSwipeLayout();
+		Workarounds.linkSwipeRefreshAndListView(swipeLayout, contactList);
+		swipeLayout.setOnRefreshListener(this);
 
 		new contactSyncerBg().execute("");
 
@@ -203,33 +204,6 @@ public class ContactFragment extends Fragment implements OnRefreshListener {
 	@Override
 	public void onRefresh() {
 		new contactSyncerBg().execute("");
-	}
-
-	void setupSwipeLayout() {
-		if (swipeLayout == null || contactList == null)
-			return;
-
-		swipeLayout.setColorSchemeResources(R.color.refresh_green,
-				R.color.refresh_red, R.color.refresh_blue,
-				R.color.refresh_yellow);
-		swipeLayout.setOnRefreshListener(this);
-
-		// Link swipeLayout with underlying listview
-		contactList.setOnScrollListener(new AbsListView.OnScrollListener() {
-			@Override
-			public void onScrollStateChanged(AbsListView view, int scrollState) {
-
-			}
-
-			@Override
-			public void onScroll(AbsListView view, int firstVisibleItem,
-					int visibleItemCount, int totalItemCount) {
-				int topRowVerticalPosition = (contactList == null || contactList
-						.getChildCount() == 0) ? 0 : contactList.getChildAt(0)
-						.getTop();
-				swipeLayout.setEnabled(topRowVerticalPosition >= 0);
-			}
-		});
 	}
 
 }
