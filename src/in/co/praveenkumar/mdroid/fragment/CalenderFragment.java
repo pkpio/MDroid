@@ -3,7 +3,7 @@ package in.co.praveenkumar.mdroid.fragment;
 import in.co.praveenkumar.R;
 import in.co.praveenkumar.mdroid.helper.SessionSetting;
 import in.co.praveenkumar.mdroid.helper.TimeFormat;
-import in.co.praveenkumar.mdroid.helper.Workarounds;
+import in.co.praveenkumar.mdroid.helper.Workaround;
 import in.co.praveenkumar.mdroid.moodlemodel.MoodleCourse;
 import in.co.praveenkumar.mdroid.moodlemodel.MoodleEvent;
 import in.co.praveenkumar.mdroid.task.EventSyncTask;
@@ -82,7 +82,7 @@ public class CalenderFragment extends Fragment implements OnRefreshListener {
 
 		swipeLayout = (SwipeRefreshLayout) rootView
 				.findViewById(R.id.swipe_refresh);
-		Workarounds.linkSwipeRefreshAndListView(swipeLayout, eventList);
+		Workaround.linkSwipeRefreshAndListView(swipeLayout, eventList);
 		swipeLayout.setOnRefreshListener(this);
 
 		new ListEventsThread(session.getmUrl(), session.getToken(),

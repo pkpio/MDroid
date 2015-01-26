@@ -5,7 +5,7 @@ import in.co.praveenkumar.mdroid.activity.AppBrowserActivity;
 import in.co.praveenkumar.mdroid.helper.FileOpener;
 import in.co.praveenkumar.mdroid.helper.ModuleIcon;
 import in.co.praveenkumar.mdroid.helper.SessionSetting;
-import in.co.praveenkumar.mdroid.helper.Workarounds;
+import in.co.praveenkumar.mdroid.helper.Workaround;
 import in.co.praveenkumar.mdroid.moodlemodel.MoodleModule;
 import in.co.praveenkumar.mdroid.moodlemodel.MoodleModuleContent;
 import in.co.praveenkumar.mdroid.moodlemodel.MoodleSection;
@@ -91,7 +91,7 @@ public class ContentFragment extends Fragment implements OnRefreshListener {
 
 		swipeLayout = (SwipeRefreshLayout) rootView
 				.findViewById(R.id.swipe_refresh);
-		Workarounds.linkSwipeRefreshAndListView(swipeLayout, contentList);
+		Workaround.linkSwipeRefreshAndListView(swipeLayout, contentList);
 		swipeLayout.setOnRefreshListener(this);
 
 		new listCoursesThread(session.getmUrl(), session.getToken(), courseid,

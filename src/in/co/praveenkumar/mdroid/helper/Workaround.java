@@ -11,7 +11,7 @@ import android.widget.ListView;
  * @author praveen
  * 
  */
-public class Workarounds {
+public class Workaround {
 
 	/**
 	 * Links the SwipeRefreshLayout and the ListView so that refresh gesture

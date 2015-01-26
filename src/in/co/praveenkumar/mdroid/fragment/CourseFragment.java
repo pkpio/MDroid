@@ -3,7 +3,7 @@ package in.co.praveenkumar.mdroid.fragment;
 import in.co.praveenkumar.R;
 import in.co.praveenkumar.mdroid.activity.CourseContentActivity;
 import in.co.praveenkumar.mdroid.helper.SessionSetting;
-import in.co.praveenkumar.mdroid.helper.Workarounds;
+import in.co.praveenkumar.mdroid.helper.Workaround;
 import in.co.praveenkumar.mdroid.moodlemodel.MoodleCourse;
 import in.co.praveenkumar.mdroid.task.CourseSyncTask;
 
@@ -92,7 +92,7 @@ public class CourseFragment extends Fragment implements OnRefreshListener {
 
 		swipeLayout = (SwipeRefreshLayout) rootView
 				.findViewById(R.id.swipe_refresh);
-		Workarounds.linkSwipeRefreshAndListView(swipeLayout, courseList);
+		Workaround.linkSwipeRefreshAndListView(swipeLayout, courseList);
 		swipeLayout.setOnRefreshListener(this);
 
 		// We don't want to run sync in each course listing

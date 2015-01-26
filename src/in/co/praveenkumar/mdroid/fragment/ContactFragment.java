@@ -4,7 +4,7 @@ import in.co.praveenkumar.R;
 import in.co.praveenkumar.mdroid.dialog.MessageDialog;
 import in.co.praveenkumar.mdroid.helper.LetterColor;
 import in.co.praveenkumar.mdroid.helper.SessionSetting;
-import in.co.praveenkumar.mdroid.helper.Workarounds;
+import in.co.praveenkumar.mdroid.helper.Workaround;
 import in.co.praveenkumar.mdroid.moodlemodel.MoodleContact;
 import in.co.praveenkumar.mdroid.task.ContactSyncTask;
 
@@ -67,7 +67,7 @@ public class ContactFragment extends Fragment implements OnRefreshListener {
 
 		swipeLayout = (SwipeRefreshLayout) rootView
 				.findViewById(R.id.swipe_refresh);
-		Workarounds.linkSwipeRefreshAndListView(swipeLayout, contactList);
+		Workaround.linkSwipeRefreshAndListView(swipeLayout, contactList);
 		swipeLayout.setOnRefreshListener(this);
 
 		new contactSyncerBg().execute("");
