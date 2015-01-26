@@ -20,9 +20,9 @@ The docs for MDroid can be found at http://mdroid.praveenkumar.co.in/ which are 
 
 Dependencies
 -----------------
-- [ViewPagerIndicator](https://github.com/JakeWharton/ViewPagerIndicator)
-- Google Playservices Library - Install Google Play Services Android SDK Manager
-- Android support v7 Appcompact - Usually comes with latest Android Development Kit
+- ```ViewPagerIndicator``` from (here)[https://github.com/JakeWharton/ViewPagerIndicator]
+- ```Google Playservices Library``` - Get Playservices from SDK Manager
+- ```Android support v7 Appcompact``` - Usually comes with latest Android Development Kit
 - Other dependencies are included as jar files in ```libs/``` directory
 
 
@@ -32,7 +32,7 @@ Setting up MDroid
 2. Clone your fork to your machine
 3. Import MDroid project to eclipse
 4. Go to project properties
-   - Choose ```Google APIs``` (instead of ```Android Open Source Project```) for build target (Recommend ```API level 19```)
+   - Choose ```Google APIs``` (not ```Android Open Source Project```) for build target (Recommend ```API level 19```)
    - Add dependencies listed above
 
 
