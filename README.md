@@ -32,7 +32,7 @@ Setting up MDroid
 2. Clone your fork to your machine
 3. Import MDroid project to eclipse
 4. Go to project properties
-   - Choose ```Google APIs``` (not ```Android Open Source```) for build target (Recommend ```API level 19```)
+   - Choose ```Google APIs``` with target ```API level 19```
    - Add dependencies listed above
 
 
