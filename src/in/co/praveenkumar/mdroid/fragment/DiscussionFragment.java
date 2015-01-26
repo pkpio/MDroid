@@ -5,7 +5,7 @@ import in.co.praveenkumar.mdroid.activity.PostActivity;
 import in.co.praveenkumar.mdroid.helper.AppInterface.ForumIdInterface;
 import in.co.praveenkumar.mdroid.helper.SessionSetting;
 import in.co.praveenkumar.mdroid.helper.TimeFormat;
-import in.co.praveenkumar.mdroid.helper.Workarounds;
+import in.co.praveenkumar.mdroid.helper.Workaround;
 import in.co.praveenkumar.mdroid.moodlemodel.MoodleDiscussion;
 import in.co.praveenkumar.mdroid.task.DiscussionSyncTask;
 
@@ -101,7 +101,7 @@ public class DiscussionFragment extends Fragment implements OnRefreshListener {
 
 		swipeLayout = (SwipeRefreshLayout) rootView
 				.findViewById(R.id.swipe_refresh);
-		Workarounds.linkSwipeRefreshAndListView(swipeLayout, topicList);
+		Workaround.linkSwipeRefreshAndListView(swipeLayout, topicList);
 		swipeLayout.setOnRefreshListener(this);
 
 		new AsyncTopicsSync(session.getmUrl(), session.getToken(),

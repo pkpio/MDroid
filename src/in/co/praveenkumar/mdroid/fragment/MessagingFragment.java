@@ -7,7 +7,7 @@ import in.co.praveenkumar.mdroid.helper.ImageDecoder;
 import in.co.praveenkumar.mdroid.helper.LetterColor;
 import in.co.praveenkumar.mdroid.helper.Param;
 import in.co.praveenkumar.mdroid.helper.SessionSetting;
-import in.co.praveenkumar.mdroid.helper.Workarounds;
+import in.co.praveenkumar.mdroid.helper.Workaround;
 import in.co.praveenkumar.mdroid.moodlemodel.MoodleMessage;
 import in.co.praveenkumar.mdroid.moodlerest.MoodleRestMessage;
 import in.co.praveenkumar.mdroid.task.MessageSyncTask;
@@ -106,7 +106,7 @@ public class MessagingFragment extends Fragment implements OnRefreshListener {
 
 		swipeLayout = (SwipeRefreshLayout) rootView
 				.findViewById(R.id.swipe_refresh);
-		Workarounds.linkSwipeRefreshAndListView(swipeLayout, messageList);
+		Workaround.linkSwipeRefreshAndListView(swipeLayout, messageList);
 		swipeLayout.setOnRefreshListener(this);
 
 		// Refresh messages from server
