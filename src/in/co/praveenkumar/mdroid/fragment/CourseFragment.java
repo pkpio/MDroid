@@ -3,6 +3,7 @@ package in.co.praveenkumar.mdroid.fragment;
 import in.co.praveenkumar.R;
 import in.co.praveenkumar.mdroid.activity.CourseContentActivity;
 import in.co.praveenkumar.mdroid.helper.SessionSetting;
+import in.co.praveenkumar.mdroid.helper.Workarounds;
 import in.co.praveenkumar.mdroid.moodlemodel.MoodleCourse;
 import in.co.praveenkumar.mdroid.task.CourseSyncTask;
 
@@ -19,7 +20,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.AbsListView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -46,7 +46,6 @@ public class CourseFragment extends Fragment implements OnRefreshListener {
 	int Type = 0;
 	LinearLayout courseEmptyLayout;
 	SwipeRefreshLayout swipeLayout;
-	ListView courseList;
 
 	/**
 	 * Pass the course listing type as a bundle param of type int with name
@@ -86,13 +85,15 @@ public class CourseFragment extends Fragment implements OnRefreshListener {
 
 		courseEmptyLayout = (LinearLayout) rootView
 				.findViewById(R.id.course_empty_layout);
-		courseList = (ListView) rootView.findViewById(R.id.content_course);
+		ListView courseList = (ListView) rootView
+				.findViewById(R.id.content_course);
 		courseListAdapter = new CourseListAdapter(getActivity());
 		courseList.setAdapter(courseListAdapter);
 
 		swipeLayout = (SwipeRefreshLayout) rootView
 				.findViewById(R.id.swipe_refresh);
-		setupSwipeLayout();
+		Workarounds.linkSwipeRefreshAndListView(swipeLayout, courseList);
+		swipeLayout.setOnRefreshListener(this);
 
 		// We don't want to run sync in each course listing
 		if (Type == TYPE_USER_COURSES)
@@ -241,33 +242,6 @@ public class CourseFragment extends Fragment implements OnRefreshListener {
 	@Override
 	public void onRefresh() {
 		new courseSyncerBg().execute("");
-	}
-
-	void setupSwipeLayout() {
-		if (swipeLayout == null || courseList == null)
-			return;
-
-		swipeLayout.setColorSchemeResources(R.color.refresh_green,
-				R.color.refresh_red, R.color.refresh_blue,
-				R.color.refresh_yellow);
-		swipeLayout.setOnRefreshListener(this);
-
-		// Link swipeLayout with underlying listview
-		courseList.setOnScrollListener(new AbsListView.OnScrollListener() {
-			@Override
-			public void onScrollStateChanged(AbsListView view, int scrollState) {
-
-			}
-
-			@Override
-			public void onScroll(AbsListView view, int firstVisibleItem,
-					int visibleItemCount, int totalItemCount) {
-				int topRowVerticalPosition = (courseList == null || courseList
-						.getChildCount() == 0) ? 0 : courseList.getChildAt(0)
-						.getTop();
-				swipeLayout.setEnabled(topRowVerticalPosition >= 0);
-			}
-		});
 	}
 
 }
