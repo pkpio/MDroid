@@ -26,6 +26,14 @@ public class MDroidNotification extends SugarRecord<MDroidNotification> {
 	// relational fields
 	long siteid;
 
+	public MDroidNotification() {
+
+	}
+
+	public MDroidNotification(long siteid) {
+		this.siteid = siteid;
+	}
+
 	/**
 	 * Get the type of notification. Possible types can be check from TYPE_ om
 	 * this class.
