@@ -7,16 +7,20 @@ import in.co.praveenkumar.mdroid.fragment.ForumFragment;
 import in.co.praveenkumar.mdroid.fragment.ParticipantFragment;
 import in.co.praveenkumar.mdroid.helper.ApplicationClass;
 import in.co.praveenkumar.mdroid.helper.Param;
+import in.co.praveenkumar.mdroid.helper.SessionSetting;
 import in.co.praveenkumar.mdroid.model.MoodleCourse;
 import in.co.praveenkumar.mdroid.view.SlidingTabLayout;
+
+import java.util.List;
+
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.widget.Toast;
 
 public class CourseContentActivity extends BaseNavigationActivity {
-	private long coursedbid;
 	private int courseid;
 	private ViewPager viewPager;
 	private static final String[] TABS = { "Contents", "Forums", "Calendar",
@@ -33,10 +37,20 @@ public class CourseContentActivity extends BaseNavigationActivity {
 				.sendScreen(Param.GA_SCREEN_CONTENT);
 
 		Bundle extras = getIntent().getExtras();
-		coursedbid = extras.getLong("coursedbid");
 		courseid = extras.getInt("courseid");
-		MoodleCourse mCourse = MoodleCourse.findById(MoodleCourse.class,
-				coursedbid);
+
+		// Get course details
+		SessionSetting session = new SessionSetting(this);
+		List<MoodleCourse> dbCourses = MoodleCourse.find(MoodleCourse.class,
+				"site = ? and courseid = ?", session.getCurrentSiteId() + "",
+				courseid + "");
+		if (dbCourses == null || dbCourses.size() == 0) {
+			Toast.makeText(this, "Course not found in database!",
+					Toast.LENGTH_LONG).show();
+			return;
+		}
+		MoodleCourse mCourse = dbCourses.get(0);
+
 		getSupportActionBar().setTitle(mCourse.getFullname());
 		getSupportActionBar().setIcon(R.drawable.icon_school);
 
@@ -61,7 +75,7 @@ public class CourseContentActivity extends BaseNavigationActivity {
 			switch (position) {
 			case 0:
 				// Course Content
-				return new ContentFragment(courseid, coursedbid);
+				return new ContentFragment(courseid);
 			case 1:
 				// Course Forum
 				return new ForumFragment(courseid);
@@ -71,7 +85,6 @@ public class CourseContentActivity extends BaseNavigationActivity {
 			case 3:
 				// Course Participants
 				return new ParticipantFragment(courseid);
-				// return new WorkInProgressFragment();
 			}
 			return null;
 		}
