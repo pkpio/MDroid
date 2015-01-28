@@ -2,32 +2,32 @@
 <resources>
 
     <string name="app_name">MDroid - Moodle</string>
-    <string name="action_settings">Settings</string>
+    <string name="action_settings">Ajustes</string>
 
     <!-- Left navigation -->
     <string name="drawer_open">abrir</string>
     <string name="drawer_close">cerrar</string>
 
     <!-- Tutorial activity -->
-    <string name="activity_tutorial_beautiful">Hello compañero</string>
+    <string name="activity_tutorial_beautiful">Hola compañero</string>
     <string name="activity_tutorial_swipe_instruction">Arrastra para seguir</string>
     <string name="activity_tutorial_symbol_plus">+</string>
     <string name="activity_tutorial_symbol_or">\/</string>
     <string name="activity_tutorial_symbol_dot">.</string>
-    <string name="activity_tutorial_mdroid_made_title">You got MDroid!</string>
-    <string name="activity_tutorial_mdroid_made_description">..and that\' how</string>
-    <string name="activity_tutorial_support_title">Support MDroid</string>
-    <string name="activity_tutorial_support_description_l1">Donate a dollar</string>
-    <string name="activity_tutorial_support_description_l2">Rate it with 5 stars</string>
-    <string name="activity_tutorial_support_description_l3">It keeps us motivated</string>
-    <string name="activity_tutorial_contribute_title">You can contribute!</string>
-    <string name="activity_tutorial_contribute_description_l1">Translate to your language</string>
-    <string name="activity_tutorial_contribute_description_l2">Code a cool feature</string>
-    <string name="activity_tutorial_contribute_description_l3">It\'s open source</string>
-    <string name="activity_tutorial_help_title">Problem?</string>
-    <string name="activity_tutorial_help_description_l1">Help docs are in Settings</string>
-    <string name="activity_tutorial_help_description_l2">Still problem?</string>
-    <string name="activity_tutorial_help_description_l3">Submit a bug report</string>
+    <string name="activity_tutorial_mdroid_made_title">Tienes MDroid!</string>
+    <string name="activity_tutorial_mdroid_made_description">..como y que</string>
+    <string name="activity_tutorial_support_title">Soporte MDroid</string>
+    <string name="activity_tutorial_support_description_l1">Donación de un dolar</string>
+    <string name="activity_tutorial_support_description_l2">Calificalo con 5 estrellas</string>
+    <string name="activity_tutorial_support_description_l3">Eso nos mantiene motivados</string>
+    <string name="activity_tutorial_contribute_title">Puedes contribuir!</string>
+    <string name="activity_tutorial_contribute_description_l1">Traducelo a tu idioma</string>
+    <string name="activity_tutorial_contribute_description_l2">Codiifica una funcion divertida </string>
+    <string name="activity_tutorial_contribute_description_l3">Es codigo abierto</string>
+    <string name="activity_tutorial_help_title">Problemas?</string>
+    <string name="activity_tutorial_help_description_l1">Documento de ayuda en Ajustes</string>
+    <string name="activity_tutorial_help_description_l2">Persisten los problemas?</string>
+    <string name="activity_tutorial_help_description_l3">Enviar un reporte de errores</string>
     <string name="activity_tutorial_tutorial_end_button">Vamos allá !</string>
 
     <!-- Login activity -->
@@ -70,37 +70,37 @@
 
     <!-- Settings activity -->
     <!-- Active account settings section -->
-    <string name="activity_settings_cat_active_account_title">Active account settings</string>
-    <string name="activity_settings_cat_active_account_summary">Active account settings</string>
-    <string name="activity_settings_logout_title">Logout</string>
-    <string name="activity_settings_logout_summary">logout current account</string>
-    <string name="activity_settings_message_sign_title">Message signature</string>
-    <string name="activity_settings_message_sign_positive_btn">Update</string>
-    <string name="activity_settings_message_sign_default">Sent from MDroid - Moodle for Android</string>
-    <string name="activity_settings_message_sign_summary">Appends this text at the end of each message you send. Donate only!</string>
+    <string name="activity_settings_cat_active_account_title">Ajustes activos de la cuetnta</string>
+    <string name="activity_settings_cat_active_account_summary">Ajustes Activos de la cuenta</string>
+    <string name="activity_settings_logout_title">Desconexion</string>
+    <string name="activity_settings_logout_summary">Desconexion de la cuenta actual</string>
+    <string name="activity_settings_message_sign_title">Firma en Mensaje</string>
+    <string name="activity_settings_message_sign_positive_btn">Actualización</string>
+    <string name="activity_settings_message_sign_default">Enviado desde MDroid - Moodle para Android</string>
+    <string name="activity_settings_message_sign_summary">Añadir este texto al final de cada mensaje que se envie. Solo bajo donación!</string>
     <!-- General settings section -->
     <string name="activity_settings_cat_general_title">General</string>
-    <string name="activity_settings_cat_general_summary">General settings</string>
-    <string name="activity_settings_hideads_title">Hide ads temporarily</string>
-    <string name="activity_settings_hideads_summary">Works only for 3 times. To hide them permanently, please make a donation.</string>
-    <string name="activity_settings_debug_title">Advanced logging</string>
-    <string name="activity_settings_debug_summary">If enabled, gives more information on login and other errors</string>
+    <string name="activity_settings_cat_general_summary">Ajustes Generales</string>
+    <string name="activity_settings_hideads_title">Ocultar publicidad temporalmente</string>
+    <string name="activity_settings_hideads_summary">Funciona solo por 3 veces. Para ocultarlo permanentemente, por favor haz un donativo.</string>
+    <string name="activity_settings_debug_title">Acceso avanzado</string>
+    <string name="activity_settings_debug_summary">Sí esta activo, facilita más información en el acceso y otros errores</string>
     <!-- Help section -->
-    <string name="activity_settings_cat_help_title">Help</string>
-    <string name="activity_settings_cat_help_summary">app related help</string>
-    <string name="activity_settings_help_title">Help</string>
-    <string name="activity_settings_privacy_title">Privacy policy</string>
+    <string name="activity_settings_cat_help_title">Ayuda</string>
+    <string name="activity_settings_cat_help_summary">ayuda del app</string>
+    <string name="activity_settings_help_title">Ayuda</string>
+    <string name="activity_settings_privacy_title">Política de Privacidad</string>
     <string name="activity_settings_tutorial_title">Tutorial</string>
     <!-- About section -->
-    <string name="activity_settings_cat_about_title">About</string>
-    <string name="activity_settings_cat_about_summary">about MDroid and developer</string>
-    <string name="activity_settings_website_title">Website</string>
-    <string name="activity_settings_dev_title">Developer</string>
-    <string name="activity_settings_osl_title">Open source licenses</string>
+    <string name="activity_settings_cat_about_title">Sobre</string>
+    <string name="activity_settings_cat_about_summary">sobre MDroid y desarrollador</string>
+    <string name="activity_settings_website_title">Espacio Web</string>
+    <string name="activity_settings_dev_title">Desarrollador</string>
+    <string name="activity_settings_osl_title">Licencias de código abierto</string>
 
     <!-- Donations -->
-    <string name="donations_header_text">Donate for the features you want to see. Any donation will unlock pro access.</string>
-    <string name="donations_already_purchased">You purchased this already!</string>
-    <string name="donations_purchase_failed">Purchase failed! Please try again!</string>
+    <string name="donations_header_text">Donación para las funciones que quieres ver. Cualquier donacion desbloquear pro-acceso.</string>
+    <string name="donations_already_purchased">Ya lo  compraste!</string>
+    <string name="donations_purchase_failed">La compra ha fallador, por favor intentalo de nuevo!</string>
 
 </resources>
