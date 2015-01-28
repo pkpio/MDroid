@@ -1,6 +1,6 @@
 package in.co.praveenkumar.mdroid.task;
 
-import in.co.praveenkumar.mdroid.moodlemodel.MoodleUser;
+import in.co.praveenkumar.mdroid.model.MoodleUser;
 import in.co.praveenkumar.mdroid.moodlerest.MoodleRestUser;
 
 import java.util.List;

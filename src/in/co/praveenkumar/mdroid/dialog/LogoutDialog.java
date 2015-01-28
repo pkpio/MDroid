@@ -5,15 +5,15 @@ import in.co.praveenkumar.mdroid.activity.LoginActivity;
 import in.co.praveenkumar.mdroid.helper.ImageDecoder;
 import in.co.praveenkumar.mdroid.helper.SessionSetting;
 import in.co.praveenkumar.R;
-import in.co.praveenkumar.mdroid.moodlemodel.MoodleContact;
-import in.co.praveenkumar.mdroid.moodlemodel.MoodleCourse;
-import in.co.praveenkumar.mdroid.moodlemodel.MoodleDiscussion;
-import in.co.praveenkumar.mdroid.moodlemodel.MoodleEvent;
-import in.co.praveenkumar.mdroid.moodlemodel.MoodleForum;
-import in.co.praveenkumar.mdroid.moodlemodel.MoodleModule;
-import in.co.praveenkumar.mdroid.moodlemodel.MoodleModuleContent;
-import in.co.praveenkumar.mdroid.moodlemodel.MoodlePost;
-import in.co.praveenkumar.mdroid.moodlemodel.MoodleSiteInfo;
+import in.co.praveenkumar.mdroid.model.MoodleContact;
+import in.co.praveenkumar.mdroid.model.MoodleCourse;
+import in.co.praveenkumar.mdroid.model.MoodleDiscussion;
+import in.co.praveenkumar.mdroid.model.MoodleEvent;
+import in.co.praveenkumar.mdroid.model.MoodleForum;
+import in.co.praveenkumar.mdroid.model.MoodleModule;
+import in.co.praveenkumar.mdroid.model.MoodleModuleContent;
+import in.co.praveenkumar.mdroid.model.MoodlePost;
+import in.co.praveenkumar.mdroid.model.MoodleSiteInfo;
 
 import java.io.File;
 

@@ -1,6 +1,6 @@
 package in.co.praveenkumar.mdroid.moodlerest;
 
-import in.co.praveenkumar.mdroid.moodlemodel.MoodleToken;
+import in.co.praveenkumar.mdroid.model.MoodleToken;
 
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;

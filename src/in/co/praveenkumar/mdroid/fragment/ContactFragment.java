@@ -5,7 +5,7 @@ import in.co.praveenkumar.mdroid.dialog.MessageDialog;
 import in.co.praveenkumar.mdroid.helper.LetterColor;
 import in.co.praveenkumar.mdroid.helper.SessionSetting;
 import in.co.praveenkumar.mdroid.helper.Workaround;
-import in.co.praveenkumar.mdroid.moodlemodel.MoodleContact;
+import in.co.praveenkumar.mdroid.model.MoodleContact;
 import in.co.praveenkumar.mdroid.task.ContactSyncTask;
 
 import java.util.List;

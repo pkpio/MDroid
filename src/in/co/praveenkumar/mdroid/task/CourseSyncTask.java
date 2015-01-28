@@ -1,7 +1,7 @@
 package in.co.praveenkumar.mdroid.task;
 
-import in.co.praveenkumar.mdroid.moodlemodel.MoodleCourse;
-import in.co.praveenkumar.mdroid.moodlemodel.MoodleSiteInfo;
+import in.co.praveenkumar.mdroid.model.MoodleCourse;
+import in.co.praveenkumar.mdroid.model.MoodleSiteInfo;
 import in.co.praveenkumar.mdroid.moodlerest.MoodleRestCourse;
 
 import java.util.ArrayList;

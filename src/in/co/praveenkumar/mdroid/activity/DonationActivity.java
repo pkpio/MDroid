@@ -4,7 +4,7 @@ import in.co.praveenkumar.R;
 import in.co.praveenkumar.mdroid.helper.ApplicationClass;
 import in.co.praveenkumar.mdroid.helper.GsonExclude;
 import in.co.praveenkumar.mdroid.helper.Param;
-import in.co.praveenkumar.mdroid.moodlemodel.MDroidModelFeature;
+import in.co.praveenkumar.mdroid.model.MDroidFeature;
 
 import java.io.InputStreamReader;
 import java.util.ArrayList;
@@ -32,7 +32,7 @@ import com.google.gson.reflect.TypeToken;
 
 public class DonationActivity extends BaseNavigationActivity {
 	private final String DEBUG_TAG = "DonationActivity";
-	List<MDroidModelFeature> features = new ArrayList<MDroidModelFeature>();
+	List<MDroidFeature> features = new ArrayList<MDroidFeature>();
 	Context context;
 	FeatureListAdapter featureListAdapter;
 
@@ -141,15 +141,15 @@ public class DonationActivity extends BaseNavigationActivity {
 
 			// Feature image
 			switch (features.get(position).getStatus()) {
-			case MDroidModelFeature.IMPLEMENTED:
+			case MDroidFeature.IMPLEMENTED:
 				viewHolder.featureimage
 						.setImageResource(R.drawable.icon_done_green);
 				break;
-			case MDroidModelFeature.NOT_IMPLEMENTED:
+			case MDroidFeature.NOT_IMPLEMENTED:
 				viewHolder.featureimage
 						.setImageResource(R.drawable.icon_plusone_red);
 				break;
-			case MDroidModelFeature.PARTIALLY_IMPLEMENTED:
+			case MDroidFeature.PARTIALLY_IMPLEMENTED:
 				viewHolder.featureimage
 						.setImageResource(R.drawable.icon_plusone_yellow);
 				break;
@@ -194,7 +194,7 @@ public class DonationActivity extends BaseNavigationActivity {
 					.addDeserializationExclusionStrategy(ex)
 					.addSerializationExclusionStrategy(ex).create();
 			features = gson.fromJson(reader,
-					new TypeToken<List<MDroidModelFeature>>() {
+					new TypeToken<List<MDroidFeature>>() {
 					}.getType());
 			reader.close();
 		} catch (Exception e) {

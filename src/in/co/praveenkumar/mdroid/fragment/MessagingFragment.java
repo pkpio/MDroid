@@ -8,7 +8,7 @@ import in.co.praveenkumar.mdroid.helper.LetterColor;
 import in.co.praveenkumar.mdroid.helper.Param;
 import in.co.praveenkumar.mdroid.helper.SessionSetting;
 import in.co.praveenkumar.mdroid.helper.Workaround;
-import in.co.praveenkumar.mdroid.moodlemodel.MoodleMessage;
+import in.co.praveenkumar.mdroid.model.MoodleMessage;
 import in.co.praveenkumar.mdroid.moodlerest.MoodleRestMessage;
 import in.co.praveenkumar.mdroid.task.MessageSyncTask;
 

@@ -1,10 +1,10 @@
 package in.co.praveenkumar.mdroid.moodlerest;
 
 import in.co.praveenkumar.mdroid.helper.GsonExclude;
-import in.co.praveenkumar.mdroid.moodlemodel.MoodleContacts;
-import in.co.praveenkumar.mdroid.moodlemodel.MoodleException;
-import in.co.praveenkumar.mdroid.moodlemodel.MoodleForum;
-import in.co.praveenkumar.mdroid.moodlemodel.MoodleUser;
+import in.co.praveenkumar.mdroid.model.MoodleContacts;
+import in.co.praveenkumar.mdroid.model.MoodleException;
+import in.co.praveenkumar.mdroid.model.MoodleForum;
+import in.co.praveenkumar.mdroid.model.MoodleUser;
 
 import java.io.Reader;
 import java.net.URLEncoder;

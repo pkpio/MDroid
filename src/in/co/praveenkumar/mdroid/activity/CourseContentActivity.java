@@ -7,7 +7,7 @@ import in.co.praveenkumar.mdroid.fragment.ForumFragment;
 import in.co.praveenkumar.mdroid.fragment.ParticipantFragment;
 import in.co.praveenkumar.mdroid.helper.ApplicationClass;
 import in.co.praveenkumar.mdroid.helper.Param;
-import in.co.praveenkumar.mdroid.moodlemodel.MoodleCourse;
+import in.co.praveenkumar.mdroid.model.MoodleCourse;
 import in.co.praveenkumar.mdroid.view.SlidingTabLayout;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;

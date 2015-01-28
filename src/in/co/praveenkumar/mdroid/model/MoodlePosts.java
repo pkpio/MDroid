@@ -1,24 +1,24 @@
-package in.co.praveenkumar.mdroid.moodlemodel;
+package in.co.praveenkumar.mdroid.model;
 
 import java.util.ArrayList;
 
 import com.google.gson.annotations.SerializedName;
 
 /**
- * Moodle returns events in 2 objects - Events list and list of warnings We
- * won't be using this model for db operations but instead only easy event
- * retrieval from json.
+ * Moodle returns posts in 2 objects - Posts list and list of warnings. We won't
+ * be using this model for db operations but instead only easy post retrieval
+ * from json.
  * 
  * @author Praveen Kumar Pendyala (praveen@praveenkumar.co.in)
  * 
  */
-public class MoodleEvents {
+public class MoodlePosts {
 
-	@SerializedName("events")
-	ArrayList<MoodleEvent> events;
+	@SerializedName("posts")
+	ArrayList<MoodlePost> posts;
 
 	@SerializedName("warnings")
-	ArrayList<MoodleEventWarning> warnings;
+	ArrayList<MoodlePostWarning> warnings;
 
 	// Errors. Not to be stored in sql db.
 	@SerializedName("exception")
@@ -34,20 +34,20 @@ public class MoodleEvents {
 	String debuginfo;
 
 	/**
-	 * Get ArrayList of Events
+	 * Get ArrayList of Posts
 	 * 
 	 * @return events
 	 */
-	public ArrayList<MoodleEvent> getEvents() {
-		return events;
+	public ArrayList<MoodlePost> getPosts() {
+		return posts;
 	}
 
 	/**
-	 * Get ArrayList of Event warnings
+	 * Get ArrayList of Post warnings
 	 * 
 	 * @return warnings
 	 */
-	public ArrayList<MoodleEventWarning> getWarnings() {
+	public ArrayList<MoodlePostWarning> getWarnings() {
 		return warnings;
 	}
 
@@ -88,13 +88,13 @@ public class MoodleEvents {
 	}
 
 	/**
-	 * Represents warnings that come along with a Events call. <br/>
+	 * Represents warnings that come along with a Posts call. <br/>
 	 * <br/>
 	 * This is not so important to be implemented as main model I guess
 	 * 
 	 * @author Praveen Kumar Pendyala (praveen@praveenkumar.co.in)
 	 */
-	public class MoodleEventWarning {
+	public class MoodlePostWarning {
 		String item;
 		int itemid;
 		String warningcode;
@@ -137,4 +137,5 @@ public class MoodleEvents {
 			return message;
 		}
 	}
+
 }

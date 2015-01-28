@@ -1,7 +1,7 @@
 package in.co.praveenkumar.mdroid.moodlerest;
 
 import in.co.praveenkumar.mdroid.helper.GsonExclude;
-import in.co.praveenkumar.mdroid.moodlemodel.MoodleSection;
+import in.co.praveenkumar.mdroid.model.MoodleSection;
 
 import java.io.Reader;
 import java.net.URLEncoder;

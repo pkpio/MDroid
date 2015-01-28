@@ -5,7 +5,7 @@ import in.co.praveenkumar.mdroid.dialog.UserinfoDialog;
 import in.co.praveenkumar.mdroid.helper.LetterColor;
 import in.co.praveenkumar.mdroid.helper.SessionSetting;
 import in.co.praveenkumar.mdroid.helper.Workaround;
-import in.co.praveenkumar.mdroid.moodlemodel.MoodleUser;
+import in.co.praveenkumar.mdroid.model.MoodleUser;
 import in.co.praveenkumar.mdroid.task.UserSyncTask;
 
 import java.util.List;

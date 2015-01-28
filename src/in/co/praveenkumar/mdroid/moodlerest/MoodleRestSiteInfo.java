@@ -1,6 +1,6 @@
 package in.co.praveenkumar.mdroid.moodlerest;
 
-import in.co.praveenkumar.mdroid.moodlemodel.MoodleSiteInfo;
+import in.co.praveenkumar.mdroid.model.MoodleSiteInfo;
 
 import java.io.Reader;
 import java.net.URLEncoder;

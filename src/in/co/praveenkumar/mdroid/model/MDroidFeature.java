@@ -1,10 +1,10 @@
-package in.co.praveenkumar.mdroid.moodlemodel;
+package in.co.praveenkumar.mdroid.model;
 
 import com.google.gson.annotations.SerializedName;
 import com.orm.SugarRecord;
 import com.orm.dsl.Ignore;
 
-public class MDroidModelFeature extends SugarRecord<MDroidModelFeature> {
+public class MDroidFeature extends SugarRecord<MDroidFeature> {
 
 	@Ignore
 	public static final int NOT_IMPLEMENTED = 0;

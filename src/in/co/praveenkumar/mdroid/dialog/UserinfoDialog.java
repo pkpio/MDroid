@@ -3,10 +3,10 @@ package in.co.praveenkumar.mdroid.dialog;
 import in.co.praveenkumar.R;
 import in.co.praveenkumar.mdroid.helper.LetterColor;
 import in.co.praveenkumar.mdroid.helper.SessionSetting;
-import in.co.praveenkumar.mdroid.moodlemodel.MoodleContact;
-import in.co.praveenkumar.mdroid.moodlemodel.MoodleSiteInfo;
-import in.co.praveenkumar.mdroid.moodlemodel.MoodleUser;
-import in.co.praveenkumar.mdroid.moodlemodel.MoodleUserCourse;
+import in.co.praveenkumar.mdroid.model.MoodleContact;
+import in.co.praveenkumar.mdroid.model.MoodleSiteInfo;
+import in.co.praveenkumar.mdroid.model.MoodleUser;
+import in.co.praveenkumar.mdroid.model.MoodleUserCourse;
 import in.co.praveenkumar.mdroid.task.ContactSyncTask;
 
 import java.util.List;

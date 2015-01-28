@@ -1,24 +1,24 @@
-package in.co.praveenkumar.mdroid.moodlemodel;
+package in.co.praveenkumar.mdroid.model;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import com.google.gson.annotations.SerializedName;
 
 /**
- * Moodle returns posts in 2 objects - Posts list and list of warnings. We won't
- * be using this model for db operations but instead only easy post retrieval
- * from json.
+ * Moodle returns messages in 2 objects - Messages list and list of warnings. We
+ * won't be using this model for db operations but instead only easy message
+ * retrieval from json.
  * 
  * @author Praveen Kumar Pendyala (praveen@praveenkumar.co.in)
  * 
  */
-public class MoodlePosts {
+public class MoodleMessages {
 
-	@SerializedName("posts")
-	ArrayList<MoodlePost> posts;
+	@SerializedName("messages")
+	List<MoodleMessage> messages;
 
 	@SerializedName("warnings")
-	ArrayList<MoodlePostWarning> warnings;
+	List<MoodleMessageWarning> warnings;
 
 	// Errors. Not to be stored in sql db.
 	@SerializedName("exception")
@@ -34,20 +34,20 @@ public class MoodlePosts {
 	String debuginfo;
 
 	/**
-	 * Get ArrayList of Posts
+	 * Get List of Messages
 	 * 
-	 * @return events
+	 * @return messages
 	 */
-	public ArrayList<MoodlePost> getPosts() {
-		return posts;
+	public List<MoodleMessage> getMessages() {
+		return messages;
 	}
 
 	/**
-	 * Get ArrayList of Post warnings
+	 * Get List of Message warnings
 	 * 
 	 * @return warnings
 	 */
-	public ArrayList<MoodlePostWarning> getWarnings() {
+	public List<MoodleMessageWarning> getWarnings() {
 		return warnings;
 	}
 
@@ -88,13 +88,13 @@ public class MoodlePosts {
 	}
 
 	/**
-	 * Represents warnings that come along with a Posts call. <br/>
+	 * Represents warnings that come along with a Messages call. <br/>
 	 * <br/>
 	 * This is not so important to be implemented as main model I guess
 	 * 
 	 * @author Praveen Kumar Pendyala (praveen@praveenkumar.co.in)
 	 */
-	public class MoodlePostWarning {
+	public class MoodleMessageWarning {
 		String item;
 		int itemid;
 		String warningcode;
@@ -137,5 +137,4 @@ public class MoodlePosts {
 			return message;
 		}
 	}
-
 }

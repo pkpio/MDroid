@@ -6,7 +6,7 @@ import in.co.praveenkumar.mdroid.helper.LetterColor;
 import in.co.praveenkumar.mdroid.helper.SessionSetting;
 import in.co.praveenkumar.mdroid.helper.TimeFormat;
 import in.co.praveenkumar.mdroid.helper.Workaround;
-import in.co.praveenkumar.mdroid.moodlemodel.MoodlePost;
+import in.co.praveenkumar.mdroid.model.MoodlePost;
 import in.co.praveenkumar.mdroid.task.PostSyncTask;
 
 import java.util.Collections;
