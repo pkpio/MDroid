@@ -1,6 +1,6 @@
 package in.co.praveenkumar.mdroid.helper;
 
-import in.co.praveenkumar.mdroid.moodlemodel.MoodleSiteInfo;
+import in.co.praveenkumar.mdroid.model.MoodleSiteInfo;
 
 import java.util.List;
 

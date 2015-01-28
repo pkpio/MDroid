@@ -5,7 +5,7 @@ import in.co.praveenkumar.mdroid.helper.ApplicationClass;
 import in.co.praveenkumar.mdroid.helper.Param;
 import in.co.praveenkumar.mdroid.helper.SessionSetting;
 import in.co.praveenkumar.R;
-import in.co.praveenkumar.mdroid.moodlemodel.MoodleForum;
+import in.co.praveenkumar.mdroid.model.MoodleForum;
 
 import java.util.List;
 

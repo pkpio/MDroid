@@ -1,8 +1,8 @@
 package in.co.praveenkumar.mdroid.helper;
 
 import in.co.praveenkumar.R;
-import in.co.praveenkumar.mdroid.moodlemodel.MoodleModule;
-import in.co.praveenkumar.mdroid.moodlemodel.MoodleModuleContent;
+import in.co.praveenkumar.mdroid.model.MoodleModule;
+import in.co.praveenkumar.mdroid.model.MoodleModuleContent;
 
 import java.util.ArrayList;
 

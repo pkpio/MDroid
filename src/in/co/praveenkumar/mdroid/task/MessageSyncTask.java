@@ -1,7 +1,7 @@
 package in.co.praveenkumar.mdroid.task;
 
-import in.co.praveenkumar.mdroid.moodlemodel.MoodleMessage;
-import in.co.praveenkumar.mdroid.moodlemodel.MoodleMessages;
+import in.co.praveenkumar.mdroid.model.MoodleMessage;
+import in.co.praveenkumar.mdroid.model.MoodleMessages;
 import in.co.praveenkumar.mdroid.moodlerest.MoodleRestMessage;
 
 import java.util.List;

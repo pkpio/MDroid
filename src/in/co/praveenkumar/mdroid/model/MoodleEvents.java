@@ -1,24 +1,24 @@
-package in.co.praveenkumar.mdroid.moodlemodel;
+package in.co.praveenkumar.mdroid.model;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import com.google.gson.annotations.SerializedName;
 
 /**
- * Moodle returns messages in 2 objects - Messages list and list of warnings. We
- * won't be using this model for db operations but instead only easy message
+ * Moodle returns events in 2 objects - Events list and list of warnings We
+ * won't be using this model for db operations but instead only easy event
  * retrieval from json.
  * 
  * @author Praveen Kumar Pendyala (praveen@praveenkumar.co.in)
  * 
  */
-public class MoodleMessages {
+public class MoodleEvents {
 
-	@SerializedName("messages")
-	List<MoodleMessage> messages;
+	@SerializedName("events")
+	ArrayList<MoodleEvent> events;
 
 	@SerializedName("warnings")
-	List<MoodleMessageWarning> warnings;
+	ArrayList<MoodleEventWarning> warnings;
 
 	// Errors. Not to be stored in sql db.
 	@SerializedName("exception")
@@ -34,20 +34,20 @@ public class MoodleMessages {
 	String debuginfo;
 
 	/**
-	 * Get List of Messages
+	 * Get ArrayList of Events
 	 * 
-	 * @return messages
+	 * @return events
 	 */
-	public List<MoodleMessage> getMessages() {
-		return messages;
+	public ArrayList<MoodleEvent> getEvents() {
+		return events;
 	}
 
 	/**
-	 * Get List of Message warnings
+	 * Get ArrayList of Event warnings
 	 * 
 	 * @return warnings
 	 */
-	public List<MoodleMessageWarning> getWarnings() {
+	public ArrayList<MoodleEventWarning> getWarnings() {
 		return warnings;
 	}
 
@@ -88,13 +88,13 @@ public class MoodleMessages {
 	}
 
 	/**
-	 * Represents warnings that come along with a Messages call. <br/>
+	 * Represents warnings that come along with a Events call. <br/>
 	 * <br/>
 	 * This is not so important to be implemented as main model I guess
 	 * 
 	 * @author Praveen Kumar Pendyala (praveen@praveenkumar.co.in)
 	 */
-	public class MoodleMessageWarning {
+	public class MoodleEventWarning {
 		String item;
 		int itemid;
 		String warningcode;

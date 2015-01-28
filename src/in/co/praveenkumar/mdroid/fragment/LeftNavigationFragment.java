@@ -13,7 +13,7 @@ import in.co.praveenkumar.mdroid.activity.WorkInProgressActivity;
 import in.co.praveenkumar.mdroid.helper.AppInterface.DrawerStateInterface;
 import in.co.praveenkumar.mdroid.helper.ImageDecoder;
 import in.co.praveenkumar.mdroid.helper.SessionSetting;
-import in.co.praveenkumar.mdroid.moodlemodel.MoodleSiteInfo;
+import in.co.praveenkumar.mdroid.model.MoodleSiteInfo;
 
 import java.io.File;
 import java.util.List;

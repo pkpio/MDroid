@@ -1,7 +1,7 @@
 package in.co.praveenkumar.mdroid.task;
 
-import in.co.praveenkumar.mdroid.moodlemodel.MoodleDiscussion;
-import in.co.praveenkumar.mdroid.moodlemodel.MoodleForum;
+import in.co.praveenkumar.mdroid.model.MoodleDiscussion;
+import in.co.praveenkumar.mdroid.model.MoodleForum;
 import in.co.praveenkumar.mdroid.moodlerest.MoodleRestDiscussion;
 
 import java.util.ArrayList;

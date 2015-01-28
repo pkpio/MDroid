@@ -1,8 +1,8 @@
 package in.co.praveenkumar.mdroid.task;
 
-import in.co.praveenkumar.mdroid.moodlemodel.MoodleContact;
-import in.co.praveenkumar.mdroid.moodlemodel.MoodleContacts;
-import in.co.praveenkumar.mdroid.moodlemodel.MoodleUser;
+import in.co.praveenkumar.mdroid.model.MoodleContact;
+import in.co.praveenkumar.mdroid.model.MoodleContacts;
+import in.co.praveenkumar.mdroid.model.MoodleUser;
 import in.co.praveenkumar.mdroid.moodlerest.MoodleRestContact;
 
 import java.util.ArrayList;

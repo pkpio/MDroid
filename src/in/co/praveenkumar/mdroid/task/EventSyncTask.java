@@ -1,8 +1,8 @@
 package in.co.praveenkumar.mdroid.task;
 
-import in.co.praveenkumar.mdroid.moodlemodel.MoodleCourse;
-import in.co.praveenkumar.mdroid.moodlemodel.MoodleEvent;
-import in.co.praveenkumar.mdroid.moodlemodel.MoodleEvents;
+import in.co.praveenkumar.mdroid.model.MoodleCourse;
+import in.co.praveenkumar.mdroid.model.MoodleEvent;
+import in.co.praveenkumar.mdroid.model.MoodleEvents;
 import in.co.praveenkumar.mdroid.moodlerest.MoodleRestEvent;
 
 import java.util.ArrayList;

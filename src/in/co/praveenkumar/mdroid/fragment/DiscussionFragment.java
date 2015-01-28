@@ -6,7 +6,7 @@ import in.co.praveenkumar.mdroid.helper.AppInterface.ForumIdInterface;
 import in.co.praveenkumar.mdroid.helper.SessionSetting;
 import in.co.praveenkumar.mdroid.helper.TimeFormat;
 import in.co.praveenkumar.mdroid.helper.Workaround;
-import in.co.praveenkumar.mdroid.moodlemodel.MoodleDiscussion;
+import in.co.praveenkumar.mdroid.model.MoodleDiscussion;
 import in.co.praveenkumar.mdroid.task.DiscussionSyncTask;
 
 import java.util.List;

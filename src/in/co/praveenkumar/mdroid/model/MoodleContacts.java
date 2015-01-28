@@ -1,4 +1,4 @@
-package in.co.praveenkumar.mdroid.moodlemodel;
+package in.co.praveenkumar.mdroid.model;
 
 import java.util.ArrayList;
 
