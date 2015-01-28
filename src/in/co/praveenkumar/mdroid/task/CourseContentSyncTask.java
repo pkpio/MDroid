@@ -1,5 +1,7 @@
 package in.co.praveenkumar.mdroid.task;
 
+import in.co.praveenkumar.mdroid.model.MDroidNotification;
+import in.co.praveenkumar.mdroid.model.MoodleCourse;
 import in.co.praveenkumar.mdroid.model.MoodleModule;
 import in.co.praveenkumar.mdroid.model.MoodleModuleContent;
 import in.co.praveenkumar.mdroid.model.MoodleSection;
@@ -12,8 +14,10 @@ public class CourseContentSyncTask {
 	String mUrl;
 	String token;
 	long siteid;
-	int courseid;
+
+	MoodleCourse course;
 	String error;
+	Boolean notification;
 
 	/**
 	 * 
@@ -27,6 +31,25 @@ public class CourseContentSyncTask {
 		this.mUrl = mUrl;
 		this.token = token;
 		this.siteid = siteid;
+		this.notification = false;
+	}
+
+	/**
+	 * 
+	 * @param mUrl
+	 * @param token
+	 * @param siteid
+	 * @param notification
+	 *            If true, sets notifications for new contents
+	 * 
+	 * @author Praveen Kumar Pendyala (praveen@praveenkumar.co.in)
+	 */
+	public CourseContentSyncTask(String mUrl, String token, long siteid,
+			Boolean notification) {
+		this.mUrl = mUrl;
+		this.token = token;
+		this.siteid = siteid;
+		this.notification = notification;
 	}
 
 	/**
@@ -36,17 +59,20 @@ public class CourseContentSyncTask {
 	 * 
 	 * @param courseid
 	 *            Moodle courseid of the course
-	 * @param coursedbid
-	 *            Id of the course in the database. When a course is saved into
-	 *            the sugar db, a unique id is assigned to it. This is required
-	 *            to link the contents with this course for offline use. This id
-	 *            can be obtained by calling getId() on your MoodleCourse object
 	 * @return syncStatus
 	 * 
 	 * @author Praveen Kumar Pendyala (praveen@praveenkumar.co.in)
 	 */
-	public Boolean syncCourseContents(int courseid, Long coursedbid) {
-		this.courseid = courseid;
+	public Boolean syncCourseContents(int courseid) {
+
+		// Get the course from database for all future use
+		List<MoodleCourse> dbCourses = MoodleCourse.find(MoodleCourse.class,
+				"siteid = ? and courseid = ?", siteid + "", courseid + "");
+		if (dbCourses == null || dbCourses.size() == 0) {
+			error = "Course not found in database!";
+			return false;
+		}
+		course = dbCourses.get(0);
 
 		MoodleRestCourseContent mrcc = new MoodleRestCourseContent(mUrl, token);
 		ArrayList<MoodleSection> mSections = mrcc.getCourseContent(courseid
@@ -77,7 +103,7 @@ public class CourseContentSyncTask {
 			section = mSections.get(i);
 			section.setSiteid(siteid);
 			section.setCourseid(courseid);
-			section.setParentid(coursedbid);
+			section.setParentid(course.getId());
 
 			// Update or save in database
 			/*
@@ -122,7 +148,7 @@ public class CourseContentSyncTask {
 		for (int i = 0; i < modules.size(); i++) {
 			module = modules.get(i);
 			module.setSiteid(siteid);
-			module.setCourseid(courseid);
+			module.setCourseid(course.getCourseid());
 			module.setParentid(sectiondbid);
 			module.setSectionid(sectionid);
 
@@ -135,6 +161,15 @@ public class CourseContentSyncTask {
 					module.getSiteid() + "");
 			if (dbModules.size() > 0)
 				module.setId(dbModules.get(0).getId()); // updates on save()
+			// set notifications if enabled
+			else if (notification) {
+				MDroidNotification notification = new MDroidNotification(siteid);
+				notification.setTitle("New contents in "
+						+ course.getShortname());
+				notification.setContent(module.getName() + " added to "
+						+ course.getFullname());
+				notification.save();
+			}
 			module.save();
 
 			// Now loop all Module contents in this module
@@ -170,7 +205,7 @@ public class CourseContentSyncTask {
 		for (int i = 0; i < contents.size(); i++) {
 			content = contents.get(i);
 			content.setSiteid(siteid);
-			content.setCourseid(courseid);
+			content.setCourseid(course.getCourseid());
 			content.setParentid(moduledbid);
 			content.setSectionid(sectionid);
 			content.setModuleid(moduleid);
