@@ -38,7 +38,6 @@ import android.widget.TextView;
 
 public class ContentFragment extends Fragment implements OnRefreshListener {
 	Context context;
-	long coursedbid;
 	int courseid;
 	CourseListAdapter courseContentListAdapter;
 	SessionSetting session;
@@ -56,14 +55,10 @@ public class ContentFragment extends Fragment implements OnRefreshListener {
 	/**
 	 * 
 	 * @param courseid
-	 *            Choose which course contents to be listed.
-	 * @param coursedbid
-	 *            Database id of the course. This is required for section
-	 *            details sync
+	 *            Choose which course contents to be listed
 	 */
-	public ContentFragment(int courseid, long coursedbid) {
+	public ContentFragment(int courseid) {
 		this.courseid = courseid;
-		this.coursedbid = coursedbid;
 	}
 
 	@Override
@@ -95,7 +90,7 @@ public class ContentFragment extends Fragment implements OnRefreshListener {
 		swipeLayout.setOnRefreshListener(this);
 
 		new listCoursesThread(session.getmUrl(), session.getToken(), courseid,
-				coursedbid, session.getCurrentSiteId()).execute("");
+				session.getCurrentSiteId()).execute("");
 
 		return rootView;
 	}
@@ -103,14 +98,12 @@ public class ContentFragment extends Fragment implements OnRefreshListener {
 	private class listCoursesThread extends AsyncTask<String, Integer, Boolean> {
 		CourseContentSyncTask ccs;
 		int courseid;
-		Long coursedbid;
 		Boolean syncStatus;
 
 		public listCoursesThread(String mUrl, String token, int courseid,
-				Long coursedbid, Long siteid) {
+				Long siteid) {
 			ccs = new CourseContentSyncTask(mUrl, token, siteid);
 			this.courseid = courseid;
-			this.coursedbid = coursedbid;
 		}
 
 		@Override
@@ -121,7 +114,7 @@ public class ContentFragment extends Fragment implements OnRefreshListener {
 		@Override
 		protected Boolean doInBackground(String... params) {
 			System.out.println("Background execute");
-			syncStatus = ccs.syncCourseContents(courseid, coursedbid);
+			syncStatus = ccs.syncCourseContents(courseid);
 			ArrayList<MoodleSection> sections = ccs.getCourseContents(courseid);
 
 			// Save all sections into a listObject array for easy access inside
@@ -392,7 +385,7 @@ public class ContentFragment extends Fragment implements OnRefreshListener {
 	@Override
 	public void onRefresh() {
 		new listCoursesThread(session.getmUrl(), session.getToken(), courseid,
-				coursedbid, session.getCurrentSiteId()).execute("");
+				session.getCurrentSiteId()).execute("");
 	}
 
 }
