@@ -3,3 +3,5 @@
 *.apk
 .settings/
 *.class
+project.properties
+.project
