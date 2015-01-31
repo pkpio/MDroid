@@ -28,6 +28,7 @@ public class DiscussionSyncTask {
 		this.mUrl = mUrl;
 		this.token = token;
 		this.siteid = siteid;
+		this.notification = false;
 	}
 
 	/**

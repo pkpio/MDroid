@@ -27,6 +27,7 @@ public class UserSyncTask {
 		this.mUrl = mUrl;
 		this.token = token;
 		this.siteid = siteid;
+		this.notification = false;
 	}
 
 	/**
