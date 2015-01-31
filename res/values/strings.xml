@@ -82,9 +82,9 @@
     <string name="activity_settings_cat_notification_title">Notifications</string>
     <string name="activity_settings_cat_notification_summary">Notification settings</string>
     <string name="activity_settings_notifi_title">Notifications</string>
-    <string name="activity_settings_notifi_summary">Notifies you when new content arrives in Moodle for your account</string>
+    <string name="activity_settings_notifi_summary">Notifies you when new content arrives in Moodle for your account. Donate only!</string>
     <string name="activity_settings_notifi_freq_title">Sync frequency</string>
-    <string name="activity_settings_notifi_freq_summary">Frequency of contents checking</string>
+    <string name="activity_settings_notifi_freq_summary">Frequency of contents checking. Notifications must be enabled.</string>
     <!-- This is shown to users -->
     <string-array name="activity_settings_notification_frequency_entries">
         <item>Hourly</item>
@@ -106,6 +106,8 @@
         <item>168</item>
     </string-array>
     <!-- Events to notify for -->
+    <string name="activity_settings_screen_notifi_events_title">Notification events</string>
+    <string name="activity_settings_screen_notifi_events_summary">Events you want to notified about. Notifications must be enabled.</string>
     <string name="activity_settings_notifi_coursecontent_title">Course contents</string>
     <string name="activity_settings_notifi_coursecontent_summary">When new contents added to any of your favourite course</string>
     <string name="activity_settings_notifi_posts_title">Forum replies</string>

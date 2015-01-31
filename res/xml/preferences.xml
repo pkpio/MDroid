@@ -26,6 +26,8 @@
         android:summary="@string/activity_settings_cat_notification_summary"
         android:title="@string/activity_settings_cat_notification_title" >
         <CheckBoxPreference
+            android:defaultValue="false"
+            android:enabled="false"
             android:key="notifications"
             android:summary="@string/activity_settings_notifi_summary"
             android:title="@string/activity_settings_notifi_title" />
@@ -39,8 +41,8 @@
 
         <!-- Notification events -->
         <PreferenceScreen
-            android:summary="Events you want to notified about"
-            android:title="Notification events" >
+            android:summary="@string/activity_settings_screen_notifi_events_summary"
+            android:title="@string/activity_settings_screen_notifi_events_title" >
             <CheckBoxPreference
                 android:defaultValue="true"
                 android:key="coursecontents"
