@@ -1,5 +1,7 @@
 package in.co.praveenkumar.mdroid.task;
 
+import in.co.praveenkumar.mdroid.model.MDroidNotification;
+import in.co.praveenkumar.mdroid.model.MoodleDiscussion;
 import in.co.praveenkumar.mdroid.model.MoodlePost;
 import in.co.praveenkumar.mdroid.model.MoodlePosts;
 import in.co.praveenkumar.mdroid.moodlerest.MoodleRestPost;
@@ -11,7 +13,9 @@ public class PostSyncTask {
 	String mUrl;
 	String token;
 	long siteid;
+
 	String error;
+	Boolean notification;
 
 	/**
 	 * 
@@ -25,6 +29,25 @@ public class PostSyncTask {
 		this.mUrl = mUrl;
 		this.token = token;
 		this.siteid = siteid;
+		this.notification = false;
+	}
+
+	/**
+	 * 
+	 * @param mUrl
+	 * @param token
+	 * @param siteid
+	 * @param notification
+	 *            If true, sets notifications for new contents
+	 * 
+	 * @author Praveen Kumar Pendyala (praveen@praveenkumar.co.in)
+	 */
+	public PostSyncTask(String mUrl, String token, long siteid,
+			Boolean notification) {
+		this.mUrl = mUrl;
+		this.token = token;
+		this.siteid = siteid;
+		this.notification = notification;
 	}
 
 	/**
@@ -61,14 +84,29 @@ public class PostSyncTask {
 			for (int i = 0; i < mPosts.size(); i++) {
 				post = mPosts.get(i);
 				post.setSiteid(siteid);
-				/*
-				 * -TODO- Improve this search with only Sql operation
-				 */
+
 				dbPosts = MoodlePost.find(MoodlePost.class,
 						"postid = ? and siteid = ?", post.getPostid() + "",
 						siteid + "");
 				if (dbPosts.size() > 0)
 					post.setId(dbPosts.get(0).getId());
+
+				// set notifications if enabled
+				else if (notification) {
+					List<MoodleDiscussion> dbDiscussions = MoodleDiscussion
+							.find(MoodleDiscussion.class,
+									"discussionid = ? and siteid = ?", siteid
+											+ "", discussionid + "");
+					MoodleDiscussion discussion = (dbDiscussions != null && dbDiscussions
+							.size() > 0) ? dbDiscussions.get(0) : null;
+
+					if (discussion != null)
+						new MDroidNotification(siteid,
+								MDroidNotification.TYPE_FORUM_REPLY,
+								"New forum reply from "
+										+ post.getUserfullname(),
+								"New reply in " + discussion.getName()).save();
+				}
 				post.save();
 			}
 
