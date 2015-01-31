@@ -83,7 +83,6 @@ public class MoodleDiscussion extends SugarRecord<MoodleDiscussion> {
 
 	// Relational and other fields
 	long siteid;
-	String forumname;
 
 	/**
 	 * Forum id
@@ -108,7 +107,7 @@ public class MoodleDiscussion extends SugarRecord<MoodleDiscussion> {
 	 * 
 	 * @return
 	 */
-	public int getForum() {
+	public int getForumid() {
 		return forumid;
 	}
 
@@ -325,25 +324,6 @@ public class MoodleDiscussion extends SugarRecord<MoodleDiscussion> {
 	 */
 	public void setSiteid(long siteid) {
 		this.siteid = siteid;
-	}
-
-	/**
-	 * Get name of the forum to which this discussion belong
-	 * 
-	 * @return forumname
-	 */
-	public String getForumname() {
-		return forumname;
-	}
-
-	/**
-	 * Set name of the forum to which this discussion belong
-	 * 
-	 * @param forumname
-	 *            name of the forum to which this discussion belong
-	 */
-	public void setForumname(String forumname) {
-		this.forumname = forumname;
 	}
 
 }
