@@ -1,5 +1,6 @@
 package in.co.praveenkumar.mdroid.task;
 
+import in.co.praveenkumar.mdroid.model.MDroidNotification;
 import in.co.praveenkumar.mdroid.model.MoodleCourse;
 import in.co.praveenkumar.mdroid.model.MoodleEvent;
 import in.co.praveenkumar.mdroid.model.MoodleEvents;
@@ -12,7 +13,9 @@ public class EventSyncTask {
 	String mUrl;
 	String token;
 	long siteid;
+
 	String error;
+	Boolean notification;
 
 	/**
 	 * 
@@ -26,6 +29,24 @@ public class EventSyncTask {
 		this.mUrl = mUrl;
 		this.token = token;
 		this.siteid = siteid;
+	}
+
+	/**
+	 * 
+	 * @param mUrl
+	 * @param token
+	 * @param siteid
+	 * @param notification
+	 *            If true, sets notifications for new contents
+	 * 
+	 * @author Praveen Kumar Pendyala (praveen@praveenkumar.co.in)
+	 */
+	public EventSyncTask(String mUrl, String token, long siteid,
+			Boolean notification) {
+		this.mUrl = mUrl;
+		this.token = token;
+		this.siteid = siteid;
+		this.notification = notification;
 	}
 
 	/**
@@ -79,9 +100,7 @@ public class EventSyncTask {
 			for (int i = 0; i < events.size(); i++) {
 				event = events.get(i);
 				event.setSiteid(siteid);
-				/*
-				 * -TODO- Improve this search with only Sql operation
-				 */
+
 				dbEvents = MoodleEvent.find(MoodleEvent.class,
 						"eventid = ? and siteid = ?", event.getEventid() + "",
 						siteid + "");
@@ -92,6 +111,14 @@ public class EventSyncTask {
 					event.setCoursename(dbCourses.get(0).getShortname());
 				if (dbEvents.size() > 0)
 					event.setId(dbEvents.get(0).getId());
+
+				// set notifications if enabled
+				else if (notification)
+					new MDroidNotification(siteid,
+							MDroidNotification.TYPE_EVENT, "New events in "
+									+ event.getCoursename(),
+							"New event titled " + event.getName()).save();
+
 				event.save();
 			}
 
