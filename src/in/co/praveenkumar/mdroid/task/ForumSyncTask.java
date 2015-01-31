@@ -1,5 +1,6 @@
 package in.co.praveenkumar.mdroid.task;
 
+import in.co.praveenkumar.mdroid.model.MDroidNotification;
 import in.co.praveenkumar.mdroid.model.MoodleCourse;
 import in.co.praveenkumar.mdroid.model.MoodleForum;
 import in.co.praveenkumar.mdroid.moodlerest.MoodleRestForum;
@@ -11,7 +12,9 @@ public class ForumSyncTask {
 	String mUrl;
 	String token;
 	long siteid;
+
 	String error;
+	Boolean notification;
 
 	/**
 	 * 
@@ -25,6 +28,24 @@ public class ForumSyncTask {
 		this.mUrl = mUrl;
 		this.token = token;
 		this.siteid = siteid;
+	}
+
+	/**
+	 * 
+	 * @param mUrl
+	 * @param token
+	 * @param siteid
+	 * @param notification
+	 *            If true, sets notifications for new contents
+	 * 
+	 * @author Praveen Kumar Pendyala (praveen@praveenkumar.co.in)
+	 */
+	public ForumSyncTask(String mUrl, String token, long siteid,
+			Boolean notification) {
+		this.mUrl = mUrl;
+		this.token = token;
+		this.siteid = siteid;
+		this.notification = notification;
 	}
 
 	/**
@@ -85,6 +106,11 @@ public class ForumSyncTask {
 				forum.setCoursename(dbCourses.get(0).getShortname());
 			if (dbForums.size() > 0)
 				forum.setId(dbForums.get(0).getId());
+			// set notifications if enabled
+			else if (notification)
+				new MDroidNotification(siteid, MDroidNotification.TYPE_FORUM,
+						"New forum in " + forum.getCoursename(),
+						forum.getName()).save();
 			forum.save();
 		}
 
