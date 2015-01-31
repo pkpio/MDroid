@@ -1,5 +1,6 @@
 package in.co.praveenkumar.mdroid.task;
 
+import in.co.praveenkumar.mdroid.model.MDroidNotification;
 import in.co.praveenkumar.mdroid.model.MoodleContact;
 import in.co.praveenkumar.mdroid.model.MoodleContacts;
 import in.co.praveenkumar.mdroid.model.MoodleUser;
@@ -12,7 +13,9 @@ public class ContactSyncTask {
 	String mUrl;
 	String token;
 	long siteid;
+
 	String error;
+	Boolean notification;
 
 	/**
 	 * 
@@ -26,6 +29,24 @@ public class ContactSyncTask {
 		this.mUrl = mUrl;
 		this.token = token;
 		this.siteid = siteid;
+	}
+
+	/**
+	 * 
+	 * @param mUrl
+	 * @param token
+	 * @param siteid
+	 * @param notification
+	 *            If true, sets notifications for new contents
+	 * 
+	 * @author Praveen Kumar Pendyala (praveen@praveenkumar.co.in)
+	 */
+	public ContactSyncTask(String mUrl, String token, long siteid,
+			Boolean notification) {
+		this.mUrl = mUrl;
+		this.token = token;
+		this.siteid = siteid;
+		this.notification = notification;
 	}
 
 	/**
@@ -119,14 +140,19 @@ public class ContactSyncTask {
 				contact = contacts.get(i);
 				contact.setStatus(status);
 				contact.setSiteid(siteid);
-				/*
-				 * -TODO- Improve this search with only Sql operation
-				 */
+
 				dbContacts = MoodleContact.find(MoodleContact.class,
 						"contactid = ? and siteid = ?", contacts.get(i)
 								.getContactid() + "", siteid + "");
 				if (dbContacts.size() > 0)
 					contact.setId(dbContacts.get(0).getId());
+
+				// set notifications if enabled
+				else if (notification)
+					new MDroidNotification(siteid,
+							MDroidNotification.TYPE_CONTACT,
+							"New contacts found", contact.getFullname()
+									+ " is now in your contacts").save();
 				contact.save();
 			}
 	}

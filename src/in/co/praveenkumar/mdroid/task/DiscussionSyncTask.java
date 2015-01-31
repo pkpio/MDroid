@@ -12,7 +12,9 @@ public class DiscussionSyncTask {
 	String mUrl;
 	String token;
 	long siteid;
+
 	String error;
+	Boolean notification;
 
 	/**
 	 * 
@@ -26,6 +28,24 @@ public class DiscussionSyncTask {
 		this.mUrl = mUrl;
 		this.token = token;
 		this.siteid = siteid;
+	}
+
+	/**
+	 * 
+	 * @param mUrl
+	 * @param token
+	 * @param siteid
+	 * @param notification
+	 *            If true, sets notifications for new contents
+	 * 
+	 * @author Praveen Kumar Pendyala (praveen@praveenkumar.co.in)
+	 */
+	public DiscussionSyncTask(String mUrl, String token, long siteid,
+			Boolean notification) {
+		this.mUrl = mUrl;
+		this.token = token;
+		this.siteid = siteid;
+		this.notification = notification;
 	}
 
 	/**
@@ -79,7 +99,7 @@ public class DiscussionSyncTask {
 				topic.setId(dbTopics.get(0).getId());
 
 			// set notifications if enabled
-			else {
+			else if (notification) {
 				List<MoodleCourse> dbCourses = MoodleCourse.find(
 						MoodleCourse.class, "courseid = ? and siteid = ?",
 						siteid + "", topic.getCourseid() + "");
