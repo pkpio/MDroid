@@ -18,6 +18,7 @@ public class CourseContentSyncTask {
 	MoodleCourse course;
 	String error;
 	Boolean notification;
+	int notificationcount;
 
 	/**
 	 * 
@@ -32,6 +33,7 @@ public class CourseContentSyncTask {
 		this.token = token;
 		this.siteid = siteid;
 		this.notification = false;
+		this.notificationcount = 0;
 	}
 
 	/**
@@ -50,6 +52,17 @@ public class CourseContentSyncTask {
 		this.token = token;
 		this.siteid = siteid;
 		this.notification = notification;
+		this.notificationcount = 0;
+	}
+
+	/**
+	 * Get the notifications count. Notifications should be enabled during
+	 * Object instantiation.
+	 * 
+	 * @return notificationcount
+	 */
+	public int getNotificationcount() {
+		return notificationcount;
 	}
 
 	/**
@@ -153,12 +166,14 @@ public class CourseContentSyncTask {
 			if (dbModules.size() > 0)
 				module.setId(dbModules.get(0).getId()); // updates on save()
 			// set notifications if enabled
-			else if (notification)
+			else if (notification) {
 				new MDroidNotification(siteid,
 						MDroidNotification.TYPE_COURSE_CONTENT,
 						"New contents in " + course.getShortname(),
 						module.getName() + " added to " + course.getFullname())
 						.save();
+				notificationcount++;
+			}
 			module.save();
 
 			// Now loop all Module contents in this module

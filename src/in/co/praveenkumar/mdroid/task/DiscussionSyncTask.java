@@ -15,6 +15,7 @@ public class DiscussionSyncTask {
 
 	String error;
 	Boolean notification;
+	int notificationcount;
 
 	/**
 	 * 
@@ -29,6 +30,7 @@ public class DiscussionSyncTask {
 		this.token = token;
 		this.siteid = siteid;
 		this.notification = false;
+		this.notificationcount = 0;
 	}
 
 	/**
@@ -47,6 +49,17 @@ public class DiscussionSyncTask {
 		this.token = token;
 		this.siteid = siteid;
 		this.notification = notification;
+		this.notificationcount = 0;
+	}
+
+	/**
+	 * Get the notifications count. Notifications should be enabled during
+	 * Object instantiation.
+	 * 
+	 * @return notificationcount
+	 */
+	public int getNotificationcount() {
+		return notificationcount;
 	}
 
 	/**
@@ -107,12 +120,14 @@ public class DiscussionSyncTask {
 				MoodleCourse course = (dbCourses != null && dbCourses.size() > 0) ? dbCourses
 						.get(0) : null;
 
-				if (course != null)
+				if (course != null) {
 					new MDroidNotification(siteid,
 							MDroidNotification.TYPE_FORUM_TOPIC,
 							"New forum topic in " + course.getShortname(),
 							topic.getName() + " started in course "
 									+ course.getFullname()).save();
+					notificationcount++;
+				}
 			}
 			topic.save();
 		}

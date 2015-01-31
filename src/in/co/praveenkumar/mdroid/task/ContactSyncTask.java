@@ -16,6 +16,7 @@ public class ContactSyncTask {
 
 	String error;
 	Boolean notification;
+	int notificationcount;
 
 	/**
 	 * 
@@ -30,6 +31,7 @@ public class ContactSyncTask {
 		this.token = token;
 		this.siteid = siteid;
 		this.notification = false;
+		this.notificationcount = 0;
 	}
 
 	/**
@@ -48,6 +50,17 @@ public class ContactSyncTask {
 		this.token = token;
 		this.siteid = siteid;
 		this.notification = notification;
+		this.notificationcount = 0;
+	}
+
+	/**
+	 * Get the notifications count. Notifications should be enabled during
+	 * Object instantiation.
+	 * 
+	 * @return notificationcount
+	 */
+	public int getNotificationcount() {
+		return notificationcount;
 	}
 
 	/**
@@ -149,11 +162,13 @@ public class ContactSyncTask {
 					contact.setId(dbContacts.get(0).getId());
 
 				// set notifications if enabled
-				else if (notification)
+				else if (notification) {
 					new MDroidNotification(siteid,
 							MDroidNotification.TYPE_CONTACT,
 							"New contacts found", contact.getFullname()
 									+ " is now in your contacts").save();
+					notificationcount++;
+				}
 				contact.save();
 			}
 	}

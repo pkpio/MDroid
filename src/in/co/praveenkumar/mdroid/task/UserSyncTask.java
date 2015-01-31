@@ -14,6 +14,7 @@ public class UserSyncTask {
 
 	String error;
 	Boolean notification;
+	int notificationcount;
 
 	/**
 	 * 
@@ -28,6 +29,7 @@ public class UserSyncTask {
 		this.token = token;
 		this.siteid = siteid;
 		this.notification = false;
+		this.notificationcount = 0;
 	}
 
 	/**
@@ -46,6 +48,17 @@ public class UserSyncTask {
 		this.token = token;
 		this.siteid = siteid;
 		this.notification = notification;
+		this.notificationcount = 0;
+	}
+
+	/**
+	 * Get the notifications count. Notifications should be enabled during
+	 * Object instantiation.
+	 * 
+	 * @return notificationcount
+	 */
+	public int getNotificationcount() {
+		return notificationcount;
 	}
 
 	/**
@@ -86,12 +99,14 @@ public class UserSyncTask {
 				MoodleCourse course = (dbCourses != null && dbCourses.size() > 0) ? dbCourses
 						.get(0) : null;
 
-				if (course != null)
+				if (course != null) {
 					new MDroidNotification(siteid,
 							MDroidNotification.TYPE_PARTICIPANT,
 							"New people joined " + course.getShortname(),
 							mUser.getFullname() + " joined "
 									+ course.getFullname()).save();
+					notificationcount++;
+				}
 			}
 			mUser.save();
 		}

@@ -14,6 +14,7 @@ public class MessageSyncTask {
 
 	String error;
 	Boolean notification;
+	int notificationcount;
 
 	/**
 	 * 
@@ -28,6 +29,7 @@ public class MessageSyncTask {
 		this.token = token;
 		this.siteid = siteid;
 		this.notification = false;
+		this.notificationcount = 0;
 	}
 
 	/**
@@ -46,6 +48,17 @@ public class MessageSyncTask {
 		this.token = token;
 		this.siteid = siteid;
 		this.notification = notification;
+		this.notificationcount = 0;
+	}
+
+	/**
+	 * Get the notifications count. Notifications should be enabled during
+	 * Object instantiation.
+	 * 
+	 * @return notificationcount
+	 */
+	public int getNotificationcount() {
+		return notificationcount;
 	}
 
 	/**
@@ -99,12 +112,14 @@ public class MessageSyncTask {
 				if (dbMessages.size() > 0)
 					message.setId(dbMessages.get(0).getId());
 				// set notifications if enabled
-				else if (notification)
+				else if (notification) {
 					new MDroidNotification(
 							siteid,
 							MDroidNotification.TYPE_MESSAGE,
 							"New message from " + message.getUserfromfullname(),
 							message.getText()).save();
+					notificationcount++;
+				}
 				message.save();
 			}
 

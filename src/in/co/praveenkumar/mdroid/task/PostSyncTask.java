@@ -16,6 +16,7 @@ public class PostSyncTask {
 
 	String error;
 	Boolean notification;
+	int notificationcount;
 
 	/**
 	 * 
@@ -30,6 +31,7 @@ public class PostSyncTask {
 		this.token = token;
 		this.siteid = siteid;
 		this.notification = false;
+		this.notificationcount = 0;
 	}
 
 	/**
@@ -48,6 +50,17 @@ public class PostSyncTask {
 		this.token = token;
 		this.siteid = siteid;
 		this.notification = notification;
+		this.notificationcount = 0;
+	}
+
+	/**
+	 * Get the notifications count. Notifications should be enabled during
+	 * Object instantiation.
+	 * 
+	 * @return notificationcount
+	 */
+	public int getNotificationcount() {
+		return notificationcount;
 	}
 
 	/**
@@ -100,12 +113,14 @@ public class PostSyncTask {
 					MoodleDiscussion discussion = (dbDiscussions != null && dbDiscussions
 							.size() > 0) ? dbDiscussions.get(0) : null;
 
-					if (discussion != null)
+					if (discussion != null) {
 						new MDroidNotification(siteid,
 								MDroidNotification.TYPE_FORUM_REPLY,
 								"New forum reply from "
 										+ post.getUserfullname(),
 								"New reply in " + discussion.getName()).save();
+						notificationcount++;
+					}
 				}
 				post.save();
 			}
