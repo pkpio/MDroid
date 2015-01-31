@@ -15,6 +15,7 @@ public class ForumSyncTask {
 
 	String error;
 	Boolean notification;
+	int notificationcount;
 
 	/**
 	 * 
@@ -29,6 +30,7 @@ public class ForumSyncTask {
 		this.token = token;
 		this.siteid = siteid;
 		this.notification = false;
+		this.notificationcount = 0;
 	}
 
 	/**
@@ -47,6 +49,17 @@ public class ForumSyncTask {
 		this.token = token;
 		this.siteid = siteid;
 		this.notification = notification;
+		this.notificationcount = 0;
+	}
+
+	/**
+	 * Get the notifications count. Notifications should be enabled during
+	 * Object instantiation.
+	 * 
+	 * @return notificationcount
+	 */
+	public int getNotificationcount() {
+		return notificationcount;
 	}
 
 	/**
@@ -108,10 +121,12 @@ public class ForumSyncTask {
 			if (dbForums.size() > 0)
 				forum.setId(dbForums.get(0).getId());
 			// set notifications if enabled
-			else if (notification)
+			else if (notification) {
 				new MDroidNotification(siteid, MDroidNotification.TYPE_FORUM,
 						"New forum in " + forum.getCoursename(),
 						forum.getName()).save();
+				notificationcount++;
+			}
 			forum.save();
 		}
 

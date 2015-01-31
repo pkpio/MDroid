@@ -16,6 +16,7 @@ public class EventSyncTask {
 
 	String error;
 	Boolean notification;
+	int notificationcount;
 
 	/**
 	 * 
@@ -30,6 +31,7 @@ public class EventSyncTask {
 		this.token = token;
 		this.siteid = siteid;
 		this.notification = false;
+		this.notificationcount = 0;
 	}
 
 	/**
@@ -48,6 +50,17 @@ public class EventSyncTask {
 		this.token = token;
 		this.siteid = siteid;
 		this.notification = notification;
+		this.notificationcount = 0;
+	}
+
+	/**
+	 * Get the notifications count. Notifications should be enabled during
+	 * Object instantiation.
+	 * 
+	 * @return notificationcount
+	 */
+	public int getNotificationcount() {
+		return notificationcount;
 	}
 
 	/**
@@ -114,11 +127,13 @@ public class EventSyncTask {
 					event.setId(dbEvents.get(0).getId());
 
 				// set notifications if enabled
-				else if (notification)
+				else if (notification) {
 					new MDroidNotification(siteid,
 							MDroidNotification.TYPE_EVENT, "New events in "
 									+ event.getCoursename(),
 							"New event titled " + event.getName()).save();
+					notificationcount++;
+				}
 
 				event.save();
 			}
