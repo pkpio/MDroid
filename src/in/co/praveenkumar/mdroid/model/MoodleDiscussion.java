@@ -98,7 +98,7 @@ public class MoodleDiscussion extends SugarRecord<MoodleDiscussion> {
 	 * 
 	 * @return
 	 */
-	public int getCourse() {
+	public int getCourseid() {
 		return courseid;
 	}
 
