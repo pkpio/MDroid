@@ -11,6 +11,7 @@ public class CourseSyncTask {
 	String mUrl;
 	String token;
 	long siteid;
+
 	String error;
 
 	/**
