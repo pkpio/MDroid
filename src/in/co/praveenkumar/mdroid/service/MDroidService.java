@@ -111,6 +111,9 @@ public class MDroidService extends Service {
 				// Discussion sync
 				discussionCount = syncDiscussions(site, mCourses);
 
+				setNotificationWithCounts(4, contentCount, forumCount,
+						discussionCount);
+
 			}
 
 			return true;
@@ -198,18 +201,18 @@ public class MDroidService extends Service {
 		protected void onPostExecute(Boolean result) {
 			Log.d(DEBUG_TAG, "Service completed. Notifying.");
 
-			int test = 2;
-			if (test > 0)
-				setNotificationWithCounts(2, 1, 1, 0);
-			else if (forceCheck)
-				showNotification("No updated found",
-						"Did you star your courses ?",
-						"Open files section to star a course", "", true);
-			else {
-				showNotification("No updated found",
-						"Did you star your courses ?",
-						"Open files section to star a course", "", true);
-			}
+			// int test = 2;
+			// if (test > 0)
+			// setNotificationWithCounts(2, 1, 1, 0);
+			// else if (forceCheck)
+			// showNotification("No updated found",
+			// "Did you star your courses ?",
+			// "Open files section to star a course", "", true);
+			// else {
+			// showNotification("No updated found",
+			// "Did you star your courses ?",
+			// "Open files section to star a course", "", true);
+			// }
 
 			Log.d(DEBUG_TAG, "Notified. Exiting.");
 			stopSelf(startId);
@@ -245,10 +248,9 @@ public class MDroidService extends Service {
 
 		NotificationCompat.Builder notification = new NotificationCompat.Builder(
 				this).setContentTitle(contentTitle).setContentText(contentText)
-				.setSmallIcon(R.drawable.mdroid_logo_inverted)
-				.setSubText(subText).setContentInfo(contentInfo)
-				.setContentIntent(pIntent).setAutoCancel(autoCancel)
-				.setSound(soundUri);
+				.setSmallIcon(R.drawable.ic_actionbar_icon).setSubText(subText)
+				.setContentInfo(contentInfo).setContentIntent(pIntent)
+				.setAutoCancel(autoCancel).setSound(soundUri);
 		Bitmap bm = BitmapFactory.decodeResource(getResources(),
 				R.drawable.ic_launcher);
 		notification.setLargeIcon(bm);
