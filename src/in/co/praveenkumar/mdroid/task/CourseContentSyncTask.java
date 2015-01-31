@@ -162,14 +162,12 @@ public class CourseContentSyncTask {
 			if (dbModules.size() > 0)
 				module.setId(dbModules.get(0).getId()); // updates on save()
 			// set notifications if enabled
-			else if (notification) {
-				MDroidNotification notification = new MDroidNotification(siteid);
-				notification.setTitle("New contents in "
-						+ course.getShortname());
-				notification.setContent(module.getName() + " added to "
-						+ course.getFullname());
-				notification.save();
-			}
+			else if (notification)
+				new MDroidNotification(siteid,
+						MDroidNotification.TYPE_COURSE_CONTENT,
+						"New contents in " + course.getShortname(),
+						module.getName() + " added to " + course.getFullname())
+						.save();
 			module.save();
 
 			// Now loop all Module contents in this module
