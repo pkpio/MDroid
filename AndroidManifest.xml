@@ -12,6 +12,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="com.android.vending.BILLING" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
     <application
         android:name="in.co.praveenkumar.mdroid.helper.ApplicationClass"
@@ -118,6 +119,21 @@
         <meta-data
             android:name="DOMAIN_PACKAGE_NAME"
             android:value="in.co.praveenkumar.mdroid.model" />
+
+        <!-- Services related -->
+        <service
+            android:name="in.co.praveenkumar.mdroid.service.MDroidService"
+            android:icon="@drawable/ic_launcher"
+            android:label="NewContentChecker" >
+        </service>
+
+        <receiver android:name="in.co.praveenkumar.mdroid.service.ScheduleReceiver" >
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name="in.co.praveenkumar.mdroid.service.StartServiceReceiver" >
+        </receiver>
     </application>
 
 </manifest>
