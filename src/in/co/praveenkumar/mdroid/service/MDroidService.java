@@ -8,13 +8,13 @@ import android.app.Service;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
-
-import com.orm.Database;
 
 public class MDroidService extends Service {
 	final String DEBUG_TAG = "MDroid Services";
@@ -23,7 +23,6 @@ public class MDroidService extends Service {
 	int forumUpdateCount = 0;
 	int replyUpdateCount = 0;
 
-	Database db;
 	Boolean forceChecked = false;
 
 	protected int startId;
@@ -117,12 +116,15 @@ public class MDroidService extends Service {
 		Intent intent = new Intent(this, CourseActivity.class);
 		PendingIntent pIntent = PendingIntent.getActivity(this, requestID,
 				intent, PendingIntent.FLAG_UPDATE_CURRENT);
+		// Define sound URI
+		Uri soundUri = RingtoneManager
+				.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
 
 		NotificationCompat.Builder notification = new NotificationCompat.Builder(
 				this).setContentTitle(contentTitle).setContentText(contentText)
 				.setSmallIcon(R.drawable.code_inverted).setSubText(subText)
 				.setContentInfo(contentInfo).setContentIntent(pIntent)
-				.setAutoCancel(autoCancel);
+				.setAutoCancel(autoCancel).setSound(soundUri);
 		Bitmap bm = BitmapFactory.decodeResource(getResources(),
 				R.drawable.ic_launcher);
 		notification.setLargeIcon(bm);
