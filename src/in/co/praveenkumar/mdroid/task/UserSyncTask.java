@@ -1,5 +1,7 @@
 package in.co.praveenkumar.mdroid.task;
 
+import in.co.praveenkumar.mdroid.model.MDroidNotification;
+import in.co.praveenkumar.mdroid.model.MoodleCourse;
 import in.co.praveenkumar.mdroid.model.MoodleUser;
 import in.co.praveenkumar.mdroid.moodlerest.MoodleRestUser;
 
@@ -9,7 +11,9 @@ public class UserSyncTask {
 	String mUrl;
 	String token;
 	long siteid;
+
 	String error;
+	Boolean notification;
 
 	/**
 	 * 
@@ -23,6 +27,24 @@ public class UserSyncTask {
 		this.mUrl = mUrl;
 		this.token = token;
 		this.siteid = siteid;
+	}
+
+	/**
+	 * 
+	 * @param mUrl
+	 * @param token
+	 * @param siteid
+	 * @param notification
+	 *            If true, sets notifications for new contents
+	 * 
+	 * @author Praveen Kumar Pendyala (praveen@praveenkumar.co.in)
+	 */
+	public UserSyncTask(String mUrl, String token, long siteid,
+			Boolean notification) {
+		this.mUrl = mUrl;
+		this.token = token;
+		this.siteid = siteid;
+		this.notification = notification;
 	}
 
 	/**
@@ -55,6 +77,21 @@ public class UserSyncTask {
 					mUser.getUserid() + "", siteid + "", courseid + "");
 			if (dbUsers.size() > 0)
 				mUser.setId(dbUsers.get(0).getId());
+			// set notifications if enabled
+			else if (notification) {
+				List<MoodleCourse> dbCourses = MoodleCourse.find(
+						MoodleCourse.class, "courseid = ? and siteid = ?",
+						siteid + "", courseid + "");
+				MoodleCourse course = (dbCourses != null && dbCourses.size() > 0) ? dbCourses
+						.get(0) : null;
+
+				if (course != null)
+					new MDroidNotification(siteid,
+							MDroidNotification.TYPE_PARTICIPANT,
+							"New people joined " + course.getShortname(),
+							mUser.getFullname() + " joined "
+									+ course.getFullname()).save();
+			}
 			mUser.save();
 		}
 
