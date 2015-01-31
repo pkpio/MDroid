@@ -78,6 +78,51 @@
     <string name="activity_settings_message_sign_positive_btn">Update</string>
     <string name="activity_settings_message_sign_default">Sent from MDroid - Moodle for Android</string>
     <string name="activity_settings_message_sign_summary">Appends this text at the end of each message you send. Donate only!</string>
+    <!-- Notification settings section -->
+    <string name="activity_settings_cat_notification_title">Notifications</string>
+    <string name="activity_settings_cat_notification_summary">Notification settings</string>
+    <string name="activity_settings_notifi_title">Notifications</string>
+    <string name="activity_settings_notifi_summary">Notifies you when new content arrives in Moodle for your account</string>
+    <string name="activity_settings_notifi_freq_title">Sync frequency</string>
+    <string name="activity_settings_notifi_freq_summary">Frequency of contents checking</string>
+    <!-- This is shown to users -->
+    <string-array name="activity_settings_notification_frequency_entries">
+        <item>Hourly</item>
+        <item>Every 3 hours</item>
+        <item>Every 6 hours</item>
+        <item>Every 12 hours</item>
+        <item>Daily</item>
+        <item>Every 3 days</item>
+        <item>Weekly</item>
+    </string-array>
+    <!-- This is the actual numeric values, in hours, taken by program -->
+    <string-array name="activity_settings_notification_frequency_values">
+        <item>1</item>
+        <item>3</item>
+        <item>6</item>
+        <item>12</item>
+        <item>24</item>
+        <item>72</item>
+        <item>168</item>
+    </string-array>
+    <!-- Events to notify for -->
+    <string name="activity_settings_notifi_coursecontent_title">Course contents</string>
+    <string name="activity_settings_notifi_coursecontent_summary">When new contents added to any of your favourite course</string>
+    <string name="activity_settings_notifi_posts_title">Forum replies</string>
+    <string name="activity_settings_notifi_posts_summary">For new replies in any forum of your favourite course</string>
+    <string name="activity_settings_notifi_discussion_title">Forum topics</string>
+    <string name="activity_settings_notifi_discussion_summary">A new forum thread has been started in any forum of your favourite courses</string>
+    <string name="activity_settings_notifi_forum_title">Forums</string>
+    <string name="activity_settings_notifi_forum_summary">A new forum started in your favourite courses</string>
+    <string name="activity_settings_notifi_message_title">Messages</string>
+    <string name="activity_settings_notifi_message_summary">Someone messaged you on Moodle</string>
+    <string name="activity_settings_notifi_event_title">Events</string>
+    <string name="activity_settings_notifi_event_summary">When new events appear in your Moodle calendar</string>
+    <string name="activity_settings_notifi_participant_title">Course participants</string>
+    <string name="activity_settings_notifi_participant_summary">Someone newly joined one of your favourite courses</string>
+    <string name="activity_settings_notifi_contact_title">Contacts</string>
+    <string name="activity_settings_notifi_contact_summary">When you have new contacts in your contact list</string>
+
     <!-- General settings section -->
     <string name="activity_settings_cat_general_title">General</string>
     <string name="activity_settings_cat_general_summary">General settings</string>
