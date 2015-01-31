@@ -36,11 +36,59 @@ public class MDroidNotification extends SugarRecord<MDroidNotification> {
 	long siteid;
 
 	public MDroidNotification() {
-
+		this.read = false;
+		this.count = 1;
 	}
 
+	/**
+	 * @param siteid
+	 *            Moodle siteid of the notification
+	 */
 	public MDroidNotification(long siteid) {
 		this.siteid = siteid;
+		this.read = false;
+		this.count = 1;
+	}
+
+	/**
+	 * @param siteid
+	 *            Moodle siteid of the notification
+	 * @param type
+	 *            Type of notification
+	 * @param title
+	 *            Title of notification
+	 * @param content
+	 *            Content or description of the notification
+	 */
+	public MDroidNotification(long siteid, int type, String title,
+			String content) {
+		this.siteid = siteid;
+		this.type = type;
+		this.title = title;
+		this.content = content;
+		this.count = 1;
+	}
+
+	/**
+	 * @param siteid
+	 *            Moodle siteid of the notification
+	 * @param type
+	 *            Type of notification
+	 * @param title
+	 *            Title of notification
+	 * @param content
+	 *            Content or description of the notification
+	 * @param count
+	 *            notification count
+	 */
+	public MDroidNotification(long siteid, int type, String title,
+			String content, int count) {
+		this.siteid = siteid;
+		this.type = type;
+		this.title = title;
+		this.content = content;
+		this.count = count;
+		this.read = false;
 	}
 
 	/**
