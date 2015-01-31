@@ -1,7 +1,6 @@
 package in.co.praveenkumar.mdroid.task;
 
 import in.co.praveenkumar.mdroid.model.MoodleDiscussion;
-import in.co.praveenkumar.mdroid.model.MoodleForum;
 import in.co.praveenkumar.mdroid.moodlerest.MoodleRestDiscussion;
 
 import java.util.ArrayList;
@@ -66,30 +65,28 @@ public class DiscussionSyncTask {
 		}
 
 		List<MoodleDiscussion> dbTopics;
-		List<MoodleForum> dbForums;
 		MoodleDiscussion topic = new MoodleDiscussion();
 		for (int i = 0; i < mTopics.size(); i++) {
 			topic = mTopics.get(i);
 			topic.setSiteid(siteid);
-			/*
-			 * -TODO- Improve this search with only Sql operation
-			 */
+
 			dbTopics = MoodleDiscussion.find(MoodleDiscussion.class,
 					"discussionid = ? and siteid = ?", topic.getDiscussionid()
 							+ "", siteid + "");
 			if (dbTopics.size() > 0)
 				topic.setId(dbTopics.get(0).getId());
+			// set notifications if enabled
+			 else{
+				 
+				// new MDroidNotification(siteid,
+				// MDroidNotification.TYPE_COURSE_CONTENT,
+				// course.getShortname() + " has new contents",
+				// module.getName() + " added to " + course.getFullname())
+			 }
 
-			dbForums = MoodleForum.find(MoodleForum.class,
-					"courseid = ? and siteid = ?", topic.getForum() + "",
-					siteid + "");
-			if (dbForums.size() > 0)
-				topic.setForumname(dbForums.get(0).getName());
-			
 			topic.save();
 		}
 
 		return true;
 	}
-
 }
