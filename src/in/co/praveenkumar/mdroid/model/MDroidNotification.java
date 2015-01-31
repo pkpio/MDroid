@@ -26,6 +26,9 @@ public class MDroidNotification extends SugarRecord<MDroidNotification> {
 	@Ignore
 	public static final int TYPE_CONTACT = 7;
 
+	@Ignore
+	public static final int TYPE_EVENT = 8;
+
 	int type;
 	String title;
 	String content;
