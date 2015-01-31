@@ -1,5 +1,7 @@
 package in.co.praveenkumar.mdroid.task;
 
+import in.co.praveenkumar.mdroid.model.MDroidNotification;
+import in.co.praveenkumar.mdroid.model.MoodleCourse;
 import in.co.praveenkumar.mdroid.model.MoodleDiscussion;
 import in.co.praveenkumar.mdroid.moodlerest.MoodleRestDiscussion;
 
@@ -75,15 +77,22 @@ public class DiscussionSyncTask {
 							+ "", siteid + "");
 			if (dbTopics.size() > 0)
 				topic.setId(dbTopics.get(0).getId());
-			// set notifications if enabled
-			 else{
-				 
-				// new MDroidNotification(siteid,
-				// MDroidNotification.TYPE_COURSE_CONTENT,
-				// course.getShortname() + " has new contents",
-				// module.getName() + " added to " + course.getFullname())
-			 }
 
+			// set notifications if enabled
+			else {
+				List<MoodleCourse> dbCourses = MoodleCourse.find(
+						MoodleCourse.class, "courseid = ? and siteid = ?",
+						siteid + "", topic.getCourseid() + "");
+				MoodleCourse course = (dbCourses != null && dbCourses.size() > 0) ? dbCourses
+						.get(0) : null;
+
+				if (course != null)
+					new MDroidNotification(siteid,
+							MDroidNotification.TYPE_FORUM_TOPIC,
+							"New forum topic in " + course.getShortname(),
+							topic.getName() + " started in course "
+									+ course.getFullname()).save();
+			}
 			topic.save();
 		}
 
