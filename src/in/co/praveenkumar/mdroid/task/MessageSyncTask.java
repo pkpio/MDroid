@@ -1,5 +1,6 @@
 package in.co.praveenkumar.mdroid.task;
 
+import in.co.praveenkumar.mdroid.model.MDroidNotification;
 import in.co.praveenkumar.mdroid.model.MoodleMessage;
 import in.co.praveenkumar.mdroid.model.MoodleMessages;
 import in.co.praveenkumar.mdroid.moodlerest.MoodleRestMessage;
@@ -10,7 +11,9 @@ public class MessageSyncTask {
 	String mUrl;
 	String token;
 	long siteid;
+
 	String error;
+	Boolean notification;
 
 	/**
 	 * 
@@ -24,6 +27,24 @@ public class MessageSyncTask {
 		this.mUrl = mUrl;
 		this.token = token;
 		this.siteid = siteid;
+	}
+
+	/**
+	 * 
+	 * @param mUrl
+	 * @param token
+	 * @param siteid
+	 * @param notification
+	 *            If true, sets notifications for new contents
+	 * 
+	 * @author Praveen Kumar Pendyala (praveen@praveenkumar.co.in)
+	 */
+	public MessageSyncTask(String mUrl, String token, long siteid,
+			Boolean notification) {
+		this.mUrl = mUrl;
+		this.token = token;
+		this.siteid = siteid;
+		this.notification = notification;
 	}
 
 	/**
@@ -76,6 +97,13 @@ public class MessageSyncTask {
 								+ "", siteid + "");
 				if (dbMessages.size() > 0)
 					message.setId(dbMessages.get(0).getId());
+				// set notifications if enabled
+				else if (notification)
+					new MDroidNotification(
+							siteid,
+							MDroidNotification.TYPE_MESSAGE,
+							"New message from " + message.getUserfromfullname(),
+							message.getText()).save();
 				message.save();
 			}
 
