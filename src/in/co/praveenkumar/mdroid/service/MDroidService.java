@@ -6,6 +6,8 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.IBinder;
@@ -97,7 +99,7 @@ public class MDroidService extends Service {
 	private void setNotificationWithCounts(int total, int fCount, int tCount,
 			int rCount) {
 		// For debugging
-		//int count = 2;
+		// int count = 2;
 
 		// Build strings for actual notification
 		String contentTitle = total + " updates found!";
@@ -118,9 +120,13 @@ public class MDroidService extends Service {
 
 		NotificationCompat.Builder notification = new NotificationCompat.Builder(
 				this).setContentTitle(contentTitle).setContentText(contentText)
-				.setSmallIcon(R.drawable.ic_launcher).setSubText(subText)
+				.setSmallIcon(R.drawable.code_inverted).setSubText(subText)
 				.setContentInfo(contentInfo).setContentIntent(pIntent)
 				.setAutoCancel(autoCancel);
+		Bitmap bm = BitmapFactory.decodeResource(getResources(),
+				R.drawable.ic_launcher);
+		notification.setLargeIcon(bm);
+
 		NotificationManager notificationManager = getNotificationManager();
 		notificationManager.notify(1, notification.build());
 	}
