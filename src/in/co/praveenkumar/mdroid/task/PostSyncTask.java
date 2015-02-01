@@ -127,4 +127,27 @@ public class PostSyncTask {
 
 		return true;
 	}
+
+	/**
+	 * Sync all topics in the list of discussions.
+	 * 
+	 * Note: Moodle doesn't support fetching of posts from more than one
+	 * discussion at a time so, this is realized using multiple calls - one per
+	 * discussionid.
+	 * 
+	 * @return syncStatus
+	 * 
+	 * @author Praveen Kumar Pendyala (praveen@praveenkumar.co.in)
+	 */
+	public Boolean syncPosts(ArrayList<Integer> discussionids) {
+		Boolean status = true;
+
+		if (discussionids == null || discussionids.size() == 0)
+			return false;
+
+		for (int i = 0; i < discussionids.size(); i++)
+			status = status & syncPosts(discussionids.get(i));
+
+		return status;
+	}
 }
