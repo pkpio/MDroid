@@ -53,7 +53,7 @@ public class MDroidService extends Service {
 
 		// Check for new contents
 		new ContentCheckerBg().execute("");
-		
+
 		return Service.START_NOT_STICKY;
 	}
 
@@ -67,7 +67,6 @@ public class MDroidService extends Service {
 	 * accounts and checks for new contents in each account.
 	 * 
 	 * @author praveen
-	 * 
 	 */
 	private class ContentCheckerBg extends AsyncTask<String, Integer, Boolean> {
 
@@ -327,7 +326,7 @@ public class MDroidService extends Service {
 		notification.setLargeIcon(bm);
 
 		NotificationManager notificationManager = getNotificationManager();
-		notificationManager.notify(1, notification.build());
+		notificationManager.notify(requestID, notification.build());
 	}
 
 	// Building notifications
