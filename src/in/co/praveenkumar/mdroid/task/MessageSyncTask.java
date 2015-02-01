@@ -117,7 +117,8 @@ public class MessageSyncTask {
 							siteid,
 							MDroidNotification.TYPE_MESSAGE,
 							"New message from " + message.getUserfromfullname(),
-							message.getText()).save();
+							message.getText(), 1, message.getUseridfrom())
+							.save();
 					notificationcount++;
 				}
 				message.save();

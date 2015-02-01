@@ -124,7 +124,8 @@ public class ForumSyncTask {
 			else if (notification) {
 				new MDroidNotification(siteid, MDroidNotification.TYPE_FORUM,
 						"New forum in " + forum.getCoursename(),
-						forum.getName()).save();
+						forum.getName(), 1,
+						Integer.valueOf(forum.getCourseid())).save();
 				notificationcount++;
 			}
 			forum.save();

@@ -170,8 +170,8 @@ public class CourseContentSyncTask {
 				new MDroidNotification(siteid,
 						MDroidNotification.TYPE_COURSE_CONTENT,
 						"New contents in " + course.getShortname(),
-						module.getName() + " added to " + course.getFullname())
-						.save();
+						module.getName() + " added to " + course.getFullname(),
+						1, course.getCourseid()).save();
 				notificationcount++;
 			}
 			module.save();

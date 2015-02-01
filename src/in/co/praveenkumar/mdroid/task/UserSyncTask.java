@@ -104,7 +104,7 @@ public class UserSyncTask {
 							MDroidNotification.TYPE_PARTICIPANT,
 							"New people joined " + course.getShortname(),
 							mUser.getFullname() + " joined "
-									+ course.getFullname()).save();
+									+ course.getFullname(), 1, courseid).save();
 					notificationcount++;
 				}
 			}

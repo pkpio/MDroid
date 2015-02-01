@@ -125,7 +125,8 @@ public class DiscussionSyncTask {
 							MDroidNotification.TYPE_FORUM_TOPIC,
 							"New forum topic in " + course.getShortname(),
 							topic.getName() + " started in course "
-									+ course.getFullname()).save();
+									+ course.getFullname(), 1,
+							topic.getForumid()).save();
 					notificationcount++;
 				}
 			}
