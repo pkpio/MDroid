@@ -123,8 +123,9 @@
         <!-- Services related -->
         <service
             android:name="in.co.praveenkumar.mdroid.service.MDroidService"
+            android:description="@string/app_service_description"
             android:icon="@drawable/ic_launcher"
-            android:label="NewContentChecker" >
+            android:label="MDroidNotificationService" >
         </service>
 
         <receiver android:name="in.co.praveenkumar.mdroid.service.ScheduleReceiver" >
