@@ -45,27 +45,21 @@ public class MDroidService extends Service {
 
 		// Check if the service started from NotificationActivity
 		Bundle extras = intent.getExtras();
-		if (extras != null)
-			if (extras.getBoolean("forceCheck", false)) {
-				forceCheck = true;
-				showNotification("Checking for content", "Please wait..",
-						"You will be notified once complete", "", false);
-			}
+		if (extras != null && extras.getBoolean("forceCheck", false)) {
+			forceCheck = true;
+			showNotification("Checking for content", "Please wait..",
+					"You will be notified once complete", "", false);
+		}
 
-		// Check for content
-		checkForContent();
-
+		// Check for new contents
+		new ContentCheckerBg().execute("");
+		
 		return Service.START_NOT_STICKY;
 	}
 
 	@Override
 	public IBinder onBind(Intent intent) {
-		// TODO for communication return IBinder implementation
 		return null;
-	}
-
-	private void checkForContent() {
-		new ContentCheckerBg().execute("", "");
 	}
 
 	/**
