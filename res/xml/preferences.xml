@@ -45,42 +45,42 @@
             android:title="@string/activity_settings_screen_notifi_events_title" >
             <CheckBoxPreference
                 android:defaultValue="true"
-                android:key="coursecontents"
+                android:key="notify_coursecontents"
                 android:summary="@string/activity_settings_notifi_coursecontent_summary"
                 android:title="@string/activity_settings_notifi_coursecontent_title" />
             <CheckBoxPreference
                 android:defaultValue="true"
-                android:key="forumposts"
+                android:key="notify_forumposts"
                 android:summary="@string/activity_settings_notifi_posts_summary"
                 android:title="@string/activity_settings_notifi_posts_title" />
             <CheckBoxPreference
                 android:defaultValue="true"
-                android:key="forumtopics"
+                android:key="notify_forumtopics"
                 android:summary="@string/activity_settings_notifi_discussion_summary"
                 android:title="@string/activity_settings_notifi_discussion_title" />
             <CheckBoxPreference
                 android:defaultValue="true"
-                android:key="forums"
+                android:key="notify_forums"
                 android:summary="@string/activity_settings_notifi_forum_summary"
                 android:title="@string/activity_settings_notifi_forum_title" />
             <CheckBoxPreference
                 android:defaultValue="true"
-                android:key="messages"
+                android:key="notify_messages"
                 android:summary="@string/activity_settings_notifi_message_summary"
                 android:title="@string/activity_settings_notifi_message_title" />
             <CheckBoxPreference
                 android:defaultValue="true"
-                android:key="events"
+                android:key="notify_events"
                 android:summary="@string/activity_settings_notifi_event_summary"
                 android:title="@string/activity_settings_notifi_event_title" />
             <CheckBoxPreference
                 android:defaultValue="false"
-                android:key="participant"
+                android:key="notify_participants"
                 android:summary="@string/activity_settings_notifi_participant_summary"
                 android:title="@string/activity_settings_notifi_participant_title" />
             <CheckBoxPreference
                 android:defaultValue="false"
-                android:key="contact"
+                android:key="notify_contacts"
                 android:summary="@string/activity_settings_notifi_contact_summary"
                 android:title="@string/activity_settings_notifi_contact_title" />
         </PreferenceScreen>
