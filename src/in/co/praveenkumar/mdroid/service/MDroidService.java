@@ -4,10 +4,13 @@ import in.co.praveenkumar.R;
 import in.co.praveenkumar.mdroid.activity.CourseActivity;
 import in.co.praveenkumar.mdroid.model.MoodleCourse;
 import in.co.praveenkumar.mdroid.model.MoodleDiscussion;
+import in.co.praveenkumar.mdroid.model.MoodleForum;
 import in.co.praveenkumar.mdroid.model.MoodleSiteInfo;
 import in.co.praveenkumar.mdroid.task.CourseContentSyncTask;
 import in.co.praveenkumar.mdroid.task.DiscussionSyncTask;
 import in.co.praveenkumar.mdroid.task.ForumSyncTask;
+import in.co.praveenkumar.mdroid.task.MessageSyncTask;
+import in.co.praveenkumar.mdroid.task.PostSyncTask;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +19,7 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.RingtoneManager;
@@ -23,19 +27,21 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.preference.PreferenceManager;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
 public class MDroidService extends Service {
 	final String DEBUG_TAG = "MDroid Services";
 	Boolean forceCheck = false;
-
 	protected int startId;
+	SharedPreferences settings;
 
 	@Override
 	public int onStartCommand(Intent intent, int flags, int startId) {
 		Log.d(DEBUG_TAG, "Started service!");
 		this.startId = startId;
+		settings = PreferenceManager.getDefaultSharedPreferences(this);
 
 		// Check if the service started from NotificationActivity
 		Bundle extras = intent.getExtras();
@@ -46,7 +52,7 @@ public class MDroidService extends Service {
 						"You will be notified once complete", "", false);
 			}
 
-		// Login and check for content
+		// Check for content
 		checkForContent();
 
 		return Service.START_NOT_STICKY;
@@ -103,17 +109,28 @@ public class MDroidService extends Service {
 						site.getId() + "", "1");
 
 				// Contents sync
-				contentCount = syncCourseContents(site, mCourses);
+				if (settings.getBoolean("coursecontents", false))
+					contentCount = syncCourseContents(site, mCourses);
 
 				// Forums sync
-				forumCount = syncForums(site, mCourses);
+				if (settings.getBoolean("forums", false))
+					forumCount = syncForums(site, mCourses);
 
 				// Discussion sync
-				discussionCount = syncDiscussions(site, mCourses);
+				if (settings.getBoolean("forumtopics", false))
+					discussionCount = syncDiscussions(site, mCourses);
 
-				setNotificationWithCounts(4, contentCount, forumCount,
-						discussionCount);
+				// Forum posts (replies) sync
+				if (settings.getBoolean("forumposts", false))
+					postCount = syncPosts(site, mCourses);
 
+				// Messages sync
+				if (settings.getBoolean("messages", false))
+					messageCount = syncMessages(site);
+
+				setNotificationWithCounts(site, contentCount, forumCount,
+						discussionCount, postCount, contactCount,
+						participantCount, messageCount, eventCount);
 			}
 
 			return true;
@@ -126,7 +143,7 @@ public class MDroidService extends Service {
 		 *            MoodleSite
 		 * @param mCourses
 		 *            MoodleCourses whose contents need to be synced
-		 * @return
+		 * @return Notification count
 		 */
 		private int syncCourseContents(MoodleSiteInfo site,
 				List<MoodleCourse> mCourses) {
@@ -148,7 +165,7 @@ public class MDroidService extends Service {
 		 *            MoodleSite
 		 * @param mCourses
 		 *            MoodleCourses whose forums need to be synced
-		 * @return
+		 * @return Notification count
 		 */
 		private int syncForums(MoodleSiteInfo site, List<MoodleCourse> mCourses) {
 			if (mCourses == null || mCourses.size() == 0)
@@ -171,7 +188,7 @@ public class MDroidService extends Service {
 		 *            MoodleSite
 		 * @param mCourses
 		 *            MoodleCourses whose forums need to be synced
-		 * @return
+		 * @return Notification count
 		 */
 		private int syncDiscussions(MoodleSiteInfo site,
 				List<MoodleCourse> mCourses) {
@@ -179,6 +196,38 @@ public class MDroidService extends Service {
 				return 0;
 
 			DiscussionSyncTask dst = new DiscussionSyncTask(site.getSiteurl(),
+					site.getToken(), site.getId(), true);
+			List<MoodleForum> forums = new ArrayList<MoodleForum>();
+
+			// Get list of discussions to sync
+			for (int i = 0; i < mCourses.size(); i++)
+				forums.addAll(MoodleForum.find(MoodleForum.class,
+						"courseid = ? and siteid = ?", mCourses.get(i)
+								.getCourseid() + "", site.getId() + ""));
+
+			// Make an Arraylist of ids for above discussions
+			ArrayList<String> forumids = new ArrayList<String>();
+			for (int i = 0; i < forums.size(); i++)
+				forumids.add(forums.get(i).getForumid() + "");
+
+			dst.syncDiscussions(forumids);
+			return dst.getNotificationcount();
+		}
+
+		/**
+		 * Sync posts in a site for given courses - all forum discussions.
+		 * 
+		 * @param site
+		 *            MoodleSite
+		 * @param mCourses
+		 *            MoodleCourses whose forums need to be synced
+		 * @return Notification count
+		 */
+		private int syncPosts(MoodleSiteInfo site, List<MoodleCourse> mCourses) {
+			if (mCourses == null || mCourses.size() == 0)
+				return 0;
+
+			PostSyncTask pst = new PostSyncTask(site.getSiteurl(),
 					site.getToken(), site.getId(), true);
 			List<MoodleDiscussion> discussions = new ArrayList<MoodleDiscussion>();
 
@@ -189,59 +238,87 @@ public class MDroidService extends Service {
 						mCourses.get(i).getCourseid() + "", site.getId() + ""));
 
 			// Make an Arraylist of ids for above discussions
-			ArrayList<String> discussionids = new ArrayList<String>();
+			ArrayList<Integer> discussionids = new ArrayList<Integer>();
 			for (int i = 0; i < discussions.size(); i++)
-				discussionids.add(discussions.get(i).getDiscussionid() + "");
+				discussionids.add(discussions.get(i).getDiscussionid());
 
-			dst.syncDiscussions(discussionids);
-			return dst.getNotificationcount();
+			pst.syncPosts(discussionids);
+			return pst.getNotificationcount();
+		}
+
+		/**
+		 * Sync messages of user
+		 * 
+		 * @param site
+		 *            MoodleSite
+		 * @return Notification count
+		 */
+		private int syncMessages(MoodleSiteInfo site) {
+			MessageSyncTask mst = new MessageSyncTask(site.getSiteurl(),
+					site.getToken(), site.getId(), true);
+			mst.syncMessages(site.getUserid());
+			return mst.getNotificationcount();
 		}
 
 		@Override
 		protected void onPostExecute(Boolean result) {
-			Log.d(DEBUG_TAG, "Service completed. Notifying.");
-
-			// int test = 2;
-			// if (test > 0)
-			// setNotificationWithCounts(2, 1, 1, 0);
-			// else if (forceCheck)
-			// showNotification("No updated found",
-			// "Did you star your courses ?",
-			// "Open files section to star a course", "", true);
-			// else {
-			// showNotification("No updated found",
-			// "Did you star your courses ?",
-			// "Open files section to star a course", "", true);
-			// }
-
-			Log.d(DEBUG_TAG, "Notified. Exiting.");
+			Log.d(DEBUG_TAG, "MDroidservice exiting itself.");
 			stopSelf(startId);
 		}
 	}
 
-	// Building notifications
-	private NotificationManager getNotificationManager() {
-		return (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-	}
+	/**
+	 * Set a notification for the given counts in the given site
+	 * 
+	 * @param site
+	 *            MoodleSite
+	 * @param contentCount
+	 * @param forumCount
+	 * @param discussionCount
+	 * @param postCount
+	 * @param contactCount
+	 * @param participantCount
+	 * @param messageCount
+	 * @param eventCount
+	 */
+	private void setNotificationWithCounts(MoodleSiteInfo site,
+			int contentCount, int forumCount, int discussionCount,
+			int postCount, int contactCount, int participantCount,
+			int messageCount, int eventCount) {
+		int total = contentCount + forumCount + discussionCount + postCount
+				+ contactCount + participantCount + messageCount + eventCount;
+		int totalForums = postCount + forumCount + discussionCount;
+		int totalOthers = contactCount + eventCount + participantCount;
 
-	private void setNotificationWithCounts(int total, int fCount, int tCount,
-			int rCount) {
-		// Build strings for actual notification
-		String contentTitle = total + " updates found!";
-		String contentText = fCount + " files";
-		String subText = tCount + " forum topics";
-		String contentInfo = rCount + " forum replies";
+		final String spaces = "     ";
+		String contentTitle = "New updates from Moodle";
+		String contentText = "Contents : " + contentCount + spaces
+				+ " Messages : " + messageCount;
+		String subText = "Forums : " + totalForums + spaces + " Others : "
+				+ totalOthers;
+		String contentInfo = total + " updates";
 
 		showNotification(contentTitle, contentText, subText, contentInfo, true);
 
 	}
 
+	/**
+	 * 
+	 * @param contentTitle
+	 * @param contentText
+	 * @param subText
+	 * @param contentInfo
+	 * @param autoCancel
+	 *            If true, notification is cancels itself on click. Not to be
+	 *            confused with Notification persistancy.
+	 */
 	private void showNotification(String contentTitle, String contentText,
 			String subText, String contentInfo, Boolean autoCancel) {
 		int requestID = (int) System.currentTimeMillis();
 		Intent intent = new Intent(this, CourseActivity.class);
 		PendingIntent pIntent = PendingIntent.getActivity(this, requestID,
 				intent, PendingIntent.FLAG_UPDATE_CURRENT);
+
 		// Define sound URI
 		Uri soundUri = RingtoneManager
 				.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
@@ -257,6 +334,11 @@ public class MDroidService extends Service {
 
 		NotificationManager notificationManager = getNotificationManager();
 		notificationManager.notify(1, notification.build());
+	}
+
+	// Building notifications
+	private NotificationManager getNotificationManager() {
+		return (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
 	}
 
 }
