@@ -34,6 +34,7 @@ public class MDroidNotification extends SugarRecord<MDroidNotification> {
 	String content;
 	int count;
 	Boolean read;
+	int extras;
 
 	// relational fields
 	long siteid;
@@ -202,6 +203,26 @@ public class MDroidNotification extends SugarRecord<MDroidNotification> {
 	 */
 	public void setSiteid(long siteid) {
 		this.siteid = siteid;
+	}
+
+	/**
+	 * Get extras for the notifications. This extras is a bundle param to be for
+	 * intents to handle notification.
+	 * 
+	 * @return notification extras
+	 */
+	public int getExtras() {
+		return extras;
+	}
+
+	/**
+	 * Set extras for the notifications. This extras is a bundle param to be for
+	 * intents to handle notification.
+	 * 
+	 * @param extras
+	 */
+	public void setExtras(int extras) {
+		this.extras = extras;
 	}
 
 }
