@@ -7,6 +7,8 @@ import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.util.Log;
 
 public class ScheduleReceiver extends BroadcastReceiver {
@@ -20,7 +22,10 @@ public class ScheduleReceiver extends BroadcastReceiver {
 		Log.d(DEBUG_TAG, "Service request received !");
 
 		// Get repeating frequency from database
-		REPEAT_TIME = REPEAT_TIME * 1;
+		SharedPreferences settings = PreferenceManager
+				.getDefaultSharedPreferences(context);
+		REPEAT_TIME = REPEAT_TIME
+				* settings.getInt("notification_frequency", 24);
 
 		AlarmManager service = (AlarmManager) context
 				.getSystemService(Context.ALARM_SERVICE);

@@ -396,8 +396,11 @@ public class MDroidService extends Service {
 			String subText, String contentInfo, Boolean autoCancel,
 			Bitmap largeIcon, long siteid) {
 		int requestID = (int) System.currentTimeMillis();
+
+		// Sent intent and extras as needed
 		Intent intent = new Intent(this, CourseActivity.class);
-		intent.putExtra("siteid", 1);
+		if (siteid != -1)
+			intent.putExtra("siteid", siteid);
 		PendingIntent pIntent = PendingIntent.getActivity(this, requestID,
 				intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
