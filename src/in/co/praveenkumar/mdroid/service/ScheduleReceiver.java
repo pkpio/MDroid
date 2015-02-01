@@ -36,6 +36,8 @@ public class ScheduleReceiver extends BroadcastReceiver {
 
 		Calendar cal = Calendar.getInstance();
 		// start 30 seconds after boot completed
+		// -TODO- Log last run time and schedule after boot run based on user
+		// preference and last run time.
 		cal.add(Calendar.SECOND, 30);
 
 		// Set first firing time to current time + frequency time
