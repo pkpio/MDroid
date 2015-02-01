@@ -27,7 +27,7 @@
         android:title="@string/activity_settings_cat_notification_title" >
         <CheckBoxPreference
             android:defaultValue="false"
-            android:enabled="false"
+            android:enabled="true"
             android:key="notifications"
             android:summary="@string/activity_settings_notifi_summary"
             android:title="@string/activity_settings_notifi_title" />
