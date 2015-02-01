@@ -96,6 +96,32 @@ public class MDroidNotification extends SugarRecord<MDroidNotification> {
 	}
 
 	/**
+	 * @param siteid
+	 *            Moodle siteid of the notification
+	 * @param type
+	 *            Type of notification
+	 * @param title
+	 *            Title of notification
+	 * @param content
+	 *            Content or description of the notification
+	 * @param count
+	 *            notification count
+	 * @param extras
+	 *            Extras for the notifications. This extras is a bundle param to
+	 *            be for intents to handle notification.
+	 */
+	public MDroidNotification(long siteid, int type, String title,
+			String content, int count, int extras) {
+		this.siteid = siteid;
+		this.type = type;
+		this.title = title;
+		this.content = content;
+		this.count = count;
+		this.read = false;
+		this.extras = extras;
+	}
+
+	/**
 	 * Get the type of notification. Possible types can be check from TYPE_ om
 	 * this class.
 	 * 

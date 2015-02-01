@@ -131,7 +131,8 @@ public class EventSyncTask {
 					new MDroidNotification(siteid,
 							MDroidNotification.TYPE_EVENT, "New events in "
 									+ event.getCoursename(),
-							"New event titled " + event.getName()).save();
+							"New event titled " + event.getName(), 1,
+							event.getCourseid()).save();
 					notificationcount++;
 				}
 

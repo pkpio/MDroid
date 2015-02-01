@@ -118,7 +118,8 @@ public class PostSyncTask {
 								MDroidNotification.TYPE_FORUM_REPLY,
 								"New forum reply from "
 										+ post.getUserfullname(),
-								"New reply in " + discussion.getName()).save();
+								"New reply in " + discussion.getName(), 1,
+								post.getDiscussionid()).save();
 						notificationcount++;
 					}
 				}
