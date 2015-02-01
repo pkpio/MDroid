@@ -2,6 +2,7 @@ package in.co.praveenkumar.mdroid.service;
 
 import in.co.praveenkumar.R;
 import in.co.praveenkumar.mdroid.activity.CourseActivity;
+import in.co.praveenkumar.mdroid.helper.ImageDecoder;
 import in.co.praveenkumar.mdroid.model.MoodleCourse;
 import in.co.praveenkumar.mdroid.model.MoodleDiscussion;
 import in.co.praveenkumar.mdroid.model.MoodleForum;
@@ -15,6 +16,7 @@ import in.co.praveenkumar.mdroid.task.MessageSyncTask;
 import in.co.praveenkumar.mdroid.task.PostSyncTask;
 import in.co.praveenkumar.mdroid.task.UserSyncTask;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,6 +31,7 @@ import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
 import android.support.v4.app.NotificationCompat;
@@ -51,7 +54,7 @@ public class MDroidService extends Service {
 		if (extras != null && extras.getBoolean("forceCheck", false)) {
 			forceCheck = true;
 			showNotification("Checking for content", "Please wait..",
-					"You will be notified once complete", "", false);
+					"You will be notified once complete", "", false, null, -1);
 		}
 
 		// Check for new contents
@@ -359,14 +362,17 @@ public class MDroidService extends Service {
 		int totalOthers = contactCount + eventCount + participantCount;
 
 		final String spaces = "     ";
-		String contentTitle = "New updates from Moodle";
+		String contentTitle = total + " updates for " + site.getFirstname();
 		String contentText = "Contents : " + contentCount + spaces
 				+ " Messages : " + messageCount;
 		String subText = "Forums : " + totalForums + spaces + " Others : "
 				+ totalOthers;
-		String contentInfo = total + " updates";
+		String contentInfo = site.getSitename();
+		Bitmap largeIcon = ImageDecoder.decodeImage(new File(Environment
+				.getExternalStorageDirectory() + "/MDroid/." + site.getId()));
 
-		showNotification(contentTitle, contentText, subText, contentInfo, true);
+		showNotification(contentTitle, contentText, subText, contentInfo, true,
+				largeIcon, site.getId());
 
 	}
 
@@ -379,11 +385,19 @@ public class MDroidService extends Service {
 	 * @param autoCancel
 	 *            If true, notification is cancels itself on click. Not to be
 	 *            confused with Notification persistancy.
+	 * @param largeIcon
+	 *            Largeicon bitmap for the notification. Pass null if you want
+	 *            to use the app icon instead.
+	 * @param siteid
+	 *            Id of the account to which this notification corresponds to.
+	 *            Pass -1 if not applicable.
 	 */
 	private void showNotification(String contentTitle, String contentText,
-			String subText, String contentInfo, Boolean autoCancel) {
+			String subText, String contentInfo, Boolean autoCancel,
+			Bitmap largeIcon, long siteid) {
 		int requestID = (int) System.currentTimeMillis();
 		Intent intent = new Intent(this, CourseActivity.class);
+		intent.putExtra("siteid", 1);
 		PendingIntent pIntent = PendingIntent.getActivity(this, requestID,
 				intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
@@ -396,9 +410,11 @@ public class MDroidService extends Service {
 				.setSmallIcon(R.drawable.ic_actionbar_icon).setSubText(subText)
 				.setContentInfo(contentInfo).setContentIntent(pIntent)
 				.setAutoCancel(autoCancel).setSound(soundUri);
-		Bitmap bm = BitmapFactory.decodeResource(getResources(),
-				R.drawable.ic_launcher);
-		notification.setLargeIcon(bm);
+
+		if (largeIcon == null)
+			largeIcon = BitmapFactory.decodeResource(getResources(),
+					R.drawable.ic_launcher);
+		notification.setLargeIcon(largeIcon);
 
 		NotificationManager notificationManager = getNotificationManager();
 		notificationManager.notify(requestID, notification.build());
