@@ -6,11 +6,14 @@ import in.co.praveenkumar.mdroid.model.MoodleCourse;
 import in.co.praveenkumar.mdroid.model.MoodleDiscussion;
 import in.co.praveenkumar.mdroid.model.MoodleForum;
 import in.co.praveenkumar.mdroid.model.MoodleSiteInfo;
+import in.co.praveenkumar.mdroid.task.ContactSyncTask;
 import in.co.praveenkumar.mdroid.task.CourseContentSyncTask;
 import in.co.praveenkumar.mdroid.task.DiscussionSyncTask;
+import in.co.praveenkumar.mdroid.task.EventSyncTask;
 import in.co.praveenkumar.mdroid.task.ForumSyncTask;
 import in.co.praveenkumar.mdroid.task.MessageSyncTask;
 import in.co.praveenkumar.mdroid.task.PostSyncTask;
+import in.co.praveenkumar.mdroid.task.UserSyncTask;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -102,24 +105,36 @@ public class MDroidService extends Service {
 						site.getId() + "", "1");
 
 				// Contents sync
-				if (settings.getBoolean("coursecontents", false))
+				if (settings.getBoolean("notify_coursecontents", false))
 					contentCount = syncCourseContents(site, mCourses);
 
 				// Forums sync
-				if (settings.getBoolean("forums", false))
+				if (settings.getBoolean("notify_forums", false))
 					forumCount = syncForums(site, mCourses);
 
 				// Discussion sync
-				if (settings.getBoolean("forumtopics", false))
+				if (settings.getBoolean("notify_forumtopics", false))
 					discussionCount = syncDiscussions(site, mCourses);
 
 				// Forum posts (replies) sync
-				if (settings.getBoolean("forumposts", false))
+				if (settings.getBoolean("notify_forumposts", false))
 					postCount = syncPosts(site, mCourses);
 
 				// Messages sync
-				if (settings.getBoolean("messages", false))
+				if (settings.getBoolean("notify_messages", false))
 					messageCount = syncMessages(site);
+
+				// Events sync
+				if (settings.getBoolean("notify_events", false))
+					eventCount = syncEvents(site, mCourses);
+
+				// Participants sync
+				if (settings.getBoolean("notify_participants", false))
+					participantCount = syncParticipants(site, mCourses);
+
+				// Contacts sync
+				if (settings.getBoolean("notify_contacts", false))
+					contactCount = syncContacts(site);
 
 				setNotificationWithCounts(site, contentCount, forumCount,
 						discussionCount, postCount, contactCount,
@@ -251,6 +266,66 @@ public class MDroidService extends Service {
 					site.getToken(), site.getId(), true);
 			mst.syncMessages(site.getUserid());
 			return mst.getNotificationcount();
+		}
+
+		/**
+		 * Sync events in the site for given courses. Global (not specific to
+		 * any course) events will be included too.
+		 * 
+		 * @param site
+		 *            MoodleSite
+		 * @param mCourses
+		 *            MoodleCourses whose events need to be synced
+		 * @return Notification count
+		 */
+		private int syncEvents(MoodleSiteInfo site, List<MoodleCourse> mCourses) {
+			if (mCourses == null || mCourses.size() == 0)
+				return 0;
+
+			ArrayList<String> courseids = new ArrayList<String>();
+			EventSyncTask est = new EventSyncTask(site.getSiteurl(),
+					site.getToken(), site.getId(), true);
+			for (int i = 0; i < mCourses.size(); i++)
+				courseids.add(mCourses.get(i).getCourseid() + "");
+			est.syncEvents(courseids);
+
+			return est.getNotificationcount();
+		}
+
+		/**
+		 * Sync participants in the site for given courses.
+		 * 
+		 * @param site
+		 *            MoodleSite
+		 * @param mCourses
+		 *            MoodleCourses whose events need to be synced
+		 * @return Notification count
+		 */
+		private int syncParticipants(MoodleSiteInfo site,
+				List<MoodleCourse> mCourses) {
+			if (mCourses == null || mCourses.size() == 0)
+				return 0;
+
+			UserSyncTask ust = new UserSyncTask(site.getSiteurl(),
+					site.getToken(), site.getId(), true);
+			for (int i = 0; i < mCourses.size(); i++)
+				ust.syncUsers(mCourses.get(i).getCourseid());
+
+			return ust.getNotificationcount();
+		}
+
+		/**
+		 * Sync contacts of user in the given site
+		 * 
+		 * @param site
+		 *            MoodleSite
+		 * @return Notification count
+		 */
+		private int syncContacts(MoodleSiteInfo site) {
+			ContactSyncTask cst = new ContactSyncTask(site.getSiteurl(),
+					site.getToken(), site.getId(), true);
+			cst.syncAllContacts();
+			return cst.getNotificationcount();
 		}
 
 		@Override
