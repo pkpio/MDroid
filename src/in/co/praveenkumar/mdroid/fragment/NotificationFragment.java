@@ -15,6 +15,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
+import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -118,8 +119,12 @@ public class NotificationFragment extends Fragment implements OnRefreshListener 
 			Log.d(DEBUG_TAG, "Pos is: " + position + " Type is: "
 					+ notifications.get(position).getType());
 			viewHolder.title.setText(notifications.get(position).getTitle());
-			viewHolder.content
-					.setText(notifications.get(position).getContent());
+			String content = notifications.get(position).getContent();
+			if (content == null)
+				content = "";
+			else
+				content = Html.fromHtml(content).toString().trim();
+			viewHolder.content.setText(content);
 
 			return convertView;
 		}
