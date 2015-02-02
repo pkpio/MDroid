@@ -25,7 +25,8 @@ public class ScheduleReceiver extends BroadcastReceiver {
 		SharedPreferences settings = PreferenceManager
 				.getDefaultSharedPreferences(context);
 		REPEAT_TIME = REPEAT_TIME
-				* settings.getInt("notification_frequency", 24);
+				* Long.valueOf(settings.getString("notification_frequency",
+						"24"));
 
 		AlarmManager service = (AlarmManager) context
 				.getSystemService(Context.ALARM_SERVICE);
@@ -41,7 +42,7 @@ public class ScheduleReceiver extends BroadcastReceiver {
 		cal.add(Calendar.SECOND, 30);
 
 		// Set first firing time to current time + frequency time
-		long startTime = cal.getTimeInMillis() + REPEAT_TIME;
+		long startTime = cal.getTimeInMillis();
 
 		// fetch every user setting time. Power optimized call.
 		service.setInexactRepeating(AlarmManager.RTC_WAKEUP, startTime,
