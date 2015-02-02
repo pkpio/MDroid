@@ -107,6 +107,7 @@ public class LoginTask extends AsyncTask<String, Integer, Boolean> {
 				+ siteInfo.getId(), false, DownloadTask.APP_DOWNLOADER);
 		if (!getCourseInfo())
 			return false;
+		getMessagesContacts();
 
 		updateProgress("\nSync complete!");
 		return true;
@@ -195,11 +196,6 @@ public class LoginTask extends AsyncTask<String, Integer, Boolean> {
 	private Boolean getCourseInfo() {
 		CourseSyncTask cs = new CourseSyncTask(mUrl, token, siteInfo.getId());
 
-		// updateProgress("Syncing all Moodle courses");
-		// Boolean allCourseSyncStatus = cs.syncAllCourses();
-		// if (!allCourseSyncStatus)
-		// updateProgress(cs.getError());
-
 		updateProgress("Syncing courses");
 		Boolean usrCourseSyncStatus = cs.syncUserCourses();
 		if (!usrCourseSyncStatus) {
@@ -209,6 +205,30 @@ public class LoginTask extends AsyncTask<String, Integer, Boolean> {
 
 		// Success on user's course sync is what matters
 		return usrCourseSyncStatus;
+	}
+
+	/**
+	 * Sync all Moodle Messages and Contacts of the user. This is required for
+	 * proper Notification working.<br/>
+	 * Note: The status of this task shouldn't affect the login task in a bad
+	 * way. This is just a convienence task.
+	 * 
+	 * @return sync status
+	 * 
+	 * @author Praveen Kumar Pendyala (praveen@praveenkumar.co.in)
+	 */
+	private Boolean getMessagesContacts() {
+		MessageSyncTask mst = new MessageSyncTask(mUrl, token, siteInfo.getId());
+		ContactSyncTask cst = new ContactSyncTask(mUrl, token, siteInfo.getId());
+
+		updateProgress("Syncing messages");
+		Boolean messageSync = mst.syncMessages(siteInfo.getUserid());
+
+		updateProgress("Syncing contacts");
+		Boolean contactSync = cst.syncAllContacts();
+
+		// Success on user's course sync is what matters
+		return messageSync && contactSync;
 	}
 
 	@Override
