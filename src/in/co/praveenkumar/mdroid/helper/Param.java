@@ -15,7 +15,7 @@ public class Param {
 	 * difference (in milliseconds) between two successful ads will definitely
 	 * be less than this.
 	 */
-	public static final long STARTAPP_INTERSTITIAL_MAX_FREQ = 30 * 1000;
+	public static final long STARTAPP_INTERSTITIAL_MAX_FREQ = 50 * 1000;
 
 	// Ads hiding
 	public static final int maxAdsHideCount = 3;
