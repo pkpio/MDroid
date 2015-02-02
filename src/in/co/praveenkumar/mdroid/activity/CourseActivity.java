@@ -18,13 +18,17 @@ public class CourseActivity extends BaseNavigationActivity {
 
 	private ViewPager viewPager;
 	private static final String[] TABS = { "MY COURSES", "FAVOURITE COURSES" };
-	private StartAppAd startAppAd = new StartAppAd(this);
+	private StartAppAd startAppAd;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+
+		// StartApp Init
 		StartAppSDK.init(this, Param.STARTAPP_DEV_ID, Param.STARTAPP_APP_ID,
 				true);
+		startAppAd = new StartAppAd(this);
+
 		setContentView(R.layout.activity_course);
 		setUpDrawer();
 
@@ -107,7 +111,8 @@ public class CourseActivity extends BaseNavigationActivity {
 
 	@Override
 	public void onBackPressed() {
-		startAppAd.onBackPressed();
+		if (!isProUser())
+			startAppAd.onBackPressed();
 		super.onBackPressed();
 	}
 
