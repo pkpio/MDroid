@@ -1,7 +1,6 @@
 package in.co.praveenkumar.mdroid.service;
 
 import in.co.praveenkumar.R;
-import in.co.praveenkumar.mdroid.activity.CourseActivity;
 import in.co.praveenkumar.mdroid.activity.NotificationActivity;
 import in.co.praveenkumar.mdroid.helper.ImageDecoder;
 import in.co.praveenkumar.mdroid.model.MoodleCourse;
