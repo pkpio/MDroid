@@ -20,11 +20,6 @@ public class WorkInProgressActivity extends BaseNavigationActivity {
 				.sendScreen(Param.GA_SCREEN_WORKINPROGRESS);
 
 		setTitle("Work in progress");
-
-		// Testing services
-		Intent i = new Intent(WorkInProgressActivity.this, MDroidService.class);
-		i.putExtra("forceCheck", true);
-		startService(i);
 	}
 
 }
