@@ -15,7 +15,7 @@
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:orientation="horizontal"
-            android:weightSum="2" >
+            android:weightSum="3" >
 
             <ImageView
                 android:layout_width="0dp"
@@ -23,6 +23,22 @@
                 android:layout_weight="1"
                 android:contentDescription="@string/activity_tutorial_mdroid_made_title"
                 android:src="@drawable/help_inverted" />
+
+            <TextView
+                android:layout_width="30dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:gravity="center"
+                android:text="@string/activity_tutorial_symbol_dot"
+                android:textColor="@color/white"
+                android:textSize="40sp" />
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="100dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/activity_tutorial_mdroid_made_title"
+                android:src="@drawable/icon_ads_block_white" />
 
             <TextView
                 android:layout_width="30dp"

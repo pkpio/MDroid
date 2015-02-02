@@ -26,8 +26,8 @@
     <string name="activity_tutorial_contribute_description_l3">Es codigo abierto</string>
     <string name="activity_tutorial_help_title">Problemas?</string>
     <string name="activity_tutorial_help_description_l1">Documento de ayuda en Ajustes</string>
-    <string name="activity_tutorial_help_description_l2">Persisten los problemas?</string>
-    <string name="activity_tutorial_help_description_l3">Enviar un reporte de errores</string>
+    <string name="activity_tutorial_help_description_l2">You can hide Ads in Settings</string>
+    <string name="activity_tutorial_help_description_l3">Persisten los problemas? Enviar un reporte de errores</string>
     <string name="activity_tutorial_tutorial_end_button">Vamos allá !</string>
 
     <!-- Login activity -->
