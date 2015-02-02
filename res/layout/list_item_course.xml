@@ -29,10 +29,13 @@
 
             <ImageView
                 android:id="@+id/list_course_fav"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:layout_alignParentRight="true"
                 android:contentDescription="@string/list_course_sample_shortname"
+                android:paddingLeft="5dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
                 android:src="@drawable/icon_favorite_outline" />
 
             <TextView
