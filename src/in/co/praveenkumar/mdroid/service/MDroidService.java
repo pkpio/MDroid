@@ -51,11 +51,8 @@ public class MDroidService extends Service {
 
 		// Check if the service started from NotificationActivity
 		Bundle extras = intent.getExtras();
-		if (extras != null && extras.getBoolean("forceCheck", false)) {
+		if (extras != null && extras.getBoolean("forceCheck", false))
 			forceCheck = true;
-			showNotification("Checking for content", "Please wait..",
-					"You will be notified once complete", "", false, null, -1);
-		}
 
 		// Check for new contents
 		new ContentCheckerBg().execute("");
@@ -376,8 +373,13 @@ public class MDroidService extends Service {
 		Bitmap largeIcon = ImageDecoder.decodeImage(new File(Environment
 				.getExternalStorageDirectory() + "/MDroid/." + site.getId()));
 
-		showNotification(contentTitle, contentText, subText, contentInfo, true,
-				largeIcon, site.getId());
+		if (total != 0)
+			showNotification(contentTitle, contentText, subText, contentInfo,
+					true, largeIcon, site.getId());
+		else if (forceCheck)
+			showNotification("No updated found", "Did you star your courses ?",
+					"Open files section to star a course", "", true, largeIcon,
+					site.getId());
 
 	}
 
