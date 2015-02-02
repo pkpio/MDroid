@@ -219,6 +219,8 @@ public class NotificationFragment extends Fragment implements OnRefreshListener 
 			super.notifyDataSetChanged();
 			if (notifications.size() != 0)
 				chatEmptyLayout.setVisibility(LinearLayout.GONE);
+			else
+				chatEmptyLayout.setVisibility(LinearLayout.VISIBLE);
 		}
 	}
 
