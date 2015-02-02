@@ -334,6 +334,11 @@ public class MDroidService extends Service {
 		@Override
 		protected void onPostExecute(Boolean result) {
 			Log.d(DEBUG_TAG, "MDroidservice exiting itself.");
+			// Log the time of checking
+			SharedPreferences.Editor editor = settings.edit();
+			editor.putLong("notifications_lastchecked",
+					System.currentTimeMillis());
+			editor.commit();
 			stopSelf(startId);
 		}
 	}
