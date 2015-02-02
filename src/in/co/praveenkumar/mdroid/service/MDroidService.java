@@ -2,6 +2,7 @@ package in.co.praveenkumar.mdroid.service;
 
 import in.co.praveenkumar.R;
 import in.co.praveenkumar.mdroid.activity.CourseActivity;
+import in.co.praveenkumar.mdroid.activity.NotificationActivity;
 import in.co.praveenkumar.mdroid.helper.ImageDecoder;
 import in.co.praveenkumar.mdroid.model.MoodleCourse;
 import in.co.praveenkumar.mdroid.model.MoodleDiscussion;
@@ -405,7 +406,7 @@ public class MDroidService extends Service {
 		int requestID = (int) System.currentTimeMillis();
 
 		// Sent intent and extras as needed
-		Intent intent = new Intent(this, CourseActivity.class);
+		Intent intent = new Intent(this, NotificationActivity.class);
 		if (siteid != -1)
 			intent.putExtra("siteid", siteid);
 		PendingIntent pIntent = PendingIntent.getActivity(this, requestID,

@@ -3,8 +3,6 @@ package in.co.praveenkumar.mdroid.activity;
 import in.co.praveenkumar.R;
 import in.co.praveenkumar.mdroid.helper.ApplicationClass;
 import in.co.praveenkumar.mdroid.helper.Param;
-import in.co.praveenkumar.mdroid.service.MDroidService;
-import android.content.Intent;
 import android.os.Bundle;
 
 public class WorkInProgressActivity extends BaseNavigationActivity {
