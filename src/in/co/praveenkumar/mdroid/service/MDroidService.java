@@ -39,10 +39,16 @@ import android.util.Log;
 
 public class MDroidService extends Service {
 	final String DEBUG_TAG = "MDroid Services";
+
+	/**
+	 * Service Params and extras
+	 */
 	Boolean forceCheck = false;
 	Boolean notifications = true;
 	long siteid = -1;
+	int courseid = -1;
 	protected int startId;
+
 	SharedPreferences settings;
 
 	@Override
@@ -57,6 +63,7 @@ public class MDroidService extends Service {
 			forceCheck = extras.getBoolean("forceCheck", false);
 			notifications = extras.getBoolean("notifications", true);
 			siteid = extras.getLong("siteid", -1);
+			courseid = extras.getInt("courseid", -1);
 		}
 
 		// Check for new contents
@@ -111,10 +118,17 @@ public class MDroidService extends Service {
 			for (int i = 0; i < mSites.size(); i++) {
 				site = mSites.get(i);
 
-				// Get list of favourites courses
-				List<MoodleCourse> mCourses = MoodleCourse.find(
-						MoodleCourse.class, "siteid = ? and is_fav_course = ?",
-						site.getId() + "", "1");
+				List<MoodleCourse> mCourses = new ArrayList<MoodleCourse>();
+
+				// Get list of favourites courses if no courseid is passed
+				if (courseid == -1)
+					mCourses = MoodleCourse.find(MoodleCourse.class,
+							"siteid = ? and is_fav_course = ?", site.getId()
+									+ "", "1");
+				else
+					mCourses = MoodleCourse.find(MoodleCourse.class,
+							"siteid = ? and courseid = ?", site.getId() + "",
+							courseid + "");
 
 				// Contents sync
 				if (settings.getBoolean("notify_coursecontents", true))
@@ -132,10 +146,6 @@ public class MDroidService extends Service {
 				if (settings.getBoolean("notify_forumposts", true))
 					postCount = syncPosts(site, mCourses);
 
-				// Messages sync
-				if (settings.getBoolean("notify_messages", true))
-					messageCount = syncMessages(site);
-
 				// Events sync
 				if (settings.getBoolean("notify_events", true))
 					eventCount = syncEvents(site, mCourses);
@@ -144,9 +154,21 @@ public class MDroidService extends Service {
 				if (settings.getBoolean("notify_participants", false))
 					participantCount = syncParticipants(site, mCourses);
 
-				// Contacts sync
-				if (settings.getBoolean("notify_contacts", false))
+				/**
+				 * The below two sync ops have additional constraints. Don't
+				 * sync if the service is passed with a courseid. That means
+				 * only a course data sync.
+				 */
+
+				// Contact sync
+				if (settings.getBoolean("notify_contacts", false)
+						&& courseid == -1)
 					contactCount = syncContacts(site);
+
+				// Message sync.
+				if (settings.getBoolean("notify_messages", true)
+						&& courseid == -1)
+					messageCount = syncMessages(site);
 
 				setNotificationWithCounts(site, contentCount, forumCount,
 						discussionCount, postCount, contactCount,
