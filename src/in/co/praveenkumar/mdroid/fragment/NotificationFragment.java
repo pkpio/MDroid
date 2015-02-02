@@ -1,6 +1,7 @@
 package in.co.praveenkumar.mdroid.fragment;
 
 import in.co.praveenkumar.R;
+import in.co.praveenkumar.mdroid.helper.IconMap;
 import in.co.praveenkumar.mdroid.helper.SessionSetting;
 import in.co.praveenkumar.mdroid.helper.Workaround;
 import in.co.praveenkumar.mdroid.model.MDroidNotification;
@@ -14,6 +15,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -111,6 +113,10 @@ public class NotificationFragment extends Fragment implements OnRefreshListener 
 			}
 
 			// Set texts
+			viewHolder.icon.setImageResource(IconMap
+					.notificationIcon(notifications.get(position).getType()));
+			Log.d(DEBUG_TAG, "Pos is: " + position + " Type is: "
+					+ notifications.get(position).getType());
 			viewHolder.title.setText(notifications.get(position).getTitle());
 			viewHolder.content
 					.setText(notifications.get(position).getContent());

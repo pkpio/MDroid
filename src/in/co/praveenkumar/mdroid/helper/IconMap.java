@@ -1,6 +1,7 @@
 package in.co.praveenkumar.mdroid.helper;
 
 import in.co.praveenkumar.R;
+import in.co.praveenkumar.mdroid.model.MDroidNotification;
 import in.co.praveenkumar.mdroid.model.MoodleModule;
 import in.co.praveenkumar.mdroid.model.MoodleModuleContent;
 
@@ -84,6 +85,44 @@ public class IconMap {
 		}
 
 		return R.drawable.format_unknown;
+	}
+
+	/**
+	 * Finds the icon for a given notification type
+	 * 
+	 * @param type
+	 *            Notification type
+	 * @return Icon resource
+	 */
+	public static int notificationIcon(int type) {
+		switch (type) {
+		case MDroidNotification.TYPE_CONTACT:
+			return R.drawable.icon_people_color;
+
+		case MDroidNotification.TYPE_PARTICIPANT:
+			return R.drawable.icon_people_color;
+
+		case MDroidNotification.TYPE_COURSE_CONTENT:
+			return R.drawable.icon_inbox_download;
+
+		case MDroidNotification.TYPE_EVENT:
+			return R.drawable.icon_event_color;
+
+		case MDroidNotification.TYPE_FORUM:
+			return R.drawable.icon_forum_color;
+
+		case MDroidNotification.TYPE_FORUM_REPLY:
+			return R.drawable.icon_inbox_download;
+
+		case MDroidNotification.TYPE_FORUM_TOPIC:
+			return R.drawable.icon_inbox_download;
+
+		case MDroidNotification.TYPE_MESSAGE:
+			return R.drawable.icon_message_color;
+
+		default:
+			return R.drawable.icon_notifications_color;
+		}
 	}
 
 }
