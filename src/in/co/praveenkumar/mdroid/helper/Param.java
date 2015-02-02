@@ -10,6 +10,12 @@ public class Param {
 	public static final String DEFAULT_MSG_SIGN = "Sent from MDroid";
 	public static final String STARTAPP_DEV_ID = "112268240";
 	public static final String STARTAPP_APP_ID = "212832712";
+	/**
+	 * The maximum frequency at which startApp interstitials appear. The time
+	 * difference (in milliseconds) between two successful ads will definitely
+	 * be less than this.
+	 */
+	public static final long STARTAPP_INTERSTITIAL_MAX_FREQ = 30 * 1000;
 
 	// Ads hiding
 	public static final int maxAdsHideCount = 3;
