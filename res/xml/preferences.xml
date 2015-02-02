@@ -33,7 +33,7 @@
             android:title="@string/activity_settings_notifi_title" />
 
         <ListPreference
-            android:defaultValue="24"
+            android:defaultValue="@string/activity_settings_notification_frequency_default"
             android:entries="@array/activity_settings_notification_frequency_entries"
             android:entryValues="@array/activity_settings_notification_frequency_values"
             android:key="notification_frequency"

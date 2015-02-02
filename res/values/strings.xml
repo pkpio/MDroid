@@ -107,6 +107,8 @@
         <item>72</item>
         <item>168</item>
     </string-array>
+    <!-- Default frequency value -->
+    <string name="activity_settings_notification_frequency_default">24</string>
     <!-- Events to notify for -->
     <string name="activity_settings_screen_notifi_events_title">Notification events</string>
     <string name="activity_settings_screen_notifi_events_summary">Events you want to notified about. Notifications must be enabled.</string>
