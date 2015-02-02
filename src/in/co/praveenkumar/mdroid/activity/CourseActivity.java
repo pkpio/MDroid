@@ -116,7 +116,7 @@ public class CourseActivity extends BaseNavigationActivity {
 
 	@Override
 	public void onBackPressed() {
-		if (!isProUser() && !Param.hideAdsForSession) {
+		if (!isProUser() && !Param.hideAdsForSession && Param.STARTAPP_EXIT_ADS) {
 			SharedPreferences settings = PreferenceManager
 					.getDefaultSharedPreferences(this);
 			long now = System.currentTimeMillis();
