@@ -10,6 +10,6 @@
     <bool name="ga_reportUncaughtExceptions">true</bool>
 
     <!-- The following value should be replaced with correct property id. -->
-    <string name="ga_trackingId">UA-56133361-3</string>
+    <string name="ga_trackingId">UA-56133361-5</string>
 
 </resources>
