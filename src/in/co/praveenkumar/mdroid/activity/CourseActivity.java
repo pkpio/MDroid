@@ -11,14 +11,20 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 
+import com.startapp.android.publish.StartAppAd;
+import com.startapp.android.publish.StartAppSDK;
+
 public class CourseActivity extends BaseNavigationActivity {
 
 	private ViewPager viewPager;
 	private static final String[] TABS = { "MY COURSES", "FAVOURITE COURSES" };
+	private StartAppAd startAppAd = new StartAppAd(this);
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		StartAppSDK.init(this, Param.STARTAPP_DEV_ID, Param.STARTAPP_APP_ID,
+				true);
 		setContentView(R.layout.activity_course);
 		setUpDrawer();
 
@@ -85,6 +91,24 @@ public class CourseActivity extends BaseNavigationActivity {
 		public int getCount() {
 			return TABS.length;
 		}
+	}
+
+	@Override
+	public void onResume() {
+		super.onResume();
+		startAppAd.onResume();
+	}
+
+	@Override
+	public void onPause() {
+		super.onPause();
+		startAppAd.onPause();
+	}
+
+	@Override
+	public void onBackPressed() {
+		startAppAd.onBackPressed();
+		super.onBackPressed();
 	}
 
 }

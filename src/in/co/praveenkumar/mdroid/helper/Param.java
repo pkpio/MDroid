@@ -8,6 +8,8 @@ package in.co.praveenkumar.mdroid.helper;
  */
 public class Param {
 	public static final String DEFAULT_MSG_SIGN = "Sent from MDroid";
+	public static final String STARTAPP_DEV_ID = "112268240";
+	public static final String STARTAPP_APP_ID = "212832712";
 
 	// Ads hiding
 	public static final int maxAdsHideCount = 3;
