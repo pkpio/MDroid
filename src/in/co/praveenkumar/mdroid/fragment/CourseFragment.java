@@ -156,7 +156,6 @@ public class CourseFragment extends Fragment implements OnRefreshListener {
 				public void onClick(View arg0) {
 					Intent i = new Intent(context, CourseContentActivity.class);
 					i.putExtra("courseid", mCourses.get(position).getCourseid());
-					i.putExtra("coursedbid", mCourses.get(position).getId());
 					context.startActivity(i);
 				}
 			});
