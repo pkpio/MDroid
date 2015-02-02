@@ -1,6 +1,12 @@
 package in.co.praveenkumar.mdroid.fragment;
 
 import in.co.praveenkumar.R;
+import in.co.praveenkumar.mdroid.activity.CalendarActivity;
+import in.co.praveenkumar.mdroid.activity.ContactActivity;
+import in.co.praveenkumar.mdroid.activity.CourseContentActivity;
+import in.co.praveenkumar.mdroid.activity.DiscussionActivity;
+import in.co.praveenkumar.mdroid.activity.MessagingActivity;
+import in.co.praveenkumar.mdroid.activity.PostActivity;
 import in.co.praveenkumar.mdroid.helper.IconMap;
 import in.co.praveenkumar.mdroid.helper.SessionSetting;
 import in.co.praveenkumar.mdroid.helper.Workaround;
@@ -64,8 +70,62 @@ public class NotificationFragment extends Fragment implements OnRefreshListener 
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1,
 					int position, long arg3) {
+
 				MDroidNotification notification = notifications.get(position);
 				int extras = notification.getExtras();
+				Intent i = null;
+
+				switch (notification.getType()) {
+
+				case MDroidNotification.TYPE_CONTACT:
+					i = new Intent(context, ContactActivity.class);
+					break;
+
+				case MDroidNotification.TYPE_COURSE_CONTENT:
+					i = new Intent(context, CourseContentActivity.class);
+					i.putExtra("courseid", extras);
+					break;
+
+				case MDroidNotification.TYPE_EVENT:
+					i = new Intent(context, CalendarActivity.class);
+					break;
+
+				case MDroidNotification.TYPE_FORUM:
+					i = new Intent(context, CourseContentActivity.class);
+					i.putExtra("courseid", extras);
+					break;
+
+				case MDroidNotification.TYPE_FORUM_TOPIC:
+					i = new Intent(context, DiscussionActivity.class);
+					i.putExtra("forumid", extras);
+					break;
+
+				case MDroidNotification.TYPE_FORUM_REPLY:
+					i = new Intent(context, PostActivity.class);
+					i.putExtra("discussionid", extras);
+					break;
+
+				case MDroidNotification.TYPE_MESSAGE:
+					i = new Intent(context, MessagingActivity.class);
+					break;
+
+				case MDroidNotification.TYPE_PARTICIPANT:
+					i = new Intent(context, CourseContentActivity.class);
+					i.putExtra("courseid", extras);
+					break;
+
+				default:
+					Toast.makeText(context,
+							"Unknown notification type! Please report!",
+							Toast.LENGTH_LONG).show();
+					break;
+				}
+
+				if (i != null) {
+					notification.setRead(true);
+					notification.save();
+					context.startActivity(i);
+				}
 
 			}
 		});
@@ -76,6 +136,17 @@ public class NotificationFragment extends Fragment implements OnRefreshListener 
 		swipeLayout.setOnRefreshListener(this);
 
 		return rootView;
+	}
+
+	@Override
+	public void onResume() {
+		super.onResume();
+
+		// Recheck notifications list
+		notifications = MDroidNotification
+				.find(MDroidNotification.class, "siteid = ? and read = ?",
+						session.getCurrentSiteId() + "", "0");
+		adapter.notifyDataSetChanged();
 	}
 
 	public class NotificationListAdapter extends BaseAdapter {
@@ -141,6 +212,13 @@ public class NotificationFragment extends Fragment implements OnRefreshListener 
 		@Override
 		public long getItemId(int position) {
 			return position;
+		}
+
+		@Override
+		public void notifyDataSetChanged() {
+			super.notifyDataSetChanged();
+			if (notifications.size() != 0)
+				chatEmptyLayout.setVisibility(LinearLayout.GONE);
 		}
 	}
 
