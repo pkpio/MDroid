@@ -4,6 +4,7 @@ import in.co.praveenkumar.R;
 import in.co.praveenkumar.mdroid.helper.AppInterface.DonationInterface;
 import in.co.praveenkumar.mdroid.helper.Param;
 import android.app.Activity;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -92,5 +93,18 @@ public class AdFragment extends Fragment {
 			mAdView.destroy();
 		}
 		super.onDestroy();
+	}
+
+	@Override
+	public void onConfigurationChanged(Configuration newConfig) {
+		super.onConfigurationChanged(newConfig);
+		loadAds();
+
+		if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+			Log.d("On Config Change", "LANDSCAPE");
+		} else {
+
+			Log.d("On Config Change", "PORTRAIT");
+		}
 	}
 }
