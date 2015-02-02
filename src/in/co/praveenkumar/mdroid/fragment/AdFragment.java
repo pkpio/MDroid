@@ -21,7 +21,6 @@ import com.startapp.android.publish.Ad;
 import com.startapp.android.publish.AdDisplayListener;
 import com.startapp.android.publish.AdEventListener;
 import com.startapp.android.publish.StartAppAd;
-import com.startapp.android.publish.StartAppSDK;
 
 public class AdFragment extends Fragment {
 	final String DEBUG_TAG = "AdFragment";
@@ -49,9 +48,7 @@ public class AdFragment extends Fragment {
 			Log.d(DEBUG_TAG, a.toString()
 					+ " did not implement ForumIdInterface.");
 		}
-		// StartApp Init
-		StartAppSDK.init(context, Param.STARTAPP_DEV_ID, Param.STARTAPP_APP_ID,
-				true);
+		// StartAppAd Init
 		startAppAd = new StartAppAd(context);
 
 		// Setup Shared preferences

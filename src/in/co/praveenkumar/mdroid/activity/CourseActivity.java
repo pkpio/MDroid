@@ -24,9 +24,12 @@ public class CourseActivity extends BaseNavigationActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		// StartApp Init
+		/**
+		 * StartAppSDK and StartAppAd Init. SDK init is only required in the
+		 * MainActivity - entry activities to the app.
+		 */
 		StartAppSDK.init(this, Param.STARTAPP_DEV_ID, Param.STARTAPP_APP_ID,
-				true);
+				false);
 		startAppAd = new StartAppAd(this);
 
 		setContentView(R.layout.activity_course);
