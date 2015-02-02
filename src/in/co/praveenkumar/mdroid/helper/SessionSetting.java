@@ -31,12 +31,30 @@ public class SessionSetting {
 	private Editor prefsEditor;
 	private String DEBUG_TAG = "MDROID_PREFERENCES";
 
-	// Preferences
+	/**
+	 * Get an instance of the current site settings
+	 * 
+	 * @param context
+	 */
 	public SessionSetting(Context context) {
 		this.appSharedPrefs = context.getSharedPreferences(APP_SHARED_PREFS,
 				Activity.MODE_PRIVATE);
 		this.prefsEditor = appSharedPrefs.edit();
 		setCurrentValues();
+	}
+
+	/**
+	 * Sets the current siteid and make an instance of the new site session
+	 * settings
+	 * 
+	 * @param context
+	 * @param siteid
+	 */
+	public SessionSetting(Context context, long siteid) {
+		this.appSharedPrefs = context.getSharedPreferences(APP_SHARED_PREFS,
+				Activity.MODE_PRIVATE);
+		this.prefsEditor = appSharedPrefs.edit();
+		setCurrentSiteId(siteid);
 	}
 
 	private void setCurrentValues() {
