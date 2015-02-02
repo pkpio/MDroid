@@ -39,7 +39,7 @@
         </RelativeLayout>
 
         <TextView
-            android:id="@+id/list_notification_description"
+            android:id="@+id/list_notification_content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="start|center_vertical"
