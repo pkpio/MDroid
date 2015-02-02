@@ -29,7 +29,7 @@ public class MDroidNotification extends SugarRecord<MDroidNotification> {
 	@Ignore
 	public static final int TYPE_EVENT = 8;
 
-	int type;
+	int notificationtype;
 	String title;
 	String content;
 	int count;
@@ -67,7 +67,7 @@ public class MDroidNotification extends SugarRecord<MDroidNotification> {
 	public MDroidNotification(long siteid, int type, String title,
 			String content) {
 		this.siteid = siteid;
-		this.type = type;
+		this.notificationtype = type;
 		this.title = title;
 		this.content = content;
 		this.count = 1;
@@ -88,7 +88,7 @@ public class MDroidNotification extends SugarRecord<MDroidNotification> {
 	public MDroidNotification(long siteid, int type, String title,
 			String content, int count) {
 		this.siteid = siteid;
-		this.type = type;
+		this.notificationtype = type;
 		this.title = title;
 		this.content = content;
 		this.count = count;
@@ -113,7 +113,7 @@ public class MDroidNotification extends SugarRecord<MDroidNotification> {
 	public MDroidNotification(long siteid, int type, String title,
 			String content, int count, int extras) {
 		this.siteid = siteid;
-		this.type = type;
+		this.notificationtype = type;
 		this.title = title;
 		this.content = content;
 		this.count = count;
@@ -128,7 +128,7 @@ public class MDroidNotification extends SugarRecord<MDroidNotification> {
 	 * @return type
 	 */
 	public int getType() {
-		return type;
+		return notificationtype;
 	}
 
 	/**
@@ -138,7 +138,7 @@ public class MDroidNotification extends SugarRecord<MDroidNotification> {
 	 * @param type
 	 */
 	public void setType(int type) {
-		this.type = type;
+		this.notificationtype = type;
 	}
 
 	/**
