@@ -98,18 +98,20 @@ public class AdFragment extends Fragment {
 	@Override
 	public void onConfigurationChanged(Configuration newConfig) {
 		super.onConfigurationChanged(newConfig);
-		if (mAdView != null) {
-			mAdView.resume();
-
-			// If Prouser, just skip settings check.
-			if (donation != null && donation.isProUser())
-				return;
-
-			// Ads based on setting update
-			if (Param.hideAdsForSession)
-				mAdView.setVisibility(AdView.GONE);
-			else
-				loadAds();
-		}
+		// mAdView.setVisibility(AdView.GONE);
+		// mAdView.setVisibility(AdView.VISIBLE);
+		// if (mAdView != null) {
+		// mAdView.resume();
+		//
+		// // If Prouser, just skip settings check.
+		// if (donation != null && donation.isProUser())
+		// return;
+		//
+		// // Ads based on setting update
+		// if (Param.hideAdsForSession)
+		// mAdView.setVisibility(AdView.GONE);
+		// else
+		// loadAds();
+		// }
 	}
 }
