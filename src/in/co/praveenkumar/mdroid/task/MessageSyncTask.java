@@ -3,6 +3,7 @@ package in.co.praveenkumar.mdroid.task;
 import in.co.praveenkumar.mdroid.model.MDroidNotification;
 import in.co.praveenkumar.mdroid.model.MoodleMessage;
 import in.co.praveenkumar.mdroid.model.MoodleMessages;
+import in.co.praveenkumar.mdroid.model.MoodleSiteInfo;
 import in.co.praveenkumar.mdroid.moodlerest.MoodleRestMessage;
 
 import java.util.List;
@@ -99,6 +100,11 @@ public class MessageSyncTask {
 		List<MoodleMessage> dbMessages;
 		MoodleMessage message = new MoodleMessage();
 
+		// Get site info - used for notification setting
+		MoodleSiteInfo site = MoodleSiteInfo.findById(MoodleSiteInfo.class,
+				siteid);
+		int currentUserid = (site != null) ? site.getUserid() : 0;
+
 		if (mMessages != null)
 			for (int i = 0; i < mMessages.size(); i++) {
 				message = mMessages.get(i);
@@ -112,7 +118,8 @@ public class MessageSyncTask {
 				if (dbMessages.size() > 0)
 					message.setId(dbMessages.get(0).getId());
 				// set notifications if enabled
-				else if (notification) {
+				else if (notification
+						&& message.getUseridfrom() != currentUserid) {
 					new MDroidNotification(
 							siteid,
 							MDroidNotification.TYPE_MESSAGE,
