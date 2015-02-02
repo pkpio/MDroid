@@ -40,6 +40,8 @@ import android.util.Log;
 public class MDroidService extends Service {
 	final String DEBUG_TAG = "MDroid Services";
 	Boolean forceCheck = false;
+	Boolean notifications = true;
+	long siteid = -1;
 	protected int startId;
 	SharedPreferences settings;
 
@@ -51,8 +53,11 @@ public class MDroidService extends Service {
 
 		// Check if the service started from NotificationActivity
 		Bundle extras = intent.getExtras();
-		if (extras != null && extras.getBoolean("forceCheck", false))
-			forceCheck = true;
+		if (extras != null) {
+			forceCheck = extras.getBoolean("forceCheck", false);
+			notifications = extras.getBoolean("notifications", true);
+			siteid = extras.getLong("siteid", -1);
+		}
 
 		// Check for new contents
 		new ContentCheckerBg().execute("");
@@ -88,10 +93,17 @@ public class MDroidService extends Service {
 			int messageCount = 0;
 			int eventCount = 0;
 
-			// Get list of accounts in app
-			List<MoodleSiteInfo> mSites = MoodleSiteInfo
-					.listAll(MoodleSiteInfo.class);
+			List<MoodleSiteInfo> mSites = new ArrayList<MoodleSiteInfo>();
 			MoodleSiteInfo site;
+
+			// Get list of accounts in app if no siteid param is passed
+			if (siteid == -1)
+				mSites = MoodleSiteInfo.listAll(MoodleSiteInfo.class);
+			else {
+				site = MoodleSiteInfo.findById(MoodleSiteInfo.class, siteid);
+				mSites.add(site);
+			}
+
 			if (mSites == null || mSites.size() == 0)
 				return false;
 
@@ -159,7 +171,8 @@ public class MDroidService extends Service {
 				return 0;
 
 			CourseContentSyncTask ccst = new CourseContentSyncTask(
-					site.getSiteurl(), site.getToken(), site.getId(), true);
+					site.getSiteurl(), site.getToken(), site.getId(),
+					notifications);
 			for (int i = 0; i < mCourses.size(); i++)
 				ccst.syncCourseContents(mCourses.get(i).getCourseid());
 
@@ -181,7 +194,7 @@ public class MDroidService extends Service {
 
 			ArrayList<String> courseids = new ArrayList<String>();
 			ForumSyncTask fst = new ForumSyncTask(site.getSiteurl(),
-					site.getToken(), site.getId(), true);
+					site.getToken(), site.getId(), notifications);
 			for (int i = 0; i < mCourses.size(); i++)
 				courseids.add(mCourses.get(i).getCourseid() + "");
 			fst.syncForums(courseids);
@@ -204,7 +217,7 @@ public class MDroidService extends Service {
 				return 0;
 
 			DiscussionSyncTask dst = new DiscussionSyncTask(site.getSiteurl(),
-					site.getToken(), site.getId(), true);
+					site.getToken(), site.getId(), notifications);
 			List<MoodleForum> forums = new ArrayList<MoodleForum>();
 
 			// Get list of discussions to sync
@@ -236,7 +249,7 @@ public class MDroidService extends Service {
 				return 0;
 
 			PostSyncTask pst = new PostSyncTask(site.getSiteurl(),
-					site.getToken(), site.getId(), true);
+					site.getToken(), site.getId(), notifications);
 			List<MoodleDiscussion> discussions = new ArrayList<MoodleDiscussion>();
 
 			// Get list of discussions to sync
@@ -263,7 +276,7 @@ public class MDroidService extends Service {
 		 */
 		private int syncMessages(MoodleSiteInfo site) {
 			MessageSyncTask mst = new MessageSyncTask(site.getSiteurl(),
-					site.getToken(), site.getId(), true);
+					site.getToken(), site.getId(), notifications);
 			mst.syncMessages(site.getUserid());
 			return mst.getNotificationcount();
 		}
@@ -284,7 +297,7 @@ public class MDroidService extends Service {
 
 			ArrayList<String> courseids = new ArrayList<String>();
 			EventSyncTask est = new EventSyncTask(site.getSiteurl(),
-					site.getToken(), site.getId(), true);
+					site.getToken(), site.getId(), notifications);
 			for (int i = 0; i < mCourses.size(); i++)
 				courseids.add(mCourses.get(i).getCourseid() + "");
 			est.syncEvents(courseids);
@@ -307,7 +320,7 @@ public class MDroidService extends Service {
 				return 0;
 
 			UserSyncTask ust = new UserSyncTask(site.getSiteurl(),
-					site.getToken(), site.getId(), true);
+					site.getToken(), site.getId(), notifications);
 			for (int i = 0; i < mCourses.size(); i++)
 				ust.syncUsers(mCourses.get(i).getCourseid());
 
@@ -323,7 +336,7 @@ public class MDroidService extends Service {
 		 */
 		private int syncContacts(MoodleSiteInfo site) {
 			ContactSyncTask cst = new ContactSyncTask(site.getSiteurl(),
-					site.getToken(), site.getId(), true);
+					site.getToken(), site.getId(), notifications);
 			cst.syncAllContacts();
 			return cst.getNotificationcount();
 		}
