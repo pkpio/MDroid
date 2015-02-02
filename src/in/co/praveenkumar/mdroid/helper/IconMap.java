@@ -6,9 +6,16 @@ import in.co.praveenkumar.mdroid.model.MoodleModuleContent;
 
 import java.util.ArrayList;
 
-public class ModuleIcon {
+public class IconMap {
 
-	public static int of(MoodleModule module) {
+	/**
+	 * Finds the icon for a given module
+	 * 
+	 * @param module
+	 *            MoodleModule
+	 * @return Icon resource
+	 */
+	public static int moduleIcon(MoodleModule module) {
 		String modname = module.getModname();
 
 		if (modname.contentEquals("forum"))

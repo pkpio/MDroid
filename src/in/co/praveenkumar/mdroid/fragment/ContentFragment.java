@@ -3,7 +3,7 @@ package in.co.praveenkumar.mdroid.fragment;
 import in.co.praveenkumar.R;
 import in.co.praveenkumar.mdroid.activity.AppBrowserActivity;
 import in.co.praveenkumar.mdroid.helper.FileOpener;
-import in.co.praveenkumar.mdroid.helper.ModuleIcon;
+import in.co.praveenkumar.mdroid.helper.IconMap;
 import in.co.praveenkumar.mdroid.helper.SessionSetting;
 import in.co.praveenkumar.mdroid.helper.Workaround;
 import in.co.praveenkumar.mdroid.model.MoodleModule;
@@ -223,7 +223,7 @@ public class ContentFragment extends Fragment implements OnRefreshListener {
 				viewHolder.modulename.setText(modulename);
 
 				// Module icon
-				viewHolder.moduleicon.setImageResource(ModuleIcon.of(module));
+				viewHolder.moduleicon.setImageResource(IconMap.moduleIcon(module));
 
 				// Module description
 				String description = module.getDescription();
