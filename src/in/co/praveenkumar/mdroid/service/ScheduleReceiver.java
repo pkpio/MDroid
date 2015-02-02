@@ -17,7 +17,12 @@ public class ScheduleReceiver extends BroadcastReceiver {
 
 	@Override
 	public void onReceive(Context context, Intent intent) {
-		scheduleService(context);
+		SharedPreferences settings = PreferenceManager
+				.getDefaultSharedPreferences(context);
+		if (settings.getBoolean("notifications", false))
+			scheduleService(context);
+		else
+			Log.d(DEBUG_TAG, "Not scheduling service. Notifications disabled.");
 	}
 
 	/**
@@ -60,6 +65,7 @@ public class ScheduleReceiver extends BroadcastReceiver {
 	 *            Context
 	 */
 	public static void unscheduleService(Context context) {
+		Log.d(DEBUG_TAG, "Service unscheduling request received !");
 		AlarmManager service = (AlarmManager) context
 				.getSystemService(Context.ALARM_SERVICE);
 		Intent i = new Intent(context, StartServiceReceiver.class);
