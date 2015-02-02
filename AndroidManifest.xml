@@ -104,6 +104,10 @@
             android:configChanges="screenSize|orientation" >
         </activity>
         <activity
+            android:name="in.co.praveenkumar.mdroid.activity.NotificationActivity"
+            android:configChanges="screenSize|orientation" >
+        </activity>
+        <activity
             android:name="in.co.praveenkumar.mdroid.activity.AppBrowserActivity"
             android:configChanges="screenSize|orientation" >
         </activity>

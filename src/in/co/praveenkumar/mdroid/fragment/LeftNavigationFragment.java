@@ -8,6 +8,7 @@ import in.co.praveenkumar.mdroid.activity.DonationActivity;
 import in.co.praveenkumar.mdroid.activity.ForumActivity;
 import in.co.praveenkumar.mdroid.activity.LoginActivity;
 import in.co.praveenkumar.mdroid.activity.MessagingActivity;
+import in.co.praveenkumar.mdroid.activity.NotificationActivity;
 import in.co.praveenkumar.mdroid.activity.SettingsActivity;
 import in.co.praveenkumar.mdroid.activity.WorkInProgressActivity;
 import in.co.praveenkumar.mdroid.helper.AppInterface.DrawerStateInterface;
@@ -114,7 +115,7 @@ public class LeftNavigationFragment extends Fragment {
 					case 5:
 						// NOTIFICATIONS HERE
 						context.startActivity(new Intent(context,
-								WorkInProgressActivity.class));
+								NotificationActivity.class));
 						break;
 					}
 					break;

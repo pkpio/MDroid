@@ -50,6 +50,7 @@ public class Param {
 	public static final String GA_SCREEN_MESSAGING = "Messaging";
 	public static final String GA_SCREEN_DONATION = "Donation";
 	public static final String GA_SCREEN_WORKINPROGRESS = "WorkInProgress";
+	public static final String GA_SCREEN_NOTIFICATION = "Notification";
 	public static final String GA_SCREEN_SETTING = "Setting";
 
 	/** GA Event categories **/
