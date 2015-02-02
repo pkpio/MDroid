@@ -18,7 +18,7 @@ import android.util.Log;
  * 
  */
 public class SessionSetting {
-	public static final int TUTORIAL_VERSION = 2;
+	public static final int TUTORIAL_VERSION = 3;
 
 	private String token;
 	private String mUrl;
