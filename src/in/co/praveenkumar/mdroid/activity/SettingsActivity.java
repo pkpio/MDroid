@@ -5,6 +5,7 @@ import in.co.praveenkumar.mdroid.dialog.LogoutDialog;
 import in.co.praveenkumar.mdroid.helper.ApplicationClass;
 import in.co.praveenkumar.mdroid.helper.Param;
 import in.co.praveenkumar.mdroid.helper.SessionSetting;
+import in.co.praveenkumar.mdroid.service.ScheduleReceiver;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -77,14 +78,20 @@ public class SettingsActivity extends PreferenceActivity implements
 		addPreferencesFromResource(R.xml.preferences);
 
 		// Enable donate only preferences
-		if (isProUser())
+		if (isProUser()) {
 			findPreference("messagingSignature").setEnabled(true);
+			findPreference("notifications").setEnabled(true);
+		}
 
 		// Add preference click / change listeners
 		findPreference("logout").setOnPreferenceClickListener(this);
 		findPreference("messagingSignature")
 				.setOnPreferenceChangeListener(this);
 		findPreference("hideAds").setOnPreferenceChangeListener(this);
+
+		findPreference("notifications").setOnPreferenceChangeListener(this);
+		findPreference("notification_frequency").setOnPreferenceChangeListener(
+				this);
 
 		findPreference("help").setOnPreferenceClickListener(this);
 		findPreference("privacyPolicy").setOnPreferenceClickListener(this);
@@ -173,6 +180,16 @@ public class SettingsActivity extends PreferenceActivity implements
 
 			Param.hideAdsForSession = !Param.hideAdsForSession;
 		}
+
+		if (key.contentEquals("notifications")) {
+			if (newValue.toString().equals("true"))
+				ScheduleReceiver.scheduleService(this);
+			else
+				ScheduleReceiver.unscheduleService(this);
+		}
+
+		if (key.contentEquals("notification_frequency") && isProUser())
+			ScheduleReceiver.rescheduleService(this);
 
 		if (key.contentEquals("messagingSignature"))
 			session.setMessageSignature(newValue.toString());
