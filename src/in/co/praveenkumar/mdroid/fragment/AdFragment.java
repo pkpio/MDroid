@@ -98,13 +98,18 @@ public class AdFragment extends Fragment {
 	@Override
 	public void onConfigurationChanged(Configuration newConfig) {
 		super.onConfigurationChanged(newConfig);
-		loadAds();
+		if (mAdView != null) {
+			mAdView.resume();
 
-		if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
-			Log.d("On Config Change", "LANDSCAPE");
-		} else {
+			// If Prouser, just skip settings check.
+			if (donation != null && donation.isProUser())
+				return;
 
-			Log.d("On Config Change", "PORTRAIT");
+			// Ads based on setting update
+			if (Param.hideAdsForSession)
+				mAdView.setVisibility(AdView.GONE);
+			else
+				loadAds();
 		}
 	}
 }
