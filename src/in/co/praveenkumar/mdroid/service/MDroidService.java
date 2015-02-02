@@ -108,27 +108,27 @@ public class MDroidService extends Service {
 						site.getId() + "", "1");
 
 				// Contents sync
-				if (settings.getBoolean("notify_coursecontents", false))
+				if (settings.getBoolean("notify_coursecontents", true))
 					contentCount = syncCourseContents(site, mCourses);
 
 				// Forums sync
-				if (settings.getBoolean("notify_forums", false))
+				if (settings.getBoolean("notify_forums", true))
 					forumCount = syncForums(site, mCourses);
 
 				// Discussion sync
-				if (settings.getBoolean("notify_forumtopics", false))
+				if (settings.getBoolean("notify_forumtopics", true))
 					discussionCount = syncDiscussions(site, mCourses);
 
 				// Forum posts (replies) sync
-				if (settings.getBoolean("notify_forumposts", false))
+				if (settings.getBoolean("notify_forumposts", true))
 					postCount = syncPosts(site, mCourses);
 
 				// Messages sync
-				if (settings.getBoolean("notify_messages", false))
+				if (settings.getBoolean("notify_messages", true))
 					messageCount = syncMessages(site);
 
 				// Events sync
-				if (settings.getBoolean("notify_events", false))
+				if (settings.getBoolean("notify_events", true))
 					eventCount = syncEvents(site, mCourses);
 
 				// Participants sync
