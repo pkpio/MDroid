@@ -16,6 +16,8 @@ public class Param {
 	 * be less than this.
 	 */
 	public static final long STARTAPP_INTERSTITIAL_MAX_FREQ = 50 * 1000;
+	public static final Boolean STARTAPP_INTERSTITIAL_ADS = true;
+	public static final Boolean STARTAPP_EXIT_ADS = true;
 
 	// Ads hiding
 	public static final int maxAdsHideCount = 3;

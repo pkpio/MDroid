@@ -75,7 +75,8 @@ public class AdFragment extends Fragment {
 		mAdView.loadAd(adRequest);
 
 		// Show a startApp interstitial - Ad shown based on policies
-		startAppAd.loadAd(new StartAppAdEventListener());
+		if (Param.STARTAPP_INTERSTITIAL_ADS)
+			startAppAd.loadAd(new StartAppAdEventListener());
 	}
 
 	/** Called when leaving the activity */
