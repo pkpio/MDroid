@@ -5,11 +5,14 @@ import in.co.praveenkumar.mdroid.activity.CourseContentActivity;
 import in.co.praveenkumar.mdroid.helper.SessionSetting;
 import in.co.praveenkumar.mdroid.helper.Workaround;
 import in.co.praveenkumar.mdroid.model.MoodleCourse;
+import in.co.praveenkumar.mdroid.service.MDroidService;
 import in.co.praveenkumar.mdroid.task.CourseSyncTask;
 
 import java.util.List;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -161,13 +164,72 @@ public class CourseFragment extends Fragment implements OnRefreshListener {
 			viewHolder.favIcon.setOnClickListener(new OnClickListener() {
 				@Override
 				public void onClick(View arg0) {
-					mCourse.setIsFavCourse(!mCourse.getIsFavCourse());
-					mCourse.save();
 
-					// Update listview
-					mCourses.get(position).setIsFavCourse(
-							mCourse.getIsFavCourse());
-					courseListAdapter.notifyDataSetChanged();
+					// Simply unfav if that's the case
+					if (mCourse.getIsFavCourse()) {
+						mCourse.setIsFavCourse(!mCourse.getIsFavCourse());
+						mCourse.save();
+
+						// Update listview
+						mCourses.get(position).setIsFavCourse(
+								mCourse.getIsFavCourse());
+						courseListAdapter.notifyDataSetChanged();
+
+						// Update listview
+						mCourses.get(position).setIsFavCourse(
+								mCourse.getIsFavCourse());
+						courseListAdapter.notifyDataSetChanged();
+
+						return;
+					}
+
+					// If fav'ing, ask for confirmation. We will be doing a sync
+					AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+							context);
+					alertDialogBuilder
+							.setMessage("This will make course contents offline and sends notifications for new contents if enabled");
+					alertDialogBuilder.setTitle("Add "
+							+ mCourses.get(position).getShortname()
+							+ " to favourites?");
+					alertDialogBuilder.setPositiveButton("Yes",
+							new DialogInterface.OnClickListener() {
+
+								@Override
+								public void onClick(DialogInterface arg0,
+										int arg1) {
+									mCourse.setIsFavCourse(!mCourse
+											.getIsFavCourse());
+									mCourse.save();
+
+									// Update listview
+									mCourses.get(position).setIsFavCourse(
+											mCourse.getIsFavCourse());
+									courseListAdapter.notifyDataSetChanged();
+
+									// Start sync service for course
+									Intent i = new Intent(context,
+											MDroidService.class);
+									i.putExtra("notifications", false);
+									i.putExtra("siteid",
+											session.getCurrentSiteId());
+									i.putExtra("courseid",
+											mCourse.getCourseid());
+									context.startService(i);
+
+								}
+							});
+					alertDialogBuilder.setNegativeButton("No",
+							new DialogInterface.OnClickListener() {
+
+								@Override
+								public void onClick(DialogInterface dialog,
+										int which) {
+
+								}
+							});
+
+					AlertDialog alertDialog = alertDialogBuilder.create();
+					alertDialog.show();
 				}
 			});
 

@@ -167,6 +167,7 @@ public class NotificationFragment extends Fragment implements OnRefreshListener 
 			// Start service
 			Intent i = new Intent(context, MDroidService.class);
 			i.putExtra("forceCheck", true);
+			i.putExtra("siteid", session.getCurrentSiteId());
 			context.startService(i);
 		}
 		swipeLayout.setRefreshing(false);
