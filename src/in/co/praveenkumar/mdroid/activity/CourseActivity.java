@@ -111,7 +111,7 @@ public class CourseActivity extends BaseNavigationActivity {
 
 	@Override
 	public void onBackPressed() {
-		if (!isProUser())
+		if (!isProUser() && !Param.hideAdsForSession)
 			startAppAd.onBackPressed();
 		super.onBackPressed();
 	}
