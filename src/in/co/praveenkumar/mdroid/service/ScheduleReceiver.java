@@ -35,19 +35,14 @@ public class ScheduleReceiver extends BroadcastReceiver {
 		PendingIntent pending = PendingIntent.getBroadcast(context, 0, i,
 				PendingIntent.FLAG_CANCEL_CURRENT);
 
-		Calendar cal = Calendar.getInstance();
-		// start 30 seconds after boot completed
-		// -TODO- Log last run time and schedule after boot run based on user
-		// preference and last run time.
-		cal.add(Calendar.SECOND, 30);
-
-		// Set first firing time to current time + frequency time
-		long startTime = cal.getTimeInMillis();
+		// Set the first firing based on last checked time and frequency
+		long lastCheck = settings.getLong("notifications_lastchecked",
+				System.currentTimeMillis());
+		long startTime = lastCheck + REPEAT_TIME;
 
 		// fetch every user setting time. Power optimized call.
 		service.setInexactRepeating(AlarmManager.RTC_WAKEUP, startTime,
 				REPEAT_TIME, pending);
 
 	}
-
 }
