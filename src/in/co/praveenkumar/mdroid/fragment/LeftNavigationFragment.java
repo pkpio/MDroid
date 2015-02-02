@@ -10,7 +10,6 @@ import in.co.praveenkumar.mdroid.activity.LoginActivity;
 import in.co.praveenkumar.mdroid.activity.MessagingActivity;
 import in.co.praveenkumar.mdroid.activity.NotificationActivity;
 import in.co.praveenkumar.mdroid.activity.SettingsActivity;
-import in.co.praveenkumar.mdroid.activity.WorkInProgressActivity;
 import in.co.praveenkumar.mdroid.helper.AppInterface.DrawerStateInterface;
 import in.co.praveenkumar.mdroid.helper.ImageDecoder;
 import in.co.praveenkumar.mdroid.helper.SessionSetting;
