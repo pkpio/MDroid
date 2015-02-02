@@ -5,7 +5,9 @@ import in.co.praveenkumar.mdroid.fragment.CourseFragment;
 import in.co.praveenkumar.mdroid.helper.ApplicationClass;
 import in.co.praveenkumar.mdroid.helper.Param;
 import in.co.praveenkumar.mdroid.view.SlidingTabLayout;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -114,8 +116,16 @@ public class CourseActivity extends BaseNavigationActivity {
 
 	@Override
 	public void onBackPressed() {
-		if (!isProUser() && !Param.hideAdsForSession)
-			startAppAd.onBackPressed();
+		if (!isProUser() && !Param.hideAdsForSession) {
+			SharedPreferences settings = PreferenceManager
+					.getDefaultSharedPreferences(this);
+			long now = System.currentTimeMillis();
+			long last = settings.getLong("startapp_last_served", now
+					- Param.STARTAPP_INTERSTITIAL_MAX_FREQ);
+
+			if (now - last >= Param.STARTAPP_INTERSTITIAL_MAX_FREQ)
+				startAppAd.onBackPressed();
+		}
 		super.onBackPressed();
 	}
 
