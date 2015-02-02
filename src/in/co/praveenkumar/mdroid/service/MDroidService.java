@@ -378,8 +378,8 @@ public class MDroidService extends Service {
 					true, largeIcon, site.getId());
 		else if (forceCheck)
 			showNotification("No updated found", "Did you star your courses ?",
-					"Open files section to star a course", "", true, largeIcon,
-					site.getId());
+					"Open courses section to star a course", "", true,
+					largeIcon, site.getId());
 
 	}
 

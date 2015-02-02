@@ -11,12 +11,13 @@ import java.util.List;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
 import android.text.Html;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -116,8 +117,6 @@ public class NotificationFragment extends Fragment implements OnRefreshListener 
 			// Set texts
 			viewHolder.icon.setImageResource(IconMap
 					.notificationIcon(notifications.get(position).getType()));
-			Log.d(DEBUG_TAG, "Pos is: " + position + " Type is: "
-					+ notifications.get(position).getType());
 			viewHolder.title.setText(notifications.get(position).getTitle());
 			String content = notifications.get(position).getContent();
 			if (content == null)
@@ -153,12 +152,24 @@ public class NotificationFragment extends Fragment implements OnRefreshListener 
 
 	@Override
 	public void onRefresh() {
-		// Start service
-		Toast.makeText(context, "Checking started. You will be notified",
-				Toast.LENGTH_LONG).show();
-		Intent i = new Intent(context, MDroidService.class);
-		i.putExtra("forceCheck", true);
-		context.startService(i);
+		SharedPreferences settings = PreferenceManager
+				.getDefaultSharedPreferences(context);
+
+		// Check if notifications are enabled
+		if (!settings.getBoolean("notifications", false))
+			Toast.makeText(context,
+					"Please turn on notifications from settings",
+					Toast.LENGTH_LONG).show();
+		else {
+			Toast.makeText(context, "Checking started. You will be notified",
+					Toast.LENGTH_LONG).show();
+
+			// Start service
+			Intent i = new Intent(context, MDroidService.class);
+			i.putExtra("forceCheck", true);
+			context.startService(i);
+		}
+		swipeLayout.setRefreshing(false);
 	}
 
 }
