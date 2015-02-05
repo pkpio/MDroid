@@ -3,6 +3,7 @@ package in.co.praveenkumar.mdroid.fragment;
 import in.co.praveenkumar.R;
 import in.co.praveenkumar.mdroid.activity.CourseActivity;
 import in.co.praveenkumar.mdroid.helper.AppInterface.DonationInterface;
+import in.co.praveenkumar.mdroid.helper.ApplicationClass;
 import in.co.praveenkumar.mdroid.helper.Param;
 import android.app.Activity;
 import android.content.Context;
@@ -160,6 +161,11 @@ public class AdFragment extends Fragment {
 			SharedPreferences.Editor editor = settings.edit();
 			editor.putLong("startapp_last_served", System.currentTimeMillis());
 			editor.commit();
+
+			// Send a tracker event
+			((ApplicationClass) getActivity().getApplication()).sendEvent(
+					Param.GA_EVENT_CAT_ADS,
+					Param.GA_EVENT_ADS_STARTAPP_INTERSTITIAL);
 		}
 
 		@Override
