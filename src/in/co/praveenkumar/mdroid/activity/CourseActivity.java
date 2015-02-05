@@ -123,8 +123,15 @@ public class CourseActivity extends BaseNavigationActivity {
 			long last = settings.getLong("startapp_last_served", now
 					- Param.STARTAPP_INTERSTITIAL_MAX_FREQ);
 
-			if (now - last >= Param.STARTAPP_INTERSTITIAL_MAX_FREQ)
+			if (now - last >= Param.STARTAPP_INTERSTITIAL_MAX_FREQ) {
+
+				// Send a tracker event
+				((ApplicationClass) getApplication()).sendEvent(
+						Param.GA_EVENT_CAT_ADS,
+						Param.GA_EVENT_ADS_STARTAPP_EXITAD);
+
 				startAppAd.onBackPressed();
+			}
 		}
 		super.onBackPressed();
 	}
