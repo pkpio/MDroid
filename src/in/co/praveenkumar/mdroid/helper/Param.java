@@ -57,6 +57,7 @@ public class Param {
 	public static final String GA_EVENT_CAT_LOGIN = "LoginScreen";
 	public static final String GA_EVENT_CAT_SETTING = "SettingScreen";
 	public static final String GA_EVENT_CAT_DONATION = "DonationScreen";
+	public static final String GA_EVENT_CAT_ADS = "Ads";
 
 	/** GA Events **/
 	// Login screen events
@@ -71,5 +72,8 @@ public class Param {
 
 	// Donation screen events
 	public static final String GA_EVENT_DONATION_BUTTON = "DonateButtonPress";
+
+	// Ads related events
+	public static final String GA_EVENT_ADS_STARTAPP_INTERSTITIAL = "StartAppInterstitial";
 
 }
