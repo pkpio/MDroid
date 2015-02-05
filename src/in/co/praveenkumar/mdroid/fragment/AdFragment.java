@@ -153,6 +153,10 @@ public class AdFragment extends Fragment {
 
 		@Override
 		public void adClicked(Ad arg0) {
+			// Send a tracker event
+			((ApplicationClass) getActivity().getApplication()).sendEvent(
+					Param.GA_EVENT_CAT_ADS,
+					Param.GA_EVENT_ADS_STARTAPP_INTERSTITIAL_CLICK);
 		}
 
 		@Override
@@ -165,11 +169,15 @@ public class AdFragment extends Fragment {
 			// Send a tracker event
 			((ApplicationClass) getActivity().getApplication()).sendEvent(
 					Param.GA_EVENT_CAT_ADS,
-					Param.GA_EVENT_ADS_STARTAPP_INTERSTITIAL);
+					Param.GA_EVENT_ADS_STARTAPP_INTERSTITIAL_SHOW);
 		}
 
 		@Override
 		public void adHidden(Ad arg0) {
+			// Send a tracker event
+			((ApplicationClass) getActivity().getApplication()).sendEvent(
+					Param.GA_EVENT_CAT_ADS,
+					Param.GA_EVENT_ADS_STARTAPP_INTERSTITIAL_HIDE);
 		}
 	}
 
