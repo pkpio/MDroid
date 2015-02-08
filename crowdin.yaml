@@ -1,0 +1,18 @@
+---
+project_identifier: mdroid
+Iapi_key: KeepTheAPIkeySecret
+base_url: https://api.crowdin.com
+base_path: ./
+
+files:
+  -
+   source: '/res/values/strings.xml'
+   translation: '/res/values-%android_code%/%original_file_name%'
+   languages_mapping:
+     android_code:
+       # we need this mapping since Crowdin expects directories
+       # to be named like "values-uk-rUA"
+       # acording to specification instead of just "uk"
+       de: de
+       es-ES: es
+       fr: fr
