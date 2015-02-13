@@ -4,6 +4,7 @@ import in.co.praveenkumar.R;
 import in.co.praveenkumar.mdroid.fragment.CourseFragment;
 import in.co.praveenkumar.mdroid.helper.ApplicationClass;
 import in.co.praveenkumar.mdroid.helper.Param;
+import in.co.praveenkumar.mdroid.playgames.GameUnlocker;
 import in.co.praveenkumar.mdroid.view.SlidingTabLayout;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -53,6 +54,10 @@ public class CourseActivity extends BaseNavigationActivity {
 
 		SlidingTabLayout mSlidingTabLayout = (SlidingTabLayout) findViewById(R.id.sliding_tabs);
 		mSlidingTabLayout.setViewPager(viewPager);
+
+		// Check for any playGames unlocks
+		GameUnlocker mGameUnlocker = new GameUnlocker(getApplicationContext());
+		mGameUnlocker.publishAcheivements(getApiClient());
 	}
 
 	class CourseTabsAdapter extends FragmentPagerAdapter {
