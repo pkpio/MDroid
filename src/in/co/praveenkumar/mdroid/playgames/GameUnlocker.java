@@ -97,11 +97,14 @@ public class GameUnlocker {
 	 *            GoogleApiClient
 	 */
 	public void publishAcheivements(GoogleApiClient mApiClient) {
-		if (!mApiClient.isConnected())
-			return;
+		// if (!mApiClient.isConnected()) {
+		// System.out.println("Not connected");
+		// return;
+		// }
 
 		// Update use counts
 		int countDiff = getUseCount() - getUploadedUseCount();
+		System.out.println("Diff Count is:" + countDiff);
 		Games.Achievements.increment(mApiClient,
 				getString(R.string.achievement_use_5_times), countDiff);
 		Games.Achievements.increment(mApiClient,

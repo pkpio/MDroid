@@ -21,6 +21,7 @@ import android.widget.Toast;
 
 import com.anjlab.android.iab.v3.BillingProcessor;
 import com.anjlab.android.iab.v3.TransactionDetails;
+import com.google.android.gms.games.Games;
 
 public class SettingsActivity extends PreferenceActivity implements
 		OnPreferenceClickListener, OnPreferenceChangeListener,
@@ -107,6 +108,8 @@ public class SettingsActivity extends PreferenceActivity implements
 				this);
 
 		findPreference("playgames").setOnPreferenceClickListener(this);
+		findPreference("playgames_acheivement").setOnPreferenceClickListener(
+				this);
 		findPreference("help").setOnPreferenceClickListener(this);
 		findPreference("privacyPolicy").setOnPreferenceClickListener(this);
 		findPreference("tutorial").setOnPreferenceClickListener(this);
@@ -132,6 +135,15 @@ public class SettingsActivity extends PreferenceActivity implements
 			else
 				mGameHelper.signOut();
 			updatePlayLoginState();
+		}
+
+		if (key.contentEquals("playgames_acheivement")) {
+			if (mGameHelper.getApiClient().isConnected())
+				startActivityForResult(
+						Games.Achievements.getAchievementsIntent(mGameHelper
+								.getApiClient()), 11);
+			else
+				mGameHelper.beginUserInitiatedSignIn();
 		}
 
 		if (key.contentEquals("help")) {
