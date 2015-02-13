@@ -11,6 +11,7 @@ import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.MenuItem;
@@ -19,6 +20,8 @@ import android.widget.Toast;
 
 import com.anjlab.android.iab.v3.BillingProcessor;
 import com.anjlab.android.iab.v3.TransactionDetails;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.example.games.basegameutils.GameHelper;
 
 /**
  * Extending this would implement a side navigation and billing capabilities
@@ -31,7 +34,8 @@ import com.anjlab.android.iab.v3.TransactionDetails;
  */
 @SuppressWarnings("deprecation")
 public abstract class BaseNavigationActivity extends ActionBarActivity
-		implements DrawerStateInterface, DonationInterface {
+		implements DrawerStateInterface, DonationInterface,
+		GameHelper.GameHelperListener {
 	private DrawerLayout mDrawerLayout;
 	private ActionBarDrawerToggle mDrawerToggle;
 	public BillingProcessor billing;
@@ -43,6 +47,13 @@ public abstract class BaseNavigationActivity extends ActionBarActivity
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+
+		// Play games related
+		if (mHelper == null) {
+			getGameHelper();
+		}
+		mHelper.setup(this);
+
 		setTitle("");
 
 		// Setup billing
@@ -160,6 +171,9 @@ public abstract class BaseNavigationActivity extends ActionBarActivity
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if (!billing.handleActivityResult(requestCode, resultCode, data))
 			super.onActivityResult(requestCode, resultCode, data);
+
+		// GPG related
+		mHelper.onActivityResult(requestCode, resultCode, data);
 	}
 
 	@Override
@@ -181,4 +195,127 @@ public abstract class BaseNavigationActivity extends ActionBarActivity
 				|| billing.isPurchased(Param.BILLING_FEATURE_UPLOADS_PID);
 	}
 
+	/**
+	 * Google Play Games related
+	 */
+
+	// The game helper object. This class is mainly a wrapper around this
+	// object.
+	protected GameHelper mHelper;
+
+	// We expose these constants here because we don't want users of this class
+	// to have to know about GameHelper at all.
+	public static final int CLIENT_GAMES = GameHelper.CLIENT_GAMES;
+	public static final int CLIENT_APPSTATE = GameHelper.CLIENT_APPSTATE;
+	public static final int CLIENT_PLUS = GameHelper.CLIENT_PLUS;
+	public static final int CLIENT_ALL = GameHelper.CLIENT_ALL;
+
+	// Requested clients. By default, that's just the games client.
+	protected int mRequestedClients = CLIENT_GAMES;
+
+	private final static String TAG = "BaseGameActivity";
+	protected boolean mDebugLog = false;
+
+	/**
+	 * /** Sets the requested clients. The preferred way to set the requested
+	 * clients is via the constructor, but this method is available if for some
+	 * reason your code cannot do this in the constructor. This must be called
+	 * before onCreate or getGameHelper() in order to have any effect. If called
+	 * after onCreate()/getGameHelper(), this method is a no-op.
+	 * 
+	 * @param requestedClients
+	 *            A combination of the flags CLIENT_GAMES, CLIENT_PLUS and
+	 *            CLIENT_APPSTATE, or CLIENT_ALL to request all available
+	 *            clients.
+	 */
+	protected void setRequestedClients(int requestedClients) {
+		mRequestedClients = requestedClients;
+	}
+
+	public GameHelper getGameHelper() {
+		if (mHelper == null) {
+			mHelper = new GameHelper(this, mRequestedClients);
+			mHelper.enableDebugLog(mDebugLog);
+			mHelper.setMaxAutoSignInAttempts(0); // Never AutoSignIn
+		}
+		return mHelper;
+	}
+
+	@Override
+	protected void onStart() {
+		super.onStart();
+		mHelper.onStart(this);
+	}
+
+	@Override
+	protected void onStop() {
+		super.onStop();
+		mHelper.onStop();
+	}
+
+	protected GoogleApiClient getApiClient() {
+		return mHelper.getApiClient();
+	}
+
+	protected boolean isSignedIn() {
+		return mHelper.isSignedIn();
+	}
+
+	protected void beginUserInitiatedSignIn() {
+		mHelper.beginUserInitiatedSignIn();
+	}
+
+	protected void signOut() {
+		mHelper.signOut();
+	}
+
+	protected void showAlert(String message) {
+		mHelper.makeSimpleDialog(message).show();
+	}
+
+	protected void showAlert(String title, String message) {
+		mHelper.makeSimpleDialog(title, message).show();
+	}
+
+	protected void enableDebugLog(boolean enabled) {
+		mDebugLog = true;
+		if (mHelper != null) {
+			mHelper.enableDebugLog(enabled);
+		}
+	}
+
+	@Deprecated
+	protected void enableDebugLog(boolean enabled, String tag) {
+		Log.w(TAG, "BaseGameActivity.enabledDebugLog(bool,String) is "
+				+ "deprecated. Use enableDebugLog(boolean)");
+		enableDebugLog(enabled);
+	}
+
+	protected String getInvitationId() {
+		return mHelper.getInvitationId();
+	}
+
+	protected void reconnectClient() {
+		mHelper.reconnectClient();
+	}
+
+	protected boolean hasSignInError() {
+		return mHelper.hasSignInError();
+	}
+
+	protected GameHelper.SignInFailureReason getSignInError() {
+		return mHelper.getSignInError();
+	}
+
+	@Override
+	public void onSignInFailed() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void onSignInSucceeded() {
+		// TODO Auto-generated method stub
+
+	}
 }
