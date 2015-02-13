@@ -1,11 +1,13 @@
 package in.co.praveenkumar.mdroid.activity;
 
 import in.co.praveenkumar.R;
+import in.co.praveenkumar.mdroid.basegameutils.GameHelper;
 import in.co.praveenkumar.mdroid.dialog.LogoutDialog;
 import in.co.praveenkumar.mdroid.helper.ApplicationClass;
 import in.co.praveenkumar.mdroid.helper.Param;
 import in.co.praveenkumar.mdroid.helper.SessionSetting;
 import in.co.praveenkumar.mdroid.service.ScheduleReceiver;
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -21,16 +23,26 @@ import com.anjlab.android.iab.v3.BillingProcessor;
 import com.anjlab.android.iab.v3.TransactionDetails;
 
 public class SettingsActivity extends PreferenceActivity implements
-		OnPreferenceClickListener, OnPreferenceChangeListener {
+		OnPreferenceClickListener, OnPreferenceChangeListener,
+		GameHelper.GameHelperListener {
 	SessionSetting session;
 	public BillingProcessor billing;
 	SharedPreferences settings;
+
+	// Google Play Games related
+	protected GameHelper mPlaygamesHelper;
 
 	@SuppressWarnings("deprecation")
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setTitle("Settings");
+
+		// Play games related
+		if (mPlaygamesHelper == null) {
+			getGameHelper();
+		}
+		mPlaygamesHelper.setup(this);
 
 		// Send a tracker
 		((ApplicationClass) getApplication())
@@ -83,6 +95,9 @@ public class SettingsActivity extends PreferenceActivity implements
 			findPreference("notifications").setEnabled(true);
 		}
 
+		// Playgames state
+		updatePlayLoginState();
+
 		// Add preference click / change listeners
 		findPreference("logout").setOnPreferenceClickListener(this);
 		findPreference("messagingSignature")
@@ -93,6 +108,7 @@ public class SettingsActivity extends PreferenceActivity implements
 		findPreference("notification_frequency").setOnPreferenceChangeListener(
 				this);
 
+		findPreference("playgames").setOnPreferenceClickListener(this);
 		findPreference("help").setOnPreferenceClickListener(this);
 		findPreference("privacyPolicy").setOnPreferenceClickListener(this);
 		findPreference("tutorial").setOnPreferenceClickListener(this);
@@ -110,6 +126,14 @@ public class SettingsActivity extends PreferenceActivity implements
 			LogoutDialog lod = new LogoutDialog(this,
 					new SessionSetting(this).getCurrentSiteId());
 			lod.show();
+		}
+
+		if (key.contentEquals("playgames")) {
+			if (!mPlaygamesHelper.isSignedIn())
+				mPlaygamesHelper.beginUserInitiatedSignIn();
+			else
+				mPlaygamesHelper.signOut();
+			updatePlayLoginState();
 		}
 
 		if (key.contentEquals("help")) {
@@ -201,6 +225,9 @@ public class SettingsActivity extends PreferenceActivity implements
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if (!billing.handleActivityResult(requestCode, resultCode, data))
 			super.onActivityResult(requestCode, resultCode, data);
+
+		// GPG related
+		mPlaygamesHelper.onActivityResult(requestCode, resultCode, data);
 	}
 
 	private Boolean isProUser() {
@@ -216,6 +243,56 @@ public class SettingsActivity extends PreferenceActivity implements
 		if (billing != null)
 			billing.release();
 		super.onDestroy();
+	}
+
+	@Override
+	public void onSignInFailed() {
+		updatePlayLoginState();
+	}
+
+	@Override
+	public void onSignInSucceeded() {
+		updatePlayLoginState();
+	}
+
+	@SuppressWarnings("deprecation")
+	@SuppressLint("NewApi")
+	void updatePlayLoginState() {
+		if (mPlaygamesHelper.isSignedIn()) {
+			findPreference("playgames").setIcon(R.drawable.games_controller);
+			findPreference("playgames").setTitle(
+					R.string.activity_settings_playgames_title_disconnect);
+		} else {
+			findPreference("playgames").setIcon(
+					R.drawable.games_controller_grey);
+			findPreference("playgames").setTitle(
+					R.string.activity_settings_playgames_title_connect);
+		}
+	}
+
+	/**
+	 * Google Play Games related
+	 */
+
+	public GameHelper getGameHelper() {
+		if (mPlaygamesHelper == null) {
+			mPlaygamesHelper = new GameHelper(this, GameHelper.CLIENT_GAMES);
+			mPlaygamesHelper.enableDebugLog(false);
+			mPlaygamesHelper.setMaxAutoSignInAttempts(0); // Never AutoSignIn
+		}
+		return mPlaygamesHelper;
+	}
+
+	@Override
+	protected void onStart() {
+		super.onStart();
+		mPlaygamesHelper.onStart(this);
+	}
+
+	@Override
+	protected void onStop() {
+		super.onStop();
+		mPlaygamesHelper.onStop();
 	}
 
 }
