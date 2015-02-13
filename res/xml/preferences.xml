@@ -3,22 +3,27 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content" >
 
-    <!-- Active account settings -->
+    <!-- General settings -->
     <PreferenceCategory
-        android:summary="@string/activity_settings_cat_active_account_summary"
-        android:title="@string/activity_settings_cat_active_account_title" >
+        android:summary="@string/activity_settings_cat_general_summary"
+        android:title="@string/activity_settings_cat_general_title" >
         <Preference
-            android:key="logout"
-            android:summary="@string/activity_settings_logout_summary"
-            android:title="@string/activity_settings_logout_title" />
+            android:icon="@drawable/games_controller_grey"
+            android:key="playgames"
+            android:summary="@string/activity_settings_playgames_summary"
+            android:title="@string/activity_settings_playgames_title_connect" />
 
-        <EditTextPreference
-            android:defaultValue="@string/activity_settings_message_sign_default"
-            android:enabled="false"
-            android:key="messagingSignature"
-            android:positiveButtonText="@string/activity_settings_message_sign_positive_btn"
-            android:summary="@string/activity_settings_message_sign_summary"
-            android:title="@string/activity_settings_message_sign_title" />
+        <CheckBoxPreference
+            android:key="hideAds"
+            android:summary="@string/activity_settings_hideads_summary"
+            android:title="@string/activity_settings_hideads_title" />
+        <!--
+        <CheckBoxPreference
+            android:key="debugging"
+            android:summary="@string/activity_settings_debug_summary"
+            android:title="@string/activity_settings_debug_title" />
+        -->
+
     </PreferenceCategory>
 
     <!-- Notifications settings -->
@@ -87,48 +92,62 @@
         </PreferenceScreen>
     </PreferenceCategory>
 
-    <!-- General settings -->
+    <!-- Active account settings -->
     <PreferenceCategory
-        android:summary="@string/activity_settings_cat_general_summary"
-        android:title="@string/activity_settings_cat_general_title" >
-        <CheckBoxPreference
-            android:key="hideAds"
-            android:summary="@string/activity_settings_hideads_summary"
-            android:title="@string/activity_settings_hideads_title" />
-        <CheckBoxPreference
-            android:key="debugging"
-            android:summary="@string/activity_settings_debug_summary"
-            android:title="@string/activity_settings_debug_title" />
+        android:summary="@string/activity_settings_cat_active_account_summary"
+        android:title="@string/activity_settings_cat_active_account_title" >
+        <Preference
+            android:key="logout"
+            android:summary="@string/activity_settings_logout_summary"
+            android:title="@string/activity_settings_logout_title" />
+
+        <EditTextPreference
+            android:defaultValue="@string/activity_settings_message_sign_default"
+            android:enabled="false"
+            android:key="messagingSignature"
+            android:positiveButtonText="@string/activity_settings_message_sign_positive_btn"
+            android:summary="@string/activity_settings_message_sign_summary"
+            android:title="@string/activity_settings_message_sign_title" />
     </PreferenceCategory>
 
-    <!-- Help section -->
+    <!-- Help + About in a different screen -->
     <PreferenceCategory
         android:summary="@string/activity_settings_cat_help_summary"
         android:title="@string/activity_settings_cat_help_title" >
-        <Preference
-            android:key="help"
-            android:title="@string/activity_settings_help_title" />
-        <Preference
-            android:key="privacyPolicy"
-            android:title="@string/activity_settings_privacy_title" />
-        <Preference
-            android:key="tutorial"
-            android:title="@string/activity_settings_tutorial_title" />
-    </PreferenceCategory>
+        <PreferenceScreen
+            android:summary="@string/activity_settings_cat_help_summary"
+            android:title="@string/activity_settings_cat_help_title" >
 
-    <!-- About section -->
-    <PreferenceCategory
-        android:summary="about MDroid and developer"
-        android:title="About" >
-        <Preference
-            android:key="aboutMDroid"
-            android:title="@string/activity_settings_website_title" />
-        <Preference
-            android:key="aboutDev"
-            android:title="@string/activity_settings_dev_title" />
-        <Preference
-            android:key="licenses"
-            android:title="@string/activity_settings_osl_title" />
+            <!-- Help section -->
+            <PreferenceCategory
+                android:summary="@string/activity_settings_cat_help_summary"
+                android:title="@string/activity_settings_cat_help_title" >
+                <Preference
+                    android:key="help"
+                    android:title="@string/activity_settings_help_title" />
+                <Preference
+                    android:key="privacyPolicy"
+                    android:title="@string/activity_settings_privacy_title" />
+                <Preference
+                    android:key="tutorial"
+                    android:title="@string/activity_settings_tutorial_title" />
+            </PreferenceCategory>
+
+            <!-- About section -->
+            <PreferenceCategory
+                android:summary="about MDroid and developer"
+                android:title="About" >
+                <Preference
+                    android:key="aboutMDroid"
+                    android:title="@string/activity_settings_website_title" />
+                <Preference
+                    android:key="aboutDev"
+                    android:title="@string/activity_settings_dev_title" />
+                <Preference
+                    android:key="licenses"
+                    android:title="@string/activity_settings_osl_title" />
+            </PreferenceCategory>
+        </PreferenceScreen>
     </PreferenceCategory>
 
 </PreferenceScreen>
