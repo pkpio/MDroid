@@ -135,6 +135,7 @@
     <string name="activity_settings_playgames_title_connect">Connect Google Playgames</string>
     <string name="activity_settings_playgames_title_disconnect">Disconnect Google Playgames</string>
     <string name="activity_settings_playgames_summary">Moodle on MDroid can be fun!</string>
+    <string name="activity_settings_playgames_achiev_title">Achievements</string>
     <string name="activity_settings_hideads_title">Hide ads temporarily</string>
     <string name="activity_settings_hideads_summary">Works only for 3 times. To hide them permanently, please make a donation.</string>
     <string name="activity_settings_debug_title">Advanced logging</string>
