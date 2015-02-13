@@ -1,4 +1,4 @@
-package in.co.praveenkumar.mdroid.basegameutils;
+package in.co.praveenkumar.mdroid.playgames;
 
 import in.co.praveenkumar.R;
 

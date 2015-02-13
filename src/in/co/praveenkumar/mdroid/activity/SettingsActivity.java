@@ -1,11 +1,11 @@
 package in.co.praveenkumar.mdroid.activity;
 
 import in.co.praveenkumar.R;
-import in.co.praveenkumar.mdroid.basegameutils.GameHelper;
 import in.co.praveenkumar.mdroid.dialog.LogoutDialog;
 import in.co.praveenkumar.mdroid.helper.ApplicationClass;
 import in.co.praveenkumar.mdroid.helper.Param;
 import in.co.praveenkumar.mdroid.helper.SessionSetting;
+import in.co.praveenkumar.mdroid.playgames.GameHelper;
 import in.co.praveenkumar.mdroid.service.ScheduleReceiver;
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -30,7 +30,7 @@ public class SettingsActivity extends PreferenceActivity implements
 	SharedPreferences settings;
 
 	// Google Play Games related
-	protected GameHelper mPlaygamesHelper;
+	protected GameHelper mGameHelper;
 
 	@SuppressWarnings("deprecation")
 	@Override
@@ -39,10 +39,10 @@ public class SettingsActivity extends PreferenceActivity implements
 		setTitle("Settings");
 
 		// Play games related
-		if (mPlaygamesHelper == null) {
+		if (mGameHelper == null) {
 			getGameHelper();
 		}
-		mPlaygamesHelper.setup(this);
+		mGameHelper.setup(this);
 
 		// Send a tracker
 		((ApplicationClass) getApplication())
@@ -129,10 +129,10 @@ public class SettingsActivity extends PreferenceActivity implements
 		}
 
 		if (key.contentEquals("playgames")) {
-			if (!mPlaygamesHelper.isSignedIn())
-				mPlaygamesHelper.beginUserInitiatedSignIn();
+			if (!mGameHelper.isSignedIn())
+				mGameHelper.beginUserInitiatedSignIn();
 			else
-				mPlaygamesHelper.signOut();
+				mGameHelper.signOut();
 			updatePlayLoginState();
 		}
 
@@ -227,7 +227,7 @@ public class SettingsActivity extends PreferenceActivity implements
 			super.onActivityResult(requestCode, resultCode, data);
 
 		// GPG related
-		mPlaygamesHelper.onActivityResult(requestCode, resultCode, data);
+		mGameHelper.onActivityResult(requestCode, resultCode, data);
 	}
 
 	private Boolean isProUser() {
@@ -255,16 +255,19 @@ public class SettingsActivity extends PreferenceActivity implements
 		updatePlayLoginState();
 	}
 
-	@SuppressWarnings("deprecation")
 	@SuppressLint("NewApi")
+	@SuppressWarnings("deprecation")
 	void updatePlayLoginState() {
-		if (mPlaygamesHelper.isSignedIn()) {
-			findPreference("playgames").setIcon(R.drawable.games_controller);
+		if (mGameHelper.isSignedIn()) {
+			if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.HONEYCOMB)
+				findPreference("playgames")
+						.setIcon(R.drawable.games_controller);
 			findPreference("playgames").setTitle(
 					R.string.activity_settings_playgames_title_disconnect);
 		} else {
-			findPreference("playgames").setIcon(
-					R.drawable.games_controller_grey);
+			if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.HONEYCOMB)
+				findPreference("playgames").setIcon(
+						R.drawable.games_controller_grey);
 			findPreference("playgames").setTitle(
 					R.string.activity_settings_playgames_title_connect);
 		}
@@ -275,24 +278,24 @@ public class SettingsActivity extends PreferenceActivity implements
 	 */
 
 	public GameHelper getGameHelper() {
-		if (mPlaygamesHelper == null) {
-			mPlaygamesHelper = new GameHelper(this, GameHelper.CLIENT_GAMES);
-			mPlaygamesHelper.enableDebugLog(false);
-			mPlaygamesHelper.setMaxAutoSignInAttempts(0); // Never AutoSignIn
+		if (mGameHelper == null) {
+			mGameHelper = new GameHelper(this, GameHelper.CLIENT_GAMES);
+			mGameHelper.enableDebugLog(false);
+			mGameHelper.setMaxAutoSignInAttempts(0); // Never AutoSignIn
 		}
-		return mPlaygamesHelper;
+		return mGameHelper;
 	}
 
 	@Override
 	protected void onStart() {
 		super.onStart();
-		mPlaygamesHelper.onStart(this);
+		mGameHelper.onStart(this);
 	}
 
 	@Override
 	protected void onStop() {
 		super.onStop();
-		mPlaygamesHelper.onStop();
+		mGameHelper.onStop();
 	}
 
 }

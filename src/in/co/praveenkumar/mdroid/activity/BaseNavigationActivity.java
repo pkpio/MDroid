@@ -1,10 +1,10 @@
 package in.co.praveenkumar.mdroid.activity;
 
 import in.co.praveenkumar.R;
-import in.co.praveenkumar.mdroid.basegameutils.GameHelper;
 import in.co.praveenkumar.mdroid.helper.AppInterface.DonationInterface;
 import in.co.praveenkumar.mdroid.helper.AppInterface.DrawerStateInterface;
 import in.co.praveenkumar.mdroid.helper.Param;
+import in.co.praveenkumar.mdroid.playgames.GameHelper;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;

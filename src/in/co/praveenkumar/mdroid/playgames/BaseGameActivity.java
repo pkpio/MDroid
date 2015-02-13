@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package in.co.praveenkumar.mdroid.basegameutils;
+package in.co.praveenkumar.mdroid.playgames;
 
 import android.content.Intent;
 import android.os.Bundle;
