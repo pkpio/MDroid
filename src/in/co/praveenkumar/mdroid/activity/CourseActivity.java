@@ -57,7 +57,8 @@ public class CourseActivity extends BaseNavigationActivity {
 
 		// Check for any playGames unlocks
 		GameUnlocker mGameUnlocker = new GameUnlocker(getApplicationContext());
-		mGameUnlocker.publishAcheivements(getApiClient());
+		if (isSignedIn())
+			mGameUnlocker.publishAcheivements(getApiClient());
 	}
 
 	class CourseTabsAdapter extends FragmentPagerAdapter {
