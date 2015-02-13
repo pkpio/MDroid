@@ -26,11 +26,9 @@ public class SettingsActivity extends PreferenceActivity implements
 		OnPreferenceClickListener, OnPreferenceChangeListener,
 		GameHelper.GameHelperListener {
 	SessionSetting session;
-	public BillingProcessor billing;
+	BillingProcessor billing;
 	SharedPreferences settings;
-
-	// Google Play Games related
-	protected GameHelper mGameHelper;
+	GameHelper mGameHelper;
 
 	@SuppressWarnings("deprecation")
 	@Override
