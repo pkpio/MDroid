@@ -1,6 +1,7 @@
 package in.co.praveenkumar.mdroid.activity;
 
 import in.co.praveenkumar.R;
+import in.co.praveenkumar.mdroid.basegameutils.GameHelper;
 import in.co.praveenkumar.mdroid.helper.AppInterface.DonationInterface;
 import in.co.praveenkumar.mdroid.helper.AppInterface.DrawerStateInterface;
 import in.co.praveenkumar.mdroid.helper.Param;
@@ -21,7 +22,6 @@ import android.widget.Toast;
 import com.anjlab.android.iab.v3.BillingProcessor;
 import com.anjlab.android.iab.v3.TransactionDetails;
 import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.example.games.basegameutils.GameHelper;
 
 /**
  * Extending this would implement a side navigation and billing capabilities
