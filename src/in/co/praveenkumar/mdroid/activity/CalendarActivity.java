@@ -19,5 +19,8 @@ public class CalendarActivity extends BaseNavigationActivity {
 
 		getSupportActionBar().setTitle("Calendar");
 		getSupportActionBar().setIcon(R.drawable.icon_today);
+
+		// GPG testing
+		beginUserInitiatedSignIn();
 	}
 }
