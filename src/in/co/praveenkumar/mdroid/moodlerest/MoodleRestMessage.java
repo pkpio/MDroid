@@ -87,6 +87,14 @@ public class MoodleRestMessage {
 
 			MoodleMessage mMessage = mMessages.get(0);
 			if (mMessage.getMsgid() == -1) {
+				/**
+				 * Don't show error when moodle gives null error. Some issue on
+				 * Moodle end. Report and wait for a fix. Till then, say sent
+				 * because messages are actually being sent in this case.
+				 */
+				if (mMessage.getErrormessage() == null
+						|| mMessage.getErrormessage().contentEquals("null"))
+					return true;
 				error = mMessage.getErrormessage();
 				return false;
 			}
