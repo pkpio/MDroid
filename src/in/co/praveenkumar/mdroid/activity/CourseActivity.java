@@ -54,11 +54,6 @@ public class CourseActivity extends BaseNavigationActivity {
 
 		SlidingTabLayout mSlidingTabLayout = (SlidingTabLayout) findViewById(R.id.sliding_tabs);
 		mSlidingTabLayout.setViewPager(viewPager);
-
-		// Check for any playGames unlocks
-		GameUnlocker mGameUnlocker = new GameUnlocker(getApplicationContext());
-		if (isSignedIn())
-			mGameUnlocker.publishAcheivements(getApiClient());
 	}
 
 	class CourseTabsAdapter extends FragmentPagerAdapter {
@@ -140,6 +135,16 @@ public class CourseActivity extends BaseNavigationActivity {
 			}
 		}
 		super.onBackPressed();
+	}
+
+	@Override
+	public void onSignInSucceeded() {
+		// Check for any playGames unlocks
+		GameUnlocker mGameUnlocker = new GameUnlocker(getApplicationContext());
+		if (isSignedIn())
+			mGameUnlocker.publishAcheivements(getApiClient());
+		else
+			System.out.println("Not logged in! :(");
 	}
 
 }
