@@ -132,7 +132,13 @@ public class LoginTask extends AsyncTask<String, String, Boolean> {
 		MoodleRestToken mrt = new MoodleRestToken(username, password, mUrl);
 		MoodleToken mt = mrt.getToken();
 
-		if (mt == null || mt.getToken() == null) {
+		if (mt == null) {
+			publishProgress("\n" + context.getString(R.string.login_error)
+					+ "\n" + context.getString(R.string.login_unknown_error));
+			return false;
+		}
+
+		if (mt.getToken() == null) {
 			publishProgress(context.getString(R.string.login_prog_token_failed));
 			publishProgress("\n" + context.getString(R.string.login_error)
 					+ "\n" + mt.getError());
