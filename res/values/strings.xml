@@ -47,6 +47,18 @@
     <string name="activity_login_progress_retry">Retry</string>
     <string name="activity_login_demo">Demo</string>
     <string name="activity_login_help">What\'s this</string>
+    <string name="login_prog_loggingin">Logging in..</string>
+    <string name="login_prog_sync_data">Syncing data</string>
+    <string name="login_prog_sync_course">Syncing courses</string>
+    <string name="login_prog_sync_message">Syncing messages</string>
+    <string name="login_prog_sync_contact">Syncing contacts</string>
+    <string name="login_prog_welcome">Welcome</string>
+    <string name="login_prog_sync_done">Sync complete!</string>
+    <string name="login_prog_sync_failed">Sync failed!</string>
+    <string name="login_prog_token_failed">Token fetch failed!</string>
+    <string name="login_prog_siteinfo_failed">Siteinfo fetch failed!</string>
+    <string name="login_error">Error</string>
+    <string name="login_errorcode">Error code</string>
 
     <!-- Webservices help -->
     <string name="activity_webservices_main_title">Webservices off</string>
