@@ -257,7 +257,6 @@ public class SettingsActivity extends PreferenceActivity implements
 
 	@Override
 	public void onSignInFailed() {
-		updatePlayLoginState();
 	}
 
 	@Override
@@ -269,15 +268,21 @@ public class SettingsActivity extends PreferenceActivity implements
 	@SuppressWarnings("deprecation")
 	void updatePlayLoginState() {
 		if (mGameHelper.isSignedIn()) {
-			if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.HONEYCOMB)
+			if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.HONEYCOMB) {
 				findPreference("playgames")
 						.setIcon(R.drawable.games_controller);
+				findPreference("playgames_acheivement").setIcon(
+						R.drawable.games_achievements_green);
+			}
 			findPreference("playgames").setTitle(
 					R.string.activity_settings_playgames_title_disconnect);
 		} else {
-			if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.HONEYCOMB)
+			if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.HONEYCOMB) {
 				findPreference("playgames").setIcon(
 						R.drawable.games_controller_grey);
+				findPreference("playgames_acheivement").setIcon(
+						R.drawable.games_achievements);
+			}
 			findPreference("playgames").setTitle(
 					R.string.activity_settings_playgames_title_connect);
 		}

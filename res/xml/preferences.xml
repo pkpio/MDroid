@@ -13,7 +13,7 @@
             android:summary="@string/activity_settings_playgames_summary"
             android:title="@string/activity_settings_playgames_title_connect" />
         <Preference
-            android:icon="@drawable/games_achievements_green"
+            android:icon="@drawable/games_achievements"
             android:key="playgames_acheivement"
             android:title="@string/activity_settings_playgames_achiev_title" />
 
