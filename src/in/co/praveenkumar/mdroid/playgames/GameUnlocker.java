@@ -97,30 +97,30 @@ public class GameUnlocker {
 	 *            GoogleApiClient
 	 */
 	public void publishAcheivements(GoogleApiClient mApiClient) {
-		// if (!mApiClient.isConnected()) {
-		// System.out.println("Not connected");
-		// return;
-		// }
+		if (!mApiClient.isConnected())
+			return;
 
 		// Update use counts
 		int countDiff = getUseCount() - getUploadedUseCount();
 		System.out.println("Diff Count is:" + countDiff);
-		Games.Achievements.increment(mApiClient,
-				getString(R.string.achievement_use_5_times), countDiff);
-		Games.Achievements.increment(mApiClient,
-				getString(R.string.achievement_use_10_times), countDiff);
-		Games.Achievements.increment(mApiClient,
-				getString(R.string.achievement_use_15_times), countDiff);
-		Games.Achievements.increment(mApiClient,
-				getString(R.string.achievement_use_25_times), countDiff);
-		Games.Achievements.increment(mApiClient,
-				getString(R.string.achievement_use_35_times), countDiff);
-		Games.Achievements.increment(mApiClient,
-				getString(R.string.achievement_use_50_times), countDiff);
-		Games.Achievements.increment(mApiClient,
-				getString(R.string.achievement_use_75_times), countDiff);
-		Games.Achievements.increment(mApiClient,
-				getString(R.string.achievement_use_100_times), countDiff);
+		if (countDiff > 0) {
+			Games.Achievements.increment(mApiClient,
+					getString(R.string.achievement_use_5_times), countDiff);
+			Games.Achievements.increment(mApiClient,
+					getString(R.string.achievement_use_10_times), countDiff);
+			Games.Achievements.increment(mApiClient,
+					getString(R.string.achievement_use_15_times), countDiff);
+			Games.Achievements.increment(mApiClient,
+					getString(R.string.achievement_use_25_times), countDiff);
+			Games.Achievements.increment(mApiClient,
+					getString(R.string.achievement_use_35_times), countDiff);
+			Games.Achievements.increment(mApiClient,
+					getString(R.string.achievement_use_50_times), countDiff);
+			Games.Achievements.increment(mApiClient,
+					getString(R.string.achievement_use_75_times), countDiff);
+			Games.Achievements.increment(mApiClient,
+					getString(R.string.achievement_use_100_times), countDiff);
+		}
 		updateUploadedUseCount();
 
 		// Days streak unlocks
@@ -210,7 +210,7 @@ public class GameUnlocker {
 	 */
 	private void incrementMaxStreak() {
 		Log.d(DEBUG_TAG, "Max. Streak incremented");
-		prefsEditor.putInt("maxstreak", getCurrentStreak() + 1);
+		prefsEditor.putInt("maxstreak", getMaxStreak() + 1);
 		prefsEditor.commit();
 	}
 
