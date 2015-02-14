@@ -10,10 +10,14 @@ import in.co.praveenkumar.mdroid.model.MoodleCourse;
 import in.co.praveenkumar.mdroid.model.MoodleDiscussion;
 import in.co.praveenkumar.mdroid.model.MoodleEvent;
 import in.co.praveenkumar.mdroid.model.MoodleForum;
+import in.co.praveenkumar.mdroid.model.MoodleMessage;
 import in.co.praveenkumar.mdroid.model.MoodleModule;
 import in.co.praveenkumar.mdroid.model.MoodleModuleContent;
 import in.co.praveenkumar.mdroid.model.MoodlePost;
+import in.co.praveenkumar.mdroid.model.MoodleSection;
 import in.co.praveenkumar.mdroid.model.MoodleSiteInfo;
+import in.co.praveenkumar.mdroid.model.MoodleUser;
+import in.co.praveenkumar.mdroid.model.MoodleUserCourse;
 
 import java.io.File;
 
@@ -86,16 +90,20 @@ public class LogoutDialog extends Dialog implements
 		SessionSetting session = new SessionSetting(context);
 
 		// Now delete all other info related to that site
+		MoodleContact.deleteAll(MoodleContact.class, "siteid = ?", siteid + "");
 		MoodleCourse.deleteAll(MoodleCourse.class, "siteid = ?", siteid + "");
-		MoodleModuleContent.deleteAll(MoodleModuleContent.class, "siteid = ?",
-				siteid + "");
-		MoodleModule.deleteAll(MoodleModule.class, "siteid = ?", siteid + "");
-		MoodleForum.deleteAll(MoodleForum.class, "siteid = ?", siteid + "");
 		MoodleDiscussion.deleteAll(MoodleDiscussion.class, "siteid = ?", siteid
 				+ "");
-		MoodlePost.deleteAll(MoodlePost.class, "siteid = ?", siteid + "");
-		MoodleContact.deleteAll(MoodleContact.class, "siteid = ?", siteid + "");
 		MoodleEvent.deleteAll(MoodleEvent.class, "siteid = ?", siteid + "");
+		MoodleForum.deleteAll(MoodleForum.class, "siteid = ?", siteid + "");
+		MoodleMessage.deleteAll(MoodleMessage.class, "siteid = ?", siteid + "");
+		MoodleModule.deleteAll(MoodleModule.class, "siteid = ?", siteid + "");
+		MoodleModuleContent.deleteAll(MoodleModuleContent.class, "siteid = ?",
+				siteid + "");
+		MoodlePost.deleteAll(MoodlePost.class, "siteid = ?", siteid + "");
+		MoodleSection.deleteAll(MoodleSection.class, "siteid = ?", siteid + "");
+		MoodleUser.deleteAll(MoodleUser.class, "siteid = ?", siteid + "");
+		MoodleUserCourse.deleteAll(MoodleUserCourse.class, "siteid = ?", siteid + "");
 
 		Intent i;
 		if (session.getCurrentSiteId() == SessionSetting.NO_SITE_ID)
