@@ -1,5 +1,6 @@
 package in.co.praveenkumar.mdroid.task;
 
+import in.co.praveenkumar.R;
 import in.co.praveenkumar.mdroid.activity.CourseActivity;
 import in.co.praveenkumar.mdroid.activity.WebservicesoffActivity;
 import in.co.praveenkumar.mdroid.helper.SessionSetting;
@@ -15,7 +16,7 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 
-public class LoginTask extends AsyncTask<String, Integer, Boolean> {
+public class LoginTask extends AsyncTask<String, String, Boolean> {
 	String username;
 	String password;
 	String mUrl;
@@ -76,16 +77,22 @@ public class LoginTask extends AsyncTask<String, Integer, Boolean> {
 
 	@Override
 	protected void onPreExecute() {
-		progressViews.loginButton.setText("Logging in..");
+		progressViews.loginButton.setText(context
+				.getString(R.string.login_prog_loggingin));
 		progressViews.loginButton.setEnabled(false);
 		progressViews.retryButton.setVisibility(Button.GONE);
 		progressViews.statusLayout.setVisibility(RelativeLayout.VISIBLE);
 		progressViews.progressBar.setVisibility(ProgressBar.VISIBLE);
-		progressViews.progressTitle.setText("Logging in..");
+		progressViews.progressTitle.setText(context
+				.getString(R.string.login_prog_loggingin));
 	}
 
 	@Override
-	protected void onProgressUpdate(Integer... params) {
+	protected void onProgressUpdate(String... params) {
+		if (params == null || params.length == 0)
+			return;
+
+		progress += params[0] + "\n";
 		progressViews.progressText.setText(progress);
 	}
 
@@ -102,20 +109,15 @@ public class LoginTask extends AsyncTask<String, Integer, Boolean> {
 			return false;
 
 		// Sync data
-		updateProgress("Syncing data");
+		publishProgress("Syncing data");
 		new DownloadTask(null).download(siteInfo.getUserpictureurl(), "", "."
 				+ siteInfo.getId(), false, DownloadTask.APP_DOWNLOADER);
 		if (!getCourseInfo())
 			return false;
 		getMessagesContacts();
 
-		updateProgress("\nSync complete!");
+		publishProgress("\nSync complete!");
 		return true;
-	}
-
-	private void updateProgress(String status) {
-		progress += status + "\n";
-		publishProgress(0);
 	}
 
 	/**
@@ -126,13 +128,13 @@ public class LoginTask extends AsyncTask<String, Integer, Boolean> {
 	 * @author Praveen Kumar Pendyala (praveen@praveenkumar.co.in)
 	 */
 	private Boolean getToken() {
-		updateProgress("Fetching token");
+		publishProgress("Fetching token");
 		MoodleRestToken mrt = new MoodleRestToken(username, password, mUrl);
 		MoodleToken mt = mrt.getToken();
 
 		if (mt == null || mt.getToken() == null) {
-			updateProgress("Token fetch failed!");
-			updateProgress("\nError\n" + mt.getError());
+			publishProgress("Token fetch failed!");
+			publishProgress("\nError\n" + mt.getError());
 
 			// Check webservice here. We are using a short text because, the
 			// Moodle could be setup with a non-english language.
@@ -142,9 +144,9 @@ public class LoginTask extends AsyncTask<String, Integer, Boolean> {
 				webservices = true;
 
 			if (session.getDebugMode()) {
-				updateProgress("Moodle url: " + mt.getReproductionlink());
-				updateProgress("Stacktrace: " + mt.getStacktrace());
-				updateProgress("Debug info: " + mt.getDebuginfo());
+				publishProgress("Moodle url: " + mt.getReproductionlink());
+				publishProgress("Stacktrace: " + mt.getStacktrace());
+				publishProgress("Debug info: " + mt.getDebuginfo());
 			}
 
 			return false;
@@ -162,17 +164,17 @@ public class LoginTask extends AsyncTask<String, Integer, Boolean> {
 	 * @author Praveen Kumar Pendyala (praveen@praveenkumar.co.in)
 	 */
 	private Boolean getSiteInfo() {
-		updateProgress("Fetching site info");
+		publishProgress("Fetching site info");
 		MoodleRestSiteInfo mrsi = new MoodleRestSiteInfo(mUrl, token);
 		siteInfo = mrsi.getSiteInfo();
 		if (siteInfo.getFullname() == null) {
-			updateProgress("Siteinfo fetch failed!");
-			updateProgress("\nError code: \n" + siteInfo.getErrorcode());
+			publishProgress("Siteinfo fetch failed!");
+			publishProgress("\nError code: \n" + siteInfo.getErrorcode());
 
 			if (session.getDebugMode()) {
-				updateProgress("Exception: " + siteInfo.getException());
-				updateProgress("Message: " + siteInfo.getMessage());
-				updateProgress("Debug info: " + siteInfo.getDebuginfo());
+				publishProgress("Exception: " + siteInfo.getException());
+				publishProgress("Message: " + siteInfo.getMessage());
+				publishProgress("Debug info: " + siteInfo.getDebuginfo());
 			}
 
 			return false;
@@ -181,7 +183,7 @@ public class LoginTask extends AsyncTask<String, Integer, Boolean> {
 		siteInfo.save();
 		session.setCurrentSiteId(siteInfo.getId());
 
-		updateProgress("\nWelcome " + siteInfo.getFullname() + "!\n");
+		publishProgress("\nWelcome " + siteInfo.getFullname() + "!\n");
 
 		return true;
 	}
@@ -196,11 +198,11 @@ public class LoginTask extends AsyncTask<String, Integer, Boolean> {
 	private Boolean getCourseInfo() {
 		CourseSyncTask cs = new CourseSyncTask(mUrl, token, siteInfo.getId());
 
-		updateProgress("Syncing courses");
+		publishProgress("Syncing courses");
 		Boolean usrCourseSyncStatus = cs.syncUserCourses();
 		if (!usrCourseSyncStatus) {
-			updateProgress(cs.getError());
-			updateProgress("\nSync failed!");
+			publishProgress(cs.getError());
+			publishProgress("\nSync failed!");
 		}
 
 		// Success on user's course sync is what matters
@@ -221,10 +223,10 @@ public class LoginTask extends AsyncTask<String, Integer, Boolean> {
 		MessageSyncTask mst = new MessageSyncTask(mUrl, token, siteInfo.getId());
 		ContactSyncTask cst = new ContactSyncTask(mUrl, token, siteInfo.getId());
 
-		updateProgress("Syncing messages");
+		publishProgress("Syncing messages");
 		Boolean messageSync = mst.syncMessages(siteInfo.getUserid());
 
-		updateProgress("Syncing contacts");
+		publishProgress("Syncing contacts");
 		Boolean contactSync = cst.syncAllContacts();
 
 		// Success on user's course sync is what matters
