@@ -45,20 +45,8 @@ Code contributions
 
 
 Translating
----------------
-- Download the strings file from ```res/values/string.xml``` [direct link][2]
-- All you need to do is translate words in this file as shown in the below example,
-   - English (untranslated) 
-   ```xml 
-   <string name="activity_tutorial_beautiful">Hello Beautiful!</string>
-   ```
-   - Spanish (translated)
-   ```xml 
-   <string name="activity_tutorial_beautiful">Hello compañero!</string>
-   ```
-- Send me the new file with translated strings and done!
-
-If you are familiar with Github, you may send a pull request with the new strings file placed in appropriate directory. Example, the Spanish translated strings would be at ```res/values-es/strings.xml``` You may find [this][3] helpful
+--------------------
+MDroid Translation page: https://crowdin.com/project/mdroid
 
 
 Older versions
