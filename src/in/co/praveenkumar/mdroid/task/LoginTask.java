@@ -109,14 +109,14 @@ public class LoginTask extends AsyncTask<String, String, Boolean> {
 			return false;
 
 		// Sync data
-		publishProgress("Syncing data");
+		publishProgress(context.getString(R.string.login_prog_sync_data));
 		new DownloadTask(null).download(siteInfo.getUserpictureurl(), "", "."
 				+ siteInfo.getId(), false, DownloadTask.APP_DOWNLOADER);
 		if (!getCourseInfo())
 			return false;
 		getMessagesContacts();
 
-		publishProgress("\nSync complete!");
+		publishProgress("\n" + context.getString(R.string.login_prog_sync_done));
 		return true;
 	}
 
@@ -133,8 +133,9 @@ public class LoginTask extends AsyncTask<String, String, Boolean> {
 		MoodleToken mt = mrt.getToken();
 
 		if (mt == null || mt.getToken() == null) {
-			publishProgress("Token fetch failed!");
-			publishProgress("\nError\n" + mt.getError());
+			publishProgress(context.getString(R.string.login_prog_token_failed));
+			publishProgress("\n" + context.getString(R.string.login_error)
+					+ "\n" + mt.getError());
 
 			// Check webservice here. We are using a short text because, the
 			// Moodle could be setup with a non-english language.
@@ -168,8 +169,10 @@ public class LoginTask extends AsyncTask<String, String, Boolean> {
 		MoodleRestSiteInfo mrsi = new MoodleRestSiteInfo(mUrl, token);
 		siteInfo = mrsi.getSiteInfo();
 		if (siteInfo.getFullname() == null) {
-			publishProgress("Siteinfo fetch failed!");
-			publishProgress("\nError code: \n" + siteInfo.getErrorcode());
+			publishProgress(context
+					.getString(R.string.login_prog_siteinfo_failed));
+			publishProgress("\n" + context.getString(R.string.login_errorcode)
+					+ ": \n" + siteInfo.getErrorcode());
 
 			if (session.getDebugMode()) {
 				publishProgress("Exception: " + siteInfo.getException());
@@ -183,7 +186,8 @@ public class LoginTask extends AsyncTask<String, String, Boolean> {
 		siteInfo.save();
 		session.setCurrentSiteId(siteInfo.getId());
 
-		publishProgress("\nWelcome " + siteInfo.getFullname() + "!\n");
+		publishProgress("\n" + context.getString(R.string.login_prog_welcome)
+				+ " " + siteInfo.getFullname() + "!\n");
 
 		return true;
 	}
@@ -198,11 +202,12 @@ public class LoginTask extends AsyncTask<String, String, Boolean> {
 	private Boolean getCourseInfo() {
 		CourseSyncTask cs = new CourseSyncTask(mUrl, token, siteInfo.getId());
 
-		publishProgress("Syncing courses");
+		publishProgress(context.getString(R.string.login_prog_sync_course));
 		Boolean usrCourseSyncStatus = cs.syncUserCourses();
 		if (!usrCourseSyncStatus) {
 			publishProgress(cs.getError());
-			publishProgress("\nSync failed!");
+			publishProgress("\n"
+					+ context.getString(R.string.login_prog_sync_failed));
 		}
 
 		// Success on user's course sync is what matters
@@ -223,10 +228,10 @@ public class LoginTask extends AsyncTask<String, String, Boolean> {
 		MessageSyncTask mst = new MessageSyncTask(mUrl, token, siteInfo.getId());
 		ContactSyncTask cst = new ContactSyncTask(mUrl, token, siteInfo.getId());
 
-		publishProgress("Syncing messages");
+		publishProgress(context.getString(R.string.login_prog_sync_message));
 		Boolean messageSync = mst.syncMessages(siteInfo.getUserid());
 
-		publishProgress("Syncing contacts");
+		publishProgress(context.getString(R.string.login_prog_sync_contact));
 		Boolean contactSync = cst.syncAllContacts();
 
 		// Success on user's course sync is what matters
