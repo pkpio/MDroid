@@ -5,6 +5,7 @@ import in.co.praveenkumar.mdroid.helper.AppInterface.DonationInterface;
 import in.co.praveenkumar.mdroid.helper.AppInterface.DrawerStateInterface;
 import in.co.praveenkumar.mdroid.helper.Param;
 import in.co.praveenkumar.mdroid.playgames.GameHelper;
+import in.co.praveenkumar.mdroid.playgames.GameUnlocker;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -82,6 +83,14 @@ public abstract class BaseNavigationActivity extends ActionBarActivity
 					public void onPurchaseHistoryRestored() {
 					}
 				});
+	}
+
+	@Override
+	public void onResume() {
+		super.onResume();
+		// Game streak is hard, important and can't be mixed or broken!
+		GameUnlocker mGameUnlocker = new GameUnlocker(getApplicationContext());
+		mGameUnlocker.updateMaxStreak();
 	}
 
 	public void setUpDrawer() {
