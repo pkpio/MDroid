@@ -58,6 +58,7 @@
     <string name="login_prog_token_failed">Token fetch failed!</string>
     <string name="login_prog_siteinfo_failed">Siteinfo fetch failed!</string>
     <string name="login_error">Error</string>
+    <string name="login_unknown_error">Unknown error</string>
     <string name="login_errorcode">Error code</string>
 
     <!-- Webservices help -->
