@@ -1,7 +1,6 @@
 package in.co.praveenkumar.mdroid.helper;
 
 import in.co.praveenkumar.R;
-import in.co.praveenkumar.mdroid.playgames.GameUnlocker;
 
 import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.HitBuilders;
@@ -19,9 +18,6 @@ public class ApplicationClass extends SugarApp {
 	@Override
 	public void onCreate() {
 		super.onCreate();
-		GameUnlocker mGameUnlocker = new GameUnlocker(getApplicationContext());
-		mGameUnlocker.incrementUseCount();
-		mGameUnlocker.updateMaxStreak();
 	}
 
 	synchronized public Tracker getTracker() {
