@@ -166,6 +166,11 @@
     <string name="activity_settings_dev_title">Developer</string>
     <string name="activity_settings_osl_title">Open source licenses</string>
 
+    <!-- Play services dialog -->
+    <string name="dialog_playgames_desc">Moodle can fun! Connect to <b>Playgames?</b></string>
+    <string name="dialog_playgames_later">Not now</string>
+    <string name="dialog_playgames_signin">Connect</string>
+
     <!-- Donations related -->
     <string name="donations_header_text">Donate for the features you want to see. Any donation will unlock pro access.</string>
     <string name="donations_already_purchased">You purchased this already!</string>
