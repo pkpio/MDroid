@@ -117,6 +117,7 @@ public class SettingsActivity extends PreferenceActivity implements
 		findPreference("aboutMDroid").setOnPreferenceClickListener(this);
 		findPreference("aboutDev").setOnPreferenceClickListener(this);
 		findPreference("licenses").setOnPreferenceClickListener(this);
+		findPreference("translate").setOnPreferenceClickListener(this);
 	}
 
 	@Override
@@ -174,6 +175,12 @@ public class SettingsActivity extends PreferenceActivity implements
 		if (key.contentEquals("aboutDev")) {
 			Intent browserIntent = new Intent(Intent.ACTION_VIEW,
 					Uri.parse("https://github.com/praveendath92"));
+			startActivity(browserIntent);
+		}
+
+		if (key.contentEquals("translate")) {
+			Intent browserIntent = new Intent(Intent.ACTION_VIEW,
+					Uri.parse("https://crowdin.com/project/mdroid"));
 			startActivity(browserIntent);
 		}
 

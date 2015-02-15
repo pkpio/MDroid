@@ -26,9 +26,9 @@ public class CourseActivity extends BaseNavigationActivity {
 	private static final String[] TABS = { "MY COURSES", "FAVOURITE COURSES" };
 	private StartAppAd startAppAd;
 	PlaygamesDialog mPlaygamesDialog;
+	RateDialog mRateDialog;
 	SharedPreferences mSharedPrefs;
 	SharedPreferences.Editor mSharedPrefseditor;
-	RateDialog mRateDialog;
 	int dialogCount;
 
 	@Override
@@ -66,7 +66,7 @@ public class CourseActivity extends BaseNavigationActivity {
 		// Dialog related work
 		mSharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
 		mSharedPrefseditor = mSharedPrefs.edit();
-		int dialogCount = mSharedPrefs.getInt("dialogCount", 0);
+		dialogCount = mSharedPrefs.getInt("dialogCount", 0);
 		mSharedPrefseditor.putInt("dialogCount", dialogCount + 1);
 		mSharedPrefseditor.commit();
 
