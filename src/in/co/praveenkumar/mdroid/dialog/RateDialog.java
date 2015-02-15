@@ -9,16 +9,15 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 
-public class PlaygamesDialog extends Dialog implements
+public class RateDialog extends Dialog implements
 		android.view.View.OnClickListener {
 	DialogActionListener dialogListener;
 
-	public PlaygamesDialog(Context context) {
+	public RateDialog(Context context) {
 		super(context);
 	}
 
-	public PlaygamesDialog(Context context,
-			DialogActionListener dialogListener) {
+	public RateDialog(Context context, DialogActionListener dialogListener) {
 		super(context);
 		this.dialogListener = dialogListener;
 	}
@@ -27,18 +26,18 @@ public class PlaygamesDialog extends Dialog implements
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
-		setContentView(R.layout.dialog_playservices);
+		setContentView(R.layout.dialog_rate);
 		getWindow().setBackgroundDrawable(
 				new ColorDrawable(android.graphics.Color.TRANSPARENT));
-		findViewById(R.id.dialog_playgames_connect).setOnClickListener(this);
-		findViewById(R.id.dialog_playgames_later).setOnClickListener(this);
+		findViewById(R.id.dialog_rate_later).setOnClickListener(this);
+		findViewById(R.id.dialog_rate_now).setOnClickListener(this);
 	}
 
 	@Override
 	public void onClick(View v) {
-		if (v.getId() == R.id.dialog_playgames_connect)
-			dialogListener.doAction(DialogActionListener.CONNECT_PLAYGAMES);
-		if (v.getId() == R.id.dialog_playgames_later)
+		if (v.getId() == R.id.dialog_rate_now)
+			dialogListener.doAction(DialogActionListener.RATE);
+		if (v.getId() == R.id.dialog_rate_later)
 			dialogListener.doAction(DialogActionListener.CANCEL);
 	}
 
