@@ -207,6 +207,7 @@ public abstract class BaseNavigationActivity extends ActionBarActivity
 	/**
 	 * Google Play Games related
 	 */
+
 	public GameHelper getGameHelper() {
 		if (mHelper == null) {
 			mHelper = new GameHelper(this, GameHelper.CLIENT_GAMES);

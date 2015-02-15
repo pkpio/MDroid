@@ -1,6 +1,7 @@
 package in.co.praveenkumar.mdroid.activity;
 
 import in.co.praveenkumar.R;
+import in.co.praveenkumar.mdroid.dialog.PlaygamesDialog;
 import in.co.praveenkumar.mdroid.fragment.CourseFragment;
 import in.co.praveenkumar.mdroid.helper.ApplicationClass;
 import in.co.praveenkumar.mdroid.helper.Param;
@@ -22,6 +23,7 @@ public class CourseActivity extends BaseNavigationActivity {
 	private ViewPager viewPager;
 	private static final String[] TABS = { "MY COURSES", "FAVOURITE COURSES" };
 	private StartAppAd startAppAd;
+	PlaygamesDialog mPlaygamesDialog;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -145,6 +147,41 @@ public class CourseActivity extends BaseNavigationActivity {
 			mGameUnlocker.publishAcheivements(getApiClient());
 		else
 			System.out.println("Not logged in! :(");
+	}
+
+	@Override
+	public void onSignInFailed() {
+		SharedPreferences sp = PreferenceManager
+				.getDefaultSharedPreferences(this);
+		SharedPreferences.Editor editor = sp.edit();
+		int count = sp.getInt("playDialogCount", 0);
+
+		if (count % 3 == 2) {
+			mPlaygamesDialog = new PlaygamesDialog(this,
+					new PlaygamesDialogListener());
+			mPlaygamesDialog.show();
+		}
+		editor.putInt("playDialogCount", count + 1);
+		editor.commit();
+	}
+
+	public class PlaygamesDialogListener {
+		public final static int cancel = 1;
+		public final static int connect = 2;
+
+		public void doAction(int action) {
+			if (action == connect) {
+				mHelper.beginUserInitiatedSignIn();
+				if (mPlaygamesDialog != null)
+					mPlaygamesDialog.dismiss();
+			}
+
+			if (action == cancel) {
+				if (mPlaygamesDialog != null)
+					mPlaygamesDialog.dismiss();
+			}
+		}
+
 	}
 
 }
