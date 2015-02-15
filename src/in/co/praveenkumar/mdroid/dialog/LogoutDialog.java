@@ -21,10 +21,12 @@ import in.co.praveenkumar.mdroid.model.MoodleUserCourse;
 
 import java.io.File;
 
+import android.annotation.TargetApi;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.view.View;
@@ -33,6 +35,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 public class LogoutDialog extends Dialog implements
 		android.view.View.OnClickListener {
 	Context context;
@@ -103,7 +106,8 @@ public class LogoutDialog extends Dialog implements
 		MoodlePost.deleteAll(MoodlePost.class, "siteid = ?", siteid + "");
 		MoodleSection.deleteAll(MoodleSection.class, "siteid = ?", siteid + "");
 		MoodleUser.deleteAll(MoodleUser.class, "siteid = ?", siteid + "");
-		MoodleUserCourse.deleteAll(MoodleUserCourse.class, "siteid = ?", siteid + "");
+		MoodleUserCourse.deleteAll(MoodleUserCourse.class, "siteid = ?", siteid
+				+ "");
 
 		Intent i;
 		if (session.getCurrentSiteId() == SessionSetting.NO_SITE_ID)
