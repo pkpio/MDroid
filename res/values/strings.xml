@@ -20,15 +20,15 @@
     <string name="activity_tutorial_mdroid_made_description">..and that\' how</string>
     <string name="activity_tutorial_support_title">Support MDroid</string>
     <string name="activity_tutorial_support_description_l1">Donate a dollar</string>
-    <string name="activity_tutorial_support_description_l2">Rate it with 5 stars</string>
-    <string name="activity_tutorial_support_description_l3">It keeps us motivated</string>
+    <string name="activity_tutorial_support_description_l2">Rate it 5 stars</string>
+    <string name="activity_tutorial_support_description_l3">It keeps us going</string>
     <string name="activity_tutorial_contribute_title">You can contribute!</string>
-    <string name="activity_tutorial_contribute_description_l1">Translate to your language</string>
-    <string name="activity_tutorial_contribute_description_l2">Code a cool feature</string>
+    <string name="activity_tutorial_contribute_description_l1">Translate to a language</string>
+    <string name="activity_tutorial_contribute_description_l2">Pitch in some code</string>
     <string name="activity_tutorial_contribute_description_l3">It\'s open source</string>
     <string name="activity_tutorial_help_title">Problem?</string>
-    <string name="activity_tutorial_help_description_l1">Help docs are in Settings</string>
-    <string name="activity_tutorial_help_description_l2">You can hide Ads in Settings</string>
+    <string name="activity_tutorial_help_description_l1">Refer docs</string>
+    <string name="activity_tutorial_help_description_l2">You may hide Ads</string>
     <string name="activity_tutorial_help_description_l3">Still problem? Submit a bug report</string>
     <string name="activity_tutorial_tutorial_end_button">Let\'s roll</string>
 
@@ -92,14 +92,14 @@
     <string name="activity_settings_message_sign_title">Message signature</string>
     <string name="activity_settings_message_sign_positive_btn">Update</string>
     <string name="activity_settings_message_sign_default">Sent from MDroid - Moodle for Android</string>
-    <string name="activity_settings_message_sign_summary">Appends this text at the end of each message you send. Donate only!</string>
+    <string name="activity_settings_message_sign_summary">Message signature. Donate only!</string>
     <!-- Notification settings section -->
     <string name="activity_settings_cat_notification_title">Notifications</string>
     <string name="activity_settings_cat_notification_summary">Notification settings</string>
     <string name="activity_settings_notifi_title">Notifications</string>
-    <string name="activity_settings_notifi_summary">Notifies you when new content arrives in Moodle for your account. Donate only!</string>
+    <string name="activity_settings_notifi_summary">For new content. Donate only!</string>
     <string name="activity_settings_notifi_freq_title">Sync frequency</string>
-    <string name="activity_settings_notifi_freq_summary">Frequency of contents checking. Notifications must be enabled.</string>
+    <string name="activity_settings_notifi_freq_summary">Frequency of notifications checking</string>
     <!-- This is shown to users -->
     <string-array name="activity_settings_notification_frequency_entries">
         <item>Hourly</item>
@@ -149,10 +149,10 @@
     <string name="activity_settings_playgames_title_disconnect">Disconnect Google Playgames</string>
     <string name="activity_settings_playgames_summary">Moodle on MDroid can be fun!</string>
     <string name="activity_settings_playgames_achiev_title">Achievements</string>
-    <string name="activity_settings_hideads_title">Hide ads temporarily</string>
-    <string name="activity_settings_hideads_summary">Works only for 3 times. To hide them permanently, please make a donation.</string>
+    <string name="activity_settings_hideads_title">Hide ads</string>
+    <string name="activity_settings_hideads_summary">To hide permanently, make a donation</string>
     <string name="activity_settings_debug_title">Advanced logging</string>
-    <string name="activity_settings_debug_summary">If enabled, gives more information on login and other errors</string>
+    <string name="activity_settings_debug_summary">Gives more info on errors</string>
     <!-- Help section -->
     <string name="activity_settings_cat_help_title">Help</string>
     <string name="activity_settings_cat_help_summary">app related help</string>
@@ -165,6 +165,7 @@
     <string name="activity_settings_website_title">Website</string>
     <string name="activity_settings_dev_title">Developer</string>
     <string name="activity_settings_osl_title">Open source licenses</string>
+    <string name="activity_settings_translate_title">Translate</string>
 
     <!-- Play services dialog -->
     <string name="dialog_playgames_desc">Moodle can fun! Connect to Playgames?</string>
