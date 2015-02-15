@@ -16,7 +16,6 @@
         android:paddingTop="50dp" >
 
         <TextView
-            android:id="@+id/dialog_loading_message"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
