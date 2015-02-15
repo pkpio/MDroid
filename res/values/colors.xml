@@ -46,6 +46,7 @@
     <color name="beautiful_grey">#777575</color>
     <color name="beautiful_yellow_dark">#d07c40</color>
     <color name="beautiful_yellow">#f4b459</color>
+    <color name="beautiful_orange">#f25f0f</color>
 
     <!-- Status colors -->
     <color name="contact_online_color">#61D125</color>
