@@ -194,7 +194,7 @@ public class GameUnlocker {
 	/**
 	 * Returns the number of times app has been used
 	 */
-	private int getUseCount() {
+	public int getUseCount() {
 		return appSharedPrefs.getInt("usecount", 0);
 	}
 

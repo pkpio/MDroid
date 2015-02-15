@@ -2,12 +2,15 @@ package in.co.praveenkumar.mdroid.activity;
 
 import in.co.praveenkumar.R;
 import in.co.praveenkumar.mdroid.dialog.PlaygamesDialog;
+import in.co.praveenkumar.mdroid.dialog.RateDialog;
 import in.co.praveenkumar.mdroid.fragment.CourseFragment;
 import in.co.praveenkumar.mdroid.helper.ApplicationClass;
 import in.co.praveenkumar.mdroid.helper.Param;
 import in.co.praveenkumar.mdroid.playgames.GameUnlocker;
 import in.co.praveenkumar.mdroid.view.SlidingTabLayout;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
@@ -19,11 +22,14 @@ import com.startapp.android.publish.StartAppAd;
 import com.startapp.android.publish.StartAppSDK;
 
 public class CourseActivity extends BaseNavigationActivity {
-
 	private ViewPager viewPager;
 	private static final String[] TABS = { "MY COURSES", "FAVOURITE COURSES" };
 	private StartAppAd startAppAd;
 	PlaygamesDialog mPlaygamesDialog;
+	SharedPreferences mSharedPrefs;
+	SharedPreferences.Editor mSharedPrefseditor;
+	RateDialog mRateDialog;
+	int dialogCount;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -56,6 +62,19 @@ public class CourseActivity extends BaseNavigationActivity {
 
 		SlidingTabLayout mSlidingTabLayout = (SlidingTabLayout) findViewById(R.id.sliding_tabs);
 		mSlidingTabLayout.setViewPager(viewPager);
+
+		// Dialog related work
+		mSharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+		mSharedPrefseditor = mSharedPrefs.edit();
+		int dialogCount = mSharedPrefs.getInt("dialogCount", 0);
+		mSharedPrefseditor.putInt("dialogCount", dialogCount + 1);
+		mSharedPrefseditor.commit();
+
+		if ((dialogCount + 2) % 3 == 1
+				&& !mSharedPrefs.getBoolean("isRated", false)) {
+			mRateDialog = new RateDialog(this, new DialogActionListener());
+			mRateDialog.show();
+		}
 	}
 
 	class CourseTabsAdapter extends FragmentPagerAdapter {
@@ -151,34 +170,47 @@ public class CourseActivity extends BaseNavigationActivity {
 
 	@Override
 	public void onSignInFailed() {
-		SharedPreferences sp = PreferenceManager
-				.getDefaultSharedPreferences(this);
-		SharedPreferences.Editor editor = sp.edit();
-		int count = sp.getInt("playDialogCount", 0);
-
-		if (count % 3 == 2) {
+		if (dialogCount % 3 == 1) {
 			mPlaygamesDialog = new PlaygamesDialog(this,
-					new PlaygamesDialogListener());
+					new DialogActionListener());
 			mPlaygamesDialog.show();
 		}
-		editor.putInt("playDialogCount", count + 1);
-		editor.commit();
 	}
 
-	public class PlaygamesDialogListener {
-		public final static int cancel = 1;
-		public final static int connect = 2;
+	public class DialogActionListener {
+		public final static int CANCEL = 1;
+		public final static int CONNECT_PLAYGAMES = 2;
+		public final static int RATE = 3;
 
 		public void doAction(int action) {
-			if (action == connect) {
+			if (action == CONNECT_PLAYGAMES) {
 				mHelper.beginUserInitiatedSignIn();
 				if (mPlaygamesDialog != null)
 					mPlaygamesDialog.dismiss();
 			}
 
-			if (action == cancel) {
+			if (action == CANCEL) {
 				if (mPlaygamesDialog != null)
 					mPlaygamesDialog.dismiss();
+				if (mRateDialog != null)
+					mRateDialog.dismiss();
+			}
+
+			if (action == RATE) {
+				if (mRateDialog != null)
+					mRateDialog.dismiss();
+				final String appPackageName = getPackageName();
+				try {
+					startActivity(new Intent(Intent.ACTION_VIEW,
+							Uri.parse("market://details?id=" + appPackageName)));
+				} catch (android.content.ActivityNotFoundException anfe) {
+					startActivity(new Intent(
+							Intent.ACTION_VIEW,
+							Uri.parse("http://play.google.com/store/apps/details?id="
+									+ appPackageName)));
+				}
+				mSharedPrefseditor.putBoolean("isRated", true);
+				mSharedPrefseditor.commit();
 			}
 		}
 
