@@ -116,42 +116,38 @@
 
     <!-- Help + About in a different screen -->
     <PreferenceCategory
-        android:summary="@string/activity_settings_cat_help_summary"
-        android:title="@string/activity_settings_cat_help_title" >
-        <PreferenceScreen
-            android:summary="@string/activity_settings_cat_help_summary"
-            android:title="@string/activity_settings_cat_help_title" >
+        android:summary="@string/activity_settings_cat_about_summary"
+        android:title="@string/activity_settings_cat_about_title" >
+        <PreferenceScreen android:title="@string/activity_settings_cat_help_title" >
 
             <!-- Help section -->
-            <PreferenceCategory
-                android:summary="@string/activity_settings_cat_help_summary"
-                android:title="@string/activity_settings_cat_help_title" >
-                <Preference
-                    android:key="help"
-                    android:title="@string/activity_settings_help_title" />
-                <Preference
-                    android:key="privacyPolicy"
-                    android:title="@string/activity_settings_privacy_title" />
-                <Preference
-                    android:key="tutorial"
-                    android:title="@string/activity_settings_tutorial_title" />
-            </PreferenceCategory>
-
-            <!-- About section -->
-            <PreferenceCategory
-                android:summary="about MDroid and developer"
-                android:title="About" >
-                <Preference
-                    android:key="aboutMDroid"
-                    android:title="@string/activity_settings_website_title" />
-                <Preference
-                    android:key="aboutDev"
-                    android:title="@string/activity_settings_dev_title" />
-                <Preference
-                    android:key="licenses"
-                    android:title="@string/activity_settings_osl_title" />
-            </PreferenceCategory>
+            <Preference
+                android:key="help"
+                android:title="@string/activity_settings_help_title" />
+            <Preference
+                android:key="privacyPolicy"
+                android:title="@string/activity_settings_privacy_title" />
+            <Preference
+                android:key="tutorial"
+                android:title="@string/activity_settings_tutorial_title" />
         </PreferenceScreen>
+
+        <!-- About section -->
+        <PreferenceScreen android:title="@string/activity_settings_cat_about_title" >
+            <Preference
+                android:key="aboutMDroid"
+                android:title="@string/activity_settings_website_title" />
+            <Preference
+                android:key="aboutDev"
+                android:title="@string/activity_settings_dev_title" />
+            <Preference
+                android:key="licenses"
+                android:title="@string/activity_settings_osl_title" />
+        </PreferenceScreen>
+
+        <Preference
+            android:key="translate"
+            android:title="@string/activity_settings_translate_title" />
     </PreferenceCategory>
 
 </PreferenceScreen>
