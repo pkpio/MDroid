@@ -210,7 +210,7 @@ public abstract class BaseNavigationActivity extends ActionBarActivity
 		if (mHelper == null) {
 			mHelper = new GameHelper(this, GameHelper.CLIENT_GAMES);
 			mHelper.enableDebugLog(false);
-			mHelper.setMaxAutoSignInAttempts(0); // Never AutoSignIn
+			mHelper.setMaxAutoSignInAttempts(1); // Try auto signin once
 		}
 		return mHelper;
 	}

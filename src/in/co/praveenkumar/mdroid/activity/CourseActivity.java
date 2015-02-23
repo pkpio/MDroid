@@ -22,6 +22,7 @@ import com.startapp.android.publish.StartAppAd;
 import com.startapp.android.publish.StartAppSDK;
 
 public class CourseActivity extends BaseNavigationActivity {
+	final int DIALOG_FREQ = 4;
 	private ViewPager viewPager;
 	private static final String[] TABS = { "MY COURSES", "FAVOURITE COURSES" };
 	private StartAppAd startAppAd;
@@ -70,7 +71,7 @@ public class CourseActivity extends BaseNavigationActivity {
 		mSharedPrefseditor.putInt("dialogCount", dialogCount + 1);
 		mSharedPrefseditor.commit();
 
-		if ((dialogCount + 2) % 3 == 1
+		if ((dialogCount + 2) % DIALOG_FREQ == 1
 				&& !mSharedPrefs.getBoolean("isRated", false)) {
 			mRateDialog = new RateDialog(this, new DialogActionListener());
 			mRateDialog.show();
@@ -170,7 +171,7 @@ public class CourseActivity extends BaseNavigationActivity {
 
 	@Override
 	public void onSignInFailed() {
-		if (dialogCount % 3 == 1) {
+		if (dialogCount % DIALOG_FREQ == 1) {
 			mPlaygamesDialog = new PlaygamesDialog(this,
 					new DialogActionListener());
 			mPlaygamesDialog.show();
