@@ -62,7 +62,8 @@ public abstract class BaseNavigationActivity extends ActionBarActivity
 		}
 		mHelper.setup(this);
 
-		setTitle("");
+		getSupportActionBar().setTitle("");
+		getSupportActionBar().setElevation(0);
 
 		// Setup billing
 		billing = new BillingProcessor(this, Param.BILLING_LICENSE_KEY,
