@@ -1,0 +1,27 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--
+        Base application theme for API 19+. This theme completely replaces
+        AppBaseTheme from BOTH res/values/styles.xml and
+        res/values-v14/styles.xml on API 19+ devices.
+    -->
+    <style name="Theme.MDroid" parent="@style/Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:actionBarStyle">@style/MyActionBar</item>
+
+        <!-- Support library compatibility -->
+        <item name="actionBarStyle">@style/MyActionBar</item>
+
+        <!-- System bar -->
+        <item name="android:windowTranslucentNavigation">false</item>
+        <item name="android:windowTranslucentStatus">false</item>
+    </style>
+
+    <!-- ActionBar styles -->
+    <style name="MyActionBar" parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">
+        <item name="android:background">@color/moodle_color</item>
+
+        <!-- Support library compatibility -->
+        <item name="background">@color/moodle_color</item>
+    </style>
+
+</resources>

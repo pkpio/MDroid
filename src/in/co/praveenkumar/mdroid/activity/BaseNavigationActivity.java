@@ -9,10 +9,10 @@ import in.co.praveenkumar.mdroid.playgames.GameUnlocker;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.MenuItem;
@@ -22,6 +22,7 @@ import android.widget.Toast;
 import com.anjlab.android.iab.v3.BillingProcessor;
 import com.anjlab.android.iab.v3.TransactionDetails;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.readystatesoftware.systembartint.SystemBarTintManager;
 
 /**
  * Extending this would implement a side navigation and billing capabilities
@@ -47,6 +48,13 @@ public abstract class BaseNavigationActivity extends ActionBarActivity
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+
+		// Setup systembar tint
+		// create our manager instance after the content view is set
+		SystemBarTintManager tintManager = new SystemBarTintManager(this);
+		tintManager.setStatusBarTintEnabled(true);
+		tintManager.setNavigationBarTintEnabled(false);
+		tintManager.setTintColor(getResources().getColor(R.color.moodle_color));
 
 		// Play games related
 		if (mHelper == null) {
