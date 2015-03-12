@@ -7,27 +7,14 @@
     <PreferenceCategory
         android:summary="@string/activity_settings_cat_general_summary"
         android:title="@string/activity_settings_cat_general_title" >
-        <Preference
-            android:icon="@drawable/games_controller_grey"
-            android:key="playgames"
-            android:summary="@string/activity_settings_playgames_summary"
-            android:title="@string/activity_settings_playgames_title_connect" />
-        <Preference
-            android:icon="@drawable/games_achievements"
-            android:key="playgames_acheivement"
-            android:title="@string/activity_settings_playgames_achiev_title" />
-
         <CheckBoxPreference
             android:key="hideAds"
             android:summary="@string/activity_settings_hideads_summary"
             android:title="@string/activity_settings_hideads_title" />
-        <!--
         <CheckBoxPreference
             android:key="debugging"
             android:summary="@string/activity_settings_debug_summary"
             android:title="@string/activity_settings_debug_title" />
-        -->
-
     </PreferenceCategory>
 
     <!-- Notifications settings -->

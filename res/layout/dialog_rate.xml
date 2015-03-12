@@ -64,7 +64,7 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_gravity="center_horizontal"
-        android:contentDescription="@string/dialog_playgames_desc"
+        android:contentDescription="@string/dialog_rate_desc"
         android:src="@drawable/star_inverted_icon" />
 
 </FrameLayout>

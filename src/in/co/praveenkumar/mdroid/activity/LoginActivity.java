@@ -6,7 +6,6 @@ import in.co.praveenkumar.mdroid.fragment.ParanoidLoginFragment;
 import in.co.praveenkumar.mdroid.helper.ApplicationClass;
 import in.co.praveenkumar.mdroid.helper.Param;
 import in.co.praveenkumar.mdroid.helper.SessionSetting;
-import in.co.praveenkumar.mdroid.playgames.GameUnlocker;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
@@ -29,11 +28,6 @@ public class LoginActivity extends FragmentActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login);
-
-		// Increment usercount for game
-		GameUnlocker mGameUnlocker = new GameUnlocker(getApplicationContext());
-		mGameUnlocker.incrementUseCount();
-		mGameUnlocker.updateMaxStreak();
 
 		// Is Login called by user to add an account
 		Boolean explicitCall = false;

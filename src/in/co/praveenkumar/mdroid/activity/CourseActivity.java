@@ -1,12 +1,10 @@
 package in.co.praveenkumar.mdroid.activity;
 
 import in.co.praveenkumar.R;
-import in.co.praveenkumar.mdroid.dialog.PlaygamesDialog;
 import in.co.praveenkumar.mdroid.dialog.RateDialog;
 import in.co.praveenkumar.mdroid.fragment.CourseFragment;
 import in.co.praveenkumar.mdroid.helper.ApplicationClass;
 import in.co.praveenkumar.mdroid.helper.Param;
-import in.co.praveenkumar.mdroid.playgames.GameUnlocker;
 import in.co.praveenkumar.mdroid.view.SlidingTabLayout;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -22,7 +20,6 @@ public class CourseActivity extends BaseNavigationActivity {
 	final int DIALOG_FREQ = 4;
 	private ViewPager viewPager;
 	private static final String[] TABS = { "MY COURSES", "FAVOURITE COURSES" };
-	PlaygamesDialog mPlaygamesDialog;
 	RateDialog mRateDialog;
 	SharedPreferences mSharedPrefs;
 	SharedPreferences.Editor mSharedPrefseditor;
@@ -113,40 +110,13 @@ public class CourseActivity extends BaseNavigationActivity {
 		}
 	}
 
-	@Override
-	public void onSignInSucceeded() {
-		// Check for any playGames unlocks
-		GameUnlocker mGameUnlocker = new GameUnlocker(getApplicationContext());
-		if (isSignedIn())
-			mGameUnlocker.publishAcheivements(getApiClient());
-		else
-			System.out.println("Not logged in! :(");
-	}
-
-	@Override
-	public void onSignInFailed() {
-		if (dialogCount % DIALOG_FREQ == 1) {
-			mPlaygamesDialog = new PlaygamesDialog(this,
-					new DialogActionListener());
-			mPlaygamesDialog.show();
-		}
-	}
-
 	public class DialogActionListener {
 		public final static int CANCEL = 1;
-		public final static int CONNECT_PLAYGAMES = 2;
-		public final static int RATE = 3;
+		public final static int RATE = 2;
 
 		public void doAction(int action) {
-			if (action == CONNECT_PLAYGAMES) {
-				mHelper.beginUserInitiatedSignIn();
-				if (mPlaygamesDialog != null)
-					mPlaygamesDialog.dismiss();
-			}
 
 			if (action == CANCEL) {
-				if (mPlaygamesDialog != null)
-					mPlaygamesDialog.dismiss();
 				if (mRateDialog != null)
 					mRateDialog.dismiss();
 			}

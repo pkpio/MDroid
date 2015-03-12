@@ -5,9 +5,7 @@ import in.co.praveenkumar.mdroid.dialog.LogoutDialog;
 import in.co.praveenkumar.mdroid.helper.ApplicationClass;
 import in.co.praveenkumar.mdroid.helper.Param;
 import in.co.praveenkumar.mdroid.helper.SessionSetting;
-import in.co.praveenkumar.mdroid.playgames.GameHelper;
 import in.co.praveenkumar.mdroid.service.ScheduleReceiver;
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -21,27 +19,18 @@ import android.widget.Toast;
 
 import com.anjlab.android.iab.v3.BillingProcessor;
 import com.anjlab.android.iab.v3.TransactionDetails;
-import com.google.android.gms.games.Games;
 
 public class SettingsActivity extends PreferenceActivity implements
-		OnPreferenceClickListener, OnPreferenceChangeListener,
-		GameHelper.GameHelperListener {
+		OnPreferenceClickListener, OnPreferenceChangeListener {
 	SessionSetting session;
 	BillingProcessor billing;
 	SharedPreferences settings;
-	GameHelper mGameHelper;
 
 	@SuppressWarnings("deprecation")
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setTitle("Settings");
-
-		// Play games related
-		if (mGameHelper == null) {
-			getGameHelper();
-		}
-		mGameHelper.setup(this);
 
 		// Send a tracker
 		((ApplicationClass) getApplication())
@@ -94,9 +83,6 @@ public class SettingsActivity extends PreferenceActivity implements
 			findPreference("notifications").setEnabled(true);
 		}
 
-		// Playgames state
-		updatePlayLoginState();
-
 		// Add preference click / change listeners
 		findPreference("logout").setOnPreferenceClickListener(this);
 		findPreference("messagingSignature")
@@ -107,9 +93,6 @@ public class SettingsActivity extends PreferenceActivity implements
 		findPreference("notification_frequency").setOnPreferenceChangeListener(
 				this);
 
-		findPreference("playgames").setOnPreferenceClickListener(this);
-		findPreference("playgames_acheivement").setOnPreferenceClickListener(
-				this);
 		findPreference("help").setOnPreferenceClickListener(this);
 		findPreference("privacyPolicy").setOnPreferenceClickListener(this);
 		findPreference("tutorial").setOnPreferenceClickListener(this);
@@ -128,23 +111,6 @@ public class SettingsActivity extends PreferenceActivity implements
 			LogoutDialog lod = new LogoutDialog(this,
 					new SessionSetting(this).getCurrentSiteId());
 			lod.show();
-		}
-
-		if (key.contentEquals("playgames")) {
-			if (!mGameHelper.isSignedIn())
-				mGameHelper.beginUserInitiatedSignIn();
-			else
-				mGameHelper.signOut();
-			updatePlayLoginState();
-		}
-
-		if (key.contentEquals("playgames_acheivement")) {
-			if (mGameHelper.getApiClient().isConnected())
-				startActivityForResult(
-						Games.Achievements.getAchievementsIntent(mGameHelper
-								.getApiClient()), 11);
-			else
-				mGameHelper.beginUserInitiatedSignIn();
 		}
 
 		if (key.contentEquals("help")) {
@@ -242,9 +208,6 @@ public class SettingsActivity extends PreferenceActivity implements
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if (!billing.handleActivityResult(requestCode, resultCode, data))
 			super.onActivityResult(requestCode, resultCode, data);
-
-		// GPG related
-		mGameHelper.onActivityResult(requestCode, resultCode, data);
 	}
 
 	private Boolean isProUser() {
@@ -261,63 +224,4 @@ public class SettingsActivity extends PreferenceActivity implements
 			billing.release();
 		super.onDestroy();
 	}
-
-	@Override
-	public void onSignInFailed() {
-	}
-
-	@Override
-	public void onSignInSucceeded() {
-		updatePlayLoginState();
-	}
-
-	@SuppressLint("NewApi")
-	@SuppressWarnings("deprecation")
-	void updatePlayLoginState() {
-		if (mGameHelper.isSignedIn()) {
-			if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.HONEYCOMB) {
-				findPreference("playgames")
-						.setIcon(R.drawable.games_controller);
-				findPreference("playgames_acheivement").setIcon(
-						R.drawable.games_achievements_green);
-			}
-			findPreference("playgames").setTitle(
-					R.string.activity_settings_playgames_title_disconnect);
-		} else {
-			if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.HONEYCOMB) {
-				findPreference("playgames").setIcon(
-						R.drawable.games_controller_grey);
-				findPreference("playgames_acheivement").setIcon(
-						R.drawable.games_achievements);
-			}
-			findPreference("playgames").setTitle(
-					R.string.activity_settings_playgames_title_connect);
-		}
-	}
-
-	/**
-	 * Google Play Games related
-	 */
-
-	public GameHelper getGameHelper() {
-		if (mGameHelper == null) {
-			mGameHelper = new GameHelper(this, GameHelper.CLIENT_GAMES);
-			mGameHelper.enableDebugLog(false);
-			mGameHelper.setMaxAutoSignInAttempts(0); // Never AutoSignIn
-		}
-		return mGameHelper;
-	}
-
-	@Override
-	protected void onStart() {
-		super.onStart();
-		mGameHelper.onStart(this);
-	}
-
-	@Override
-	protected void onStop() {
-		super.onStop();
-		mGameHelper.onStop();
-	}
-
 }
