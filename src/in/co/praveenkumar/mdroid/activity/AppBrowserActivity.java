@@ -11,6 +11,7 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
+@SuppressWarnings("deprecation")
 @SuppressLint("SetJavaScriptEnabled")
 public class AppBrowserActivity extends BaseNavigationActivity {
 	WebView mBrowser;

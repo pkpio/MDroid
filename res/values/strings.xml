@@ -145,10 +145,6 @@
     <!-- General settings section -->
     <string name="activity_settings_cat_general_title">General</string>
     <string name="activity_settings_cat_general_summary">General settings</string>
-    <string name="activity_settings_playgames_title_connect">Connect Google Playgames</string>
-    <string name="activity_settings_playgames_title_disconnect">Disconnect Google Playgames</string>
-    <string name="activity_settings_playgames_summary">Moodle on MDroid can be fun!</string>
-    <string name="activity_settings_playgames_achiev_title">Achievements</string>
     <string name="activity_settings_hideads_title">Hide ads</string>
     <string name="activity_settings_hideads_summary">To hide permanently, make a donation</string>
     <string name="activity_settings_debug_title">Advanced logging</string>
@@ -166,11 +162,6 @@
     <string name="activity_settings_dev_title">Developer</string>
     <string name="activity_settings_osl_title">Open source licenses</string>
     <string name="activity_settings_translate_title">Translate</string>
-
-    <!-- Play services dialog -->
-    <string name="dialog_playgames_desc">Moodle can fun! Connect to Playgames?</string>
-    <string name="dialog_playgames_later">Not now</string>
-    <string name="dialog_playgames_signin">Connect</string>
 
     <!-- Rate dialog -->
     <string name="dialog_rate_desc">Good ratings motivate! Rate MDroid?</string>

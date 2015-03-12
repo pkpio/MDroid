@@ -4,8 +4,6 @@ import in.co.praveenkumar.R;
 import in.co.praveenkumar.mdroid.helper.AppInterface.DonationInterface;
 import in.co.praveenkumar.mdroid.helper.AppInterface.DrawerStateInterface;
 import in.co.praveenkumar.mdroid.helper.Param;
-import in.co.praveenkumar.mdroid.playgames.GameHelper;
-import in.co.praveenkumar.mdroid.playgames.GameUnlocker;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -21,8 +19,6 @@ import android.widget.Toast;
 
 import com.anjlab.android.iab.v3.BillingProcessor;
 import com.anjlab.android.iab.v3.TransactionDetails;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.readystatesoftware.systembartint.SystemBarTintManager;
 
 /**
  * Extending this would implement a side navigation and billing capabilities
@@ -34,11 +30,9 @@ import com.readystatesoftware.systembartint.SystemBarTintManager;
  * 
  */
 public abstract class BaseNavigationActivity extends ActionBarActivity
-		implements DrawerStateInterface, DonationInterface,
-		GameHelper.GameHelperListener {
+		implements DrawerStateInterface, DonationInterface {
 	DrawerLayout mDrawerLayout;
 	ActionBarDrawerToggle mDrawerToggle;
-	GameHelper mHelper;
 	BillingProcessor billing;
 
 	// Title settings
@@ -48,20 +42,6 @@ public abstract class BaseNavigationActivity extends ActionBarActivity
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
-		// Setup systembar tint
-		// create our manager instance after the content view is set
-		SystemBarTintManager tintManager = new SystemBarTintManager(this);
-		tintManager.setStatusBarTintEnabled(true);
-		tintManager.setNavigationBarTintEnabled(false);
-		tintManager.setTintColor(getResources().getColor(R.color.moodle_color));
-
-		// Play games related
-		if (mHelper == null) {
-			getGameHelper();
-		}
-		mHelper.setup(this);
-
 		getSupportActionBar().setTitle("");
 		getSupportActionBar().setElevation(0);
 
@@ -91,14 +71,6 @@ public abstract class BaseNavigationActivity extends ActionBarActivity
 					public void onPurchaseHistoryRestored() {
 					}
 				});
-	}
-
-	@Override
-	public void onResume() {
-		super.onResume();
-		// Game streak is hard, important and can't be mixed or broken!
-		GameUnlocker mGameUnlocker = new GameUnlocker(getApplicationContext());
-		mGameUnlocker.updateMaxStreak();
 	}
 
 	public void setUpDrawer() {
@@ -187,9 +159,6 @@ public abstract class BaseNavigationActivity extends ActionBarActivity
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if (!billing.handleActivityResult(requestCode, resultCode, data))
 			super.onActivityResult(requestCode, resultCode, data);
-
-		// GPG related
-		mHelper.onActivityResult(requestCode, resultCode, data);
 	}
 
 	@Override
@@ -209,48 +178,5 @@ public abstract class BaseNavigationActivity extends ActionBarActivity
 				|| billing.isPurchased(Param.BILLING_FEATURE_PARTICIPANTS_PID)
 				|| billing.isPurchased(Param.BILLING_FEATURE_SEARCH_PID)
 				|| billing.isPurchased(Param.BILLING_FEATURE_UPLOADS_PID);
-	}
-
-	/**
-	 * Google Play Games related
-	 */
-
-	public GameHelper getGameHelper() {
-		if (mHelper == null) {
-			mHelper = new GameHelper(this, GameHelper.CLIENT_GAMES);
-			mHelper.enableDebugLog(false);
-			mHelper.setMaxAutoSignInAttempts(1); // Try auto signin once
-		}
-		return mHelper;
-	}
-
-	@Override
-	protected void onStart() {
-		super.onStart();
-		mHelper.onStart(this);
-	}
-
-	@Override
-	protected void onStop() {
-		super.onStop();
-		mHelper.onStop();
-	}
-
-	protected GoogleApiClient getApiClient() {
-		return mHelper.getApiClient();
-	}
-
-	protected boolean isSignedIn() {
-		return mHelper.isSignedIn();
-	}
-
-	@Override
-	public void onSignInFailed() {
-		// TODO Auto-generated method stub
-	}
-
-	@Override
-	public void onSignInSucceeded() {
-		// TODO Auto-generated method stub
 	}
 }

@@ -73,10 +73,4 @@ public class Param {
 	// Donation screen events
 	public static final String GA_EVENT_DONATION_BUTTON = "DonateButtonPress";
 
-	// Ads related events
-	public static final String GA_EVENT_ADS_STARTAPP_INTERSTITIAL_SHOW = "StartAppInterstitialShow";
-	public static final String GA_EVENT_ADS_STARTAPP_INTERSTITIAL_HIDE = "StartAppInterstitialHide";
-	public static final String GA_EVENT_ADS_STARTAPP_INTERSTITIAL_CLICK = "StartAppInterstitialClick";
-	public static final String GA_EVENT_ADS_STARTAPP_EXITAD = "StartAppExitAd";
-
 }
