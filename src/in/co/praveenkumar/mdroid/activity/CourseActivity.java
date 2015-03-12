@@ -56,7 +56,7 @@ public class CourseActivity extends BaseNavigationActivity {
 		mSharedPrefseditor.putInt("dialogCount", dialogCount + 1);
 		mSharedPrefseditor.commit();
 
-		if ((dialogCount + 2) % DIALOG_FREQ == 1
+		if ((dialogCount) % DIALOG_FREQ == DIALOG_FREQ / 2
 				&& !mSharedPrefs.getBoolean("isRated", false)) {
 			mRateDialog = new RateDialog(this, new DialogActionListener());
 			mRateDialog.show();
