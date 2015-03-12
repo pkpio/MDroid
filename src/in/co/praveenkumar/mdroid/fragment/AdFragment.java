@@ -1,9 +1,7 @@
 package in.co.praveenkumar.mdroid.fragment;
 
 import in.co.praveenkumar.R;
-import in.co.praveenkumar.mdroid.activity.CourseActivity;
 import in.co.praveenkumar.mdroid.helper.AppInterface.DonationInterface;
-import in.co.praveenkumar.mdroid.helper.ApplicationClass;
 import in.co.praveenkumar.mdroid.helper.Param;
 import android.app.Activity;
 import android.content.Context;
@@ -18,15 +16,10 @@ import android.view.ViewGroup;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
-import com.startapp.android.publish.Ad;
-import com.startapp.android.publish.AdDisplayListener;
-import com.startapp.android.publish.AdEventListener;
-import com.startapp.android.publish.StartAppAd;
 
 public class AdFragment extends Fragment {
 	final String DEBUG_TAG = "AdFragment";
 	AdView mAdView;
-	StartAppAd startAppAd;
 	DonationInterface donation;
 	Context context;
 	SharedPreferences settings;
@@ -49,8 +42,6 @@ public class AdFragment extends Fragment {
 			Log.d(DEBUG_TAG, a.toString()
 					+ " did not implement ForumIdInterface.");
 		}
-		// StartAppAd Init
-		startAppAd = new StartAppAd(context);
 
 		// Setup Shared preferences
 		settings = PreferenceManager.getDefaultSharedPreferences(context);
@@ -74,10 +65,6 @@ public class AdFragment extends Fragment {
 		AdRequest adRequest = new AdRequest.Builder().addTestDevice(
 				"B3EEABB8EE11C2BE770B684D95219ECB").build();
 		mAdView.loadAd(adRequest);
-
-		// Show a startApp interstitial - Ad shown based on policies
-		if (Param.STARTAPP_INTERSTITIAL_ADS)
-			startAppAd.loadAd(new StartAppAdEventListener());
 	}
 
 	/** Called when leaving the activity */
@@ -115,70 +102,6 @@ public class AdFragment extends Fragment {
 			mAdView.destroy();
 		}
 		super.onDestroy();
-	}
-
-	/**
-	 * StartApp listeners custom implementation. <br/>
-	 * We implemented some custom policies on when to show an Ad.
-	 */
-	class StartAppAdEventListener implements AdEventListener {
-
-		@Override
-		public void onFailedToReceiveAd(Ad arg0) {
-		}
-
-		@Override
-		public void onReceiveAd(Ad arg0) {
-			/**
-			 * Show Ad only if:
-			 * 
-			 * 1. There is sufficient time gap with last shown <br/>
-			 * 2. The Activity is not CourseActivity
-			 */
-			if (context.getClass().getName()
-					.contentEquals(CourseActivity.class.getName()))
-				return;
-
-			long now = System.currentTimeMillis();
-			long last = settings.getLong("startapp_last_served", now
-					- Param.STARTAPP_INTERSTITIAL_MAX_FREQ);
-
-			if (now - last >= Param.STARTAPP_INTERSTITIAL_MAX_FREQ)
-				startAppAd.showAd(new StartAppAdDisplayListener());
-
-		}
-	}
-
-	class StartAppAdDisplayListener implements AdDisplayListener {
-
-		@Override
-		public void adClicked(Ad arg0) {
-			// Send a tracker event
-			((ApplicationClass) getActivity().getApplication()).sendEvent(
-					Param.GA_EVENT_CAT_ADS,
-					Param.GA_EVENT_ADS_STARTAPP_INTERSTITIAL_CLICK);
-		}
-
-		@Override
-		public void adDisplayed(Ad arg0) {
-			// Set last ad shown time
-			SharedPreferences.Editor editor = settings.edit();
-			editor.putLong("startapp_last_served", System.currentTimeMillis());
-			editor.commit();
-
-			// Send a tracker event
-			((ApplicationClass) getActivity().getApplication()).sendEvent(
-					Param.GA_EVENT_CAT_ADS,
-					Param.GA_EVENT_ADS_STARTAPP_INTERSTITIAL_SHOW);
-		}
-
-		@Override
-		public void adHidden(Ad arg0) {
-			// Send a tracker event
-			((ApplicationClass) getActivity().getApplication()).sendEvent(
-					Param.GA_EVENT_CAT_ADS,
-					Param.GA_EVENT_ADS_STARTAPP_INTERSTITIAL_HIDE);
-		}
 	}
 
 }

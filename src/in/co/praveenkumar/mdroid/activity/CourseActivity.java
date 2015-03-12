@@ -18,14 +18,10 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 
-import com.startapp.android.publish.StartAppAd;
-import com.startapp.android.publish.StartAppSDK;
-
 public class CourseActivity extends BaseNavigationActivity {
 	final int DIALOG_FREQ = 4;
 	private ViewPager viewPager;
 	private static final String[] TABS = { "MY COURSES", "FAVOURITE COURSES" };
-	private StartAppAd startAppAd;
 	PlaygamesDialog mPlaygamesDialog;
 	RateDialog mRateDialog;
 	SharedPreferences mSharedPrefs;
@@ -35,14 +31,6 @@ public class CourseActivity extends BaseNavigationActivity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
-		/**
-		 * StartAppSDK and StartAppAd Init. SDK init is only required in the
-		 * MainActivity - entry activities to the app.
-		 */
-		StartAppSDK.init(this, Param.STARTAPP_DEV_ID, Param.STARTAPP_APP_ID,
-				false);
-		startAppAd = new StartAppAd(this);
 
 		setContentView(R.layout.activity_course);
 		setUpDrawer();
@@ -123,40 +111,6 @@ public class CourseActivity extends BaseNavigationActivity {
 		public int getCount() {
 			return TABS.length;
 		}
-	}
-
-	@Override
-	public void onResume() {
-		super.onResume();
-		startAppAd.onResume();
-	}
-
-	@Override
-	public void onPause() {
-		super.onPause();
-		startAppAd.onPause();
-	}
-
-	@Override
-	public void onBackPressed() {
-		if (!isProUser() && !Param.hideAdsForSession && Param.STARTAPP_EXIT_ADS) {
-			SharedPreferences settings = PreferenceManager
-					.getDefaultSharedPreferences(this);
-			long now = System.currentTimeMillis();
-			long last = settings.getLong("startapp_last_served", now
-					- Param.STARTAPP_INTERSTITIAL_MAX_FREQ);
-
-			if (now - last >= Param.STARTAPP_INTERSTITIAL_MAX_FREQ) {
-
-				// Send a tracker event
-				((ApplicationClass) getApplication()).sendEvent(
-						Param.GA_EVENT_CAT_ADS,
-						Param.GA_EVENT_ADS_STARTAPP_EXITAD);
-
-				startAppAd.onBackPressed();
-			}
-		}
-		super.onBackPressed();
 	}
 
 	@Override
