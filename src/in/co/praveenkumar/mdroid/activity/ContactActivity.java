@@ -1,9 +1,9 @@
 package in.co.praveenkumar.mdroid.activity;
 
-import android.os.Bundle;
 import in.co.praveenkumar.R;
 import in.co.praveenkumar.mdroid.helper.ApplicationClass;
 import in.co.praveenkumar.mdroid.helper.Param;
+import android.os.Bundle;
 
 public class ContactActivity extends BaseNavigationActivity {
 

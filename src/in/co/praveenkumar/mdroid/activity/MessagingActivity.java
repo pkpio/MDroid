@@ -1,9 +1,9 @@
 package in.co.praveenkumar.mdroid.activity;
 
 import in.co.praveenkumar.R;
+import in.co.praveenkumar.mdroid.helper.AppInterface.UserIdInterface;
 import in.co.praveenkumar.mdroid.helper.ApplicationClass;
 import in.co.praveenkumar.mdroid.helper.Param;
-import in.co.praveenkumar.mdroid.helper.AppInterface.UserIdInterface;
 import android.os.Bundle;
 
 public class MessagingActivity extends BaseNavigationActivity implements

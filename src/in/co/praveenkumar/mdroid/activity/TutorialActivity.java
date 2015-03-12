@@ -1,10 +1,10 @@
 package in.co.praveenkumar.mdroid.activity;
 
+import in.co.praveenkumar.R;
 import in.co.praveenkumar.mdroid.fragment.TutorialFragment;
 import in.co.praveenkumar.mdroid.helper.ApplicationClass;
 import in.co.praveenkumar.mdroid.helper.Param;
 import in.co.praveenkumar.mdroid.helper.SessionSetting;
-import in.co.praveenkumar.R;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -15,14 +15,10 @@ import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.View;
 
-import com.viewpagerindicator.CirclePageIndicator;
-import com.viewpagerindicator.PageIndicator;
-
 public class TutorialActivity extends FragmentActivity {
 	private final String DEBUG_TAG = "TutorialActivity";
 	TutorialFragmentAdapter mAdapter;
 	ViewPager mPager;
-	PageIndicator mIndicator;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -54,9 +50,6 @@ public class TutorialActivity extends FragmentActivity {
 		mPager = (ViewPager) findViewById(R.id.pager);
 		mPager.setAdapter(mAdapter);
 		mPager.setOffscreenPageLimit(TutorialFragment.TUTORIAL_PAGE_COUNT);
-
-		mIndicator = (CirclePageIndicator) findViewById(R.id.indicator);
-		mIndicator.setViewPager(mPager);
 	}
 
 	@Override
@@ -68,8 +61,8 @@ public class TutorialActivity extends FragmentActivity {
 		mPager.setAdapter(mAdapter);
 		mPager.setOffscreenPageLimit(TutorialFragment.TUTORIAL_PAGE_COUNT);
 
-		mIndicator = (CirclePageIndicator) findViewById(R.id.indicator);
-		mIndicator.setViewPager(mPager);
+		// mIndicator = (CirclePageIndicator) findViewById(R.id.indicator);
+		// mIndicator.setViewPager(mPager);
 	}
 
 	class TutorialFragmentAdapter extends FragmentPagerAdapter {
