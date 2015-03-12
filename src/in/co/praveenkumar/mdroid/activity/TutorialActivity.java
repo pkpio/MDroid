@@ -12,11 +12,9 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.View;
 
 public class TutorialActivity extends FragmentActivity {
-	private final String DEBUG_TAG = "TutorialActivity";
 	TutorialFragmentAdapter mAdapter;
 	ViewPager mPager;
 
@@ -24,22 +22,6 @@ public class TutorialActivity extends FragmentActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_tutorial);
-
-		// Is Tutorial called by user to add an account
-		Boolean explicitCall = false;
-		try {
-			explicitCall = getIntent().getExtras().getBoolean("explicitCall");
-		} catch (Exception e) {
-			Log.d(DEBUG_TAG, "Not an explicit call");
-		}
-
-		// Skip login if user is logged in already
-		SessionSetting session = new SessionSetting(this);
-		if (session.isTutored() && !explicitCall) {
-			Intent i = new Intent(this, LoginActivity.class);
-			this.startActivity(i);
-			return;
-		}
 
 		// Send a tracker
 		((ApplicationClass) getApplication())
@@ -60,9 +42,6 @@ public class TutorialActivity extends FragmentActivity {
 		mPager = (ViewPager) findViewById(R.id.pager);
 		mPager.setAdapter(mAdapter);
 		mPager.setOffscreenPageLimit(TutorialFragment.TUTORIAL_PAGE_COUNT);
-
-		// mIndicator = (CirclePageIndicator) findViewById(R.id.indicator);
-		// mIndicator.setViewPager(mPager);
 	}
 
 	class TutorialFragmentAdapter extends FragmentPagerAdapter {
