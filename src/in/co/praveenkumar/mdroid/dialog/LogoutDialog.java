@@ -1,10 +1,10 @@
 package in.co.praveenkumar.mdroid.dialog;
 
+import in.co.praveenkumar.R;
 import in.co.praveenkumar.mdroid.activity.CourseActivity;
 import in.co.praveenkumar.mdroid.activity.LoginActivity;
 import in.co.praveenkumar.mdroid.helper.ImageDecoder;
 import in.co.praveenkumar.mdroid.helper.SessionSetting;
-import in.co.praveenkumar.R;
 import in.co.praveenkumar.mdroid.model.MoodleContact;
 import in.co.praveenkumar.mdroid.model.MoodleCourse;
 import in.co.praveenkumar.mdroid.model.MoodleDiscussion;
