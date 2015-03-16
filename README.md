@@ -41,5 +41,5 @@ License
 Licensed under the [GPL v3][1]
 
 
-[1]: http://www.gnu.org/copyleft/gpl.html
+[1]: https://tldrlegal.com/license/gnu-general-public-license-v3-%28gpl-3%29
 [2]: https://github.com/praveendath92/MDroid#setting-up-mdroid
