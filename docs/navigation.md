@@ -19,11 +19,7 @@
   * [Roadmap](todo.md)
   * [Planned features](features.md)
 
-[Help]()
-
-  * [FAQ](faq.md)
-  * [Errors](errors.md)
-  * [Privacy Policy](privacy-policy.md)
+[FAQ](faq.md)
 
 [Download](https://play.google.com/store/apps/details?id=in.co.praveenkumar)
 
