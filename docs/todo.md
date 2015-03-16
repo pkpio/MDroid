@@ -21,10 +21,10 @@ Road:map or plan for the new API version of MDroid (In priority order).
 - [x] Settings implemetation
 - [x] Chat like messaging
 - [ ] Messaging server setup docs
-- [ ] Background services and notifications
+- [x] Background services and notifications
 - [ ] Document errors
 - [ ] Search feature
-- [ ] Course participants
+- [x] Course participants
 - [ ] Calender events creation
 - [ ] Notes listing
 - [ ] Notes creation
