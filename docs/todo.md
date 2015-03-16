@@ -30,3 +30,5 @@ Road:map or plan for the new API version of MDroid (In priority order).
 - [ ] Notes creation
 - [ ] Files listing
 - [ ] Uploading files
+- [x] Add a github web hook for docs site
+- [ ] Translation friendly code
