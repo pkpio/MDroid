@@ -5,7 +5,6 @@
 [Quickstart]()
 
   * [First time here](first-time.md)
-  * [Screenshots](screenshots.md)
   * [Moodle setup](moodle-setup.md)
 
 [Docs]()
