@@ -38,8 +38,8 @@ http://praveen.xyz
 
 License
 ----------------------
-Licensed under the [Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported license][1]
+Licensed under the [GPL v3][1]
 
 
-[1]: http://creativecommons.org/licenses/by-nc-sa/3.0/
+[1]: http://www.gnu.org/copyleft/gpl.html
 [2]: https://github.com/praveendath92/MDroid#setting-up-mdroid
