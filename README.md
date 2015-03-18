@@ -5,7 +5,7 @@ The docs for MDroid can be found at http://mdroid.praveenkumar.co.in/ which are 
 
 Setting up MDroid
 ----------------------
-1. Clone MDroid using ```git clone --single-branch https://github.com/praveendath92/MDroid.git```
+1. Clone using ```git clone --single-branch https://github.com/praveendath92/MDroid.git```
 2. Import MDroid to eclipse
 3. Go to project properties
    - Choose ```Google APIs``` with target ```API level 21```
