@@ -75,16 +75,24 @@ public class CourseContentActivity extends BaseNavigationActivity {
 			switch (position) {
 			case 0:
 				// Course Content
-				return new ContentFragment(courseid);
+                ContentFragment contentFragment = new ContentFragment();
+                contentFragment.setCourseid(courseid);
+				return contentFragment;
 			case 1:
 				// Course Forum
-				return new ForumFragment(courseid);
+                ForumFragment forumFragment = new ForumFragment();
+                forumFragment.setCourseid(courseid);
+				return forumFragment;
 			case 2:
 				// Course Calendar
-				return new CalenderFragment(courseid);
+				CalenderFragment calenderFragment = new CalenderFragment();
+				calenderFragment.setCourseid(courseid);
+				return calenderFragment;
 			case 3:
 				// Course Participants
-				return new ParticipantFragment(courseid);
+                ParticipantFragment participantFragment = new ParticipantFragment();
+                participantFragment.setCourseid(courseid);
+				return participantFragment;
 			}
 			return null;
 		}

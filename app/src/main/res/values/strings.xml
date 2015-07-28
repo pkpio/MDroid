@@ -2,7 +2,7 @@
 <resources>
 
     <!-- App related major items -->
-    <string name="app_name">MDroid - Moodle</string>
+    <string name="app_name">MDroid</string>
     <string name="action_settings">Settings</string>
     <string name="app_service_description">This service is triggered by Android system based on notification frequency setting in the app. It checks for updates and stops itself, usually within a couple of minutes.</string>
 

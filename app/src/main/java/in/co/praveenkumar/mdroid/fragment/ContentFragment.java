@@ -53,11 +53,11 @@ public class ContentFragment extends Fragment implements OnRefreshListener {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param courseid
 	 *            Choose which course contents to be listed
 	 */
-	public ContentFragment(int courseid) {
+	public void setCourseid(int courseid) {
 		this.courseid = courseid;
 	}
 

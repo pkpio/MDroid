@@ -72,8 +72,8 @@ public class MessageListingFragment extends Fragment implements
                 useridInterface.setUserId(messages.get(position).userid);
                 mFragmentManager
                         .beginTransaction()
-                        .addToBackStack(null)
                         .replace(R.id.messaging_layout, new MessagingFragment())
+                        .addToBackStack(null)
                         .commit();
                 mFragmentManager.executePendingTransactions();
             }

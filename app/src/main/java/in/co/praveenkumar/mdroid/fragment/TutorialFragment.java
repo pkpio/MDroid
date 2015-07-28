@@ -16,7 +16,7 @@ public class TutorialFragment extends Fragment {
 	 * 
 	 * @param index
 	 */
-	public TutorialFragment(int index) {
+	public void setIndex(int index){
 		this.index = index;
 	}
 

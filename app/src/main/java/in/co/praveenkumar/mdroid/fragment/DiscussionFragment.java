@@ -56,11 +56,10 @@ public class DiscussionFragment extends Fragment implements OnRefreshListener {
 	/**
 	 * Lists all discussions in a forum. Any activity that includes this
 	 * Fragment must implement ForumIdInterface
-	 * 
+	 *
 	 * @param forumid
-	 * @author Praveen Kumar Pendyala (praveen@praveenkumar.co.in)
 	 */
-	public DiscussionFragment(int forumid) {
+	public void setForumid(int forumid){
 		this.forumid = forumid;
 	}
 

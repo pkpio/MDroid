@@ -49,9 +49,9 @@ public class PostFragment extends Fragment implements OnRefreshListener {
 	/**
 	 * If you want to list all forums, use courseid = 0
 	 * 
-	 * @param courseid
+	 * @param discussionid
 	 */
-	public PostFragment(int discussionid) {
+	public void setDiscussionid(int discussionid) {
 		this.discussionid = discussionid;
 	}
 

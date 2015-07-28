@@ -53,7 +53,9 @@ public class TutorialActivity extends FragmentActivity {
 
 		@Override
 		public Fragment getItem(int position) {
-			return new TutorialFragment(position);
+			TutorialFragment tutorialFragment = new TutorialFragment();
+			tutorialFragment.setIndex(position);
+			return tutorialFragment;
 		}
 
 		@Override

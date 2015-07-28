@@ -70,7 +70,6 @@ public class LeftNavigationFragment extends Fragment {
 
 		// Get sites info
 		session = new SessionSetting(getActivity());
-		Log.d(DEBUG_TAG, session.getCurrentSiteId() + "");
 		sites = MoodleSiteInfo.listAll(MoodleSiteInfo.class);
 
 		final LeftNavListAdapter adapter = new LeftNavListAdapter(getActivity());
@@ -150,7 +149,7 @@ public class LeftNavigationFragment extends Fragment {
 		try {
 			drawerState = (DrawerStateInterface) activity;
 		} catch (ClassCastException castException) {
-			Log.d(DEBUG_TAG, "The activity does not implement the listener");
+			castException.printStackTrace();
 		}
 	}
 

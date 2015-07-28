@@ -48,10 +48,10 @@ public class CalenderFragment extends Fragment implements OnRefreshListener {
 
 	/**
 	 * If you want to list all events, use courseid = 0
-	 * 
+	 *
 	 * @param courseid
 	 */
-	public CalenderFragment(int courseid) {
+	public void setCourseid(int courseid){
 		this.courseid = courseid;
 	}
 
