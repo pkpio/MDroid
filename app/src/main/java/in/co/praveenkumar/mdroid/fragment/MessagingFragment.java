@@ -4,6 +4,7 @@ import in.co.praveenkumar.R;
 import in.co.praveenkumar.mdroid.helper.AppInterface.UserIdInterface;
 import in.co.praveenkumar.mdroid.helper.ApplicationClass;
 import in.co.praveenkumar.mdroid.helper.ImageDecoder;
+import in.co.praveenkumar.mdroid.helper.ImageLoader;
 import in.co.praveenkumar.mdroid.helper.LetterColor;
 import in.co.praveenkumar.mdroid.helper.Param;
 import in.co.praveenkumar.mdroid.helper.SessionSetting;
@@ -236,20 +237,21 @@ public class MessagingFragment extends Fragment implements OnRefreshListener {
 				viewHolder.userimage.setBackgroundColor(LetterColor
 						.of(firstChar));
 
-				// Set message text as html
+				// Get message text as html
 				msg = messages.get(position).getText();
-				viewHolder.message.setText(Html.fromHtml(msg));
 				break;
 			case TYPE_MESSAGE_OUT:
-				// Set message text as html
+				// Get message text as html
 				msg = messages.get(position).getText();
-				viewHolder.message.setText(Html.fromHtml(msg));
 
 				// Set user image
 				if (loginUserImage != null)
 					viewHolder.userIcon.setImageBitmap(loginUserImage);
 				break;
 			}
+            // Set text
+            viewHolder.message.setText(Html
+                    .fromHtml(msg, new ImageLoader(context, viewHolder.message), null));
 
 			// Enable links as clickable
 			viewHolder.message.setMovementMethod(LinkMovementMethod.getInstance());

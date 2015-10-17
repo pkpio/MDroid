@@ -2,6 +2,7 @@ package in.co.praveenkumar.mdroid.fragment;
 
 import in.co.praveenkumar.R;
 import in.co.praveenkumar.mdroid.helper.AppInterface.DiscussionIdInterface;
+import in.co.praveenkumar.mdroid.helper.ImageLoader;
 import in.co.praveenkumar.mdroid.helper.LetterColor;
 import in.co.praveenkumar.mdroid.helper.SessionSetting;
 import in.co.praveenkumar.mdroid.helper.TimeFormat;
@@ -33,8 +34,10 @@ import android.widget.TextView;
 
 public class PostFragment extends Fragment implements OnRefreshListener {
 	private final String DEBUG_TAG = "PostFragment";
+
 	PostListAdapter postListAdapter;
 	SessionSetting session;
+
 	int discussionid = 0;
 	List<MoodlePost> mPosts;
 	LinearLayout postsEmptyLayout;
@@ -149,7 +152,8 @@ public class PostFragment extends Fragment implements OnRefreshListener {
 
 			// Post content as HTML & links clickable
 			String message = mPosts.get(position).getMessage();
-			viewHolder.postcontent.setText(Html.fromHtml(message));
+			viewHolder.postcontent.setText(
+                    Html.fromHtml(message, new ImageLoader(context, viewHolder.postcontent), null));
 			viewHolder.postcontent.setMovementMethod(LinkMovementMethod.getInstance());
 
 			// Author image color and value
