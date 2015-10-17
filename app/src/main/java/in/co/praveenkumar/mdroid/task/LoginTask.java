@@ -188,7 +188,9 @@ public class LoginTask extends AsyncTask<String, String, Boolean> {
 
 			return false;
 		}
-		siteInfo.setToken(token);
+		siteInfo.setLoginUsername(username);
+        siteInfo.setLoginPassword(password);
+        siteInfo.setToken(token);
 		siteInfo.save();
 		session.setCurrentSiteId(siteInfo.getId());
 

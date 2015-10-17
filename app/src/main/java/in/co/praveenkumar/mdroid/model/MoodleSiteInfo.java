@@ -39,14 +39,50 @@ public class MoodleSiteInfo extends SugarRecord<MoodleSiteInfo> {
 	 */
 	String token;
 
+    /**
+     * Credentials to be used for login
+     */
+    String loginUsername;
+    String loginPassword;
+
 	public MoodleSiteInfo() {
 	}
 
-	public MoodleSiteInfo(String token) {
+	public MoodleSiteInfo(String loginUsername, String loginPassword, String token) {
+		this.loginUsername = loginUsername;
+		this.loginPassword = loginPassword;
 		this.token = token;
 	}
 
-	/**
+    /**
+     * Username to be used for site login
+     */
+    public String getLoginUsername() {
+        return loginUsername;
+    }
+
+    /**
+     * Username to be used for site login
+     */
+    public void setLoginUsername(String loginUsername) {
+        this.loginUsername = loginUsername;
+    }
+
+    /**
+     * Password to be used for site login
+     */
+    public String getLoginPassword() {
+        return loginPassword;
+    }
+
+    /**
+     * Password to be used for site login
+     */
+    public void setLoginPassword(String loginPassword) {
+        this.loginPassword = loginPassword;
+    }
+
+    /**
 	 * Set token associated with this account
 	 */
 	public void setToken(String token) {
