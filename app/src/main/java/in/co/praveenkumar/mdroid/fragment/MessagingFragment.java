@@ -29,6 +29,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
 import android.text.Html;
 import android.text.Spanned;
+import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -249,6 +250,9 @@ public class MessagingFragment extends Fragment implements OnRefreshListener {
 					viewHolder.userIcon.setImageBitmap(loginUserImage);
 				break;
 			}
+
+			// Enable links as clickable
+			viewHolder.message.setMovementMethod(LinkMovementMethod.getInstance());
 
 			return convertView;
 		}
