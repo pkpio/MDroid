@@ -176,4 +176,10 @@
     <!-- For ads -->
     <string name="banner_ad_unit_id">ca-app-pub-5596738936514245/8048848210</string>
 
+    <!-- Menus -->
+    <string name="menu_webbrowser_login">Auto login</string>
+
+    <!-- AppBrowser Activity -->
+    <string name="activity_appbrowser_autologin_info">Attempting auto login</string>
+
 </resources>
