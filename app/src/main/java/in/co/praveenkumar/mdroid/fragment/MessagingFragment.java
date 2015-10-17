@@ -28,6 +28,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
 import android.text.Html;
+import android.text.Spanned;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -234,16 +235,14 @@ public class MessagingFragment extends Fragment implements OnRefreshListener {
 				viewHolder.userimage.setBackgroundColor(LetterColor
 						.of(firstChar));
 
-				// Set message after trimming html special chars
+				// Set message text as html
 				msg = messages.get(position).getText();
-				msg = (msg == null) ? "" : Html.fromHtml(msg).toString().trim();
 				viewHolder.message.setText(Html.fromHtml(msg));
 				break;
 			case TYPE_MESSAGE_OUT:
-				// Set message after trimming html special chars
+				// Set message text as html
 				msg = messages.get(position).getText();
-				msg = (msg == null) ? "" : Html.fromHtml(msg).toString().trim();
-				viewHolder.message.setText(msg);
+				viewHolder.message.setText(Html.fromHtml(msg));
 
 				// Set user image
 				if (loginUserImage != null)

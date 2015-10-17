@@ -2,6 +2,7 @@ package in.co.praveenkumar.mdroid.fragment;
 
 import in.co.praveenkumar.R;
 import in.co.praveenkumar.mdroid.activity.MessagingActivity;
+import in.co.praveenkumar.mdroid.helper.AppInterface;
 import in.co.praveenkumar.mdroid.helper.AppInterface.UserIdInterface;
 import in.co.praveenkumar.mdroid.helper.LetterColor;
 import in.co.praveenkumar.mdroid.helper.SessionSetting;
@@ -38,12 +39,16 @@ public class MessageListingFragment extends Fragment implements
         OnRefreshListener {
     final String DEBUG_TAG = "MessageListingFragment";
     List<ListMessage> messages = new ArrayList<MessageListingFragment.ListMessage>();
+
     FragmentManager mFragmentManager;
     MessageListAdapter adapter;
     SessionSetting session;
+
     LinearLayout messagesEmptyLayout;
-    UserIdInterface useridInterface;
     SwipeRefreshLayout swipeLayout;
+
+    UserIdInterface useridInterface;
+    AppInterface.FragmentChanger fragmentChanger;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -70,12 +75,7 @@ public class MessageListingFragment extends Fragment implements
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
                 useridInterface.setUserId(messages.get(position).userid);
-                mFragmentManager
-                        .beginTransaction()
-                        .replace(R.id.messaging_layout, new MessagingFragment())
-                        .addToBackStack(null)
-                        .commit();
-                mFragmentManager.executePendingTransactions();
+                fragmentChanger.changeFragment(MessagingActivity.FRAG_MESSAGING, true);
             }
         });
 
@@ -94,6 +94,7 @@ public class MessageListingFragment extends Fragment implements
         super.onAttach(a);
         try {
             useridInterface = (UserIdInterface) a;
+            fragmentChanger = (AppInterface.FragmentChanger) a;
             mFragmentManager = ((MessagingActivity) a).getSupportFragmentManager();
         } catch (ClassCastException e) {
             e.printStackTrace();

@@ -113,4 +113,23 @@ public class AppInterface {
 
 	}
 
+	/**
+	 * Gives an interface for changing fragment of an activity
+	 *
+	 * @author Praveen Kumar Pendyala (praveen@praveenkumar.co.in)
+	 *
+	 */
+	public interface FragmentChanger {
+		/**
+		 * Change fragment
+         *
+		 * @param  FragmentId
+         *      Id of the destination fragment
+         * @param animations
+         *      Should transition animations be applied
+		 */
+		public void changeFragment(int FragmentId, Boolean animations);
+
+	}
+
 }
