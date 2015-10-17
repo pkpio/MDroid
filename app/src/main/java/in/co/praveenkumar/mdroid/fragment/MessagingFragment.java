@@ -237,7 +237,7 @@ public class MessagingFragment extends Fragment implements OnRefreshListener {
 				// Set message after trimming html special chars
 				msg = messages.get(position).getText();
 				msg = (msg == null) ? "" : Html.fromHtml(msg).toString().trim();
-				viewHolder.message.setText(msg);
+				viewHolder.message.setText(Html.fromHtml(msg));
 				break;
 			case TYPE_MESSAGE_OUT:
 				// Set message after trimming html special chars
