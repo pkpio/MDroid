@@ -21,6 +21,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
 import android.text.Html;
+import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -146,13 +147,10 @@ public class PostFragment extends Fragment implements OnRefreshListener {
 			viewHolder.postlastmodified.setText(TimeFormat.getNiceTime(mPosts
 					.get(position).getModified()));
 
-			// Post content. Could be HTML. So, make it plain text first.
+			// Post content as HTML & links clickable
 			String message = mPosts.get(position).getMessage();
-			if (message == null)
-				message = "";
-			else
-				message = Html.fromHtml(message).toString().trim();
-			viewHolder.postcontent.setText(message);
+			viewHolder.postcontent.setText(Html.fromHtml(message));
+			viewHolder.postcontent.setMovementMethod(LinkMovementMethod.getInstance());
 
 			// Author image color and value
 			String authorName = mPosts.get(position).getUserfullname();
