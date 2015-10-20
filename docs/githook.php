@@ -15,7 +15,7 @@
   foreach($added as $entry){
     if(startsWith($entry, $interest_path)){
       $file = fopen(substr($entry, 5), w);
-      fwrite($file, file_get_contents($base_path . $entry));
+      echo 'added ' . fwrite($file, file_get_contents($base_path . $entry));
       fclose($file);
     }
   }
@@ -23,7 +23,7 @@
   // Print removed list
   foreach($removed as $entry){
      if(startsWith($entry, $interest_path)){
-        unlink(substr($entry, 5));
+        echo 'deleted ' . unlink(substr($entry, 5));
      }
   }
 
@@ -31,7 +31,7 @@
   foreach($modified as $entry){
     if(startsWith($entry, $interest_path)){
       $file = fopen(substr($entry, 5), w);
-      fwrite($file, file_get_contents($base_path . $entry));
+      echo 'modified ' . fwrite($file, file_get_contents($base_path . $entry));
       fclose($file);
     }
   }
