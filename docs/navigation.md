@@ -12,6 +12,7 @@
   * # Setup
   * [Simple webservice setup](simple-webservices-setup.md)
   * [Advanced webservice setup](advanced-webservices-setup.md)
+  * [Messaging support](messaging-setup.md)
   * [Additional setup](additional-setup.md) 
 
   - - - -
