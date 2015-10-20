@@ -1,3 +1,6 @@
+Messaging Support
+------------------
+
 1. Install ```local_mobile``` plugin for Moodle
 2. You must create and use custom webservice named ```mdroid_service```
 3. Test that custom webservice is working
