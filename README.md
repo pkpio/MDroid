@@ -23,8 +23,7 @@ Check [MDroid Translation page][4]
 
 Author
 ----------------------
-Praveen Kumar Pendyala
-http://praveen.xyz
+[Praveen Kumar Pendyala][https://pkp.io]
 
 
 License
