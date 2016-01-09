@@ -23,7 +23,7 @@ Check [MDroid Translation page][4]
 
 Author
 ----------------------
-[Praveen Kumar Pendyala][https://pkp.io]
+[Praveen Kumar Pendyala][5]
 
 
 License
@@ -35,3 +35,4 @@ Licensed under the [GPL v3][1]
 [2]: https://github.com/praveendath92/MDroid#setting-up-mdroid
 [3]: https://developer.android.com/tools/studio/index.html
 [4]: https://crowdin.com/project/mdroid
+[5]: https://pkp.io
