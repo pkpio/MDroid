@@ -1,3 +1,8 @@
+Request to interested developers
+---------------------
+If you like this work, maybe Star :star: this before Fork :fork_and_knife: :wink:
+
+
 Documentation
 ----------------------
 The docs for MDroid can be found at http://praveen.xyz/mdroid which are mirrored from the ```docs``` directory of this respository.
