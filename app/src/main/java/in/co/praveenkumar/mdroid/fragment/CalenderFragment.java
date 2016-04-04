@@ -133,7 +133,7 @@ public class CalenderFragment extends Fragment implements OnRefreshListener {
 		@Override
 		protected void onPostExecute(Boolean result) {
 			calendarListAdapter.notifyDataSetChanged();
-			if (listObjects.size() != 0)
+			if (!listObjects.isEmpty())
 				calenderEmptyLayout.setVisibility(LinearLayout.GONE);
 			swipeLayout.setRefreshing(false);
 		}
@@ -149,7 +149,7 @@ public class CalenderFragment extends Fragment implements OnRefreshListener {
 
 		public CalendarListAdapter(Context context) {
 			this.context = context;
-			if (listObjects.size() != 0)
+			if (!listObjects.isEmpty())
 				calenderEmptyLayout.setVisibility(LinearLayout.GONE);
 		}
 
@@ -264,7 +264,7 @@ public class CalenderFragment extends Fragment implements OnRefreshListener {
 	private void setupCalenderObjects() {
 		if (mEvents == null)
 			return;
-		if (mEvents.size() == 0)
+		if (mEvents.isEmpty())
 			return;
 
 		Collections.sort(mEvents, new Comparator<MoodleEvent>() {

@@ -115,7 +115,7 @@ public class MessageSyncTask {
 				dbMessages = MoodleMessage.find(MoodleMessage.class,
 						"messageid = ? and siteid = ?", message.getMessageid()
 								+ "", siteid + "");
-				if (dbMessages.size() > 0)
+				if (!dbMessages.isEmpty())
 					message.setId(dbMessages.get(0).getId());
 				// set notifications if enabled
 				else if (notification

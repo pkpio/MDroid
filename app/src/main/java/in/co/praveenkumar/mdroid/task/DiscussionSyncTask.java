@@ -94,7 +94,7 @@ public class DiscussionSyncTask {
 		}
 
 		// Moodle exception
-		if (mTopics.size() == 0) {
+		if (mTopics.isEmpty()) {
 			error = "No data received";
 			// No additional debug info as that needs context
 			return false;
@@ -109,7 +109,7 @@ public class DiscussionSyncTask {
 			dbTopics = MoodleDiscussion.find(MoodleDiscussion.class,
 					"discussionid = ? and siteid = ?", topic.getDiscussionid()
 							+ "", siteid + "");
-			if (dbTopics.size() > 0)
+			if (!dbTopics.isEmpty())
 				topic.setId(dbTopics.get(0).getId());
 
 			// set notifications if enabled
@@ -117,7 +117,7 @@ public class DiscussionSyncTask {
 				List<MoodleCourse> dbCourses = MoodleCourse.find(
 						MoodleCourse.class, "courseid = ? and siteid = ?",
 						siteid + "", topic.getCourseid() + "");
-				MoodleCourse course = (dbCourses != null && dbCourses.size() > 0) ? dbCourses
+				MoodleCourse course = (dbCourses != null && !dbCourses.isEmpty()) ? dbCourses
 						.get(0) : null;
 
 				if (course != null) {

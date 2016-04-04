@@ -82,7 +82,7 @@ public class MoodleRestMessage {
 			if (mMessages == null)
 				return false;
 
-			if (mMessages.size() == 0)
+			if (mMessages.isEmpty())
 				return false;
 
 			MoodleMessage mMessage = mMessages.get(0);

@@ -121,9 +121,9 @@ public class EventSyncTask {
 				dbCourses = MoodleCourse.find(MoodleCourse.class,
 						"courseid = ? and siteid = ?",
 						event.getCourseid() + "", siteid + "");
-				if (dbCourses.size() > 0)
+				if (!dbCourses.isEmpty())
 					event.setCoursename(dbCourses.get(0).getShortname());
-				if (dbEvents.size() > 0)
+				if (!dbEvents.isEmpty())
 					event.setId(dbEvents.get(0).getId());
 
 				// set notifications if enabled

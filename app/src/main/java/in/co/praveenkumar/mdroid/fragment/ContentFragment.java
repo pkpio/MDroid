@@ -129,7 +129,7 @@ public class ContentFragment extends Fragment implements OnRefreshListener {
 		@Override
 		protected void onPostExecute(Boolean result) {
 			courseContentListAdapter.notifyDataSetChanged();
-			if (listObjects.size() != 0)
+			if (!listObjects.isEmpty())
 				contentEmptyLayout.setVisibility(LinearLayout.GONE);
 			swipeLayout.setRefreshing(false);
 		}
@@ -145,7 +145,7 @@ public class ContentFragment extends Fragment implements OnRefreshListener {
 
 		public CourseListAdapter(Context context) {
 			this.context = context;
-			if (listObjects.size() != 0)
+			if (!listObjects.isEmpty())
 				contentEmptyLayout.setVisibility(LinearLayout.GONE);
 		}
 
@@ -260,7 +260,7 @@ public class ContentFragment extends Fragment implements OnRefreshListener {
 						return;
 					}
 
-					if (module.getContents().size() == 0) {
+					if (module.getContents().isEmpty()) {
 						context.startActivity(i);
 						return;
 					}
@@ -362,7 +362,7 @@ public class ContentFragment extends Fragment implements OnRefreshListener {
 		for (int i = 0; i < sections.size(); i++) {
 			section = sections.get(i);
 			modules = section.getModules();
-			if (modules.size() > 0) {
+			if (!modules.isEmpty()) {
 				CourseContentObject object = new CourseContentObject();
 				object.viewType = CourseListAdapter.TYPE_HEADER;
 				object.sectionid = section.getSectionid();

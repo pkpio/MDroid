@@ -95,7 +95,7 @@ public class ForumSyncTask {
 		}
 
 		// Moodle exception
-		if (mForums.size() == 0) {
+		if (mForums.isEmpty()) {
 			error = "No data received";
 			// No additional debug info as that needs context
 			return false;
@@ -116,9 +116,9 @@ public class ForumSyncTask {
 			dbCourses = MoodleCourse.find(MoodleCourse.class,
 					"courseid = ? and siteid = ?", forum.getCourseid() + "",
 					siteid + "");
-			if (dbCourses.size() > 0)
+			if (!dbCourses.isEmpty())
 				forum.setCoursename(dbCourses.get(0).getShortname());
-			if (dbForums.size() > 0)
+			if (!dbForums.isEmpty())
 				forum.setId(dbForums.get(0).getId());
 			// set notifications if enabled
 			else if (notification) {

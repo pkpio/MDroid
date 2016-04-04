@@ -167,7 +167,7 @@ public class MessagingFragment extends Fragment implements OnRefreshListener {
 
 		public MessageListAdapter(Context context) {
 			this.context = context;
-			if (messages == null || messages.size() != 0)
+			if (messages == null || !messages.isEmpty())
 				messagingEmptyLayout.setVisibility(LinearLayout.GONE);
 		}
 
@@ -278,7 +278,7 @@ public class MessagingFragment extends Fragment implements OnRefreshListener {
 
 		@Override
 		public void notifyDataSetChanged() {
-			if (messages.size() != 0)
+			if (!messages.isEmpty())
 				messagingEmptyLayout.setVisibility(LinearLayout.GONE);
 			super.notifyDataSetChanged();
 		}

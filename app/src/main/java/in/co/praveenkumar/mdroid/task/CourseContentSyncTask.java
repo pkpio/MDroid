@@ -81,7 +81,7 @@ public class CourseContentSyncTask {
 		// Get the course from database for all future use
 		List<MoodleCourse> dbCourses = MoodleCourse.find(MoodleCourse.class,
 				"siteid = ? and courseid = ?", siteid + "", courseid + "");
-		if (dbCourses == null || dbCourses.size() == 0) {
+		if (dbCourses == null || dbCourses.isEmpty()) {
 			error = "Course not found in database!";
 			return false;
 		}
@@ -98,7 +98,7 @@ public class CourseContentSyncTask {
 		}
 
 		// Some network or encoding issue.
-		if (mSections.size() == 0) {
+		if (mSections.isEmpty()) {
 			error = "No data received! Permissions issue?";
 			return false;
 		}
@@ -116,7 +116,7 @@ public class CourseContentSyncTask {
 			dbSections = MoodleSection.find(MoodleSection.class,
 					"sectionid = ? and siteid = ?",
 					section.getSectionid() + "", section.getSiteid() + "");
-			if (dbSections.size() > 0)
+			if (!dbSections.isEmpty())
 				section.setId(dbSections.get(0).getId()); // updates on save()
 			section.save();
 
@@ -163,7 +163,7 @@ public class CourseContentSyncTask {
 			dbModules = MoodleModule.find(MoodleModule.class,
 					"moduleid = ? and siteid = ?", module.getModuleid() + "",
 					module.getSiteid() + "");
-			if (dbModules.size() > 0)
+			if (!dbModules.isEmpty())
 				module.setId(dbModules.get(0).getId()); // updates on save()
 			// set notifications if enabled
 			else if (notification) {
@@ -218,7 +218,7 @@ public class CourseContentSyncTask {
 			dbContents = MoodleModuleContent.find(MoodleModuleContent.class,
 					"parentid = ? and siteid = ?", content.getParentid() + "",
 					content.getSiteid() + "");
-			if (dbContents.size() > 0)
+			if (!dbContents.isEmpty())
 				content.setId(dbContents.get(0).getId()); // updates on save()
 			content.save();
 		}

@@ -109,7 +109,7 @@ public class PostFragment extends Fragment implements OnRefreshListener {
 
 		public PostListAdapter(Context context) {
 			this.context = context;
-			if (mPosts.size() != 0)
+			if (!mPosts.isEmpty())
 				postsEmptyLayout.setVisibility(LinearLayout.GONE);
 		}
 
@@ -239,7 +239,7 @@ public class PostFragment extends Fragment implements OnRefreshListener {
 		@Override
 		protected void onPostExecute(Boolean result) {
 			postListAdapter.notifyDataSetChanged();
-			if (mPosts.size() != 0)
+			if (!mPosts.isEmpty())
 				postsEmptyLayout.setVisibility(LinearLayout.GONE);
 			swipeLayout.setRefreshing(false);
 		}

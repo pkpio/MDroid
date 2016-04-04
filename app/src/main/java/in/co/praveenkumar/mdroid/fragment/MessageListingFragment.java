@@ -137,7 +137,7 @@ public class MessageListingFragment extends Fragment implements
 
         public MessageListAdapter(Context context) {
             this.context = context;
-            if (messages == null || messages.size() == 0)
+            if (messages == null || messages.isEmpty())
                 messagesEmptyLayout.setVisibility(LinearLayout.VISIBLE);
             else
                 messagesEmptyLayout.setVisibility(LinearLayout.GONE);
@@ -206,7 +206,7 @@ public class MessageListingFragment extends Fragment implements
 
         @Override
         public void notifyDataSetChanged() {
-            if (messages.size() != 0)
+            if (!messages.isEmpty())
                 messagesEmptyLayout.setVisibility(LinearLayout.GONE);
             super.notifyDataSetChanged();
         }

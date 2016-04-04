@@ -111,7 +111,7 @@ public class MDroidService extends Service {
 				mSites.add(site);
 			}
 
-			if (mSites == null || mSites.size() == 0)
+			if (mSites == null || mSites.isEmpty())
 				return false;
 
 			// Loop through all sites for checking contents
@@ -189,7 +189,7 @@ public class MDroidService extends Service {
 		 */
 		private int syncCourseContents(MoodleSiteInfo site,
 				List<MoodleCourse> mCourses) {
-			if (mCourses == null || mCourses.size() == 0)
+			if (mCourses == null || mCourses.isEmpty())
 				return 0;
 
 			CourseContentSyncTask ccst = new CourseContentSyncTask(
@@ -211,7 +211,7 @@ public class MDroidService extends Service {
 		 * @return Notification count
 		 */
 		private int syncForums(MoodleSiteInfo site, List<MoodleCourse> mCourses) {
-			if (mCourses == null || mCourses.size() == 0)
+			if (mCourses == null || mCourses.isEmpty())
 				return 0;
 
 			ArrayList<String> courseids = new ArrayList<String>();
@@ -235,7 +235,7 @@ public class MDroidService extends Service {
 		 */
 		private int syncDiscussions(MoodleSiteInfo site,
 				List<MoodleCourse> mCourses) {
-			if (mCourses == null || mCourses.size() == 0)
+			if (mCourses == null || mCourses.isEmpty())
 				return 0;
 
 			DiscussionSyncTask dst = new DiscussionSyncTask(site.getSiteurl(),
@@ -267,7 +267,7 @@ public class MDroidService extends Service {
 		 * @return Notification count
 		 */
 		private int syncPosts(MoodleSiteInfo site, List<MoodleCourse> mCourses) {
-			if (mCourses == null || mCourses.size() == 0)
+			if (mCourses == null || mCourses.isEmpty())
 				return 0;
 
 			PostSyncTask pst = new PostSyncTask(site.getSiteurl(),
@@ -314,7 +314,7 @@ public class MDroidService extends Service {
 		 * @return Notification count
 		 */
 		private int syncEvents(MoodleSiteInfo site, List<MoodleCourse> mCourses) {
-			if (mCourses == null || mCourses.size() == 0)
+			if (mCourses == null || mCourses.isEmpty())
 				return 0;
 
 			ArrayList<String> courseids = new ArrayList<String>();
@@ -338,7 +338,7 @@ public class MDroidService extends Service {
 		 */
 		private int syncParticipants(MoodleSiteInfo site,
 				List<MoodleCourse> mCourses) {
-			if (mCourses == null || mCourses.size() == 0)
+			if (mCourses == null || mCourses.isEmpty())
 				return 0;
 
 			UserSyncTask ust = new UserSyncTask(site.getSiteurl(),
