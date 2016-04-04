@@ -259,6 +259,6 @@ public class CourseContentSyncTask {
 			sections.get(i).setModules(dbModules);
 		}
 
-		return new ArrayList<MoodleSection>(sections);
+		return new ArrayList<>(sections);
 	}
 }

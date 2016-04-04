@@ -70,7 +70,7 @@ public class DiscussionSyncTask {
 	 * @author Praveen Kumar Pendyala (praveen@praveenkumar.co.in)
 	 */
 	public Boolean syncDiscussions(int forumid) {
-		ArrayList<String> forumids = new ArrayList<String>();
+		ArrayList<String> forumids = new ArrayList<>();
 		forumids.add(forumid + "");
 		return syncDiscussions(forumids);
 	}

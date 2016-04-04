@@ -98,7 +98,7 @@ public class MoodleSection extends SugarRecord<MoodleSection> {
 	 * @return
 	 */
 	public void setModules(List<MoodleModule> modules) {
-		this.modules = new ArrayList<MoodleModule>(modules);
+		this.modules = new ArrayList<>(modules);
 	}
 
 	/**

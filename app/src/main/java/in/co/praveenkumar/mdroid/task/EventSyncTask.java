@@ -72,7 +72,7 @@ public class EventSyncTask {
 	 * @author Praveen Kumar Pendyala (praveen@praveenkumar.co.in)
 	 */
 	public Boolean syncEvents(int courseid) {
-		ArrayList<String> courseids = new ArrayList<String>();
+		ArrayList<String> courseids = new ArrayList<>();
 		courseids.add(courseid + "");
 		return syncEvents(courseids);
 	}

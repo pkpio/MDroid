@@ -41,7 +41,7 @@ public class ContentFragment extends Fragment implements OnRefreshListener {
 	int courseid;
 	CourseListAdapter courseContentListAdapter;
 	SessionSetting session;
-	ArrayList<CourseContentObject> listObjects = new ArrayList<CourseContentObject>();
+	ArrayList<CourseContentObject> listObjects = new ArrayList<>();
 	LinearLayout contentEmptyLayout;
 	SwipeRefreshLayout swipeLayout;
 

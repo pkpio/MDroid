@@ -78,7 +78,7 @@ public class MoodleRestEvent {
 						+ URLEncoder.encode("0", "UTF-8");
 
 			if (ids == null)
-				ids = new ArrayList<String>();
+				ids = new ArrayList<>();
 
 			for (int i = 0; i < ids.size(); i++) {
 				switch (idType) {

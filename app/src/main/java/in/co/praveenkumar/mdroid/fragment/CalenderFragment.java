@@ -36,7 +36,7 @@ public class CalenderFragment extends Fragment implements OnRefreshListener {
 	CalendarListAdapter calendarListAdapter;
 	SessionSetting session;
 	List<MoodleEvent> mEvents;
-	ArrayList<CalenderObject> listObjects = new ArrayList<CalenderObject>();
+	ArrayList<CalenderObject> listObjects = new ArrayList<>();
 	LinearLayout calenderEmptyLayout;
 	SwipeRefreshLayout swipeLayout;
 
@@ -111,7 +111,7 @@ public class CalenderFragment extends Fragment implements OnRefreshListener {
 			// Get course ids
 			List<MoodleCourse> mCourses = MoodleCourse.find(MoodleCourse.class,
 					"siteid = ?", siteid + "");
-			ArrayList<String> courseIds = new ArrayList<String>();
+			ArrayList<String> courseIds = new ArrayList<>();
 			for (int i = 0; i < mCourses.size(); i++)
 				courseIds.add(mCourses.get(i).getCourseid() + "");
 			syncStatus = est.syncEvents(courseIds);
