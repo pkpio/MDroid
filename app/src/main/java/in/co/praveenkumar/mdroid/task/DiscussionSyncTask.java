@@ -70,7 +70,7 @@ public class DiscussionSyncTask {
 	 * @author Praveen Kumar Pendyala (praveen@praveenkumar.co.in)
 	 */
 	public Boolean syncDiscussions(int forumid) {
-		ArrayList<String> forumids = new ArrayList<String>();
+		ArrayList<String> forumids = new ArrayList<>();
 		forumids.add(forumid + "");
 		return syncDiscussions(forumids);
 	}
@@ -94,7 +94,7 @@ public class DiscussionSyncTask {
 		}
 
 		// Moodle exception
-		if (mTopics.size() == 0) {
+		if (mTopics.isEmpty()) {
 			error = "No data received";
 			// No additional debug info as that needs context
 			return false;
@@ -107,17 +107,17 @@ public class DiscussionSyncTask {
 			topic.setSiteid(siteid);
 
 			dbTopics = MoodleDiscussion.find(MoodleDiscussion.class,
-					"discussionid = ? and siteid = ?", topic.getDiscussionid()
-							+ "", siteid + "");
-			if (dbTopics.size() > 0)
+					"discussionid = ? and siteid = ?", String.valueOf(topic.getDiscussionid())
+							, String.valueOf(siteid));
+			if (!dbTopics.isEmpty())
 				topic.setId(dbTopics.get(0).getId());
 
 			// set notifications if enabled
 			else if (notification) {
 				List<MoodleCourse> dbCourses = MoodleCourse.find(
 						MoodleCourse.class, "courseid = ? and siteid = ?",
-						siteid + "", topic.getCourseid() + "");
-				MoodleCourse course = (dbCourses != null && dbCourses.size() > 0) ? dbCourses
+						String.valueOf(siteid), String.valueOf(topic.getCourseid()));
+				MoodleCourse course = (dbCourses != null && !dbCourses.isEmpty()) ? dbCourses
 						.get(0) : null;
 
 				if (course != null) {

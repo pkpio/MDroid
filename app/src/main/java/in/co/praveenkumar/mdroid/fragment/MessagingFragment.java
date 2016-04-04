@@ -47,7 +47,7 @@ import android.widget.Toast;
 public class MessagingFragment extends Fragment implements OnRefreshListener {
 	final String DEBUG_TAG = "MessageListingFragment";
 	Context context;
-	List<MoodleMessage> messages = new ArrayList<MoodleMessage>();
+	List<MoodleMessage> messages = new ArrayList<>();
 	MessageListAdapter adapter;
 	SessionSetting session;
 	LinearLayout messagingEmptyLayout;
@@ -144,10 +144,7 @@ public class MessagingFragment extends Fragment implements OnRefreshListener {
 			// Sync from server and update
 			MessageSyncTask mst = new MessageSyncTask(session.getmUrl(),
 					session.getToken(), session.getCurrentSiteId());
-			if (mst.syncMessages(session.getSiteInfo().getUserid()))
-				return true;
-			else
-				return false;
+			return mst.syncMessages(session.getSiteInfo().getUserid());
 		}
 
 		@Override
@@ -167,7 +164,7 @@ public class MessagingFragment extends Fragment implements OnRefreshListener {
 
 		public MessageListAdapter(Context context) {
 			this.context = context;
-			if (messages == null || messages.size() != 0)
+			if (messages == null || !messages.isEmpty())
 				messagingEmptyLayout.setVisibility(LinearLayout.GONE);
 		}
 
@@ -233,7 +230,7 @@ public class MessagingFragment extends Fragment implements OnRefreshListener {
 				char firstChar = 0;
 				if (name.length() != 0)
 					firstChar = name.charAt(0);
-				viewHolder.userimage.setText(firstChar + "");
+				viewHolder.userimage.setText(String.valueOf(firstChar));
 				viewHolder.userimage.setBackgroundColor(LetterColor
 						.of(firstChar));
 
@@ -278,7 +275,7 @@ public class MessagingFragment extends Fragment implements OnRefreshListener {
 
 		@Override
 		public void notifyDataSetChanged() {
-			if (messages.size() != 0)
+			if (!messages.isEmpty())
 				messagingEmptyLayout.setVisibility(LinearLayout.GONE);
 			super.notifyDataSetChanged();
 		}
@@ -293,8 +290,8 @@ public class MessagingFragment extends Fragment implements OnRefreshListener {
 	void setupMessages() {
 		List<MoodleMessage> mMessages = MoodleMessage.find(MoodleMessage.class,
 				"useridfrom = ? and siteid = ? or useridto = ? and siteid = ?",
-				userid + "", session.getCurrentSiteId() + "", userid + "",
-				session.getCurrentSiteId() + "");
+				String.valueOf(userid), String.valueOf(session.getCurrentSiteId()), String.valueOf(userid),
+				String.valueOf(session.getCurrentSiteId()));
 
 		// Sort messages with newest last in list
 		Collections.sort(mMessages, new Comparator<MoodleMessage>() {

@@ -86,7 +86,7 @@ public class RightNavigationFragment extends Fragment {
 
 		public RightNavListAdapter(Context context) {
 			this.context = context;
-			if (contacts.size() != 0)
+			if (!contacts.isEmpty())
 				chatEmptyLayout.setVisibility(LinearLayout.GONE);
 		}
 
@@ -119,9 +119,9 @@ public class RightNavigationFragment extends Fragment {
 			// Contact image color and value
 			String name = contacts.get(position).getFullname();
 			char firstChar = 0;
-			if (name.length() != 0)
+			if (!name.isEmpty())
 				firstChar = name.charAt(0);
-			viewHolder.userimage.setText(firstChar + "");
+			viewHolder.userimage.setText(String.valueOf(firstChar));
 			viewHolder.userimage.setBackgroundColor(LetterColor.of(firstChar));
 
 			// Name
@@ -134,7 +134,7 @@ public class RightNavigationFragment extends Fragment {
 				viewHolder.unreadcount.setVisibility(TextView.GONE);
 			else {
 				viewHolder.unreadcount.setVisibility(TextView.VISIBLE);
-				viewHolder.unreadcount.setText(count + "");
+				viewHolder.unreadcount.setText(String.valueOf(count));
 			}
 
 			switch (contacts.get(position).getStatus()) {
@@ -183,10 +183,7 @@ public class RightNavigationFragment extends Fragment {
 		protected Boolean doInBackground(String... params) {
 			ContactSyncTask cst = new ContactSyncTask(session.getmUrl(),
 					session.getToken(), session.getCurrentSiteId());
-			if (cst.syncAllContacts())
-				return true;
-			else
-				return false;
+			return cst.syncAllContacts();
 		}
 
 		@Override
@@ -194,7 +191,7 @@ public class RightNavigationFragment extends Fragment {
 			contacts = MoodleContact.find(MoodleContact.class, "siteid = ?",
 					session.getCurrentSiteId() + "");
 			adapter.notifyDataSetChanged();
-			if (contacts.size() != 0)
+			if (!contacts.isEmpty())
 				chatEmptyLayout.setVisibility(LinearLayout.GONE);
 		}
 

@@ -36,7 +36,7 @@ public class CalenderFragment extends Fragment implements OnRefreshListener {
 	CalendarListAdapter calendarListAdapter;
 	SessionSetting session;
 	List<MoodleEvent> mEvents;
-	ArrayList<CalenderObject> listObjects = new ArrayList<CalenderObject>();
+	ArrayList<CalenderObject> listObjects = new ArrayList<>();
 	LinearLayout calenderEmptyLayout;
 	SwipeRefreshLayout swipeLayout;
 
@@ -69,11 +69,11 @@ public class CalenderFragment extends Fragment implements OnRefreshListener {
 		session = new SessionSetting(context);
 		if (courseid == 0)
 			mEvents = MoodleEvent.find(MoodleEvent.class, "siteid = ?",
-					session.getCurrentSiteId() + "");
+					String.valueOf(session.getCurrentSiteId()));
 		else
 			mEvents = MoodleEvent.find(MoodleEvent.class,
-					"siteid = ? and courseid = ?", session.getCurrentSiteId()
-							+ "", courseid + "");
+					"siteid = ? and courseid = ?", String.valueOf(session.getCurrentSiteId())
+							, String.valueOf(courseid));
 		setupCalenderObjects();
 
 		calendarListAdapter = new CalendarListAdapter(context);
@@ -111,7 +111,7 @@ public class CalenderFragment extends Fragment implements OnRefreshListener {
 			// Get course ids
 			List<MoodleCourse> mCourses = MoodleCourse.find(MoodleCourse.class,
 					"siteid = ?", siteid + "");
-			ArrayList<String> courseIds = new ArrayList<String>();
+			ArrayList<String> courseIds = new ArrayList<>();
 			for (int i = 0; i < mCourses.size(); i++)
 				courseIds.add(mCourses.get(i).getCourseid() + "");
 			syncStatus = est.syncEvents(courseIds);
@@ -119,11 +119,11 @@ public class CalenderFragment extends Fragment implements OnRefreshListener {
 			if (syncStatus) {
 				if (courseid == 0)
 					mEvents = MoodleEvent.find(MoodleEvent.class, "siteid = ?",
-							session.getCurrentSiteId() + "");
+							String.valueOf(session.getCurrentSiteId()));
 				else
 					mEvents = MoodleEvent.find(MoodleEvent.class,
 							"siteid = ? and courseid = ?",
-							session.getCurrentSiteId() + "", courseid + "");
+							String.valueOf(session.getCurrentSiteId()), String.valueOf(courseid));
 				setupCalenderObjects();
 				return true;
 			} else
@@ -133,7 +133,7 @@ public class CalenderFragment extends Fragment implements OnRefreshListener {
 		@Override
 		protected void onPostExecute(Boolean result) {
 			calendarListAdapter.notifyDataSetChanged();
-			if (listObjects.size() != 0)
+			if (!listObjects.isEmpty())
 				calenderEmptyLayout.setVisibility(LinearLayout.GONE);
 			swipeLayout.setRefreshing(false);
 		}
@@ -149,7 +149,7 @@ public class CalenderFragment extends Fragment implements OnRefreshListener {
 
 		public CalendarListAdapter(Context context) {
 			this.context = context;
-			if (listObjects.size() != 0)
+			if (!listObjects.isEmpty())
 				calenderEmptyLayout.setVisibility(LinearLayout.GONE);
 		}
 
@@ -231,10 +231,7 @@ public class CalenderFragment extends Fragment implements OnRefreshListener {
 
 		@Override
 		public boolean isItemViewTypePinned(int viewType) {
-			if (viewType == TYPE_DATE)
-				return true;
-			else
-				return false;
+			return viewType == TYPE_DATE;
 		}
 
 		@Override
@@ -264,7 +261,7 @@ public class CalenderFragment extends Fragment implements OnRefreshListener {
 	private void setupCalenderObjects() {
 		if (mEvents == null)
 			return;
-		if (mEvents.size() == 0)
+		if (mEvents.isEmpty())
 			return;
 
 		Collections.sort(mEvents, new Comparator<MoodleEvent>() {

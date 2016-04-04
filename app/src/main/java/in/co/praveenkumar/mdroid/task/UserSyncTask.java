@@ -74,7 +74,7 @@ public class UserSyncTask {
 
 		/** Error checking **/
 		// Some network or encoding issue.
-		if (mUsers == null || mUsers.size() == 0) {
+		if (mUsers == null || mUsers.isEmpty()) {
 			error = "No users found!";
 			return false;
 		}
@@ -88,15 +88,15 @@ public class UserSyncTask {
 
 			dbUsers = MoodleUser.find(MoodleUser.class,
 					"userid = ? and siteid = ? and courseid = ?",
-					mUser.getUserid() + "", siteid + "", courseid + "");
-			if (dbUsers.size() > 0)
+					String.valueOf(mUser.getUserid()), String.valueOf(siteid), String.valueOf(courseid));
+			if (!dbUsers.isEmpty())
 				mUser.setId(dbUsers.get(0).getId());
 			// set notifications if enabled
 			else if (notification) {
 				List<MoodleCourse> dbCourses = MoodleCourse.find(
 						MoodleCourse.class, "courseid = ? and siteid = ?",
-						siteid + "", courseid + "");
-				MoodleCourse course = (dbCourses != null && dbCourses.size() > 0) ? dbCourses
+						String.valueOf(siteid), String.valueOf(courseid));
+				MoodleCourse course = (dbCourses != null && !dbCourses.isEmpty()) ? dbCourses
 						.get(0) : null;
 
 				if (course != null) {

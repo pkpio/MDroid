@@ -71,7 +71,7 @@ public class ForumSyncTask {
 	 * @author Praveen Kumar Pendyala (praveen@praveenkumar.co.in)
 	 */
 	public Boolean syncForums(int courseid) {
-		ArrayList<String> courseids = new ArrayList<String>();
+		ArrayList<String> courseids = new ArrayList<>();
 		courseids.add(courseid + "");
 		return syncForums(courseids);
 	}
@@ -95,7 +95,7 @@ public class ForumSyncTask {
 		}
 
 		// Moodle exception
-		if (mForums.size() == 0) {
+		if (mForums.isEmpty()) {
 			error = "No data received";
 			// No additional debug info as that needs context
 			return false;
@@ -111,14 +111,14 @@ public class ForumSyncTask {
 			 * -TODO- Improve this search with only Sql operation
 			 */
 			dbForums = MoodleForum.find(MoodleForum.class,
-					"forumid = ? and siteid = ?", forum.getForumid() + "",
-					siteid + "");
+					"forumid = ? and siteid = ?", String.valueOf(forum.getForumid()),
+					String.valueOf(siteid));
 			dbCourses = MoodleCourse.find(MoodleCourse.class,
-					"courseid = ? and siteid = ?", forum.getCourseid() + "",
-					siteid + "");
-			if (dbCourses.size() > 0)
+					"courseid = ? and siteid = ?", String.valueOf(forum.getCourseid()),
+					String.valueOf(siteid));
+			if (!dbCourses.isEmpty())
 				forum.setCoursename(dbCourses.get(0).getShortname());
-			if (dbForums.size() > 0)
+			if (!dbForums.isEmpty())
 				forum.setId(dbForums.get(0).getId());
 			// set notifications if enabled
 			else if (notification) {

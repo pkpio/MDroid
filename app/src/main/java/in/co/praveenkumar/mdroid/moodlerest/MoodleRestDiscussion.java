@@ -44,7 +44,7 @@ public class MoodleRestDiscussion {
 			String params = "";
 
 			if (forumids == null)
-				forumids = new ArrayList<String>();
+				forumids = new ArrayList<>();
 
 			for (int i = 0; i < forumids.size(); i++)
 				params += "&forumids[" + i + "]="

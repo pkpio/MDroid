@@ -99,19 +99,18 @@ public class PostSyncTask {
 				post.setSiteid(siteid);
 
 				dbPosts = MoodlePost.find(MoodlePost.class,
-						"postid = ? and siteid = ?", post.getPostid() + "",
-						siteid + "");
-				if (dbPosts.size() > 0)
+						"postid = ? and siteid = ?", String.valueOf(post.getPostid()),
+						String.valueOf(siteid));
+				if (!dbPosts.isEmpty())
 					post.setId(dbPosts.get(0).getId());
 
 				// set notifications if enabled
 				else if (notification) {
 					List<MoodleDiscussion> dbDiscussions = MoodleDiscussion
 							.find(MoodleDiscussion.class,
-									"discussionid = ? and siteid = ?", siteid
-											+ "", discussionid + "");
-					MoodleDiscussion discussion = (dbDiscussions != null && dbDiscussions
-							.size() > 0) ? dbDiscussions.get(0) : null;
+									"discussionid = ? and siteid = ?", String.valueOf(siteid)
+											, String.valueOf(discussionid));
+					MoodleDiscussion discussion = (dbDiscussions != null && !dbDiscussions.isEmpty()) ? dbDiscussions.get(0) : null;
 
 					if (discussion != null) {
 						new MDroidNotification(siteid,
@@ -143,7 +142,7 @@ public class PostSyncTask {
 	public Boolean syncPosts(ArrayList<Integer> discussionids) {
 		Boolean status = true;
 
-		if (discussionids == null || discussionids.size() == 0)
+		if (discussionids == null || discussionids.isEmpty())
 			return false;
 
 		for (int i = 0; i < discussionids.size(); i++)

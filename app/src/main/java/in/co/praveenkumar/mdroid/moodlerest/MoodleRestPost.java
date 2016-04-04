@@ -40,7 +40,7 @@ public class MoodleRestPost {
 			String params = "";
 
 			params += "&discussionid="
-					+ URLEncoder.encode(discussionid + "", "UTF-8");
+					+ URLEncoder.encode(String.valueOf(discussionid), "UTF-8");
 
 			// Build a REST call url to make a call.
 			String restUrl = mUrl + "/webservice/rest/server.php" + "?wstoken="

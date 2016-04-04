@@ -133,7 +133,7 @@ public class MoodleUser extends SugarRecord<MoodleUser> {
 		super.save();
 
 		// Save users' enrolled courses
-		if (enrolledcourses == null || enrolledcourses.size() == 0)
+		if (enrolledcourses == null || enrolledcourses.isEmpty())
 			return;
 
 		MoodleUserCourse mUserCourse;
@@ -143,9 +143,9 @@ public class MoodleUser extends SugarRecord<MoodleUser> {
 			mUserCourse.setSiteid(this.siteid);
 			mUserCourse.setUserid(this.userid);
 			dbUserCourses = MoodleUserCourse.find(MoodleUserCourse.class,
-					"userid = ? and siteid = ? and courseid = ?", userid + "",
-					siteid + "", mUserCourse.getCourseid() + "");
-			if (dbUserCourses != null && dbUserCourses.size() > 0)
+					"userid = ? and siteid = ? and courseid = ?", String.valueOf(userid),
+					String.valueOf(siteid), String.valueOf(mUserCourse.getCourseid()));
+			if (dbUserCourses != null && !dbUserCourses.isEmpty())
 				mUserCourse.setId(dbUserCourses.get(0).getId());
 			mUserCourse.save();
 		}

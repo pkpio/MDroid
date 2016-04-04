@@ -80,16 +80,15 @@ public class CourseContentSyncTask {
 
 		// Get the course from database for all future use
 		List<MoodleCourse> dbCourses = MoodleCourse.find(MoodleCourse.class,
-				"siteid = ? and courseid = ?", siteid + "", courseid + "");
-		if (dbCourses == null || dbCourses.size() == 0) {
+				"siteid = ? and courseid = ?", String.valueOf(siteid), String.valueOf(courseid));
+		if (dbCourses == null || dbCourses.isEmpty()) {
 			error = "Course not found in database!";
 			return false;
 		}
 		course = dbCourses.get(0);
 
 		MoodleRestCourseContent mrcc = new MoodleRestCourseContent(mUrl, token);
-		ArrayList<MoodleSection> mSections = mrcc.getCourseContent(courseid
-				+ "");
+		ArrayList<MoodleSection> mSections = mrcc.getCourseContent(String.valueOf(courseid));
 
 		/** Error checking **/
 		if (mSections == null) {
@@ -98,7 +97,7 @@ public class CourseContentSyncTask {
 		}
 
 		// Some network or encoding issue.
-		if (mSections.size() == 0) {
+		if (mSections.isEmpty()) {
 			error = "No data received! Permissions issue?";
 			return false;
 		}
@@ -115,8 +114,8 @@ public class CourseContentSyncTask {
 			// Update or save in database
 			dbSections = MoodleSection.find(MoodleSection.class,
 					"sectionid = ? and siteid = ?",
-					section.getSectionid() + "", section.getSiteid() + "");
-			if (dbSections.size() > 0)
+					String.valueOf(section.getSectionid()), String.valueOf(section.getSiteid()));
+			if (!dbSections.isEmpty())
 				section.setId(dbSections.get(0).getId()); // updates on save()
 			section.save();
 
@@ -161,9 +160,9 @@ public class CourseContentSyncTask {
 			 * -TODO- Should more conditions be added?
 			 */
 			dbModules = MoodleModule.find(MoodleModule.class,
-					"moduleid = ? and siteid = ?", module.getModuleid() + "",
-					module.getSiteid() + "");
-			if (dbModules.size() > 0)
+					"moduleid = ? and siteid = ?", String.valueOf(module.getModuleid()),
+					String.valueOf(module.getSiteid()));
+			if (!dbModules.isEmpty())
 				module.setId(dbModules.get(0).getId()); // updates on save()
 			// set notifications if enabled
 			else if (notification) {
@@ -216,9 +215,9 @@ public class CourseContentSyncTask {
 
 			// Update or save in database
 			dbContents = MoodleModuleContent.find(MoodleModuleContent.class,
-					"parentid = ? and siteid = ?", content.getParentid() + "",
-					content.getSiteid() + "");
-			if (dbContents.size() > 0)
+					"parentid = ? and siteid = ?", String.valueOf(content.getParentid()),
+					String.valueOf(content.getSiteid()));
+			if (!dbContents.isEmpty())
 				content.setId(dbContents.get(0).getId()); // updates on save()
 			content.save();
 		}
@@ -239,26 +238,26 @@ public class CourseContentSyncTask {
 	 */
 	public ArrayList<MoodleSection> getCourseContents(int courseid) {
 		List<MoodleSection> sections = MoodleSection.find(MoodleSection.class,
-				"courseid = ? and siteid = ?", courseid + "", siteid + "");
+				"courseid = ? and siteid = ?", String.valueOf(courseid), String.valueOf(siteid));
 
 		// Add modules to sections
 		List<MoodleModule> dbModules;
 		List<MoodleModuleContent> dbContents;
 		for (int i = 0; i < sections.size(); i++) {
 			dbModules = MoodleModule.find(MoodleModule.class, "parentid = ?",
-					sections.get(i).getId() + "");
+					String.valueOf(sections.get(i).getId()));
 
 			// Set module contents to modules
 			for (int j = 0; j < dbModules.size(); j++) {
 				dbContents = MoodleModuleContent.find(
-						MoodleModuleContent.class, "parentid = ?", dbModules
-								.get(j).getId() + "");
+						MoodleModuleContent.class, "parentid = ?", String.valueOf(dbModules
+								.get(j).getId()));
 				dbModules.get(j).setContents(dbContents);
 			}
 
 			sections.get(i).setModules(dbModules);
 		}
 
-		return new ArrayList<MoodleSection>(sections);
+		return new ArrayList<>(sections);
 	}
 }

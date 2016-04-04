@@ -58,7 +58,7 @@ public class IconMap {
 			if (contents == null)
 				return R.drawable.format_unknown;
 
-			if (contents.size() == 0)
+			if (contents.isEmpty())
 				return R.drawable.format_unknown;
 
 			String filename = contents.get(0).getFilename();

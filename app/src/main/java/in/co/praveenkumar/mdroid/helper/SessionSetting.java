@@ -66,7 +66,7 @@ public class SessionSetting {
 			List<MoodleSiteInfo> sites = MoodleSiteInfo
 					.listAll(MoodleSiteInfo.class);
 			// Check if at least one site is present in database
-			if (sites.size() != 0) {
+			if (!sites.isEmpty()) {
 				siteInfo = sites.get(0);
 
 				// Save this as current site for all future references.
