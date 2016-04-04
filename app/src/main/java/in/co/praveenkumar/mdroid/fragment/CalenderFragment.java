@@ -231,10 +231,7 @@ public class CalenderFragment extends Fragment implements OnRefreshListener {
 
 		@Override
 		public boolean isItemViewTypePinned(int viewType) {
-			if (viewType == TYPE_DATE)
-				return true;
-			else
-				return false;
+			return viewType == TYPE_DATE;
 		}
 
 		@Override

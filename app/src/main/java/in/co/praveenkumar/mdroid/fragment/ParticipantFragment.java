@@ -175,10 +175,7 @@ public class ParticipantFragment extends Fragment implements OnRefreshListener {
 		protected Boolean doInBackground(String... params) {
 			UserSyncTask ust = new UserSyncTask(session.getmUrl(),
 					session.getToken(), session.getCurrentSiteId());
-			if (ust.syncUsers(courseid))
-				return true;
-			else
-				return false;
+			return ust.syncUsers(courseid);
 		}
 
 		@Override

@@ -116,10 +116,7 @@ public class MessageListingFragment extends Fragment implements
             // Sync from server and update
             MessageSyncTask mst = new MessageSyncTask(session.getmUrl(),
                     session.getToken(), session.getCurrentSiteId());
-            if (mst.syncMessages(session.getSiteInfo().getUserid()))
-                return true;
-            else
-                return false;
+            return mst.syncMessages(session.getSiteInfo().getUserid());
         }
 
         @Override
