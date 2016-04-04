@@ -93,7 +93,7 @@ public class CourseSyncTask {
 		int userid = site.getUserid();
 
 		MoodleRestCourse mrc = new MoodleRestCourse(mUrl, token);
-		ArrayList<MoodleCourse> mCourses = mrc.getEnrolledCourses(userid + "");
+		ArrayList<MoodleCourse> mCourses = mrc.getEnrolledCourses(String.valueOf(userid));
 
 		/** Error checking **/
 		// Some network or encoding issue.

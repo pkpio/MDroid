@@ -99,8 +99,8 @@ public class PostSyncTask {
 				post.setSiteid(siteid);
 
 				dbPosts = MoodlePost.find(MoodlePost.class,
-						"postid = ? and siteid = ?", post.getPostid() + "",
-						siteid + "");
+						"postid = ? and siteid = ?", String.valueOf(post.getPostid()),
+						String.valueOf(siteid));
 				if (dbPosts.size() > 0)
 					post.setId(dbPosts.get(0).getId());
 
@@ -108,8 +108,8 @@ public class PostSyncTask {
 				else if (notification) {
 					List<MoodleDiscussion> dbDiscussions = MoodleDiscussion
 							.find(MoodleDiscussion.class,
-									"discussionid = ? and siteid = ?", siteid
-											+ "", discussionid + "");
+									"discussionid = ? and siteid = ?", String.valueOf(siteid)
+											, String.valueOf(discussionid));
 					MoodleDiscussion discussion = (dbDiscussions != null && dbDiscussions
 							.size() > 0) ? dbDiscussions.get(0) : null;
 

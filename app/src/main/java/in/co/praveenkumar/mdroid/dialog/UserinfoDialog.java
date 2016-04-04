@@ -52,16 +52,16 @@ public class UserinfoDialog extends Dialog implements
 		this.session = new SessionSetting(context);
 		siteinfo = MoodleSiteInfo.findById(MoodleSiteInfo.class, siteid);
 		List<MoodleUser> mUsers = MoodleUser.find(MoodleUser.class,
-				"userid = ? and siteid = ?", userid + "", siteid + "");
+				"userid = ? and siteid = ?", String.valueOf(userid), String.valueOf(siteid));
 		if (mUsers != null && mUsers.size() > 0)
 			user = mUsers.get(0);
 		mCourses = MoodleUserCourse
 				.find(MoodleUserCourse.class, "userid = ? and siteid = ?",
-						user.getUserid() + "", siteid + "");
+						String.valueOf(user.getUserid()), String.valueOf(siteid));
 
 		// Check if this user is a contact
 		List<MoodleContact> mContacts = MoodleContact.find(MoodleContact.class,
-				"contactid = ? and siteid = ?", userid + "", siteid + "");
+				"contactid = ? and siteid = ?", String.valueOf(userid), String.valueOf(siteid));
 		isContact = (mContacts != null && mContacts.size() != 0);
 
 	}
@@ -116,7 +116,7 @@ public class UserinfoDialog extends Dialog implements
 		char firstChar = 0;
 		if (name.length() != 0)
 			firstChar = name.charAt(0);
-		userImage.setText(firstChar + "");
+		userImage.setText(String.valueOf(firstChar));
 		userImage.setBackgroundColor(LetterColor.of(firstChar));
 		userFullname.setText(user.getFullname());
 

@@ -80,7 +80,7 @@ public class CourseContentSyncTask {
 
 		// Get the course from database for all future use
 		List<MoodleCourse> dbCourses = MoodleCourse.find(MoodleCourse.class,
-				"siteid = ? and courseid = ?", siteid + "", courseid + "");
+				"siteid = ? and courseid = ?", String.valueOf(siteid), String.valueOf(courseid));
 		if (dbCourses == null || dbCourses.size() == 0) {
 			error = "Course not found in database!";
 			return false;
@@ -88,8 +88,7 @@ public class CourseContentSyncTask {
 		course = dbCourses.get(0);
 
 		MoodleRestCourseContent mrcc = new MoodleRestCourseContent(mUrl, token);
-		ArrayList<MoodleSection> mSections = mrcc.getCourseContent(courseid
-				+ "");
+		ArrayList<MoodleSection> mSections = mrcc.getCourseContent(String.valueOf(courseid));
 
 		/** Error checking **/
 		if (mSections == null) {
@@ -239,20 +238,20 @@ public class CourseContentSyncTask {
 	 */
 	public ArrayList<MoodleSection> getCourseContents(int courseid) {
 		List<MoodleSection> sections = MoodleSection.find(MoodleSection.class,
-				"courseid = ? and siteid = ?", courseid + "", siteid + "");
+				"courseid = ? and siteid = ?", String.valueOf(courseid), String.valueOf(siteid));
 
 		// Add modules to sections
 		List<MoodleModule> dbModules;
 		List<MoodleModuleContent> dbContents;
 		for (int i = 0; i < sections.size(); i++) {
 			dbModules = MoodleModule.find(MoodleModule.class, "parentid = ?",
-					sections.get(i).getId() + "");
+					String.valueOf(sections.get(i).getId()));
 
 			// Set module contents to modules
 			for (int j = 0; j < dbModules.size(); j++) {
 				dbContents = MoodleModuleContent.find(
-						MoodleModuleContent.class, "parentid = ?", dbModules
-								.get(j).getId() + "");
+						MoodleModuleContent.class, "parentid = ?", String.valueOf(dbModules
+								.get(j).getId()));
 				dbModules.get(j).setContents(dbContents);
 			}
 

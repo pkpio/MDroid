@@ -73,7 +73,7 @@ public class EventSyncTask {
 	 */
 	public Boolean syncEvents(int courseid) {
 		ArrayList<String> courseids = new ArrayList<String>();
-		courseids.add(courseid + "");
+		courseids.add(String.valueOf(courseid));
 		return syncEvents(courseids);
 	}
 
@@ -116,11 +116,11 @@ public class EventSyncTask {
 				event.setSiteid(siteid);
 
 				dbEvents = MoodleEvent.find(MoodleEvent.class,
-						"eventid = ? and siteid = ?", event.getEventid() + "",
-						siteid + "");
+						"eventid = ? and siteid = ?", String.valueOf(event.getEventid()),
+						String.valueOf(siteid));
 				dbCourses = MoodleCourse.find(MoodleCourse.class,
 						"courseid = ? and siteid = ?",
-						event.getCourseid() + "", siteid + "");
+						String.valueOf(event.getCourseid()), String.valueOf(siteid));
 				if (dbCourses.size() > 0)
 					event.setCoursename(dbCourses.get(0).getShortname());
 				if (dbEvents.size() > 0)

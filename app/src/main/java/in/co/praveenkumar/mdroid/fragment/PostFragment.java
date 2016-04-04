@@ -86,8 +86,8 @@ public class PostFragment extends Fragment implements OnRefreshListener {
 
 		session = new SessionSetting(getActivity());
 		mPosts = MoodlePost.find(MoodlePost.class,
-				"siteid = ? and discussionid = ?", session.getCurrentSiteId()
-						+ "", discussionid + "");
+				"siteid = ? and discussionid = ?", String.valueOf(session.getCurrentSiteId())
+						, String.valueOf(discussionid));
 		sortPostsByTime();
 
 		ListView postList = (ListView) rootView.findViewById(R.id.content_post);
@@ -228,8 +228,8 @@ public class PostFragment extends Fragment implements OnRefreshListener {
 
 			if (syncStatus) {
 				mPosts = MoodlePost.find(MoodlePost.class,
-						"siteid = ? and discussionid = ?", siteid + "",
-						discussionid + "");
+						"siteid = ? and discussionid = ?", String.valueOf(siteid),
+						String.valueOf(discussionid));
 				sortPostsByTime();
 				return true;
 			} else

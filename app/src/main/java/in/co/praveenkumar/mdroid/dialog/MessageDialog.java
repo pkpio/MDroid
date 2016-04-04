@@ -47,12 +47,12 @@ public class MessageDialog extends Dialog implements
 		// Set values
 		char letter = (contact.getFullname().length() > 0) ? contact
 				.getFullname().charAt(0) : '0';
-		userImage.setText(letter + "");
+		userImage.setText(String.valueOf(letter));
 		userName.setText(contact.getFullname());
 		userImage.setBackgroundColor(LetterColor.of(letter));
 		headerLine.setBackgroundColor(LetterColor.of(letter));
 		if (contact.getUnread() > 0)
-			unreadCount.setText(contact.getUnread() + "");
+			unreadCount.setText(String.valueOf(contact.getUnread()));
 		else
 			unreadCount.setVisibility(TextView.GONE);
 

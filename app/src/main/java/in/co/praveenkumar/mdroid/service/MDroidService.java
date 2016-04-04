@@ -123,12 +123,12 @@ public class MDroidService extends Service {
 				// Get list of favourites courses if no courseid is passed
 				if (courseid == -1)
 					mCourses = MoodleCourse.find(MoodleCourse.class,
-							"siteid = ? and is_fav_course = ?", site.getId()
-									+ "", "1");
+							"siteid = ? and is_fav_course = ?", String.valueOf(site.getId())
+									, "1");
 				else
 					mCourses = MoodleCourse.find(MoodleCourse.class,
-							"siteid = ? and courseid = ?", site.getId() + "",
-							courseid + "");
+							"siteid = ? and courseid = ?", String.valueOf(site.getId()),
+							String.valueOf(courseid));
 
 				// Contents sync
 				if (settings.getBoolean("notify_coursecontents", true))

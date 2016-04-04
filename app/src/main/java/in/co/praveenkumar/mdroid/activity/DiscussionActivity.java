@@ -29,8 +29,8 @@ public class DiscussionActivity extends BaseNavigationActivity implements
 		// Set title
 		SessionSetting session = new SessionSetting(this);
 		List<MoodleForum> mForums = MoodleForum.find(MoodleForum.class,
-				"forumid = ? and siteid = ?", forumid + "",
-				session.getCurrentSiteId() + "");
+				"forumid = ? and siteid = ?", String.valueOf(forumid),
+				String.valueOf(session.getCurrentSiteId()));
 		if (mForums.size() > 0)
 			getSupportActionBar().setTitle(mForums.get(0).getName());
 		getSupportActionBar().setIcon(R.drawable.icon_forum);

@@ -233,7 +233,7 @@ public class MessagingFragment extends Fragment implements OnRefreshListener {
 				char firstChar = 0;
 				if (name.length() != 0)
 					firstChar = name.charAt(0);
-				viewHolder.userimage.setText(firstChar + "");
+				viewHolder.userimage.setText(String.valueOf(firstChar));
 				viewHolder.userimage.setBackgroundColor(LetterColor
 						.of(firstChar));
 
@@ -293,8 +293,8 @@ public class MessagingFragment extends Fragment implements OnRefreshListener {
 	void setupMessages() {
 		List<MoodleMessage> mMessages = MoodleMessage.find(MoodleMessage.class,
 				"useridfrom = ? and siteid = ? or useridto = ? and siteid = ?",
-				userid + "", session.getCurrentSiteId() + "", userid + "",
-				session.getCurrentSiteId() + "");
+				String.valueOf(userid), String.valueOf(session.getCurrentSiteId()), String.valueOf(userid),
+				String.valueOf(session.getCurrentSiteId()));
 
 		// Sort messages with newest last in list
 		Collections.sort(mMessages, new Comparator<MoodleMessage>() {

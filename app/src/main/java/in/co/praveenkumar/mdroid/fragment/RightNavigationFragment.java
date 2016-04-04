@@ -121,7 +121,7 @@ public class RightNavigationFragment extends Fragment {
 			char firstChar = 0;
 			if (name.length() != 0)
 				firstChar = name.charAt(0);
-			viewHolder.userimage.setText(firstChar + "");
+			viewHolder.userimage.setText(String.valueOf(firstChar));
 			viewHolder.userimage.setBackgroundColor(LetterColor.of(firstChar));
 
 			// Name
@@ -134,7 +134,7 @@ public class RightNavigationFragment extends Fragment {
 				viewHolder.unreadcount.setVisibility(TextView.GONE);
 			else {
 				viewHolder.unreadcount.setVisibility(TextView.VISIBLE);
-				viewHolder.unreadcount.setText(count + "");
+				viewHolder.unreadcount.setText(String.valueOf(count));
 			}
 
 			switch (contacts.get(position).getStatus()) {
