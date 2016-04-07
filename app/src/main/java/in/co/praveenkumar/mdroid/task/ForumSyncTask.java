@@ -71,7 +71,7 @@ public class ForumSyncTask {
 	 * @author Praveen Kumar Pendyala (praveen@praveenkumar.co.in)
 	 */
 	public Boolean syncForums(int courseid) {
-		ArrayList<String> courseids = new ArrayList<String>();
+		ArrayList<String> courseids = new ArrayList<>();
 		courseids.add(courseid + "");
 		return syncForums(courseids);
 	}

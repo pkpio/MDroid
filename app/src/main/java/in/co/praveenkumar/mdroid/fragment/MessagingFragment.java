@@ -47,7 +47,7 @@ import android.widget.Toast;
 public class MessagingFragment extends Fragment implements OnRefreshListener {
 	final String DEBUG_TAG = "MessageListingFragment";
 	Context context;
-	List<MoodleMessage> messages = new ArrayList<MoodleMessage>();
+	List<MoodleMessage> messages = new ArrayList<>();
 	MessageListAdapter adapter;
 	SessionSetting session;
 	LinearLayout messagingEmptyLayout;

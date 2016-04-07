@@ -170,7 +170,7 @@ public class MoodleModule extends SugarRecord<MoodleModule> {
 	 * @return
 	 */
 	public void setContents(List<MoodleModuleContent> contents) {
-		this.contents = new ArrayList<MoodleModuleContent>(contents);
+		this.contents = new ArrayList<>(contents);
 	}
 
 	/**

@@ -191,7 +191,7 @@ public class ForumFragment extends Fragment implements OnRefreshListener {
 			// Get course ids
 			List<MoodleCourse> mCourses = MoodleCourse.find(MoodleCourse.class,
 					"siteid = ?", siteid + "");
-			ArrayList<String> courseIds = new ArrayList<String>();
+			ArrayList<String> courseIds = new ArrayList<>();
 			for (int i = 0; i < mCourses.size(); i++)
 				courseIds.add(mCourses.get(i).getCourseid() + "");
 			syncStatus = fst.syncForums(courseIds);

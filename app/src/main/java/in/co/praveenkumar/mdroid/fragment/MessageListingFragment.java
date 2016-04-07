@@ -39,7 +39,7 @@ import android.widget.TextView;
 public class MessageListingFragment extends Fragment implements
         OnRefreshListener {
     final String DEBUG_TAG = "MessageListingFragment";
-    List<ListMessage> messages = new ArrayList<MessageListingFragment.ListMessage>();
+    List<ListMessage> messages = new ArrayList<>();
 
     FragmentManager mFragmentManager;
     MessageListAdapter adapter;
@@ -218,7 +218,7 @@ public class MessageListingFragment extends Fragment implements
     void setupMessages() {
         List<MoodleMessage> mMessages = MoodleMessage.find(MoodleMessage.class,
                 "siteid = ?", session.getCurrentSiteId() + "");
-        List<ListMessage> lMessages = new ArrayList<MessageListingFragment.ListMessage>();
+        List<ListMessage> lMessages = new ArrayList<>();
 
         // Sort messages with newest first in list
         Collections.sort(mMessages, new Comparator<MoodleMessage>() {
@@ -229,7 +229,7 @@ public class MessageListingFragment extends Fragment implements
             }
         });
 
-        List<Integer> userids = new ArrayList<Integer>();
+        List<Integer> userids = new ArrayList<>();
         int currentuserid = session.getSiteInfo().getUserid();
 
         for (int i = 0; i < mMessages.size(); i++) {
