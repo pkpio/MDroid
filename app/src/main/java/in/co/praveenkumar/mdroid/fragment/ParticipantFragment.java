@@ -98,7 +98,7 @@ public class ParticipantFragment extends Fragment implements OnRefreshListener {
 
 		public ParticipantListAdapter(Context context) {
 			this.context = context;
-			if (participants.size() != 0)
+			if (!participants.isEmpty())
 				listEmptyLayout.setVisibility(LinearLayout.GONE);
 		}
 
@@ -187,7 +187,7 @@ public class ParticipantFragment extends Fragment implements OnRefreshListener {
 					"siteid = ? and courseid = ?", session.getCurrentSiteId()
 							+ "", courseid + "");
 			adapter.notifyDataSetChanged();
-			if (participants.size() != 0)
+			if (!participants.isEmpty())
 				listEmptyLayout.setVisibility(LinearLayout.GONE);
 			swipeLayout.setRefreshing(false);
 		}

@@ -91,7 +91,7 @@ public class ForumFragment extends Fragment implements OnRefreshListener {
 
 		public ForumListAdapter(Context context) {
 			this.context = context;
-			if (mForums.size() != 0)
+			if (!mForums.isEmpty())
 				forumEmptyLayout.setVisibility(LinearLayout.GONE);
 		}
 
@@ -212,7 +212,7 @@ public class ForumFragment extends Fragment implements OnRefreshListener {
 		@Override
 		protected void onPostExecute(Boolean result) {
 			forumListAdapter.notifyDataSetChanged();
-			if (mForums.size() != 0)
+			if (!mForums.isEmpty())
 				forumEmptyLayout.setVisibility(LinearLayout.GONE);
 			swipeLayout.setRefreshing(false);
 		}

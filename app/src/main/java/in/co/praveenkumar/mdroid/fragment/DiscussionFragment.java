@@ -113,7 +113,7 @@ public class DiscussionFragment extends Fragment implements OnRefreshListener {
 
 		public TopicListAdapter(Context context) {
 			this.context = context;
-			if (mTopics.size() != 0)
+			if (!mTopics.isEmpty())
 				topicsEmptyLayout.setVisibility(LinearLayout.GONE);
 		}
 
@@ -202,7 +202,7 @@ public class DiscussionFragment extends Fragment implements OnRefreshListener {
 
 		@Override
 		public void notifyDataSetChanged() {
-			if (mTopics.size() != 0)
+			if (!mTopics.isEmpty())
 				topicsEmptyLayout.setVisibility(LinearLayout.GONE);
 			super.notifyDataSetChanged();
 		}

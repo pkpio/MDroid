@@ -110,7 +110,7 @@ public class CourseFragment extends Fragment implements OnRefreshListener {
 
 		public CourseListAdapter(Context context) {
 			this.context = context;
-			if (mCourses.size() != 0)
+			if (!mCourses.isEmpty())
 				courseEmptyLayout.setVisibility(LinearLayout.GONE);
 		}
 
@@ -294,7 +294,7 @@ public class CourseFragment extends Fragment implements OnRefreshListener {
 				mCourses = MoodleCourse.find(MoodleCourse.class,
 						"siteid = ? and ", session.getCurrentSiteId() + "");
 			courseListAdapter.notifyDataSetChanged();
-			if (mCourses.size() != 0)
+			if (!mCourses.isEmpty())
 				courseEmptyLayout.setVisibility(LinearLayout.GONE);
 			swipeLayout.setRefreshing(false);
 		}
