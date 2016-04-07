@@ -183,10 +183,7 @@ public class RightNavigationFragment extends Fragment {
 		protected Boolean doInBackground(String... params) {
 			ContactSyncTask cst = new ContactSyncTask(session.getmUrl(),
 					session.getToken(), session.getCurrentSiteId());
-			if (cst.syncAllContacts())
-				return true;
-			else
-				return false;
+			return cst.syncAllContacts();
 		}
 
 		@Override

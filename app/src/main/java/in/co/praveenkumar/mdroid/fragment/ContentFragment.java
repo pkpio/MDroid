@@ -120,10 +120,7 @@ public class ContentFragment extends Fragment implements OnRefreshListener {
 			// Save all sections into a listObject array for easy access inside
 			mapSectionsToListObjects(sections);
 
-			if (syncStatus)
-				return true;
-			else
-				return false;
+			return syncStatus;
 		}
 
 		@Override
@@ -291,10 +288,7 @@ public class ContentFragment extends Fragment implements OnRefreshListener {
 
 		@Override
 		public boolean isItemViewTypePinned(int viewType) {
-			if (viewType == TYPE_HEADER)
-				return true;
-			else
-				return false;
+			return viewType == TYPE_HEADER;
 		}
 
 		@Override

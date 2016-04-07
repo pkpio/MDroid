@@ -274,10 +274,7 @@ public class CourseFragment extends Fragment implements OnRefreshListener {
 		protected Boolean doInBackground(String... params) {
 			CourseSyncTask cs = new CourseSyncTask(session.getmUrl(),
 					session.getToken(), session.getCurrentSiteId());
-			if (cs.syncUserCourses())
-				return true;
-			else
-				return false;
+			return cs.syncUserCourses();
 		}
 
 		@Override
