@@ -88,14 +88,22 @@ public class UserSyncTask {
 
 			dbUsers = MoodleUser.find(MoodleUser.class,
 					"userid = ? and siteid = ? and courseid = ?",
+<<<<<<< HEAD
 					String.valueOf(mUser.getUserid()), String.valueOf(siteid), String.valueOf(courseid));
+=======
+					mUser.getUserid() + "", siteid + "", courseid + "");
+>>>>>>> master-orig
 			if (!dbUsers.isEmpty())
 				mUser.setId(dbUsers.get(0).getId());
 			// set notifications if enabled
 			else if (notification) {
 				List<MoodleCourse> dbCourses = MoodleCourse.find(
 						MoodleCourse.class, "courseid = ? and siteid = ?",
+<<<<<<< HEAD
 						String.valueOf(siteid), String.valueOf(courseid));
+=======
+						siteid + "", courseid + "");
+>>>>>>> master-orig
 				MoodleCourse course = (dbCourses != null && !dbCourses.isEmpty()) ? dbCourses
 						.get(0) : null;
 

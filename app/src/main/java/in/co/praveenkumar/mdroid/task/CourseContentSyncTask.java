@@ -80,7 +80,11 @@ public class CourseContentSyncTask {
 
 		// Get the course from database for all future use
 		List<MoodleCourse> dbCourses = MoodleCourse.find(MoodleCourse.class,
+<<<<<<< HEAD
 				"siteid = ? and courseid = ?", String.valueOf(siteid), String.valueOf(courseid));
+=======
+				"siteid = ? and courseid = ?", siteid + "", courseid + "");
+>>>>>>> master-orig
 		if (dbCourses == null || dbCourses.isEmpty()) {
 			error = "Course not found in database!";
 			return false;
@@ -114,7 +118,11 @@ public class CourseContentSyncTask {
 			// Update or save in database
 			dbSections = MoodleSection.find(MoodleSection.class,
 					"sectionid = ? and siteid = ?",
+<<<<<<< HEAD
 					String.valueOf(section.getSectionid()), String.valueOf(section.getSiteid()));
+=======
+					section.getSectionid() + "", section.getSiteid() + "");
+>>>>>>> master-orig
 			if (!dbSections.isEmpty())
 				section.setId(dbSections.get(0).getId()); // updates on save()
 			section.save();
@@ -160,8 +168,13 @@ public class CourseContentSyncTask {
 			 * -TODO- Should more conditions be added?
 			 */
 			dbModules = MoodleModule.find(MoodleModule.class,
+<<<<<<< HEAD
 					"moduleid = ? and siteid = ?", String.valueOf(module.getModuleid()),
 					String.valueOf(module.getSiteid()));
+=======
+					"moduleid = ? and siteid = ?", module.getModuleid() + "",
+					module.getSiteid() + "");
+>>>>>>> master-orig
 			if (!dbModules.isEmpty())
 				module.setId(dbModules.get(0).getId()); // updates on save()
 			// set notifications if enabled
@@ -215,8 +228,13 @@ public class CourseContentSyncTask {
 
 			// Update or save in database
 			dbContents = MoodleModuleContent.find(MoodleModuleContent.class,
+<<<<<<< HEAD
 					"parentid = ? and siteid = ?", String.valueOf(content.getParentid()),
 					String.valueOf(content.getSiteid()));
+=======
+					"parentid = ? and siteid = ?", content.getParentid() + "",
+					content.getSiteid() + "");
+>>>>>>> master-orig
 			if (!dbContents.isEmpty())
 				content.setId(dbContents.get(0).getId()); // updates on save()
 			content.save();

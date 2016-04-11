@@ -120,7 +120,11 @@ public class EventSyncTask {
 						String.valueOf(siteid));
 				dbCourses = MoodleCourse.find(MoodleCourse.class,
 						"courseid = ? and siteid = ?",
+<<<<<<< HEAD
 						String.valueOf(event.getCourseid()), String.valueOf(siteid));
+=======
+						event.getCourseid() + "", siteid + "");
+>>>>>>> master-orig
 				if (!dbCourses.isEmpty())
 					event.setCoursename(dbCourses.get(0).getShortname());
 				if (!dbEvents.isEmpty())

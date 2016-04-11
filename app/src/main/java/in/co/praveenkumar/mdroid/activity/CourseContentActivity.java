@@ -42,8 +42,13 @@ public class CourseContentActivity extends BaseNavigationActivity {
 		// Get course details
 		SessionSetting session = new SessionSetting(this);
 		List<MoodleCourse> dbCourses = MoodleCourse.find(MoodleCourse.class,
+<<<<<<< HEAD
 				"siteid = ? and courseid = ?", String.valueOf(session.getCurrentSiteId()),
 				String.valueOf(courseid));
+=======
+				"siteid = ? and courseid = ?", session.getCurrentSiteId() + "",
+				courseid + "");
+>>>>>>> master-orig
 		if (dbCourses == null || dbCourses.isEmpty()) {
 			Toast.makeText(this, "Course not found in database!",
 					Toast.LENGTH_LONG).show();

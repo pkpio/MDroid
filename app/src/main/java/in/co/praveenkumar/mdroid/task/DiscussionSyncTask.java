@@ -107,8 +107,13 @@ public class DiscussionSyncTask {
 			topic.setSiteid(siteid);
 
 			dbTopics = MoodleDiscussion.find(MoodleDiscussion.class,
+<<<<<<< HEAD
 					"discussionid = ? and siteid = ?", String.valueOf(topic.getDiscussionid())
 							, String.valueOf(siteid));
+=======
+					"discussionid = ? and siteid = ?", topic.getDiscussionid()
+							+ "", siteid + "");
+>>>>>>> master-orig
 			if (!dbTopics.isEmpty())
 				topic.setId(dbTopics.get(0).getId());
 
@@ -116,7 +121,11 @@ public class DiscussionSyncTask {
 			else if (notification) {
 				List<MoodleCourse> dbCourses = MoodleCourse.find(
 						MoodleCourse.class, "courseid = ? and siteid = ?",
+<<<<<<< HEAD
 						String.valueOf(siteid), String.valueOf(topic.getCourseid()));
+=======
+						siteid + "", topic.getCourseid() + "");
+>>>>>>> master-orig
 				MoodleCourse course = (dbCourses != null && !dbCourses.isEmpty()) ? dbCourses
 						.get(0) : null;
 
