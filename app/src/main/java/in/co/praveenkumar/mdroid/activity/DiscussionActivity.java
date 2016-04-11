@@ -31,7 +31,7 @@ public class DiscussionActivity extends BaseNavigationActivity implements
 		List<MoodleForum> mForums = MoodleForum.find(MoodleForum.class,
 				"forumid = ? and siteid = ?", String.valueOf(forumid),
 				String.valueOf(session.getCurrentSiteId()));
-		if (mForums.size() > 0)
+		if (!mForums.isEmpty())
 			getSupportActionBar().setTitle(mForums.get(0).getName());
 		getSupportActionBar().setIcon(R.drawable.icon_forum);
 	}

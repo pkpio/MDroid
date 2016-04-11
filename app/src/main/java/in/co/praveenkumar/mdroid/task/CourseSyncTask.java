@@ -41,7 +41,7 @@ public class CourseSyncTask {
 
 		/** Error checking **/
 		// Some network or encoding issue.
-		if (mCourses.size() == 0) {
+		if (mCourses.isEmpty()) {
 			error = "Network issue!";
 			return false;
 		}
@@ -63,7 +63,7 @@ public class CourseSyncTask {
 			dbCourses = MoodleCourse.find(MoodleCourse.class,
 					"courseid = ? and siteid = ?", course.getCourseid() + "",
 					course.getSiteid() + "");
-			if (dbCourses != null && dbCourses.size() > 0) {
+			if (dbCourses != null && !dbCourses.isEmpty()) {
 				// Set app specific fields explicitly
 				course.setId(dbCourses.get(0).getId());
 				course.setIsUserCourse(dbCourses.get(0).getIsUserCourse());
@@ -101,7 +101,7 @@ public class CourseSyncTask {
 			return false;
 
 		// Some network or encoding issue.
-		if (mCourses.size() == 0)
+		if (mCourses.isEmpty())
 			return false;
 
 		// Moodle exception
@@ -120,7 +120,7 @@ public class CourseSyncTask {
 			dbCourses = MoodleCourse.find(MoodleCourse.class,
 					"courseid = ? and siteid = ?", course.getCourseid() + "",
 					course.getSiteid() + "");
-			if (dbCourses.size() > 0) {
+			if (!dbCourses.isEmpty()) {
 				// Set app specific fields explicitly
 				course.setId(dbCourses.get(0).getId());
 				course.setIsFavCourse(dbCourses.get(0).getIsFavCourse());

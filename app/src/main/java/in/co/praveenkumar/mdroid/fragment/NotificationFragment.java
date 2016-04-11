@@ -155,7 +155,7 @@ public class NotificationFragment extends Fragment implements OnRefreshListener 
 
 		public NotificationListAdapter(Context context) {
 			this.context = context;
-			if (notifications.size() != 0)
+			if (!notifications.isEmpty())
 				chatEmptyLayout.setVisibility(LinearLayout.GONE);
 		}
 
@@ -217,7 +217,7 @@ public class NotificationFragment extends Fragment implements OnRefreshListener 
 		@Override
 		public void notifyDataSetChanged() {
 			super.notifyDataSetChanged();
-			if (notifications.size() != 0)
+			if (!notifications.isEmpty())
 				chatEmptyLayout.setVisibility(LinearLayout.GONE);
 			else
 				chatEmptyLayout.setVisibility(LinearLayout.VISIBLE);

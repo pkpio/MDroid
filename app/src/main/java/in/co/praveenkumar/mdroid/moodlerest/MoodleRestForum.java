@@ -32,7 +32,7 @@ public class MoodleRestForum {
 	 * @author Praveen Kumar Pendyala (praveen@praveenkumar.co.in)
 	 */
 	public ArrayList<MoodleForum> getForums(String courseid) {
-		ArrayList<String> courseids = new ArrayList<String>();
+		ArrayList<String> courseids = new ArrayList<>();
 		courseids.add(courseid);
 		return getForums(courseids);
 	}
@@ -45,7 +45,7 @@ public class MoodleRestForum {
 	 * @author Praveen Kumar Pendyala (praveen@praveenkumar.co.in)
 	 */
 	public ArrayList<MoodleForum> getForums(ArrayList<String> courseids) {
-		ArrayList<MoodleForum> mForums = new ArrayList<MoodleForum>();
+		ArrayList<MoodleForum> mForums = new ArrayList<>();
 		String format = MoodleRestOption.RESPONSE_FORMAT;
 		String function = MoodleRestOption.FUNCTION_GET_FORUMS;
 

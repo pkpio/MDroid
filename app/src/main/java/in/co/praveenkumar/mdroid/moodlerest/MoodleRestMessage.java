@@ -38,7 +38,7 @@ public class MoodleRestMessage {
 	public Boolean sendMessage(MoodleMessage message) {
 		String format = MoodleRestOption.RESPONSE_FORMAT;
 		String function = MoodleRestOption.FUNCTION_SEND_MESSAGE;
-		ArrayList<MoodleMessage> mMessages = new ArrayList<MoodleMessage>();
+		ArrayList<MoodleMessage> mMessages = new ArrayList<>();
 
 		if (message == null) {
 			Log.d(DEBUG_TAG, "Message not setup correctly");
@@ -82,7 +82,7 @@ public class MoodleRestMessage {
 			if (mMessages == null)
 				return false;
 
-			if (mMessages.size() == 0)
+			if (mMessages.isEmpty())
 				return false;
 
 			MoodleMessage mMessage = mMessages.get(0);

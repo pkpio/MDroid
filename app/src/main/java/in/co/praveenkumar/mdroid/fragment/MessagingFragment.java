@@ -47,7 +47,7 @@ import android.widget.Toast;
 public class MessagingFragment extends Fragment implements OnRefreshListener {
 	final String DEBUG_TAG = "MessageListingFragment";
 	Context context;
-	List<MoodleMessage> messages = new ArrayList<MoodleMessage>();
+	List<MoodleMessage> messages = new ArrayList<>();
 	MessageListAdapter adapter;
 	SessionSetting session;
 	LinearLayout messagingEmptyLayout;
@@ -144,10 +144,7 @@ public class MessagingFragment extends Fragment implements OnRefreshListener {
 			// Sync from server and update
 			MessageSyncTask mst = new MessageSyncTask(session.getmUrl(),
 					session.getToken(), session.getCurrentSiteId());
-			if (mst.syncMessages(session.getSiteInfo().getUserid()))
-				return true;
-			else
-				return false;
+			return mst.syncMessages(session.getSiteInfo().getUserid());
 		}
 
 		@Override
@@ -167,7 +164,7 @@ public class MessagingFragment extends Fragment implements OnRefreshListener {
 
 		public MessageListAdapter(Context context) {
 			this.context = context;
-			if (messages == null || messages.size() != 0)
+			if (messages == null || !messages.isEmpty())
 				messagingEmptyLayout.setVisibility(LinearLayout.GONE);
 		}
 
@@ -278,7 +275,7 @@ public class MessagingFragment extends Fragment implements OnRefreshListener {
 
 		@Override
 		public void notifyDataSetChanged() {
-			if (messages.size() != 0)
+			if (!messages.isEmpty())
 				messagingEmptyLayout.setVisibility(LinearLayout.GONE);
 			super.notifyDataSetChanged();
 		}

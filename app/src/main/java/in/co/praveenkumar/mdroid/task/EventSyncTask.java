@@ -72,8 +72,8 @@ public class EventSyncTask {
 	 * @author Praveen Kumar Pendyala (praveen@praveenkumar.co.in)
 	 */
 	public Boolean syncEvents(int courseid) {
-		ArrayList<String> courseids = new ArrayList<String>();
-		courseids.add(String.valueOf(courseid));
+		ArrayList<String> courseids = new ArrayList<>();
+		courseids.add(courseid + "");
 		return syncEvents(courseids);
 	}
 
@@ -121,9 +121,9 @@ public class EventSyncTask {
 				dbCourses = MoodleCourse.find(MoodleCourse.class,
 						"courseid = ? and siteid = ?",
 						String.valueOf(event.getCourseid()), String.valueOf(siteid));
-				if (dbCourses.size() > 0)
+				if (!dbCourses.isEmpty())
 					event.setCoursename(dbCourses.get(0).getShortname());
-				if (dbEvents.size() > 0)
+				if (!dbEvents.isEmpty())
 					event.setId(dbEvents.get(0).getId());
 
 				// set notifications if enabled

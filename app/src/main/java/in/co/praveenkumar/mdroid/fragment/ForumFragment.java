@@ -91,7 +91,7 @@ public class ForumFragment extends Fragment implements OnRefreshListener {
 
 		public ForumListAdapter(Context context) {
 			this.context = context;
-			if (mForums.size() != 0)
+			if (!mForums.isEmpty())
 				forumEmptyLayout.setVisibility(LinearLayout.GONE);
 		}
 
@@ -191,7 +191,7 @@ public class ForumFragment extends Fragment implements OnRefreshListener {
 			// Get course ids
 			List<MoodleCourse> mCourses = MoodleCourse.find(MoodleCourse.class,
 					"siteid = ?", siteid + "");
-			ArrayList<String> courseIds = new ArrayList<String>();
+			ArrayList<String> courseIds = new ArrayList<>();
 			for (int i = 0; i < mCourses.size(); i++)
 				courseIds.add(mCourses.get(i).getCourseid() + "");
 			syncStatus = fst.syncForums(courseIds);
@@ -212,7 +212,7 @@ public class ForumFragment extends Fragment implements OnRefreshListener {
 		@Override
 		protected void onPostExecute(Boolean result) {
 			forumListAdapter.notifyDataSetChanged();
-			if (mForums.size() != 0)
+			if (!mForums.isEmpty())
 				forumEmptyLayout.setVisibility(LinearLayout.GONE);
 			swipeLayout.setRefreshing(false);
 		}

@@ -35,7 +35,7 @@ public class MoodleRestCourse {
 	 * @author Praveen Kumar Pendyala (praveen@praveenkumar.co.in)
 	 */
 	public ArrayList<MoodleCourse> getAllCourses() {
-		ArrayList<MoodleCourse> mCourses = new ArrayList<MoodleCourse>();
+		ArrayList<MoodleCourse> mCourses = new ArrayList<>();
 		String format = MoodleRestOption.RESPONSE_FORMAT;
 		String function = MoodleRestOption.FUNCTION_GET_ALL_COURSES;
 
@@ -82,7 +82,7 @@ public class MoodleRestCourse {
 	 * @author Praveen Kumar Pendyala (praveen@praveenkumar.co.in)
 	 */
 	public ArrayList<MoodleCourse> getEnrolledCourses(String userId) {
-		ArrayList<MoodleCourse> mCourses = new ArrayList<MoodleCourse>();
+		ArrayList<MoodleCourse> mCourses = new ArrayList<>();
 		String format = MoodleRestOption.RESPONSE_FORMAT;
 		String function = MoodleRestOption.FUNCTION_GET_ENROLLED_COURSES;
 

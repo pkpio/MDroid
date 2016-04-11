@@ -100,7 +100,7 @@ public class MDroidService extends Service {
 			int messageCount = 0;
 			int eventCount = 0;
 
-			List<MoodleSiteInfo> mSites = new ArrayList<MoodleSiteInfo>();
+			List<MoodleSiteInfo> mSites = new ArrayList<>();
 			MoodleSiteInfo site;
 
 			// Get list of accounts in app if no siteid param is passed
@@ -111,14 +111,14 @@ public class MDroidService extends Service {
 				mSites.add(site);
 			}
 
-			if (mSites == null || mSites.size() == 0)
+			if (mSites == null || mSites.isEmpty())
 				return false;
 
 			// Loop through all sites for checking contents
 			for (int i = 0; i < mSites.size(); i++) {
 				site = mSites.get(i);
 
-				List<MoodleCourse> mCourses = new ArrayList<MoodleCourse>();
+				List<MoodleCourse> mCourses = new ArrayList<>();
 
 				// Get list of favourites courses if no courseid is passed
 				if (courseid == -1)
@@ -189,7 +189,7 @@ public class MDroidService extends Service {
 		 */
 		private int syncCourseContents(MoodleSiteInfo site,
 				List<MoodleCourse> mCourses) {
-			if (mCourses == null || mCourses.size() == 0)
+			if (mCourses == null || mCourses.isEmpty())
 				return 0;
 
 			CourseContentSyncTask ccst = new CourseContentSyncTask(
@@ -211,10 +211,10 @@ public class MDroidService extends Service {
 		 * @return Notification count
 		 */
 		private int syncForums(MoodleSiteInfo site, List<MoodleCourse> mCourses) {
-			if (mCourses == null || mCourses.size() == 0)
+			if (mCourses == null || mCourses.isEmpty())
 				return 0;
 
-			ArrayList<String> courseids = new ArrayList<String>();
+			ArrayList<String> courseids = new ArrayList<>();
 			ForumSyncTask fst = new ForumSyncTask(site.getSiteurl(),
 					site.getToken(), site.getId(), notifications);
 			for (int i = 0; i < mCourses.size(); i++)
@@ -235,12 +235,12 @@ public class MDroidService extends Service {
 		 */
 		private int syncDiscussions(MoodleSiteInfo site,
 				List<MoodleCourse> mCourses) {
-			if (mCourses == null || mCourses.size() == 0)
+			if (mCourses == null || mCourses.isEmpty())
 				return 0;
 
 			DiscussionSyncTask dst = new DiscussionSyncTask(site.getSiteurl(),
 					site.getToken(), site.getId(), notifications);
-			List<MoodleForum> forums = new ArrayList<MoodleForum>();
+			List<MoodleForum> forums = new ArrayList<>();
 
 			// Get list of discussions to sync
 			for (int i = 0; i < mCourses.size(); i++)
@@ -249,7 +249,7 @@ public class MDroidService extends Service {
 								.getCourseid() + "", site.getId() + ""));
 
 			// Make an Arraylist of ids for above discussions
-			ArrayList<String> forumids = new ArrayList<String>();
+			ArrayList<String> forumids = new ArrayList<>();
 			for (int i = 0; i < forums.size(); i++)
 				forumids.add(forums.get(i).getForumid() + "");
 
@@ -267,12 +267,12 @@ public class MDroidService extends Service {
 		 * @return Notification count
 		 */
 		private int syncPosts(MoodleSiteInfo site, List<MoodleCourse> mCourses) {
-			if (mCourses == null || mCourses.size() == 0)
+			if (mCourses == null || mCourses.isEmpty())
 				return 0;
 
 			PostSyncTask pst = new PostSyncTask(site.getSiteurl(),
 					site.getToken(), site.getId(), notifications);
-			List<MoodleDiscussion> discussions = new ArrayList<MoodleDiscussion>();
+			List<MoodleDiscussion> discussions = new ArrayList<>();
 
 			// Get list of discussions to sync
 			for (int i = 0; i < mCourses.size(); i++)
@@ -281,7 +281,7 @@ public class MDroidService extends Service {
 						mCourses.get(i).getCourseid() + "", site.getId() + ""));
 
 			// Make an Arraylist of ids for above discussions
-			ArrayList<Integer> discussionids = new ArrayList<Integer>();
+			ArrayList<Integer> discussionids = new ArrayList<>();
 			for (int i = 0; i < discussions.size(); i++)
 				discussionids.add(discussions.get(i).getDiscussionid());
 
@@ -314,10 +314,10 @@ public class MDroidService extends Service {
 		 * @return Notification count
 		 */
 		private int syncEvents(MoodleSiteInfo site, List<MoodleCourse> mCourses) {
-			if (mCourses == null || mCourses.size() == 0)
+			if (mCourses == null || mCourses.isEmpty())
 				return 0;
 
-			ArrayList<String> courseids = new ArrayList<String>();
+			ArrayList<String> courseids = new ArrayList<>();
 			EventSyncTask est = new EventSyncTask(site.getSiteurl(),
 					site.getToken(), site.getId(), notifications);
 			for (int i = 0; i < mCourses.size(); i++)
@@ -338,7 +338,7 @@ public class MDroidService extends Service {
 		 */
 		private int syncParticipants(MoodleSiteInfo site,
 				List<MoodleCourse> mCourses) {
-			if (mCourses == null || mCourses.size() == 0)
+			if (mCourses == null || mCourses.isEmpty())
 				return 0;
 
 			UserSyncTask ust = new UserSyncTask(site.getSiteurl(),

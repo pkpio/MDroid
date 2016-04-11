@@ -53,7 +53,7 @@ public class UserinfoDialog extends Dialog implements
 		siteinfo = MoodleSiteInfo.findById(MoodleSiteInfo.class, siteid);
 		List<MoodleUser> mUsers = MoodleUser.find(MoodleUser.class,
 				"userid = ? and siteid = ?", String.valueOf(userid), String.valueOf(siteid));
-		if (mUsers != null && mUsers.size() > 0)
+		if (mUsers != null && !mUsers.isEmpty())
 			user = mUsers.get(0);
 		mCourses = MoodleUserCourse
 				.find(MoodleUserCourse.class, "userid = ? and siteid = ?",
@@ -62,7 +62,7 @@ public class UserinfoDialog extends Dialog implements
 		// Check if this user is a contact
 		List<MoodleContact> mContacts = MoodleContact.find(MoodleContact.class,
 				"contactid = ? and siteid = ?", String.valueOf(userid), String.valueOf(siteid));
-		isContact = (mContacts != null && mContacts.size() != 0);
+		isContact = (mContacts != null && !mContacts.isEmpty());
 
 	}
 
@@ -225,8 +225,7 @@ public class UserinfoDialog extends Dialog implements
 				if (isContact)
 					MoodleContact.deleteAll(MoodleContact.class,
 							"siteid = ? and contactid = ?",
-							session.getCurrentSiteId() + "", user.getUserid()
-									+ "");
+							String.valueOf(session.getCurrentSiteId()), String.valueOf(user.getUserid()));
 				cst.syncAllContacts();
 			}
 			return status;

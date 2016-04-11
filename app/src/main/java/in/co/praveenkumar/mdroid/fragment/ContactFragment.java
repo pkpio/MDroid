@@ -81,7 +81,7 @@ public class ContactFragment extends Fragment implements OnRefreshListener {
 
 		public ContactListAdapter(Context context) {
 			this.context = context;
-			if (contacts.size() != 0)
+			if (!contacts.isEmpty())
 				chatEmptyLayout.setVisibility(LinearLayout.GONE);
 		}
 
@@ -183,10 +183,7 @@ public class ContactFragment extends Fragment implements OnRefreshListener {
 		protected Boolean doInBackground(String... params) {
 			ContactSyncTask cst = new ContactSyncTask(session.getmUrl(),
 					session.getToken(), session.getCurrentSiteId());
-			if (cst.syncAllContacts())
-				return true;
-			else
-				return false;
+			return cst.syncAllContacts();
 		}
 
 		@Override
@@ -194,7 +191,7 @@ public class ContactFragment extends Fragment implements OnRefreshListener {
 			contacts = MoodleContact.find(MoodleContact.class, "siteid = ?",
 					session.getCurrentSiteId() + "");
 			adapter.notifyDataSetChanged();
-			if (contacts.size() != 0)
+			if (!contacts.isEmpty())
 				chatEmptyLayout.setVisibility(LinearLayout.GONE);
 			swipeLayout.setRefreshing(false);
 		}

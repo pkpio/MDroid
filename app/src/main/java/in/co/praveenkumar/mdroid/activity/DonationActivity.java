@@ -32,7 +32,7 @@ import com.google.gson.reflect.TypeToken;
 
 public class DonationActivity extends BaseNavigationActivity {
 	private final String DEBUG_TAG = "DonationActivity";
-	List<MDroidFeature> features = new ArrayList<MDroidFeature>();
+	List<MDroidFeature> features = new ArrayList<>();
 	Context context;
 	FeatureListAdapter featureListAdapter;
 

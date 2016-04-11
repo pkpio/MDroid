@@ -98,7 +98,7 @@ public class ParticipantFragment extends Fragment implements OnRefreshListener {
 
 		public ParticipantListAdapter(Context context) {
 			this.context = context;
-			if (participants.size() != 0)
+			if (!participants.isEmpty())
 				listEmptyLayout.setVisibility(LinearLayout.GONE);
 		}
 
@@ -175,10 +175,7 @@ public class ParticipantFragment extends Fragment implements OnRefreshListener {
 		protected Boolean doInBackground(String... params) {
 			UserSyncTask ust = new UserSyncTask(session.getmUrl(),
 					session.getToken(), session.getCurrentSiteId());
-			if (ust.syncUsers(courseid))
-				return true;
-			else
-				return false;
+			return ust.syncUsers(courseid);
 		}
 
 		@Override
@@ -187,7 +184,7 @@ public class ParticipantFragment extends Fragment implements OnRefreshListener {
 					"siteid = ? and courseid = ?", String.valueOf(session.getCurrentSiteId())
 							, String.valueOf(courseid));
 			adapter.notifyDataSetChanged();
-			if (participants.size() != 0)
+			if (!participants.isEmpty())
 				listEmptyLayout.setVisibility(LinearLayout.GONE);
 			swipeLayout.setRefreshing(false);
 		}

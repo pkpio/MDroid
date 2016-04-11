@@ -158,7 +158,7 @@ public class ContactSyncTask {
 				dbContacts = MoodleContact.find(MoodleContact.class,
 						"contactid = ? and siteid = ?", contacts.get(i)
 								.getContactid() + "", siteid + "");
-				if (dbContacts.size() > 0)
+				if (!dbContacts.isEmpty())
 					contact.setId(dbContacts.get(0).getId());
 
 				// set notifications if enabled
