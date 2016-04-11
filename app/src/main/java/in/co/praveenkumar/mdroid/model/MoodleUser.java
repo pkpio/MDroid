@@ -143,13 +143,8 @@ public class MoodleUser extends SugarRecord<MoodleUser> {
 			mUserCourse.setSiteid(this.siteid);
 			mUserCourse.setUserid(this.userid);
 			dbUserCourses = MoodleUserCourse.find(MoodleUserCourse.class,
-<<<<<<< HEAD
 					"userid = ? and siteid = ? and courseid = ?", String.valueOf(userid),
 					String.valueOf(siteid), String.valueOf(mUserCourse.getCourseid()));
-=======
-					"userid = ? and siteid = ? and courseid = ?", userid + "",
-					siteid + "", mUserCourse.getCourseid() + "");
->>>>>>> master-orig
 			if (dbUserCourses != null && !dbUserCourses.isEmpty())
 				mUserCourse.setId(dbUserCourses.get(0).getId());
 			mUserCourse.save();

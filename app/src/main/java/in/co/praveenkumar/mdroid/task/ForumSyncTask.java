@@ -114,13 +114,8 @@ public class ForumSyncTask {
 					"forumid = ? and siteid = ?", String.valueOf(forum.getForumid()),
 					String.valueOf(siteid));
 			dbCourses = MoodleCourse.find(MoodleCourse.class,
-<<<<<<< HEAD
 					"courseid = ? and siteid = ?", String.valueOf(forum.getCourseid()),
 					String.valueOf(siteid));
-=======
-					"courseid = ? and siteid = ?", forum.getCourseid() + "",
-					siteid + "");
->>>>>>> master-orig
 			if (!dbCourses.isEmpty())
 				forum.setCoursename(dbCourses.get(0).getShortname());
 			if (!dbForums.isEmpty())
