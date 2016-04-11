@@ -111,11 +111,11 @@ public class ForumSyncTask {
 			 * -TODO- Improve this search with only Sql operation
 			 */
 			dbForums = MoodleForum.find(MoodleForum.class,
-					"forumid = ? and siteid = ?", forum.getForumid() + "",
-					siteid + "");
+					"forumid = ? and siteid = ?", String.valueOf(forum.getForumid()),
+					String.valueOf(siteid));
 			dbCourses = MoodleCourse.find(MoodleCourse.class,
-					"courseid = ? and siteid = ?", forum.getCourseid() + "",
-					siteid + "");
+					"courseid = ? and siteid = ?", String.valueOf(forum.getCourseid()),
+					String.valueOf(siteid));
 			if (!dbCourses.isEmpty())
 				forum.setCoursename(dbCourses.get(0).getShortname());
 			if (!dbForums.isEmpty())

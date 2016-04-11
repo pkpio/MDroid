@@ -64,8 +64,8 @@ public class ParticipantFragment extends Fragment implements OnRefreshListener {
 		// Get sites info
 		session = new SessionSetting(getActivity());
 		participants = MoodleUser.find(MoodleUser.class,
-				"siteid = ? and courseid = ?", session.getCurrentSiteId() + "",
-				courseid + "");
+				"siteid = ? and courseid = ?", String.valueOf(session.getCurrentSiteId()),
+				String.valueOf(courseid));
 
 		adapter = new ParticipantListAdapter(getActivity());
 		participantList.setAdapter(adapter);
@@ -181,8 +181,8 @@ public class ParticipantFragment extends Fragment implements OnRefreshListener {
 		@Override
 		protected void onPostExecute(Boolean result) {
 			participants = MoodleUser.find(MoodleUser.class,
-					"siteid = ? and courseid = ?", session.getCurrentSiteId()
-							+ "", courseid + "");
+					"siteid = ? and courseid = ?", String.valueOf(session.getCurrentSiteId())
+							, String.valueOf(courseid));
 			adapter.notifyDataSetChanged();
 			if (!participants.isEmpty())
 				listEmptyLayout.setVisibility(LinearLayout.GONE);

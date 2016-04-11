@@ -116,11 +116,11 @@ public class EventSyncTask {
 				event.setSiteid(siteid);
 
 				dbEvents = MoodleEvent.find(MoodleEvent.class,
-						"eventid = ? and siteid = ?", event.getEventid() + "",
-						siteid + "");
+						"eventid = ? and siteid = ?", String.valueOf(event.getEventid()),
+						String.valueOf(siteid));
 				dbCourses = MoodleCourse.find(MoodleCourse.class,
 						"courseid = ? and siteid = ?",
-						event.getCourseid() + "", siteid + "");
+						String.valueOf(event.getCourseid()), String.valueOf(siteid));
 				if (!dbCourses.isEmpty())
 					event.setCoursename(dbCourses.get(0).getShortname());
 				if (!dbEvents.isEmpty())

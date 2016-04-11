@@ -204,7 +204,7 @@ public class TimeFormat {
 		String AmPm = (c.get(Calendar.AM_PM) == Calendar.AM) ? "AM" : "PM";
 
 		// Because 12:07 AM better than 12:7 AM
-		String mins = (minute > 9) ? minute + "" : "0" + minute;
+		String mins = (minute > 9) ? String.valueOf(minute): "0" + minute;
 
 		if (year == yearnow || String.valueOf(year).length() != 4)
 			return day + " " + getMonthName(month) + " " + hour + ":" + mins

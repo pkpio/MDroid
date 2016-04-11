@@ -225,8 +225,8 @@ public class UserinfoDialog extends Dialog implements
 				if (isContact)
 					MoodleContact.deleteAll(MoodleContact.class,
 							"siteid = ? and contactid = ?",
-							session.getCurrentSiteId() + "", user.getUserid()
-									+ "");
+							String.valueOf(session.getCurrentSiteId()), String.valueOf(user.getUserid()
+									));
 				cst.syncAllContacts();
 			}
 			return status;

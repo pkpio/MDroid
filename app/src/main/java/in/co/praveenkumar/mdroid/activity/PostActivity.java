@@ -29,7 +29,7 @@ public class PostActivity extends BaseNavigationActivity implements
 		SessionSetting session = new SessionSetting(this);
 		List<MoodleDiscussion> mDiscussions = MoodleDiscussion.find(
 				MoodleDiscussion.class, "discussionid = ? and siteid = ?",
-				discussionid + "", session.getCurrentSiteId() + "");
+				String.valueOf(discussionid), String.valueOf(session.getCurrentSiteId()));
 		if (!mDiscussions.isEmpty())
 			getSupportActionBar().setTitle(mDiscussions.get(0).getName());
 		getSupportActionBar().setIcon(R.drawable.icon_forum);

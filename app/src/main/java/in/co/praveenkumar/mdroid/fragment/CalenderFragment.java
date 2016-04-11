@@ -69,11 +69,11 @@ public class CalenderFragment extends Fragment implements OnRefreshListener {
 		session = new SessionSetting(context);
 		if (courseid == 0)
 			mEvents = MoodleEvent.find(MoodleEvent.class, "siteid = ?",
-					session.getCurrentSiteId() + "");
+					String.valueOf(session.getCurrentSiteId()));
 		else
 			mEvents = MoodleEvent.find(MoodleEvent.class,
-					"siteid = ? and courseid = ?", session.getCurrentSiteId()
-							+ "", courseid + "");
+					"siteid = ? and courseid = ?", String.valueOf(session.getCurrentSiteId())
+							, String.valueOf(courseid));
 		setupCalenderObjects();
 
 		calendarListAdapter = new CalendarListAdapter(context);
@@ -119,11 +119,11 @@ public class CalenderFragment extends Fragment implements OnRefreshListener {
 			if (syncStatus) {
 				if (courseid == 0)
 					mEvents = MoodleEvent.find(MoodleEvent.class, "siteid = ?",
-							session.getCurrentSiteId() + "");
+							String.valueOf(session.getCurrentSiteId()));
 				else
 					mEvents = MoodleEvent.find(MoodleEvent.class,
 							"siteid = ? and courseid = ?",
-							session.getCurrentSiteId() + "", courseid + "");
+							String.valueOf(session.getCurrentSiteId()), String.valueOf(courseid));
 				setupCalenderObjects();
 				return true;
 			} else

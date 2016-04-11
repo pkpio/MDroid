@@ -113,8 +113,8 @@ public class MessageSyncTask {
 				 * -TODO- Improve this search with only Sql operation
 				 */
 				dbMessages = MoodleMessage.find(MoodleMessage.class,
-						"messageid = ? and siteid = ?", message.getMessageid()
-								+ "", siteid + "");
+						"messageid = ? and siteid = ?", String.valueOf(message.getMessageid())
+								, String.valueOf(siteid));
 				if (!dbMessages.isEmpty())
 					message.setId(dbMessages.get(0).getId());
 				// set notifications if enabled
